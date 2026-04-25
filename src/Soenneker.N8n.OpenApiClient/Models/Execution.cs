@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.Execution_customData CustomData { get; set; }
 #endif
-        /// <summary>The data property</summary>
+        /// <summary>Detailed execution data. Only included when `includeData` is `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.Execution_data? Data { get; set; }

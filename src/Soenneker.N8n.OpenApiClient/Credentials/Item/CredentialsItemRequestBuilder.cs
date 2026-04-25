@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.Credentials.Item.Test;
 using Soenneker.N8n.OpenApiClient.Credentials.Item.Transfer;
 using Soenneker.N8n.OpenApiClient.Models;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CredentialsItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The test property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Credentials.Item.Test.TestRequestBuilder Test
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Credentials.Item.Test.TestRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The transfer property</summary>
         public global::Soenneker.N8n.OpenApiClient.Credentials.Item.Transfer.TransferRequestBuilder Transfer
         {
@@ -58,6 +64,24 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.Credential>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.Credential.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// Retrieves a credential by ID. Credential data (secrets) is not included.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToGetRequestInformation(requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Updates an existing credential. You must be the owner of the credential.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse"/></returns>
@@ -92,6 +116,25 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
         {
 #endif
             var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// Retrieves a credential by ID. Credential data (secrets) is not included.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTableList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTableList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a new data table in your workspace.
+        /// Create a new data table in your personal project or a team project you have access to.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DataTable"/></returns>
         /// <param name="body">The request body</param>
@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables
             return requestInfo;
         }
         /// <summary>
-        /// Create a new data table in your workspace.
+        /// Create a new data table in your personal project or a team project you have access to.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

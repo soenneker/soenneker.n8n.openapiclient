@@ -24,6 +24,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Id { get; private set; }
 #endif
+        /// <summary>Whether the credential is available for use by all users.</summary>
+        public bool? IsGlobal { get; private set; }
+        /// <summary>Whether the credential is managed by n8n (managed credentials cannot be edited via the API).</summary>
+        public bool? IsManaged { get; private set; }
+        /// <summary>Whether the credential can be dynamically resolved by a resolver.</summary>
+        public bool? IsResolvable { get; private set; }
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -31,6 +37,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #nullable restore
 #else
         public string Name { get; set; }
+#endif
+        /// <summary>Whether the credential resolver may fall back to static credentials if dynamic resolution fails.</summary>
+        public bool? ResolvableAllowFallback { get; private set; }
+        /// <summary>ID of the dynamic credential resolver associated with this credential, if any.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ResolverId { get; private set; }
+#nullable restore
+#else
+        public string ResolverId { get; private set; }
 #endif
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,7 +85,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
+                { "isGlobal", n => { IsGlobal = n.GetBoolValue(); } },
+                { "isManaged", n => { IsManaged = n.GetBoolValue(); } },
+                { "isResolvable", n => { IsResolvable = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "resolvableAllowFallback", n => { ResolvableAllowFallback = n.GetBoolValue(); } },
+                { "resolverId", n => { ResolverId = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
             };

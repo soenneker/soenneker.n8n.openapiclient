@@ -32,6 +32,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; private set; }
+        /// <summary>Description of the workflow</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -140,6 +148,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "activeVersion", n => { ActiveVersion = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ActiveVersion>(global::Soenneker.N8n.OpenApiClient.Models.ActiveVersion.CreateFromDiscriminatorValue); } },
                 { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Workflow_connections>(global::Soenneker.N8n.OpenApiClient.Models.Workflow_connections.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isArchived", n => { IsArchived = n.GetBoolValue(); } },
                 { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Workflow_meta>(global::Soenneker.N8n.OpenApiClient.Models.Workflow_meta.CreateFromDiscriminatorValue); } },
@@ -163,6 +172,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Workflow_connections>("connections", Connections);
+            writer.WriteStringValue("description", Description);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>("nodes", Nodes);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Workflow_pinData>("pinData", PinData);

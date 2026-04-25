@@ -12,7 +12,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public partial class WorkflowSettings : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Controls whether this workflow is accessible via the Model Context Protocol (MCP).When enabled, this workflow can be called by MCP clients (AI assistants and other toolsthat support MCP). This allows external AI tools to discover and execute this workflowas part of their capabilities.Requirements for enabling MCP access:- The workflow must be active (not deactivated)- The workflow must contain at least one active Webhook node- Only webhook-triggered workflows can be exposed via MCPSecurity note: When a workflow is available in MCP, it can be discovered and executedby any MCP client that has the appropriate API credentials for your n8n instance.</summary>
+        /// <summary>Controls whether this workflow is accessible via the Model Context Protocol (MCP).Defaults to false.When enabled, this workflow can be called by MCP clients (AI assistants and other toolsthat support MCP). This allows external AI tools to discover and execute this workflowas part of their capabilities.Requirements for enabling MCP access:- The workflow must be active (not deactivated)- The workflow must contain at least one active Webhook node- Only webhook-triggered workflows can be exposed via MCPSecurity note: When a workflow is available in MCP, it can be discovered and executedby any MCP client that has the appropriate API credentials for your n8n instance.</summary>
         public bool? AvailableInMCP { get; set; }
         /// <summary>Comma-separated list of workflow IDs allowed to call this workflow (only used with workflowsFromAList policy)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string CallerIds { get; set; }
 #endif
-        /// <summary>Controls which workflows are allowed to call this workflow using the Execute Workflow node.Available options:- `any`: Any workflow can call this workflow (no restrictions)- `none`: No other workflows can call this workflow (completely blocked)- `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow  * For personal projects: Only workflows created by the same user  * For team projects: Only workflows within the same team project- `workflowsFromAList`: Only specific workflows listed in the `callerIds` field can call this workflow  * Requires the `callerIds` field to specify which workflow IDs are allowed  * See `callerIds` field documentation for usage</summary>
+        /// <summary>Controls which workflows are allowed to call this workflow using the Execute Workflow node.Defaults to workflowsFromSameOwner.Available options:- `any`: Any workflow can call this workflow (no restrictions)- `none`: No other workflows can call this workflow (completely blocked)- `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow  * For personal projects: Only workflows created by the same user  * For team projects: Only workflows within the same team project- `workflowsFromAList`: Only specific workflows listed in the `callerIds` field can call this workflow  * Requires the `callerIds` field to specify which workflow IDs are allowed  * See `callerIds` field documentation for usage</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_callerPolicy? CallerPolicy { get; set; }
         /// <summary>The ID of the workflow that contains the error trigger node.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -60,13 +60,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Timezone { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings"/> and sets the default values.
-        /// </summary>
-        public WorkflowSettings()
-        {
-            CallerPolicy = global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_callerPolicy.WorkflowsFromSameOwner;
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>

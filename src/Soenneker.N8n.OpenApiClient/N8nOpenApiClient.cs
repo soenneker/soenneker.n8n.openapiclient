@@ -7,10 +7,12 @@ using Microsoft.Kiota.Serialization.Json;
 using Microsoft.Kiota.Serialization.Multipart;
 using Microsoft.Kiota.Serialization.Text;
 using Soenneker.N8n.OpenApiClient.Audit;
+using Soenneker.N8n.OpenApiClient.CommunityPackages;
 using Soenneker.N8n.OpenApiClient.Credentials;
 using Soenneker.N8n.OpenApiClient.DataTables;
 using Soenneker.N8n.OpenApiClient.Discover;
 using Soenneker.N8n.OpenApiClient.Executions;
+using Soenneker.N8n.OpenApiClient.Insights;
 using Soenneker.N8n.OpenApiClient.Projects;
 using Soenneker.N8n.OpenApiClient.SourceControl;
 using Soenneker.N8n.OpenApiClient.Tags;
@@ -34,6 +36,11 @@ namespace Soenneker.N8n.OpenApiClient
         {
             get => new global::Soenneker.N8n.OpenApiClient.Audit.AuditRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The communityPackages property</summary>
+        public global::Soenneker.N8n.OpenApiClient.CommunityPackages.CommunityPackagesRequestBuilder CommunityPackages
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.CommunityPackages.CommunityPackagesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The credentials property</summary>
         public global::Soenneker.N8n.OpenApiClient.Credentials.CredentialsRequestBuilder Credentials
         {
@@ -53,6 +60,11 @@ namespace Soenneker.N8n.OpenApiClient
         public global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder Executions
         {
             get => new global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The insights property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Insights.InsightsRequestBuilder Insights
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Insights.InsightsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The projects property</summary>
         public global::Soenneker.N8n.OpenApiClient.Projects.ProjectsRequestBuilder Projects

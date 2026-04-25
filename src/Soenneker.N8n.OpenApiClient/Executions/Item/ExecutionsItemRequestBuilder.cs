@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecutionsItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions/{id}{?includeData*}", pathParameters)
+        public ExecutionsItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions/{id}{?includeData*,redactExecutionData*}", pathParameters)
         {
         }
         /// <summary>
@@ -48,7 +48,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecutionsItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions/{id}{?includeData*}", rawUrl)
+        public ExecutionsItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions/{id}{?includeData*,redactExecutionData*}", rawUrl)
         {
         }
         /// <summary>
@@ -143,6 +143,9 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item
             /// <summary>Whether or not to include the execution&apos;s detailed data.</summary>
             [QueryParameter("includeData")]
             public bool? IncludeData { get; set; }
+            /// <summary>Controls execution data redaction. When `true`, execution output data is always redacted. When `false`, requests unredacted (revealed) data — requires the `execution:reveal` scope. When omitted, follows the workflow redaction policy.</summary>
+            [QueryParameter("redactExecutionData")]
+            public bool? RedactExecutionData { get; set; }
         }
     }
 }

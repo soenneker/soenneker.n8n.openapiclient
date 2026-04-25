@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
+using Soenneker.N8n.OpenApiClient.Projects.Item.Folders;
 using Soenneker.N8n.OpenApiClient.Projects.Item.Users;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,11 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithProjectItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The folders property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder Folders
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The users property</summary>
         public global::Soenneker.N8n.OpenApiClient.Projects.Item.Users.UsersRequestBuilder Users
         {

@@ -41,7 +41,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecutionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,includeData*,limit*,projectId,status*,workflowId*}", pathParameters)
+        public ExecutionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,includeData*,limit*,projectId,redactExecutionData*,status*,workflowId*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecutionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,includeData*,limit*,projectId,status*,workflowId*}", rawUrl)
+        public ExecutionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,includeData*,limit*,projectId,redactExecutionData*,status*,workflowId*}", rawUrl)
         {
         }
         /// <summary>
@@ -129,6 +129,9 @@ namespace Soenneker.N8n.OpenApiClient.Executions
             [QueryParameter("projectId")]
             public string ProjectId { get; set; }
 #endif
+            /// <summary>Controls execution data redaction. When `true`, execution output data is always redacted. When `false`, requests unredacted (revealed) data — requires the `execution:reveal` scope. When omitted, follows the workflow redaction policy.</summary>
+            [QueryParameter("redactExecutionData")]
+            public bool? RedactExecutionData { get; set; }
             /// <summary>Status to filter the executions by.</summary>
             [QueryParameter("status")]
             public global::Soenneker.N8n.OpenApiClient.Executions.GetStatusQueryParameterType? Status { get; set; }

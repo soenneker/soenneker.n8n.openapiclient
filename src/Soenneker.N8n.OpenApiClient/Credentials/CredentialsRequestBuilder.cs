@@ -25,7 +25,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
             get => new global::Soenneker.N8n.OpenApiClient.Credentials.Schema.SchemaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.credentials.item collection</summary>
-        /// <param name="position">The credential ID that needs to be updated</param>
+        /// <param name="position">The credential ID</param>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Credentials.Item.CredentialsItemRequestBuilder"/></returns>
         public global::Soenneker.N8n.OpenApiClient.Credentials.Item.CredentialsItemRequestBuilder this[string position]
         {
@@ -79,11 +79,11 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.Credential body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.Credential body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -117,11 +117,11 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Credential body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Credential body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

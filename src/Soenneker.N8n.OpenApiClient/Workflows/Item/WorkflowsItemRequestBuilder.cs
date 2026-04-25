@@ -5,10 +5,12 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Activate;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.Archive;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Item;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Tags;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.Unarchive;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -27,6 +29,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Activate.ActivateRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The archive property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Archive.ArchiveRequestBuilder Archive
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Archive.ArchiveRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The deactivate property</summary>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder Deactivate
         {
@@ -41,6 +48,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer.TransferRequestBuilder Transfer
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer.TransferRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The unarchive property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unarchive.UnarchiveRequestBuilder Unarchive
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unarchive.UnarchiveRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.workflows.item.item collection</summary>
         /// <param name="position">The version ID to retrieve</param>

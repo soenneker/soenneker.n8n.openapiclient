@@ -5,11 +5,11 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using System.Collections.Generic;
 using System.IO;
 using System;
-namespace Soenneker.N8n.OpenApiClient.Models
+namespace Soenneker.N8n.OpenApiClient.Models.Variable
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class Variable : IParsable
+    public partial class Create : IParsable
     #pragma warning restore CS1591
     {
         /// <summary>The id property</summary>
@@ -28,13 +28,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Key { get; set; }
 #endif
-        /// <summary>The project property</summary>
+        /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Project? Project { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Project Project { get; set; }
+        public string ProjectId { get; set; }
 #endif
         /// <summary>The type property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -55,12 +55,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Variable"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Variable.Create"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.Variable CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.Variable.Create CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.Variable();
+            return new global::Soenneker.N8n.OpenApiClient.Models.Variable.Create();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "key", n => { Key = n.GetStringValue(); } },
-                { "project", n => { Project = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Project>(global::Soenneker.N8n.OpenApiClient.Models.Project.CreateFromDiscriminatorValue); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
@@ -85,7 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("key", Key);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Project>("project", Project);
+            writer.WriteStringValue("projectId", ProjectId);
             writer.WriteStringValue("value", Value);
         }
     }
