@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.DataTables.Item.Columns;
 using Soenneker.N8n.OpenApiClient.DataTables.Item.Rows;
 using Soenneker.N8n.OpenApiClient.Models;
 using System.Collections.Generic;
@@ -18,6 +19,11 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithDataTableItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The columns property</summary>
+        public global::Soenneker.N8n.OpenApiClient.DataTables.Item.Columns.ColumnsRequestBuilder Columns
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.DataTables.Item.Columns.ColumnsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The rows property</summary>
         public global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.RowsRequestBuilder Rows
         {
