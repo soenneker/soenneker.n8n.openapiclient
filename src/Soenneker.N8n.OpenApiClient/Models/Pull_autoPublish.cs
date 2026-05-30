@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import</summary>
+    /// <summary>&quot;Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum Pull_autoPublish
     {

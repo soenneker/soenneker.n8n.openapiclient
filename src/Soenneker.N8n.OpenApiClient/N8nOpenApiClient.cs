@@ -13,6 +13,7 @@ using Soenneker.N8n.OpenApiClient.DataTables;
 using Soenneker.N8n.OpenApiClient.Discover;
 using Soenneker.N8n.OpenApiClient.Executions;
 using Soenneker.N8n.OpenApiClient.Insights;
+using Soenneker.N8n.OpenApiClient.N8nPackages;
 using Soenneker.N8n.OpenApiClient.Projects;
 using Soenneker.N8n.OpenApiClient.SourceControl;
 using Soenneker.N8n.OpenApiClient.Tags;
@@ -65,6 +66,11 @@ namespace Soenneker.N8n.OpenApiClient
         public global::Soenneker.N8n.OpenApiClient.Insights.InsightsRequestBuilder Insights
         {
             get => new global::Soenneker.N8n.OpenApiClient.Insights.InsightsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The n8nPackages property</summary>
+        public global::Soenneker.N8n.OpenApiClient.N8nPackages.N8nPackagesRequestBuilder N8nPackages
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.N8nPackages.N8nPackagesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The projects property</summary>
         public global::Soenneker.N8n.OpenApiClient.Projects.ProjectsRequestBuilder Projects

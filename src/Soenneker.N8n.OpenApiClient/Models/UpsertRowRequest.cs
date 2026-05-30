@@ -27,10 +27,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Filter conditions to match existing row. If no row matches, a new row is inserted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequest_filter? Filter { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter? Filter { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequest_filter Filter { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter Filter { get; set; }
 #endif
         /// <summary>If true, return the upserted row; if false, return true on success</summary>
         public bool? ReturnData { get; set; }
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequest_data>(global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequest_data.CreateFromDiscriminatorValue); } },
                 { "dryRun", n => { DryRun = n.GetBoolValue(); } },
-                { "filter", n => { Filter = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequest_filter>(global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequest_filter.CreateFromDiscriminatorValue); } },
+                { "filter", n => { Filter = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter>(global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter.CreateFromDiscriminatorValue); } },
                 { "returnData", n => { ReturnData = n.GetBoolValue(); } },
             };
         }
@@ -74,7 +74,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequest_data>("data", Data);
             writer.WriteBoolValue("dryRun", DryRun);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequest_filter>("filter", Filter);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter>("filter", Filter);
             writer.WriteBoolValue("returnData", ReturnData);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -35,20 +36,20 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete
         /// <summary>
         /// Delete rows matching filter conditions from a data table. Filter is required to prevent accidental deletion of all data.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteDeleteResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteDeleteResponse?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteDeleteResponse> DeleteAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200> DeleteAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteDeleteResponse>(requestInfo, global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteDeleteResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete rows matching filter conditions from a data table. Filter is required to prevent accidental deletion of all data.
@@ -77,67 +78,6 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete
         public global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Composed type wrapper for classes <see cref="bool"/>, List&lt;global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DataTableRow&gt;
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class DeleteDeleteResponse : IComposedTypeWrapper, IParsable
-        {
-            /// <summary>Composed type representation for type <see cref="bool"/></summary>
-            public bool? Boolean { get; set; }
-            /// <summary>Composed type representation for type List&lt;global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DataTableRow&gt;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            public List<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DataTableRow>? DataTableRow { get; set; }
-#nullable restore
-#else
-            public List<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DataTableRow> DataTableRow { get; set; }
-#endif
-            /// <summary>
-            /// Creates a new instance of the appropriate class based on discriminator value
-            /// </summary>
-            /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteDeleteResponse"/></returns>
-            /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-            public static global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteDeleteResponse CreateFromDiscriminatorValue(IParseNode parseNode)
-            {
-                if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-                var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
-                var result = new global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteDeleteResponse();
-                if(parseNode.GetBoolValue() is bool booleanValue)
-                {
-                    result.Boolean = booleanValue;
-                }
-                else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DataTableRow>(global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DataTableRow.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DataTableRow> dataTableRowValue)
-                {
-                    result.DataTableRow = dataTableRowValue;
-                }
-                return result;
-            }
-            /// <summary>
-            /// The deserialization information for the current model
-            /// </summary>
-            /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-            public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
-            {
-                return new Dictionary<string, Action<IParseNode>>();
-            }
-            /// <summary>
-            /// Serializes information the current object
-            /// </summary>
-            /// <param name="writer">Serialization writer to use to serialize this model</param>
-            public virtual void Serialize(ISerializationWriter writer)
-            {
-                if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-                if(Boolean != null)
-                {
-                    writer.WriteBoolValue(null, Boolean);
-                }
-                else if(DataTableRow != null)
-                {
-                    writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DataTableRow>(null, DataTableRow);
-                }
-            }
         }
         /// <summary>
         /// Delete rows matching filter conditions from a data table. Filter is required to prevent accidental deletion of all data.

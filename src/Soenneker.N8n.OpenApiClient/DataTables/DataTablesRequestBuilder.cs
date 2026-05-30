@@ -163,7 +163,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables
             /// <summary>The maximum number of items to return.</summary>
             [QueryParameter("limit")]
             public double? Limit { get; set; }
-            /// <summary>Sort format: field:asc or field:desc</summary>
+            /// <summary>&quot;Sort format: field:asc or field:desc&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("sortBy")]

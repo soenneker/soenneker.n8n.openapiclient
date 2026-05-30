@@ -2,7 +2,6 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Soenneker.N8n.OpenApiClient.Models.Variable;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -18,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.Variable.Variable>? Data { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.Variable>? Data { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.Variable.Variable> Data { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.Variable> Data { get; set; }
 #endif
         /// <summary>Paginate through variables by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first &quot;page&quot; of the collection.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,7 +55,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Variable.Variable>(global::Soenneker.N8n.OpenApiClient.Models.Variable.Variable.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Variable>(global::Soenneker.N8n.OpenApiClient.Models.Variable.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "nextCursor", n => { NextCursor = n.GetStringValue(); } },
             };
         }
@@ -67,7 +66,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Variable.Variable>("data", Data);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Variable>("data", Data);
             writer.WriteStringValue("nextCursor", NextCursor);
             writer.WriteAdditionalData(AdditionalData);
         }

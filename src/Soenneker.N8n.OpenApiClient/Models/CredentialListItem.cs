@@ -9,9 +9,45 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class CredentialListItem : global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialResponse, IParsable
+    public partial class CredentialListItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The createdAt property</summary>
+        public DateTimeOffset? CreatedAt { get; private set; }
+        /// <summary>The id property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; private set; }
+#nullable restore
+#else
+        public string Id { get; private set; }
+#endif
+        /// <summary>Whether the credential is available for use by all users.</summary>
+        public bool? IsGlobal { get; private set; }
+        /// <summary>Whether the credential is managed by n8n (managed credentials cannot be edited via the API).</summary>
+        public bool? IsManaged { get; private set; }
+        /// <summary>Whether the credential can be dynamically resolved by a resolver.</summary>
+        public bool? IsResolvable { get; private set; }
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>Whether the credential resolver may fall back to static credentials if dynamic resolution fails.</summary>
+        public bool? ResolvableAllowFallback { get; private set; }
+        /// <summary>ID of the dynamic credential resolver associated with this credential, if any.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ResolverId { get; private set; }
+#nullable restore
+#else
+        public string ResolverId { get; private set; }
+#endif
         /// <summary>Shared entries (project id, name, role, createdAt, updatedAt) from the credential&apos;s shared relation</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -20,12 +56,29 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.CredentialSharedItem> Shared { get; set; }
 #endif
+        /// <summary>The type property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Type { get; set; }
+#nullable restore
+#else
+        public string Type { get; set; }
+#endif
+        /// <summary>The updatedAt property</summary>
+        public DateTimeOffset? UpdatedAt { get; private set; }
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialListItem"/> and sets the default values.
+        /// </summary>
+        public CredentialListItem()
+        {
+            AdditionalData = new Dictionary<string, object>();
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialListItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static new global::Soenneker.N8n.OpenApiClient.Models.CredentialListItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.CredentialListItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             return new global::Soenneker.N8n.OpenApiClient.Models.CredentialListItem();
@@ -34,22 +87,34 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// The deserialization information for the current model
         /// </summary>
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
-        public override IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
+        public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
+            return new Dictionary<string, Action<IParseNode>>
             {
+                { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
+                { "id", n => { Id = n.GetStringValue(); } },
+                { "isGlobal", n => { IsGlobal = n.GetBoolValue(); } },
+                { "isManaged", n => { IsManaged = n.GetBoolValue(); } },
+                { "isResolvable", n => { IsResolvable = n.GetBoolValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "resolvableAllowFallback", n => { ResolvableAllowFallback = n.GetBoolValue(); } },
+                { "resolverId", n => { ResolverId = n.GetStringValue(); } },
                 { "shared", n => { Shared = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CredentialSharedItem>(global::Soenneker.N8n.OpenApiClient.Models.CredentialSharedItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "type", n => { Type = n.GetStringValue(); } },
+                { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
             };
         }
         /// <summary>
         /// Serializes information the current object
         /// </summary>
         /// <param name="writer">Serialization writer to use to serialize this model</param>
-        public override void Serialize(ISerializationWriter writer)
+        public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            base.Serialize(writer);
+            writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CredentialSharedItem>("shared", Shared);
+            writer.WriteStringValue("type", Type);
+            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Controls which workflows are allowed to call this workflow using the Execute Workflow node.Defaults to workflowsFromSameOwner.Available options:- `any`: Any workflow can call this workflow (no restrictions)- `none`: No other workflows can call this workflow (completely blocked)- `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow  * For personal projects: Only workflows created by the same user  * For team projects: Only workflows within the same team project- `workflowsFromAList`: Only specific workflows listed in the `callerIds` field can call this workflow  * Requires the `callerIds` field to specify which workflow IDs are allowed  * See `callerIds` field documentation for usage</summary>
+    /// <summary>&quot;Controls which workflows are allowed to call this workflow using the Execute Workflow node.Defaults to workflowsFromSameOwner.Available options:- `any`: Any workflow can call this workflow (no restrictions)- `none`: No other workflows can call this workflow (completely blocked)- `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow  * For personal projects: Only workflows created by the same user  * For team projects: Only workflows within the same team project- `workflowsFromAList`: Only specific workflows listed in the `callerIds` field can call this workflow  * Requires the `callerIds` field to specify which workflow IDs are allowed  * See `callerIds` field documentation for usage&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WorkflowSettings_callerPolicy
     {

@@ -2,7 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
-using Soenneker.N8n.OpenApiClient.Models.Folder;
+using Soenneker.N8n.OpenApiClient.Models;
 using System.Collections.Generic;
 using System.IO;
 using System;
@@ -20,10 +20,10 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.Folder.Folder>? Data { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.Folder>? Data { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.Folder.Folder> Data { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.Folder> Data { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersGetResponse"/> and sets the default values.
@@ -51,7 +51,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "count", n => { Count = n.GetIntValue(); } },
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Folder.Folder>(global::Soenneker.N8n.OpenApiClient.Models.Folder.Folder.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Folder>(global::Soenneker.N8n.OpenApiClient.Models.Folder.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -62,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("count", Count);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Folder.Folder>("data", Data);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Folder>("data", Data);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

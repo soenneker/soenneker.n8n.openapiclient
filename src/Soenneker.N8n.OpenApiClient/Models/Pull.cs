@@ -14,18 +14,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import</summary>
+        /// <summary>&quot;Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import&quot;</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.Pull_autoPublish? AutoPublish { get; set; }
         /// <summary>The force property</summary>
         public bool? Force { get; set; }
-        /// <summary>The variables property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Pull_variables? Variables { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.Pull_variables Variables { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.Pull"/> and sets the default values.
         /// </summary>
@@ -54,7 +46,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "autoPublish", n => { AutoPublish = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Pull_autoPublish>(); } },
                 { "force", n => { Force = n.GetBoolValue(); } },
-                { "variables", n => { Variables = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Pull_variables>(global::Soenneker.N8n.OpenApiClient.Models.Pull_variables.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -66,7 +57,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Pull_autoPublish>("autoPublish", AutoPublish);
             writer.WriteBoolValue("force", Force);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Pull_variables>("variables", Variables);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

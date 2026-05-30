@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>- count: Return only the number of rows inserted- id: Return an array of inserted row IDs- all: Return the full row data for all inserted rows</summary>
+    /// <summary>&quot;- count: Return only the number of rows inserted- id: Return an array of inserted row IDs- all: Return the full row data for all inserted rows&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum InsertRowsRequest_returnType
     {

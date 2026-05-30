@@ -101,10 +101,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The staticData property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? StaticData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.Workflow_staticData? StaticData { get; set; }
 #nullable restore
 #else
-        public string StaticData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.Workflow_staticData StaticData { get; set; }
 #endif
         /// <summary>The tags property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -157,7 +157,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "pinData", n => { PinData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Workflow_pinData>(global::Soenneker.N8n.OpenApiClient.Models.Workflow_pinData.CreateFromDiscriminatorValue); } },
                 { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings.CreateFromDiscriminatorValue); } },
                 { "shared", n => { Shared = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow>(global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "staticData", n => { StaticData = n.GetStringValue(); } },
+                { "staticData", n => { StaticData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Workflow_staticData>(global::Soenneker.N8n.OpenApiClient.Models.Workflow_staticData.CreateFromDiscriminatorValue); } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Tag>(global::Soenneker.N8n.OpenApiClient.Models.Tag.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "triggerCount", n => { TriggerCount = n.GetIntValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
@@ -178,7 +178,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Workflow_pinData>("pinData", PinData);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings>("settings", Settings);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow>("shared", Shared);
-            writer.WriteStringValue("staticData", StaticData);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Workflow_staticData>("staticData", StaticData);
         }
     }
 }

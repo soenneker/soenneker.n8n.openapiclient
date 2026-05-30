@@ -17,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The project property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow_project? Project { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflowProject? Project { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow_project Project { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflowProject Project { get; set; }
 #endif
         /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -67,7 +67,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
-                { "project", n => { Project = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow_project>(global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow_project.CreateFromDiscriminatorValue); } },
+                { "project", n => { Project = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflowProject>(global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflowProject.CreateFromDiscriminatorValue); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "role", n => { Role = n.GetStringValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
@@ -81,7 +81,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow_project>("project", Project);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflowProject>("project", Project);
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteStringValue("role", Role);
             writer.WriteStringValue("workflowId", WorkflowId);

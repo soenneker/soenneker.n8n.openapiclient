@@ -17,42 +17,42 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The averageRunTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_averageRunTime? AverageRunTime { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsAverageRunTime? AverageRunTime { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_averageRunTime AverageRunTime { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsAverageRunTime AverageRunTime { get; set; }
 #endif
         /// <summary>The failed property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_failed? Failed { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsFailed? Failed { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_failed Failed { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsFailed Failed { get; set; }
 #endif
         /// <summary>The failureRate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_failureRate? FailureRate { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsFailureRate? FailureRate { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_failureRate FailureRate { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsFailureRate FailureRate { get; set; }
 #endif
         /// <summary>The timeSaved property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_timeSaved? TimeSaved { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved? TimeSaved { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_timeSaved TimeSaved { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved TimeSaved { get; set; }
 #endif
         /// <summary>The total property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_total? Total { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsTotal? Total { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Insights_total Total { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsTotal Total { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.Insights"/> and sets the default values.
@@ -79,11 +79,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "averageRunTime", n => { AverageRunTime = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_averageRunTime>(global::Soenneker.N8n.OpenApiClient.Models.Insights_averageRunTime.CreateFromDiscriminatorValue); } },
-                { "failed", n => { Failed = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_failed>(global::Soenneker.N8n.OpenApiClient.Models.Insights_failed.CreateFromDiscriminatorValue); } },
-                { "failureRate", n => { FailureRate = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_failureRate>(global::Soenneker.N8n.OpenApiClient.Models.Insights_failureRate.CreateFromDiscriminatorValue); } },
-                { "timeSaved", n => { TimeSaved = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_timeSaved>(global::Soenneker.N8n.OpenApiClient.Models.Insights_timeSaved.CreateFromDiscriminatorValue); } },
-                { "total", n => { Total = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_total>(global::Soenneker.N8n.OpenApiClient.Models.Insights_total.CreateFromDiscriminatorValue); } },
+                { "averageRunTime", n => { AverageRunTime = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsAverageRunTime>(global::Soenneker.N8n.OpenApiClient.Models.InsightsAverageRunTime.CreateFromDiscriminatorValue); } },
+                { "failed", n => { Failed = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsFailed>(global::Soenneker.N8n.OpenApiClient.Models.InsightsFailed.CreateFromDiscriminatorValue); } },
+                { "failureRate", n => { FailureRate = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsFailureRate>(global::Soenneker.N8n.OpenApiClient.Models.InsightsFailureRate.CreateFromDiscriminatorValue); } },
+                { "timeSaved", n => { TimeSaved = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved>(global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved.CreateFromDiscriminatorValue); } },
+                { "total", n => { Total = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsTotal>(global::Soenneker.N8n.OpenApiClient.Models.InsightsTotal.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -93,11 +93,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_averageRunTime>("averageRunTime", AverageRunTime);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_failed>("failed", Failed);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_failureRate>("failureRate", FailureRate);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_timeSaved>("timeSaved", TimeSaved);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Insights_total>("total", Total);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsAverageRunTime>("averageRunTime", AverageRunTime);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsFailed>("failed", Failed);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsFailureRate>("failureRate", FailureRate);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved>("timeSaved", TimeSaved);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsTotal>("total", Total);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

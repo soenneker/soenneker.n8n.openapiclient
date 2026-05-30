@@ -25,10 +25,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Detailed execution data. Only included when `includeData` is `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Execution_data? Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionData? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Execution_data Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionData Data { get; set; }
 #endif
         /// <summary>The finished property</summary>
         public bool? Finished { get; set; }
@@ -76,7 +76,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "customData", n => { CustomData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_customData>(global::Soenneker.N8n.OpenApiClient.Models.Execution_customData.CreateFromDiscriminatorValue); } },
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_data>(global::Soenneker.N8n.OpenApiClient.Models.Execution_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionData>(global::Soenneker.N8n.OpenApiClient.Models.ExecutionData.CreateFromDiscriminatorValue); } },
                 { "finished", n => { Finished = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetDoubleValue(); } },
                 { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_mode>(); } },
@@ -97,7 +97,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_customData>("customData", CustomData);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_data>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionData>("data", Data);
             writer.WriteBoolValue("finished", Finished);
             writer.WriteDoubleValue("id", Id);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_mode>("mode", Mode);

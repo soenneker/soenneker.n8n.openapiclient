@@ -36,22 +36,28 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Pull
         /// <summary>
         /// Requires the Source Control feature to be licensed and connected to a repository.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResult"/></returns>
+        /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile&gt;</returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="List<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile>">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ImportResult?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.Pull body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile>?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.Pull body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ImportResult> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.Pull body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile>> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.Pull body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ImportResult>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ImportResult.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
+            {
+                { "409", global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile.CreateFromDiscriminatorValue },
+            };
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
         /// <summary>
         /// Requires the Source Control feature to be licensed and connected to a repository.
