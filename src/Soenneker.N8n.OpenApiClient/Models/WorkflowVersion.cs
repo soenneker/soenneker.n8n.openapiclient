@@ -23,10 +23,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Connections as they were in this version</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersion_connections? Connections { get; private set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersionConnectionsProperty? Connections { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersion_connections Connections { get; private set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersionConnectionsProperty Connections { get; set; }
 #endif
         /// <summary>When this version was created</summary>
         public DateTimeOffset? CreatedAt { get; private set; }
@@ -91,7 +91,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "authors", n => { Authors = n.GetStringValue(); } },
-                { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersion_connections>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersion_connections.CreateFromDiscriminatorValue); } },
+                { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersionConnectionsProperty>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersionConnectionsProperty.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -108,6 +108,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersionConnectionsProperty>("connections", Connections);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("name", Name);
         }

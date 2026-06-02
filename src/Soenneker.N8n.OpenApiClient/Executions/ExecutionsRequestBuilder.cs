@@ -134,7 +134,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions
             public bool? RedactExecutionData { get; set; }
             /// <summary>Status to filter the executions by.</summary>
             [QueryParameter("status")]
-            public global::Soenneker.N8n.OpenApiClient.Executions.GetStatusQueryParameterType? Status { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetExecutionsStatusParameter? Status { get; set; }
             /// <summary>Workflow to filter the executions by.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -36,22 +36,22 @@ namespace Soenneker.N8n.OpenApiClient.N8nPackages.Import
         /// <summary>
         /// **Beta — disabled by default.** Set `N8N_PUBLIC_API_PACKAGES_ENABLED=true` on theinstance to enable this endpoint. While disabled, requests return `404`.Imports a gzip-compressed tar package (`.n8np`) into the target project. Send thearchive as the multipart field `package`. Optional routing uses form fields`projectId` and `folderId` (omit or leave empty for defaults). Maximum upload sizeis `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).The package must declare its manifest at `manifest.json` and include every filereferenced by the manifest. The caller is authorised through the `workflow:import`scope. Each imported workflow is created with a fresh local id and arrives inactive.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8nPackagesImport200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PostN8nPackagesImport200?> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response?> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PostN8nPackagesImport200> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PostN8nPackagesImport200>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PostN8nPackagesImport200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Beta — disabled by default.** Set `N8N_PUBLIC_API_PACKAGES_ENABLED=true` on theinstance to enable this endpoint. While disabled, requests return `404`.Imports a gzip-compressed tar package (`.n8np`) into the target project. Send thearchive as the multipart field `package`. Optional routing uses form fields`projectId` and `folderId` (omit or leave empty for defaults). Maximum upload sizeis `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).The package must declare its manifest at `manifest.json` and include every filereferenced by the manifest. The caller is authorised through the `workflow:import`scope. Each imported workflow is created with a fresh local id and arrives inactive.

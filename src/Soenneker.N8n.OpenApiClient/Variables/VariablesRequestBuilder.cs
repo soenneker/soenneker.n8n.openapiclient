@@ -162,7 +162,7 @@ namespace Soenneker.N8n.OpenApiClient.Variables
             public string ProjectId { get; set; }
 #endif
             [QueryParameter("state")]
-            public global::Soenneker.N8n.OpenApiClient.Variables.GetStateQueryParameterType? State { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetVariablesStateParameter? State { get; set; }
         }
     }
 }

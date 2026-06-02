@@ -18,10 +18,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Present when execution data has been redacted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionData_redactionInfo? RedactionInfo { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionDataRedactionInfo? RedactionInfo { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionData_redactionInfo RedactionInfo { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionDataRedactionInfo RedactionInfo { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ExecutionData"/> and sets the default values.
@@ -48,7 +48,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "redactionInfo", n => { RedactionInfo = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionData_redactionInfo>(global::Soenneker.N8n.OpenApiClient.Models.ExecutionData_redactionInfo.CreateFromDiscriminatorValue); } },
+                { "redactionInfo", n => { RedactionInfo = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionDataRedactionInfo>(global::Soenneker.N8n.OpenApiClient.Models.ExecutionDataRedactionInfo.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionData_redactionInfo>("redactionInfo", RedactionInfo);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionDataRedactionInfo>("redactionInfo", RedactionInfo);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

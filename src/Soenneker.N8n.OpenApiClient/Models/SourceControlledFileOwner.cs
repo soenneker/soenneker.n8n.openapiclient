@@ -31,7 +31,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string ProjectName { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwner_type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwnerType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwner"/> and sets the default values.
         /// </summary>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "projectName", n => { ProjectName = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwner_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwnerType>(); } },
             };
         }
         /// <summary>
@@ -71,7 +71,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteStringValue("projectName", ProjectName);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwner_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwnerType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

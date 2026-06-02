@@ -15,7 +15,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>&quot;Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import&quot;</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.Pull_autoPublish? AutoPublish { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullAutoPublish? AutoPublish { get; set; }
         /// <summary>The force property</summary>
         public bool? Force { get; set; }
         /// <summary>
@@ -24,7 +24,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public Pull()
         {
             AdditionalData = new Dictionary<string, object>();
-            AutoPublish = global::Soenneker.N8n.OpenApiClient.Models.Pull_autoPublish.None;
+            AutoPublish = global::Soenneker.N8n.OpenApiClient.Models.PullAutoPublish.None;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,7 +44,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "autoPublish", n => { AutoPublish = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Pull_autoPublish>(); } },
+                { "autoPublish", n => { AutoPublish = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullAutoPublish>(); } },
                 { "force", n => { Force = n.GetBoolValue(); } },
             };
         }
@@ -55,7 +55,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Pull_autoPublish>("autoPublish", AutoPublish);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullAutoPublish>("autoPublish", AutoPublish);
             writer.WriteBoolValue("force", Force);
             writer.WriteAdditionalData(AdditionalData);
         }

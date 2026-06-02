@@ -17,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Column values to update</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequest_data? Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestDataProperty? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequest_data Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestDataProperty Data { get; set; }
 #endif
         /// <summary>If true, preview changes without persisting them</summary>
         public bool? DryRun { get; set; }
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequest_data>(global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequest_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestDataProperty>(global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestDataProperty.CreateFromDiscriminatorValue); } },
                 { "dryRun", n => { DryRun = n.GetBoolValue(); } },
                 { "filter", n => { Filter = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilter>(global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilter.CreateFromDiscriminatorValue); } },
                 { "returnData", n => { ReturnData = n.GetBoolValue(); } },
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequest_data>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestDataProperty>("data", Data);
             writer.WriteBoolValue("dryRun", DryRun);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilter>("filter", Filter);
             writer.WriteBoolValue("returnData", ReturnData);

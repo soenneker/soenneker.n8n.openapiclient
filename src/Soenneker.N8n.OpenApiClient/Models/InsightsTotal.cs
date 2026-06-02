@@ -17,7 +17,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The deviation property</summary>
         public double? Deviation { get; set; }
         /// <summary>The unit property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.InsightsTotal_unit? Unit { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsightsTotalUnit? Unit { get; set; }
         /// <summary>The value property</summary>
         public double? Value { get; set; }
         /// <summary>
@@ -46,7 +46,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "deviation", n => { Deviation = n.GetDoubleValue(); } },
-                { "unit", n => { Unit = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsTotal_unit>(); } },
+                { "unit", n => { Unit = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsTotalUnit>(); } },
                 { "value", n => { Value = n.GetDoubleValue(); } },
             };
         }
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDoubleValue("deviation", Deviation);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsTotal_unit>("unit", Unit);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InsightsTotalUnit>("unit", Unit);
             writer.WriteDoubleValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -49,20 +49,20 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders
         /// <summary>
         /// Retrieve folders within a project. Supports filtering, sorting, field selection, and pagination.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersGetResponse"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersGetResponse?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder.FoldersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder.FoldersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersGetResponse> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder.FoldersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder.FoldersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersGetResponse>(requestInfo, global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersGetResponse.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a folder within a project.
@@ -172,7 +172,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders
 #endif
             /// <summary>Sort order for results.</summary>
             [QueryParameter("sortBy")]
-            public global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.GetSortByQueryParameterType? SortBy { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFoldersSortByParameter? SortBy { get; set; }
             /// <summary>Number of items to return. Defaults to 10.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

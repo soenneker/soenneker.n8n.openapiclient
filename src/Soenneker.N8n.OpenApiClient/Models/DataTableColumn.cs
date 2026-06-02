@@ -41,7 +41,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Name { get; set; }
 #endif
         /// <summary>Column data type</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DataTableColumn_type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.DataTableColumn"/> and sets the default values.
         /// </summary>
@@ -71,7 +71,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "index", n => { Index = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumn_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnType>(); } },
             };
         }
         /// <summary>
@@ -85,7 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("id", Id);
             writer.WriteIntValue("index", Index);
             writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumn_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -17,20 +17,20 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Array of rows to insert. Each row is an object with column names as keys.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_data>? Data { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestDataItemProperty>? Data { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_data> Data { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestDataItemProperty> Data { get; set; }
 #endif
         /// <summary>&quot;- count: Return only the number of rows inserted- id: Return an array of inserted row IDs- all: Return the full row data for all inserted rows&quot;</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_returnType? ReturnType { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestReturnType? ReturnType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest"/> and sets the default values.
         /// </summary>
         public InsertRowsRequest()
         {
             AdditionalData = new Dictionary<string, object>();
-            ReturnType = global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_returnType.Count;
+            ReturnType = global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestReturnType.Count;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -50,8 +50,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_data>(global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_data.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "returnType", n => { ReturnType = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_returnType>(); } },
+                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestDataItemProperty>(global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestDataItemProperty.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "returnType", n => { ReturnType = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestReturnType>(); } },
             };
         }
         /// <summary>
@@ -61,8 +61,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_data>("data", Data);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest_returnType>("returnType", ReturnType);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestDataItemProperty>("data", Data);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestReturnType>("returnType", ReturnType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

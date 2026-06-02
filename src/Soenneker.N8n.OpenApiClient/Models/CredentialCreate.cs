@@ -19,10 +19,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate_data? Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialCreateDataProperty? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate_data Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialCreateDataProperty Data { get; set; }
 #endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -86,7 +86,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate_data>(global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialCreateDataProperty>(global::Soenneker.N8n.OpenApiClient.Models.CredentialCreateDataProperty.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isResolvable", n => { IsResolvable = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -102,7 +102,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialCreate_data>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialCreateDataProperty>("data", Data);
             writer.WriteBoolValue("isResolvable", IsResolvable);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("projectId", ProjectId);

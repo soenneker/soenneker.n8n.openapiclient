@@ -23,7 +23,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string CallerIds { get; set; }
 #endif
         /// <summary>&quot;Controls which workflows are allowed to call this workflow using the Execute Workflow node.Defaults to workflowsFromSameOwner.Available options:- `any`: Any workflow can call this workflow (no restrictions)- `none`: No other workflows can call this workflow (completely blocked)- `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow  * For personal projects: Only workflows created by the same user  * For team projects: Only workflows within the same team project- `workflowsFromAList`: Only specific workflows listed in the `callerIds` field can call this workflow  * Requires the `callerIds` field to specify which workflow IDs are allowed  * See `callerIds` field documentation for usage&quot;</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_callerPolicy? CallerPolicy { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCallerPolicy? CallerPolicy { get; set; }
+        /// <summary>The customTelemetryTags property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCustomTelemetryTagsItem>? CustomTelemetryTags { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCustomTelemetryTagsItem> CustomTelemetryTags { get; set; }
+#endif
         /// <summary>The ID of the workflow that contains the error trigger node.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -43,9 +51,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The executionTimeout property</summary>
         public double? ExecutionTimeout { get; set; }
         /// <summary>The saveDataErrorExecution property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_saveDataErrorExecution? SaveDataErrorExecution { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataErrorExecution? SaveDataErrorExecution { get; set; }
         /// <summary>The saveDataSuccessExecution property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_saveDataSuccessExecution? SaveDataSuccessExecution { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataSuccessExecution? SaveDataSuccessExecution { get; set; }
         /// <summary>The saveExecutionProgress property</summary>
         public bool? SaveExecutionProgress { get; set; }
         /// <summary>The saveManualExecutions property</summary>
@@ -80,12 +88,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "availableInMCP", n => { AvailableInMCP = n.GetBoolValue(); } },
                 { "callerIds", n => { CallerIds = n.GetStringValue(); } },
-                { "callerPolicy", n => { CallerPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_callerPolicy>(); } },
+                { "callerPolicy", n => { CallerPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCallerPolicy>(); } },
+                { "customTelemetryTags", n => { CustomTelemetryTags = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCustomTelemetryTagsItem>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCustomTelemetryTagsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "errorWorkflow", n => { ErrorWorkflow = n.GetStringValue(); } },
                 { "executionOrder", n => { ExecutionOrder = n.GetStringValue(); } },
                 { "executionTimeout", n => { ExecutionTimeout = n.GetDoubleValue(); } },
-                { "saveDataErrorExecution", n => { SaveDataErrorExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_saveDataErrorExecution>(); } },
-                { "saveDataSuccessExecution", n => { SaveDataSuccessExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_saveDataSuccessExecution>(); } },
+                { "saveDataErrorExecution", n => { SaveDataErrorExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataErrorExecution>(); } },
+                { "saveDataSuccessExecution", n => { SaveDataSuccessExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataSuccessExecution>(); } },
                 { "saveExecutionProgress", n => { SaveExecutionProgress = n.GetBoolValue(); } },
                 { "saveManualExecutions", n => { SaveManualExecutions = n.GetBoolValue(); } },
                 { "timeSavedPerExecution", n => { TimeSavedPerExecution = n.GetDoubleValue(); } },
@@ -101,12 +110,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("availableInMCP", AvailableInMCP);
             writer.WriteStringValue("callerIds", CallerIds);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_callerPolicy>("callerPolicy", CallerPolicy);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCallerPolicy>("callerPolicy", CallerPolicy);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCustomTelemetryTagsItem>("customTelemetryTags", CustomTelemetryTags);
             writer.WriteStringValue("errorWorkflow", ErrorWorkflow);
             writer.WriteStringValue("executionOrder", ExecutionOrder);
             writer.WriteDoubleValue("executionTimeout", ExecutionTimeout);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_saveDataErrorExecution>("saveDataErrorExecution", SaveDataErrorExecution);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings_saveDataSuccessExecution>("saveDataSuccessExecution", SaveDataSuccessExecution);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataErrorExecution>("saveDataErrorExecution", SaveDataErrorExecution);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataSuccessExecution>("saveDataSuccessExecution", SaveDataSuccessExecution);
             writer.WriteBoolValue("saveExecutionProgress", SaveExecutionProgress);
             writer.WriteBoolValue("saveManualExecutions", SaveManualExecutions);
             writer.WriteDoubleValue("timeSavedPerExecution", TimeSavedPerExecution);

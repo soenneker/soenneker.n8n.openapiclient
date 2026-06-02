@@ -23,10 +23,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The connections property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ActiveVersion_connections? Connections { get; private set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ActiveVersionConnectionsProperty? Connections { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ActiveVersion_connections Connections { get; private set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ActiveVersionConnectionsProperty Connections { get; set; }
 #endif
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; private set; }
@@ -75,7 +75,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "authors", n => { Authors = n.GetStringValue(); } },
-                { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ActiveVersion_connections>(global::Soenneker.N8n.OpenApiClient.Models.ActiveVersion_connections.CreateFromDiscriminatorValue); } },
+                { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ActiveVersionConnectionsProperty>(global::Soenneker.N8n.OpenApiClient.Models.ActiveVersionConnectionsProperty.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "nodes", n => { Nodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>(global::Soenneker.N8n.OpenApiClient.Models.Node.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
@@ -90,6 +90,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ActiveVersionConnectionsProperty>("connections", Connections);
         }
     }
 }

@@ -5148,6 +5148,25 @@
             "type": "boolean",
             "description": "Controls whether this workflow is accessible via the Model Context Protocol (MCP).\nDefaults to false.\n\nWhen enabled, this workflow can be called by MCP clients (AI assistants and other tools\nthat support MCP). This allows external AI tools to discover and execute this workflow\nas part of their capabilities.\n\nRequirements for enabling MCP access:\n- The workflow must be active (not deactivated)\n- The workflow must contain at least one active Webhook node\n- Only webhook-triggered workflows can be exposed via MCP\n\nSecurity note: When a workflow is available in MCP, it can be discovered and executed\nby any MCP client that has the appropriate API credentials for your n8n instance.\n",
             "example": false
+          },
+          "customTelemetryTags": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "key",
+                "value"
+              ],
+              "properties": {
+                "key": {
+                  "type": "string"
+                },
+                "value": {
+                  "type": "string"
+                }
+              }
+            }
           }
         }
       },

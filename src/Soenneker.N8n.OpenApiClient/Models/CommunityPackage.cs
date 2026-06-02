@@ -37,10 +37,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Nodes included in this package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.CommunityPackage_installedNodes>? InstalledNodes { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CommunityPackageInstalledNodesItem>? InstalledNodes { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.CommunityPackage_installedNodes> InstalledNodes { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CommunityPackageInstalledNodesItem> InstalledNodes { get; set; }
 #endif
         /// <summary>Currently installed version</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -97,7 +97,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "authorName", n => { AuthorName = n.GetStringValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "failedLoading", n => { FailedLoading = n.GetBoolValue(); } },
-                { "installedNodes", n => { InstalledNodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CommunityPackage_installedNodes>(global::Soenneker.N8n.OpenApiClient.Models.CommunityPackage_installedNodes.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "installedNodes", n => { InstalledNodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CommunityPackageInstalledNodesItem>(global::Soenneker.N8n.OpenApiClient.Models.CommunityPackageInstalledNodesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "installedVersion", n => { InstalledVersion = n.GetStringValue(); } },
                 { "packageName", n => { PackageName = n.GetStringValue(); } },
                 { "updateAvailable", n => { UpdateAvailable = n.GetStringValue(); } },
@@ -115,7 +115,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("authorName", AuthorName);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteBoolValue("failedLoading", FailedLoading);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CommunityPackage_installedNodes>("installedNodes", InstalledNodes);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CommunityPackageInstalledNodesItem>("installedNodes", InstalledNodes);
             writer.WriteStringValue("installedVersion", InstalledVersion);
             writer.WriteStringValue("packageName", PackageName);
             writer.WriteStringValue("updateAvailable", UpdateAvailable);

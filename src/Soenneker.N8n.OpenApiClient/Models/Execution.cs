@@ -17,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The customData property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Execution_customData? CustomData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionCustomDataProperty? CustomData { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Execution_customData CustomData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionCustomDataProperty CustomData { get; set; }
 #endif
         /// <summary>Detailed execution data. Only included when `includeData` is `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -35,7 +35,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The id property</summary>
         public double? Id { get; set; }
         /// <summary>The mode property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.Execution_mode? Mode { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionMode? Mode { get; set; }
         /// <summary>The retryOf property</summary>
         public double? RetryOf { get; set; }
         /// <summary>The retrySuccessId property</summary>
@@ -43,7 +43,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The startedAt property</summary>
         public DateTimeOffset? StartedAt { get; set; }
         /// <summary>The status property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.Execution_status? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ExecutionStatus? Status { get; set; }
         /// <summary>The time at which the execution stopped. Will only be null for executions that still have the status &apos;running&apos;.</summary>
         public DateTimeOffset? StoppedAt { get; set; }
         /// <summary>The waitTill property</summary>
@@ -75,15 +75,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "customData", n => { CustomData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_customData>(global::Soenneker.N8n.OpenApiClient.Models.Execution_customData.CreateFromDiscriminatorValue); } },
+                { "customData", n => { CustomData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionCustomDataProperty>(global::Soenneker.N8n.OpenApiClient.Models.ExecutionCustomDataProperty.CreateFromDiscriminatorValue); } },
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionData>(global::Soenneker.N8n.OpenApiClient.Models.ExecutionData.CreateFromDiscriminatorValue); } },
                 { "finished", n => { Finished = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetDoubleValue(); } },
-                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_mode>(); } },
+                { "mode", n => { Mode = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionMode>(); } },
                 { "retryOf", n => { RetryOf = n.GetDoubleValue(); } },
                 { "retrySuccessId", n => { RetrySuccessId = n.GetDoubleValue(); } },
                 { "startedAt", n => { StartedAt = n.GetDateTimeOffsetValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionStatus>(); } },
                 { "stoppedAt", n => { StoppedAt = n.GetDateTimeOffsetValue(); } },
                 { "waitTill", n => { WaitTill = n.GetDateTimeOffsetValue(); } },
                 { "workflowId", n => { WorkflowId = n.GetDoubleValue(); } },
@@ -96,15 +96,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_customData>("customData", CustomData);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionCustomDataProperty>("customData", CustomData);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionData>("data", Data);
             writer.WriteBoolValue("finished", Finished);
             writer.WriteDoubleValue("id", Id);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_mode>("mode", Mode);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionMode>("mode", Mode);
             writer.WriteDoubleValue("retryOf", RetryOf);
             writer.WriteDoubleValue("retrySuccessId", RetrySuccessId);
             writer.WriteDateTimeOffsetValue("startedAt", StartedAt);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.Execution_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExecutionStatus>("status", Status);
             writer.WriteDateTimeOffsetValue("stoppedAt", StoppedAt);
             writer.WriteDateTimeOffsetValue("waitTill", WaitTill);
             writer.WriteDoubleValue("workflowId", WorkflowId);

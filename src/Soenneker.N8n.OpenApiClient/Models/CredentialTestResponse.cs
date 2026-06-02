@@ -23,7 +23,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Message { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialTestResponse_status? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialTestResponseStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialTestResponse"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "message", n => { Message = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialTestResponse_status>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialTestResponseStatus>(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("message", Message);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialTestResponse_status>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialTestResponseStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

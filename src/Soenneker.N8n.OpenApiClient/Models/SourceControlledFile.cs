@@ -46,7 +46,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The isRemoteArchived property</summary>
         public bool? IsRemoteArchived { get; set; }
         /// <summary>The location property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_location? Location { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileLocation? Location { get; set; }
         /// <summary>The primary error message.</summary>
         public override string Message { get => base.Message; }
         /// <summary>The name property</summary>
@@ -84,9 +84,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The pushed property</summary>
         public bool? Pushed { get; set; }
         /// <summary>The status property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_status? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileStatus? Status { get; set; }
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileType? Type { get; set; }
         /// <summary>The updatedAt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -126,14 +126,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isLocalPublished", n => { IsLocalPublished = n.GetBoolValue(); } },
                 { "isRemoteArchived", n => { IsRemoteArchived = n.GetBoolValue(); } },
-                { "location", n => { Location = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_location>(); } },
+                { "location", n => { Location = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileLocation>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "owner", n => { Owner = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwner>(global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwner.CreateFromDiscriminatorValue); } },
                 { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
                 { "publishingError", n => { PublishingError = n.GetStringValue(); } },
                 { "pushed", n => { Pushed = n.GetBoolValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_status>(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_type>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileStatus>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileType>(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetStringValue(); } },
             };
         }
@@ -150,14 +150,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isLocalPublished", IsLocalPublished);
             writer.WriteBoolValue("isRemoteArchived", IsRemoteArchived);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_location>("location", Location);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileLocation>("location", Location);
             writer.WriteStringValue("name", Name);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileOwner>("owner", Owner);
             writer.WriteStringValue("parentFolderId", ParentFolderId);
             writer.WriteStringValue("publishingError", PublishingError);
             writer.WriteBoolValue("pushed", Pushed);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_status>("status", Status);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFile_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceControlledFileType>("type", Type);
             writer.WriteStringValue("updatedAt", UpdatedAt);
             writer.WriteAdditionalData(AdditionalData);
         }

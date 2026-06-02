@@ -25,7 +25,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Name { get; set; }
 #endif
         /// <summary>Column data type</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateColumnRequest_type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateColumnRequestType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateColumnRequest"/> and sets the default values.
         /// </summary>
@@ -53,7 +53,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "index", n => { Index = n.GetIntValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateColumnRequest_type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateColumnRequestType>(); } },
             };
         }
         /// <summary>
@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("index", Index);
             writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateColumnRequest_type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateColumnRequestType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

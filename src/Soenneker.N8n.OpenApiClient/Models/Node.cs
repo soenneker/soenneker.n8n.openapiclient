@@ -22,10 +22,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The credentials property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Node_credentials? Credentials { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty? Credentials { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Node_credentials Credentials { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty Credentials { get; set; }
 #endif
         /// <summary>The disabled property</summary>
         public bool? Disabled { get; set; }
@@ -70,10 +70,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The parameters property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Node_parameters? Parameters { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.NodeParametersProperty? Parameters { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Node_parameters Parameters { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.NodeParametersProperty Parameters { get; set; }
 #endif
         /// <summary>The position property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -128,7 +128,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "alwaysOutputData", n => { AlwaysOutputData = n.GetBoolValue(); } },
                 { "continueOnFail", n => { ContinueOnFail = n.GetBoolValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
-                { "credentials", n => { Credentials = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Node_credentials>(global::Soenneker.N8n.OpenApiClient.Models.Node_credentials.CreateFromDiscriminatorValue); } },
+                { "credentials", n => { Credentials = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty>(global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty.CreateFromDiscriminatorValue); } },
                 { "disabled", n => { Disabled = n.GetBoolValue(); } },
                 { "executeOnce", n => { ExecuteOnce = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
@@ -137,7 +137,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "notes", n => { Notes = n.GetStringValue(); } },
                 { "notesInFlow", n => { NotesInFlow = n.GetBoolValue(); } },
                 { "onError", n => { OnError = n.GetStringValue(); } },
-                { "parameters", n => { Parameters = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Node_parameters>(global::Soenneker.N8n.OpenApiClient.Models.Node_parameters.CreateFromDiscriminatorValue); } },
+                { "parameters", n => { Parameters = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.NodeParametersProperty>(global::Soenneker.N8n.OpenApiClient.Models.NodeParametersProperty.CreateFromDiscriminatorValue); } },
                 { "position", n => { Position = n.GetCollectionOfPrimitiveValues<double?>()?.AsList(); } },
                 { "retryOnFail", n => { RetryOnFail = n.GetBoolValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
@@ -156,7 +156,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("alwaysOutputData", AlwaysOutputData);
             writer.WriteBoolValue("continueOnFail", ContinueOnFail);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Node_credentials>("credentials", Credentials);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty>("credentials", Credentials);
             writer.WriteBoolValue("disabled", Disabled);
             writer.WriteBoolValue("executeOnce", ExecuteOnce);
             writer.WriteStringValue("id", Id);
@@ -165,7 +165,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("notes", Notes);
             writer.WriteBoolValue("notesInFlow", NotesInFlow);
             writer.WriteStringValue("onError", OnError);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Node_parameters>("parameters", Parameters);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.NodeParametersProperty>("parameters", Parameters);
             writer.WriteCollectionOfPrimitiveValues<double?>("position", Position);
             writer.WriteBoolValue("retryOnFail", RetryOnFail);
             writer.WriteStringValue("type", Type);

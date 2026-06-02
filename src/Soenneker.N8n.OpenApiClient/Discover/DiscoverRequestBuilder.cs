@@ -36,20 +36,20 @@ namespace Soenneker.N8n.OpenApiClient.Discover
         /// <summary>
         /// Returns a filtered capability map based on the caller&apos;s API key scopes. Each resource includes the operations and endpoints accessible to the authenticated API key. Use query parameters to narrow the response.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Discover.DiscoverRequestBuilder.DiscoverRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Discover.DiscoverRequestBuilder.DiscoverRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Discover.DiscoverRequestBuilder.DiscoverRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Discover.DiscoverRequestBuilder.DiscoverRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a filtered capability map based on the caller&apos;s API key scopes. Each resource includes the operations and endpoints accessible to the authenticated API key. Use query parameters to narrow the response.
@@ -87,7 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Discover
         {
             /// <summary>Include additional data. Use &quot;schemas&quot; to inline request body schemas per endpoint, eliminating the need to fetch the full OpenAPI spec.</summary>
             [QueryParameter("include")]
-            public global::Soenneker.N8n.OpenApiClient.Discover.GetIncludeQueryParameterType? Include { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetDiscoverIncludeParameter? Include { get; set; }
             /// <summary>Filter to endpoints with a specific operation (e.g. &quot;read&quot;, &quot;create&quot;, &quot;list&quot;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

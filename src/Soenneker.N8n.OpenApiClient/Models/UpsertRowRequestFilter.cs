@@ -18,19 +18,20 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The filters property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter_filters>? Filters { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterFiltersItem>? Filters { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter_filters> Filters { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterFiltersItem> Filters { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter_type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter"/> and sets the default values.
         /// </summary>
         public UpsertRowRequestFilter()
         {
             AdditionalData = new Dictionary<string, object>();
+            Type = global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterType.And;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -50,8 +51,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter_filters>(global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter_filters.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter_type>(); } },
+                { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterFiltersItem>(global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterFiltersItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterType>(); } },
             };
         }
         /// <summary>
@@ -61,8 +62,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter_filters>("filters", Filters);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilter_type>("type", Type);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterFiltersItem>("filters", Filters);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

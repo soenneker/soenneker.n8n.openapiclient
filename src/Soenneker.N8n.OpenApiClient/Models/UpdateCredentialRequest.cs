@@ -17,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The credential data. Required when changing credential type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequest_data? Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestDataProperty? Data { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequest_data Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestDataProperty Data { get; set; }
 #endif
         /// <summary>Whether this credential is available globally</summary>
         public bool? IsGlobal { get; set; }
@@ -69,7 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequest_data>(global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequest_data.CreateFromDiscriminatorValue); } },
+                { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestDataProperty>(global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestDataProperty.CreateFromDiscriminatorValue); } },
                 { "isGlobal", n => { IsGlobal = n.GetBoolValue(); } },
                 { "isPartialData", n => { IsPartialData = n.GetBoolValue(); } },
                 { "isResolvable", n => { IsResolvable = n.GetBoolValue(); } },
@@ -84,7 +84,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequest_data>("data", Data);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestDataProperty>("data", Data);
             writer.WriteBoolValue("isGlobal", IsGlobal);
             writer.WriteBoolValue("isPartialData", IsPartialData);
             writer.WriteBoolValue("isResolvable", IsResolvable);

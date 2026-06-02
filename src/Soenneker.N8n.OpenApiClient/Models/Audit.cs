@@ -17,42 +17,42 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The CredentialsRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_CredentialsRiskReport? CredentialsRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditCredentialsRiskReportProperty? CredentialsRiskReport { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_CredentialsRiskReport CredentialsRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditCredentialsRiskReportProperty CredentialsRiskReport { get; set; }
 #endif
         /// <summary>The DatabaseRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_DatabaseRiskReport? DatabaseRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditDatabaseRiskReportProperty? DatabaseRiskReport { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_DatabaseRiskReport DatabaseRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditDatabaseRiskReportProperty DatabaseRiskReport { get; set; }
 #endif
         /// <summary>The FilesystemRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_FilesystemRiskReport? FilesystemRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditFilesystemRiskReportProperty? FilesystemRiskReport { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_FilesystemRiskReport FilesystemRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditFilesystemRiskReportProperty FilesystemRiskReport { get; set; }
 #endif
         /// <summary>The InstanceRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_InstanceRiskReport? InstanceRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditInstanceRiskReportProperty? InstanceRiskReport { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_InstanceRiskReport InstanceRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditInstanceRiskReportProperty InstanceRiskReport { get; set; }
 #endif
         /// <summary>The NodesRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_NodesRiskReport? NodesRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditNodesRiskReportProperty? NodesRiskReport { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.Audit_NodesRiskReport NodesRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AuditNodesRiskReportProperty NodesRiskReport { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.Audit"/> and sets the default values.
@@ -79,11 +79,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "Credentials Risk Report", n => { CredentialsRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_CredentialsRiskReport>(global::Soenneker.N8n.OpenApiClient.Models.Audit_CredentialsRiskReport.CreateFromDiscriminatorValue); } },
-                { "Database Risk Report", n => { DatabaseRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_DatabaseRiskReport>(global::Soenneker.N8n.OpenApiClient.Models.Audit_DatabaseRiskReport.CreateFromDiscriminatorValue); } },
-                { "Filesystem Risk Report", n => { FilesystemRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_FilesystemRiskReport>(global::Soenneker.N8n.OpenApiClient.Models.Audit_FilesystemRiskReport.CreateFromDiscriminatorValue); } },
-                { "Instance Risk Report", n => { InstanceRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_InstanceRiskReport>(global::Soenneker.N8n.OpenApiClient.Models.Audit_InstanceRiskReport.CreateFromDiscriminatorValue); } },
-                { "Nodes Risk Report", n => { NodesRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_NodesRiskReport>(global::Soenneker.N8n.OpenApiClient.Models.Audit_NodesRiskReport.CreateFromDiscriminatorValue); } },
+                { "Credentials Risk Report", n => { CredentialsRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditCredentialsRiskReportProperty>(global::Soenneker.N8n.OpenApiClient.Models.AuditCredentialsRiskReportProperty.CreateFromDiscriminatorValue); } },
+                { "Database Risk Report", n => { DatabaseRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditDatabaseRiskReportProperty>(global::Soenneker.N8n.OpenApiClient.Models.AuditDatabaseRiskReportProperty.CreateFromDiscriminatorValue); } },
+                { "Filesystem Risk Report", n => { FilesystemRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditFilesystemRiskReportProperty>(global::Soenneker.N8n.OpenApiClient.Models.AuditFilesystemRiskReportProperty.CreateFromDiscriminatorValue); } },
+                { "Instance Risk Report", n => { InstanceRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditInstanceRiskReportProperty>(global::Soenneker.N8n.OpenApiClient.Models.AuditInstanceRiskReportProperty.CreateFromDiscriminatorValue); } },
+                { "Nodes Risk Report", n => { NodesRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditNodesRiskReportProperty>(global::Soenneker.N8n.OpenApiClient.Models.AuditNodesRiskReportProperty.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -93,11 +93,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_CredentialsRiskReport>("Credentials Risk Report", CredentialsRiskReport);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_DatabaseRiskReport>("Database Risk Report", DatabaseRiskReport);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_FilesystemRiskReport>("Filesystem Risk Report", FilesystemRiskReport);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_InstanceRiskReport>("Instance Risk Report", InstanceRiskReport);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.Audit_NodesRiskReport>("Nodes Risk Report", NodesRiskReport);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditCredentialsRiskReportProperty>("Credentials Risk Report", CredentialsRiskReport);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditDatabaseRiskReportProperty>("Database Risk Report", DatabaseRiskReport);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditFilesystemRiskReportProperty>("Filesystem Risk Report", FilesystemRiskReport);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditInstanceRiskReportProperty>("Instance Risk Report", InstanceRiskReport);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AuditNodesRiskReportProperty>("Nodes Risk Report", NodesRiskReport);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

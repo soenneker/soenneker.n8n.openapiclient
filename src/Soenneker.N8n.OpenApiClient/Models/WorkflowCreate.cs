@@ -25,10 +25,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The connections property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_connections? Connections { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateConnectionsProperty? Connections { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_connections Connections { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateConnectionsProperty Connections { get; set; }
 #endif
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; private set; }
@@ -45,10 +45,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Workflow metadata such as template information</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_meta? Meta { get; private set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateMeta? Meta { get; private set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_meta Meta { get; private set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateMeta Meta { get; private set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -69,10 +69,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Pinned sample data for nodes, keyed by node name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_pinData? PinData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreatePinData? PinData { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_pinData PinData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreatePinData PinData { get; set; }
 #endif
         /// <summary>Target project to create the workflow in. Defaults to the user&apos;s personal project.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -101,10 +101,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The staticData property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_staticData? StaticData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateStaticData? StaticData { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_staticData StaticData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateStaticData StaticData { get; set; }
 #endif
         /// <summary>The tags property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -146,18 +146,18 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "active", n => { Active = n.GetBoolValue(); } },
                 { "activeVersion", n => { ActiveVersion = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ActiveVersion>(global::Soenneker.N8n.OpenApiClient.Models.ActiveVersion.CreateFromDiscriminatorValue); } },
-                { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_connections>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_connections.CreateFromDiscriminatorValue); } },
+                { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateConnectionsProperty>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateConnectionsProperty.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isArchived", n => { IsArchived = n.GetBoolValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_meta>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_meta.CreateFromDiscriminatorValue); } },
+                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateMeta>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateMeta.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "nodes", n => { Nodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>(global::Soenneker.N8n.OpenApiClient.Models.Node.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "pinData", n => { PinData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_pinData>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_pinData.CreateFromDiscriminatorValue); } },
+                { "pinData", n => { PinData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreatePinData>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreatePinData.CreateFromDiscriminatorValue); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings.CreateFromDiscriminatorValue); } },
                 { "shared", n => { Shared = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow>(global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "staticData", n => { StaticData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_staticData>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_staticData.CreateFromDiscriminatorValue); } },
+                { "staticData", n => { StaticData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateStaticData>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateStaticData.CreateFromDiscriminatorValue); } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Tag>(global::Soenneker.N8n.OpenApiClient.Models.Tag.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "triggerCount", n => { TriggerCount = n.GetIntValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
@@ -171,14 +171,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_connections>("connections", Connections);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateConnectionsProperty>("connections", Connections);
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>("nodes", Nodes);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_pinData>("pinData", PinData);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreatePinData>("pinData", PinData);
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings>("settings", Settings);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.SharedWorkflow>("shared", Shared);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreate_staticData>("staticData", StaticData);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreateStaticData>("staticData", StaticData);
         }
     }
 }

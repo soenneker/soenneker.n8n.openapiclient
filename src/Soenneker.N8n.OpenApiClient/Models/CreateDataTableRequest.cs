@@ -17,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Column definitions for the table</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequest_columns>? Columns { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem>? Columns { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequest_columns> Columns { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem> Columns { get; set; }
 #endif
         /// <summary>Name of the data table</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -63,7 +63,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "columns", n => { Columns = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequest_columns>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequest_columns.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "columns", n => { Columns = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
             };
@@ -75,7 +75,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequest_columns>("columns", Columns);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem>("columns", Columns);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteAdditionalData(AdditionalData);

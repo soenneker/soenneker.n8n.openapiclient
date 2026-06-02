@@ -17,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Column definitions</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.DataTable_columns>? Columns { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnsItem>? Columns { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.DataTable_columns> Columns { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnsItem> Columns { get; set; }
 #endif
         /// <summary>Timestamp when the table was created</summary>
         public DateTimeOffset? CreatedAt { get; set; }
@@ -75,7 +75,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "columns", n => { Columns = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DataTable_columns>(global::Soenneker.N8n.OpenApiClient.Models.DataTable_columns.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "columns", n => { Columns = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnsItem>(global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -90,7 +90,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DataTable_columns>("columns", Columns);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnsItem>("columns", Columns);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
