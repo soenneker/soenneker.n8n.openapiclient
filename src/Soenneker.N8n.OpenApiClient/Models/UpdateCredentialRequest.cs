@@ -50,6 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public UpdateCredentialRequest()
         {
             AdditionalData = new Dictionary<string, object>();
+            IsPartialData = false;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

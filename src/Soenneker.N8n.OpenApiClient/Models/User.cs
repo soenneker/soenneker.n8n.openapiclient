@@ -50,6 +50,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string LastName { get; private set; }
 #endif
+        /// <summary>Whether the user has multi-factor authentication (MFA/2FA) enabled.</summary>
+        public bool? MfaEnabled { get; private set; }
         /// <summary>The role property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -91,6 +93,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isPending", n => { IsPending = n.GetBoolValue(); } },
                 { "lastName", n => { LastName = n.GetStringValue(); } },
+                { "mfaEnabled", n => { MfaEnabled = n.GetBoolValue(); } },
                 { "role", n => { Role = n.GetStringValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
             };

@@ -55,10 +55,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 result.InsertDataTableRows200ResponseBranch3 = new global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200ResponseBranch3();
             }
-            else if("".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
-            {
-                result.InsertDataTableRows200ResponseOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200ResponseOneOf1();
-            }
             return result;
         }
         /// <summary>

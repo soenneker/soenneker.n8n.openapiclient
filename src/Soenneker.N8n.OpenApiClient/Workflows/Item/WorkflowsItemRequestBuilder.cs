@@ -71,7 +71,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkflowsItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}{?excludePinnedData*}", pathParameters)
+        public WorkflowsItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}", pathParameters)
         {
         }
         /// <summary>
@@ -79,7 +79,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkflowsItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}{?excludePinnedData*}", rawUrl)
+        public WorkflowsItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}", rawUrl)
         {
         }
         /// <summary>
