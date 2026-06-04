@@ -3564,7 +3564,7 @@
           "N8nPackage"
         ],
         "summary": "\u0022Beta: Import an n8n package into a project\u0022",
-        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or leave empty for defaults). Maximum upload size\nis \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. Each imported workflow is created with a fresh local id and arrives inactive.\n",
+        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060, \u0060folderId\u0060, \u0060credentialMatchingMode\u0060, and \u0060credentialMissingMode\u0060\n(omit or leave empty for defaults). Maximum upload size is\n\u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. Each imported workflow is created with a fresh local id and arrives inactive.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
         "operationId": "PostN8NPackagesImport",
         "requestBody": {
           "content": {
@@ -3597,6 +3597,16 @@
           },
           "404": {
             "$ref": "#/components/responses/notFound"
+          },
+          "422": {
+            "description": "One or more credential references could not be resolved.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostN8NPackagesImport422Response"
+                }
+              }
+            }
           }
         }
       }
@@ -4165,6 +4175,9 @@
           "credentials": {
             "$ref": "#/components/schemas/NodeCredentialsProperty"
           },
+          "customTelemetryTags": {
+            "$ref": "#/components/schemas/NodeCustomTelemetryTags"
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time",
@@ -4222,6 +4235,9 @@
           "timeSavedPerExecution": {
             "type": "number",
             "description": "Estimated time saved per execution in minutes"
+          },
+          "redactionPolicy": {
+            "$ref": "#/components/schemas/WorkflowSettingsRedactionPolicy"
           },
           "availableInMCP": {
             "type": "boolean",
@@ -5765,6 +5781,18 @@
           }
         }
       },
+      "NodeCustomTelemetryTags": {
+        "type": "object",
+        "properties": {
+          "tag": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/NodeCustomTelemetryTagsTagItem"
+            }
+          }
+        },
+        "additionalProperties": false
+      },
       "WorkflowSettingsCustomTelemetryTagsItem": {
         "required": [
           "key",
@@ -6152,6 +6180,22 @@
         "description": "Present when execution data has been redacted.",
         "nullable": true
       },
+      "NodeCustomTelemetryTagsTagItem": {
+        "required": [
+          "key",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "UpdateRowsRequestFilterFiltersItem": {
         "required": [
           "columnName",
@@ -6507,13 +6551,20 @@
           "folderId": {
             "type": "string",
             "description": "Optional folder within the target project. Omit or send empty for project root.\n"
+          },
+          "credentialMatchingMode": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestCredentialMatchingMode"
+          },
+          "credentialMissingMode": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestCredentialMissingMode"
           }
         }
       },
       "PostN8NPackagesImport200Response": {
         "required": [
           "package",
-          "workflows"
+          "workflows",
+          "credentials"
         ],
         "type": "object",
         "properties": {
@@ -6524,6 +6575,27 @@
             "type": "array",
             "items": {
               "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItem"
+            }
+          },
+          "credentials": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseCredentials"
+          }
+        }
+      },
+      "PostN8NPackagesImport422Response": {
+        "required": [
+          "message",
+          "failures"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "failures": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostN8NPackagesImport422ResponseFailuresItem"
             }
           }
         }
@@ -6926,6 +6998,42 @@
           }
         }
       },
+      "PostN8NPackagesImport200ResponseCredentials": {
+        "required": [
+          "matched"
+        ],
+        "type": "object",
+        "properties": {
+          "matched": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseCredentialsMatchedItem"
+            }
+          }
+        }
+      },
+      "PostN8NPackagesImport422ResponseFailuresItem": {
+        "required": [
+          "kind",
+          "sourceId",
+          "usedByWorkflows"
+        ],
+        "type": "object",
+        "properties": {
+          "kind": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport422ResponseFailuresItemKind"
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "usedByWorkflows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
       "PostUsersRequestRequestBodyItem": {
         "required": [
           "email"
@@ -6954,6 +7062,23 @@
           "$ref": "#/components/schemas/GetDiscover200ResponseDataFiltersAdditionalProperties"
         },
         "description": "Available query parameter filters. The values arrays reflect what the caller\u0027s scopes permit.\n"
+      },
+      "PostN8NPackagesImport200ResponseCredentialsMatchedItem": {
+        "required": [
+          "sourceId",
+          "targetId"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceId": {
+            "type": "string",
+            "description": "Credential id from \u0060requirements.credentials\u0060 in the package manifest."
+          },
+          "targetId": {
+            "type": "string",
+            "description": "Matched credential id on the target instance."
+          }
+        }
       },
       "GetDiscover200ResponseDataResourcesAdditionalProperties": {
         "type": "object",
@@ -7213,6 +7338,40 @@
             {
               "value": "workflowsFromSameOwner",
               "name": "WorkflowsFromSameOwner"
+            }
+          ]
+        }
+      },
+      "WorkflowSettingsRedactionPolicy": {
+        "enum": [
+          "none",
+          "non-manual",
+          "manual-only",
+          "all"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022Controls whether execution data is redacted for this workflow.\n\nAvailable options:\n- \u0060none\u0060 (default): No redaction \u2014 all execution data is stored.\n- \u0060non-manual\u0060: Redact production (non-manually triggered) executions only.\n- \u0060manual-only\u0060: Redact manually triggered executions only.\n- \u0060all\u0060: Redact all executions (manual and production).\n\nWhen the instance has a redaction floor configured, the policy must be equal to\nor stricter than the floor. Requests that would weaken the policy below the\ninstance floor are rejected with 422.\n\u0022",
+        "example": "non-manual",
+        "x-ms-enum": {
+          "name": "WorkflowSettingsRedactionPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "non-manual",
+              "name": "NonManual"
+            },
+            {
+              "value": "manual-only",
+              "name": "ManualOnly"
+            },
+            {
+              "value": "all",
+              "name": "All"
             }
           ]
         }
@@ -7828,6 +7987,44 @@
           ]
         }
       },
+      "PostN8NPackagesImportFormDataRequestCredentialMatchingMode": {
+        "enum": [
+          "id-only"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "How credential references in \u0060requirements.credentials\u0060 are matched on the target instance. Only \u0060id-only\u0060 is supported today.\n",
+        "default": "id-only",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestCredentialMatchingMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "id-only",
+              "name": "IdOnly"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImportFormDataRequestCredentialMissingMode": {
+        "enum": [
+          "must-preexist"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "What to do when a credential reference cannot be resolved. \u0060must-preexist\u0060 requires every referenced credential to already exist and be accessible on the target instance.\n",
+        "default": "must-preexist",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestCredentialMissingMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "must-preexist",
+              "name": "MustPreexist"
+            }
+          ]
+        }
+      },
       "PostAuditRequestAdditionalOptionsCategoriesItem": {
         "enum": [
           "credentials",
@@ -7861,6 +8058,28 @@
             {
               "value": "instance",
               "name": "Instance"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImport422ResponseFailuresItemKind": {
+        "enum": [
+          "not_found",
+          "unknown_type"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImport422ResponseFailuresItemKind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "not_found",
+              "name": "NotFound"
+            },
+            {
+              "value": "unknown_type",
+              "name": "UnknownType"
             }
           ]
         }

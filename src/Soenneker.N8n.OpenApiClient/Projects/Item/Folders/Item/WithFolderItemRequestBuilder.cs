@@ -103,7 +103,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item.WithFolderItemRequestBuilder.WithFolderItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, "{+baseurl}/projects/{projectId}/folders/{folderId}{?transferToFolderId*}", PathParameters);
             requestInfo.Configure(requestConfiguration);
             return requestInfo;
         }

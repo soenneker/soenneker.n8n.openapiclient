@@ -27,6 +27,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty Credentials { get; set; }
 #endif
+        /// <summary>The customTelemetryTags property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.NodeCustomTelemetryTags? CustomTelemetryTags { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.NodeCustomTelemetryTags CustomTelemetryTags { get; set; }
+#endif
         /// <summary>The disabled property</summary>
         public bool? Disabled { get; set; }
         /// <summary>The executeOnce property</summary>
@@ -129,6 +137,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "continueOnFail", n => { ContinueOnFail = n.GetBoolValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "credentials", n => { Credentials = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty>(global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty.CreateFromDiscriminatorValue); } },
+                { "customTelemetryTags", n => { CustomTelemetryTags = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.NodeCustomTelemetryTags>(global::Soenneker.N8n.OpenApiClient.Models.NodeCustomTelemetryTags.CreateFromDiscriminatorValue); } },
                 { "disabled", n => { Disabled = n.GetBoolValue(); } },
                 { "executeOnce", n => { ExecuteOnce = n.GetBoolValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
@@ -157,6 +166,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("alwaysOutputData", AlwaysOutputData);
             writer.WriteBoolValue("continueOnFail", ContinueOnFail);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.NodeCredentialsProperty>("credentials", Credentials);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.NodeCustomTelemetryTags>("customTelemetryTags", CustomTelemetryTags);
             writer.WriteBoolValue("disabled", Disabled);
             writer.WriteBoolValue("executeOnce", ExecuteOnce);
             writer.WriteStringValue("id", Id);

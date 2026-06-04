@@ -50,6 +50,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>The executionTimeout property</summary>
         public double? ExecutionTimeout { get; set; }
+        /// <summary>&quot;Controls whether execution data is redacted for this workflow.Available options:- `none` (default): No redaction — all execution data is stored.- `non-manual`: Redact production (non-manually triggered) executions only.- `manual-only`: Redact manually triggered executions only.- `all`: Redact all executions (manual and production).When the instance has a redaction floor configured, the policy must be equal toor stricter than the floor. Requests that would weaken the policy below theinstance floor are rejected with 422.&quot;</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsRedactionPolicy? RedactionPolicy { get; set; }
         /// <summary>The saveDataErrorExecution property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataErrorExecution? SaveDataErrorExecution { get; set; }
         /// <summary>The saveDataSuccessExecution property</summary>
@@ -93,6 +95,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "errorWorkflow", n => { ErrorWorkflow = n.GetStringValue(); } },
                 { "executionOrder", n => { ExecutionOrder = n.GetStringValue(); } },
                 { "executionTimeout", n => { ExecutionTimeout = n.GetDoubleValue(); } },
+                { "redactionPolicy", n => { RedactionPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsRedactionPolicy>(); } },
                 { "saveDataErrorExecution", n => { SaveDataErrorExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataErrorExecution>(); } },
                 { "saveDataSuccessExecution", n => { SaveDataSuccessExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataSuccessExecution>(); } },
                 { "saveExecutionProgress", n => { SaveExecutionProgress = n.GetBoolValue(); } },
@@ -115,6 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("errorWorkflow", ErrorWorkflow);
             writer.WriteStringValue("executionOrder", ExecutionOrder);
             writer.WriteDoubleValue("executionTimeout", ExecutionTimeout);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsRedactionPolicy>("redactionPolicy", RedactionPolicy);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataErrorExecution>("saveDataErrorExecution", SaveDataErrorExecution);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataSuccessExecution>("saveDataSuccessExecution", SaveDataSuccessExecution);
             writer.WriteBoolValue("saveExecutionProgress", SaveExecutionProgress);
