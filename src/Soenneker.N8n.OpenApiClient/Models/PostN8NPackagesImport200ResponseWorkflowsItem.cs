@@ -12,7 +12,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public partial class PostN8NPackagesImport200ResponseWorkflowsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Published version on the target instance. Always null immediately after import.</summary>
+        /// <summary>Published version on the target instance, if any.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ActiveVersionId { get; set; }
@@ -57,11 +57,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Workflow id as it appeared in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? SourceWorkflowId { get; set; }
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string SourceWorkflowId { get; set; }
 #endif
+        /// <summary>Import outcome for this package workflow.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem"/> and sets the default values.
         /// </summary>
@@ -92,7 +94,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
+                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemStatus>(); } },
             };
         }
         /// <summary>
@@ -107,7 +110,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("parentFolderId", ParentFolderId);
             writer.WriteStringValue("projectId", ProjectId);
-            writer.WriteStringValue("sourceId", SourceId);
+            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

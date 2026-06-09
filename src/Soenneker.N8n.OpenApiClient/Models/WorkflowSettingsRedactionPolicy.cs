@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;Controls whether execution data is redacted for this workflow.Available options:- `none` (default): No redaction — all execution data is stored.- `non-manual`: Redact production (non-manually triggered) executions only.- `manual-only`: Redact manually triggered executions only.- `all`: Redact all executions (manual and production).When the instance has a redaction floor configured, the policy must be equal toor stricter than the floor. Requests that would weaken the policy below theinstance floor are rejected with 422.&quot;</summary>
+    /// <summary>&quot;Controls whether execution data is redacted for this workflow.Available options:- `none` (default): No redaction — all execution data is stored.- `non-manual`: Redact production (non-manually triggered) executions only.- `manual-only`: Redact manually triggered executions only.- `all`: Redact all executions (manual and production).When the instance has a redaction floor configured, the policy must be equal toor stricter than the floor. A policy weaker than the floor is rejected with 422on create, and on update when it changes the stored policy; an unchangedpre-existing below-floor policy is preserved (the floor is not appliedretroactively). Omitting this field when creating a workflow seeds it to theinstance floor instead.&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WorkflowSettingsRedactionPolicy
     {

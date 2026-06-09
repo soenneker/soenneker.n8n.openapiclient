@@ -3564,7 +3564,7 @@
           "N8nPackage"
         ],
         "summary": "\u0022Beta: Import an n8n package into a project\u0022",
-        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060, \u0060folderId\u0060, \u0060credentialMatchingMode\u0060, and \u0060credentialMissingMode\u0060\n(omit or leave empty for defaults). Maximum upload size is\n\u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. Each imported workflow is created with a fresh local id and arrives inactive.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
+        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060, \u0060folderId\u0060, \u0060credentialMatchingMode\u0060, and \u0060credentialMissingMode\u0060\n(omit or leave empty for defaults). The required \u0060workflowConflictPolicy\u0060 field\ncontrols what happens when a package workflow matches an existing workflow by\nsource id in the target project. Maximum upload size is\n\u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. Newly created workflows receive a fresh local id and arrive inactive.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
         "operationId": "PostN8NPackagesImport",
         "requestBody": {
           "content": {
@@ -3597,6 +3597,16 @@
           },
           "404": {
             "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "description": "Workflow source id conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PostN8NPackagesImport409Response"
+                }
+              }
+            }
           },
           "422": {
             "description": "One or more credential references could not be resolved.",
@@ -6535,7 +6545,8 @@
       },
       "PostN8NPackagesImportFormDataRequest": {
         "required": [
-          "package"
+          "package",
+          "workflowConflictPolicy"
         ],
         "type": "object",
         "properties": {
@@ -6557,6 +6568,9 @@
           },
           "credentialMissingMode": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestCredentialMissingMode"
+          },
+          "workflowConflictPolicy": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy"
           }
         }
       },
@@ -6564,7 +6578,7 @@
         "required": [
           "package",
           "workflows",
-          "credentials"
+          "bindings"
         ],
         "type": "object",
         "properties": {
@@ -6577,8 +6591,22 @@
               "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItem"
             }
           },
-          "credentials": {
-            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseCredentials"
+          "bindings": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseBindings"
+          }
+        }
+      },
+      "PostN8NPackagesImport409Response": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "number"
+          },
+          "message": {
+            "type": "string"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport409ResponseMeta"
           }
         }
       },
@@ -6964,16 +6992,17 @@
       },
       "PostN8NPackagesImport200ResponseWorkflowsItem": {
         "required": [
-          "sourceId",
+          "sourceWorkflowId",
           "localId",
           "name",
           "projectId",
           "parentFolderId",
-          "activeVersionId"
+          "activeVersionId",
+          "status"
         ],
         "type": "object",
         "properties": {
-          "sourceId": {
+          "sourceWorkflowId": {
             "type": "string",
             "description": "Workflow id as it appeared in the package."
           },
@@ -6993,21 +7022,40 @@
           },
           "activeVersionId": {
             "type": "string",
-            "description": "Published version on the target instance. Always null immediately after import.\n",
+            "description": "Published version on the target instance, if any.\n",
             "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItemStatus"
           }
         }
       },
-      "PostN8NPackagesImport200ResponseCredentials": {
+      "PostN8NPackagesImport200ResponseBindings": {
         "required": [
-          "matched"
+          "workflows",
+          "credentials"
         ],
         "type": "object",
         "properties": {
-          "matched": {
+          "workflows": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseBindingsWorkflows"
+          },
+          "credentials": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseBindingsCredentials"
+          }
+        },
+        "description": "Source id \u2192 target id mappings produced during import, one map per entity type. Each value maps an id as it appeared in the package to the id on the target instance.\n"
+      },
+      "PostN8NPackagesImport409ResponseMeta": {
+        "type": "object",
+        "properties": {
+          "code": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport409ResponseMetaCode"
+          },
+          "conflicts": {
             "type": "array",
             "items": {
-              "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseCredentialsMatchedItem"
+              "$ref": "#/components/schemas/PostN8NPackagesImport409ResponseMetaConflictsItem"
             }
           }
         }
@@ -7063,20 +7111,30 @@
         },
         "description": "Available query parameter filters. The values arrays reflect what the caller\u0027s scopes permit.\n"
       },
-      "PostN8NPackagesImport200ResponseCredentialsMatchedItem": {
-        "required": [
-          "sourceId",
-          "targetId"
-        ],
+      "PostN8NPackagesImport200ResponseBindingsWorkflows": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        }
+      },
+      "PostN8NPackagesImport200ResponseBindingsCredentials": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "string"
+        },
+        "description": "Credential id from \u0060requirements.credentials\u0060 in the package manifest \u2192 matched credential id on the target instance.\n"
+      },
+      "PostN8NPackagesImport409ResponseMetaConflictsItem": {
         "type": "object",
         "properties": {
-          "sourceId": {
-            "type": "string",
-            "description": "Credential id from \u0060requirements.credentials\u0060 in the package manifest."
+          "sourceWorkflowId": {
+            "type": "string"
           },
-          "targetId": {
-            "type": "string",
-            "description": "Matched credential id on the target instance."
+          "existingWorkflowId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
           }
         }
       },
@@ -7351,7 +7409,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "\u0022Controls whether execution data is redacted for this workflow.\n\nAvailable options:\n- \u0060none\u0060 (default): No redaction \u2014 all execution data is stored.\n- \u0060non-manual\u0060: Redact production (non-manually triggered) executions only.\n- \u0060manual-only\u0060: Redact manually triggered executions only.\n- \u0060all\u0060: Redact all executions (manual and production).\n\nWhen the instance has a redaction floor configured, the policy must be equal to\nor stricter than the floor. Requests that would weaken the policy below the\ninstance floor are rejected with 422.\n\u0022",
+        "description": "\u0022Controls whether execution data is redacted for this workflow.\n\nAvailable options:\n- \u0060none\u0060 (default): No redaction \u2014 all execution data is stored.\n- \u0060non-manual\u0060: Redact production (non-manually triggered) executions only.\n- \u0060manual-only\u0060: Redact manually triggered executions only.\n- \u0060all\u0060: Redact all executions (manual and production).\n\nWhen the instance has a redaction floor configured, the policy must be equal to\nor stricter than the floor. A policy weaker than the floor is rejected with 422\non create, and on update when it changes the stored policy; an unchanged\npre-existing below-floor policy is preserved (the floor is not applied\nretroactively). Omitting this field when creating a workflow seeds it to the\ninstance floor instead.\n\u0022",
         "example": "non-manual",
         "x-ms-enum": {
           "name": "WorkflowSettingsRedactionPolicy",
@@ -8025,6 +8083,34 @@
           ]
         }
       },
+      "PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy": {
+        "enum": [
+          "new-version",
+          "fail",
+          "skip"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0060new-version\u0060 updates matching workflows and creates a new version, \u0060fail\u0060 rejects the import when any matching workflow exists, and \u0060skip\u0060 leaves matching workflows untouched while importing the rest.\n",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "new-version",
+              "name": "NewVersion"
+            },
+            {
+              "value": "fail",
+              "name": "Fail"
+            },
+            {
+              "value": "skip",
+              "name": "Skip"
+            }
+          ]
+        }
+      },
       "PostAuditRequestAdditionalOptionsCategoriesItem": {
         "enum": [
           "credentials",
@@ -8058,6 +8144,51 @@
             {
               "value": "instance",
               "name": "Instance"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImport200ResponseWorkflowsItemStatus": {
+        "enum": [
+          "created",
+          "updated",
+          "skipped"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Import outcome for this package workflow.",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImport200ResponseWorkflowsItemStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "created",
+              "name": "Created"
+            },
+            {
+              "value": "updated",
+              "name": "Updated"
+            },
+            {
+              "value": "skipped",
+              "name": "Skipped"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImport409ResponseMetaCode": {
+        "enum": [
+          "WORKFLOW_CONFLICT"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImport409ResponseMetaCode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "WORKFLOW_CONFLICT",
+              "name": "WorkflowConflict"
             }
           ]
         }
