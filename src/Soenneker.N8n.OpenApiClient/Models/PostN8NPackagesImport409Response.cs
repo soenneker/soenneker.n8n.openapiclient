@@ -15,8 +15,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The code property</summary>
-        public double? Code { get; set; }
+        /// <summary>The issues property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue>? Issues { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue> Issues { get; set; }
+#endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => MessageEscaped ?? string.Empty; }
         /// <summary>The message property</summary>
@@ -26,14 +32,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #nullable restore
 #else
         public string MessageEscaped { get; set; }
-#endif
-        /// <summary>The meta property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMeta? Meta { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMeta Meta { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409Response"/> and sets the default values.
@@ -60,9 +58,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "code", n => { Code = n.GetDoubleValue(); } },
+                { "issues", n => { Issues = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "message", n => { MessageEscaped = n.GetStringValue(); } },
-                { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMeta>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMeta.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -72,9 +69,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDoubleValue("code", Code);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue>("issues", Issues);
             writer.WriteStringValue("message", MessageEscaped);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMeta>("meta", Meta);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

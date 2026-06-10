@@ -7,15 +7,16 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// A credential reference that could not be resolved in the target project.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class PostN8NPackagesImport422ResponseFailuresItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class ImportBlockingIssueOneOf2 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItemKind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Kind? Kind { get; set; }
         /// <summary>The sourceId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -24,6 +25,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string SourceId { get; set; }
 #endif
+        /// <summary>The type property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Type? Type { get; set; }
         /// <summary>The usedByWorkflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -33,21 +36,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<string> UsedByWorkflows { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2"/> and sets the default values.
         /// </summary>
-        public PostN8NPackagesImport422ResponseFailuresItem()
+        public ImportBlockingIssueOneOf2()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem();
+            return new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,8 +60,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItemKind>(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Kind>(); } },
                 { "sourceId", n => { SourceId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Type>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -69,8 +73,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItemKind>("kind", Kind);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Kind>("kind", Kind);
             writer.WriteStringValue("sourceId", SourceId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Type>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

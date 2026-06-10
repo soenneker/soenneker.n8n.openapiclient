@@ -5,10 +5,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum PostN8NPackagesImport409ResponseMetaCode
+    public enum ImportBlockingIssueOneOf1Type
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "WORKFLOW_CONFLICT")]
+        [EnumMember(Value = "workflow-conflict")]
         #pragma warning disable CS1591
         WorkflowConflict,
         #pragma warning restore CS1591

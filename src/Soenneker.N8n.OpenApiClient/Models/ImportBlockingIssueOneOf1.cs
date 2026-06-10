@@ -7,10 +7,11 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// A workflow whose source id already matches one in the target project, under the `fail` conflict policy.
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class PostN8NPackagesImport409ResponseMetaConflictsItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class ImportBlockingIssueOneOf1 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
@@ -38,22 +39,24 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string SourceWorkflowId { get; set; }
 #endif
+        /// <summary>The type property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1Type? Type { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMetaConflictsItem"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1"/> and sets the default values.
         /// </summary>
-        public PostN8NPackagesImport409ResponseMetaConflictsItem()
+        public ImportBlockingIssueOneOf1()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMetaConflictsItem"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMetaConflictsItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409ResponseMetaConflictsItem();
+            return new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,6 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "existingWorkflowId", n => { ExistingWorkflowId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1Type>(); } },
             };
         }
         /// <summary>
@@ -78,6 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("existingWorkflowId", ExistingWorkflowId);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1Type>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

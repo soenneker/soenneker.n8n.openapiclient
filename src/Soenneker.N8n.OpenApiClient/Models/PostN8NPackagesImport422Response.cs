@@ -15,13 +15,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The failures property</summary>
+        /// <summary>The issues property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem>? Failures { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue>? Issues { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem> Failures { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue> Issues { get; set; }
 #endif
         /// <summary>The primary error message.</summary>
         public override string Message { get => MessageEscaped ?? string.Empty; }
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "failures", n => { Failures = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "issues", n => { Issues = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "message", n => { MessageEscaped = n.GetStringValue(); } },
             };
         }
@@ -69,7 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422ResponseFailuresItem>("failures", Failures);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue>("issues", Issues);
             writer.WriteStringValue("message", MessageEscaped);
             writer.WriteAdditionalData(AdditionalData);
         }

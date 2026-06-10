@@ -3577,7 +3577,7 @@
         },
         "responses": {
           "200": {
-            "description": "Import succeeded.",
+            "description": "Import succeeded; the listed workflows were written to the target project.",
             "content": {
               "application/json": {
                 "schema": {
@@ -3599,7 +3599,7 @@
             "$ref": "#/components/responses/notFound"
           },
           "409": {
-            "description": "Workflow source id conflict.",
+            "description": "Import blocked, with at least one workflow source-id conflict among the issues.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -3609,7 +3609,7 @@
             }
           },
           "422": {
-            "description": "One or more credential references could not be resolved.",
+            "description": "Import blocked by non-conflict issues only (e.g. unresolved credentials).\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -5428,6 +5428,33 @@
         },
         "additionalProperties": false
       },
+      "ImportBlockingIssue": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "oneOf": [
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf1"
+          },
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf2"
+          }
+        ],
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "Union discriminator"
+          }
+        },
+        "discriminator": {
+          "propertyName": "type",
+          "mapping": {
+            "ImportBlockingIssueOneOf1": "#/components/schemas/ImportBlockingIssueOneOf1",
+            "ImportBlockingIssueOneOf2": "#/components/schemas/ImportBlockingIssueOneOf2"
+          }
+        }
+      },
       "Error": {
         "required": [
           "message"
@@ -5631,6 +5658,57 @@
         "example": {
           "lastId": 1
         }
+      },
+      "ImportBlockingIssueOneOf1": {
+        "required": [
+          "type",
+          "sourceWorkflowId",
+          "existingWorkflowId",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf1Type"
+          },
+          "sourceWorkflowId": {
+            "type": "string"
+          },
+          "existingWorkflowId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "description": "A workflow whose source id already matches one in the target project, under the \u0060fail\u0060 conflict policy.\n"
+      },
+      "ImportBlockingIssueOneOf2": {
+        "required": [
+          "type",
+          "kind",
+          "sourceId",
+          "usedByWorkflows"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf2Type"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf2Kind"
+          },
+          "sourceId": {
+            "type": "string"
+          },
+          "usedByWorkflows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "A credential reference that could not be resolved in the target project."
       },
       "AuditCredentialsRiskReport": {
         "type": "object",
@@ -6596,38 +6674,6 @@
           }
         }
       },
-      "PostN8NPackagesImport409Response": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "number"
-          },
-          "message": {
-            "type": "string"
-          },
-          "meta": {
-            "$ref": "#/components/schemas/PostN8NPackagesImport409ResponseMeta"
-          }
-        }
-      },
-      "PostN8NPackagesImport422Response": {
-        "required": [
-          "message",
-          "failures"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "failures": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PostN8NPackagesImport422ResponseFailuresItem"
-            }
-          }
-        }
-      },
       "WorkflowStaticDataBranch1": {
         "required": [
           "value"
@@ -6787,6 +6833,42 @@
       "PostN8NPackagesExport200ResponseResponseGzip": {
         "type": "string",
         "format": "binary"
+      },
+      "PostN8NPackagesImport409Response": {
+        "required": [
+          "message",
+          "issues"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportBlockingIssue"
+            }
+          }
+        }
+      },
+      "PostN8NPackagesImport422Response": {
+        "required": [
+          "message",
+          "issues"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "issues": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ImportBlockingIssue"
+            }
+          }
+        }
       },
       "InsertDataTableRows200ResponseOneOf1": {
         "type": "object",
@@ -7046,42 +7128,6 @@
         },
         "description": "Source id \u2192 target id mappings produced during import, one map per entity type. Each value maps an id as it appeared in the package to the id on the target instance.\n"
       },
-      "PostN8NPackagesImport409ResponseMeta": {
-        "type": "object",
-        "properties": {
-          "code": {
-            "$ref": "#/components/schemas/PostN8NPackagesImport409ResponseMetaCode"
-          },
-          "conflicts": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PostN8NPackagesImport409ResponseMetaConflictsItem"
-            }
-          }
-        }
-      },
-      "PostN8NPackagesImport422ResponseFailuresItem": {
-        "required": [
-          "kind",
-          "sourceId",
-          "usedByWorkflows"
-        ],
-        "type": "object",
-        "properties": {
-          "kind": {
-            "$ref": "#/components/schemas/PostN8NPackagesImport422ResponseFailuresItemKind"
-          },
-          "sourceId": {
-            "type": "string"
-          },
-          "usedByWorkflows": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
-      },
       "PostUsersRequestRequestBodyItem": {
         "required": [
           "email"
@@ -7123,20 +7169,6 @@
           "type": "string"
         },
         "description": "Credential id from \u0060requirements.credentials\u0060 in the package manifest \u2192 matched credential id on the target instance.\n"
-      },
-      "PostN8NPackagesImport409ResponseMetaConflictsItem": {
-        "type": "object",
-        "properties": {
-          "sourceWorkflowId": {
-            "type": "string"
-          },
-          "existingWorkflowId": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          }
-        }
       },
       "GetDiscover200ResponseDataResourcesAdditionalProperties": {
         "type": "object",
@@ -7690,6 +7722,62 @@
           ]
         }
       },
+      "ImportBlockingIssueOneOf1Type": {
+        "enum": [
+          "workflow-conflict"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf1Type",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "workflow-conflict",
+              "name": "WorkflowConflict"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf2Type": {
+        "enum": [
+          "credential-unresolved"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf2Type",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "credential-unresolved",
+              "name": "CredentialUnresolved"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf2Kind": {
+        "enum": [
+          "not_found",
+          "unknown_type"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf2Kind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "not_found",
+              "name": "NotFound"
+            },
+            {
+              "value": "unknown_type",
+              "name": "UnknownType"
+            }
+          ]
+        }
+      },
       "SourceControlledFileOwnerType": {
         "enum": [
           "personal",
@@ -8091,7 +8179,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "\u0060new-version\u0060 updates matching workflows and creates a new version, \u0060fail\u0060 rejects the import when any matching workflow exists, and \u0060skip\u0060 leaves matching workflows untouched while importing the rest.\n",
+        "description": "\u0022\u0060new-version\u0060 updates matching workflows and creates a new version, \u0060fail\u0060 rejects the import when any matching workflow exists, and\n      description: Workflow id on the target instance (newly created for \u0060created\u0060, existing for \u0060updated\u0060/\u0060skipped\u0060).\n\u0022",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy",
           "modelAsString": false,
@@ -8172,45 +8260,6 @@
             {
               "value": "skipped",
               "name": "Skipped"
-            }
-          ]
-        }
-      },
-      "PostN8NPackagesImport409ResponseMetaCode": {
-        "enum": [
-          "WORKFLOW_CONFLICT"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PostN8NPackagesImport409ResponseMetaCode",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "WORKFLOW_CONFLICT",
-              "name": "WorkflowConflict"
-            }
-          ]
-        }
-      },
-      "PostN8NPackagesImport422ResponseFailuresItemKind": {
-        "enum": [
-          "not_found",
-          "unknown_type"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "PostN8NPackagesImport422ResponseFailuresItemKind",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "not_found",
-              "name": "NotFound"
-            },
-            {
-              "value": "unknown_type",
-              "name": "UnknownType"
             }
           ]
         }
