@@ -5,16 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf2Kind
+    public enum ImportBlockingIssueOneOf3Type
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "not_found")]
+        [EnumMember(Value = "credential-unresolved")]
         #pragma warning disable CS1591
-        NotFound,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "unknown_type")]
-        #pragma warning disable CS1591
-        UnknownType,
+        CredentialUnresolved,
         #pragma warning restore CS1591
     }
 }

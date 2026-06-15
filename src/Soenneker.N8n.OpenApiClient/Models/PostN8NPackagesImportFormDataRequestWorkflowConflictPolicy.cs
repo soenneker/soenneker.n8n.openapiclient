@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;`new-version` updates matching workflows and creates a new version, `fail` rejects the import when any matching workflow exists, and      description: Workflow id on the target instance (newly created for `created`, existing for `updated`/`skipped`).&quot;</summary>
+    /// <summary>`new-version` updates matching workflows and creates a new version, `fail` rejects the import when any matching workflow exists, and `skip` leaves matching workflows unchanged.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy
     {

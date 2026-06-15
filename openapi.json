@@ -4262,7 +4262,7 @@
           "N8nPackage"
         ],
         "summary": "Beta: Import an n8n package into a project",
-        "description": "**Beta — disabled by default.** Set `N8N_PUBLIC_API_PACKAGES_ENABLED=true` on the\ninstance to enable this endpoint. While disabled, requests return `404`.\n\nImports a gzip-compressed tar package (`.n8np`) into the target project. Send the\narchive as the multipart field `package`. Optional routing uses form fields\n`projectId`, `folderId`, `credentialMatchingMode`, and `credentialMissingMode`\n(omit or leave empty for defaults). The required `workflowConflictPolicy` field\ncontrols what happens when a package workflow matches an existing workflow by\nsource id in the target project. Maximum upload size is\n`N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).\n\nThe package must declare its manifest at `manifest.json` and include every file\nreferenced by the manifest. The caller is authorised through the `workflow:import`\nscope. Newly created workflows receive a fresh local id and arrive inactive.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with `credential:read`) or global credentials (with `credential:read`)\nmatch. Credentials shared into the project as `credential:user` are not matched.\n",
+        "description": "**Beta — disabled by default.** Set `N8N_PUBLIC_API_PACKAGES_ENABLED=true` on the\ninstance to enable this endpoint. While disabled, requests return `404`.\n\nImports a gzip-compressed tar package (`.n8np`) into the target project. Send the\narchive as the multipart field `package`. Optional routing uses form fields\n`projectId` and `folderId` (omit or send empty for defaults). The optional\n`credentialMatchingMode`, `credentialMissingMode`, `workflowIdPolicy`, and\n`workflowPublishingPolicy` fields take their defaults when omitted. The required\n`workflowConflictPolicy` field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).\n\nThe package must declare its manifest at `manifest.json` and include every file\nreferenced by the manifest. The caller is authorised through the `workflow:import`\nscope. With the default `workflowIdPolicy=new`, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless `workflowPublishingPolicy`\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with `credential:read`) or global credentials (with `credential:read`)\nmatch. Credentials shared into the project as `credential:user` are not matched.\n",
         "requestBody": {
           "required": true,
           "content": {
@@ -4310,7 +4310,27 @@
                       "fail",
                       "skip"
                     ],
-                    "description": "`new-version` updates matching workflows and creates a new version, `fail` rejects the import when any matching workflow exists, and\n      description: Workflow id on the target instance (newly created for `created`, existing for `updated`/`skipped`).\n"
+                    "description": "`new-version` updates matching workflows and creates a new version, `fail` rejects the import when any matching workflow exists, and `skip` leaves matching workflows unchanged.\n"
+                  },
+                  "workflowIdPolicy": {
+                    "type": "string",
+                    "enum": [
+                      "new",
+                      "source"
+                    ],
+                    "default": "new",
+                    "description": "Controls the id each newly created workflow receives. `new` (default) mints a fresh id and records the package id as `sourceWorkflowId`, so the same package can be imported repeatedly without id collisions. `source` reuses the package's own workflow id on the target instance. Workflows matched to an existing workflow in the target project (status `updated` or `skipped`) always keep that workflow's current id, regardless of policy.\n"
+                  },
+                  "workflowPublishingPolicy": {
+                    "type": "string",
+                    "enum": [
+                      "preserve-published-state",
+                      "match-source",
+                      "publish-all",
+                      "unpublish-all"
+                    ],
+                    "default": "preserve-published-state",
+                    "description": "Controls whether imported workflows are published after content is written. `preserve-published-state` keeps new workflows inactive and republishes an updated workflow only when it was already published and the package workflow is published too, so drafts are never published. `match-source` follows the package workflow's published flag. `publish-all` publishes every imported workflow. `unpublish-all` leaves new workflows inactive and unpublishes updated workflows that were published.\n"
                   }
                 }
               }
@@ -4370,7 +4390,7 @@
                           },
                           "localId": {
                             "type": "string",
-                            "description": "Newly minted workflow id on the target instance."
+                            "description": "Workflow id on the target instance: newly assigned for `created` (fresh under `workflowIdPolicy=new`, the package id under `source`), the existing workflow's id for `updated`/`skipped`.\n"
                           },
                           "name": {
                             "type": "string"
@@ -4385,7 +4405,7 @@
                           "activeVersionId": {
                             "type": "string",
                             "nullable": true,
-                            "description": "Published version on the target instance, if any.\n"
+                            "description": "Published version on the target instance, if any. `null` when the workflow is not published after import.\n"
                           },
                           "status": {
                             "type": "string",
@@ -6952,6 +6972,44 @@
               },
               "existingWorkflowId": {
                 "type": "string"
+              },
+              "name": {
+                "type": "string"
+              }
+            }
+          },
+          {
+            "type": "object",
+            "description": "A `source`-policy workflow whose id is already taken on the instance. Workflow ids are globally unique, so the id cannot be created in the target project. The existing workflow may live in any project — including the target project itself — and may be archived (archived workflows keep their id but are never matched for updates).\n",
+            "required": [
+              "type",
+              "sourceWorkflowId",
+              "existingWorkflowId",
+              "existingProjectId",
+              "isArchived",
+              "name"
+            ],
+            "properties": {
+              "type": {
+                "type": "string",
+                "enum": [
+                  "workflow-id-conflict"
+                ]
+              },
+              "sourceWorkflowId": {
+                "type": "string"
+              },
+              "existingWorkflowId": {
+                "type": "string"
+              },
+              "existingProjectId": {
+                "type": "string",
+                "nullable": true,
+                "description": "Project that owns the existing workflow, or null when no owning project could be determined.\n"
+              },
+              "isArchived": {
+                "type": "boolean",
+                "description": "Whether the existing workflow is archived."
               },
               "name": {
                 "type": "string"

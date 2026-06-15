@@ -12,7 +12,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public partial class PostN8NPackagesImport200ResponseWorkflowsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Published version on the target instance, if any.</summary>
+        /// <summary>Published version on the target instance, if any. `null` when the workflow is not published after import.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ActiveVersionId { get; set; }
@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Newly minted workflow id on the target instance.</summary>
+        /// <summary>&quot;Workflow id on the target instance: newly assigned for `created` (fresh under `workflowIdPolicy=new`, the package id under `source`), the existing workflow&apos;s id for `updated`/`skipped`.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LocalId { get; set; }

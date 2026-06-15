@@ -3564,7 +3564,7 @@
           "N8nPackage"
         ],
         "summary": "\u0022Beta: Import an n8n package into a project\u0022",
-        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060, \u0060folderId\u0060, \u0060credentialMatchingMode\u0060, and \u0060credentialMissingMode\u0060\n(omit or leave empty for defaults). The required \u0060workflowConflictPolicy\u0060 field\ncontrols what happens when a package workflow matches an existing workflow by\nsource id in the target project. Maximum upload size is\n\u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. Newly created workflows receive a fresh local id and arrive inactive.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
+        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). The optional\n\u0060credentialMatchingMode\u0060, \u0060credentialMissingMode\u0060, \u0060workflowIdPolicy\u0060, and\n\u0060workflowPublishingPolicy\u0060 fields take their defaults when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
         "operationId": "PostN8NPackagesImport",
         "requestBody": {
           "content": {
@@ -5439,6 +5439,9 @@
           },
           {
             "$ref": "#/components/schemas/ImportBlockingIssueOneOf2"
+          },
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf3"
           }
         ],
         "properties": {
@@ -5451,7 +5454,8 @@
           "propertyName": "type",
           "mapping": {
             "ImportBlockingIssueOneOf1": "#/components/schemas/ImportBlockingIssueOneOf1",
-            "ImportBlockingIssueOneOf2": "#/components/schemas/ImportBlockingIssueOneOf2"
+            "ImportBlockingIssueOneOf2": "#/components/schemas/ImportBlockingIssueOneOf2",
+            "ImportBlockingIssueOneOf3": "#/components/schemas/ImportBlockingIssueOneOf3"
           }
         }
       },
@@ -5686,6 +5690,41 @@
       "ImportBlockingIssueOneOf2": {
         "required": [
           "type",
+          "sourceWorkflowId",
+          "existingWorkflowId",
+          "existingProjectId",
+          "isArchived",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf2Type"
+          },
+          "sourceWorkflowId": {
+            "type": "string"
+          },
+          "existingWorkflowId": {
+            "type": "string"
+          },
+          "existingProjectId": {
+            "type": "string",
+            "description": "Project that owns the existing workflow, or null when no owning project could be determined.\n",
+            "nullable": true
+          },
+          "isArchived": {
+            "type": "boolean",
+            "description": "Whether the existing workflow is archived."
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "description": "A \u0060source\u0060-policy workflow whose id is already taken on the instance. Workflow ids are globally unique, so the id cannot be created in the target project. The existing workflow may live in any project \u2014 including the target project itself \u2014 and may be archived (archived workflows keep their id but are never matched for updates).\n"
+      },
+      "ImportBlockingIssueOneOf3": {
+        "required": [
+          "type",
           "kind",
           "sourceId",
           "usedByWorkflows"
@@ -5693,10 +5732,10 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf2Type"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf3Type"
           },
           "kind": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf2Kind"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf3Kind"
           },
           "sourceId": {
             "type": "string"
@@ -6649,6 +6688,12 @@
           },
           "workflowConflictPolicy": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy"
+          },
+          "workflowIdPolicy": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestWorkflowIdPolicy"
+          },
+          "workflowPublishingPolicy": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestWorkflowPublishingPolicy"
           }
         }
       },
@@ -7090,7 +7135,7 @@
           },
           "localId": {
             "type": "string",
-            "description": "Newly minted workflow id on the target instance."
+            "description": "\u0022Workflow id on the target instance: newly assigned for \u0060created\u0060 (fresh under \u0060workflowIdPolicy=new\u0060, the package id under \u0060source\u0060), the existing workflow\u0027s id for \u0060updated\u0060/\u0060skipped\u0060.\n\u0022"
           },
           "name": {
             "type": "string"
@@ -7104,7 +7149,7 @@
           },
           "activeVersionId": {
             "type": "string",
-            "description": "Published version on the target instance, if any.\n",
+            "description": "Published version on the target instance, if any. \u0060null\u0060 when the workflow is not published after import.\n",
             "nullable": true
           },
           "status": {
@@ -7741,12 +7786,29 @@
       },
       "ImportBlockingIssueOneOf2Type": {
         "enum": [
-          "credential-unresolved"
+          "workflow-id-conflict"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
           "name": "ImportBlockingIssueOneOf2Type",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "workflow-id-conflict",
+              "name": "WorkflowIdConflict"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf3Type": {
+        "enum": [
+          "credential-unresolved"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf3Type",
           "modelAsString": false,
           "values": [
             {
@@ -7756,7 +7818,7 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf2Kind": {
+      "ImportBlockingIssueOneOf3Kind": {
         "enum": [
           "not_found",
           "unknown_type"
@@ -7764,7 +7826,7 @@
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf2Kind",
+          "name": "ImportBlockingIssueOneOf3Kind",
           "modelAsString": false,
           "values": [
             {
@@ -8179,7 +8241,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "\u0022\u0060new-version\u0060 updates matching workflows and creates a new version, \u0060fail\u0060 rejects the import when any matching workflow exists, and\n      description: Workflow id on the target instance (newly created for \u0060created\u0060, existing for \u0060updated\u0060/\u0060skipped\u0060).\n\u0022",
+        "description": "\u0060new-version\u0060 updates matching workflows and creates a new version, \u0060fail\u0060 rejects the import when any matching workflow exists, and \u0060skip\u0060 leaves matching workflows unchanged.\n",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy",
           "modelAsString": false,
@@ -8195,6 +8257,64 @@
             {
               "value": "skip",
               "name": "Skip"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImportFormDataRequestWorkflowIdPolicy": {
+        "enum": [
+          "new",
+          "source"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Controls the id each newly created workflow receives. \u0060new\u0060 (default) mints a fresh id and records the package id as \u0060sourceWorkflowId\u0060, so the same package can be imported repeatedly without id collisions. \u0060source\u0060 reuses the package\u0027s own workflow id on the target instance. Workflows matched to an existing workflow in the target project (status \u0060updated\u0060 or \u0060skipped\u0060) always keep that workflow\u0027s current id, regardless of policy.\n",
+        "default": "new",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestWorkflowIdPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "new",
+              "name": "NewValue"
+            },
+            {
+              "value": "source",
+              "name": "Source"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImportFormDataRequestWorkflowPublishingPolicy": {
+        "enum": [
+          "preserve-published-state",
+          "match-source",
+          "publish-all",
+          "unpublish-all"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Controls whether imported workflows are published after content is written. \u0060preserve-published-state\u0060 keeps new workflows inactive and republishes an updated workflow only when it was already published and the package workflow is published too, so drafts are never published. \u0060match-source\u0060 follows the package workflow\u0027s published flag. \u0060publish-all\u0060 publishes every imported workflow. \u0060unpublish-all\u0060 leaves new workflows inactive and unpublishes updated workflows that were published.\n",
+        "default": "preserve-published-state",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestWorkflowPublishingPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "preserve-published-state",
+              "name": "PreservePublishedState"
+            },
+            {
+              "value": "match-source",
+              "name": "MatchSource"
+            },
+            {
+              "value": "publish-all",
+              "name": "PublishAll"
+            },
+            {
+              "value": "unpublish-all",
+              "name": "UnpublishAll"
             }
           ]
         }
