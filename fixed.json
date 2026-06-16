@@ -3564,7 +3564,7 @@
           "N8nPackage"
         ],
         "summary": "\u0022Beta: Import an n8n package into a project\u0022",
-        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). The optional\n\u0060credentialMatchingMode\u0060, \u0060credentialMissingMode\u0060, \u0060workflowIdPolicy\u0060, and\n\u0060workflowPublishingPolicy\u0060 fields take their defaults when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
+        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). The optional\n\u0060credentialMatchingMode\u0060, \u0060credentialMissingMode\u0060, \u0060credentialBindings\u0060,\n\u0060workflowIdPolicy\u0060, and \u0060workflowPublishingPolicy\u0060 fields take their defaults when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
         "operationId": "PostN8NPackagesImport",
         "requestBody": {
           "content": {
@@ -5740,6 +5740,10 @@
           "sourceId": {
             "type": "string"
           },
+          "targetId": {
+            "type": "string",
+            "description": "Target credential id for an explicit credential binding."
+          },
           "usedByWorkflows": {
             "type": "array",
             "items": {
@@ -6685,6 +6689,11 @@
           },
           "credentialMissingMode": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestCredentialMissingMode"
+          },
+          "credentialBindings": {
+            "type": "string",
+            "description": "Optional JSON object mapping credential ids from the package manifest to credential ids on the target instance. These explicit bindings are validated and applied before \u0060credentialMatchingMode\u0060 resolution runs.\n",
+            "default": "{}"
           },
           "workflowConflictPolicy": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy"
@@ -7821,7 +7830,8 @@
       "ImportBlockingIssueOneOf3Kind": {
         "enum": [
           "not_found",
-          "unknown_type"
+          "unknown_type",
+          "source_not_found"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -7836,6 +7846,10 @@
             {
               "value": "unknown_type",
               "name": "UnknownType"
+            },
+            {
+              "value": "source_not_found",
+              "name": "SourceNotFound"
             }
           ]
         }

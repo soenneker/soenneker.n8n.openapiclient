@@ -25,6 +25,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string SourceId { get; set; }
 #endif
+        /// <summary>Target credential id for an explicit credential binding.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TargetId { get; set; }
+#nullable restore
+#else
+        public string TargetId { get; set; }
+#endif
         /// <summary>The type property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3Type? Type { get; set; }
         /// <summary>The usedByWorkflows property</summary>
@@ -62,6 +70,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3Kind>(); } },
                 { "sourceId", n => { SourceId = n.GetStringValue(); } },
+                { "targetId", n => { TargetId = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3Type>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -75,6 +84,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3Kind>("kind", Kind);
             writer.WriteStringValue("sourceId", SourceId);
+            writer.WriteStringValue("targetId", TargetId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3Type>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
