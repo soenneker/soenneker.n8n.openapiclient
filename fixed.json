@@ -5442,6 +5442,9 @@
           },
           {
             "$ref": "#/components/schemas/ImportBlockingIssueOneOf3"
+          },
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf4"
           }
         ],
         "properties": {
@@ -5455,7 +5458,8 @@
           "mapping": {
             "ImportBlockingIssueOneOf1": "#/components/schemas/ImportBlockingIssueOneOf1",
             "ImportBlockingIssueOneOf2": "#/components/schemas/ImportBlockingIssueOneOf2",
-            "ImportBlockingIssueOneOf3": "#/components/schemas/ImportBlockingIssueOneOf3"
+            "ImportBlockingIssueOneOf3": "#/components/schemas/ImportBlockingIssueOneOf3",
+            "ImportBlockingIssueOneOf4": "#/components/schemas/ImportBlockingIssueOneOf4"
           }
         }
       },
@@ -5725,6 +5729,41 @@
       "ImportBlockingIssueOneOf3": {
         "required": [
           "type",
+          "sourceWorkflowId",
+          "existingWorkflowId",
+          "existingParentFolderId",
+          "targetFolderId",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf3Type"
+          },
+          "sourceWorkflowId": {
+            "type": "string"
+          },
+          "existingWorkflowId": {
+            "type": "string"
+          },
+          "existingParentFolderId": {
+            "type": "string",
+            "description": "Folder that currently contains the matched workflow, or null when it lives at the project root.\n",
+            "nullable": true
+          },
+          "targetFolderId": {
+            "type": "string",
+            "description": "Folder the import was requested to land in."
+          },
+          "name": {
+            "type": "string"
+          }
+        },
+        "description": "A workflow whose source id already matches one in the target project but lives outside the requested import folder. Folder-targeted imports cannot update workflows in place at a different location.\n"
+      },
+      "ImportBlockingIssueOneOf4": {
+        "required": [
+          "type",
           "kind",
           "sourceId",
           "usedByWorkflows"
@@ -5732,10 +5771,10 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf3Type"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf4Type"
           },
           "kind": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf3Kind"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf4Kind"
           },
           "sourceId": {
             "type": "string"
@@ -7812,12 +7851,29 @@
       },
       "ImportBlockingIssueOneOf3Type": {
         "enum": [
-          "credential-unresolved"
+          "workflow-folder-conflict"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
           "name": "ImportBlockingIssueOneOf3Type",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "workflow-folder-conflict",
+              "name": "WorkflowFolderConflict"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf4Type": {
+        "enum": [
+          "credential-unresolved"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf4Type",
           "modelAsString": false,
           "values": [
             {
@@ -7827,7 +7883,7 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf3Kind": {
+      "ImportBlockingIssueOneOf4Kind": {
         "enum": [
           "not_found",
           "unknown_type",
@@ -7836,7 +7892,7 @@
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf3Kind",
+          "name": "ImportBlockingIssueOneOf4Kind",
           "modelAsString": false,
           "values": [
             {
