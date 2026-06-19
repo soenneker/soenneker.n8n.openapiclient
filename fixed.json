@@ -5783,6 +5783,14 @@
             "type": "string",
             "description": "Target credential id for an explicit credential binding."
           },
+          "expectedType": {
+            "type": "string",
+            "description": "\u0022For \u0060type_mismatch\u0060: the credential type the package\u0027s workflow node requires.\n\u0022"
+          },
+          "actualType": {
+            "type": "string",
+            "description": "\u0022For \u0060type_mismatch\u0060: the actual type of the resolved target credential.\n\u0022"
+          },
           "usedByWorkflows": {
             "type": "array",
             "items": {
@@ -7887,7 +7895,8 @@
         "enum": [
           "not_found",
           "unknown_type",
-          "source_not_found"
+          "source_not_found",
+          "type_mismatch"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -7906,6 +7915,10 @@
             {
               "value": "source_not_found",
               "name": "SourceNotFound"
+            },
+            {
+              "value": "type_mismatch",
+              "name": "TypeMismatch"
             }
           ]
         }

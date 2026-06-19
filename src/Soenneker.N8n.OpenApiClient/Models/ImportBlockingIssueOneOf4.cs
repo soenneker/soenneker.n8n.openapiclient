@@ -13,8 +13,24 @@ namespace Soenneker.N8n.OpenApiClient.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf4 : IAdditionalDataHolder, IParsable
     {
+        /// <summary>&quot;For `type_mismatch`: the actual type of the resolved target credential.&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ActualType { get; set; }
+#nullable restore
+#else
+        public string ActualType { get; set; }
+#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>&quot;For `type_mismatch`: the credential type the package&apos;s workflow node requires.&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExpectedType { get; set; }
+#nullable restore
+#else
+        public string ExpectedType { get; set; }
+#endif
         /// <summary>The kind property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind? Kind { get; set; }
         /// <summary>The sourceId property</summary>
@@ -68,6 +84,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "actualType", n => { ActualType = n.GetStringValue(); } },
+                { "expectedType", n => { ExpectedType = n.GetStringValue(); } },
                 { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind>(); } },
                 { "sourceId", n => { SourceId = n.GetStringValue(); } },
                 { "targetId", n => { TargetId = n.GetStringValue(); } },
@@ -82,6 +100,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("actualType", ActualType);
+            writer.WriteStringValue("expectedType", ExpectedType);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind>("kind", Kind);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteStringValue("targetId", TargetId);

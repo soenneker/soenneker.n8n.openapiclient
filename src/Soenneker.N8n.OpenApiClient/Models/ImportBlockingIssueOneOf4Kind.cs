@@ -20,5 +20,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         #pragma warning disable CS1591
         SourceNotFound,
         #pragma warning restore CS1591
+        [EnumMember(Value = "type_mismatch")]
+        #pragma warning disable CS1591
+        TypeMismatch,
+        #pragma warning restore CS1591
     }
 }
