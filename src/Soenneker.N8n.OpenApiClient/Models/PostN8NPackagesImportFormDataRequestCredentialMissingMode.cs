@@ -3,13 +3,17 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>What to do when a credential reference cannot be resolved. `must-preexist` requires every referenced credential to already exist and be accessible on the target instance.</summary>
+    /// <summary>What to do when a credential reference cannot be resolved. `create-stub` (default) creates empty credential placeholders in the target project for missing references. `must-preexist` requires every referenced credential to already exist.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestCredentialMissingMode
     {
         [EnumMember(Value = "must-preexist")]
         #pragma warning disable CS1591
         MustPreexist,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "create-stub")]
+        #pragma warning disable CS1591
+        CreateStub,
         #pragma warning restore CS1591
     }
 }

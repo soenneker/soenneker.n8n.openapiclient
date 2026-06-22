@@ -22,6 +22,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseBindings Bindings { get; set; }
 #endif
+        /// <summary>Source credential ids grouped by whether they matched an existing credential or were created as stubs. Full source→target id mapping is in `bindings.credentials`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials? Credentials { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials Credentials { get; set; }
+#endif
         /// <summary>The package property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,6 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "bindings", n => { Bindings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseBindings>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseBindings.CreateFromDiscriminatorValue); } },
+                { "credentials", n => { Credentials = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials.CreateFromDiscriminatorValue); } },
                 { "package", n => { Package = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage.CreateFromDiscriminatorValue); } },
                 { "workflows", n => { Workflows = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -76,6 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseBindings>("bindings", Bindings);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials>("credentials", Credentials);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage>("package", Package);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem>("workflows", Workflows);
             writer.WriteAdditionalData(AdditionalData);

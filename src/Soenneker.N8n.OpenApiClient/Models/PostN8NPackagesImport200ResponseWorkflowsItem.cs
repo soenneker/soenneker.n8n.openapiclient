@@ -54,6 +54,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string ProjectId { get; set; }
 #endif
+        /// <summary>Outcome of applying the selected publishing policy to this workflow.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemPublishing? Publishing { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemPublishing Publishing { get; set; }
+#endif
         /// <summary>Workflow id as it appeared in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -94,6 +102,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "publishing", n => { Publishing = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemPublishing>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemPublishing.CreateFromDiscriminatorValue); } },
                 { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemStatus>(); } },
             };
@@ -110,6 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("parentFolderId", ParentFolderId);
             writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemPublishing>("publishing", Publishing);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);

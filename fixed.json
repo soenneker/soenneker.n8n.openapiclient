@@ -6757,7 +6757,8 @@
         "required": [
           "package",
           "workflows",
-          "bindings"
+          "bindings",
+          "credentials"
         ],
         "type": "object",
         "properties": {
@@ -6769,6 +6770,9 @@
             "items": {
               "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItem"
             }
+          },
+          "credentials": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseCredentials"
           },
           "bindings": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseBindings"
@@ -7181,6 +7185,7 @@
           "projectId",
           "parentFolderId",
           "activeVersionId",
+          "publishing",
           "status"
         ],
         "type": "object",
@@ -7208,10 +7213,37 @@
             "description": "Published version on the target instance, if any. \u0060null\u0060 when the workflow is not published after import.\n",
             "nullable": true
           },
+          "publishing": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItemPublishing"
+          },
           "status": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItemStatus"
           }
         }
+      },
+      "PostN8NPackagesImport200ResponseCredentials": {
+        "required": [
+          "matched",
+          "stubbed"
+        ],
+        "type": "object",
+        "properties": {
+          "matched": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Source credential ids from the package that matched existing credentials on the target instance.\n"
+          },
+          "stubbed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Source credential ids for which empty placeholder credentials were created in the target project.\n"
+          }
+        },
+        "description": "Source credential ids grouped by whether they matched an existing credential or were created as stubs. Full source\u2192target id mapping is in \u0060bindings.credentials\u0060.\n"
       },
       "PostN8NPackagesImport200ResponseBindings": {
         "required": [
@@ -7257,6 +7289,28 @@
           "$ref": "#/components/schemas/GetDiscover200ResponseDataFiltersAdditionalProperties"
         },
         "description": "Available query parameter filters. The values arrays reflect what the caller\u0027s scopes permit.\n"
+      },
+      "PostN8NPackagesImport200ResponseWorkflowsItemPublishing": {
+        "required": [
+          "state"
+        ],
+        "type": "object",
+        "properties": {
+          "state": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItemPublishingState"
+          },
+          "error": {
+            "type": "string",
+            "description": "Present when \u0060state\u0060 is \u0060failed\u0060. Explains why publish or unpublish could not be applied.\n"
+          },
+          "blockedReason": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItemPublishingBlockedReason"
+          },
+          "skippedPublishReason": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItemPublishingSkippedPublishReason"
+          }
+        },
+        "description": "Outcome of applying the selected publishing policy to this workflow.\n"
       },
       "PostN8NPackagesImport200ResponseBindingsWorkflows": {
         "type": "object",
@@ -8299,12 +8353,13 @@
       },
       "PostN8NPackagesImportFormDataRequestCredentialMissingMode": {
         "enum": [
-          "must-preexist"
+          "must-preexist",
+          "create-stub"
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "What to do when a credential reference cannot be resolved. \u0060must-preexist\u0060 requires every referenced credential to already exist and be accessible on the target instance.\n",
-        "default": "must-preexist",
+        "description": "What to do when a credential reference cannot be resolved. \u0060create-stub\u0060 (default) creates empty credential placeholders in the target project for missing references. \u0060must-preexist\u0060 requires every referenced credential to already exist.\n",
+        "default": "create-stub",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestCredentialMissingMode",
           "modelAsString": false,
@@ -8312,6 +8367,10 @@
             {
               "value": "must-preexist",
               "name": "MustPreexist"
+            },
+            {
+              "value": "create-stub",
+              "name": "CreateStub"
             }
           ]
         }
@@ -8463,6 +8522,80 @@
             {
               "value": "skipped",
               "name": "Skipped"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImport200ResponseWorkflowsItemPublishingState": {
+        "enum": [
+          "published",
+          "unpublished",
+          "unchanged",
+          "blocked",
+          "failed"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0060blocked\u0060 means the imported version could not be published and no version is active (for example because the workflow uses a stubbed credential). When a prior published version remains active, \u0060state\u0060 is \u0060unchanged\u0060 with \u0060skippedPublishReason\u0060 instead. \u0060failed\u0060 means publish or unpublish was attempted but did not succeed.\n",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImport200ResponseWorkflowsItemPublishingState",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "published",
+              "name": "Published"
+            },
+            {
+              "value": "unpublished",
+              "name": "Unpublished"
+            },
+            {
+              "value": "unchanged",
+              "name": "Unchanged"
+            },
+            {
+              "value": "blocked",
+              "name": "Blocked"
+            },
+            {
+              "value": "failed",
+              "name": "Failed"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImport200ResponseWorkflowsItemPublishingBlockedReason": {
+        "enum": [
+          "stub-credential"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022Present when \u0060state\u0060 is \u0060blocked\u0060: the imported version could not be published and no version is active.\n\u0022",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImport200ResponseWorkflowsItemPublishingBlockedReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "stub-credential",
+              "name": "StubCredential"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImport200ResponseWorkflowsItemPublishingSkippedPublishReason": {
+        "enum": [
+          "stub-credential"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022Present when \u0060state\u0060 is \u0060unchanged\u0060 but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with stubbed credentials).\n\u0022",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImport200ResponseWorkflowsItemPublishingSkippedPublishReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "stub-credential",
+              "name": "StubCredential"
             }
           ]
         }

@@ -4378,10 +4378,11 @@
                   "credentialMissingMode": {
                     "type": "string",
                     "enum": [
-                      "must-preexist"
+                      "must-preexist",
+                      "create-stub"
                     ],
-                    "default": "must-preexist",
-                    "description": "What to do when a credential reference cannot be resolved. `must-preexist` requires every referenced credential to already exist and be accessible on the target instance.\n"
+                    "default": "create-stub",
+                    "description": "What to do when a credential reference cannot be resolved. `create-stub` (default) creates empty credential placeholders in the target project for missing references. `must-preexist` requires every referenced credential to already exist.\n"
                   },
                   "credentialBindings": {
                     "type": "string",
@@ -4432,7 +4433,8 @@
                   "required": [
                     "package",
                     "workflows",
-                    "bindings"
+                    "bindings",
+                    "credentials"
                   ],
                   "properties": {
                     "package": {
@@ -4466,6 +4468,7 @@
                           "projectId",
                           "parentFolderId",
                           "activeVersionId",
+                          "publishing",
                           "status"
                         ],
                         "properties": {
@@ -4492,6 +4495,44 @@
                             "nullable": true,
                             "description": "Published version on the target instance, if any. `null` when the workflow is not published after import.\n"
                           },
+                          "publishing": {
+                            "type": "object",
+                            "required": [
+                              "state"
+                            ],
+                            "description": "Outcome of applying the selected publishing policy to this workflow.\n",
+                            "properties": {
+                              "state": {
+                                "type": "string",
+                                "enum": [
+                                  "published",
+                                  "unpublished",
+                                  "unchanged",
+                                  "blocked",
+                                  "failed"
+                                ],
+                                "description": "`blocked` means the imported version could not be published and no version is active (for example because the workflow uses a stubbed credential). When a prior published version remains active, `state` is `unchanged` with `skippedPublishReason` instead. `failed` means publish or unpublish was attempted but did not succeed.\n"
+                              },
+                              "error": {
+                                "type": "string",
+                                "description": "Present when `state` is `failed`. Explains why publish or unpublish could not be applied.\n"
+                              },
+                              "blockedReason": {
+                                "type": "string",
+                                "enum": [
+                                  "stub-credential"
+                                ],
+                                "description": "Present when `state` is `blocked`: the imported version could not be published and no version is active.\n"
+                              },
+                              "skippedPublishReason": {
+                                "type": "string",
+                                "enum": [
+                                  "stub-credential"
+                                ],
+                                "description": "Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with stubbed credentials).\n"
+                              }
+                            }
+                          },
                           "status": {
                             "type": "string",
                             "enum": [
@@ -4501,6 +4542,30 @@
                             ],
                             "description": "Import outcome for this package workflow."
                           }
+                        }
+                      }
+                    },
+                    "credentials": {
+                      "type": "object",
+                      "description": "Source credential ids grouped by whether they matched an existing credential or were created as stubs. Full source→target id mapping is in `bindings.credentials`.\n",
+                      "required": [
+                        "matched",
+                        "stubbed"
+                      ],
+                      "properties": {
+                        "matched": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Source credential ids from the package that matched existing credentials on the target instance.\n"
+                        },
+                        "stubbed": {
+                          "type": "array",
+                          "items": {
+                            "type": "string"
+                          },
+                          "description": "Source credential ids for which empty placeholder credentials were created in the target project.\n"
                         }
                       }
                     },
