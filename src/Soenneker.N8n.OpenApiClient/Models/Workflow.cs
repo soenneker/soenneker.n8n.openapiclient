@@ -66,6 +66,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
+        /// <summary>Visual groupings of nodes shown as frames on the canvas</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup>? NodeGroups { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup> NodeGroups { get; set; }
+#endif
         /// <summary>The nodes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -153,6 +161,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "isArchived", n => { IsArchived = n.GetBoolValue(); } },
                 { "meta", n => { Meta = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowMeta>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowMeta.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "nodeGroups", n => { NodeGroups = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "nodes", n => { Nodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>(global::Soenneker.N8n.OpenApiClient.Models.Node.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "pinData", n => { PinData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPinData>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowPinData.CreateFromDiscriminatorValue); } },
                 { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings.CreateFromDiscriminatorValue); } },
@@ -174,6 +183,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConnectionsProperty>("connections", Connections);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("name", Name);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup>("nodeGroups", NodeGroups);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>("nodes", Nodes);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPinData>("pinData", PinData);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings>("settings", Settings);

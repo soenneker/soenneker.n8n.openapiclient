@@ -30,6 +30,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; private set; }
+        /// <summary>Visual groupings of nodes shown as frames on the canvas</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup>? NodeGroups { get; private set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup> NodeGroups { get; private set; }
+#endif
         /// <summary>The nodes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -77,6 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "authors", n => { Authors = n.GetStringValue(); } },
                 { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ActiveVersionConnectionsProperty>(global::Soenneker.N8n.OpenApiClient.Models.ActiveVersionConnectionsProperty.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
+                { "nodeGroups", n => { NodeGroups = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "nodes", n => { Nodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>(global::Soenneker.N8n.OpenApiClient.Models.Node.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "versionId", n => { VersionId = n.GetStringValue(); } },

@@ -41,7 +41,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecutionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,includeData*,limit*,projectId,redactExecutionData*,status*,workflowId*}", pathParameters)
+        public ExecutionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,ignoreDataSizeLimit*,includeData*,limit*,projectId,redactExecutionData*,status*,workflowId*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecutionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,includeData*,limit*,projectId,redactExecutionData*,status*,workflowId*}", rawUrl)
+        public ExecutionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,ignoreDataSizeLimit*,includeData*,limit*,projectId,redactExecutionData*,status*,workflowId*}", rawUrl)
         {
         }
         /// <summary>
@@ -114,6 +114,9 @@ namespace Soenneker.N8n.OpenApiClient.Executions
             [QueryParameter("cursor")]
             public string Cursor { get; set; }
 #endif
+            /// <summary>Whether to return the full execution data even if it exceeds the configured size limit (EXECUTIONS_DATA_MAX_DISPLAY_SIZE). Oversized executions are otherwise returned without their data.</summary>
+            [QueryParameter("ignoreDataSizeLimit")]
+            public bool? IgnoreDataSizeLimit { get; set; }
             /// <summary>Whether or not to include the execution&apos;s detailed data.</summary>
             [QueryParameter("includeData")]
             public bool? IncludeData { get; set; }

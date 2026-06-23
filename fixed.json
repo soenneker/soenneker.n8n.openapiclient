@@ -418,6 +418,14 @@
             "$ref": "#/components/parameters/includeData"
           },
           {
+            "name": "ignoreDataSizeLimit",
+            "in": "query",
+            "description": "Whether to return the full execution data even if it exceeds the configured size limit (EXECUTIONS_DATA_MAX_DISPLAY_SIZE). Oversized executions are otherwise returned without their data.",
+            "schema": {
+              "type": "boolean"
+            }
+          },
+          {
             "$ref": "#/components/parameters/redactExecutionData"
           },
           {
@@ -491,6 +499,14 @@
           },
           {
             "$ref": "#/components/parameters/includeData"
+          },
+          {
+            "name": "ignoreDataSizeLimit",
+            "in": "query",
+            "description": "Whether to return the full execution data even if it exceeds the configured size limit (EXECUTIONS_DATA_MAX_DISPLAY_SIZE). Oversized executions are otherwise returned without their data.",
+            "schema": {
+              "type": "boolean"
+            }
           },
           {
             "$ref": "#/components/parameters/redactExecutionData"
@@ -4201,6 +4217,34 @@
         },
         "additionalProperties": false
       },
+      "WorkflowNodeGroup": {
+        "required": [
+          "id",
+          "name",
+          "nodeIds"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Unique identifier for the node group",
+            "example": "9b1c8e2a-4d3f-4a6b-8c7d-1e2f3a4b5c6d"
+          },
+          "name": {
+            "type": "string",
+            "description": "Display name of the node group",
+            "example": "Data processing"
+          },
+          "nodeIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "IDs of the nodes that belong to this group"
+          }
+        },
+        "additionalProperties": false
+      },
       "WorkflowSettings": {
         "type": "object",
         "properties": {
@@ -4319,6 +4363,14 @@
           "connections": {
             "$ref": "#/components/schemas/ActiveVersionConnectionsProperty"
           },
+          "nodeGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowNodeGroup"
+            },
+            "description": "Visual groupings of nodes shown as frames on the canvas",
+            "readOnly": true
+          },
           "authors": {
             "type": "string",
             "description": "Comma-separated list of author IDs who contributed to this version",
@@ -4399,6 +4451,13 @@
           },
           "connections": {
             "$ref": "#/components/schemas/WorkflowConnectionsProperty"
+          },
+          "nodeGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowNodeGroup"
+            },
+            "description": "Visual groupings of nodes shown as frames on the canvas"
           },
           "settings": {
             "$ref": "#/components/schemas/WorkflowSettings"
@@ -4503,6 +4562,13 @@
           "connections": {
             "$ref": "#/components/schemas/WorkflowCreateConnectionsProperty"
           },
+          "nodeGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowNodeGroup"
+            },
+            "description": "Visual groupings of nodes shown as frames on the canvas"
+          },
           "settings": {
             "$ref": "#/components/schemas/WorkflowSettings"
           },
@@ -4571,6 +4637,14 @@
           },
           "connections": {
             "$ref": "#/components/schemas/WorkflowVersionConnectionsProperty"
+          },
+          "nodeGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowNodeGroup"
+            },
+            "description": "Node groups as they were in this version",
+            "readOnly": true
           },
           "authors": {
             "type": "string",
@@ -5549,6 +5623,9 @@
       },
       "Node2": {
         "$ref": "#/components/schemas/Node"
+      },
+      "WorkflowNodeGroup2": {
+        "$ref": "#/components/schemas/WorkflowNodeGroup"
       },
       "Tag2": {
         "$ref": "#/components/schemas/Tag"
