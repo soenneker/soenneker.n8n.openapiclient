@@ -9,31 +9,29 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class Pull : IAdditionalDataHolder, IParsable
+    public partial class ClearDataTableRows200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import&quot;</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PullAutoPublish? AutoPublish { get; set; }
-        /// <summary>The force property</summary>
-        public bool? Force { get; set; }
+        /// <summary>The number of rows that were deleted</summary>
+        public int? DeletedCount { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.Pull"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response"/> and sets the default values.
         /// </summary>
-        public Pull()
+        public ClearDataTableRows200Response()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Pull"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.Pull CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.Pull();
+            return new global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -43,8 +41,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "autoPublish", n => { AutoPublish = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullAutoPublish>(); } },
-                { "force", n => { Force = n.GetBoolValue(); } },
+                { "deletedCount", n => { DeletedCount = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -54,8 +51,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullAutoPublish>("autoPublish", AutoPublish);
-            writer.WriteBoolValue("force", Force);
+            writer.WriteIntValue("deletedCount", DeletedCount);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Clear;
 using Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete;
 using Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Update;
 using Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Upsert;
@@ -20,6 +21,11 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RowsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The clear property</summary>
+        public global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Clear.ClearRequestBuilder Clear
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Clear.ClearRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The deletePath property</summary>
         public global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder DeletePath
         {

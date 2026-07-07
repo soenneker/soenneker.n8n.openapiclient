@@ -31,7 +31,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public UpsertRowRequestFilter()
         {
             AdditionalData = new Dictionary<string, object>();
-            Type = global::Soenneker.N8n.OpenApiClient.Models.UpsertRowRequestFilterType.And;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

@@ -442,7 +442,7 @@
             "description": "Workflow to filter the executions by.",
             "schema": {
               "type": "string",
-              "example": "1000"
+              "example": 1000
             }
           },
           {
@@ -1493,6 +1493,140 @@
         }
       }
     },
+    "/workflows/{id}/test-runs": {
+      "get": {
+        "tags": [
+          "Evaluation"
+        ],
+        "summary": "Retrieve test runs",
+        "description": "Retrieve the evaluation test runs of a workflow.",
+        "operationId": "GetWorkflowsByIdTestRuns",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/testRunWorkflowId"
+          },
+          {
+            "name": "status",
+            "in": "query",
+            "description": "Status to filter the test runs by.",
+            "schema": {
+              "$ref": "#/components/schemas/GetWorkflowsByIdTestRunsStatusParameter"
+            }
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestRunList"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        }
+      }
+    },
+    "/workflows/{id}/test-runs/{runId}": {
+      "get": {
+        "tags": [
+          "Evaluation"
+        ],
+        "summary": "Retrieve a test run",
+        "description": "Retrieve a single evaluation test run of a workflow, including its aggregated metrics and final result.",
+        "operationId": "GetWorkflowsByIdTestRunsByRunId",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/testRunWorkflowId"
+          },
+          {
+            "$ref": "#/components/parameters/testRunId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestRunSummary"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        }
+      }
+    },
+    "/workflows/{id}/test-runs/{runId}/test-cases": {
+      "get": {
+        "tags": [
+          "Evaluation"
+        ],
+        "summary": "Retrieve test run cases",
+        "description": "Retrieve the per-case results of an evaluation test run.",
+        "operationId": "GetWorkflowsByIdTestRunsByRunIdTestCases",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/testRunWorkflowId"
+          },
+          {
+            "$ref": "#/components/parameters/testRunId"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TestCaseExecutionList"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        }
+      }
+    },
     "/users": {
       "get": {
         "tags": [
@@ -2374,6 +2508,44 @@
           },
           "400": {
             "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        },
+        "security": [
+          {
+            "ApiKeyAuth": []
+          }
+        ]
+      }
+    },
+    "/data-tables/{dataTableId}/rows/clear": {
+      "delete": {
+        "tags": [
+          "DataTable"
+        ],
+        "summary": "Clear all rows from a data table",
+        "description": "Permanently deletes all rows from a data table. The table structure will be retained. This action cannot be undone.",
+        "operationId": "ClearDataTableRows",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/dataTableId"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Rows cleared successfully",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ClearDataTableRows200Response"
+                }
+              }
+            }
           },
           "401": {
             "$ref": "#/components/responses/unauthorized"
@@ -3535,22 +3707,22 @@
         "tags": [
           "N8nPackage"
         ],
-        "summary": "\u0022Beta: Export workflows as an n8n package\u0022",
-        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nExport one or more workflows as a gzipped tar archive (.n8np). The response is\nstreamed as \u0060application/gzip\u0060 with a \u0060Content-Disposition\u0060 attachment header.\nRequires the n8n Packages feature to be licensed.\n",
+        "summary": "\u0022Beta: Export workflows, folders, or projects as an n8n package\u0022",
+        "description": "\u0022**Beta** \u2014 breaking changes may still occur without major version bump.\n\nExport workflows and/or folders, or projects, as a gzipped tar archive\n(.n8np). Provide \u0060workflowIds\u0060/\u0060folderIds\u0060, or \u0060projectIds\u0060, but not both\ngroups. Each exported folder includes its nested folders. Empty projects\nexport project metadata only. The response is streamed as \u0060application/gzip\u0060\nwith a \u0060Content-Disposition\u0060 attachment header. Requires the n8n Packages\nfeature to be licensed.\n\nAPI key scopes: \u0060workflow:export\u0060 is required when exporting workflows or folders, and \u0060project:export\u0060 is required when exporting projects.\n\u0022",
         "operationId": "PostN8NPackagesExport",
         "requestBody": {
-          "description": "Workflows to include in the exported package.",
+          "description": "Workflows, folders, or projects to include in the exported package.",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/ExportWorkflowsRequest"
+                "$ref": "#/components/schemas/ExportPackageRequest"
               }
             }
           }
         },
         "responses": {
           "200": {
-            "description": "A gzipped tar archive containing the exported workflows.",
+            "description": "A gzipped tar archive containing the exported package contents.",
             "content": {
               "application/gzip": {
                 "schema": {
@@ -3580,7 +3752,7 @@
           "N8nPackage"
         ],
         "summary": "\u0022Beta: Import an n8n package into a project\u0022",
-        "description": "**Beta \u2014 disabled by default.** Set \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060 on the\ninstance to enable this endpoint. While disabled, requests return \u0060404\u0060.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). The optional\n\u0060credentialMatchingMode\u0060, \u0060credentialMissingMode\u0060, \u0060credentialBindings\u0060,\n\u0060workflowIdPolicy\u0060, and \u0060workflowPublishingPolicy\u0060 fields take their defaults when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). The optional\n\u0060credentialMatchingMode\u0060, \u0060credentialMissingMode\u0060, \u0060credentialBindings\u0060,\n\u0060workflowIdPolicy\u0060, and \u0060workflowPublishingPolicy\u0060 fields take their defaults when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
         "operationId": "PostN8NPackagesImport",
         "requestBody": {
           "content": {
@@ -4027,7 +4199,7 @@
           "retrySuccessId": {
             "type": "number",
             "nullable": true,
-            "example": "2"
+            "example": 2
           },
           "startedAt": {
             "type": "string",
@@ -4041,7 +4213,7 @@
           },
           "workflowId": {
             "type": "number",
-            "example": "1000"
+            "example": 1000
           },
           "waitTill": {
             "type": "string",
@@ -4682,6 +4854,130 @@
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Tag"
+        }
+      },
+      "TestRunSummary": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "9f8e7d6c5b4a3210"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TestRunSummaryStatus"
+          },
+          "runAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/TestRunSummaryMetrics"
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorDetails": {
+            "$ref": "#/components/schemas/TestRunSummaryErrorDetails"
+          },
+          "finalResult": {
+            "$ref": "#/components/schemas/TestRunSummaryFinalResult"
+          },
+          "testCaseCount": {
+            "type": "integer",
+            "example": 42
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "TestRunList": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestRunSummary"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "description": "Paginate through test runs by setting the cursor parameter to the nextCursor attribute returned by a previous request. Default value fetches the first \u0022page\u0022 of the collection.",
+            "nullable": true,
+            "example": "MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA"
+          }
+        }
+      },
+      "TestCaseExecution": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "example": "1a2b3c4d5e6f7080"
+          },
+          "status": {
+            "$ref": "#/components/schemas/TestCaseExecutionStatus"
+          },
+          "runAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "completedAt": {
+            "type": "string",
+            "format": "date-time",
+            "nullable": true
+          },
+          "metrics": {
+            "$ref": "#/components/schemas/TestCaseExecutionMetrics"
+          },
+          "errorCode": {
+            "type": "string",
+            "nullable": true
+          },
+          "errorDetails": {
+            "$ref": "#/components/schemas/TestCaseExecutionErrorDetails"
+          },
+          "inputs": {
+            "$ref": "#/components/schemas/TestCaseExecutionInputs"
+          },
+          "outputs": {
+            "$ref": "#/components/schemas/TestCaseExecutionOutputs"
+          },
+          "executionId": {
+            "type": "string",
+            "description": "ID of the underlying workflow execution, if still retained.",
+            "nullable": true
+          }
+        }
+      },
+      "TestCaseExecutionList": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/TestCaseExecution"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "description": "Paginate through test cases by setting the cursor parameter to the nextCursor attribute returned by a previous request. Default value fetches the first \u0022page\u0022 of the collection.",
+            "nullable": true,
+            "example": "MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA"
+          }
         }
       },
       "User": {
@@ -5483,24 +5779,38 @@
         },
         "additionalProperties": false
       },
-      "ExportWorkflowsRequest": {
-        "required": [
-          "workflowIds"
-        ],
+      "ExportPackageRequest": {
         "type": "object",
         "properties": {
           "workflowIds": {
             "maxItems": 300,
-            "minItems": 1,
             "type": "array",
             "items": {
               "minLength": 1,
               "type": "string"
             },
             "description": "IDs of the workflows to include in the exported package."
+          },
+          "folderIds": {
+            "maxItems": 300,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "IDs of the folders to include in the exported package. Each folder is exported with its nested folders."
+          },
+          "projectIds": {
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "IDs of the projects to include in the exported package."
           }
         },
-        "additionalProperties": false
+        "additionalProperties": false,
+        "description": "Selects what to export. Provide \u0060workflowIds\u0060 and/or \u0060folderIds\u0060 to export loose workflows and folders, or \u0060projectIds\u0060 to export whole projects, but not both groups in the same request. At least one id must be supplied."
       },
       "ImportBlockingIssue": {
         "required": [
@@ -5889,7 +6199,7 @@
               "location": [
                 {
                   "kind": "credential",
-                  "id": "1",
+                  "id": 1,
                   "name": "My Test Account"
                 }
               ]
@@ -5910,7 +6220,7 @@
               "location": [
                 {
                   "kind": "node",
-                  "workflowId": "1",
+                  "workflowId": 1,
                   "workflowName": "My Workflow",
                   "nodeId": "51eb5852-ce0b-4806-b4ff-e41322a4041a",
                   "nodeName": "MySQL",
@@ -5934,7 +6244,7 @@
               "location": [
                 {
                   "kind": "node",
-                  "workflowId": "1",
+                  "workflowId": 1,
                   "workflowName": "My Workflow",
                   "nodeId": "51eb5852-ce0b-4806-b4ff-e41322a4041a",
                   "nodeName": "Ready Binary file",
@@ -6031,7 +6341,7 @@
         "type": "object",
         "example": {
           "jiraSoftwareCloudApi": {
-            "id": "35",
+            "id": 35,
             "name": "jiraApi"
           }
         }
@@ -6196,6 +6506,34 @@
             ]
           }
         }
+      },
+      "TestRunSummaryMetrics": {
+        "type": "object",
+        "description": "Aggregated metrics collected across the run\u0027s test cases.",
+        "nullable": true
+      },
+      "TestRunSummaryErrorDetails": {
+        "type": "object",
+        "nullable": true
+      },
+      "TestCaseExecutionMetrics": {
+        "type": "object",
+        "description": "Metrics produced by this test case.",
+        "nullable": true
+      },
+      "TestCaseExecutionErrorDetails": {
+        "type": "object",
+        "nullable": true
+      },
+      "TestCaseExecutionInputs": {
+        "type": "object",
+        "description": "Input data for this test case.",
+        "nullable": true
+      },
+      "TestCaseExecutionOutputs": {
+        "type": "object",
+        "description": "Output data produced by this test case.",
+        "nullable": true
       },
       "SourceControlledFileOwner": {
         "required": [
@@ -6677,6 +7015,15 @@
             "$ref": "#/components/schemas/UpsertDataTableRow200ResponseOneOf2"
           }
         ]
+      },
+      "ClearDataTableRows200Response": {
+        "type": "object",
+        "properties": {
+          "deletedCount": {
+            "type": "integer",
+            "description": "The number of rows that were deleted"
+          }
+        }
       },
       "DeleteDataTableRows200Response": {
         "type": "object",
@@ -7698,6 +8045,119 @@
           ]
         }
       },
+      "TestRunSummaryStatus": {
+        "enum": [
+          "new",
+          "running",
+          "completed",
+          "error",
+          "cancelled"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "TestRunSummaryStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "new",
+              "name": "NewValue"
+            },
+            {
+              "value": "running",
+              "name": "Running"
+            },
+            {
+              "value": "completed",
+              "name": "Completed"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            },
+            {
+              "value": "cancelled",
+              "name": "Cancelled"
+            }
+          ]
+        }
+      },
+      "TestRunSummaryFinalResult": {
+        "enum": [
+          "success",
+          "error",
+          "warning"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Overall result of the run, derived from its test cases once completed.",
+        "nullable": true,
+        "x-ms-enum": {
+          "name": "TestRunSummaryFinalResult",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "success",
+              "name": "Success"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            },
+            {
+              "value": "warning",
+              "name": "Warning"
+            }
+          ]
+        }
+      },
+      "TestCaseExecutionStatus": {
+        "enum": [
+          "new",
+          "running",
+          "evaluation_running",
+          "success",
+          "error",
+          "warning",
+          "cancelled"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "TestCaseExecutionStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "new",
+              "name": "NewValue"
+            },
+            {
+              "value": "running",
+              "name": "Running"
+            },
+            {
+              "value": "evaluation_running",
+              "name": "EvaluationRunning"
+            },
+            {
+              "value": "success",
+              "name": "Success"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            },
+            {
+              "value": "warning",
+              "name": "Warning"
+            },
+            {
+              "value": "cancelled",
+              "name": "Cancelled"
+            }
+          ]
+        }
+      },
       "PullAutoPublish": {
         "enum": [
           "none",
@@ -7707,7 +8167,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "\u0022Controls automatic workflow publishing after import:\n- \u0060none\u0060: Keep workflows in their local published state (default)\n- \u0060all\u0060: Publish all imported workflows\n- \u0060published\u0060: Publish only workflows that were published locally before import\n\u0022",
-        "default": "none",
         "example": "published",
         "x-ms-enum": {
           "name": "PullAutoPublish",
@@ -7868,7 +8327,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "\u0022- count: Return only the number of rows inserted\n- id: Return an array of inserted row IDs\n- all: Return the full row data for all inserted rows\n\u0022",
-        "default": "count",
         "x-ms-enum": {
           "name": "InsertRowsRequestReturnType",
           "modelAsString": false,
@@ -8154,7 +8612,6 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "default": "and",
         "x-ms-enum": {
           "name": "UpdateRowsRequestFilterType",
           "modelAsString": false,
@@ -8177,7 +8634,6 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "default": "and",
         "x-ms-enum": {
           "name": "UpsertRowRequestFilterType",
           "modelAsString": false,
@@ -8416,7 +8872,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "How credential references in \u0060requirements.credentials\u0060 are matched on the target instance. Only \u0060id-only\u0060 is supported today.\n",
-        "default": "id-only",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestCredentialMatchingMode",
           "modelAsString": false,
@@ -8436,7 +8891,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "What to do when a credential reference cannot be resolved. \u0060create-stub\u0060 (default) creates empty credential placeholders in the target project for missing references. \u0060must-preexist\u0060 requires every referenced credential to already exist.\n",
-        "default": "create-stub",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestCredentialMissingMode",
           "modelAsString": false,
@@ -8488,7 +8942,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "Controls the id each newly created workflow receives. \u0060new\u0060 (default) mints a fresh id and records the package id as \u0060sourceWorkflowId\u0060, so the same package can be imported repeatedly without id collisions. \u0060source\u0060 reuses the package\u0027s own workflow id on the target instance. Workflows matched to an existing workflow in the target project (status \u0060updated\u0060 or \u0060skipped\u0060) always keep that workflow\u0027s current id, regardless of policy.\n",
-        "default": "new",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestWorkflowIdPolicy",
           "modelAsString": false,
@@ -8514,7 +8967,6 @@
         "type": "string",
         "additionalProperties": false,
         "description": "Controls whether imported workflows are published after content is written. \u0060preserve-published-state\u0060 keeps new workflows inactive and republishes an updated workflow only when it was already published and the package workflow is published too, so drafts are never published. \u0060match-source\u0060 follows the package workflow\u0027s published flag. \u0060publish-all\u0060 publishes every imported workflow. \u0060unpublish-all\u0060 leaves new workflows inactive and unpublishes updated workflows that were published.\n",
-        "default": "preserve-published-state",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestWorkflowPublishingPolicy",
           "modelAsString": false,
@@ -8729,6 +9181,43 @@
           ]
         }
       },
+      "GetWorkflowsByIdTestRunsStatusParameter": {
+        "enum": [
+          "new",
+          "running",
+          "completed",
+          "error",
+          "cancelled"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetWorkflowsByIdTestRunsStatusParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "new",
+              "name": "NewValue"
+            },
+            {
+              "value": "running",
+              "name": "Running"
+            },
+            {
+              "value": "completed",
+              "name": "Completed"
+            },
+            {
+              "value": "error",
+              "name": "Error"
+            },
+            {
+              "value": "cancelled",
+              "name": "Cancelled"
+            }
+          ]
+        }
+      },
       "GetVariablesStateParameter": {
         "enum": [
           "empty"
@@ -8910,6 +9399,24 @@
           "type": "string"
         }
       },
+      "testRunWorkflowId": {
+        "name": "id",
+        "in": "path",
+        "description": "The ID of the workflow.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
+      "testRunId": {
+        "name": "runId",
+        "in": "path",
+        "description": "The ID of the test run.",
+        "required": true,
+        "schema": {
+          "type": "string"
+        }
+      },
       "offset": {
         "name": "offset",
         "in": "query",
@@ -8982,6 +9489,12 @@
       "WorkflowId": {
         "$ref": "#/components/parameters/workflowId"
       },
+      "TestRunWorkflowId": {
+        "$ref": "#/components/parameters/testRunWorkflowId"
+      },
+      "TestRunId": {
+        "$ref": "#/components/parameters/testRunId"
+      },
       "TagId": {
         "$ref": "#/components/parameters/tagId"
       },
@@ -9046,6 +9559,10 @@
       "description": "Operations about workflows"
     },
     {
+      "name": "Evaluation",
+      "description": "Operations about evaluation test runs"
+    },
+    {
       "name": "Credential",
       "description": "Operations about credentials"
     },
@@ -9087,7 +9604,7 @@
     },
     {
       "name": "N8nPackage",
-      "description": "Beta \u2014 operations about n8n packages. Disabled by default; enable with \u0060N8N_PUBLIC_API_PACKAGES_ENABLED=true\u0060."
+      "description": "Beta \u2014 breaking changes may still occur without major version bump."
     }
   ],
   "externalDocs": {

@@ -9,6 +9,7 @@ using Soenneker.N8n.OpenApiClient.Workflows.Item.Archive;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Item;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Tags;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Unarchive;
 using System.Collections.Generic;
@@ -43,6 +44,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Tags.TagsRequestBuilder Tags
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Tags.TagsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The testRuns property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.TestRunsRequestBuilder TestRuns
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.TestRunsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The transfer property</summary>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer.TransferRequestBuilder Transfer

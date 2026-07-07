@@ -30,7 +30,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public InsertRowsRequest()
         {
             AdditionalData = new Dictionary<string, object>();
-            ReturnType = global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestReturnType.Count;
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value

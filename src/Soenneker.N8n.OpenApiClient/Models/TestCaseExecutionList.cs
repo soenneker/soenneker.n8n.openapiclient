@@ -7,40 +7,45 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>
-    /// Filter conditions to match rows for update
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class UpdateRowsRequestFilter : IAdditionalDataHolder, IParsable
+    #pragma warning disable CS1591
+    public partial class TestCaseExecutionList : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The filters property</summary>
+        /// <summary>The data property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilterFiltersItem>? Filters { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecution>? Data { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilterFiltersItem> Filters { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecution> Data { get; set; }
 #endif
-        /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilterType? Type { get; set; }
+        /// <summary>Paginate through test cases by setting the cursor parameter to the nextCursor attribute returned by a previous request. Default value fetches the first &quot;page&quot; of the collection.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? NextCursor { get; set; }
+#nullable restore
+#else
+        public string NextCursor { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilter"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList"/> and sets the default values.
         /// </summary>
-        public UpdateRowsRequestFilter()
+        public TestCaseExecutionList()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilter"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilter CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilter();
+            return new global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -50,8 +55,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilterFiltersItem>(global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilterFiltersItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilterType>(); } },
+                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecution>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecution.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "nextCursor", n => { NextCursor = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -61,8 +66,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilterFiltersItem>("filters", Filters);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateRowsRequestFilterType>("type", Type);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecution>("data", Data);
+            writer.WriteStringValue("nextCursor", NextCursor);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

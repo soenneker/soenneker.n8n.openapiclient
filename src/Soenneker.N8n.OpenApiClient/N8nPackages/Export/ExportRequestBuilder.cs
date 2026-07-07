@@ -34,19 +34,19 @@ namespace Soenneker.N8n.OpenApiClient.N8nPackages.Export
         {
         }
         /// <summary>
-        /// **Beta — disabled by default.** Set `N8N_PUBLIC_API_PACKAGES_ENABLED=true` on theinstance to enable this endpoint. While disabled, requests return `404`.Export one or more workflows as a gzipped tar archive (.n8np). The response isstreamed as `application/gzip` with a `Content-Disposition` attachment header.Requires the n8n Packages feature to be licensed.
+        /// &quot;**Beta** — breaking changes may still occur without major version bump.Export workflows and/or folders, or projects, as a gzipped tar archive(.n8np). Provide `workflowIds`/`folderIds`, or `projectIds`, but not bothgroups. Each exported folder includes its nested folders. Empty projectsexport project metadata only. The response is streamed as `application/gzip`with a `Content-Disposition` attachment header. Requires the n8n Packagesfeature to be licensed.API key scopes: `workflow:export` is required when exporting workflows or folders, and `project:export` is required when exporting projects.&quot;
         /// </summary>
         /// <returns>A <see cref="Stream"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Selects what to export. Provide `workflowIds` and/or `folderIds` to export loose workflows and folders, or `projectIds` to export whole projects, but not both groups in the same request. At least one id must be supplied.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<Stream?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.ExportWorkflowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<Stream> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.ExportWorkflowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<Stream> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -54,18 +54,18 @@ namespace Soenneker.N8n.OpenApiClient.N8nPackages.Export
             return await RequestAdapter.SendPrimitiveAsync<Stream>(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **Beta — disabled by default.** Set `N8N_PUBLIC_API_PACKAGES_ENABLED=true` on theinstance to enable this endpoint. While disabled, requests return `404`.Export one or more workflows as a gzipped tar archive (.n8np). The response isstreamed as `application/gzip` with a `Content-Disposition` attachment header.Requires the n8n Packages feature to be licensed.
+        /// &quot;**Beta** — breaking changes may still occur without major version bump.Export workflows and/or folders, or projects, as a gzipped tar archive(.n8np). Provide `workflowIds`/`folderIds`, or `projectIds`, but not bothgroups. Each exported folder includes its nested folders. Empty projectsexport project metadata only. The response is streamed as `application/gzip`with a `Content-Disposition` attachment header. Requires the n8n Packagesfeature to be licensed.API key scopes: `workflow:export` is required when exporting workflows or folders, and `project:export` is required when exporting projects.&quot;
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">The request body</param>
+        /// <param name="body">Selects what to export. Provide `workflowIds` and/or `folderIds` to export loose workflows and folders, or `projectIds` to export whole projects, but not both groups in the same request. At least one id must be supplied.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ExportWorkflowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ExportWorkflowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
