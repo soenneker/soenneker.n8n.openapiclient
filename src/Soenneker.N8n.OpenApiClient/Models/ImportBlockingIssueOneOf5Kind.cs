@@ -5,20 +5,24 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf4Kind
+    public enum ImportBlockingIssueOneOf5Kind
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "parent-mismatch")]
+        [EnumMember(Value = "not_found")]
         #pragma warning disable CS1591
-        ParentMismatch,
+        NotFound,
         #pragma warning restore CS1591
-        [EnumMember(Value = "id-in-other-project")]
+        [EnumMember(Value = "unknown_type")]
         #pragma warning disable CS1591
-        IdInOtherProject,
+        UnknownType,
         #pragma warning restore CS1591
-        [EnumMember(Value = "fail-policy")]
+        [EnumMember(Value = "source_not_found")]
         #pragma warning disable CS1591
-        FailPolicy,
+        SourceNotFound,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "type_mismatch")]
+        #pragma warning disable CS1591
+        TypeMismatch,
         #pragma warning restore CS1591
     }
 }

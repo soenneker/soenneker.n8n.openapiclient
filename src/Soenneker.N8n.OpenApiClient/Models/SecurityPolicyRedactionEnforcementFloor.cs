@@ -3,22 +3,21 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>Minimum execution-data redaction level enforced across the instance.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf4Kind
-    #pragma warning restore CS1591
+    public enum SecurityPolicyRedactionEnforcementFloor
     {
-        [EnumMember(Value = "parent-mismatch")]
+        [EnumMember(Value = "off")]
         #pragma warning disable CS1591
-        ParentMismatch,
+        Off,
         #pragma warning restore CS1591
-        [EnumMember(Value = "id-in-other-project")]
+        [EnumMember(Value = "production")]
         #pragma warning disable CS1591
-        IdInOtherProject,
+        Production,
         #pragma warning restore CS1591
-        [EnumMember(Value = "fail-policy")]
+        [EnumMember(Value = "all")]
         #pragma warning disable CS1591
-        FailPolicy,
+        All,
         #pragma warning restore CS1591
     }
 }

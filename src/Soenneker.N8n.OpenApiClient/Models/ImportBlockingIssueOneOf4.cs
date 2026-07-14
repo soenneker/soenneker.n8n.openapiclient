@@ -8,57 +8,57 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A credential reference that could not be resolved in the target project.
+    /// &quot;A package folder that cannot be imported as-is. `kind` distinguishes the cause: `parent-mismatch` (a folder matched by id sits under a different parent than the package places it), `id-in-other-project` (the folder id already exists in a different project — ids are globally unique), or `fail-policy` (the folder already exists and `folderConflictPolicy` is `fail`).&quot;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf4 : IAdditionalDataHolder, IParsable
     {
-        /// <summary>&quot;For `type_mismatch`: the actual type of the resolved target credential.&quot;</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ActualType { get; set; }
-#nullable restore
-#else
-        public string ActualType { get; set; }
-#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;For `type_mismatch`: the credential type the package&apos;s workflow node requires.&quot;</summary>
+        /// <summary>&quot;For `parent-mismatch`: the matched folder&apos;s current parent in the target.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExpectedType { get; set; }
+        public string? ExistingParentFolderId { get; set; }
 #nullable restore
 #else
-        public string ExpectedType { get; set; }
+        public string ExistingParentFolderId { get; set; }
+#endif
+        /// <summary>&quot;For `id-in-other-project`: the project that already owns the id.&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExistingProjectId { get; set; }
+#nullable restore
+#else
+        public string ExistingProjectId { get; set; }
+#endif
+        /// <summary>&quot;For `parent-mismatch`: the parent the package would place the folder under.&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExpectedParentFolderId { get; set; }
+#nullable restore
+#else
+        public string ExpectedParentFolderId { get; set; }
 #endif
         /// <summary>The kind property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind? Kind { get; set; }
-        /// <summary>The sourceId property</summary>
+        /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string Name { get; set; }
 #endif
-        /// <summary>Target credential id for an explicit credential binding.</summary>
+        /// <summary>The sourceFolderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TargetId { get; set; }
+        public string? SourceFolderId { get; set; }
 #nullable restore
 #else
-        public string TargetId { get; set; }
+        public string SourceFolderId { get; set; }
 #endif
         /// <summary>The type property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Type? Type { get; set; }
-        /// <summary>The usedByWorkflows property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? UsedByWorkflows { get; set; }
-#nullable restore
-#else
-        public List<string> UsedByWorkflows { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4"/> and sets the default values.
         /// </summary>
@@ -84,13 +84,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "actualType", n => { ActualType = n.GetStringValue(); } },
-                { "expectedType", n => { ExpectedType = n.GetStringValue(); } },
+                { "existingParentFolderId", n => { ExistingParentFolderId = n.GetStringValue(); } },
+                { "existingProjectId", n => { ExistingProjectId = n.GetStringValue(); } },
+                { "expectedParentFolderId", n => { ExpectedParentFolderId = n.GetStringValue(); } },
                 { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind>(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "targetId", n => { TargetId = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "sourceFolderId", n => { SourceFolderId = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Type>(); } },
-                { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -100,13 +100,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("actualType", ActualType);
-            writer.WriteStringValue("expectedType", ExpectedType);
+            writer.WriteStringValue("existingParentFolderId", ExistingParentFolderId);
+            writer.WriteStringValue("existingProjectId", ExistingProjectId);
+            writer.WriteStringValue("expectedParentFolderId", ExpectedParentFolderId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind>("kind", Kind);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteStringValue("targetId", TargetId);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("sourceFolderId", SourceFolderId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Type>("type", Type);
-            writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

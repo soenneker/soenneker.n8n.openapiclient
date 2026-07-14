@@ -3,13 +3,21 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>How credential references in `requirements.credentials` are matched on the target instance. Only `id-only` is supported today.</summary>
+    /// <summary>How credential references in `requirements.credentials` are matched on the target instance. `id-only` (default) matches by id. `name-and-type` matches credentials with the exact same name and type. `type-only` matches any credential of the same type. For `name-and-type` and `type-only`, candidates are ranked by scope — a credential owned by the target project wins over one merely shared into it, which in turn wins over a global credential; if several candidates remain in the winning scope, the most recently updated one is chosen.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestCredentialMatchingMode
     {
         [EnumMember(Value = "id-only")]
         #pragma warning disable CS1591
         IdOnly,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "name-and-type")]
+        #pragma warning disable CS1591
+        NameAndType,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "type-only")]
+        #pragma warning disable CS1591
+        TypeOnly,
         #pragma warning restore CS1591
     }
 }

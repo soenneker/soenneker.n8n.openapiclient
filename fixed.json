@@ -53,6 +53,76 @@
         }
       }
     },
+    "/settings/security-policy": {
+      "get": {
+        "tags": [
+          "SecurityPolicy"
+        ],
+        "summary": "Retrieve the security policy",
+        "description": "\u0022Retrieve the instance security policy: personal-space publishing and sharing, the execution-data redaction enforcement floor, and the read-only usage counts shown in the UI. Requires the \u0060securitySettings:manage\u0060 scope and the Personal Space Policy feature to be licensed.\n\u0022",
+        "operationId": "GetSettingsSecurityPolicy",
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityPolicy"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SecurityPolicy"
+        ],
+        "summary": "Update the security policy",
+        "description": "Update the instance security policy. Only the provided fields are changed and the update takes effect exactly as it would from the UI, using the same validation. Requires the \u0060securitySettings:manage\u0060 scope and the Personal Space Policy feature to be licensed. When the group is managed via environment variables, the write is rejected with 409 and no changes are made; a read still returns the current values.\n",
+        "operationId": "PutSettingsSecurityPolicy",
+        "requestBody": {
+          "description": "The security policy fields to update.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/SecurityPolicyUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/SecurityPolicy"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          }
+        }
+      }
+    },
     "/credentials": {
       "get": {
         "tags": [
@@ -3752,7 +3822,7 @@
           "N8nPackage"
         ],
         "summary": "\u0022Beta: Import an n8n package into a project\u0022",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). The optional\n\u0060credentialMatchingMode\u0060, \u0060credentialMissingMode\u0060, \u0060credentialBindings\u0060,\n\u0060workflowIdPolicy\u0060, and \u0060workflowPublishingPolicy\u0060 fields take their defaults when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Only credentials owned by the\ntarget project (with \u0060credential:read\u0060) or global credentials (with \u0060credential:read\u0060)\nmatch. Credentials shared into the project as \u0060credential:user\u0060 are not matched.\n",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). The optional\n\u0060credentialMatchingMode\u0060, \u0060credentialMissingMode\u0060, \u0060bindings\u0060,\n\u0060workflowIdPolicy\u0060, and \u0060workflowPublishingPolicy\u0060 fields take their defaults when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Credentials owned by,\nshared with, or global to the target project (with \u0060credential:read\u0060) match.\n",
         "operationId": "PostN8NPackagesImport",
         "requestBody": {
           "content": {
@@ -3787,7 +3857,7 @@
             "$ref": "#/components/responses/notFound"
           },
           "409": {
-            "description": "Import blocked, with at least one workflow source-id conflict among the issues.\n",
+            "description": "Import blocked by at least one conflict among the issues \u2014 a workflow source-id conflict or a folder conflict (id under a different parent, id owned by another project, or a \u0060fail\u0060-policy match).\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -3831,6 +3901,71 @@
             "$ref": "#/components/schemas/AuditInstanceRiskReportProperty"
           }
         }
+      },
+      "SecurityPolicy": {
+        "required": [
+          "personalSpacePublishing",
+          "personalSpaceSharing",
+          "publishedPersonalWorkflowsCount",
+          "sharedPersonalWorkflowsCount",
+          "sharedPersonalCredentialsCount",
+          "redactionEnforcement"
+        ],
+        "type": "object",
+        "properties": {
+          "personalSpacePublishing": {
+            "type": "boolean",
+            "description": "Whether members may publish workflows and agents from their personal space.",
+            "example": true
+          },
+          "personalSpaceSharing": {
+            "type": "boolean",
+            "description": "Whether members may share workflows and credentials from their personal space.",
+            "example": true
+          },
+          "publishedPersonalWorkflowsCount": {
+            "type": "integer",
+            "description": "Number of currently published personal workflows, shown for awareness before tightening the policy.",
+            "readOnly": true,
+            "example": 3
+          },
+          "sharedPersonalWorkflowsCount": {
+            "type": "integer",
+            "description": "Number of personal workflows currently shared with other users.",
+            "readOnly": true,
+            "example": 5
+          },
+          "sharedPersonalCredentialsCount": {
+            "type": "integer",
+            "description": "Number of personal credentials currently shared with other users.",
+            "readOnly": true,
+            "example": 2
+          },
+          "redactionEnforcement": {
+            "$ref": "#/components/schemas/SecurityPolicyRedactionEnforcement"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SecurityPolicyUpdate": {
+        "type": "object",
+        "properties": {
+          "personalSpacePublishing": {
+            "type": "boolean",
+            "description": "Whether members may publish workflows and agents from their personal space.",
+            "example": false
+          },
+          "personalSpaceSharing": {
+            "type": "boolean",
+            "description": "Whether members may share workflows and credentials from their personal space.",
+            "example": false
+          },
+          "redactionEnforcement": {
+            "$ref": "#/components/schemas/SecurityPolicyUpdateRedactionEnforcement"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Security policy fields to update. Omitted fields are left unchanged."
       },
       "CreateCredentialResponse": {
         "required": [
@@ -5829,6 +5964,9 @@
           },
           {
             "$ref": "#/components/schemas/ImportBlockingIssueOneOf4"
+          },
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf5"
           }
         ],
         "properties": {
@@ -5843,7 +5981,8 @@
             "ImportBlockingIssueOneOf1": "#/components/schemas/ImportBlockingIssueOneOf1",
             "ImportBlockingIssueOneOf2": "#/components/schemas/ImportBlockingIssueOneOf2",
             "ImportBlockingIssueOneOf3": "#/components/schemas/ImportBlockingIssueOneOf3",
-            "ImportBlockingIssueOneOf4": "#/components/schemas/ImportBlockingIssueOneOf4"
+            "ImportBlockingIssueOneOf4": "#/components/schemas/ImportBlockingIssueOneOf4",
+            "ImportBlockingIssueOneOf5": "#/components/schemas/ImportBlockingIssueOneOf5"
           }
         }
       },
@@ -6152,8 +6291,8 @@
         "required": [
           "type",
           "kind",
-          "sourceId",
-          "usedByWorkflows"
+          "sourceFolderId",
+          "name"
         ],
         "type": "object",
         "properties": {
@@ -6162,6 +6301,45 @@
           },
           "kind": {
             "$ref": "#/components/schemas/ImportBlockingIssueOneOf4Kind"
+          },
+          "sourceFolderId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "existingParentFolderId": {
+            "type": "string",
+            "description": "\u0022For \u0060parent-mismatch\u0060: the matched folder\u0027s current parent in the target.\u0022",
+            "nullable": true
+          },
+          "expectedParentFolderId": {
+            "type": "string",
+            "description": "\u0022For \u0060parent-mismatch\u0060: the parent the package would place the folder under.\u0022",
+            "nullable": true
+          },
+          "existingProjectId": {
+            "type": "string",
+            "description": "\u0022For \u0060id-in-other-project\u0060: the project that already owns the id.\u0022",
+            "nullable": true
+          }
+        },
+        "description": "\u0022A package folder that cannot be imported as-is. \u0060kind\u0060 distinguishes the cause: \u0060parent-mismatch\u0060 (a folder matched by id sits under a different parent than the package places it), \u0060id-in-other-project\u0060 (the folder id already exists in a different project \u2014 ids are globally unique), or \u0060fail-policy\u0060 (the folder already exists and \u0060folderConflictPolicy\u0060 is \u0060fail\u0060).\n\u0022"
+      },
+      "ImportBlockingIssueOneOf5": {
+        "required": [
+          "type",
+          "kind",
+          "sourceId",
+          "usedByWorkflows"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf5Type"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf5Kind"
           },
           "sourceId": {
             "type": "string"
@@ -6296,6 +6474,30 @@
             }
           ]
         }
+      },
+      "SecurityPolicyRedactionEnforcement": {
+        "required": [
+          "floor"
+        ],
+        "type": "object",
+        "properties": {
+          "floor": {
+            "$ref": "#/components/schemas/SecurityPolicyRedactionEnforcementFloor"
+          }
+        },
+        "additionalProperties": false
+      },
+      "SecurityPolicyUpdateRedactionEnforcement": {
+        "required": [
+          "floor"
+        ],
+        "type": "object",
+        "properties": {
+          "floor": {
+            "$ref": "#/components/schemas/SecurityPolicyUpdateRedactionEnforcementFloor"
+          }
+        },
+        "additionalProperties": false
       },
       "CredentialCreateData": {
         "type": "object",
@@ -7161,9 +7363,9 @@
           "credentialMissingMode": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestCredentialMissingMode"
           },
-          "credentialBindings": {
+          "bindings": {
             "type": "string",
-            "description": "Optional JSON object mapping credential ids from the package manifest to credential ids on the target instance. These explicit bindings are validated and applied before \u0060credentialMatchingMode\u0060 resolution runs.\n",
+            "description": "\u0022Optional JSON object of explicit source\u2192target id bindings, keyed by entity type. Only \u0060credentials\u0060 is supported today: send \u0060{\\\u0022credentials\\\u0022:{\\\u0022\u003CpackageCredentialId\u003E\\\u0022:\\\u0022\u003CtargetCredentialId\u003E\\\u0022}}\u0060 to map credential ids from the package to credential ids on the target instance. These explicit bindings are validated on type and applied before \u0060credentialMatchingMode\u0060 resolution runs.\n\u0022",
             "default": "{}"
           },
           "workflowConflictPolicy": {
@@ -7174,6 +7376,9 @@
           },
           "workflowPublishingPolicy": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestWorkflowPublishingPolicy"
+          },
+          "folderConflictPolicy": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestFolderConflictPolicy"
           }
         }
       },
@@ -7181,6 +7386,8 @@
         "required": [
           "package",
           "workflows",
+          "folders",
+          "projects",
           "bindings",
           "credentials"
         ],
@@ -7194,6 +7401,20 @@
             "items": {
               "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItem"
             }
+          },
+          "folders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseFoldersItem"
+            },
+            "description": "Folder shells created or skipped in the target project."
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseProjectsItem"
+            },
+            "description": "Project shells created or matched-and-updated. Present for project packages; empty when importing loose workflows/folders.\n"
           },
           "credentials": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseCredentials"
@@ -7642,6 +7863,62 @@
           },
           "status": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseWorkflowsItemStatus"
+          }
+        }
+      },
+      "PostN8NPackagesImport200ResponseFoldersItem": {
+        "required": [
+          "sourceFolderId",
+          "localId",
+          "name",
+          "parentFolderId",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceFolderId": {
+            "type": "string",
+            "description": "Folder id as it appeared in the package."
+          },
+          "localId": {
+            "type": "string",
+            "description": "Folder id on the target instance (equal to \u0060sourceFolderId\u0060; folder ids are reused)."
+          },
+          "name": {
+            "type": "string"
+          },
+          "parentFolderId": {
+            "type": "string",
+            "description": "Resolved parent folder on the target, or \u0060null\u0060 at the project root.",
+            "nullable": true
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseFoldersItemStatus"
+          }
+        }
+      },
+      "PostN8NPackagesImport200ResponseProjectsItem": {
+        "required": [
+          "sourceProjectId",
+          "localId",
+          "name",
+          "status"
+        ],
+        "type": "object",
+        "properties": {
+          "sourceProjectId": {
+            "type": "string",
+            "description": "Project id as it appeared in the package."
+          },
+          "localId": {
+            "type": "string",
+            "description": "Project id on the target instance (equal to \u0060sourceProjectId\u0060; project ids are reused)."
+          },
+          "name": {
+            "type": "string"
+          },
+          "status": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseProjectsItemStatus"
           }
         }
       },
@@ -8465,12 +8742,56 @@
       },
       "ImportBlockingIssueOneOf4Type": {
         "enum": [
-          "credential-unresolved"
+          "folder-conflict"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
           "name": "ImportBlockingIssueOneOf4Type",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "folder-conflict",
+              "name": "FolderConflict"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf4Kind": {
+        "enum": [
+          "parent-mismatch",
+          "id-in-other-project",
+          "fail-policy"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf4Kind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "parent-mismatch",
+              "name": "ParentMismatch"
+            },
+            {
+              "value": "id-in-other-project",
+              "name": "IdInOtherProject"
+            },
+            {
+              "value": "fail-policy",
+              "name": "FailPolicy"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf5Type": {
+        "enum": [
+          "credential-unresolved"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf5Type",
           "modelAsString": false,
           "values": [
             {
@@ -8480,7 +8801,7 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf4Kind": {
+      "ImportBlockingIssueOneOf5Kind": {
         "enum": [
           "not_found",
           "unknown_type",
@@ -8490,7 +8811,7 @@
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf4Kind",
+          "name": "ImportBlockingIssueOneOf5Kind",
           "modelAsString": false,
           "values": [
             {
@@ -8508,6 +8829,64 @@
             {
               "value": "type_mismatch",
               "name": "TypeMismatch"
+            }
+          ]
+        }
+      },
+      "SecurityPolicyRedactionEnforcementFloor": {
+        "enum": [
+          "off",
+          "production",
+          "all"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Minimum execution-data redaction level enforced across the instance.",
+        "example": "production",
+        "x-ms-enum": {
+          "name": "SecurityPolicyRedactionEnforcementFloor",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "off",
+              "name": "Off"
+            },
+            {
+              "value": "production",
+              "name": "Production"
+            },
+            {
+              "value": "all",
+              "name": "All"
+            }
+          ]
+        }
+      },
+      "SecurityPolicyUpdateRedactionEnforcementFloor": {
+        "enum": [
+          "off",
+          "production",
+          "all"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Minimum execution-data redaction level enforced across the instance.",
+        "example": "production",
+        "x-ms-enum": {
+          "name": "SecurityPolicyUpdateRedactionEnforcementFloor",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "off",
+              "name": "Off"
+            },
+            {
+              "value": "production",
+              "name": "Production"
+            },
+            {
+              "value": "all",
+              "name": "All"
             }
           ]
         }
@@ -8867,11 +9246,13 @@
       },
       "PostN8NPackagesImportFormDataRequestCredentialMatchingMode": {
         "enum": [
-          "id-only"
+          "id-only",
+          "name-and-type",
+          "type-only"
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "How credential references in \u0060requirements.credentials\u0060 are matched on the target instance. Only \u0060id-only\u0060 is supported today.\n",
+        "description": "How credential references in \u0060requirements.credentials\u0060 are matched on the target instance. \u0060id-only\u0060 (default) matches by id. \u0060name-and-type\u0060 matches credentials with the exact same name and type. \u0060type-only\u0060 matches any credential of the same type. For \u0060name-and-type\u0060 and \u0060type-only\u0060, candidates are ranked by scope \u2014 a credential owned by the target project wins over one merely shared into it, which in turn wins over a global credential; if several candidates remain in the winning scope, the most recently updated one is chosen.\n",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestCredentialMatchingMode",
           "modelAsString": false,
@@ -8879,6 +9260,14 @@
             {
               "value": "id-only",
               "name": "IdOnly"
+            },
+            {
+              "value": "name-and-type",
+              "name": "NameAndType"
+            },
+            {
+              "value": "type-only",
+              "name": "TypeOnly"
             }
           ]
         }
@@ -8990,6 +9379,29 @@
           ]
         }
       },
+      "PostN8NPackagesImportFormDataRequestFolderConflictPolicy": {
+        "enum": [
+          "merge",
+          "fail"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Controls what happens when a package folder (matched by id in the target project) already exists at the same position. \u0060merge\u0060 (default) reuses the existing folder as-is and merges the package\u0027s children into it; \u0060fail\u0060 rejects the import. A folder whose id exists under a different parent, or belongs to another project, always blocks the import. Requires the \u0060folder:create\u0060 scope and a license that supports folders when the package contains folders.\n",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestFolderConflictPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "merge",
+              "name": "Merge"
+            },
+            {
+              "value": "fail",
+              "name": "Fail"
+            }
+          ]
+        }
+      },
       "PostAuditRequestAdditionalOptionsCategoriesItem": {
         "enum": [
           "credentials",
@@ -9051,6 +9463,52 @@
             {
               "value": "skipped",
               "name": "Skipped"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImport200ResponseFoldersItemStatus": {
+        "enum": [
+          "created",
+          "skipped"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Import outcome for this package folder.",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImport200ResponseFoldersItemStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "created",
+              "name": "Created"
+            },
+            {
+              "value": "skipped",
+              "name": "Skipped"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImport200ResponseProjectsItemStatus": {
+        "enum": [
+          "created",
+          "updated"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Import outcome for this package project.",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImport200ResponseProjectsItemStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "created",
+              "name": "Created"
+            },
+            {
+              "value": "updated",
+              "name": "Updated"
             }
           ]
         }
@@ -9299,17 +9757,17 @@
       "unauthorized": {
         "description": "Unauthorized"
       },
-      "badRequest": {
-        "description": "The request is invalid or provides malformed data."
-      },
       "forbidden": {
         "description": "Forbidden"
       },
-      "notFound": {
-        "description": "The specified resource was not found."
+      "badRequest": {
+        "description": "The request is invalid or provides malformed data."
       },
       "conflict": {
         "description": "Conflict"
+      },
+      "notFound": {
+        "description": "The specified resource was not found."
       },
       "NotFound": {
         "$ref": "#/components/responses/notFound"
@@ -9549,6 +10007,10 @@
     {
       "name": "Audit",
       "description": "Operations about security audit"
+    },
+    {
+      "name": "SecurityPolicy",
+      "description": "Operations about the instance security policy settings"
     },
     {
       "name": "Execution",

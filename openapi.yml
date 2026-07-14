@@ -19,6 +19,8 @@ tags:
     description: Operations about users
   - name: Audit
     description: Operations about security audit
+  - name: SecurityPolicy
+    description: Operations about the instance security policy settings
   - name: Execution
     description: Operations about executions
   - name: Workflow
@@ -94,6 +96,58 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '500':
           description: Internal server error.
+  /settings/security-policy:
+    get:
+      x-eov-operation-id: getSecurityPolicy
+      x-required-scope: securitySettings:manage
+      x-eov-operation-handler: v1/handlers/security-policy/security-policy.handler
+      tags:
+        - SecurityPolicy
+      summary: Retrieve the security policy
+      description: |
+        Retrieve the instance security policy: personal-space publishing and sharing, the execution-data redaction enforcement floor, and the read-only usage counts shown in the UI. Requires the `securitySettings:manage` scope and the Personal Space Policy feature to be licensed.
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security-policy'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+    put:
+      x-eov-operation-id: updateSecurityPolicy
+      x-required-scope: securitySettings:manage
+      x-eov-operation-handler: v1/handlers/security-policy/security-policy.handler
+      tags:
+        - SecurityPolicy
+      summary: Update the security policy
+      description: |
+        Update the instance security policy. Only the provided fields are changed and the update takes effect exactly as it would from the UI, using the same validation. Requires the `securitySettings:manage` scope and the Personal Space Policy feature to be licensed. When the group is managed via environment variables, the write is rejected with 409 and no changes are made; a read still returns the current values.
+      requestBody:
+        description: The security policy fields to update.
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/security-policy.update'
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/security-policy'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/conflict'
   /credentials:
     get:
       operationId: getCredentials
@@ -2953,7 +3007,7 @@ paths:
         Imports a gzip-compressed tar package (`.n8np`) into the target project. Send the
         archive as the multipart field `package`. Optional routing uses form fields
         `projectId` and `folderId` (omit or send empty for defaults). The optional
-        `credentialMatchingMode`, `credentialMissingMode`, `credentialBindings`,
+        `credentialMatchingMode`, `credentialMissingMode`, `bindings`,
         `workflowIdPolicy`, and `workflowPublishingPolicy` fields take their defaults when omitted. The required
         `workflowConflictPolicy` field controls what happens when a package workflow
         matches an existing workflow by source id in the target project. Maximum upload
@@ -2965,9 +3019,8 @@ paths:
         fresh local id; imported workflows arrive inactive unless `workflowPublishingPolicy`
         publishes them after import.
 
-        Credential references are resolved before any workflow is written. Only credentials owned by the
-        target project (with `credential:read`) or global credentials (with `credential:read`)
-        match. Credentials shared into the project as `credential:user` are not matched.
+        Credential references are resolved before any workflow is written. Credentials owned by,
+        shared with, or global to the target project (with `credential:read`) match.
       requestBody:
         required: true
         content:
@@ -2994,9 +3047,11 @@ paths:
                   type: string
                   enum:
                     - id-only
+                    - name-and-type
+                    - type-only
                   default: id-only
                   description: |
-                    How credential references in `requirements.credentials` are matched on the target instance. Only `id-only` is supported today.
+                    How credential references in `requirements.credentials` are matched on the target instance. `id-only` (default) matches by id. `name-and-type` matches credentials with the exact same name and type. `type-only` matches any credential of the same type. For `name-and-type` and `type-only`, candidates are ranked by scope — a credential owned by the target project wins over one merely shared into it, which in turn wins over a global credential; if several candidates remain in the winning scope, the most recently updated one is chosen.
                 credentialMissingMode:
                   type: string
                   enum:
@@ -3005,11 +3060,11 @@ paths:
                   default: create-stub
                   description: |
                     What to do when a credential reference cannot be resolved. `create-stub` (default) creates empty credential placeholders in the target project for missing references. `must-preexist` requires every referenced credential to already exist.
-                credentialBindings:
+                bindings:
                   type: string
                   default: '{}'
                   description: |
-                    Optional JSON object mapping credential ids from the package manifest to credential ids on the target instance. These explicit bindings are validated and applied before `credentialMatchingMode` resolution runs.
+                    Optional JSON object of explicit source→target id bindings, keyed by entity type. Only `credentials` is supported today: send `{"credentials":{"<packageCredentialId>":"<targetCredentialId>"}}` to map credential ids from the package to credential ids on the target instance. These explicit bindings are validated on type and applied before `credentialMatchingMode` resolution runs.
                 workflowConflictPolicy:
                   type: string
                   enum:
@@ -3036,6 +3091,14 @@ paths:
                   default: preserve-published-state
                   description: |
                     Controls whether imported workflows are published after content is written. `preserve-published-state` keeps new workflows inactive and republishes an updated workflow only when it was already published and the package workflow is published too, so drafts are never published. `match-source` follows the package workflow's published flag. `publish-all` publishes every imported workflow. `unpublish-all` leaves new workflows inactive and unpublishes updated workflows that were published.
+                folderConflictPolicy:
+                  type: string
+                  enum:
+                    - merge
+                    - fail
+                  default: merge
+                  description: |
+                    Controls what happens when a package folder (matched by id in the target project) already exists at the same position. `merge` (default) reuses the existing folder as-is and merges the package's children into it; `fail` rejects the import. A folder whose id exists under a different parent, or belongs to another project, always blocks the import. Requires the `folder:create` scope and a license that supports folders when the package contains folders.
       responses:
         '200':
           description: Import succeeded; the listed workflows were written to the target project.
@@ -3046,6 +3109,8 @@ paths:
                 required:
                   - package
                   - workflows
+                  - folders
+                  - projects
                   - bindings
                   - credentials
                 properties:
@@ -3136,6 +3201,62 @@ paths:
                             - updated
                             - skipped
                           description: Import outcome for this package workflow.
+                  folders:
+                    type: array
+                    description: Folder shells created or skipped in the target project.
+                    items:
+                      type: object
+                      required:
+                        - sourceFolderId
+                        - localId
+                        - name
+                        - parentFolderId
+                        - status
+                      properties:
+                        sourceFolderId:
+                          type: string
+                          description: Folder id as it appeared in the package.
+                        localId:
+                          type: string
+                          description: Folder id on the target instance (equal to `sourceFolderId`; folder ids are reused).
+                        name:
+                          type: string
+                        parentFolderId:
+                          type: string
+                          nullable: true
+                          description: Resolved parent folder on the target, or `null` at the project root.
+                        status:
+                          type: string
+                          enum:
+                            - created
+                            - skipped
+                          description: Import outcome for this package folder.
+                  projects:
+                    type: array
+                    description: |
+                      Project shells created or matched-and-updated. Present for project packages; empty when importing loose workflows/folders.
+                    items:
+                      type: object
+                      required:
+                        - sourceProjectId
+                        - localId
+                        - name
+                        - status
+                      properties:
+                        sourceProjectId:
+                          type: string
+                          description: Project id as it appeared in the package.
+                        localId:
+                          type: string
+                          description: Project id on the target instance (equal to `sourceProjectId`; project ids are reused).
+                        name:
+                          type: string
+                        status:
+                          type: string
+                          enum:
+                            - created
+                            - updated
+                          description: Import outcome for this package project.
                   credentials:
                     type: object
                     description: |
@@ -3184,7 +3305,7 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           description: |
-            Import blocked, with at least one workflow source-id conflict among the issues.
+            Import blocked by at least one conflict among the issues — a workflow source-id conflict or a folder conflict (id under a different parent, id owned by another project, or a `fail`-policy match).
           content:
             application/json:
               schema:
@@ -3291,6 +3412,81 @@ components:
                   - kind: community
                     nodeType: n8n-nodes-test.test
                     packageUrl: https://www.npmjs.com/package/n8n-nodes-test
+    security-policy:
+      type: object
+      additionalProperties: false
+      required:
+        - personalSpacePublishing
+        - personalSpaceSharing
+        - publishedPersonalWorkflowsCount
+        - sharedPersonalWorkflowsCount
+        - sharedPersonalCredentialsCount
+        - redactionEnforcement
+      properties:
+        personalSpacePublishing:
+          type: boolean
+          description: Whether members may publish workflows and agents from their personal space.
+          example: true
+        personalSpaceSharing:
+          type: boolean
+          description: Whether members may share workflows and credentials from their personal space.
+          example: true
+        publishedPersonalWorkflowsCount:
+          type: integer
+          readOnly: true
+          description: Number of currently published personal workflows, shown for awareness before tightening the policy.
+          example: 3
+        sharedPersonalWorkflowsCount:
+          type: integer
+          readOnly: true
+          description: Number of personal workflows currently shared with other users.
+          example: 5
+        sharedPersonalCredentialsCount:
+          type: integer
+          readOnly: true
+          description: Number of personal credentials currently shared with other users.
+          example: 2
+        redactionEnforcement:
+          type: object
+          additionalProperties: false
+          required:
+            - floor
+          properties:
+            floor:
+              type: string
+              enum:
+                - 'off'
+                - production
+                - all
+              description: Minimum execution-data redaction level enforced across the instance.
+              example: production
+    security-policy.update:
+      type: object
+      additionalProperties: false
+      description: Security policy fields to update. Omitted fields are left unchanged.
+      properties:
+        personalSpacePublishing:
+          type: boolean
+          description: Whether members may publish workflows and agents from their personal space.
+          example: false
+        personalSpaceSharing:
+          type: boolean
+          description: Whether members may share workflows and credentials from their personal space.
+          example: false
+        redactionEnforcement:
+          type: object
+          additionalProperties: false
+          required:
+            - floor
+          properties:
+            floor:
+              type: string
+              enum:
+                - 'off'
+                - production
+                - all
+              description: Minimum execution-data redaction level enforced across the instance.
+              example: production
     create-credential-response:
       required:
         - id
@@ -5303,6 +5499,41 @@ components:
             name:
               type: string
         - type: object
+          description: |
+            A package folder that cannot be imported as-is. `kind` distinguishes the cause: `parent-mismatch` (a folder matched by id sits under a different parent than the package places it), `id-in-other-project` (the folder id already exists in a different project — ids are globally unique), or `fail-policy` (the folder already exists and `folderConflictPolicy` is `fail`).
+          required:
+            - type
+            - kind
+            - sourceFolderId
+            - name
+          properties:
+            type:
+              type: string
+              enum:
+                - folder-conflict
+            kind:
+              type: string
+              enum:
+                - parent-mismatch
+                - id-in-other-project
+                - fail-policy
+            sourceFolderId:
+              type: string
+            name:
+              type: string
+            existingParentFolderId:
+              type: string
+              nullable: true
+              description: 'For `parent-mismatch`: the matched folder''s current parent in the target.'
+            expectedParentFolderId:
+              type: string
+              nullable: true
+              description: 'For `parent-mismatch`: the parent the package would place the folder under.'
+            existingProjectId:
+              type: string
+              nullable: true
+              description: 'For `id-in-other-project`: the project that already owns the id.'
+        - type: object
           description: A credential reference that could not be resolved in the target project.
           required:
             - type
@@ -5433,14 +5664,14 @@ components:
   responses:
     unauthorized:
       description: Unauthorized
-    badRequest:
-      description: The request is invalid or provides malformed data.
     forbidden:
       description: Forbidden
-    notFound:
-      description: The specified resource was not found.
+    badRequest:
+      description: The request is invalid or provides malformed data.
     conflict:
       description: Conflict
+    notFound:
+      description: The specified resource was not found.
     NotFound:
       $ref: '#/components/responses/notFound'
     Unauthorized:
