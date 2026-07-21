@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Security policy fields to update. Omitted fields are left unchanged.
+    /// Full security policy. All writable fields must be provided; partial updates are not supported.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SecurityPolicyUpdate : IParsable
@@ -17,6 +17,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public bool? PersonalSpacePublishing { get; set; }
         /// <summary>Whether members may share workflows and credentials from their personal space.</summary>
         public bool? PersonalSpaceSharing { get; set; }
+        /// <summary>Read-only usage count returned by GET. Ignored on write so a GET response can be sent back as a PUT body.</summary>
+        public int? PublishedPersonalWorkflowsCount { get; set; }
         /// <summary>The redactionEnforcement property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -25,6 +27,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyUpdateRedactionEnforcement RedactionEnforcement { get; set; }
 #endif
+        /// <summary>Read-only usage count returned by GET. Ignored on write so a GET response can be sent back as a PUT body.</summary>
+        public int? SharedPersonalCredentialsCount { get; set; }
+        /// <summary>Read-only usage count returned by GET. Ignored on write so a GET response can be sent back as a PUT body.</summary>
+        public int? SharedPersonalWorkflowsCount { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -45,7 +51,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "personalSpacePublishing", n => { PersonalSpacePublishing = n.GetBoolValue(); } },
                 { "personalSpaceSharing", n => { PersonalSpaceSharing = n.GetBoolValue(); } },
+                { "publishedPersonalWorkflowsCount", n => { PublishedPersonalWorkflowsCount = n.GetIntValue(); } },
                 { "redactionEnforcement", n => { RedactionEnforcement = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyUpdateRedactionEnforcement>(global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyUpdateRedactionEnforcement.CreateFromDiscriminatorValue); } },
+                { "sharedPersonalCredentialsCount", n => { SharedPersonalCredentialsCount = n.GetIntValue(); } },
+                { "sharedPersonalWorkflowsCount", n => { SharedPersonalWorkflowsCount = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -57,7 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("personalSpacePublishing", PersonalSpacePublishing);
             writer.WriteBoolValue("personalSpaceSharing", PersonalSpaceSharing);
+            writer.WriteIntValue("publishedPersonalWorkflowsCount", PublishedPersonalWorkflowsCount);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyUpdateRedactionEnforcement>("redactionEnforcement", RedactionEnforcement);
+            writer.WriteIntValue("sharedPersonalCredentialsCount", SharedPersonalCredentialsCount);
+            writer.WriteIntValue("sharedPersonalWorkflowsCount", SharedPersonalWorkflowsCount);
         }
     }
 }

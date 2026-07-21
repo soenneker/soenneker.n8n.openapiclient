@@ -74,6 +74,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.Node> Nodes { get; set; }
 #endif
+        /// <summary>ID of the folder to place the workflow in. Omit or null to place at the project root.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ParentFolderId { get; set; }
+#nullable restore
+#else
+        public string ParentFolderId { get; set; }
+#endif
         /// <summary>Pinned sample data for nodes, keyed by node name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -162,6 +170,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "nodeGroups", n => { NodeGroups = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "nodes", n => { Nodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>(global::Soenneker.N8n.OpenApiClient.Models.Node.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
                 { "pinData", n => { PinData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreatePinData>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreatePinData.CreateFromDiscriminatorValue); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings.CreateFromDiscriminatorValue); } },
@@ -184,6 +193,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowNodeGroup>("nodeGroups", NodeGroups);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Node>("nodes", Nodes);
+            writer.WriteStringValue("parentFolderId", ParentFolderId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowCreatePinData>("pinData", PinData);
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettings>("settings", Settings);

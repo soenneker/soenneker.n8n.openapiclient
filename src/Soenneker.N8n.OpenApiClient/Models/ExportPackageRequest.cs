@@ -21,6 +21,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> FolderIds { get; set; }
 #endif
+        /// <summary>Whether values of variables referenced by the exported workflows are bundled into the package. When `false`, variables still travel as name/type files and are listed in the package requirements, but no values travel with the package.</summary>
+        public bool? IncludeVariableValues { get; set; }
+        /// <summary>Policy for missing static sub-workflow dependencies. Currently only `fail` is supported; `reference-only` and `include-in-package` are reserved for upcoming export modes.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy? MissingWorkflowDependencyPolicy { get; set; }
         /// <summary>IDs of the projects to include in the exported package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -37,6 +41,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> WorkflowIds { get; set; }
 #endif
+        /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequest"/> and sets the default values.
+        /// </summary>
+        public ExportPackageRequest()
+        {
+            IncludeVariableValues = true;
+        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -56,6 +67,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "includeVariableValues", n => { IncludeVariableValues = n.GetBoolValue(); } },
+                { "missingWorkflowDependencyPolicy", n => { MissingWorkflowDependencyPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>(); } },
                 { "projectIds", n => { ProjectIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "workflowIds", n => { WorkflowIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -68,6 +81,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
+            writer.WriteBoolValue("includeVariableValues", IncludeVariableValues);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>("missingWorkflowDependencyPolicy", MissingWorkflowDependencyPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("projectIds", ProjectIds);
             writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);
         }

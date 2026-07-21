@@ -2,7 +2,9 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.Settings.LogStreaming;
 using Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy;
+using Soenneker.N8n.OpenApiClient.Settings.Sso;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -15,10 +17,20 @@ namespace Soenneker.N8n.OpenApiClient.Settings
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SettingsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The logStreaming property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.LogStreamingRequestBuilder LogStreaming
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.LogStreamingRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The securityPolicy property</summary>
         public global::Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy.SecurityPolicyRequestBuilder SecurityPolicy
         {
             get => new global::Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy.SecurityPolicyRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The sso property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Settings.Sso.SsoRequestBuilder Sso
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Settings.Sso.SsoRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Settings.SettingsRequestBuilder"/> and sets the default values.

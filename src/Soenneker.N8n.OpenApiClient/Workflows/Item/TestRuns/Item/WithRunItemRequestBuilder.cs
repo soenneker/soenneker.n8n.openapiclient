@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.Cancel;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.TestCases;
 using System.Collections.Generic;
 using System.IO;
@@ -18,6 +19,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithRunItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The cancel property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.Cancel.CancelRequestBuilder Cancel
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.Cancel.CancelRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The testCases property</summary>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.TestCases.TestCasesRequestBuilder TestCases
         {
