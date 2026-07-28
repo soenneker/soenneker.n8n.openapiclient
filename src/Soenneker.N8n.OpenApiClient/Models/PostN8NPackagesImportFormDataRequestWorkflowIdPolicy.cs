@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Controls the id each newly created workflow receives. `new` (default) mints a fresh id and records the package id as `sourceWorkflowId`, so the same package can be imported repeatedly without id collisions. `source` reuses the package&apos;s own workflow id on the target instance. Workflows matched to an existing workflow in the target project (status `updated` or `skipped`) always keep that workflow&apos;s current id, regardless of policy.</summary>
+    /// <summary>Controls the id each newly created workflow receives. `source` (default) reuses the package&apos;s own workflow id on the target instance, which best fits promotion use cases where the same workflow moves between environments. `new` mints a fresh id and records the package id as `sourceWorkflowId`, so the same package can be imported repeatedly without id collisions — best suited to marketplace imports. Workflows matched to an existing workflow in the target project (status `updated` or `skipped`) always keep that workflow&apos;s current id, regardless of policy.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestWorkflowIdPolicy
     {

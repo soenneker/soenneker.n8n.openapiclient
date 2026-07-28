@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Settings.LogStreaming;
+using Soenneker.N8n.OpenApiClient.Settings.Otel;
 using Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy;
 using Soenneker.N8n.OpenApiClient.Settings.Sso;
 using System.Collections.Generic;
@@ -21,6 +22,11 @@ namespace Soenneker.N8n.OpenApiClient.Settings
         public global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.LogStreamingRequestBuilder LogStreaming
         {
             get => new global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.LogStreamingRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The otel property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Settings.Otel.OtelRequestBuilder Otel
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Settings.Otel.OtelRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The securityPolicy property</summary>
         public global::Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy.SecurityPolicyRequestBuilder SecurityPolicy

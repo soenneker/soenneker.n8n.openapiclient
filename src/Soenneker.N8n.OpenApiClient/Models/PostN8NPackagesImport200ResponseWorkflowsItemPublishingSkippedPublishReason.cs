@@ -11,5 +11,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         #pragma warning disable CS1591
         StubCredential,
         #pragma warning restore CS1591
+        [EnumMember(Value = "missing-node-type")]
+        #pragma warning disable CS1591
+        MissingNodeType,
+        #pragma warning restore CS1591
     }
 }

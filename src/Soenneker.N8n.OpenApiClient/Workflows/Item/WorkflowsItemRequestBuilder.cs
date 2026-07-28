@@ -4,14 +4,15 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
-using Soenneker.N8n.OpenApiClient.Workflows.Item.Activate;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Archive;
-using Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.History;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Item;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.Publish;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Tags;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Unarchive;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -25,20 +26,20 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WorkflowsItemRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The activate property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Activate.ActivateRequestBuilder Activate
-        {
-            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Activate.ActivateRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>The archive property</summary>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Archive.ArchiveRequestBuilder Archive
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Archive.ArchiveRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The deactivate property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder Deactivate
+        /// <summary>The history property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.History.HistoryRequestBuilder History
         {
-            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder(PathParameters, RequestAdapter);
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.History.HistoryRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The publish property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Publish.PublishRequestBuilder Publish
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Publish.PublishRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tags property</summary>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Tags.TagsRequestBuilder Tags
@@ -59,6 +60,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unarchive.UnarchiveRequestBuilder Unarchive
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unarchive.UnarchiveRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The unpublish property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish.UnpublishRequestBuilder Unpublish
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish.UnpublishRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.workflows.item.item collection</summary>
         /// <param name="position">The version ID to retrieve</param>

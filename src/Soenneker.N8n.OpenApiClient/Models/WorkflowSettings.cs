@@ -14,6 +14,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>&quot;Controls whether this workflow is accessible via the Model Context Protocol (MCP).Defaults to false.When enabled, this workflow can be called by MCP clients (AI assistants and other toolsthat support MCP). This allows external AI tools to discover and execute this workflowas part of their capabilities.Requirements for enabling MCP access:- The workflow must be active (not deactivated)- The workflow must contain at least one active Webhook node- Only webhook-triggered workflows can be exposed via MCPSecurity note: When a workflow is available in MCP, it can be discovered and executedby any MCP client that has the appropriate API credentials for your n8n instance.&quot;</summary>
         public bool? AvailableInMCP { get; set; }
+        /// <summary>Controls how binary data is resolved from a node&apos;s input. This is a derived,internal setting rather than something intended to be set programmatically.It is included in workflow responses for reference, but any value sent whencreating or updating a workflow is ignored.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsBinaryMode? BinaryMode { get; set; }
         /// <summary>Comma-separated list of workflow IDs allowed to call this workflow (only used with workflowsFromAList policy)</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -24,6 +26,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>&quot;Controls which workflows are allowed to call this workflow using the Execute Workflow node.Defaults to workflowsFromSameOwner.Available options:- `any`: Any workflow can call this workflow (no restrictions)- `none`: No other workflows can call this workflow (completely blocked)- `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow  * For personal projects: Only workflows created by the same user  * For team projects: Only workflows within the same team project- `workflowsFromAList`: Only specific workflows listed in the `callerIds` field can call this workflow  * Requires the `callerIds` field to specify which workflow IDs are allowed  * See `callerIds` field documentation for usage&quot;</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCallerPolicy? CallerPolicy { get; set; }
+        /// <summary>ID of the credential resolver used to resolve credentials for this workflow.This is a derived, internal setting managed via the workflow&apos;s credentialresolver configuration rather than something intended to be set programmatically.It is included in workflow responses for reference, but any value sent whencreating or updating a workflow is ignored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CredentialResolverId { get; set; }
+#nullable restore
+#else
+        public string CredentialResolverId { get; set; }
+#endif
         /// <summary>The customTelemetryTags property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -60,6 +70,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public bool? SaveExecutionProgress { get; set; }
         /// <summary>The saveManualExecutions property</summary>
         public bool? SaveManualExecutions { get; set; }
+        /// <summary>&quot;Controls how the time saved per execution is calculated.Available options:- `fixed`: Uses a predetermined time value specified in the `timeSavedPerExecution` field.  * Requires the `timeSavedPerExecution` field to be set  * Use when the time saved is consistent across all executions- `dynamic`: Automatically calculates time saved based on actual execution metrics  * The `timeSavedPerExecution` field is ignored when this mode is active  * Use when time saved varies between executions&quot;</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsTimeSavedMode? TimeSavedMode { get; set; }
         /// <summary>Estimated time saved per execution in minutes</summary>
         public double? TimeSavedPerExecution { get; set; }
         /// <summary>The timezone property</summary>
@@ -89,8 +101,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "availableInMCP", n => { AvailableInMCP = n.GetBoolValue(); } },
+                { "binaryMode", n => { BinaryMode = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsBinaryMode>(); } },
                 { "callerIds", n => { CallerIds = n.GetStringValue(); } },
                 { "callerPolicy", n => { CallerPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCallerPolicy>(); } },
+                { "credentialResolverId", n => { CredentialResolverId = n.GetStringValue(); } },
                 { "customTelemetryTags", n => { CustomTelemetryTags = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCustomTelemetryTagsItem>(global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCustomTelemetryTagsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "errorWorkflow", n => { ErrorWorkflow = n.GetStringValue(); } },
                 { "executionOrder", n => { ExecutionOrder = n.GetStringValue(); } },
@@ -100,6 +114,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "saveDataSuccessExecution", n => { SaveDataSuccessExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataSuccessExecution>(); } },
                 { "saveExecutionProgress", n => { SaveExecutionProgress = n.GetBoolValue(); } },
                 { "saveManualExecutions", n => { SaveManualExecutions = n.GetBoolValue(); } },
+                { "timeSavedMode", n => { TimeSavedMode = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsTimeSavedMode>(); } },
                 { "timeSavedPerExecution", n => { TimeSavedPerExecution = n.GetDoubleValue(); } },
                 { "timezone", n => { Timezone = n.GetStringValue(); } },
             };
@@ -112,8 +127,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("availableInMCP", AvailableInMCP);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsBinaryMode>("binaryMode", BinaryMode);
             writer.WriteStringValue("callerIds", CallerIds);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCallerPolicy>("callerPolicy", CallerPolicy);
+            writer.WriteStringValue("credentialResolverId", CredentialResolverId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsCustomTelemetryTagsItem>("customTelemetryTags", CustomTelemetryTags);
             writer.WriteStringValue("errorWorkflow", ErrorWorkflow);
             writer.WriteStringValue("executionOrder", ExecutionOrder);
@@ -123,6 +140,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsSaveDataSuccessExecution>("saveDataSuccessExecution", SaveDataSuccessExecution);
             writer.WriteBoolValue("saveExecutionProgress", SaveExecutionProgress);
             writer.WriteBoolValue("saveManualExecutions", SaveManualExecutions);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowSettingsTimeSavedMode>("timeSavedMode", TimeSavedMode);
             writer.WriteDoubleValue("timeSavedPerExecution", TimeSavedPerExecution);
             writer.WriteStringValue("timezone", Timezone);
         }

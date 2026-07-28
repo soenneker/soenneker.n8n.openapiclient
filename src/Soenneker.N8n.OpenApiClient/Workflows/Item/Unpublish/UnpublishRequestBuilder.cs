@@ -9,32 +9,32 @@ using System.IO;
 using System.Threading.Tasks;
 using System.Threading;
 using System;
-namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate
+namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish
 {
     /// <summary>
-    /// Builds and executes requests for operations under \workflows\{id}\deactivate
+    /// Builds and executes requests for operations under \workflows\{id}\unpublish
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class DeactivateRequestBuilder : BaseRequestBuilder
+    public partial class UnpublishRequestBuilder : BaseRequestBuilder
     {
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish.UnpublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DeactivateRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}/deactivate", pathParameters)
+        public UnpublishRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}/unpublish", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish.UnpublishRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public DeactivateRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}/deactivate", rawUrl)
+        public UnpublishRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}/unpublish", rawUrl)
         {
         }
         /// <summary>
-        /// Deactivate a workflow.
+        /// Unpublish a workflow. In n8n v1, this action was termed deactivating a workflow.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Workflow"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.Workflow>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.Workflow.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deactivate a workflow.
+        /// Unpublish a workflow. In n8n v1, this action was termed deactivating a workflow.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -73,11 +73,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish.UnpublishRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder WithUrl(string rawUrl)
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish.UnpublishRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder(rawUrl, RequestAdapter);
+            return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish.UnpublishRequestBuilder(rawUrl, RequestAdapter);
         }
     }
 }

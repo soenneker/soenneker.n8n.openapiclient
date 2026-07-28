@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Policy for missing static sub-workflow dependencies. Currently only `fail` is supported; `reference-only` and `include-in-package` are reserved for upcoming export modes.</summary>
+    /// <summary>Policy for missing static sub-workflow dependencies. `fail` aborts the export when any static sub-workflow is missing from the package; `include-in-package` automatically adds missing static sub-workflows. `reference-only` is reserved for a future export mode.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ExportPackageRequestMissingWorkflowDependencyPolicy
     {

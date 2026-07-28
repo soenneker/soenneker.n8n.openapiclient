@@ -23,7 +23,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>Whether values of variables referenced by the exported workflows are bundled into the package. When `false`, variables still travel as name/type files and are listed in the package requirements, but no values travel with the package.</summary>
         public bool? IncludeVariableValues { get; set; }
-        /// <summary>Policy for missing static sub-workflow dependencies. Currently only `fail` is supported; `reference-only` and `include-in-package` are reserved for upcoming export modes.</summary>
+        /// <summary>Policy for missing static sub-workflow dependencies. `fail` aborts the export when any static sub-workflow is missing from the package; `include-in-package` automatically adds missing static sub-workflows. `reference-only` is reserved for a future export mode.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy? MissingWorkflowDependencyPolicy { get; set; }
         /// <summary>IDs of the projects to include in the exported package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

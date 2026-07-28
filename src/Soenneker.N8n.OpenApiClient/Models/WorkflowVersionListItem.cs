@@ -9,12 +9,20 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class PostWorkflowsByIdActivateRequest : IAdditionalDataHolder, IParsable
+    public partial class WorkflowVersionListItem : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Optional description for the workflow version during activation.</summary>
+        /// <summary>Authors who created this version</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Authors { get; private set; }
+#nullable restore
+#else
+        public string Authors { get; private set; }
+#endif
+        /// <summary>When this version was created</summary>
+        public DateTimeOffset? CreatedAt { get; private set; }
+        /// <summary>Workflow description at this version</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Description { get; set; }
@@ -22,7 +30,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>Optional name for the workflow version during activation.</summary>
+        /// <summary>Workflow name at this version</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -30,30 +38,33 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The specific version ID to activate or publish. If not provided, the latest version is used.</summary>
+        /// <summary>When this version was last updated</summary>
+        public DateTimeOffset? UpdatedAt { get; private set; }
+        /// <summary>The version ID of this workflow snapshot</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VersionId { get; set; }
+        public string? VersionId { get; private set; }
 #nullable restore
 #else
-        public string VersionId { get; set; }
+        public string VersionId { get; private set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostWorkflowsByIdActivateRequest"/> and sets the default values.
-        /// </summary>
-        public PostWorkflowsByIdActivateRequest()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>The workflow ID this version belongs to</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WorkflowId { get; private set; }
+#nullable restore
+#else
+        public string WorkflowId { get; private set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostWorkflowsByIdActivateRequest"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersionListItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.PostWorkflowsByIdActivateRequest CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersionListItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PostWorkflowsByIdActivateRequest();
+            return new global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersionListItem();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -63,9 +74,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "authors", n => { Authors = n.GetStringValue(); } },
+                { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "versionId", n => { VersionId = n.GetStringValue(); } },
+                { "workflowId", n => { WorkflowId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -77,8 +92,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("versionId", VersionId);
-            writer.WriteAdditionalData(AdditionalData);
         }
     }
 }
