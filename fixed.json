@@ -578,7 +578,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetCredentialsSchemaByCredentialTypeName200ResponseResponseJson"
+                  "$ref": "#/components/schemas/GetCredentialsSchemaByCredentialTypeName200ResponseSchema"
                 },
                 "examples": {
                   "freshdeskApi": {
@@ -3038,7 +3038,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/ListDataTableColumns200ResponseResponseJson"
+                  "$ref": "#/components/schemas/ListDataTableColumns200ResponseSchema"
                 }
               }
             }
@@ -4114,7 +4114,7 @@
             "content": {
               "application/gzip": {
                 "schema": {
-                  "$ref": "#/components/schemas/PostN8NPackagesExport200ResponseResponseGzip"
+                  "$ref": "#/components/schemas/PostN8NPackagesExport200GzipResponseSchema"
                 }
               }
             }
@@ -9216,7 +9216,7 @@
         },
         "additionalProperties": false
       },
-      "PostN8NPackagesExport200Response": {
+      "PostN8NPackagesExport200GzipResponse": {
         "type": "string",
         "format": "binary"
       },
@@ -9398,7 +9398,7 @@
           }
         }
       },
-      "GetCredentialsSchemaByCredentialTypeName200ResponseResponseJson": {
+      "GetCredentialsSchemaByCredentialTypeName200ResponseSchema": {
         "type": "object"
       },
       "GetExecutionsByIdTags200Response": {
@@ -9455,7 +9455,7 @@
           "$ref": "#/components/schemas/SourceControlledFile"
         }
       },
-      "ListDataTableColumns200ResponseResponseJson": {
+      "ListDataTableColumns200ResponseSchema": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/DataTableColumn"
@@ -9482,7 +9482,7 @@
           }
         }
       },
-      "PostN8NPackagesExport200ResponseResponseGzip": {
+      "PostN8NPackagesExport200GzipResponseSchema": {
         "type": "string",
         "format": "binary"
       },
