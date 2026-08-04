@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.Settings.Sso.Oidc;
 using Soenneker.N8n.OpenApiClient.Settings.Sso.Saml;
 using System.Collections.Generic;
 using System.IO;
@@ -15,6 +16,11 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Sso
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SsoRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The oidc property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Settings.Sso.Oidc.OidcRequestBuilder Oidc
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Settings.Sso.Oidc.OidcRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The saml property</summary>
         public global::Soenneker.N8n.OpenApiClient.Settings.Sso.Saml.SamlRequestBuilder Saml
         {

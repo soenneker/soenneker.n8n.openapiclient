@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;Controls what happens when a variable referenced by the package&apos;s workflows is absent from the target project and the global scope (lookup order: project, then global). `do-nothing` (default) imports the workflows without creating the missing variable and lists its name under `variables.missing` in the response so the caller can fill it in afterwards. `must-preexist` rejects the import unless every referenced variable already resolves. Neither mode ever creates a variable.&quot;</summary>
+    /// <summary>&quot;Controls what happens when a variable referenced by the package&apos;s workflows is absent from the target project and the global scope (lookup order: project, then global). `do-nothing` (default) imports the workflows without creating the missing variable and lists its name under `variables.missing`. `must-preexist` rejects the import unless every referenced variable already resolves. `create-stub` creates each missing variable with an empty value at the placement scope (see `variableParentPolicy`) and lists the created names under `variables.stubbed`. Any `create-stub` import that has variable requirements needs an API key carrying the `variable:create` scope (owner/admin keys only) — this applies to project placement too, not only `variableParentPolicy=global`.&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestVariableMissingMode
     {
@@ -14,6 +14,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         [EnumMember(Value = "must-preexist")]
         #pragma warning disable CS1591
         MustPreexist,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "create-stub")]
+        #pragma warning disable CS1591
+        CreateStub,
         #pragma warning restore CS1591
     }
 }

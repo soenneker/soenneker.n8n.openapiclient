@@ -21,9 +21,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> FolderIds { get; set; }
 #endif
+        /// <summary>Whether tags assigned to the exported workflows are bundled into the package. When `false`, no tag files, tag references, or tag requirements travel with the package.</summary>
+        public bool? IncludeTags { get; set; }
         /// <summary>Whether values of variables referenced by the exported workflows are bundled into the package. When `false`, variables still travel as name/type files and are listed in the package requirements, but no values travel with the package.</summary>
         public bool? IncludeVariableValues { get; set; }
-        /// <summary>Policy for missing static sub-workflow dependencies. `fail` aborts the export when any static sub-workflow is missing from the package; `include-in-package` automatically adds missing static sub-workflows. `reference-only` is reserved for a future export mode.</summary>
+        /// <summary>Policy for missing static sub-workflow dependencies. `fail` aborts the export when any static sub-workflow is missing from the package; `include-in-package` automatically adds missing static sub-workflows. `reference-only` keeps missing static sub-workflows out of the package and lists them in the package requirements as workflows expected to already exist on the target.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy? MissingWorkflowDependencyPolicy { get; set; }
         /// <summary>IDs of the projects to include in the exported package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,6 +48,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// </summary>
         public ExportPackageRequest()
         {
+            IncludeTags = true;
             IncludeVariableValues = true;
         }
         /// <summary>
@@ -67,6 +70,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "includeTags", n => { IncludeTags = n.GetBoolValue(); } },
                 { "includeVariableValues", n => { IncludeVariableValues = n.GetBoolValue(); } },
                 { "missingWorkflowDependencyPolicy", n => { MissingWorkflowDependencyPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>(); } },
                 { "projectIds", n => { ProjectIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -81,6 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
+            writer.WriteBoolValue("includeTags", IncludeTags);
             writer.WriteBoolValue("includeVariableValues", IncludeVariableValues);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>("missingWorkflowDependencyPolicy", MissingWorkflowDependencyPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("projectIds", ProjectIds);

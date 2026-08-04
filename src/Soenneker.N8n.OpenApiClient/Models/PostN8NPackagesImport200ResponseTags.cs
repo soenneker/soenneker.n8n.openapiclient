@@ -8,14 +8,22 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Resolution of the package&apos;s variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (a name matched in one project and stubbed in another appears in both `matched` and `stubbed`); classification under concurrent external writes is best-effort.
+    /// Resolution of the tags referenced by the imported workflows, matched by source id. Tag names only.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class PostN8NPackagesImport200ResponseVariables : IAdditionalDataHolder, IParsable
+    public partial class PostN8NPackagesImport200ResponseTags : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Variable names that resolved to an existing variable (importing project&apos;s scope first, then global).</summary>
+        /// <summary>Tags created by this import with their package (source) id and name, under `tagMissingMode=create`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Created { get; set; }
+#nullable restore
+#else
+        public List<string> Created { get; set; }
+#endif
+        /// <summary>Tags that resolved to an existing tag with the same id and name; attached as-is.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Matched { get; set; }
@@ -23,38 +31,38 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> Matched { get; set; }
 #endif
-        /// <summary>Variable names still unresolved after import. Under `variableMissingMode=do-nothing` these are warnings — the import still succeeds and nothing is created. A successful `create-stub` import normally leaves this empty.</summary>
+        /// <summary>Target tags renamed to the package name under `tagConflictPolicy=rename`; listed by their new name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Missing { get; set; }
+        public List<string>? Renamed { get; set; }
 #nullable restore
 #else
-        public List<string> Missing { get; set; }
+        public List<string> Renamed { get; set; }
 #endif
-        /// <summary>Variable names created with an empty value by this import under `variableMissingMode=create-stub`. Empty for other modes.</summary>
+        /// <summary>Tags dropped from the import — not created, not renamed, and not attached to any imported workflow — under `tagMissingMode=do-nothing` or `tagConflictPolicy=skip`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Stubbed { get; set; }
+        public List<string>? Skipped { get; set; }
 #nullable restore
 #else
-        public List<string> Stubbed { get; set; }
+        public List<string> Skipped { get; set; }
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags"/> and sets the default values.
         /// </summary>
-        public PostN8NPackagesImport200ResponseVariables()
+        public PostN8NPackagesImport200ResponseTags()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables();
+            return new global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -64,9 +72,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "created", n => { Created = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "matched", n => { Matched = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "missing", n => { Missing = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "stubbed", n => { Stubbed = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "renamed", n => { Renamed = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "skipped", n => { Skipped = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -76,9 +85,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfPrimitiveValues<string>("created", Created);
             writer.WriteCollectionOfPrimitiveValues<string>("matched", Matched);
-            writer.WriteCollectionOfPrimitiveValues<string>("missing", Missing);
-            writer.WriteCollectionOfPrimitiveValues<string>("stubbed", Stubbed);
+            writer.WriteCollectionOfPrimitiveValues<string>("renamed", Renamed);
+            writer.WriteCollectionOfPrimitiveValues<string>("skipped", Skipped);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

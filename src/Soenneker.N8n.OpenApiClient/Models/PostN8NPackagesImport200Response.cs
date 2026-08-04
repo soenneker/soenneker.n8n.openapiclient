@@ -54,7 +54,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem> Projects { get; set; }
 #endif
-        /// <summary>Resolution of the package&apos;s variable requirements. Names only — values never travel in the response. For project packages, resolution runs per project, so a name that resolves in some projects but not others appears in both lists.</summary>
+        /// <summary>Resolution of the tags referenced by the imported workflows, matched by source id. Tag names only.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags? Tags { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags Tags { get; set; }
+#endif
+        /// <summary>Resolution of the package&apos;s variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (a name matched in one project and stubbed in another appears in both `matched` and `stubbed`); classification under concurrent external writes is best-effort.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables? Variables { get; set; }
@@ -100,6 +108,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "folders", n => { Folders = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "package", n => { Package = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage.CreateFromDiscriminatorValue); } },
                 { "projects", n => { Projects = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "tags", n => { Tags = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags.CreateFromDiscriminatorValue); } },
                 { "variables", n => { Variables = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables.CreateFromDiscriminatorValue); } },
                 { "workflows", n => { Workflows = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
@@ -116,6 +125,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem>("folders", Folders);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage>("package", Package);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem>("projects", Projects);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags>("tags", Tags);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables>("variables", Variables);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem>("workflows", Workflows);
             writer.WriteAdditionalData(AdditionalData);

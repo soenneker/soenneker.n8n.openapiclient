@@ -5,12 +5,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf7Type
+    public enum WorkflowPublishBlockedErrorReason
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "tag-unresolved")]
+        [EnumMember(Value = "review_pending")]
         #pragma warning disable CS1591
-        TagUnresolved,
+        ReviewPending,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "changes_requested")]
+        #pragma warning disable CS1591
+        ChangesRequested,
         #pragma warning restore CS1591
     }
 }

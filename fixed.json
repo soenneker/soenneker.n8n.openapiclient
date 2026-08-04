@@ -63,6 +63,148 @@
         }
       }
     },
+    "/settings/ldap": {
+      "get": {
+        "tags": [
+          "SettingsLdap"
+        ],
+        "summary": "Retrieve the LDAP configuration",
+        "description": "Retrieve the current LDAP configuration, including every field exposed in the UI. The binding admin password is redacted on read. Requires the \u0060ldap:manage\u0060 scope and the LDAP feature to be licensed.\n",
+        "operationId": "GetSettingsLdap",
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LdapConfiguration"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SettingsLdap"
+        ],
+        "summary": "Set the LDAP configuration",
+        "description": "Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the \u0060ldap:manage\u0060 scope  and the LDAP feature to be licensed. Setting loginEnabled to false is destructive  and it deletes all stored LDAP user identities and disables synchronization.\n",
+        "operationId": "PutSettingsLdap",
+        "requestBody": {
+          "description": "The full LDAP configuration to set.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LdapConfigurationUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LdapConfiguration"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          }
+        }
+      }
+    },
+    "/settings/ldap/sync": {
+      "get": {
+        "tags": [
+          "SettingsLdap"
+        ],
+        "summary": "Retrieve LDAP synchronization history",
+        "description": "Retrieve the history of LDAP synchronizations, most recent first. Requires the \u0060ldap:sync\u0060 scope and the LDAP feature to be licensed.\n",
+        "operationId": "GetSettingsLdapSync",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LdapSyncHistoryList"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "SettingsLdap"
+        ],
+        "summary": "Trigger an LDAP synchronization",
+        "description": "Manually trigger an LDAP synchronization. The response returns the new sync history record. Requires the \u0060ldap:sync\u0060 scope and the LDAP feature to be licensed.\n",
+        "operationId": "PostSettingsLdapSync",
+        "requestBody": {
+          "description": "Synchronization parameters.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/LdapSyncUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/LdapSyncHistory"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          }
+        }
+      }
+    },
     "/settings/security-policy": {
       "get": {
         "tags": [
@@ -240,6 +382,76 @@
           },
           "403": {
             "$ref": "#/components/responses/forbidden"
+          }
+        }
+      }
+    },
+    "/settings/sso/oidc": {
+      "get": {
+        "tags": [
+          "SettingsSsoOidc"
+        ],
+        "summary": "Retrieve the OIDC SSO configuration",
+        "description": "Retrieve the current OIDC SSO configuration, including every field exposed in the UI. The client secret is redacted on read and is never echoed back in plaintext. Requires the \u0060oidc:manage\u0060 scope and the OIDC feature to be licensed.\n",
+        "operationId": "GetSettingsSsoOidc",
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OidcConfiguration"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "SettingsSsoOidc"
+        ],
+        "summary": "Set the OIDC SSO configuration",
+        "description": "Set the OIDC SSO configuration. The update takes effect exactly as it would from the UI, using the same validation. \u0060clientId\u0060, \u0060clientSecret\u0060 and \u0060discoveryEndpoint\u0060 are required; submit the redacted client secret sentinel to keep the stored secret unchanged. Requires the \u0060oidc:manage\u0060 scope and the OIDC feature to be licensed. The client secret is redacted in the response. When the configuration is managed declaratively (via environment variables), the write is rejected with 409 and no changes are made.\n",
+        "operationId": "PutSettingsSsoOidc",
+        "requestBody": {
+          "description": "The OIDC SSO configuration to set.",
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/OidcConfigurationUpdate"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/OidcConfiguration"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
           }
         }
       }
@@ -1440,6 +1652,16 @@
           },
           "404": {
             "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "description": "Conflict, e.g. re-publication blocked by an open workflow review (then \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present; the update itself is still saved as a draft) or a webhook path conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowPublishBlockedError"
+                }
+              }
+            }
           }
         }
       }
@@ -1574,6 +1796,16 @@
           },
           "404": {
             "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "description": "Conflict, e.g. publication blocked by an open workflow review (then \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present) or a webhook path conflict.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/WorkflowPublishBlockedError"
+                }
+              }
+            }
           }
         }
       }
@@ -4140,7 +4372,7 @@
           "N8nPackage"
         ],
         "summary": "\u0022Beta: Import an n8n package into a project\u0022",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). The optional\n\u0060credentialMatchingMode\u0060, \u0060credentialMissingMode\u0060, \u0060bindings\u0060,\n\u0060workflowIdPolicy\u0060, and \u0060workflowPublishingPolicy\u0060 fields take their defaults when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Credentials owned by,\nshared with, or global to the target project (with \u0060credential:read\u0060) match.\n",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). Every optional\nmode/policy field (credential, workflow, folder, data table, variable, and tag)\ntakes its default when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Credentials owned by,\nshared with, or global to the target project (with \u0060credential:read\u0060) match.\n",
         "operationId": "PostN8NPackagesImport",
         "requestBody": {
           "content": {
@@ -4175,7 +4407,7 @@
             "$ref": "#/components/responses/notFound"
           },
           "409": {
-            "description": "Import blocked by at least one conflict among the issues \u2014 a workflow source-id conflict or a folder conflict (id under a different parent, id owned by another project, or a \u0060fail\u0060-policy match).\n",
+            "description": "Import blocked by at least one conflict among the issues \u2014 a workflow source-id conflict, a folder conflict (id under a different parent, id owned by another project, or a \u0060fail\u0060-policy match), or a tag conflict (rename drift or name collision).\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -4185,7 +4417,7 @@
             }
           },
           "422": {
-            "description": "Import blocked by non-conflict issues only (e.g. unresolved credentials or variables, or node types this instance does not have under \u0060missingNodeTypeMode=fail\u0060).\n",
+            "description": "Import blocked by non-conflict issues only (e.g. unresolved credentials or variables, node types this instance does not have under \u0060missingNodeTypeMode=fail\u0060, or variable stubs whose creation would exceed the instance variable quota).\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -4501,6 +4733,356 @@
           }
         }
       },
+      "LdapConfiguration": {
+        "required": [
+          "loginEnabled",
+          "loginLabel",
+          "connectionUrl",
+          "allowUnauthorizedCerts",
+          "connectionSecurity",
+          "connectionPort",
+          "baseDn",
+          "bindingAdminDn",
+          "bindingAdminPassword",
+          "firstNameAttribute",
+          "lastNameAttribute",
+          "emailAttribute",
+          "loginIdAttribute",
+          "ldapIdAttribute",
+          "userFilter",
+          "synchronizationEnabled",
+          "synchronizationInterval",
+          "searchPageSize",
+          "searchTimeout",
+          "enforceEmailUniqueness"
+        ],
+        "type": "object",
+        "properties": {
+          "loginEnabled": {
+            "type": "boolean",
+            "description": "Whether LDAP login is enabled.",
+            "example": false
+          },
+          "loginLabel": {
+            "type": "string",
+            "description": "Label shown on the LDAP login button.",
+            "example": "LDAP"
+          },
+          "connectionUrl": {
+            "type": "string",
+            "description": "LDAP server URL.",
+            "example": "ldap://ldap.example.com"
+          },
+          "allowUnauthorizedCerts": {
+            "type": "boolean",
+            "description": "Whether to allow unauthorized (self-signed) certificates.",
+            "example": false
+          },
+          "connectionSecurity": {
+            "$ref": "#/components/schemas/LdapConfigurationConnectionSecurity"
+          },
+          "connectionPort": {
+            "type": "integer",
+            "description": "LDAP server port.",
+            "example": 389
+          },
+          "baseDn": {
+            "type": "string",
+            "description": "Base DN for LDAP search queries.",
+            "example": "dc=example,dc=com"
+          },
+          "bindingAdminDn": {
+            "type": "string",
+            "description": "DN of the LDAP admin user for binding.",
+            "example": "cn=admin,dc=example,dc=com"
+          },
+          "bindingAdminPassword": {
+            "type": "string",
+            "description": "Password for the LDAP admin user. Redacted on GET; returns the blanking placeholder when a password is stored, empty string when unset. Send the blanking placeholder from a prior GET to keep the stored password unchanged.\n"
+          },
+          "firstNameAttribute": {
+            "type": "string",
+            "description": "LDAP attribute mapped to the user\u0027s first name.",
+            "example": "givenName"
+          },
+          "lastNameAttribute": {
+            "type": "string",
+            "description": "LDAP attribute mapped to the user\u0027s last name.",
+            "example": "sn"
+          },
+          "emailAttribute": {
+            "type": "string",
+            "description": "LDAP attribute mapped to the user\u0027s email.",
+            "example": "mail"
+          },
+          "loginIdAttribute": {
+            "type": "string",
+            "description": "LDAP attribute used for login (usually the same as emailAttribute).",
+            "example": "mail"
+          },
+          "ldapIdAttribute": {
+            "type": "string",
+            "description": "LDAP attribute that uniquely identifies a user.",
+            "example": "uid"
+          },
+          "userFilter": {
+            "type": "string",
+            "description": "Additional LDAP filter to apply when searching for users. Use an empty string for no additional filter.\n",
+            "example": "(objectClass=inetOrgPerson)"
+          },
+          "synchronizationEnabled": {
+            "type": "boolean",
+            "description": "Whether automatic LDAP synchronization is enabled.",
+            "example": false
+          },
+          "synchronizationInterval": {
+            "type": "integer",
+            "description": "Interval in minutes between automatic synchronizations. Ignored if synchronizationEnabled is false.",
+            "example": 60
+          },
+          "searchPageSize": {
+            "type": "integer",
+            "description": "Number of LDAP entries to fetch per search page.",
+            "example": 1000
+          },
+          "searchTimeout": {
+            "type": "integer",
+            "description": "LDAP search timeout in seconds.",
+            "example": 60
+          },
+          "enforceEmailUniqueness": {
+            "type": "boolean",
+            "description": "Whether to enforce that email addresses are unique across LDAP users. When true, if two users have the same email, only the first will be imported.\n",
+            "example": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Full LDAP configuration. Every field is returned by GET; send the full object back as PUT body.\n"
+      },
+      "LdapConfigurationUpdate": {
+        "required": [
+          "loginEnabled",
+          "loginLabel",
+          "connectionUrl",
+          "allowUnauthorizedCerts",
+          "connectionSecurity",
+          "connectionPort",
+          "baseDn",
+          "bindingAdminDn",
+          "bindingAdminPassword",
+          "firstNameAttribute",
+          "lastNameAttribute",
+          "emailAttribute",
+          "loginIdAttribute",
+          "ldapIdAttribute",
+          "userFilter",
+          "synchronizationEnabled",
+          "synchronizationInterval",
+          "searchPageSize",
+          "searchTimeout",
+          "enforceEmailUniqueness"
+        ],
+        "type": "object",
+        "properties": {
+          "loginEnabled": {
+            "type": "boolean",
+            "description": "Whether LDAP login is enabled. Setting this to false is destructive \u2014 it deletes all stored LDAP user identities and disables synchronization.\n",
+            "example": false
+          },
+          "loginLabel": {
+            "type": "string",
+            "description": "Label shown on the LDAP login button.",
+            "example": "LDAP"
+          },
+          "connectionUrl": {
+            "type": "string",
+            "description": "LDAP server URL.",
+            "example": "ldap://ldap.example.com"
+          },
+          "allowUnauthorizedCerts": {
+            "type": "boolean",
+            "description": "Whether to allow unauthorized (self-signed) certificates.",
+            "example": false
+          },
+          "connectionSecurity": {
+            "$ref": "#/components/schemas/LdapConfigurationUpdateConnectionSecurity"
+          },
+          "connectionPort": {
+            "type": "integer",
+            "description": "LDAP server port.",
+            "example": 389
+          },
+          "baseDn": {
+            "type": "string",
+            "description": "Base DN for LDAP search queries.",
+            "example": "dc=example,dc=com"
+          },
+          "bindingAdminDn": {
+            "type": "string",
+            "description": "DN of the LDAP admin user for binding.",
+            "example": "cn=admin,dc=example,dc=com"
+          },
+          "bindingAdminPassword": {
+            "type": "string",
+            "description": "Password for the LDAP admin user. To keep an existing password unchanged, submit the blanking placeholder from a prior GET response. Use an empty string to clear the password.\n"
+          },
+          "firstNameAttribute": {
+            "type": "string",
+            "description": "LDAP attribute mapped to the user\u0027s first name.",
+            "example": "givenName"
+          },
+          "lastNameAttribute": {
+            "type": "string",
+            "description": "LDAP attribute mapped to the user\u0027s last name.",
+            "example": "sn"
+          },
+          "emailAttribute": {
+            "type": "string",
+            "description": "LDAP attribute mapped to the user\u0027s email.",
+            "example": "mail"
+          },
+          "loginIdAttribute": {
+            "type": "string",
+            "description": "LDAP attribute used for login (usually the same as emailAttribute).",
+            "example": "mail"
+          },
+          "ldapIdAttribute": {
+            "type": "string",
+            "description": "LDAP attribute that uniquely identifies a user.",
+            "example": "uid"
+          },
+          "userFilter": {
+            "type": "string",
+            "description": "Additional LDAP filter to apply when searching for users. Use an empty string for no additional filter.\n",
+            "example": "(objectClass=inetOrgPerson)"
+          },
+          "synchronizationEnabled": {
+            "type": "boolean",
+            "description": "Whether automatic LDAP synchronization is enabled.",
+            "example": false
+          },
+          "synchronizationInterval": {
+            "type": "integer",
+            "description": "Interval in minutes between automatic synchronizations. Ignored if synchronizationEnabled is false.",
+            "example": 60
+          },
+          "searchPageSize": {
+            "type": "integer",
+            "description": "Number of LDAP entries to fetch per search page.",
+            "example": 1000
+          },
+          "searchTimeout": {
+            "type": "integer",
+            "description": "LDAP search timeout in seconds.",
+            "example": 60
+          },
+          "enforceEmailUniqueness": {
+            "type": "boolean",
+            "description": "Whether to enforce that email addresses are unique across LDAP users. When true, if two users have the same email, only the first will be imported.\n",
+            "example": true
+          }
+        },
+        "additionalProperties": false,
+        "description": "Full LDAP configuration. Use empty strings for unset fields."
+      },
+      "LdapSyncHistory": {
+        "required": [
+          "id",
+          "runMode",
+          "status",
+          "startedAt",
+          "endedAt",
+          "scanned",
+          "created",
+          "updated",
+          "disabled",
+          "error"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "integer",
+            "description": "Unique identifier for this sync run.",
+            "example": 1
+          },
+          "runMode": {
+            "$ref": "#/components/schemas/LdapSyncHistoryRunMode"
+          },
+          "status": {
+            "type": "string",
+            "description": "Status of the synchronization (e.g., success, error).",
+            "example": "success"
+          },
+          "startedAt": {
+            "type": "string",
+            "description": "Timestamp when the synchronization started.",
+            "format": "date-time",
+            "example": "2025-07-21T10:30:00Z"
+          },
+          "endedAt": {
+            "type": "string",
+            "description": "Timestamp when the synchronization completed.",
+            "format": "date-time",
+            "example": "2025-07-21T10:35:00Z"
+          },
+          "scanned": {
+            "type": "integer",
+            "description": "Number of LDAP entries scanned during synchronization.",
+            "example": 42
+          },
+          "created": {
+            "type": "integer",
+            "description": "Number of new users created during synchronization.",
+            "example": 5
+          },
+          "updated": {
+            "type": "integer",
+            "description": "Number of existing users updated during synchronization.",
+            "example": 3
+          },
+          "disabled": {
+            "type": "integer",
+            "description": "Number of users disabled during synchronization.",
+            "example": 0
+          },
+          "error": {
+            "type": "string",
+            "description": "Error message if the synchronization failed. Empty string if successful."
+          }
+        },
+        "additionalProperties": false,
+        "description": "LDAP synchronization history record."
+      },
+      "LdapSyncHistoryList": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/LdapSyncHistory"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "description": "Paginate through the synchronization history by setting the cursor parameter to the nextCursor attribute returned by the previous request. A null value means there are no more records.\n",
+            "nullable": true,
+            "example": "MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA"
+          }
+        }
+      },
+      "LdapSyncUpdate": {
+        "required": [
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/LdapSyncUpdateType"
+          }
+        },
+        "additionalProperties": false,
+        "description": "Request body for triggering an LDAP synchronization."
+      },
       "SecurityPolicy": {
         "required": [
           "personalSpacePublishing",
@@ -4718,6 +5300,123 @@
         },
         "additionalProperties": false,
         "description": "The outcome of the test connection to the OTLP collector."
+      },
+      "OidcConfiguration": {
+        "required": [
+          "clientId",
+          "clientSecret",
+          "discoveryEndpoint",
+          "loginEnabled",
+          "prompt",
+          "authenticationContextClassReference",
+          "additionalScopes",
+          "rpInitiatedLogoutEnabled"
+        ],
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "type": "string",
+            "description": "The client ID issued when registering n8n with the OIDC provider.",
+            "example": "n8n-client"
+          },
+          "clientSecret": {
+            "type": "string",
+            "description": "The client secret issued when registering n8n with the OIDC provider. Redacted on read when set; never echoed back in plaintext.\n",
+            "example": "**hidden**"
+          },
+          "discoveryEndpoint": {
+            "type": "string",
+            "description": "The OIDC provider\u0027s well-known discovery endpoint.",
+            "format": "uri",
+            "example": "https://accounts.google.com/.well-known/openid-configuration"
+          },
+          "loginEnabled": {
+            "type": "boolean",
+            "description": "Whether OIDC single sign-on is enabled.",
+            "example": false
+          },
+          "prompt": {
+            "$ref": "#/components/schemas/OidcConfigurationPrompt"
+          },
+          "authenticationContextClassReference": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "ACR values to include in the authorization request (acr_values parameter), in order of preference.\n"
+          },
+          "additionalScopes": {
+            "type": "string",
+            "description": "Additional scopes to request, space separated. n8n always requests \u0060openid\u0060, \u0060profile\u0060 and \u0060email\u0060.\n",
+            "example": "groups roles"
+          },
+          "rpInitiatedLogoutEnabled": {
+            "type": "boolean",
+            "description": "Whether signing out of n8n also ends the session at the OIDC provider via RP-Initiated Logout. When disabled, sign-out is local to n8n only.\n",
+            "example": false
+          }
+        },
+        "additionalProperties": false
+      },
+      "OidcConfigurationUpdate": {
+        "required": [
+          "clientId",
+          "clientSecret",
+          "discoveryEndpoint",
+          "loginEnabled",
+          "prompt",
+          "authenticationContextClassReference",
+          "additionalScopes",
+          "rpInitiatedLogoutEnabled"
+        ],
+        "type": "object",
+        "properties": {
+          "clientId": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The client ID issued when registering n8n with the OIDC provider.",
+            "example": "n8n-client"
+          },
+          "clientSecret": {
+            "minLength": 1,
+            "type": "string",
+            "description": "The client secret issued when registering n8n with the OIDC provider. Submit the redacted sentinel value returned on read to keep the stored secret unchanged.\n",
+            "example": "my-client-secret"
+          },
+          "discoveryEndpoint": {
+            "type": "string",
+            "description": "The OIDC provider\u0027s well-known discovery endpoint.",
+            "format": "uri",
+            "example": "https://accounts.google.com/.well-known/openid-configuration"
+          },
+          "loginEnabled": {
+            "type": "boolean",
+            "description": "Whether OIDC single sign-on is enabled.",
+            "example": false
+          },
+          "prompt": {
+            "$ref": "#/components/schemas/OidcConfigurationUpdatePrompt"
+          },
+          "authenticationContextClassReference": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "ACR values to include in the authorization request (acr_values parameter), in order of preference. Use an empty array when unused.\n"
+          },
+          "additionalScopes": {
+            "type": "string",
+            "description": "Additional scopes to request, space separated. n8n always requests \u0060openid\u0060, \u0060profile\u0060 and \u0060email\u0060. Use an empty string when unused.\n",
+            "example": "groups roles"
+          },
+          "rpInitiatedLogoutEnabled": {
+            "type": "boolean",
+            "description": "Whether signing out of n8n also ends the session at the OIDC provider via RP-Initiated Logout. When disabled, sign-out is local to n8n only.\n",
+            "example": false
+          }
+        },
+        "additionalProperties": false,
+        "description": "\u0022Full OIDC SSO configuration to set. This is a full replacement: every writable field must be provided. Partial updates are rejected. Submit the redacted secret sentinel  for \u0060clientSecret\u0060 to keep the stored secret unchanged.\n\u0022"
       },
       "SamlConfiguration": {
         "required": [
@@ -5893,6 +6592,24 @@
         },
         "additionalProperties": false
       },
+      "WorkflowPublishBlockedError": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "reason": {
+            "$ref": "#/components/schemas/WorkflowPublishBlockedErrorReason"
+          },
+          "workflowReviewRequestId": {
+            "type": "string"
+          }
+        },
+        "description": "Conflict response. \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present only when the conflict is an open workflow review blocking publication."
+      },
       "WorkflowVersionListItem": {
         "required": [
           "versionId",
@@ -7030,6 +7747,11 @@
             "description": "Whether values of variables referenced by the exported workflows are bundled into the package. When \u0060false\u0060, variables still travel as name/type files and are listed in the package requirements, but no values travel with the package.",
             "default": true
           },
+          "includeTags": {
+            "type": "boolean",
+            "description": "Whether tags assigned to the exported workflows are bundled into the package. When \u0060false\u0060, no tag files, tag references, or tag requirements travel with the package.",
+            "default": true
+          },
           "missingWorkflowDependencyPolicy": {
             "$ref": "#/components/schemas/ExportPackageRequestMissingWorkflowDependencyPolicy"
           }
@@ -7063,6 +7785,12 @@
           },
           {
             "$ref": "#/components/schemas/ImportBlockingIssueOneOf7"
+          },
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf8"
+          },
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf9"
           }
         ],
         "properties": {
@@ -7080,7 +7808,9 @@
             "ImportBlockingIssueOneOf4": "#/components/schemas/ImportBlockingIssueOneOf4",
             "ImportBlockingIssueOneOf5": "#/components/schemas/ImportBlockingIssueOneOf5",
             "ImportBlockingIssueOneOf6": "#/components/schemas/ImportBlockingIssueOneOf6",
-            "ImportBlockingIssueOneOf7": "#/components/schemas/ImportBlockingIssueOneOf7"
+            "ImportBlockingIssueOneOf7": "#/components/schemas/ImportBlockingIssueOneOf7",
+            "ImportBlockingIssueOneOf8": "#/components/schemas/ImportBlockingIssueOneOf8",
+            "ImportBlockingIssueOneOf9": "#/components/schemas/ImportBlockingIssueOneOf9"
           }
         }
       },
@@ -7834,13 +8564,56 @@
       "ImportBlockingIssueOneOf7": {
         "required": [
           "type",
-          "name",
+          "kind",
           "usedByWorkflows"
         ],
         "type": "object",
         "properties": {
           "type": {
             "$ref": "#/components/schemas/ImportBlockingIssueOneOf7Type"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf7Kind"
+          },
+          "sourceId": {
+            "type": "string",
+            "description": "Tag id as it appears in the package. Absent for \u0060permission-denied\u0060."
+          },
+          "name": {
+            "type": "string",
+            "description": "The (trimmed) package tag name. Absent for \u0060permission-denied\u0060."
+          },
+          "missingScope": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf7MissingScope"
+          },
+          "existingTagId": {
+            "type": "string",
+            "description": "Id of the different target tag currently holding the wanted name, when one exists. Absent when two package tags collide with each other rather than with a target tag.\n"
+          },
+          "existingName": {
+            "type": "string",
+            "description": "\u0022For \u0060rename-drift\u0060: the current name of the same-id target tag.\u0022"
+          },
+          "usedByWorkflows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Package workflow ids (non-skipped) that reference the tag."
+          }
+        },
+        "description": "\u0022A tag referenced by the package\u0027s workflows that could not be resolved on the target instance. \u0060kind\u0060 distinguishes the cause: \u0060rename-drift\u0060 (the same-id target tag carries a different name \u2014 under \u0060tagConflictPolicy=fail\u0060, or \u0060rename\u0060 when the package name is held by another tag), \u0060name-collision\u0060 (the id is free but the name belongs to a different tag, under \u0060tagMissingMode=create\u0060 with \u0060tagConflictPolicy=fail\u0060 or \u0060rename\u0060), \u0060invalid-name\u0060 / \u0060invalid-id\u0060 (the package tag\u0027s name or id cannot be written on this instance), or \u0060permission-denied\u0060 (the importing user lacks the global \u0060tag:create\u0060 / \u0060tag:update\u0060 scope the plan needs).\n\u0022"
+      },
+      "ImportBlockingIssueOneOf8": {
+        "required": [
+          "type",
+          "name",
+          "usedByWorkflows"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf8Type"
           },
           "name": {
             "type": "string",
@@ -7854,6 +8627,49 @@
           }
         },
         "description": "A variable reference that could not be resolved in the target project or the global scope, under \u0060variableMissingMode=must-preexist\u0060.\n"
+      },
+      "ImportBlockingIssueOneOf9": {
+        "required": [
+          "type",
+          "limit",
+          "remaining",
+          "requested",
+          "names",
+          "usedByWorkflows"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf9Type"
+          },
+          "limit": {
+            "type": "integer",
+            "description": "The instance variable quota."
+          },
+          "remaining": {
+            "type": "integer",
+            "description": "Variable rows still available under the quota. The import is blocked because \u0060requested\u0060 exceeds this, not because it exceeds \u0060limit\u0060."
+          },
+          "requested": {
+            "type": "integer",
+            "description": "Number of new variable rows the import would create (destination-deduplicated)."
+          },
+          "names": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "The unique variable names the import would create."
+          },
+          "usedByWorkflows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Package workflow ids that reference any of the listed variables."
+          }
+        },
+        "description": "Creating the package\u0027s variable stubs under \u0060variableMissingMode=create-stub\u0060 would exceed the instance variable quota (\u0060quota:maxVariables\u0060). Reported once for the whole import; nothing is created.\n"
       },
       "DestinationWebhookAllOf2": {
         "required": [
@@ -9277,6 +10093,15 @@
           },
           "variableMissingMode": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestVariableMissingMode"
+          },
+          "variableParentPolicy": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestVariableParentPolicy"
+          },
+          "tagMissingMode": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestTagMissingMode"
+          },
+          "tagConflictPolicy": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestTagConflictPolicy"
           }
         }
       },
@@ -9288,7 +10113,8 @@
           "projects",
           "bindings",
           "credentials",
-          "variables"
+          "variables",
+          "tags"
         ],
         "type": "object",
         "properties": {
@@ -9320,6 +10146,9 @@
           },
           "variables": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseVariables"
+          },
+          "tags": {
+            "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseTags"
           },
           "bindings": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseBindings"
@@ -9856,7 +10685,8 @@
       "PostN8NPackagesImport200ResponseVariables": {
         "required": [
           "matched",
-          "missing"
+          "missing",
+          "stubbed"
         ],
         "type": "object",
         "properties": {
@@ -9872,10 +10702,57 @@
             "items": {
               "type": "string"
             },
-            "description": "Variable names that did not resolve. Under \u0060variableMissingMode=do-nothing\u0060 these are warnings \u2014 the import still succeeds and nothing is created.\n"
+            "description": "Variable names still unresolved after import. Under \u0060variableMissingMode=do-nothing\u0060 these are warnings \u2014 the import still succeeds and nothing is created. A successful \u0060create-stub\u0060 import normally leaves this empty.\n"
+          },
+          "stubbed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Variable names created with an empty value by this import under \u0060variableMissingMode=create-stub\u0060. Empty for other modes.\n"
           }
         },
-        "description": "Resolution of the package\u0027s variable requirements. Names only \u2014 values never travel in the response. For project packages, resolution runs per project, so a name that resolves in some projects but not others appears in both lists.\n"
+        "description": "Resolution of the package\u0027s variable requirements. Names only \u2014 values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (a name matched in one project and stubbed in another appears in both \u0060matched\u0060 and \u0060stubbed\u0060); classification under concurrent external writes is best-effort.\n"
+      },
+      "PostN8NPackagesImport200ResponseTags": {
+        "required": [
+          "matched",
+          "created",
+          "renamed",
+          "skipped"
+        ],
+        "type": "object",
+        "properties": {
+          "matched": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags that resolved to an existing tag with the same id and name; attached as-is.\n"
+          },
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags created by this import with their package (source) id and name, under \u0060tagMissingMode=create\u0060.\n"
+          },
+          "renamed": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Target tags renamed to the package name under \u0060tagConflictPolicy=rename\u0060; listed by their new name.\n"
+          },
+          "skipped": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Tags dropped from the import \u2014 not created, not renamed, and not attached to any imported workflow \u2014 under \u0060tagMissingMode=do-nothing\u0060 or \u0060tagConflictPolicy=skip\u0060.\n"
+          }
+        },
+        "description": "Resolution of the tags referenced by the imported workflows, matched by source id. Tag names only.\n"
       },
       "PostN8NPackagesImport200ResponseBindings": {
         "required": [
@@ -10008,6 +10885,190 @@
       "GetDiscover200ResponseDataResourcesAdditionalPropertiesEndpointsItemRequestSchema": {
         "type": "object",
         "description": "Request body schema (only present when include=schemas and the endpoint accepts a request body).\n"
+      },
+      "LdapConfigurationConnectionSecurity": {
+        "enum": [
+          "none",
+          "tls",
+          "startTls"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "TLS/SSL security mode for the LDAP connection.",
+        "example": "none",
+        "x-ms-enum": {
+          "name": "LdapConfigurationConnectionSecurity",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "tls",
+              "name": "Tls"
+            },
+            {
+              "value": "startTls",
+              "name": "StartTls"
+            }
+          ]
+        }
+      },
+      "LdapConfigurationUpdateConnectionSecurity": {
+        "enum": [
+          "none",
+          "tls",
+          "startTls"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "TLS/SSL security mode for the LDAP connection.",
+        "example": "none",
+        "x-ms-enum": {
+          "name": "LdapConfigurationUpdateConnectionSecurity",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "tls",
+              "name": "Tls"
+            },
+            {
+              "value": "startTls",
+              "name": "StartTls"
+            }
+          ]
+        }
+      },
+      "LdapSyncHistoryRunMode": {
+        "enum": [
+          "dry",
+          "live"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Whether the sync was a dry run or applied live.",
+        "example": "live",
+        "x-ms-enum": {
+          "name": "LdapSyncHistoryRunMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "dry",
+              "name": "Dry"
+            },
+            {
+              "value": "live",
+              "name": "Live"
+            }
+          ]
+        }
+      },
+      "LdapSyncUpdateType": {
+        "enum": [
+          "live",
+          "dry"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Type of synchronization. \u0027live\u0027 applies changes to the database, \u0027dry\u0027 performs a test run without persisting changes.\n",
+        "example": "live",
+        "x-ms-enum": {
+          "name": "LdapSyncUpdateType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "live",
+              "name": "Live"
+            },
+            {
+              "value": "dry",
+              "name": "Dry"
+            }
+          ]
+        }
+      },
+      "OidcConfigurationPrompt": {
+        "enum": [
+          "none",
+          "login",
+          "consent",
+          "select_account",
+          "create"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The prompt parameter to use when authenticating with the OIDC provider.",
+        "example": "select_account",
+        "x-ms-enum": {
+          "name": "OidcConfigurationPrompt",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "login",
+              "name": "Login"
+            },
+            {
+              "value": "consent",
+              "name": "Consent"
+            },
+            {
+              "value": "select_account",
+              "name": "SelectAccount"
+            },
+            {
+              "value": "create",
+              "name": "Create"
+            }
+          ]
+        }
+      },
+      "OidcConfigurationUpdatePrompt": {
+        "enum": [
+          "none",
+          "login",
+          "consent",
+          "select_account",
+          "create"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "The prompt parameter to use when authenticating.",
+        "example": "select_account",
+        "x-ms-enum": {
+          "name": "OidcConfigurationUpdatePrompt",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "none",
+              "name": "None"
+            },
+            {
+              "value": "login",
+              "name": "Login"
+            },
+            {
+              "value": "consent",
+              "name": "Consent"
+            },
+            {
+              "value": "select_account",
+              "name": "SelectAccount"
+            },
+            {
+              "value": "create",
+              "name": "Create"
+            }
+          ]
+        }
       },
       "SamlConfigurationLoginBinding": {
         "enum": [
@@ -10391,6 +11452,28 @@
             {
               "value": "all",
               "name": "All"
+            }
+          ]
+        }
+      },
+      "WorkflowPublishBlockedErrorReason": {
+        "enum": [
+          "review_pending",
+          "changes_requested"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "WorkflowPublishBlockedErrorReason",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "review_pending",
+              "name": "ReviewPending"
+            },
+            {
+              "value": "changes_requested",
+              "name": "ChangesRequested"
             }
           ]
         }
@@ -10824,7 +11907,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Policy for missing static sub-workflow dependencies. \u0060fail\u0060 aborts the export when any static sub-workflow is missing from the package; \u0060include-in-package\u0060 automatically adds missing static sub-workflows. \u0060reference-only\u0060 is reserved for a future export mode.",
+        "description": "Policy for missing static sub-workflow dependencies. \u0060fail\u0060 aborts the export when any static sub-workflow is missing from the package; \u0060include-in-package\u0060 automatically adds missing static sub-workflows. \u0060reference-only\u0060 keeps missing static sub-workflows out of the package and lists them in the package requirements as workflows expected to already exist on the target.",
         "example": "fail",
         "x-ms-enum": {
           "name": "ExportPackageRequestMissingWorkflowDependencyPolicy",
@@ -11094,7 +12177,7 @@
       },
       "ImportBlockingIssueOneOf7Type": {
         "enum": [
-          "variable-unresolved"
+          "tag-unresolved"
         ],
         "type": "string",
         "additionalProperties": false,
@@ -11103,8 +12186,102 @@
           "modelAsString": false,
           "values": [
             {
+              "value": "tag-unresolved",
+              "name": "TagUnresolved"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf7Kind": {
+        "enum": [
+          "rename-drift",
+          "name-collision",
+          "invalid-name",
+          "invalid-id",
+          "permission-denied"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf7Kind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "rename-drift",
+              "name": "RenameDrift"
+            },
+            {
+              "value": "name-collision",
+              "name": "NameCollision"
+            },
+            {
+              "value": "invalid-name",
+              "name": "InvalidName"
+            },
+            {
+              "value": "invalid-id",
+              "name": "InvalidId"
+            },
+            {
+              "value": "permission-denied",
+              "name": "PermissionDenied"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf7MissingScope": {
+        "enum": [
+          "tag:create",
+          "tag:update"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022For \u0060permission-denied\u0060: the global scope the importing user lacks.\u0022",
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf7MissingScope",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "tag:create",
+              "name": "TagColonCreate"
+            },
+            {
+              "value": "tag:update",
+              "name": "TagColonUpdate"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf8Type": {
+        "enum": [
+          "variable-unresolved"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf8Type",
+          "modelAsString": false,
+          "values": [
+            {
               "value": "variable-unresolved",
               "name": "VariableUnresolved"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf9Type": {
+        "enum": [
+          "variable-limit-exceeded"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf9Type",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "variable-limit-exceeded",
+              "name": "VariableLimitExceeded"
             }
           ]
         }
@@ -11890,11 +13067,12 @@
       "PostN8NPackagesImportFormDataRequestVariableMissingMode": {
         "enum": [
           "do-nothing",
-          "must-preexist"
+          "must-preexist",
+          "create-stub"
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "\u0022Controls what happens when a variable referenced by the package\u0027s workflows is absent from the target project and the global scope (lookup order: project, then global). \u0060do-nothing\u0060 (default) imports the workflows without creating the missing variable and lists its name under \u0060variables.missing\u0060 in the response so the caller can fill it in afterwards. \u0060must-preexist\u0060 rejects the import unless every referenced variable already resolves. Neither mode ever creates a variable.\n\u0022",
+        "description": "\u0022Controls what happens when a variable referenced by the package\u0027s workflows is absent from the target project and the global scope (lookup order: project, then global). \u0060do-nothing\u0060 (default) imports the workflows without creating the missing variable and lists its name under \u0060variables.missing\u0060. \u0060must-preexist\u0060 rejects the import unless every referenced variable already resolves. \u0060create-stub\u0060 creates each missing variable with an empty value at the placement scope (see \u0060variableParentPolicy\u0060) and lists the created names under \u0060variables.stubbed\u0060. Any \u0060create-stub\u0060 import that has variable requirements needs an API key carrying the \u0060variable:create\u0060 scope (owner/admin keys only) \u2014 this applies to project placement too, not only \u0060variableParentPolicy=global\u0060.\n\u0022",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestVariableMissingMode",
           "modelAsString": false,
@@ -11906,6 +13084,84 @@
             {
               "value": "must-preexist",
               "name": "MustPreexist"
+            },
+            {
+              "value": "create-stub",
+              "name": "CreateStub"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImportFormDataRequestVariableParentPolicy": {
+        "enum": [
+          "project",
+          "global"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022Where \u0060create-stub\u0060 creates missing variables for workflow/folder packages. \u0060project\u0060 \u2014 also the behaviour when the field is omitted \u2014 creates them in the import target project (\u0060projectId\u0060, else the caller\u0027s personal project). \u0060global\u0060 creates them at the global scope. The \u0060variable:create\u0060 API key scope requirement described under \u0060variableMissingMode\u0060 applies to both placements. Must be omitted for project packages, which reject it with a 400: their placement follows the package layout, where a variable bundled under a project is created in that project and one bundled at the top level is created globally.\n\u0022",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestVariableParentPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "global",
+              "name": "Global"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImportFormDataRequestTagMissingMode": {
+        "enum": [
+          "create",
+          "do-nothing"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "What to do when a tag referenced by the package\u0027s workflows has no tag with the same id on the target instance (tags are matched by source id, never by name). \u0060create\u0060 (default) creates the tag globally with its package (source) id and name; when the import would create a tag this needs an API key carrying the \u0060tag:create\u0060 scope. \u0060do-nothing\u0060 imports the workflows without the missing tags \u2014 nothing is created and the dropped names are listed under \u0060tags.skipped\u0060.\n",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestTagMissingMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "create",
+              "name": "Create"
+            },
+            {
+              "value": "do-nothing",
+              "name": "DoNothing"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImportFormDataRequestTagConflictPolicy": {
+        "enum": [
+          "skip",
+          "fail",
+          "rename"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "What to do when a referenced tag conflicts on the target instance \u2014 either the same-id target tag carries a different name (rename drift), or the tag\u0027s name is already held by a different tag (name collision). \u0060skip\u0060 (default) drops the conflicted tags from the import (not created, not renamed, not attached anywhere; the import proceeds and lists them under \u0060tags.skipped\u0060). \u0060fail\u0060 rejects the import with a 409. \u0060rename\u0060 renames a drifted target tag to the package name and needs an API key carrying the \u0060tag:update\u0060 scope when the import would rename a tag; a name collision \u2014 including a drifted tag whose package name is held by another tag \u2014 still rejects the import (rename degrades to fail).\n",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestTagConflictPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "skip",
+              "name": "Skip"
+            },
+            {
+              "value": "fail",
+              "name": "Fail"
+            },
+            {
+              "value": "rename",
+              "name": "Rename"
             }
           ]
         }
@@ -12580,8 +13836,16 @@
       "description": "Operations about the instance security policy settings"
     },
     {
+      "name": "SettingsLdap",
+      "description": "Operations about LDAP settings"
+    },
+    {
       "name": "SettingsOtel",
       "description": "Operations about OpenTelemetry settings"
+    },
+    {
+      "name": "SettingsSsoOidc",
+      "description": "Operations about OIDC SSO settings"
     },
     {
       "name": "SettingsSsoSaml",

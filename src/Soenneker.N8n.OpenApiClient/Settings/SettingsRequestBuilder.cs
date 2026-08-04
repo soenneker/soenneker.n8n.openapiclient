@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.Settings.Ldap;
 using Soenneker.N8n.OpenApiClient.Settings.LogStreaming;
 using Soenneker.N8n.OpenApiClient.Settings.Otel;
 using Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy;
@@ -18,6 +19,11 @@ namespace Soenneker.N8n.OpenApiClient.Settings
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SettingsRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The ldap property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Settings.Ldap.LdapRequestBuilder Ldap
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Settings.Ldap.LdapRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The logStreaming property</summary>
         public global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.LogStreamingRequestBuilder LogStreaming
         {
