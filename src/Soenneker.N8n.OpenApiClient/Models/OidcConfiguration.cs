@@ -52,6 +52,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string DiscoveryEndpoint { get; set; }
 #endif
+        /// <summary>Whether the identity provider must assert that the user&apos;s email address is verified before the login is accepted. When disabled, only an explicit negative assertion is rejected.</summary>
+        public bool? EmailVerifiedRequired { get; set; }
         /// <summary>Whether OIDC single sign-on is enabled.</summary>
         public bool? LoginEnabled { get; set; }
         /// <summary>The prompt parameter to use when authenticating with the OIDC provider.</summary>
@@ -81,6 +83,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "clientId", n => { ClientId = n.GetStringValue(); } },
                 { "clientSecret", n => { ClientSecret = n.GetStringValue(); } },
                 { "discoveryEndpoint", n => { DiscoveryEndpoint = n.GetStringValue(); } },
+                { "emailVerifiedRequired", n => { EmailVerifiedRequired = n.GetBoolValue(); } },
                 { "loginEnabled", n => { LoginEnabled = n.GetBoolValue(); } },
                 { "prompt", n => { Prompt = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPrompt>(); } },
                 { "rpInitiatedLogoutEnabled", n => { RpInitiatedLogoutEnabled = n.GetBoolValue(); } },
@@ -98,6 +101,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("clientId", ClientId);
             writer.WriteStringValue("clientSecret", ClientSecret);
             writer.WriteStringValue("discoveryEndpoint", DiscoveryEndpoint);
+            writer.WriteBoolValue("emailVerifiedRequired", EmailVerifiedRequired);
             writer.WriteBoolValue("loginEnabled", LoginEnabled);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPrompt>("prompt", Prompt);
             writer.WriteBoolValue("rpInitiatedLogoutEnabled", RpInitiatedLogoutEnabled);

@@ -5310,6 +5310,7 @@
           "prompt",
           "authenticationContextClassReference",
           "additionalScopes",
+          "emailVerifiedRequired",
           "rpInitiatedLogoutEnabled"
         ],
         "type": "object",
@@ -5350,6 +5351,11 @@
             "description": "Additional scopes to request, space separated. n8n always requests \u0060openid\u0060, \u0060profile\u0060 and \u0060email\u0060.\n",
             "example": "groups roles"
           },
+          "emailVerifiedRequired": {
+            "type": "boolean",
+            "description": "Whether the identity provider must assert that the user\u0027s email address is verified before the login is accepted. When disabled, only an explicit negative assertion is rejected.\n",
+            "example": false
+          },
           "rpInitiatedLogoutEnabled": {
             "type": "boolean",
             "description": "Whether signing out of n8n also ends the session at the OIDC provider via RP-Initiated Logout. When disabled, sign-out is local to n8n only.\n",
@@ -5367,6 +5373,7 @@
           "prompt",
           "authenticationContextClassReference",
           "additionalScopes",
+          "emailVerifiedRequired",
           "rpInitiatedLogoutEnabled"
         ],
         "type": "object",
@@ -5408,6 +5415,11 @@
             "type": "string",
             "description": "Additional scopes to request, space separated. n8n always requests \u0060openid\u0060, \u0060profile\u0060 and \u0060email\u0060. Use an empty string when unused.\n",
             "example": "groups roles"
+          },
+          "emailVerifiedRequired": {
+            "type": "boolean",
+            "description": "Whether the identity provider must assert that the user\u0027s email address is verified before the login is accepted. When disabled, only an explicit negative assertion is rejected.\n",
+            "example": false
           },
           "rpInitiatedLogoutEnabled": {
             "type": "boolean",
