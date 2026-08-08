@@ -915,7 +915,7 @@
             "description": "Workflow to filter the executions by.",
             "schema": {
               "type": "string",
-              "example": 1000
+              "example": "1000"
             }
           },
           {
@@ -5997,7 +5997,7 @@
           "retrySuccessId": {
             "type": "number",
             "nullable": true,
-            "example": 2
+            "example": "2"
           },
           "startedAt": {
             "type": "string",
@@ -6011,7 +6011,7 @@
           },
           "workflowId": {
             "type": "number",
-            "example": 1000
+            "example": "1000"
           },
           "waitTill": {
             "type": "string",
@@ -8813,7 +8813,7 @@
               "location": [
                 {
                   "kind": "credential",
-                  "id": 1,
+                  "id": "1",
                   "name": "My Test Account"
                 }
               ]
@@ -8834,7 +8834,7 @@
               "location": [
                 {
                   "kind": "node",
-                  "workflowId": 1,
+                  "workflowId": "1",
                   "workflowName": "My Workflow",
                   "nodeId": "51eb5852-ce0b-4806-b4ff-e41322a4041a",
                   "nodeName": "MySQL",
@@ -8858,7 +8858,7 @@
               "location": [
                 {
                   "kind": "node",
-                  "workflowId": 1,
+                  "workflowId": "1",
                   "workflowName": "My Workflow",
                   "nodeId": "51eb5852-ce0b-4806-b4ff-e41322a4041a",
                   "nodeName": "Ready Binary file",
@@ -9099,7 +9099,7 @@
         "type": "object",
         "example": {
           "jiraSoftwareCloudApi": {
-            "id": 35,
+            "id": "35",
             "name": "jiraApi"
           }
         }
