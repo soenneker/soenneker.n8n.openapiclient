@@ -8,9 +8,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public enum ImportBlockingIssueOneOf5Type
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "missing-node-type")]
+        [EnumMember(Value = "folder-conflict")]
         #pragma warning disable CS1591
-        MissingNodeType,
+        FolderConflict,
         #pragma warning restore CS1591
     }
 }

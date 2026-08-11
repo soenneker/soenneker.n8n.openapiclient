@@ -21,10 +21,10 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Workflows.Item
 {
     /// <summary>
-    /// Builds and executes requests for operations under \workflows\{id}
+    /// Builds and executes requests for operations under \workflows\{-id}
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WorkflowsItemRequestBuilder : BaseRequestBuilder
+    public partial class ItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The archive property</summary>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Archive.ArchiveRequestBuilder Archive
@@ -79,19 +79,19 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             }
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkflowsItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}{?excludePinnedData*}", pathParameters)
+        public ItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{%2Did}{?excludePinnedData*,publishIfActive*}", pathParameters)
         {
         }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkflowsItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}{?excludePinnedData*}", rawUrl)
+        public ItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{%2Did}{?excludePinnedData*,publishIfActive*}", rawUrl)
         {
         }
         /// <summary>
@@ -115,23 +115,23 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// <summary>
         /// Retrieve a workflow.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Workflow"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder.WorkflowsItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder.WorkflowsItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.Workflow>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.Workflow.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published.
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Workflow"/></returns>
         /// <param name="body">The request body</param>
@@ -140,11 +140,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishBlockedError">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -181,11 +181,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder.WorkflowsItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder.WorkflowsItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -194,18 +194,18 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published.
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -218,21 +218,30 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// <summary>
         /// Returns a request builder with the provided arbitrary URL. Using this method means any other path or query parameters are ignored.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder"/></returns>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
-        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder WithUrl(string rawUrl)
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder WithUrl(string rawUrl)
         {
-            return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder(rawUrl, RequestAdapter);
+            return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
         /// Retrieve a workflow.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WorkflowsItemRequestBuilderGetQueryParameters 
+        public partial class ItemRequestBuilderGetQueryParameters 
         {
-            /// <summary>Set this to avoid retrieving pinned data</summary>
             [QueryParameter("excludePinnedData")]
-            public bool? ExcludePinnedData { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowExcludePinnedDataParameter? ExcludePinnedData { get; set; }
+        }
+        /// <summary>
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class ItemRequestBuilderPutQueryParameters 
+        {
+            /// <summary>Whether to publish the update if the workflow is currently published. Set to `false` to save the change as a draft on the existing published version instead of releasing it. Has no effect on a workflow that isn&apos;t currently published.</summary>
+            [QueryParameter("publishIfActive")]
+            public bool? PublishIfActive { get; set; }
         }
     }
 }

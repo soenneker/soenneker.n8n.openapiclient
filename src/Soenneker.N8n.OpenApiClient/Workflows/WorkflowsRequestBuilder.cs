@@ -20,14 +20,14 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
     {
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.workflows.item collection</summary>
         /// <param name="position">The ID of the workflow.</param>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("id", position);
-                return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.WorkflowsItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("%2Did", position);
+                return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

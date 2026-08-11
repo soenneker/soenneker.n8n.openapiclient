@@ -1292,13 +1292,19 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/TagList"
+                  "$ref": "#/components/schemas/GetTags200Response"
                 }
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
           "401": {
             "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
           }
         }
       }
@@ -1540,46 +1546,6 @@
       }
     },
     "/workflows/{id}": {
-      "get": {
-        "tags": [
-          "Workflow"
-        ],
-        "summary": "Retrieve a workflow",
-        "description": "Retrieve a workflow.",
-        "operationId": "GetWorkflowsById",
-        "parameters": [
-          {
-            "name": "excludePinnedData",
-            "in": "query",
-            "description": "Set this to avoid retrieving pinned data",
-            "schema": {
-              "type": "boolean",
-              "example": true
-            }
-          },
-          {
-            "$ref": "#/components/parameters/workflowId"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "Operation successful.",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/Workflow"
-                }
-              }
-            }
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/notFound"
-          }
-        }
-      },
       "delete": {
         "tags": [
           "Workflow"
@@ -1616,11 +1582,20 @@
           "Workflow"
         ],
         "summary": "Update a workflow",
-        "description": "Update a workflow. If the workflow is published, the updated version will be automatically re-published.",
+        "description": "Update a workflow. If the workflow is published, the updated version will be automatically re-published unless \u0060publishIfActive\u0060 is set to \u0060false\u0060.",
         "operationId": "PutWorkflowsById",
         "parameters": [
           {
             "$ref": "#/components/parameters/workflowId"
+          },
+          {
+            "name": "publishIfActive",
+            "in": "query",
+            "description": "Whether to publish the update if the workflow is currently published. Set to \u0060false\u0060 to save the change as a draft on the existing published version instead of releasing it. Has no effect on a workflow that isn\u0027t currently published.",
+            "schema": {
+              "type": "boolean",
+              "default": true
+            }
           }
         ],
         "requestBody": {
@@ -1664,28 +1639,29 @@
             }
           }
         }
-      }
-    },
-    "/workflows/{id}/history": {
+      },
       "get": {
         "tags": [
           "Workflow"
         ],
-        "summary": "Retrieve workflow version history",
-        "description": "Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.",
-        "operationId": "GetWorkflowHistory",
+        "summary": "Retrieve a workflow",
+        "description": "Retrieve a workflow.",
+        "operationId": "GetWorkflow",
         "parameters": [
           {
-            "$ref": "#/components/parameters/workflowId"
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
           },
           {
-            "$ref": "#/components/parameters/limit"
-          },
-          {
-            "$ref": "#/components/parameters/offset"
-          },
-          {
-            "$ref": "#/components/parameters/cursor"
+            "name": "excludePinnedData",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/GetWorkflowExcludePinnedDataParameter"
+            }
           }
         ],
         "responses": {
@@ -1694,7 +1670,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WorkflowVersionHistoryList"
+                  "$ref": "#/components/schemas/GetWorkflow200Response"
                 }
               }
             }
@@ -1704,6 +1680,9 @@
           },
           "401": {
             "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
           },
           "404": {
             "$ref": "#/components/responses/notFound"
@@ -4372,7 +4351,7 @@
           "N8nPackage"
         ],
         "summary": "\u0022Beta: Import an n8n package into a project\u0022",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). Every optional\nmode/policy field (credential, workflow, folder, data table, variable, and tag)\ntakes its default when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Credentials owned by,\nshared with, or global to the target project (with \u0060credential:read\u0060) match.\n",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports a gzip-compressed tar package (\u0060.n8np\u0060) into the target project. Send the\narchive as the multipart field \u0060package\u0060. Optional routing uses form fields\n\u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). Every optional\nmode/policy field (credential, workflow, project, folder, data table, variable,\nand tag) takes its default when omitted. The required\n\u0060workflowConflictPolicy\u0060 field controls what happens when a package workflow\nmatches an existing workflow by source id in the target project. Maximum upload\nsize is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file\nreferenced by the manifest. The caller is authorised through the \u0060workflow:import\u0060\nscope. With the default \u0060workflowIdPolicy=new\u0060, newly created workflows receive a\nfresh local id; imported workflows arrive inactive unless \u0060workflowPublishingPolicy\u0060\npublishes them after import.\n\nCredential references are resolved before any workflow is written. Credentials owned by,\nshared with, or global to the target project (with \u0060credential:read\u0060) match.\n",
         "operationId": "PostN8NPackagesImport",
         "requestBody": {
           "content": {
@@ -4407,7 +4386,7 @@
             "$ref": "#/components/responses/notFound"
           },
           "409": {
-            "description": "Import blocked by at least one conflict among the issues \u2014 a workflow source-id conflict, a folder conflict (id under a different parent, id owned by another project, or a \u0060fail\u0060-policy match), or a tag conflict (rename drift or name collision).\n",
+            "description": "Import blocked by at least one conflict among the issues \u2014 a workflow source-id conflict, a folder conflict (id under a different parent, id owned by another project, or a \u0060fail\u0060-policy match), a tag conflict (rename drift or name collision), a variable whose bundled value differs from the resolved target\u0027s under \u0060variableConflictPolicy=fail\u0060, or one row two projects of a package would overwrite with different values.\n",
             "content": {
               "application/json": {
                 "schema": {
@@ -4706,6 +4685,99 @@
           },
           "409": {
             "$ref": "#/components/responses/conflict"
+          }
+        }
+      }
+    },
+    "/roles": {
+      "post": {
+        "tags": [
+          "Role"
+        ],
+        "summary": "Create a custom role",
+        "description": "Creates a custom role. Set \u0060roleType\u0060 to \u0060global\u0060 for an instance-wide role or \u0060project\u0060 for a project role.",
+        "operationId": "CreateRole",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRole201Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          }
+        }
+      }
+    },
+    "/workflows/{workflowId}/history": {
+      "get": {
+        "tags": [
+          "Workflow"
+        ],
+        "summary": "Retrieve workflow version history",
+        "description": "Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.",
+        "operationId": "GetWorkflowHistory",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/offset"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "name": "workflowId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWorkflowHistory200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
           }
         }
       }
@@ -6083,23 +6155,6 @@
           "$ref": "#/components/schemas/TagIdsItem"
         }
       },
-      "TagList": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Tag"
-            }
-          },
-          "nextCursor": {
-            "type": "string",
-            "description": "Paginate through tags by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first \u0022page\u0022 of the collection.",
-            "nullable": true,
-            "example": "MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA"
-          }
-        }
-      },
       "Node": {
         "type": "object",
         "properties": {
@@ -6363,6 +6418,24 @@
             "readOnly": true,
             "example": "1,2,3"
           },
+          "name": {
+            "type": "string",
+            "description": "Optional name for this workflow version",
+            "nullable": true,
+            "readOnly": true,
+            "example": "Production release"
+          },
+          "description": {
+            "type": "string",
+            "description": "Optional description for this workflow version",
+            "nullable": true,
+            "readOnly": true
+          },
+          "autosaved": {
+            "type": "boolean",
+            "description": "Whether this version was created by autosave",
+            "readOnly": true
+          },
           "createdAt": {
             "type": "string",
             "format": "date-time",
@@ -6621,79 +6694,6 @@
           }
         },
         "description": "Conflict response. \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present only when the conflict is an open workflow review blocking publication."
-      },
-      "WorkflowVersionListItem": {
-        "required": [
-          "versionId",
-          "workflowId",
-          "authors"
-        ],
-        "type": "object",
-        "properties": {
-          "versionId": {
-            "type": "string",
-            "description": "The version ID of this workflow snapshot",
-            "readOnly": true,
-            "example": "abc123-def456"
-          },
-          "workflowId": {
-            "type": "string",
-            "description": "The workflow ID this version belongs to",
-            "readOnly": true,
-            "example": "2tUt1wbLX592XDdX"
-          },
-          "authors": {
-            "type": "string",
-            "description": "Authors who created this version",
-            "readOnly": true,
-            "example": "John Doe"
-          },
-          "name": {
-            "type": "string",
-            "description": "Workflow name at this version",
-            "nullable": true,
-            "example": "Workflow 1"
-          },
-          "description": {
-            "type": "string",
-            "description": "Workflow description at this version",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string",
-            "description": "When this version was created",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "updatedAt": {
-            "type": "string",
-            "description": "When this version was last updated",
-            "format": "date-time",
-            "readOnly": true
-          }
-        },
-        "additionalProperties": false
-      },
-      "WorkflowVersionHistoryList": {
-        "required": [
-          "data",
-          "nextCursor"
-        ],
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/WorkflowVersionListItem"
-            }
-          },
-          "nextCursor": {
-            "type": "string",
-            "description": "Paginate through workflow versions by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first \u0022page\u0022 of the collection.",
-            "nullable": true,
-            "example": "MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA"
-          }
-        }
       },
       "WorkflowVersion": {
         "required": [
@@ -7803,6 +7803,12 @@
           },
           {
             "$ref": "#/components/schemas/ImportBlockingIssueOneOf9"
+          },
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf10"
+          },
+          {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf11"
           }
         ],
         "properties": {
@@ -7822,7 +7828,9 @@
             "ImportBlockingIssueOneOf6": "#/components/schemas/ImportBlockingIssueOneOf6",
             "ImportBlockingIssueOneOf7": "#/components/schemas/ImportBlockingIssueOneOf7",
             "ImportBlockingIssueOneOf8": "#/components/schemas/ImportBlockingIssueOneOf8",
-            "ImportBlockingIssueOneOf9": "#/components/schemas/ImportBlockingIssueOneOf9"
+            "ImportBlockingIssueOneOf9": "#/components/schemas/ImportBlockingIssueOneOf9",
+            "ImportBlockingIssueOneOf10": "#/components/schemas/ImportBlockingIssueOneOf10",
+            "ImportBlockingIssueOneOf11": "#/components/schemas/ImportBlockingIssueOneOf11"
           }
         }
       },
@@ -8469,7 +8477,7 @@
         "required": [
           "type",
           "kind",
-          "sourceFolderId",
+          "sourceProjectId",
           "name"
         ],
         "type": "object",
@@ -8479,6 +8487,31 @@
           },
           "kind": {
             "$ref": "#/components/schemas/ImportBlockingIssueOneOf4Kind"
+          },
+          "sourceProjectId": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "description": "The project\u0027s name as it appears in the package."
+          }
+        },
+        "description": "A project defined by the package that already exists on this instance, under \u0060projectConflictPolicy=fail\u0060.\n"
+      },
+      "ImportBlockingIssueOneOf5": {
+        "required": [
+          "type",
+          "kind",
+          "sourceFolderId",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf5Type"
+          },
+          "kind": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf5Kind"
           },
           "sourceFolderId": {
             "type": "string"
@@ -8504,7 +8537,7 @@
         },
         "description": "\u0022A package folder that cannot be imported as-is. \u0060kind\u0060 distinguishes the cause: \u0060parent-mismatch\u0060 (a folder matched by id sits under a different parent than the package places it), \u0060id-in-other-project\u0060 (the folder id already exists in a different project \u2014 ids are globally unique), or \u0060fail-policy\u0060 (the folder already exists and \u0060folderConflictPolicy\u0060 is \u0060fail\u0060).\n\u0022"
       },
-      "ImportBlockingIssueOneOf5": {
+      "ImportBlockingIssueOneOf6": {
         "required": [
           "type",
           "nodeType",
@@ -8514,7 +8547,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf5Type"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf6Type"
           },
           "nodeType": {
             "type": "string",
@@ -8534,7 +8567,7 @@
         },
         "description": "A node type \u2014 or a version of a node type \u2014 used by a package workflow that this instance does not have, under \u0060missingNodeTypeMode=fail\u0060. One issue is reported per missing \u0060(nodeType, typeVersion)\u0060 pair.\n"
       },
-      "ImportBlockingIssueOneOf6": {
+      "ImportBlockingIssueOneOf7": {
         "required": [
           "type",
           "kind",
@@ -8544,10 +8577,10 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf6Type"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf7Type"
           },
           "kind": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf6Kind"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf7Kind"
           },
           "sourceId": {
             "type": "string"
@@ -8573,7 +8606,7 @@
         },
         "description": "A credential reference that could not be resolved in the target project."
       },
-      "ImportBlockingIssueOneOf7": {
+      "ImportBlockingIssueOneOf8": {
         "required": [
           "type",
           "kind",
@@ -8582,10 +8615,10 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf7Type"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf8Type"
           },
           "kind": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf7Kind"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf8Kind"
           },
           "sourceId": {
             "type": "string",
@@ -8596,11 +8629,11 @@
             "description": "The (trimmed) package tag name. Absent for \u0060permission-denied\u0060."
           },
           "missingScope": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf7MissingScope"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf8MissingScope"
           },
           "existingTagId": {
             "type": "string",
-            "description": "Id of the different target tag currently holding the wanted name, when one exists. Absent when two package tags collide with each other rather than with a target tag.\n"
+            "description": "Id of the contested target tag \u2014 the different tag currently holding the wanted name, or the target tag a blocked reconcile would re-key. Absent when two package tags collide with each other rather than over a target tag.\n"
           },
           "existingName": {
             "type": "string",
@@ -8611,12 +8644,12 @@
             "items": {
               "type": "string"
             },
-            "description": "Package workflow ids (non-skipped) that reference the tag."
+            "description": "Package workflow ids (non-skipped) that reference the source tag \u2014 not workflows attached to the contested target tag.\n"
           }
         },
-        "description": "\u0022A tag referenced by the package\u0027s workflows that could not be resolved on the target instance. \u0060kind\u0060 distinguishes the cause: \u0060rename-drift\u0060 (the same-id target tag carries a different name \u2014 under \u0060tagConflictPolicy=fail\u0060, or \u0060rename\u0060 when the package name is held by another tag), \u0060name-collision\u0060 (the id is free but the name belongs to a different tag, under \u0060tagMissingMode=create\u0060 with \u0060tagConflictPolicy=fail\u0060 or \u0060rename\u0060), \u0060invalid-name\u0060 / \u0060invalid-id\u0060 (the package tag\u0027s name or id cannot be written on this instance), or \u0060permission-denied\u0060 (the importing user lacks the global \u0060tag:create\u0060 / \u0060tag:update\u0060 scope the plan needs).\n\u0022"
+        "description": "\u0022A tag referenced by the package\u0027s workflows that could not be resolved on the target instance. \u0060kind\u0060 distinguishes the cause: \u0060rename-drift\u0060 (the same-id target tag carries a different name \u2014 under \u0060tagConflictPolicy=fail\u0060, or \u0060rename\u0060 when the package name is held by another tag), \u0060name-collision\u0060 (the id is free but the name belongs to a different tag under \u0060tagMissingMode=create\u0060 with \u0060tagConflictPolicy=fail\u0060; also raised when two package tags collide with each other, or when the target tag a reconcile would re-key is claimed by another package tag), \u0060invalid-name\u0060 / \u0060invalid-id\u0060 (the package tag\u0027s name or id cannot be written on this instance), or \u0060permission-denied\u0060 (the importing user lacks the global \u0060tag:create\u0060 / \u0060tag:update\u0060 scope the plan needs).\n\u0022"
       },
-      "ImportBlockingIssueOneOf8": {
+      "ImportBlockingIssueOneOf9": {
         "required": [
           "type",
           "name",
@@ -8625,7 +8658,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf8Type"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf9Type"
           },
           "name": {
             "type": "string",
@@ -8640,7 +8673,35 @@
         },
         "description": "A variable reference that could not be resolved in the target project or the global scope, under \u0060variableMissingMode=must-preexist\u0060.\n"
       },
-      "ImportBlockingIssueOneOf9": {
+      "ImportBlockingIssueOneOf10": {
+        "required": [
+          "type",
+          "name",
+          "usedByWorkflows"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf10Type"
+          },
+          "name": {
+            "type": "string",
+            "description": "Name of the variable whose value differs."
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Project owning the resolved variable. Absent when it resolved at the global scope.\n"
+          },
+          "usedByWorkflows": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        },
+        "description": "A variable that resolved in the target project or the global scope, but whose value differs from the one the package bundles for it, under \u0060variableConflictPolicy=fail\u0060. Also reported under \u0060overwrite\u0060, once per scope, when the projects of a package resolve one row and disagree about the value it should hold. Values are never reported \u2014 only the name and the scope the variable was found in.\n"
+      },
+      "ImportBlockingIssueOneOf11": {
         "required": [
           "type",
           "limit",
@@ -8652,7 +8713,7 @@
         "type": "object",
         "properties": {
           "type": {
-            "$ref": "#/components/schemas/ImportBlockingIssueOneOf9Type"
+            "$ref": "#/components/schemas/ImportBlockingIssueOneOf11Type"
           },
           "limit": {
             "type": "integer",
@@ -8681,7 +8742,7 @@
             "description": "Package workflow ids that reference any of the listed variables."
           }
         },
-        "description": "Creating the package\u0027s variable stubs under \u0060variableMissingMode=create-stub\u0060 would exceed the instance variable quota (\u0060quota:maxVariables\u0060). Reported once for the whole import; nothing is created.\n"
+        "description": "Creating the package\u0027s variables under \u0060create-stub\u0060 or \u0060create-with-value\u0060 would exceed the instance variable quota (\u0060quota:maxVariables\u0060). Reported once for the whole import; nothing is created.\n"
       },
       "DestinationWebhookAllOf2": {
         "required": [
@@ -9814,6 +9875,129 @@
           }
         }
       },
+      "GetTags200Response": {
+        "required": [
+          "data",
+          "nextCursor"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetTags200ResponseDataItem"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "GetWorkflow200Response": {
+        "required": [
+          "id",
+          "name",
+          "description",
+          "active",
+          "activeVersionId",
+          "createdAt",
+          "updatedAt",
+          "isArchived",
+          "versionId",
+          "versionCounter",
+          "sourceWorkflowId",
+          "triggerCount",
+          "nodes",
+          "connections",
+          "nodeGroups",
+          "settings",
+          "staticData",
+          "meta",
+          "shared",
+          "activeVersion"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "activeVersionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isArchived": {
+            "type": "boolean"
+          },
+          "versionId": {
+            "type": "string"
+          },
+          "versionCounter": {
+            "type": "number"
+          },
+          "sourceWorkflowId": {
+            "type": "string",
+            "nullable": true
+          },
+          "triggerCount": {
+            "type": "number"
+          },
+          "nodes": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseNodes"
+          },
+          "connections": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseConnections"
+          },
+          "nodeGroups": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseNodeGroups"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseSettings"
+          },
+          "staticData": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseStaticData"
+          },
+          "pinData": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponsePinData"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseMeta"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflow200ResponseTagsItem"
+            }
+          },
+          "shared": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflow200ResponseSharedItem"
+            }
+          },
+          "activeVersion": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseActiveVersion"
+          }
+        }
+      },
       "PostWorkflowsByIdPublishRequest": {
         "type": "object",
         "properties": {
@@ -10091,6 +10275,9 @@
           "workflowPublishingPolicy": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestWorkflowPublishingPolicy"
           },
+          "projectConflictPolicy": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestProjectConflictPolicy"
+          },
           "folderConflictPolicy": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestFolderConflictPolicy"
           },
@@ -10105,6 +10292,9 @@
           },
           "variableMissingMode": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestVariableMissingMode"
+          },
+          "variableConflictPolicy": {
+            "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestVariableConflictPolicy"
           },
           "variableParentPolicy": {
             "$ref": "#/components/schemas/PostN8NPackagesImportFormDataRequestVariableParentPolicy"
@@ -10151,7 +10341,7 @@
             "items": {
               "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseProjectsItem"
             },
-            "description": "Project shells created or matched-and-updated. Present for project packages; empty when importing loose workflows/folders.\n"
+            "description": "Project shells created, or matched and then updated or left as-is (see \u0060projectConflictPolicy\u0060). Present for project packages; empty when importing loose workflows/folders.\n"
           },
           "credentials": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseCredentials"
@@ -10164,6 +10354,98 @@
           },
           "bindings": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseBindings"
+          }
+        }
+      },
+      "CreateRoleRequest": {
+        "required": [
+          "displayName",
+          "roleType",
+          "scopes"
+        ],
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "maxLength": 100,
+            "minLength": 2,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 500,
+            "type": "string"
+          },
+          "roleType": {
+            "$ref": "#/components/schemas/CreateRoleRequestRoleType"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateRole201Response": {
+        "required": [
+          "slug",
+          "displayName",
+          "description",
+          "systemRole",
+          "roleType",
+          "scopes",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "systemRole": {
+            "type": "boolean"
+          },
+          "roleType": {
+            "$ref": "#/components/schemas/CreateRole201ResponseRoleType"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetWorkflowHistory200Response": {
+        "required": [
+          "data",
+          "nextCursor"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflowHistory200ResponseDataItem"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "nullable": true
           }
         }
       },
@@ -10476,6 +10758,173 @@
           }
         }
       },
+      "GetTags200ResponseDataItem": {
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetWorkflow200ResponseNodes": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseConnections": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseNodeGroups": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseSettings": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseStaticData": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponsePinData": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseMeta": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseTagsItem": {
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetWorkflow200ResponseSharedItem": {
+        "required": [
+          "role",
+          "workflowId",
+          "projectId",
+          "project",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "workflowId": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseSharedItemProject"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetWorkflow200ResponseActiveVersion": {
+        "required": [
+          "versionId",
+          "workflowId",
+          "nodes",
+          "connections",
+          "nodeGroups",
+          "authors",
+          "name",
+          "description",
+          "autosaved",
+          "createdAt",
+          "updatedAt",
+          "workflowPublishHistory"
+        ],
+        "type": "object",
+        "properties": {
+          "versionId": {
+            "type": "string"
+          },
+          "workflowId": {
+            "type": "string"
+          },
+          "nodes": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseActiveVersionNodes"
+          },
+          "connections": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseActiveVersionConnections"
+          },
+          "nodeGroups": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseActiveVersionNodeGroups"
+          },
+          "authors": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "autosaved": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "workflowPublishHistory": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItem"
+            }
+          }
+        },
+        "nullable": true
+      },
       "PostUsersRequestItem": {
         "required": [
           "email"
@@ -10663,7 +11112,8 @@
             "description": "Project id on the target instance (equal to \u0060sourceProjectId\u0060; project ids are reused)."
           },
           "name": {
-            "type": "string"
+            "type": "string",
+            "description": "\u0022The project\u0027s name on the target: the package\u0027s under \u0060overwrite\u0060, the pre-existing one under \u0060merge\u0060.\n\u0022"
           },
           "status": {
             "$ref": "#/components/schemas/PostN8NPackagesImport200ResponseProjectsItemStatus"
@@ -10698,7 +11148,9 @@
         "required": [
           "matched",
           "missing",
-          "stubbed"
+          "created",
+          "stubbed",
+          "updated"
         ],
         "type": "object",
         "properties": {
@@ -10707,30 +11159,45 @@
             "items": {
               "type": "string"
             },
-            "description": "Variable names that resolved to an existing variable (importing project\u0027s scope first, then global).\n"
+            "description": "Variable names that resolved to an existing variable (importing project\u0027s scope first, then global) and were left untouched. A resolved variable this import rewrote is listed under \u0060updated\u0060 instead.\n"
           },
           "missing": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Variable names still unresolved after import. Under \u0060variableMissingMode=do-nothing\u0060 these are warnings \u2014 the import still succeeds and nothing is created. A successful \u0060create-stub\u0060 import normally leaves this empty.\n"
+            "description": "Variable names still unresolved after import. Under \u0060variableMissingMode=do-nothing\u0060 these are warnings \u2014 the import still succeeds and nothing is created. A successful \u0060create-stub\u0060 or \u0060create-with-value\u0060 import normally leaves this empty.\n"
+          },
+          "created": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Variable names created with a package value under \u0060variableMissingMode=create-with-value\u0060. Empty stubs are listed under \u0060stubbed\u0060.\n"
           },
           "stubbed": {
             "type": "array",
             "items": {
               "type": "string"
             },
-            "description": "Variable names created with an empty value by this import under \u0060variableMissingMode=create-stub\u0060. Empty for other modes.\n"
+            "description": "Variable names created with an empty value by this import under \u0060variableMissingMode=create-stub\u0060, or because \u0060create-with-value\u0060 had no exported value. Empty for other outcomes.\n"
+          },
+          "updated": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Variable names whose existing value this import replaced with the package value under \u0060variableConflictPolicy=overwrite\u0060. Empty for other policies.\n"
           }
         },
-        "description": "Resolution of the package\u0027s variable requirements. Names only \u2014 values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (a name matched in one project and stubbed in another appears in both \u0060matched\u0060 and \u0060stubbed\u0060); classification under concurrent external writes is best-effort.\n"
+        "description": "Resolution of the package\u0027s variable requirements. Names only \u2014 values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (for example, a name may be created with a value in one project and stubbed in another); classification under concurrent external writes is best-effort.\n"
       },
       "PostN8NPackagesImport200ResponseTags": {
         "required": [
           "matched",
           "created",
           "renamed",
+          "reconciled",
           "skipped"
         ],
         "type": "object",
@@ -10755,6 +11222,13 @@
               "type": "string"
             },
             "description": "Target tags renamed to the package name under \u0060tagConflictPolicy=rename\u0060; listed by their new name.\n"
+          },
+          "reconciled": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Existing target tags re-keyed to the package (source) id on a name collision under \u0060tagConflictPolicy=rename\u0060; their name, workflow and folder taggings are kept.\n"
           },
           "skipped": {
             "type": "array",
@@ -10782,6 +11256,45 @@
         },
         "description": "Source id \u2192 target id mappings produced during import, one map per entity type. Each value maps an id as it appeared in the package to the id on the target instance.\n"
       },
+      "GetWorkflowHistory200ResponseDataItem": {
+        "required": [
+          "versionId",
+          "workflowId",
+          "authors",
+          "name",
+          "description",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "versionId": {
+            "type": "string"
+          },
+          "workflowId": {
+            "type": "string"
+          },
+          "authors": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "PostUsersRequestRequestBodyItem": {
         "required": [
           "email"
@@ -10795,6 +11308,99 @@
           "role": {
             "type": "string",
             "example": "global:member"
+          }
+        }
+      },
+      "GetWorkflow200ResponseSharedItemProject": {
+        "required": [
+          "id",
+          "name",
+          "type",
+          "icon",
+          "description",
+          "customTelemetryTags",
+          "creatorId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseSharedItemProjectType"
+          },
+          "icon": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseSharedItemProjectIcon"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "customTelemetryTags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflow200ResponseSharedItemProjectCustomTelemetryTagsItem"
+            }
+          },
+          "creatorId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetWorkflow200ResponseActiveVersionNodes": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseActiveVersionConnections": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseActiveVersionNodeGroups": {
+        "type": "object"
+      },
+      "GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItem": {
+        "required": [
+          "id",
+          "workflowId",
+          "versionId",
+          "event",
+          "userId",
+          "createdAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "number"
+          },
+          "workflowId": {
+            "type": "string"
+          },
+          "versionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "event": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItemEvent"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
           }
         }
       },
@@ -10845,6 +11451,37 @@
           "type": "string"
         },
         "description": "Credential id from \u0060requirements.credentials\u0060 in the package manifest \u2192 matched credential id on the target instance.\n"
+      },
+      "GetWorkflow200ResponseSharedItemProjectIcon": {
+        "required": [
+          "type",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "$ref": "#/components/schemas/GetWorkflow200ResponseSharedItemProjectIconType"
+          },
+          "value": {
+            "type": "string"
+          }
+        },
+        "nullable": true
+      },
+      "GetWorkflow200ResponseSharedItemProjectCustomTelemetryTagsItem": {
+        "required": [
+          "key",
+          "value"
+        ],
+        "type": "object",
+        "properties": {
+          "key": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
       },
       "GetDiscover200ResponseDataResourcesAdditionalProperties": {
         "type": "object",
@@ -12079,12 +12716,46 @@
       },
       "ImportBlockingIssueOneOf4Type": {
         "enum": [
-          "folder-conflict"
+          "project-conflict"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
           "name": "ImportBlockingIssueOneOf4Type",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "project-conflict",
+              "name": "ProjectConflict"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf4Kind": {
+        "enum": [
+          "fail-policy"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf4Kind",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "fail-policy",
+              "name": "FailPolicy"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf5Type": {
+        "enum": [
+          "folder-conflict"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf5Type",
           "modelAsString": false,
           "values": [
             {
@@ -12094,7 +12765,7 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf4Kind": {
+      "ImportBlockingIssueOneOf5Kind": {
         "enum": [
           "parent-mismatch",
           "id-in-other-project",
@@ -12103,7 +12774,7 @@
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf4Kind",
+          "name": "ImportBlockingIssueOneOf5Kind",
           "modelAsString": false,
           "values": [
             {
@@ -12121,14 +12792,14 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf5Type": {
+      "ImportBlockingIssueOneOf6Type": {
         "enum": [
           "missing-node-type"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf5Type",
+          "name": "ImportBlockingIssueOneOf6Type",
           "modelAsString": false,
           "values": [
             {
@@ -12138,14 +12809,14 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf6Type": {
+      "ImportBlockingIssueOneOf7Type": {
         "enum": [
           "credential-unresolved"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf6Type",
+          "name": "ImportBlockingIssueOneOf7Type",
           "modelAsString": false,
           "values": [
             {
@@ -12155,7 +12826,7 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf6Kind": {
+      "ImportBlockingIssueOneOf7Kind": {
         "enum": [
           "not_found",
           "unknown_type",
@@ -12165,7 +12836,7 @@
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf6Kind",
+          "name": "ImportBlockingIssueOneOf7Kind",
           "modelAsString": false,
           "values": [
             {
@@ -12187,14 +12858,14 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf7Type": {
+      "ImportBlockingIssueOneOf8Type": {
         "enum": [
           "tag-unresolved"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf7Type",
+          "name": "ImportBlockingIssueOneOf8Type",
           "modelAsString": false,
           "values": [
             {
@@ -12204,7 +12875,7 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf7Kind": {
+      "ImportBlockingIssueOneOf8Kind": {
         "enum": [
           "rename-drift",
           "name-collision",
@@ -12215,7 +12886,7 @@
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf7Kind",
+          "name": "ImportBlockingIssueOneOf8Kind",
           "modelAsString": false,
           "values": [
             {
@@ -12241,7 +12912,7 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf7MissingScope": {
+      "ImportBlockingIssueOneOf8MissingScope": {
         "enum": [
           "tag:create",
           "tag:update"
@@ -12250,7 +12921,7 @@
         "additionalProperties": false,
         "description": "\u0022For \u0060permission-denied\u0060: the global scope the importing user lacks.\u0022",
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf7MissingScope",
+          "name": "ImportBlockingIssueOneOf8MissingScope",
           "modelAsString": false,
           "values": [
             {
@@ -12264,14 +12935,14 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf8Type": {
+      "ImportBlockingIssueOneOf9Type": {
         "enum": [
           "variable-unresolved"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf8Type",
+          "name": "ImportBlockingIssueOneOf9Type",
           "modelAsString": false,
           "values": [
             {
@@ -12281,14 +12952,31 @@
           ]
         }
       },
-      "ImportBlockingIssueOneOf9Type": {
+      "ImportBlockingIssueOneOf10Type": {
+        "enum": [
+          "variable-conflict"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ImportBlockingIssueOneOf10Type",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "variable-conflict",
+              "name": "VariableConflict"
+            }
+          ]
+        }
+      },
+      "ImportBlockingIssueOneOf11Type": {
         "enum": [
           "variable-limit-exceeded"
         ],
         "type": "string",
         "additionalProperties": false,
         "x-ms-enum": {
-          "name": "ImportBlockingIssueOneOf9Type",
+          "name": "ImportBlockingIssueOneOf11Type",
           "modelAsString": false,
           "values": [
             {
@@ -12984,6 +13672,34 @@
           ]
         }
       },
+      "PostN8NPackagesImportFormDataRequestProjectConflictPolicy": {
+        "enum": [
+          "merge",
+          "fail",
+          "overwrite"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "What to do when a project the package defines already exists here (matched by id), and \u2014 unless \u0060folderConflictPolicy\u0060 overrides it \u2014 how its contents are treated. \u0060merge\u0060 (default) leaves the existing project\u0027s name, description, icon and custom span attributes untouched and adds the package\u0027s contents alongside. \u0060overwrite\u0060 replaces those details with the package\u0027s; a detail the package omits is left as it is, not cleared. \u0060fail\u0060 rejects the import before anything is written, with one \u0060project-conflict\u0060 issue per existing project. A package project id belonging to a personal project, or to a team project the caller cannot update, always rejects the import. Ignored for workflow packages.\n",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestProjectConflictPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "merge",
+              "name": "Merge"
+            },
+            {
+              "value": "fail",
+              "name": "Fail"
+            },
+            {
+              "value": "overwrite",
+              "name": "Overwrite"
+            }
+          ]
+        }
+      },
       "PostN8NPackagesImportFormDataRequestFolderConflictPolicy": {
         "enum": [
           "merge",
@@ -13080,11 +13796,12 @@
         "enum": [
           "do-nothing",
           "must-preexist",
-          "create-stub"
+          "create-stub",
+          "create-with-value"
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "\u0022Controls what happens when a variable referenced by the package\u0027s workflows is absent from the target project and the global scope (lookup order: project, then global). \u0060do-nothing\u0060 (default) imports the workflows without creating the missing variable and lists its name under \u0060variables.missing\u0060. \u0060must-preexist\u0060 rejects the import unless every referenced variable already resolves. \u0060create-stub\u0060 creates each missing variable with an empty value at the placement scope (see \u0060variableParentPolicy\u0060) and lists the created names under \u0060variables.stubbed\u0060. Any \u0060create-stub\u0060 import that has variable requirements needs an API key carrying the \u0060variable:create\u0060 scope (owner/admin keys only) \u2014 this applies to project placement too, not only \u0060variableParentPolicy=global\u0060.\n\u0022",
+        "description": "\u0022Controls what happens when a variable referenced by the package\u0027s workflows is absent from the target project and the global scope (lookup order: project, then global). \u0060create-with-value\u0060 (default) creates the variable with its package value and lists its name under \u0060variables.created\u0060. When the package carries no value for it \u2014 values were excluded at export, or the exported value was itself empty \u2014 it creates an empty stub listed under \u0060variables.stubbed\u0060. \u0060do-nothing\u0060 imports without creating the variable and lists its name under \u0060variables.missing\u0060. \u0060must-preexist\u0060 rejects the import unless every referenced variable already resolves. \u0060create-stub\u0060 creates each missing variable with an empty value at the placement scope (see \u0060variableParentPolicy\u0060) and lists the created names under \u0060variables.stubbed\u0060. An import that actually creates a variable requires a license that permits variables and, for API key callers, the \u0060variable:create\u0060 scope; a package whose variables all already resolve creates nothing and needs neither.\n\u0022",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestVariableMissingMode",
           "modelAsString": false,
@@ -13100,6 +13817,38 @@
             {
               "value": "create-stub",
               "name": "CreateStub"
+            },
+            {
+              "value": "create-with-value",
+              "name": "CreateWithValue"
+            }
+          ]
+        }
+      },
+      "PostN8NPackagesImportFormDataRequestVariableConflictPolicy": {
+        "enum": [
+          "keep-existing",
+          "overwrite",
+          "fail"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "\u0022What to do when a referenced variable resolves in the target project or global scope but the package bundles a *different* value for it. \u0060keep-existing\u0060 (default) leaves the target value untouched and reports the name under \u0060variables.matched\u0060. \u0060overwrite\u0060 silently replaces the value of the existing variable at whichever scope it was found \u2014 the target project or the global scope, so a global variable other projects also read can be rewritten by this import \u2014 and reports the name under \u0060variables.updated\u0060; it needs a license that permits variables, the \u0060variable:update\u0060 / \u0060projectVariable:update\u0060 permission on that scope, and, for API key callers, the \u0060variable:update\u0060 scope. \u0060fail\u0060 rejects the import with a 409 instead. Every policy leaves a resolved variable alone when there is nothing to change \u2014 either the package bundles no value for it (values were excluded at export, or the exported value was itself empty), or the value it bundles already matches the target\u0027s. The reverse does not hold: a resolved variable holding an empty value \u2014 a stub an earlier import created, say \u2014 still counts as a value, so \u0060overwrite\u0060 fills it and \u0060fail\u0060 rejects it. Under \u0060overwrite\u0060, a project package whose projects hold *different* values for a name they all resolve to one row \u2014 a global none of them shadows, typically \u2014 is rejected with a 409: one row cannot carry both values, and the import will not pick for you. Give the projects their own variables in the target, or import them separately.\n\u0022",
+        "x-ms-enum": {
+          "name": "PostN8NPackagesImportFormDataRequestVariableConflictPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "keep-existing",
+              "name": "KeepExisting"
+            },
+            {
+              "value": "overwrite",
+              "name": "Overwrite"
+            },
+            {
+              "value": "fail",
+              "name": "Fail"
             }
           ]
         }
@@ -13111,7 +13860,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "\u0022Where \u0060create-stub\u0060 creates missing variables for workflow/folder packages. \u0060project\u0060 \u2014 also the behaviour when the field is omitted \u2014 creates them in the import target project (\u0060projectId\u0060, else the caller\u0027s personal project). \u0060global\u0060 creates them at the global scope. The \u0060variable:create\u0060 API key scope requirement described under \u0060variableMissingMode\u0060 applies to both placements. Must be omitted for project packages, which reject it with a 400: their placement follows the package layout, where a variable bundled under a project is created in that project and one bundled at the top level is created globally.\n\u0022",
+        "description": "\u0022Where \u0060create-with-value\u0060 and \u0060create-stub\u0060 create missing variables for workflow/folder packages. \u0060project\u0060 \u2014 also the behaviour when the field is omitted \u2014 creates them in the import target project (\u0060projectId\u0060, else the caller\u0027s personal project). \u0060global\u0060 creates them at the global scope. The license and \u0060variable:create\u0060 requirements described under \u0060variableMissingMode\u0060 apply to both placements. Must be omitted for project packages, which reject it with a 400: their placement follows the package layout, where a variable bundled under a project is created in that project and one bundled at the top level is created globally.\n\u0022",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestVariableParentPolicy",
           "modelAsString": false,
@@ -13158,7 +13907,7 @@
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "What to do when a referenced tag conflicts on the target instance \u2014 either the same-id target tag carries a different name (rename drift), or the tag\u0027s name is already held by a different tag (name collision). \u0060skip\u0060 (default) drops the conflicted tags from the import (not created, not renamed, not attached anywhere; the import proceeds and lists them under \u0060tags.skipped\u0060). \u0060fail\u0060 rejects the import with a 409. \u0060rename\u0060 renames a drifted target tag to the package name and needs an API key carrying the \u0060tag:update\u0060 scope when the import would rename a tag; a name collision \u2014 including a drifted tag whose package name is held by another tag \u2014 still rejects the import (rename degrades to fail).\n",
+        "description": "What to do when a referenced tag conflicts on the target instance \u2014 either the same-id target tag carries a different name (rename drift), or the tag\u0027s name is already held by a different tag (name collision). \u0060skip\u0060 (default) drops the conflicted tags from the import (not created, not renamed, not attached anywhere; the import proceeds and lists them under \u0060tags.skipped\u0060). \u0060fail\u0060 rejects the import with a 409. \u0060rename\u0060 renames a drifted target tag to the package name, and reconciles a name collision by re-keying the existing tag to the package (source) id \u2014 its name, workflow and folder taggings follow; both need an API key carrying the \u0060tag:update\u0060 scope when the import would rename or reconcile a tag. A drifted tag whose package name is held by another tag still rejects the import (rename degrades to fail).\n",
         "x-ms-enum": {
           "name": "PostN8NPackagesImportFormDataRequestTagConflictPolicy",
           "modelAsString": false,
@@ -13174,6 +13923,50 @@
             {
               "value": "rename",
               "name": "Rename"
+            }
+          ]
+        }
+      },
+      "CreateRoleRequestRoleType": {
+        "enum": [
+          "project",
+          "global"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CreateRoleRequestRoleType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "global",
+              "name": "Global"
+            }
+          ]
+        }
+      },
+      "CreateRole201ResponseRoleType": {
+        "enum": [
+          "project",
+          "global"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CreateRole201ResponseRoleType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "global",
+              "name": "Global"
             }
           ]
         }
@@ -13269,11 +14062,12 @@
       "PostN8NPackagesImport200ResponseProjectsItemStatus": {
         "enum": [
           "created",
-          "updated"
+          "updated",
+          "skipped"
         ],
         "type": "string",
         "additionalProperties": false,
-        "description": "Import outcome for this package project.",
+        "description": "Import outcome for this package project. \u0060skipped\u0060 means the project already existed and \u0060projectConflictPolicy=merge\u0060 left its details untouched \u2014 its contents were still imported.\n",
         "x-ms-enum": {
           "name": "PostN8NPackagesImport200ResponseProjectsItemStatus",
           "modelAsString": false,
@@ -13285,6 +14079,54 @@
             {
               "value": "updated",
               "name": "Updated"
+            },
+            {
+              "value": "skipped",
+              "name": "Skipped"
+            }
+          ]
+        }
+      },
+      "GetWorkflow200ResponseSharedItemProjectType": {
+        "enum": [
+          "personal",
+          "team"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetWorkflow200ResponseSharedItemProjectType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "personal",
+              "name": "Personal"
+            },
+            {
+              "value": "team",
+              "name": "Team"
+            }
+          ]
+        }
+      },
+      "GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItemEvent": {
+        "enum": [
+          "activated",
+          "deactivated"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItemEvent",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "activated",
+              "name": "Activated"
+            },
+            {
+              "value": "deactivated",
+              "name": "Deactivated"
             }
           ]
         }
@@ -13373,6 +14215,28 @@
           ]
         }
       },
+      "GetWorkflow200ResponseSharedItemProjectIconType": {
+        "enum": [
+          "emoji",
+          "icon"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetWorkflow200ResponseSharedItemProjectIconType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "emoji",
+              "name": "Emoji"
+            },
+            {
+              "value": "icon",
+              "name": "Icon"
+            }
+          ]
+        }
+      },
       "GetExecutionsStatusParameter": {
         "enum": [
           "canceled",
@@ -13421,6 +14285,28 @@
             {
               "value": "waiting",
               "name": "Waiting"
+            }
+          ]
+        }
+      },
+      "GetWorkflowExcludePinnedDataParameter": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetWorkflowExcludePinnedDataParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
             }
           ]
         }
@@ -13649,17 +14535,6 @@
           "type": "string"
         }
       },
-      "offset": {
-        "name": "offset",
-        "in": "query",
-        "description": "The number of items to skip before starting to collect the result set.",
-        "schema": {
-          "minimum": 0,
-          "type": "number",
-          "default": 0,
-          "example": 0
-        }
-      },
       "testRunWorkflowId": {
         "name": "id",
         "in": "path",
@@ -13676,6 +14551,17 @@
         "required": true,
         "schema": {
           "type": "string"
+        }
+      },
+      "offset": {
+        "name": "offset",
+        "in": "query",
+        "description": "The number of items to skip before starting to collect the result set.",
+        "schema": {
+          "minimum": 0,
+          "type": "number",
+          "default": 0,
+          "example": 0
         }
       },
       "includeRole": {
@@ -13842,6 +14728,10 @@
     {
       "name": "Projects",
       "description": "Operations about projects"
+    },
+    {
+      "name": "Role",
+      "description": "Operations about roles"
     },
     {
       "name": "SecurityPolicy",

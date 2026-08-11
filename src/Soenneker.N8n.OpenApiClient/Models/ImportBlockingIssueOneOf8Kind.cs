@@ -5,24 +5,28 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf6Kind
+    public enum ImportBlockingIssueOneOf8Kind
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "not_found")]
+        [EnumMember(Value = "rename-drift")]
         #pragma warning disable CS1591
-        NotFound,
+        RenameDrift,
         #pragma warning restore CS1591
-        [EnumMember(Value = "unknown_type")]
+        [EnumMember(Value = "name-collision")]
         #pragma warning disable CS1591
-        UnknownType,
+        NameCollision,
         #pragma warning restore CS1591
-        [EnumMember(Value = "source_not_found")]
+        [EnumMember(Value = "invalid-name")]
         #pragma warning disable CS1591
-        SourceNotFound,
+        InvalidName,
         #pragma warning restore CS1591
-        [EnumMember(Value = "type_mismatch")]
+        [EnumMember(Value = "invalid-id")]
         #pragma warning disable CS1591
-        TypeMismatch,
+        InvalidId,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "permission-denied")]
+        #pragma warning disable CS1591
+        PermissionDenied,
         #pragma warning restore CS1591
     }
 }

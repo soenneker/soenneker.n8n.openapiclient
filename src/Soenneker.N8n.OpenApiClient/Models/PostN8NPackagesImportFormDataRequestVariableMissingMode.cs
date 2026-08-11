@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;Controls what happens when a variable referenced by the package&apos;s workflows is absent from the target project and the global scope (lookup order: project, then global). `do-nothing` (default) imports the workflows without creating the missing variable and lists its name under `variables.missing`. `must-preexist` rejects the import unless every referenced variable already resolves. `create-stub` creates each missing variable with an empty value at the placement scope (see `variableParentPolicy`) and lists the created names under `variables.stubbed`. Any `create-stub` import that has variable requirements needs an API key carrying the `variable:create` scope (owner/admin keys only) — this applies to project placement too, not only `variableParentPolicy=global`.&quot;</summary>
+    /// <summary>&quot;Controls what happens when a variable referenced by the package&apos;s workflows is absent from the target project and the global scope (lookup order: project, then global). `create-with-value` (default) creates the variable with its package value and lists its name under `variables.created`. When the package carries no value for it — values were excluded at export, or the exported value was itself empty — it creates an empty stub listed under `variables.stubbed`. `do-nothing` imports without creating the variable and lists its name under `variables.missing`. `must-preexist` rejects the import unless every referenced variable already resolves. `create-stub` creates each missing variable with an empty value at the placement scope (see `variableParentPolicy`) and lists the created names under `variables.stubbed`. An import that actually creates a variable requires a license that permits variables and, for API key callers, the `variable:create` scope; a package whose variables all already resolve creates nothing and needs neither.&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestVariableMissingMode
     {
@@ -18,6 +18,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         [EnumMember(Value = "create-stub")]
         #pragma warning disable CS1591
         CreateStub,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "create-with-value")]
+        #pragma warning disable CS1591
+        CreateWithValue,
         #pragma warning restore CS1591
     }
 }

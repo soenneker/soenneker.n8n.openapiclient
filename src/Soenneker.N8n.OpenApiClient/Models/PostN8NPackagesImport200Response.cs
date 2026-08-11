@@ -46,7 +46,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage Package { get; set; }
 #endif
-        /// <summary>Project shells created or matched-and-updated. Present for project packages; empty when importing loose workflows/folders.</summary>
+        /// <summary>Project shells created, or matched and then updated or left as-is (see `projectConflictPolicy`). Present for project packages; empty when importing loose workflows/folders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem>? Projects { get; set; }
@@ -62,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags Tags { get; set; }
 #endif
-        /// <summary>Resolution of the package&apos;s variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (a name matched in one project and stubbed in another appears in both `matched` and `stubbed`); classification under concurrent external writes is best-effort.</summary>
+        /// <summary>Resolution of the package&apos;s variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (for example, a name may be created with a value in one project and stubbed in another); classification under concurrent external writes is best-effort.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables? Variables { get; set; }

@@ -8,14 +8,22 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Resolution of the package&apos;s variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (a name matched in one project and stubbed in another appears in both `matched` and `stubbed`); classification under concurrent external writes is best-effort.
+    /// Resolution of the package&apos;s variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (for example, a name may be created with a value in one project and stubbed in another); classification under concurrent external writes is best-effort.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PostN8NPackagesImport200ResponseVariables : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Variable names that resolved to an existing variable (importing project&apos;s scope first, then global).</summary>
+        /// <summary>Variable names created with a package value under `variableMissingMode=create-with-value`. Empty stubs are listed under `stubbed`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Created { get; set; }
+#nullable restore
+#else
+        public List<string> Created { get; set; }
+#endif
+        /// <summary>Variable names that resolved to an existing variable (importing project&apos;s scope first, then global) and were left untouched. A resolved variable this import rewrote is listed under `updated` instead.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Matched { get; set; }
@@ -23,7 +31,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> Matched { get; set; }
 #endif
-        /// <summary>Variable names still unresolved after import. Under `variableMissingMode=do-nothing` these are warnings — the import still succeeds and nothing is created. A successful `create-stub` import normally leaves this empty.</summary>
+        /// <summary>Variable names still unresolved after import. Under `variableMissingMode=do-nothing` these are warnings — the import still succeeds and nothing is created. A successful `create-stub` or `create-with-value` import normally leaves this empty.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Missing { get; set; }
@@ -31,13 +39,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> Missing { get; set; }
 #endif
-        /// <summary>Variable names created with an empty value by this import under `variableMissingMode=create-stub`. Empty for other modes.</summary>
+        /// <summary>Variable names created with an empty value by this import under `variableMissingMode=create-stub`, or because `create-with-value` had no exported value. Empty for other outcomes.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Stubbed { get; set; }
 #nullable restore
 #else
         public List<string> Stubbed { get; set; }
+#endif
+        /// <summary>Variable names whose existing value this import replaced with the package value under `variableConflictPolicy=overwrite`. Empty for other policies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Updated { get; set; }
+#nullable restore
+#else
+        public List<string> Updated { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables"/> and sets the default values.
@@ -64,9 +80,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "created", n => { Created = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "matched", n => { Matched = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "missing", n => { Missing = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "stubbed", n => { Stubbed = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "updated", n => { Updated = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -76,9 +94,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfPrimitiveValues<string>("created", Created);
             writer.WriteCollectionOfPrimitiveValues<string>("matched", Matched);
             writer.WriteCollectionOfPrimitiveValues<string>("missing", Missing);
             writer.WriteCollectionOfPrimitiveValues<string>("stubbed", Stubbed);
+            writer.WriteCollectionOfPrimitiveValues<string>("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

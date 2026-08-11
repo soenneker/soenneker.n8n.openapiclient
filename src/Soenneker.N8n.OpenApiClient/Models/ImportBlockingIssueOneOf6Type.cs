@@ -8,9 +8,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public enum ImportBlockingIssueOneOf6Type
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "credential-unresolved")]
+        [EnumMember(Value = "missing-node-type")]
         #pragma warning disable CS1591
-        CredentialUnresolved,
+        MissingNodeType,
         #pragma warning restore CS1591
     }
 }

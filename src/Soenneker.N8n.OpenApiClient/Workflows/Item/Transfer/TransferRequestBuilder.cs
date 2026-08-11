@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer
 {
     /// <summary>
-    /// Builds and executes requests for operations under \workflows\{id}\transfer
+    /// Builds and executes requests for operations under \workflows\{-id}\transfer
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TransferRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TransferRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}/transfer", pathParameters)
+        public TransferRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{%2Did}/transfer", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TransferRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}/transfer", rawUrl)
+        public TransferRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{%2Did}/transfer", rawUrl)
         {
         }
         /// <summary>

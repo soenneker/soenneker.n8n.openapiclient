@@ -3,17 +3,18 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;For `permission-denied`: the global scope the importing user lacks.&quot;</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum ImportBlockingIssueOneOf7MissingScope
+    #pragma warning disable CS1591
+    public enum GetWorkflow200ResponseSharedItemProjectType
+    #pragma warning restore CS1591
     {
-        [EnumMember(Value = "tag:create")]
+        [EnumMember(Value = "personal")]
         #pragma warning disable CS1591
-        TagColonCreate,
+        Personal,
         #pragma warning restore CS1591
-        [EnumMember(Value = "tag:update")]
+        [EnumMember(Value = "team")]
         #pragma warning disable CS1591
-        TagColonUpdate,
+        Team,
         #pragma warning restore CS1591
     }
 }

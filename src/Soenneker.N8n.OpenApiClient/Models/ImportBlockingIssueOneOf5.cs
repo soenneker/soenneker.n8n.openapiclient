@@ -8,33 +8,57 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A node type — or a version of a node type — used by a package workflow that this instance does not have, under `missingNodeTypeMode=fail`. One issue is reported per missing `(nodeType, typeVersion)` pair.
+    /// &quot;A package folder that cannot be imported as-is. `kind` distinguishes the cause: `parent-mismatch` (a folder matched by id sits under a different parent than the package places it), `id-in-other-project` (the folder id already exists in a different project — ids are globally unique), or `fail-policy` (the folder already exists and `folderConflictPolicy` is `fail`).&quot;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf5 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Full node type name as used by the package&apos;s workflows.</summary>
+        /// <summary>&quot;For `parent-mismatch`: the matched folder&apos;s current parent in the target.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NodeType { get; set; }
+        public string? ExistingParentFolderId { get; set; }
 #nullable restore
 #else
-        public string NodeType { get; set; }
+        public string ExistingParentFolderId { get; set; }
+#endif
+        /// <summary>&quot;For `id-in-other-project`: the project that already owns the id.&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExistingProjectId { get; set; }
+#nullable restore
+#else
+        public string ExistingProjectId { get; set; }
+#endif
+        /// <summary>&quot;For `parent-mismatch`: the parent the package would place the folder under.&quot;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExpectedParentFolderId { get; set; }
+#nullable restore
+#else
+        public string ExpectedParentFolderId { get; set; }
+#endif
+        /// <summary>The kind property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Kind? Kind { get; set; }
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The sourceFolderId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceFolderId { get; set; }
+#nullable restore
+#else
+        public string SourceFolderId { get; set; }
 #endif
         /// <summary>The type property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Type? Type { get; set; }
-        /// <summary>Node type version the package&apos;s workflows use.</summary>
-        public double? TypeVersion { get; set; }
-        /// <summary>Package workflow ids that use this node type and version.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? UsedByWorkflows { get; set; }
-#nullable restore
-#else
-        public List<string> UsedByWorkflows { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5"/> and sets the default values.
         /// </summary>
@@ -60,10 +84,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "nodeType", n => { NodeType = n.GetStringValue(); } },
+                { "existingParentFolderId", n => { ExistingParentFolderId = n.GetStringValue(); } },
+                { "existingProjectId", n => { ExistingProjectId = n.GetStringValue(); } },
+                { "expectedParentFolderId", n => { ExpectedParentFolderId = n.GetStringValue(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Kind>(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "sourceFolderId", n => { SourceFolderId = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Type>(); } },
-                { "typeVersion", n => { TypeVersion = n.GetDoubleValue(); } },
-                { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -73,10 +100,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("nodeType", NodeType);
+            writer.WriteStringValue("existingParentFolderId", ExistingParentFolderId);
+            writer.WriteStringValue("existingProjectId", ExistingProjectId);
+            writer.WriteStringValue("expectedParentFolderId", ExpectedParentFolderId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Kind>("kind", Kind);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("sourceFolderId", SourceFolderId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Type>("type", Type);
-            writer.WriteDoubleValue("typeVersion", TypeVersion);
-            writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

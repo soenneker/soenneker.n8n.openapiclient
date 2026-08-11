@@ -9,43 +9,27 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class TagList : IAdditionalDataHolder, IParsable
+    public partial class GetWorkflow200ResponseMeta : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The data property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.Tag>? Data { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.Tag> Data { get; set; }
-#endif
-        /// <summary>Paginate through tags by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first &quot;page&quot; of the collection.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? NextCursor { get; set; }
-#nullable restore
-#else
-        public string NextCursor { get; set; }
-#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.TagList"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseMeta"/> and sets the default values.
         /// </summary>
-        public TagList()
+        public GetWorkflow200ResponseMeta()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TagList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseMeta"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.TagList CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseMeta CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.TagList();
+            return new global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseMeta();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -55,8 +39,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Tag>(global::Soenneker.N8n.OpenApiClient.Models.Tag.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "nextCursor", n => { NextCursor = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -66,8 +48,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.Tag>("data", Data);
-            writer.WriteStringValue("nextCursor", NextCursor);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -45,6 +45,8 @@ tags:
     description: Beta — breaking changes may still occur without major version bump.
   - name: Projects
     description: Operations about projects
+  - name: Role
+    description: Operations about roles
   - name: SecurityPolicy
     description: Operations about the instance security policy settings
   - name: SettingsLdap
@@ -924,12 +926,12 @@ paths:
                   type: string
                   format: date-time
                   description: Only stop executions that started after this time.
-                  example: '2024-01-01T00:00:00.000Z'
+                  example: 2024-01-01T00:00:00.000Z
                 startedBefore:
                   type: string
                   format: date-time
                   description: Only stop executions that started before this time.
-                  example: '2024-12-31T23:59:59.999Z'
+                  example: 2024-12-31T23:59:59.999Z
       responses:
         '200':
           description: Operation successful.
@@ -1029,23 +1031,57 @@ paths:
           $ref: '#/components/responses/conflict'
     get:
       operationId: getTags
-      x-required-scope: tag:list
       tags:
         - Tags
       summary: Retrieve all tags
       description: Retrieve all tags from your instance.
+      x-required-scope: tag:list
       parameters:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/cursor'
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
       responses:
         '200':
           description: Operation successful.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/tagList'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                        - id
+                        - name
+                        - createdAt
+                        - updatedAt
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
         '401':
           $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
   /tags/{id}:
     get:
       x-eov-operation-id: getTag
@@ -1211,34 +1247,6 @@ paths:
         '401':
           $ref: '#/components/responses/unauthorized'
   /workflows/{id}:
-    get:
-      x-eov-operation-id: getWorkflow
-      x-required-scope: workflow:read
-      x-eov-operation-handler: v1/handlers/workflows/workflows.handler
-      tags:
-        - Workflow
-      summary: Retrieve a workflow
-      description: Retrieve a workflow.
-      parameters:
-        - name: excludePinnedData
-          in: query
-          required: false
-          description: Set this to avoid retrieving pinned data
-          schema:
-            type: boolean
-            example: true
-        - $ref: '#/components/parameters/workflowId'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflow'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
     delete:
       x-eov-operation-id: deleteWorkflow
       x-required-scope: workflow:delete
@@ -1267,9 +1275,16 @@ paths:
       tags:
         - Workflow
       summary: Update a workflow
-      description: Update a workflow. If the workflow is published, the updated version will be automatically re-published.
+      description: Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
       parameters:
         - $ref: '#/components/parameters/workflowId'
+        - name: publishIfActive
+          in: query
+          required: false
+          description: Whether to publish the update if the workflow is currently published. Set to `false` to save the change as a draft on the existing published version instead of releasing it. Has no effect on a workflow that isn't currently published.
+          schema:
+            type: boolean
+            default: true
       requestBody:
         description: Updated workflow object.
         content:
@@ -1296,32 +1311,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/workflowPublishBlockedError'
-  /workflows/{id}/history:
-    get:
-      operationId: getWorkflowHistory
-      x-required-scope: workflow:read
-      tags:
-        - Workflow
-      summary: Retrieve workflow version history
-      description: Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.
-      parameters:
-        - $ref: '#/components/parameters/workflowId'
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/offset'
-        - $ref: '#/components/parameters/cursor'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflowVersionHistoryList'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
   /workflows/{id}/{versionId}:
     get:
       x-eov-operation-id: getWorkflowVersion
@@ -3483,8 +3472,8 @@ paths:
         Imports a gzip-compressed tar package (`.n8np`) into the target project. Send the
         archive as the multipart field `package`. Optional routing uses form fields
         `projectId` and `folderId` (omit or send empty for defaults). Every optional
-        mode/policy field (credential, workflow, folder, data table, variable, and tag)
-        takes its default when omitted. The required
+        mode/policy field (credential, workflow, project, folder, data table, variable,
+        and tag) takes its default when omitted. The required
         `workflowConflictPolicy` field controls what happens when a package workflow
         matches an existing workflow by source id in the target project. Maximum upload
         size is `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).
@@ -3575,6 +3564,15 @@ paths:
                   default: preserve-published-state
                   description: |
                     Controls whether imported workflows are published after content is written. `preserve-published-state` keeps new workflows inactive and republishes an updated workflow only when it was already published and the package workflow is published too, so drafts are never published. `match-source` follows the package workflow's published flag. `publish-all` publishes every imported workflow. `unpublish-all` leaves new workflows inactive and unpublishes updated workflows that were published.
+                projectConflictPolicy:
+                  type: string
+                  enum:
+                    - merge
+                    - fail
+                    - overwrite
+                  default: merge
+                  description: |
+                    What to do when a project the package defines already exists here (matched by id), and — unless `folderConflictPolicy` overrides it — how its contents are treated. `merge` (default) leaves the existing project's name, description, icon and custom span attributes untouched and adds the package's contents alongside. `overwrite` replaces those details with the package's; a detail the package omits is left as it is, not cleared. `fail` rejects the import before anything is written, with one `project-conflict` issue per existing project. A package project id belonging to a personal project, or to a team project the caller cannot update, always rejects the import. Ignored for workflow packages.
                 folderConflictPolicy:
                   type: string
                   enum:
@@ -3613,16 +3611,26 @@ paths:
                     - do-nothing
                     - must-preexist
                     - create-stub
-                  default: do-nothing
+                    - create-with-value
+                  default: create-with-value
                   description: |
-                    Controls what happens when a variable referenced by the package's workflows is absent from the target project and the global scope (lookup order: project, then global). `do-nothing` (default) imports the workflows without creating the missing variable and lists its name under `variables.missing`. `must-preexist` rejects the import unless every referenced variable already resolves. `create-stub` creates each missing variable with an empty value at the placement scope (see `variableParentPolicy`) and lists the created names under `variables.stubbed`. Any `create-stub` import that has variable requirements needs an API key carrying the `variable:create` scope (owner/admin keys only) — this applies to project placement too, not only `variableParentPolicy=global`.
+                    Controls what happens when a variable referenced by the package's workflows is absent from the target project and the global scope (lookup order: project, then global). `create-with-value` (default) creates the variable with its package value and lists its name under `variables.created`. When the package carries no value for it — values were excluded at export, or the exported value was itself empty — it creates an empty stub listed under `variables.stubbed`. `do-nothing` imports without creating the variable and lists its name under `variables.missing`. `must-preexist` rejects the import unless every referenced variable already resolves. `create-stub` creates each missing variable with an empty value at the placement scope (see `variableParentPolicy`) and lists the created names under `variables.stubbed`. An import that actually creates a variable requires a license that permits variables and, for API key callers, the `variable:create` scope; a package whose variables all already resolve creates nothing and needs neither.
+                variableConflictPolicy:
+                  type: string
+                  enum:
+                    - keep-existing
+                    - overwrite
+                    - fail
+                  default: keep-existing
+                  description: |
+                    What to do when a referenced variable resolves in the target project or global scope but the package bundles a *different* value for it. `keep-existing` (default) leaves the target value untouched and reports the name under `variables.matched`. `overwrite` silently replaces the value of the existing variable at whichever scope it was found — the target project or the global scope, so a global variable other projects also read can be rewritten by this import — and reports the name under `variables.updated`; it needs a license that permits variables, the `variable:update` / `projectVariable:update` permission on that scope, and, for API key callers, the `variable:update` scope. `fail` rejects the import with a 409 instead. Every policy leaves a resolved variable alone when there is nothing to change — either the package bundles no value for it (values were excluded at export, or the exported value was itself empty), or the value it bundles already matches the target's. The reverse does not hold: a resolved variable holding an empty value — a stub an earlier import created, say — still counts as a value, so `overwrite` fills it and `fail` rejects it. Under `overwrite`, a project package whose projects hold *different* values for a name they all resolve to one row — a global none of them shadows, typically — is rejected with a 409: one row cannot carry both values, and the import will not pick for you. Give the projects their own variables in the target, or import them separately.
                 variableParentPolicy:
                   type: string
                   enum:
                     - project
                     - global
                   description: |
-                    Where `create-stub` creates missing variables for workflow/folder packages. `project` — also the behaviour when the field is omitted — creates them in the import target project (`projectId`, else the caller's personal project). `global` creates them at the global scope. The `variable:create` API key scope requirement described under `variableMissingMode` applies to both placements. Must be omitted for project packages, which reject it with a 400: their placement follows the package layout, where a variable bundled under a project is created in that project and one bundled at the top level is created globally.
+                    Where `create-with-value` and `create-stub` create missing variables for workflow/folder packages. `project` — also the behaviour when the field is omitted — creates them in the import target project (`projectId`, else the caller's personal project). `global` creates them at the global scope. The license and `variable:create` requirements described under `variableMissingMode` apply to both placements. Must be omitted for project packages, which reject it with a 400: their placement follows the package layout, where a variable bundled under a project is created in that project and one bundled at the top level is created globally.
                 tagMissingMode:
                   type: string
                   enum:
@@ -3639,7 +3647,7 @@ paths:
                     - rename
                   default: skip
                   description: |
-                    What to do when a referenced tag conflicts on the target instance — either the same-id target tag carries a different name (rename drift), or the tag's name is already held by a different tag (name collision). `skip` (default) drops the conflicted tags from the import (not created, not renamed, not attached anywhere; the import proceeds and lists them under `tags.skipped`). `fail` rejects the import with a 409. `rename` renames a drifted target tag to the package name and needs an API key carrying the `tag:update` scope when the import would rename a tag; a name collision — including a drifted tag whose package name is held by another tag — still rejects the import (rename degrades to fail).
+                    What to do when a referenced tag conflicts on the target instance — either the same-id target tag carries a different name (rename drift), or the tag's name is already held by a different tag (name collision). `skip` (default) drops the conflicted tags from the import (not created, not renamed, not attached anywhere; the import proceeds and lists them under `tags.skipped`). `fail` rejects the import with a 409. `rename` renames a drifted target tag to the package name, and reconciles a name collision by re-keying the existing tag to the package (source) id — its name, workflow and folder taggings follow; both need an API key carrying the `tag:update` scope when the import would rename or reconcile a tag. A drifted tag whose package name is held by another tag still rejects the import (rename degrades to fail).
       responses:
         '200':
           description: Import succeeded; the listed workflows were written to the target project.
@@ -3779,7 +3787,7 @@ paths:
                   projects:
                     type: array
                     description: |
-                      Project shells created or matched-and-updated. Present for project packages; empty when importing loose workflows/folders.
+                      Project shells created, or matched and then updated or left as-is (see `projectConflictPolicy`). Present for project packages; empty when importing loose workflows/folders.
                     items:
                       type: object
                       required:
@@ -3796,12 +3804,16 @@ paths:
                           description: Project id on the target instance (equal to `sourceProjectId`; project ids are reused).
                         name:
                           type: string
+                          description: |
+                            The project's name on the target: the package's under `overwrite`, the pre-existing one under `merge`.
                         status:
                           type: string
                           enum:
                             - created
                             - updated
-                          description: Import outcome for this package project.
+                            - skipped
+                          description: |
+                            Import outcome for this package project. `skipped` means the project already existed and `projectConflictPolicy=merge` left its details untouched — its contents were still imported.
                   credentials:
                     type: object
                     description: |
@@ -3825,30 +3837,44 @@ paths:
                   variables:
                     type: object
                     description: |
-                      Resolution of the package's variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (a name matched in one project and stubbed in another appears in both `matched` and `stubbed`); classification under concurrent external writes is best-effort.
+                      Resolution of the package's variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (for example, a name may be created with a value in one project and stubbed in another); classification under concurrent external writes is best-effort.
                     required:
                       - matched
                       - missing
+                      - created
                       - stubbed
+                      - updated
                     properties:
                       matched:
                         type: array
                         items:
                           type: string
                         description: |
-                          Variable names that resolved to an existing variable (importing project's scope first, then global).
+                          Variable names that resolved to an existing variable (importing project's scope first, then global) and were left untouched. A resolved variable this import rewrote is listed under `updated` instead.
                       missing:
                         type: array
                         items:
                           type: string
                         description: |
-                          Variable names still unresolved after import. Under `variableMissingMode=do-nothing` these are warnings — the import still succeeds and nothing is created. A successful `create-stub` import normally leaves this empty.
+                          Variable names still unresolved after import. Under `variableMissingMode=do-nothing` these are warnings — the import still succeeds and nothing is created. A successful `create-stub` or `create-with-value` import normally leaves this empty.
+                      created:
+                        type: array
+                        items:
+                          type: string
+                        description: |
+                          Variable names created with a package value under `variableMissingMode=create-with-value`. Empty stubs are listed under `stubbed`.
                       stubbed:
                         type: array
                         items:
                           type: string
                         description: |
-                          Variable names created with an empty value by this import under `variableMissingMode=create-stub`. Empty for other modes.
+                          Variable names created with an empty value by this import under `variableMissingMode=create-stub`, or because `create-with-value` had no exported value. Empty for other outcomes.
+                      updated:
+                        type: array
+                        items:
+                          type: string
+                        description: |
+                          Variable names whose existing value this import replaced with the package value under `variableConflictPolicy=overwrite`. Empty for other policies.
                   tags:
                     type: object
                     description: |
@@ -3857,6 +3883,7 @@ paths:
                       - matched
                       - created
                       - renamed
+                      - reconciled
                       - skipped
                     properties:
                       matched:
@@ -3877,6 +3904,12 @@ paths:
                           type: string
                         description: |
                           Target tags renamed to the package name under `tagConflictPolicy=rename`; listed by their new name.
+                      reconciled:
+                        type: array
+                        items:
+                          type: string
+                        description: |
+                          Existing target tags re-keyed to the package (source) id on a name collision under `tagConflictPolicy=rename`; their name, workflow and folder taggings are kept.
                       skipped:
                         type: array
                         items:
@@ -3911,7 +3944,7 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           description: |
-            Import blocked by at least one conflict among the issues — a workflow source-id conflict, a folder conflict (id under a different parent, id owned by another project, or a `fail`-policy match), or a tag conflict (rename drift or name collision).
+            Import blocked by at least one conflict among the issues — a workflow source-id conflict, a folder conflict (id under a different parent, id owned by another project, or a `fail`-policy match), a tag conflict (rename drift or name collision), a variable whose bundled value differs from the resolved target's under `variableConflictPolicy=fail`, or one row two projects of a package would overwrite with different values.
           content:
             application/json:
               schema:
@@ -4147,6 +4180,440 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+  /roles:
+    post:
+      operationId: createRole
+      tags:
+        - Role
+      summary: Create a custom role
+      description: Creates a custom role. Set `roleType` to `global` for an instance-wide role or `project` for a project role.
+      x-required-scope: role:manage,role:manageProject
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                displayName:
+                  type: string
+                  minLength: 2
+                  maxLength: 100
+                description:
+                  type: string
+                  maxLength: 500
+                roleType:
+                  type: string
+                  enum:
+                    - project
+                    - global
+                scopes:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - displayName
+                - roleType
+                - scopes
+      responses:
+        '201':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  displayName:
+                    type: string
+                  description:
+                    type: string
+                    nullable: true
+                  systemRole:
+                    type: boolean
+                  roleType:
+                    type: string
+                    enum:
+                      - project
+                      - global
+                  scopes:
+                    type: array
+                    items:
+                      type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                required:
+                  - slug
+                  - displayName
+                  - description
+                  - systemRole
+                  - roleType
+                  - scopes
+                  - createdAt
+                  - updatedAt
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+  /workflows/{workflowId}:
+    get:
+      operationId: getWorkflow
+      tags:
+        - Workflow
+      summary: Retrieve a workflow
+      description: Retrieve a workflow.
+      x-required-scope: workflow:read
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+            default: 'false'
+          required: false
+          name: excludePinnedData
+          in: query
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                    nullable: true
+                  active:
+                    type: boolean
+                  activeVersionId:
+                    type: string
+                    nullable: true
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  isArchived:
+                    type: boolean
+                  versionId:
+                    type: string
+                  versionCounter:
+                    type: number
+                  sourceWorkflowId:
+                    type: string
+                    nullable: true
+                  triggerCount:
+                    type: number
+                  nodes: {}
+                  connections: {}
+                  nodeGroups: {}
+                  settings:
+                    nullable: true
+                  staticData:
+                    nullable: true
+                  pinData:
+                    nullable: true
+                  meta:
+                    nullable: true
+                  tags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                        - id
+                        - name
+                        - createdAt
+                        - updatedAt
+                  shared:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        role:
+                          type: string
+                        workflowId:
+                          type: string
+                        projectId:
+                          type: string
+                        project:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            type:
+                              type: string
+                              enum:
+                                - personal
+                                - team
+                            icon:
+                              type: object
+                              nullable: true
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - emoji
+                                    - icon
+                                value:
+                                  type: string
+                              required:
+                                - type
+                                - value
+                            description:
+                              type: string
+                              nullable: true
+                            customTelemetryTags:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  key:
+                                    type: string
+                                  value:
+                                    type: string
+                                required:
+                                  - key
+                                  - value
+                            creatorId:
+                              type: string
+                              nullable: true
+                            createdAt:
+                              type: string
+                              format: date-time
+                            updatedAt:
+                              type: string
+                              format: date-time
+                          required:
+                            - id
+                            - name
+                            - type
+                            - icon
+                            - description
+                            - customTelemetryTags
+                            - creatorId
+                            - createdAt
+                            - updatedAt
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                        - role
+                        - workflowId
+                        - projectId
+                        - project
+                        - createdAt
+                        - updatedAt
+                  activeVersion:
+                    type: object
+                    nullable: true
+                    properties:
+                      versionId:
+                        type: string
+                      workflowId:
+                        type: string
+                      nodes: {}
+                      connections: {}
+                      nodeGroups: {}
+                      authors:
+                        type: string
+                      name:
+                        type: string
+                        nullable: true
+                      description:
+                        type: string
+                        nullable: true
+                      autosaved:
+                        type: boolean
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+                      workflowPublishHistory:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            workflowId:
+                              type: string
+                            versionId:
+                              type: string
+                              nullable: true
+                            event:
+                              type: string
+                              enum:
+                                - activated
+                                - deactivated
+                            userId:
+                              type: string
+                              nullable: true
+                            createdAt:
+                              type: string
+                              format: date-time
+                          required:
+                            - id
+                            - workflowId
+                            - versionId
+                            - event
+                            - userId
+                            - createdAt
+                    required:
+                      - versionId
+                      - workflowId
+                      - nodes
+                      - connections
+                      - nodeGroups
+                      - authors
+                      - name
+                      - description
+                      - autosaved
+                      - createdAt
+                      - updatedAt
+                      - workflowPublishHistory
+                required:
+                  - id
+                  - name
+                  - description
+                  - active
+                  - activeVersionId
+                  - createdAt
+                  - updatedAt
+                  - isArchived
+                  - versionId
+                  - versionCounter
+                  - sourceWorkflowId
+                  - triggerCount
+                  - nodes
+                  - connections
+                  - nodeGroups
+                  - settings
+                  - staticData
+                  - meta
+                  - shared
+                  - activeVersion
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /workflows/{workflowId}/history:
+    get:
+      operationId: getWorkflowHistory
+      tags:
+        - Workflow
+      summary: Retrieve workflow version history
+      description: Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.
+      x-required-scope: workflow:read
+      parameters:
+        - $ref: '#/components/parameters/offset'
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        versionId:
+                          type: string
+                        workflowId:
+                          type: string
+                        authors:
+                          type: string
+                        name:
+                          type: string
+                          nullable: true
+                        description:
+                          type: string
+                          nullable: true
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                        - versionId
+                        - workflowId
+                        - authors
+                        - name
+                        - description
+                        - createdAt
+                        - updatedAt
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
 components:
   schemas:
     audit:
@@ -4483,12 +4950,12 @@ components:
           type: string
           format: date-time
           description: Timestamp when the synchronization started.
-          example: '2025-07-21T10:30:00Z'
+          example: 2025-07-21T10:30:00Z
         endedAt:
           type: string
           format: date-time
           description: Timestamp when the synchronization completed.
-          example: '2025-07-21T10:35:00Z'
+          example: 2025-07-21T10:35:00Z
         scanned:
           type: integer
           description: Number of LDAP entries scanned during synchronization.
@@ -4580,7 +5047,7 @@ components:
             floor:
               type: string
               enum:
-                - 'off'
+                - off
                 - production
                 - all
               description: Minimum execution-data redaction level enforced across the instance.
@@ -4611,7 +5078,7 @@ components:
             floor:
               type: string
               enum:
-                - 'off'
+                - off
                 - production
                 - all
               description: Minimum execution-data redaction level enforced across the instance.
@@ -5239,12 +5706,12 @@ components:
           type: string
           format: date-time
           readOnly: true
-          example: '2022-04-29T11:02:29.842Z'
+          example: 2022-04-29T11:02:29.842Z
         updatedAt:
           type: string
           format: date-time
           readOnly: true
-          example: '2022-04-29T11:02:29.842Z'
+          example: 2022-04-29T11:02:29.842Z
     credentialSharedItem:
       type: object
       required:
@@ -5325,12 +5792,12 @@ components:
           type: string
           format: date-time
           readOnly: true
-          example: '2022-04-29T11:02:29.842Z'
+          example: 2022-04-29T11:02:29.842Z
         updatedAt:
           type: string
           format: date-time
           readOnly: true
-          example: '2022-04-29T11:02:29.842Z'
+          example: 2022-04-29T11:02:29.842Z
         projectId:
           type: string
           description: Project to create the credential in. Defaults to the user's personal project.
@@ -5365,12 +5832,12 @@ components:
           type: string
           format: date-time
           readOnly: true
-          example: '2022-04-29T11:02:29.842Z'
+          example: 2022-04-29T11:02:29.842Z
         updatedAt:
           type: string
           format: date-time
           readOnly: true
-          example: '2022-04-29T11:02:29.842Z'
+          example: 2022-04-29T11:02:29.842Z
     update-credential-request:
       type: object
       properties:
@@ -5539,18 +6006,6 @@ components:
           id:
             type: string
             example: 2tUt1wbLX592XDdX
-    tagList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/tag'
-        nextCursor:
-          type: string
-          description: Paginate through tags by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
-          nullable: true
-          example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
     node:
       type: object
       additionalProperties: false
@@ -5884,6 +6339,21 @@ components:
           readOnly: true
           description: Comma-separated list of author IDs who contributed to this version
           example: 1,2,3
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Optional name for this workflow version
+          example: Production release
+        description:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Optional description for this workflow version
+        autosaved:
+          type: boolean
+          readOnly: true
+          description: Whether this version was created by autosave
         createdAt:
           type: string
           format: date-time
@@ -6128,63 +6598,6 @@ components:
             - changes_requested
         workflowReviewRequestId:
           type: string
-    workflowVersionListItem:
-      type: object
-      additionalProperties: false
-      required:
-        - versionId
-        - workflowId
-        - authors
-      properties:
-        versionId:
-          type: string
-          readOnly: true
-          description: The version ID of this workflow snapshot
-          example: abc123-def456
-        workflowId:
-          type: string
-          readOnly: true
-          description: The workflow ID this version belongs to
-          example: 2tUt1wbLX592XDdX
-        authors:
-          type: string
-          readOnly: true
-          description: Authors who created this version
-          example: John Doe
-        name:
-          type: string
-          nullable: true
-          description: Workflow name at this version
-          example: Workflow 1
-        description:
-          type: string
-          nullable: true
-          description: Workflow description at this version
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          description: When this version was created
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-          description: When this version was last updated
-    workflowVersionHistoryList:
-      type: object
-      required:
-        - data
-        - nextCursor
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/workflowVersionListItem'
-        nextCursor:
-          type: string
-          description: Paginate through workflow versions by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
-          nullable: true
-          example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
     workflowVersion:
       type: object
       additionalProperties: false
@@ -7363,6 +7776,28 @@ components:
               type: string
         - type: object
           description: |
+            A project defined by the package that already exists on this instance, under `projectConflictPolicy=fail`.
+          required:
+            - type
+            - kind
+            - sourceProjectId
+            - name
+          properties:
+            type:
+              type: string
+              enum:
+                - project-conflict
+            kind:
+              type: string
+              enum:
+                - fail-policy
+            sourceProjectId:
+              type: string
+            name:
+              type: string
+              description: The project's name as it appears in the package.
+        - type: object
+          description: |
             A package folder that cannot be imported as-is. `kind` distinguishes the cause: `parent-mismatch` (a folder matched by id sits under a different parent than the package places it), `id-in-other-project` (the folder id already exists in a different project — ids are globally unique), or `fail-policy` (the folder already exists and `folderConflictPolicy` is `fail`).
           required:
             - type
@@ -7387,7 +7822,7 @@ components:
             existingParentFolderId:
               type: string
               nullable: true
-              description: 'For `parent-mismatch`: the matched folder''s current parent in the target.'
+              description: "For `parent-mismatch`: the matched folder's current parent in the target."
             expectedParentFolderId:
               type: string
               nullable: true
@@ -7458,7 +7893,7 @@ components:
                 type: string
         - type: object
           description: |
-            A tag referenced by the package's workflows that could not be resolved on the target instance. `kind` distinguishes the cause: `rename-drift` (the same-id target tag carries a different name — under `tagConflictPolicy=fail`, or `rename` when the package name is held by another tag), `name-collision` (the id is free but the name belongs to a different tag, under `tagMissingMode=create` with `tagConflictPolicy=fail` or `rename`), `invalid-name` / `invalid-id` (the package tag's name or id cannot be written on this instance), or `permission-denied` (the importing user lacks the global `tag:create` / `tag:update` scope the plan needs).
+            A tag referenced by the package's workflows that could not be resolved on the target instance. `kind` distinguishes the cause: `rename-drift` (the same-id target tag carries a different name — under `tagConflictPolicy=fail`, or `rename` when the package name is held by another tag), `name-collision` (the id is free but the name belongs to a different tag under `tagMissingMode=create` with `tagConflictPolicy=fail`; also raised when two package tags collide with each other, or when the target tag a reconcile would re-key is claimed by another package tag), `invalid-name` / `invalid-id` (the package tag's name or id cannot be written on this instance), or `permission-denied` (the importing user lacks the global `tag:create` / `tag:update` scope the plan needs).
           required:
             - type
             - kind
@@ -7491,7 +7926,7 @@ components:
             existingTagId:
               type: string
               description: |
-                Id of the different target tag currently holding the wanted name, when one exists. Absent when two package tags collide with each other rather than with a target tag.
+                Id of the contested target tag — the different tag currently holding the wanted name, or the target tag a blocked reconcile would re-key. Absent when two package tags collide with each other rather than over a target tag.
             existingName:
               type: string
               description: 'For `rename-drift`: the current name of the same-id target tag.'
@@ -7499,7 +7934,8 @@ components:
               type: array
               items:
                 type: string
-              description: Package workflow ids (non-skipped) that reference the tag.
+              description: |
+                Package workflow ids (non-skipped) that reference the source tag — not workflows attached to the contested target tag.
         - type: object
           description: |
             A variable reference that could not be resolved in the target project or the global scope, under `variableMissingMode=must-preexist`.
@@ -7521,7 +7957,30 @@ components:
                 type: string
         - type: object
           description: |
-            Creating the package's variable stubs under `variableMissingMode=create-stub` would exceed the instance variable quota (`quota:maxVariables`). Reported once for the whole import; nothing is created.
+            A variable that resolved in the target project or the global scope, but whose value differs from the one the package bundles for it, under `variableConflictPolicy=fail`. Also reported under `overwrite`, once per scope, when the projects of a package resolve one row and disagree about the value it should hold. Values are never reported — only the name and the scope the variable was found in.
+          required:
+            - type
+            - name
+            - usedByWorkflows
+          properties:
+            type:
+              type: string
+              enum:
+                - variable-conflict
+            name:
+              type: string
+              description: Name of the variable whose value differs.
+            projectId:
+              type: string
+              description: |
+                Project owning the resolved variable. Absent when it resolved at the global scope.
+            usedByWorkflows:
+              type: array
+              items:
+                type: string
+        - type: object
+          description: |
+            Creating the package's variables under `create-stub` or `create-with-value` would exceed the instance variable quota (`quota:maxVariables`). Reported once for the whole import; nothing is created.
           required:
             - type
             - limit
@@ -8019,16 +8478,6 @@ components:
       required: true
       schema:
         type: string
-    offset:
-      name: offset
-      in: query
-      description: The number of items to skip before starting to collect the result set.
-      required: false
-      schema:
-        type: number
-        example: 0
-        default: 0
-        minimum: 0
     testRunWorkflowId:
       name: id
       in: path
@@ -8043,6 +8492,16 @@ components:
       required: true
       schema:
         type: string
+    offset:
+      name: offset
+      in: query
+      description: The number of items to skip before starting to collect the result set.
+      required: false
+      schema:
+        type: number
+        example: 0
+        default: 0
+        minimum: 0
     includeRole:
       name: includeRole
       in: query

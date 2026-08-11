@@ -8,25 +8,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public enum ImportBlockingIssueOneOf7Kind
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "rename-drift")]
+        [EnumMember(Value = "not_found")]
         #pragma warning disable CS1591
-        RenameDrift,
+        NotFound,
         #pragma warning restore CS1591
-        [EnumMember(Value = "name-collision")]
+        [EnumMember(Value = "unknown_type")]
         #pragma warning disable CS1591
-        NameCollision,
+        UnknownType,
         #pragma warning restore CS1591
-        [EnumMember(Value = "invalid-name")]
+        [EnumMember(Value = "source_not_found")]
         #pragma warning disable CS1591
-        InvalidName,
+        SourceNotFound,
         #pragma warning restore CS1591
-        [EnumMember(Value = "invalid-id")]
+        [EnumMember(Value = "type_mismatch")]
         #pragma warning disable CS1591
-        InvalidId,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "permission-denied")]
-        #pragma warning disable CS1591
-        PermissionDenied,
+        TypeMismatch,
         #pragma warning restore CS1591
     }
 }

@@ -8,14 +8,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public enum ImportBlockingIssueOneOf4Kind
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "parent-mismatch")]
-        #pragma warning disable CS1591
-        ParentMismatch,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "id-in-other-project")]
-        #pragma warning disable CS1591
-        IdInOtherProject,
-        #pragma warning restore CS1591
         [EnumMember(Value = "fail-policy")]
         #pragma warning disable CS1591
         FailPolicy,

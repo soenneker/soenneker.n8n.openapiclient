@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Import outcome for this package project.</summary>
+    /// <summary>Import outcome for this package project. `skipped` means the project already existed and `projectConflictPolicy=merge` left its details untouched — its contents were still imported.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImport200ResponseProjectsItemStatus
     {
@@ -14,6 +14,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         [EnumMember(Value = "updated")]
         #pragma warning disable CS1591
         Updated,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "skipped")]
+        #pragma warning disable CS1591
+        Skipped,
         #pragma warning restore CS1591
     }
 }

@@ -8,9 +8,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public enum ImportBlockingIssueOneOf8Type
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "variable-unresolved")]
+        [EnumMember(Value = "tag-unresolved")]
         #pragma warning disable CS1591
-        VariableUnresolved,
+        TagUnresolved,
         #pragma warning restore CS1591
     }
 }

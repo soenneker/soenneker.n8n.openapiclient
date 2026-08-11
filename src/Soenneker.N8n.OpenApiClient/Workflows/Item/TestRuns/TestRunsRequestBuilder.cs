@@ -13,7 +13,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
 {
     /// <summary>
-    /// Builds and executes requests for operations under \workflows\{id}\test-runs
+    /// Builds and executes requests for operations under \workflows\{-id}\test-runs
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TestRunsRequestBuilder : BaseRequestBuilder
@@ -35,7 +35,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TestRunsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}/test-runs{?cursor*,limit*,status*}", pathParameters)
+        public TestRunsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{%2Did}/test-runs{?cursor*,limit*,status*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TestRunsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{id}/test-runs{?cursor*,limit*,status*}", rawUrl)
+        public TestRunsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows/{%2Did}/test-runs{?cursor*,limit*,status*}", rawUrl)
         {
         }
         /// <summary>

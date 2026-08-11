@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string LocalId { get; set; }
 #endif
-        /// <summary>The name property</summary>
+        /// <summary>&quot;The project&apos;s name on the target: the package&apos;s under `overwrite`, the pre-existing one under `merge`.&quot;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -38,7 +38,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string SourceProjectId { get; set; }
 #endif
-        /// <summary>Import outcome for this package project.</summary>
+        /// <summary>Import outcome for this package project. `skipped` means the project already existed and `projectConflictPolicy=merge` left its details untouched — its contents were still imported.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItemStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem"/> and sets the default values.

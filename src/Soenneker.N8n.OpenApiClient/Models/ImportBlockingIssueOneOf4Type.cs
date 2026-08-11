@@ -8,9 +8,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public enum ImportBlockingIssueOneOf4Type
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "folder-conflict")]
+        [EnumMember(Value = "project-conflict")]
         #pragma warning disable CS1591
-        FolderConflict,
+        ProjectConflict,
         #pragma warning restore CS1591
     }
 }

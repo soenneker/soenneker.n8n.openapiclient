@@ -31,6 +31,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> Matched { get; set; }
 #endif
+        /// <summary>Existing target tags re-keyed to the package (source) id on a name collision under `tagConflictPolicy=rename`; their name, workflow and folder taggings are kept.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Reconciled { get; set; }
+#nullable restore
+#else
+        public List<string> Reconciled { get; set; }
+#endif
         /// <summary>Target tags renamed to the package name under `tagConflictPolicy=rename`; listed by their new name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,6 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "created", n => { Created = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "matched", n => { Matched = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "reconciled", n => { Reconciled = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "renamed", n => { Renamed = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "skipped", n => { Skipped = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -87,6 +96,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfPrimitiveValues<string>("created", Created);
             writer.WriteCollectionOfPrimitiveValues<string>("matched", Matched);
+            writer.WriteCollectionOfPrimitiveValues<string>("reconciled", Reconciled);
             writer.WriteCollectionOfPrimitiveValues<string>("renamed", Renamed);
             writer.WriteCollectionOfPrimitiveValues<string>("skipped", Skipped);
             writer.WriteAdditionalData(AdditionalData);
