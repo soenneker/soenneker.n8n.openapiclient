@@ -56,7 +56,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string TargetFolderId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowFolderConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3"/> and sets the default values.
         /// </summary>
@@ -87,7 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
                 { "targetFolderId", n => { TargetFolderId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowFolderConflictType>(); } },
             };
         }
         /// <summary>
@@ -102,7 +102,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
             writer.WriteStringValue("targetFolderId", TargetFolderId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf3Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowFolderConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

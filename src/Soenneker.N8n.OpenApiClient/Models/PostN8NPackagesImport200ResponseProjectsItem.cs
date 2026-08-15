@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string LocalId { get; set; }
 #endif
-        /// <summary>&quot;The project&apos;s name on the target: the package&apos;s under `overwrite`, the pre-existing one under `merge`.&quot;</summary>
+        /// <summary>The project&apos;s name on the target: the package&apos;s under `overwrite`, the pre-existing one under `merge`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }

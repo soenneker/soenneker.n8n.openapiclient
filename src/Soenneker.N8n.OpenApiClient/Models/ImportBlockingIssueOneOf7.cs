@@ -13,7 +13,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf7 : IAdditionalDataHolder, IParsable
     {
-        /// <summary>&quot;For `type_mismatch`: the actual type of the resolved target credential.&quot;</summary>
+        /// <summary>For `type_mismatch`: the actual type of the resolved target credential.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ActualType { get; set; }
@@ -23,7 +23,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;For `type_mismatch`: the credential type the package&apos;s workflow node requires.&quot;</summary>
+        /// <summary>For `type_mismatch`: the credential type the package&apos;s workflow node requires.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExpectedType { get; set; }
@@ -50,7 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string TargetId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType? Type { get; set; }
         /// <summary>The usedByWorkflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -89,7 +89,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7Kind>(); } },
                 { "sourceId", n => { SourceId = n.GetStringValue(); } },
                 { "targetId", n => { TargetId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -105,7 +105,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7Kind>("kind", Kind);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteStringValue("targetId", TargetId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

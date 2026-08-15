@@ -5,12 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf6Type
+    public enum EmptyState
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "missing-node-type")]
+        [EnumMember(Value = "empty")]
         #pragma warning disable CS1591
-        MissingNodeType,
+        Empty,
         #pragma warning restore CS1591
     }
 }

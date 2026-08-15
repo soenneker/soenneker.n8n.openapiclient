@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with stubbed credentials).&quot;</summary>
+    /// <summary>Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with stubbed credentials).</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImport200ResponseWorkflowsItemPublishingSkippedPublishReason
     {

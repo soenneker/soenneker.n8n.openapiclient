@@ -3,13 +3,14 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Sends each event as an HTTP request to a URL.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum DestinationWebhookType
+    #pragma warning disable CS1591
+    public enum MissingNodeTypeType
+    #pragma warning restore CS1591
     {
-        [EnumMember(Value = "webhook")]
+        [EnumMember(Value = "missing-node-type")]
         #pragma warning disable CS1591
-        Webhook,
+        MissingNodeType,
         #pragma warning restore CS1591
     }
 }

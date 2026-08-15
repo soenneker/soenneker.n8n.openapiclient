@@ -14,7 +14,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import&quot;</summary>
+        /// <summary>Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.PullAutoPublish? AutoPublish { get; set; }
         /// <summary>The force property</summary>
         public bool? Force { get; set; }

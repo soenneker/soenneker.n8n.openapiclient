@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<string> SubscribedEvents { get; set; }
 #endif
         /// <summary>Sends each event to a Sentry project.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DestinationSentryType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SentryType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.DestinationSentry"/> and sets the default values.
         /// </summary>
@@ -92,7 +92,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "label", n => { Label = n.GetStringValue(); } },
                 { "subscribedEvents", n => { SubscribedEvents = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestinationSentryType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SentryType>(); } },
             };
         }
         /// <summary>
@@ -108,7 +108,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("enabled", Enabled);
             writer.WriteStringValue("label", Label);
             writer.WriteCollectionOfPrimitiveValues<string>("subscribedEvents", SubscribedEvents);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestinationSentryType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SentryType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

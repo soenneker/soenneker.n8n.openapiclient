@@ -3,13 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Sends each event to a Sentry project.</summary>
+    /// <summary>Sends each event as an HTTP request to a URL.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum DestinationSentryType
+    public enum WebhookType
     {
-        [EnumMember(Value = "sentry")]
+        [EnumMember(Value = "webhook")]
         #pragma warning disable CS1591
-        Sentry,
+        Webhook,
         #pragma warning restore CS1591
     }
 }

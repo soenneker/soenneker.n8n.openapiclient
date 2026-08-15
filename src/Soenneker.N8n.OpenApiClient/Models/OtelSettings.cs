@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// &quot;The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided. Fields managed declaratively via environment variables are returned with their effective value and ignored on write.&quot;
+    /// The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided. Fields managed declaratively via environment variables are returned with their effective value and ignored on write.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class OtelSettings : IParsable

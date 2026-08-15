@@ -5,12 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum GetDiscoverIncludeParameter
+    public enum VariableLimitExceededType
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "schemas")]
+        [EnumMember(Value = "variable-limit-exceeded")]
         #pragma warning disable CS1591
-        Schemas,
+        VariableLimitExceeded,
         #pragma warning restore CS1591
     }
 }

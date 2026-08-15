@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy
         {
         }
         /// <summary>
-        /// &quot;Retrieve the instance security policy: personal-space publishing and sharing, the execution-data redaction enforcement floor, and the read-only usage counts shown in the UI. Requires the `securitySettings:manage` scope and the Personal Space Policy feature to be licensed.&quot;
+        /// Retrieve the instance security policy: personal-space publishing and sharing, the execution-data redaction enforcement floor, and the read-only usage counts shown in the UI. Requires the `securitySettings:manage` scope and the Personal Space Policy feature to be licensed.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicy"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicy>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicy.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Retrieve the instance security policy: personal-space publishing and sharing, the execution-data redaction enforcement floor, and the read-only usage counts shown in the UI. Requires the `securitySettings:manage` scope and the Personal Space Policy feature to be licensed.&quot;
+        /// Retrieve the instance security policy: personal-space publishing and sharing, the execution-data redaction enforcement floor, and the read-only usage counts shown in the UI. Requires the `securitySettings:manage` scope and the Personal Space Policy feature to be licensed.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

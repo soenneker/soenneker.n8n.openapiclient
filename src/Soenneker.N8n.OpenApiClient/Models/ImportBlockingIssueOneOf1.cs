@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string SourceWorkflowId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1"/> and sets the default values.
         /// </summary>
@@ -69,7 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "existingWorkflowId", n => { ExistingWorkflowId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>(); } },
             };
         }
         /// <summary>
@@ -82,7 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("existingWorkflowId", ExistingWorkflowId);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -119,7 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<string> SubscribedEvents { get; set; }
 #endif
         /// <summary>Sends each event as an HTTP request to a URL.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DestinationWebhookType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WebhookType? Type { get; set; }
         /// <summary>Target URL that receives the event payload.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -169,7 +169,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "specifyHeaders", n => { SpecifyHeaders = n.GetStringValue(); } },
                 { "specifyQuery", n => { SpecifyQuery = n.GetStringValue(); } },
                 { "subscribedEvents", n => { SubscribedEvents = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestinationWebhookType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WebhookType>(); } },
                 { "url", n => { Url = n.GetStringValue(); } },
             };
         }
@@ -195,7 +195,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("specifyHeaders", SpecifyHeaders);
             writer.WriteStringValue("specifyQuery", SpecifyQuery);
             writer.WriteCollectionOfPrimitiveValues<string>("subscribedEvents", SubscribedEvents);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestinationWebhookType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WebhookType>("type", Type);
             writer.WriteStringValue("url", Url);
             writer.WriteAdditionalData(AdditionalData);
         }

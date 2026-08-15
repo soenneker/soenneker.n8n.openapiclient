@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;Workflow id on the target instance: newly assigned for `created` (fresh under `workflowIdPolicy=new`, the package id under `source`), the existing workflow&apos;s id for `updated`/`skipped`.&quot;</summary>
+        /// <summary>Workflow id on the target instance: newly assigned for `created` (fresh under `workflowIdPolicy=new`, the package id under `source`), the existing workflow&apos;s id for `updated`/`skipped`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LocalId { get; set; }

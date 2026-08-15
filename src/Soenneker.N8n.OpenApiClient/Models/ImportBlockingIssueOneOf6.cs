@@ -24,7 +24,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string NodeType { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf6Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType? Type { get; set; }
         /// <summary>Node type version the package&apos;s workflows use.</summary>
         public double? TypeVersion { get; set; }
         /// <summary>Package workflow ids that use this node type and version.</summary>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "nodeType", n => { NodeType = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf6Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType>(); } },
                 { "typeVersion", n => { TypeVersion = n.GetDoubleValue(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -74,7 +74,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("nodeType", NodeType);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf6Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType>("type", Type);
             writer.WriteDoubleValue("typeVersion", TypeVersion);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);

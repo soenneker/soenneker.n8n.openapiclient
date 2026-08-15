@@ -87,7 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Discover
         {
             /// <summary>Include additional data. Use &quot;schemas&quot; to inline request body schemas per endpoint, eliminating the need to fetch the full OpenAPI spec.</summary>
             [QueryParameter("include")]
-            public global::Soenneker.N8n.OpenApiClient.Models.GetDiscoverIncludeParameter? Include { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.SchemasInclude? Include { get; set; }
             /// <summary>Filter to endpoints with a specific operation (e.g. &quot;read&quot;, &quot;create&quot;, &quot;list&quot;).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

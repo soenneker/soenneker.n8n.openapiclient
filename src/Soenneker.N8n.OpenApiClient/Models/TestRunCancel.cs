@@ -23,7 +23,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Id { get; set; }
 #endif
         /// <summary>The status property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.TestRunCancelStatus? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CancelledStatus? Status { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestRunCancel"/> and sets the default values.
         /// </summary>
@@ -50,7 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunCancelStatus>(); } },
+                { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CancelledStatus>(); } },
             };
         }
         /// <summary>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("id", Id);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunCancelStatus>("status", Status);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CancelledStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

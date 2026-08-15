@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;How strictly a matched data table&apos;s schema is compared. `keep-existing` (default) accepts a target table that has every package column with the same name and type, even when the target table also has additional columns of its own. `fail` is the strict drift-detection choice: any difference, including such target-only columns, rejects the import. A missing package column or a type mismatch always rejects. Both policies are non-destructive — the matched target table is never altered, and package columns are never added to it.&quot;</summary>
+    /// <summary>How strictly a matched data table&apos;s schema is compared. `keep-existing` (default) accepts a target table that has every package column with the same name and type, even when the target table also has additional columns of its own. `fail` is the strict drift-detection choice: any difference, including such target-only columns, rejects the import. A missing package column or a type mismatch always rejects. Both policies are non-destructive — the matched target table is never altered, and package columns are never added to it.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestDataTableSchemaConflictPolicy
     {

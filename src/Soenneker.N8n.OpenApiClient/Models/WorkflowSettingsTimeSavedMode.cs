@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;Controls how the time saved per execution is calculated.Available options:- `fixed`: Uses a predetermined time value specified in the `timeSavedPerExecution` field.  * Requires the `timeSavedPerExecution` field to be set  * Use when the time saved is consistent across all executions- `dynamic`: Automatically calculates time saved based on actual execution metrics  * The `timeSavedPerExecution` field is ignored when this mode is active  * Use when time saved varies between executions&quot;</summary>
+    /// <summary>Controls how the time saved per execution is calculated.Available options:- `fixed`: Uses a predetermined time value specified in the `timeSavedPerExecution` field.  * Requires the `timeSavedPerExecution` field to be set  * Use when the time saved is consistent across all executions- `dynamic`: Automatically calculates time saved based on actual execution metrics  * The `timeSavedPerExecution` field is ignored when this mode is active  * Use when time saved varies between executions</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum WorkflowSettingsTimeSavedMode
     {

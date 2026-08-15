@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;For `permission-denied`: the global scope the importing user lacks.&quot;</summary>
+    /// <summary>For `permission-denied`: the global scope the importing user lacks.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ImportBlockingIssueOneOf8MissingScope
     {

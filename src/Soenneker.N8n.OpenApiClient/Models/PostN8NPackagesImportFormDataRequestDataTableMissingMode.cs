@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;Controls what happens when a referenced data table has no match in the target project. `create` (default) creates it from the package schema, keeping the source id, with no rows; requires the `dataTable:create` scope. `must-preexist` rejects the import. `do-nothing` skips creation of missing tables — matched tables are still validated for schema compatibility and can still block the import. Matched tables are always used as-is: never renamed, altered, or filled.&quot;</summary>
+    /// <summary>Controls what happens when a referenced data table has no match in the target project. `create` (default) creates it from the package schema, keeping the source id, with no rows; requires the `dataTable:create` scope. `must-preexist` rejects the import. `do-nothing` skips creation of missing tables — matched tables are still validated for schema compatibility and can still block the import. Matched tables are always used as-is: never renamed, altered, or filled.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestDataTableMissingMode
     {

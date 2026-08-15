@@ -8,14 +8,14 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// &quot;A package folder that cannot be imported as-is. `kind` distinguishes the cause: `parent-mismatch` (a folder matched by id sits under a different parent than the package places it), `id-in-other-project` (the folder id already exists in a different project — ids are globally unique), or `fail-policy` (the folder already exists and `folderConflictPolicy` is `fail`).&quot;
+    /// A package folder that cannot be imported as-is. `kind` distinguishes the cause: `parent-mismatch` (a folder matched by id sits under a different parent than the package places it), `id-in-other-project` (the folder id already exists in a different project — ids are globally unique), or `fail-policy` (the folder already exists and `folderConflictPolicy` is `fail`).
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf5 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;For `parent-mismatch`: the matched folder&apos;s current parent in the target.&quot;</summary>
+        /// <summary>For `parent-mismatch`: the matched folder&apos;s current parent in the target.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExistingParentFolderId { get; set; }
@@ -23,7 +23,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string ExistingParentFolderId { get; set; }
 #endif
-        /// <summary>&quot;For `id-in-other-project`: the project that already owns the id.&quot;</summary>
+        /// <summary>For `id-in-other-project`: the project that already owns the id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExistingProjectId { get; set; }
@@ -31,7 +31,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string ExistingProjectId { get; set; }
 #endif
-        /// <summary>&quot;For `parent-mismatch`: the parent the package would place the folder under.&quot;</summary>
+        /// <summary>For `parent-mismatch`: the parent the package would place the folder under.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExpectedParentFolderId { get; set; }
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string SourceFolderId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5"/> and sets the default values.
         /// </summary>
@@ -90,7 +90,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Kind>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "sourceFolderId", n => { SourceFolderId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType>(); } },
             };
         }
         /// <summary>
@@ -106,7 +106,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Kind>("kind", Kind);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceFolderId", SourceFolderId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf5Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

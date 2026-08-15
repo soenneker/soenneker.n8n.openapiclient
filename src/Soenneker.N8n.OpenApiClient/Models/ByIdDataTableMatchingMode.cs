@@ -5,7 +5,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>How data tables referenced by the package&apos;s workflows are matched against the target project. `by-id` matches the target-project table with the same id (imported tables keep their source id) and never falls back to name matching, so a match survives a rename on the target. Currently the only mode.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public enum PostN8NPackagesImportFormDataRequestDataTableMatchingMode
+    public enum ByIdDataTableMatchingMode
     {
         [EnumMember(Value = "by-id")]
         #pragma warning disable CS1591

@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;Present when `state` is `blocked`: the imported version could not be published and no version is active.&quot;</summary>
+    /// <summary>Present when `state` is `blocked`: the imported version could not be published and no version is active.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImport200ResponseWorkflowsItemPublishingBlockedReason
     {

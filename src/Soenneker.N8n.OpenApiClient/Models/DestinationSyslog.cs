@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>Whether the destination currently receives events.</summary>
         public bool? Enabled { get; set; }
-        /// <summary>&quot;Syslog facility code (0–23, per RFC 5424). Common values: 0 Kernel, 1 User, 3 System, 13 Audit, 14 Alert, 16 Local0, 17 Local1, 18 Local2, 19 Local3, 20 Local4, 21 Local5, 22 Local6, 23 Local7.&quot;</summary>
+        /// <summary>Syslog facility code (0–23, per RFC 5424). Common values: 0 Kernel, 1 User, 3 System, 13 Audit, 14 Alert, 16 Local0, 17 Local1, 18 Local2, 19 Local3, 20 Local4, 21 Local5, 22 Local6, 23 Local7.</summary>
         public int? Facility { get; set; }
         /// <summary>Syslog server host.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -81,7 +81,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string TlsCa { get; set; }
 #endif
         /// <summary>Sends each event to a syslog server.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DestinationSyslogType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SyslogType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.DestinationSyslog"/> and sets the default values.
         /// </summary>
@@ -119,7 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "protocol", n => { Protocol = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestinationSyslogProtocol>(); } },
                 { "subscribedEvents", n => { SubscribedEvents = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "tlsCa", n => { TlsCa = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestinationSyslogType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SyslogType>(); } },
             };
         }
         /// <summary>
@@ -140,7 +140,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestinationSyslogProtocol>("protocol", Protocol);
             writer.WriteCollectionOfPrimitiveValues<string>("subscribedEvents", SubscribedEvents);
             writer.WriteStringValue("tlsCa", TlsCa);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestinationSyslogType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SyslogType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

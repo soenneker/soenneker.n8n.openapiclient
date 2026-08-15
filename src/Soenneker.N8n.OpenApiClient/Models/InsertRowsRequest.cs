@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestDataItemProperty> Data { get; set; }
 #endif
-        /// <summary>&quot;- count: Return only the number of rows inserted- id: Return an array of inserted row IDs- all: Return the full row data for all inserted rows&quot;</summary>
+        /// <summary>- count: Return only the number of rows inserted- id: Return an array of inserted row IDs- all: Return the full row data for all inserted rows</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequestReturnType? ReturnType { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest"/> and sets the default values.

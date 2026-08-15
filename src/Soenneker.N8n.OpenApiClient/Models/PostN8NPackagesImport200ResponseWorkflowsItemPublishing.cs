@@ -15,7 +15,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>&quot;Present when `state` is `blocked`: the imported version could not be published and no version is active.&quot;</summary>
+        /// <summary>Present when `state` is `blocked`: the imported version could not be published and no version is active.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemPublishingBlockedReason? BlockedReason { get; set; }
         /// <summary>Present when `state` is `failed`. Explains why publish or unpublish could not be applied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -25,7 +25,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Error { get; set; }
 #endif
-        /// <summary>&quot;Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with stubbed credentials).&quot;</summary>
+        /// <summary>Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with stubbed credentials).</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemPublishingSkippedPublishReason? SkippedPublishReason { get; set; }
         /// <summary>`blocked` means the imported version could not be published and no version is active (for example because the workflow uses a stubbed credential, or uses a node type this instance does not have). When a prior published version remains active, `state` is `unchanged` with `skippedPublishReason` instead. `failed` means publish or unpublish was attempted but did not succeed.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItemPublishingState? State { get; set; }

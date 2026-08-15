@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>&quot;Where `create-with-value` and `create-stub` create missing variables for workflow/folder packages. `project` — also the behaviour when the field is omitted — creates them in the import target project (`projectId`, else the caller&apos;s personal project). `global` creates them at the global scope. The license and `variable:create` requirements described under `variableMissingMode` apply to both placements. Must be omitted for project packages, which reject it with a 400: their placement follows the package layout, where a variable bundled under a project is created in that project and one bundled at the top level is created globally.&quot;</summary>
+    /// <summary>Where `create-with-value` and `create-stub` create missing variables for workflow/folder packages. `project` — also the behaviour when the field is omitted — creates them in the import target project (`projectId`, else the caller&apos;s personal project). `global` creates them at the global scope. The license and `variable:create` requirements described under `variableMissingMode` apply to both placements. Must be omitted for project packages, which reject it with a 400: their placement follows the package layout, where a variable bundled under a project is created in that project and one bundled at the top level is created globally.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestVariableParentPolicy
     {

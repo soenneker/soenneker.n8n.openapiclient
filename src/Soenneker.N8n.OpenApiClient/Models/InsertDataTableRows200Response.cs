@@ -45,15 +45,19 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200Response();
-            if("InsertDataTableRows200Response_2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("InsertDataTableRows200ResponseBranch2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.InsertDataTableRows200ResponseBranch2 = new global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200ResponseBranch2();
             }
-            else if("InsertDataTableRows200Response_3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("InsertDataTableRows200ResponseBranch3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.InsertDataTableRows200ResponseBranch3 = new global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200ResponseBranch3();
+            }
+            else if("InsertDataTableRows200ResponseOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.InsertDataTableRows200ResponseOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200ResponseOneOf1();
             }
             return result;
         }

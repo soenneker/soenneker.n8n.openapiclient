@@ -5,12 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum TestRunCancelStatus
+    public enum MillisecondUnit
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "cancelled")]
+        [EnumMember(Value = "millisecond")]
         #pragma warning disable CS1591
-        Cancelled,
+        Millisecond,
         #pragma warning restore CS1591
     }
 }

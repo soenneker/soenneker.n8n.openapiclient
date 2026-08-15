@@ -55,7 +55,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Sso.Oidc
         /// Set the OIDC SSO configuration. The update takes effect exactly as it would from the UI, using the same validation. `clientId`, `clientSecret` and `discoveryEndpoint` are required; submit the redacted client secret sentinel to keep the stored secret unchanged. Requires the `oidc:manage` scope and the OIDC feature to be licensed. The client secret is redacted in the response. When the configuration is managed declaratively (via environment variables), the write is rejected with 409 and no changes are made.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.OidcConfiguration"/></returns>
-        /// <param name="body">&quot;Full OIDC SSO configuration to set. This is a full replacement: every writable field must be provided. Partial updates are rejected. Submit the redacted secret sentinel  for `clientSecret` to keep the stored secret unchanged.&quot;</param>
+        /// <param name="body">Full OIDC SSO configuration to set. This is a full replacement: every writable field must be provided. Partial updates are rejected. Submit the redacted secret sentinel  for `clientSecret` to keep the stored secret unchanged.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -94,7 +94,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Sso.Oidc
         /// Set the OIDC SSO configuration. The update takes effect exactly as it would from the UI, using the same validation. `clientId`, `clientSecret` and `discoveryEndpoint` are required; submit the redacted client secret sentinel to keep the stored secret unchanged. Requires the `oidc:manage` scope and the OIDC feature to be licensed. The client secret is redacted in the response. When the configuration is managed declaratively (via environment variables), the write is rejected with 409 and no changes are made.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">&quot;Full OIDC SSO configuration to set. This is a full replacement: every writable field must be provided. Partial updates are rejected. Submit the redacted secret sentinel  for `clientSecret` to keep the stored secret unchanged.&quot;</param>
+        /// <param name="body">Full OIDC SSO configuration to set. This is a full replacement: every writable field must be provided. Partial updates are rejected. Submit the redacted secret sentinel  for `clientSecret` to keep the stored secret unchanged.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

@@ -3,14 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>Sends each event to a syslog server.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum GetVariablesStateParameter
-    #pragma warning restore CS1591
+    public enum SyslogType
     {
-        [EnumMember(Value = "empty")]
+        [EnumMember(Value = "syslog")]
         #pragma warning disable CS1591
-        Empty,
+        Syslog,
         #pragma warning restore CS1591
     }
 }

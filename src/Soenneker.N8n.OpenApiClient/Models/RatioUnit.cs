@@ -5,12 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf4Kind
+    public enum RatioUnit
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "fail-policy")]
+        [EnumMember(Value = "ratio")]
         #pragma warning disable CS1591
-        FailPolicy,
+        Ratio,
         #pragma warning restore CS1591
     }
 }

@@ -58,10 +58,10 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Otel
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.OtelSettings>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.OtelSettings.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// &quot;Set the OpenTelemetry configuration. This is a full replacement: every field must be provided, and a partial body is rejected. The update takes effect exactly as it would from the UI, using the same validation, and is applied to the running instance immediately. Fields managed declaratively via environment variables are read-only: attempting to change one is rejected with 409, while re-submitting its current value (as returned by GET) is accepted. Requires the `otel:manage` scope.&quot;
+        /// Set the OpenTelemetry configuration. This is a full replacement: every field must be provided, and a partial body is rejected. The update takes effect exactly as it would from the UI, using the same validation, and is applied to the running instance immediately. Fields managed declaratively via environment variables are read-only: attempting to change one is rejected with 409, while re-submitting its current value (as returned by GET) is accepted. Requires the `otel:manage` scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.OtelSettings"/></returns>
-        /// <param name="body">&quot;The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided. Fields managed declaratively via environment variables are returned with their effective value and ignored on write.&quot;</param>
+        /// <param name="body">The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided. Fields managed declaratively via environment variables are returned with their effective value and ignored on write.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -97,10 +97,10 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Otel
             return requestInfo;
         }
         /// <summary>
-        /// &quot;Set the OpenTelemetry configuration. This is a full replacement: every field must be provided, and a partial body is rejected. The update takes effect exactly as it would from the UI, using the same validation, and is applied to the running instance immediately. Fields managed declaratively via environment variables are read-only: attempting to change one is rejected with 409, while re-submitting its current value (as returned by GET) is accepted. Requires the `otel:manage` scope.&quot;
+        /// Set the OpenTelemetry configuration. This is a full replacement: every field must be provided, and a partial body is rejected. The update takes effect exactly as it would from the UI, using the same validation, and is applied to the running instance immediately. Fields managed declaratively via environment variables are read-only: attempting to change one is rejected with 409, while re-submitting its current value (as returned by GET) is accepted. Requires the `otel:manage` scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">&quot;The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided. Fields managed declaratively via environment variables are returned with their effective value and ignored on write.&quot;</param>
+        /// <param name="body">The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided. Fields managed declaratively via environment variables are returned with their effective value and ignored on write.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

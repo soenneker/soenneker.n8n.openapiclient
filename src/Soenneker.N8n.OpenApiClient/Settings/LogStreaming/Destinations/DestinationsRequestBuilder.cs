@@ -68,7 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations
         /// Create a log streaming destination. The destination takes effect exactly as it would from the UI, using the same validation. Requires the `eventBusDestination:create` scope and the Log Streaming feature to be licensed. When destinations are managed via environment variables, the write is rejected with 409 and nothing is created; reads still return the current values.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Destination"/></returns>
-        /// <param name="body">&quot;A log streaming destination. The `type` field selects the variant and its type-specific fields: `webhook`, `syslog`, or `sentry`.&quot;</param>
+        /// <param name="body">A log streaming destination. The `type` field selects the variant and its type-specific fields: `webhook`, `syslog`, or `sentry`.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -107,7 +107,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations
         /// Create a log streaming destination. The destination takes effect exactly as it would from the UI, using the same validation. Requires the `eventBusDestination:create` scope and the Log Streaming feature to be licensed. When destinations are managed via environment variables, the write is rejected with 409 and nothing is created; reads still return the current values.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
-        /// <param name="body">&quot;A log streaming destination. The `type` field selects the variant and its type-specific fields: `webhook`, `syslog`, or `sentry`.&quot;</param>
+        /// <param name="body">A log streaming destination. The `type` field selects the variant and its type-specific fields: `webhook`, `syslog`, or `sentry`.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable

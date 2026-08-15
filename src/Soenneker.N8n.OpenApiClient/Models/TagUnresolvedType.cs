@@ -5,12 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf3Type
+    public enum TagUnresolvedType
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "workflow-folder-conflict")]
+        [EnumMember(Value = "tag-unresolved")]
         #pragma warning disable CS1591
-        WorkflowFolderConflict,
+        TagUnresolved,
         #pragma warning restore CS1591
     }
 }

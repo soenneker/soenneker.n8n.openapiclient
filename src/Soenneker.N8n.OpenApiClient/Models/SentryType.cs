@@ -3,14 +3,13 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>Sends each event to a Sentry project.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public enum InsightsTimeSavedUnit
-    #pragma warning restore CS1591
+    public enum SentryType
     {
-        [EnumMember(Value = "minute")]
+        [EnumMember(Value = "sentry")]
         #pragma warning disable CS1591
-        Minute,
+        Sentry,
         #pragma warning restore CS1591
     }
 }

@@ -30,7 +30,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Number of new variable rows the import would create (destination-deduplicated).</summary>
         public int? Requested { get; set; }
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf11Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType? Type { get; set; }
         /// <summary>Package workflow ids that reference any of the listed variables.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,7 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "names", n => { Names = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "remaining", n => { Remaining = n.GetIntValue(); } },
                 { "requested", n => { Requested = n.GetIntValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf11Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -83,7 +83,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("names", Names);
             writer.WriteIntValue("remaining", Remaining);
             writer.WriteIntValue("requested", Requested);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf11Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

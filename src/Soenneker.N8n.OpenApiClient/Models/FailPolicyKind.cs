@@ -5,12 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum ImportBlockingIssueOneOf11Type
+    public enum FailPolicyKind
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "variable-limit-exceeded")]
+        [EnumMember(Value = "fail-policy")]
         #pragma warning disable CS1591
-        VariableLimitExceeded,
+        FailPolicy,
         #pragma warning restore CS1591
     }
 }

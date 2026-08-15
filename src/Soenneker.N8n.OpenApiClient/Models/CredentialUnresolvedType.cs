@@ -5,12 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum InsightsAverageRunTimeUnit
+    public enum CredentialUnresolvedType
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "millisecond")]
+        [EnumMember(Value = "credential-unresolved")]
         #pragma warning disable CS1591
-        Millisecond,
+        CredentialUnresolved,
         #pragma warning restore CS1591
     }
 }

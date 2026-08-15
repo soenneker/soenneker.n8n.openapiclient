@@ -9,33 +9,51 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class InsightsTimeSaved : IAdditionalDataHolder, IParsable
+    public partial class PostWorkflowsByIdActivateRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The deviation property</summary>
-        public double? Deviation { get; set; }
-        /// <summary>The unit property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.MinuteUnit? Unit { get; set; }
-        /// <summary>The value property</summary>
-        public double? Value { get; set; }
+        /// <summary>Optional description for the workflow version during activation.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
+        /// <summary>Optional name for the workflow version during activation.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The specific version ID to activate or publish. If not provided, the latest version is used.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? VersionId { get; set; }
+#nullable restore
+#else
+        public string VersionId { get; set; }
+#endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostWorkflowsByIdActivateRequest"/> and sets the default values.
         /// </summary>
-        public InsightsTimeSaved()
+        public PostWorkflowsByIdActivateRequest()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostWorkflowsByIdActivateRequest"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.PostWorkflowsByIdActivateRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.InsightsTimeSaved();
+            return new global::Soenneker.N8n.OpenApiClient.Models.PostWorkflowsByIdActivateRequest();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -45,9 +63,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "deviation", n => { Deviation = n.GetDoubleValue(); } },
-                { "unit", n => { Unit = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MinuteUnit>(); } },
-                { "value", n => { Value = n.GetDoubleValue(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "versionId", n => { VersionId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -57,9 +75,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDoubleValue("deviation", Deviation);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MinuteUnit>("unit", Unit);
-            writer.WriteDoubleValue("value", Value);
+            writer.WriteStringValue("description", Description);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("versionId", VersionId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

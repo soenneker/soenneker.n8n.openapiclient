@@ -24,7 +24,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Name { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType? Type { get; set; }
         /// <summary>The usedByWorkflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -71,7 +71,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

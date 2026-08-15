@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// &quot;Full OIDC SSO configuration to set. This is a full replacement: every writable field must be provided. Partial updates are rejected. Submit the redacted secret sentinel  for `clientSecret` to keep the stored secret unchanged.&quot;
+    /// Full OIDC SSO configuration to set. This is a full replacement: every writable field must be provided. Partial updates are rejected. Submit the redacted secret sentinel  for `clientSecret` to keep the stored secret unchanged.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class OidcConfigurationUpdate : IParsable

@@ -5,12 +5,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public enum InsightsFailedUnit
+    public enum SchemasInclude
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "count")]
+        [EnumMember(Value = "schemas")]
         #pragma warning disable CS1591
-        Count,
+        Schemas,
         #pragma warning restore CS1591
     }
 }

@@ -109,7 +109,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssue();
             if("ImportBlockingIssueOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {

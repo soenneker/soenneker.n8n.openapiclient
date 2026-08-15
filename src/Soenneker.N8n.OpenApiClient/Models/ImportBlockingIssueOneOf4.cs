@@ -16,7 +16,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind? Kind { get; set; }
         /// <summary>The project&apos;s name as it appears in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string SourceProjectId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4"/> and sets the default values.
         /// </summary>
@@ -60,10 +60,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind>(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "sourceProjectId", n => { SourceProjectId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType>(); } },
             };
         }
         /// <summary>
@@ -73,10 +73,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Kind>("kind", Kind);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind>("kind", Kind);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceProjectId", SourceProjectId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf4Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

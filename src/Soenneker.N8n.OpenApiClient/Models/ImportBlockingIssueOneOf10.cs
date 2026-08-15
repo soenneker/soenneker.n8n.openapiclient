@@ -32,7 +32,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string ProjectId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf10Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType? Type { get; set; }
         /// <summary>The usedByWorkflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,7 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf10Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -81,7 +81,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("projectId", ProjectId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf10Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

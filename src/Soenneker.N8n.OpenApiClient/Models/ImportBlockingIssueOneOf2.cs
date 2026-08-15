@@ -50,7 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string SourceWorkflowId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Type? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowIdConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2"/> and sets the default values.
         /// </summary>
@@ -81,7 +81,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "isArchived", n => { IsArchived = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Type>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowIdConflictType>(); } },
             };
         }
         /// <summary>
@@ -96,7 +96,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("isArchived", IsArchived);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2Type>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowIdConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

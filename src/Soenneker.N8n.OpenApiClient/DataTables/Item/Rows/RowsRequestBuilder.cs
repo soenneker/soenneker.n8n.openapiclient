@@ -184,7 +184,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
             [QueryParameter("search")]
             public string Search { get; set; }
 #endif
-            /// <summary>&quot;Sort format: columnName:asc or columnName:desc&quot;</summary>
+            /// <summary>Sort format: columnName:asc or columnName:desc</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("sortBy")]
