@@ -8,29 +8,29 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Pinned sample data for nodes, keyed by node name
+    /// Metrics produced by this test case.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class WorkflowPinData : IAdditionalDataHolder, IParsable
+    public partial class TestCaseExecutionMetricsProperty : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPinData"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty"/> and sets the default values.
         /// </summary>
-        public WorkflowPinData()
+        public TestCaseExecutionMetricsProperty()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPinData"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.WorkflowPinData CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.WorkflowPinData();
+            return new global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty();
         }
         /// <summary>
         /// The deserialization information for the current model

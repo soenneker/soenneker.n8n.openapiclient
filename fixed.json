@@ -6532,7 +6532,7 @@
             "$ref": "#/components/schemas/WorkflowStaticData"
           },
           "pinData": {
-            "$ref": "#/components/schemas/WorkflowPinData"
+            "$ref": "#/components/schemas/WorkflowPinDataProperty"
           },
           "meta": {
             "$ref": "#/components/schemas/WorkflowMeta"
@@ -6642,7 +6642,7 @@
             "$ref": "#/components/schemas/WorkflowCreateStaticData"
           },
           "pinData": {
-            "$ref": "#/components/schemas/WorkflowCreatePinData"
+            "$ref": "#/components/schemas/WorkflowCreatePinDataProperty"
           },
           "projectId": {
             "type": "string",
@@ -6795,14 +6795,14 @@
             "nullable": true
           },
           "metrics": {
-            "$ref": "#/components/schemas/TestRunSummaryMetrics"
+            "$ref": "#/components/schemas/TestRunSummaryMetricsProperty"
           },
           "errorCode": {
             "type": "string",
             "nullable": true
           },
           "errorDetails": {
-            "$ref": "#/components/schemas/TestRunSummaryErrorDetails"
+            "$ref": "#/components/schemas/TestRunSummaryErrorDetailsProperty"
           },
           "finalResult": {
             "$ref": "#/components/schemas/TestRunSummaryFinalResult"
@@ -6887,20 +6887,20 @@
             "nullable": true
           },
           "metrics": {
-            "$ref": "#/components/schemas/TestCaseExecutionMetrics"
+            "$ref": "#/components/schemas/TestCaseExecutionMetricsProperty"
           },
           "errorCode": {
             "type": "string",
             "nullable": true
           },
           "errorDetails": {
-            "$ref": "#/components/schemas/TestCaseExecutionErrorDetails"
+            "$ref": "#/components/schemas/TestCaseExecutionErrorDetailsProperty"
           },
           "inputs": {
-            "$ref": "#/components/schemas/TestCaseExecutionInputs"
+            "$ref": "#/components/schemas/TestCaseExecutionInputsProperty"
           },
           "outputs": {
-            "$ref": "#/components/schemas/TestCaseExecutionOutputs"
+            "$ref": "#/components/schemas/TestCaseExecutionOutputsProperty"
           },
           "executionId": {
             "type": "string",
@@ -10714,12 +10714,42 @@
       "WorkflowConnectionsProperty": {
         "type": "object"
       },
+      "WorkflowPinDataProperty": {
+        "type": "object",
+        "description": "Pinned sample data for nodes, keyed by node name"
+      },
       "WorkflowCreateConnectionsProperty": {
         "type": "object"
+      },
+      "WorkflowCreatePinDataProperty": {
+        "type": "object",
+        "description": "Pinned sample data for nodes, keyed by node name"
       },
       "WorkflowVersionConnectionsProperty": {
         "type": "object",
         "description": "Connections as they were in this version"
+      },
+      "TestRunSummaryMetricsProperty": {
+        "type": "object",
+        "description": "Aggregated metrics collected across the run\u0027s test cases."
+      },
+      "TestRunSummaryErrorDetailsProperty": {
+        "type": "object"
+      },
+      "TestCaseExecutionMetricsProperty": {
+        "type": "object",
+        "description": "Metrics produced by this test case."
+      },
+      "TestCaseExecutionErrorDetailsProperty": {
+        "type": "object"
+      },
+      "TestCaseExecutionInputsProperty": {
+        "type": "object",
+        "description": "Input data for this test case."
+      },
+      "TestCaseExecutionOutputsProperty": {
+        "type": "object",
+        "description": "Output data produced by this test case."
       },
       "InsertRowsRequestDataItemProperty": {
         "type": "object"

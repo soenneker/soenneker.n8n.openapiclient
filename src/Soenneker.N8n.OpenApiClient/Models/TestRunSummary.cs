@@ -29,10 +29,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The errorDetails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetails? ErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetailsProperty? ErrorDetails { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetails ErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetailsProperty ErrorDetails { get; set; }
 #endif
         /// <summary>Overall result of the run, derived from its test cases once completed.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryFinalResult? FinalResult { get; set; }
@@ -47,10 +47,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Aggregated metrics collected across the run&apos;s test cases.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetrics? Metrics { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetricsProperty? Metrics { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetrics Metrics { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetricsProperty Metrics { get; set; }
 #endif
         /// <summary>The runAt property</summary>
         public DateTimeOffset? RunAt { get; set; }
@@ -88,10 +88,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "completedAt", n => { CompletedAt = n.GetDateTimeOffsetValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "errorCode", n => { ErrorCode = n.GetStringValue(); } },
-                { "errorDetails", n => { ErrorDetails = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetails>(global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetails.CreateFromDiscriminatorValue); } },
+                { "errorDetails", n => { ErrorDetails = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetailsProperty>(global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetailsProperty.CreateFromDiscriminatorValue); } },
                 { "finalResult", n => { FinalResult = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryFinalResult>(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "metrics", n => { Metrics = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetrics>(global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetrics.CreateFromDiscriminatorValue); } },
+                { "metrics", n => { Metrics = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetricsProperty>(global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetricsProperty.CreateFromDiscriminatorValue); } },
                 { "runAt", n => { RunAt = n.GetDateTimeOffsetValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryStatus>(); } },
                 { "testCaseCount", n => { TestCaseCount = n.GetIntValue(); } },
@@ -108,10 +108,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("completedAt", CompletedAt);
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteStringValue("errorCode", ErrorCode);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetails>("errorDetails", ErrorDetails);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryErrorDetailsProperty>("errorDetails", ErrorDetails);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryFinalResult>("finalResult", FinalResult);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetrics>("metrics", Metrics);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryMetricsProperty>("metrics", Metrics);
             writer.WriteDateTimeOffsetValue("runAt", RunAt);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestRunSummaryStatus>("status", Status);
             writer.WriteIntValue("testCaseCount", TestCaseCount);

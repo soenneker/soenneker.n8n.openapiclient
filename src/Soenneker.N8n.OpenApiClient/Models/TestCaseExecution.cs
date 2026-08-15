@@ -27,10 +27,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The errorDetails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetails? ErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetailsProperty? ErrorDetails { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetails ErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetailsProperty ErrorDetails { get; set; }
 #endif
         /// <summary>ID of the underlying workflow execution, if still retained.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -51,26 +51,26 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Input data for this test case.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputs? Inputs { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputsProperty? Inputs { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputs Inputs { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputsProperty Inputs { get; set; }
 #endif
         /// <summary>Metrics produced by this test case.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetrics? Metrics { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty? Metrics { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetrics Metrics { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty Metrics { get; set; }
 #endif
         /// <summary>Output data produced by this test case.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputs? Outputs { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputsProperty? Outputs { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputs Outputs { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputsProperty Outputs { get; set; }
 #endif
         /// <summary>The runAt property</summary>
         public DateTimeOffset? RunAt { get; set; }
@@ -103,12 +103,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "completedAt", n => { CompletedAt = n.GetDateTimeOffsetValue(); } },
                 { "errorCode", n => { ErrorCode = n.GetStringValue(); } },
-                { "errorDetails", n => { ErrorDetails = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetails>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetails.CreateFromDiscriminatorValue); } },
+                { "errorDetails", n => { ErrorDetails = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetailsProperty>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetailsProperty.CreateFromDiscriminatorValue); } },
                 { "executionId", n => { ExecutionId = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
-                { "inputs", n => { Inputs = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputs>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputs.CreateFromDiscriminatorValue); } },
-                { "metrics", n => { Metrics = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetrics>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetrics.CreateFromDiscriminatorValue); } },
-                { "outputs", n => { Outputs = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputs>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputs.CreateFromDiscriminatorValue); } },
+                { "inputs", n => { Inputs = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputsProperty>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputsProperty.CreateFromDiscriminatorValue); } },
+                { "metrics", n => { Metrics = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty.CreateFromDiscriminatorValue); } },
+                { "outputs", n => { Outputs = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputsProperty>(global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputsProperty.CreateFromDiscriminatorValue); } },
                 { "runAt", n => { RunAt = n.GetDateTimeOffsetValue(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionStatus>(); } },
             };
@@ -122,12 +122,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteDateTimeOffsetValue("completedAt", CompletedAt);
             writer.WriteStringValue("errorCode", ErrorCode);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetails>("errorDetails", ErrorDetails);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionErrorDetailsProperty>("errorDetails", ErrorDetails);
             writer.WriteStringValue("executionId", ExecutionId);
             writer.WriteStringValue("id", Id);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputs>("inputs", Inputs);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetrics>("metrics", Metrics);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputs>("outputs", Outputs);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionInputsProperty>("inputs", Inputs);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionMetricsProperty>("metrics", Metrics);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionOutputsProperty>("outputs", Outputs);
             writer.WriteDateTimeOffsetValue("runAt", RunAt);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);
