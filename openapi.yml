@@ -20,6 +20,7 @@ servers:
 security:
   - ApiKeyAuth: []
   - BearerAuth: []
+  - CookieAuth: []
 tags:
   - name: Audit
     description: Operations about security audit
@@ -47,6 +48,8 @@ tags:
     description: Operations about projects
   - name: Role
     description: Operations about roles
+  - name: RoleMappingRule
+    description: Operations about identity-provider role-mapping rules
   - name: SecurityPolicy
     description: Operations about the instance security policy settings
   - name: SettingsLdap
@@ -1191,61 +1194,208 @@ paths:
         '404':
           $ref: '#/components/responses/notFound'
     get:
-      x-eov-operation-id: getWorkflows
-      x-required-scope: workflow:list
-      x-eov-operation-handler: v1/handlers/workflows/workflows.handler
+      operationId: getWorkflows
       tags:
         - Workflow
       summary: Retrieve all workflows
       description: Retrieve all workflows from your instance.
+      x-required-scope: workflow:list
       parameters:
-        - name: active
-          in: query
-          schema:
-            type: boolean
-            example: true
-        - name: tags
-          in: query
-          required: false
-          explode: false
-          allowReserved: true
-          schema:
-            type: string
-            example: test,production
-        - name: name
-          in: query
-          required: false
-          explode: false
-          allowReserved: true
-          schema:
-            type: string
-            example: My Workflow
-        - name: projectId
-          in: query
-          required: false
-          explode: false
-          allowReserved: true
-          schema:
-            type: string
-            example: VmwOO9HeTEj20kxM
-        - name: excludePinnedData
-          in: query
-          required: false
-          description: Set this to avoid retrieving pinned data
-          schema:
-            type: boolean
-            example: true
+        - $ref: '#/components/parameters/offset'
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+          required: false
+          name: active
+          in: query
+        - schema:
+            type: string
+          required: false
+          name: tags
+          in: query
+        - schema:
+            type: string
+          required: false
+          name: name
+          in: query
+        - schema:
+            type: string
+          required: false
+          name: projectId
+          in: query
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+            default: 'false'
+          required: false
+          name: excludePinnedData
+          in: query
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
       responses:
         '200':
           description: Operation successful.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/workflowList'
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        active:
+                          type: boolean
+                        activeVersionId:
+                          type: string
+                          nullable: true
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        isArchived:
+                          type: boolean
+                        versionId:
+                          type: string
+                        triggerCount:
+                          type: number
+                        nodes: {}
+                        connections: {}
+                        nodeGroups: {}
+                        settings:
+                          nullable: true
+                        staticData:
+                          nullable: true
+                        pinData:
+                          nullable: true
+                        meta:
+                          nullable: true
+                        tags:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              name:
+                                type: string
+                              createdAt:
+                                type: string
+                                format: date-time
+                              updatedAt:
+                                type: string
+                                format: date-time
+                            required:
+                              - id
+                              - name
+                              - createdAt
+                              - updatedAt
+                        shared:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              role:
+                                type: string
+                              workflowId:
+                                type: string
+                              projectId:
+                                type: string
+                              createdAt:
+                                type: string
+                                format: date-time
+                              updatedAt:
+                                type: string
+                                format: date-time
+                            required:
+                              - role
+                              - workflowId
+                              - projectId
+                              - createdAt
+                              - updatedAt
+                        activeVersion:
+                          type: object
+                          nullable: true
+                          properties:
+                            versionId:
+                              type: string
+                            workflowId:
+                              type: string
+                            nodes: {}
+                            connections: {}
+                            nodeGroups: {}
+                            authors:
+                              type: string
+                            name:
+                              type: string
+                              nullable: true
+                            description:
+                              type: string
+                              nullable: true
+                            autosaved:
+                              type: boolean
+                            createdAt:
+                              type: string
+                              format: date-time
+                            updatedAt:
+                              type: string
+                              format: date-time
+                          required:
+                            - versionId
+                            - workflowId
+                            - nodes
+                            - connections
+                            - nodeGroups
+                            - authors
+                            - name
+                            - description
+                            - autosaved
+                            - createdAt
+                            - updatedAt
+                      required:
+                        - id
+                        - name
+                        - active
+                        - activeVersionId
+                        - createdAt
+                        - updatedAt
+                        - isArchived
+                        - versionId
+                        - triggerCount
+                        - nodes
+                        - connections
+                        - nodeGroups
+                        - settings
+                        - staticData
+                        - meta
+                        - shared
+                        - activeVersion
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
         '401':
           $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
   /workflows/{id}:
     delete:
       x-eov-operation-id: deleteWorkflow
@@ -1562,60 +1712,6 @@ paths:
       responses:
         '200':
           description: Operation successful.
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /workflows/{id}/tags:
-    get:
-      x-eov-operation-id: getWorkflowTags
-      x-required-scope: workflowTags:list
-      x-eov-operation-handler: v1/handlers/workflows/workflows.handler
-      tags:
-        - Workflow
-      summary: Get workflow tags
-      description: Get workflow tags.
-      parameters:
-        - $ref: '#/components/parameters/workflowId'
-      responses:
-        '200':
-          description: List of tags
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflowTags'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-    put:
-      x-eov-operation-id: updateWorkflowTags
-      x-required-scope: workflowTags:update
-      x-eov-operation-handler: v1/handlers/workflows/workflows.handler
-      tags:
-        - Workflow
-      summary: Update tags of a workflow
-      description: Update tags of a workflow.
-      parameters:
-        - $ref: '#/components/parameters/workflowId'
-      requestBody:
-        description: List of tags
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/tagIds'
-        required: true
-      responses:
-        '200':
-          description: List of tags after add the tag
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflowTags'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -4180,7 +4276,220 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+  /role-mapping-rules:
+    post:
+      operationId: createRoleMappingRule
+      tags:
+        - RoleMappingRule
+      summary: Create a role-mapping rule
+      description: Creates a rule that maps an identity-provider claim expression to a role. Set `type` to `instance` for a rule granting a global role, or `project` for a rule granting a project role on the projects named in `projectIds`. Omitting `order` appends the rule to the end of the evaluation order for its type.
+      x-required-scope: roleMappingRule:create
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expression:
+                  type: string
+                  minLength: 1
+                role:
+                  type: string
+                  minLength: 1
+                  maxLength: 128
+                type:
+                  type: string
+                  enum:
+                    - instance
+                    - project
+                order:
+                  type: integer
+                  minimum: 0
+                projectIds:
+                  type: array
+                  items:
+                    type: string
+              required:
+                - expression
+                - role
+                - type
+      responses:
+        '201':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  expression:
+                    type: string
+                  role:
+                    type: string
+                  type:
+                    type: string
+                    enum:
+                      - instance
+                      - project
+                  order:
+                    type: integer
+                  projectIds:
+                    type: array
+                    items:
+                      type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                required:
+                  - id
+                  - expression
+                  - role
+                  - type
+                  - order
+                  - projectIds
+                  - createdAt
+                  - updatedAt
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
   /roles:
+    get:
+      operationId: getAllRoles
+      tags:
+        - Role
+      summary: Retrieve all roles
+      description: Returns all roles grouped by type (global and project). Set `withUsageCount` to include how many users and projects use each role.
+      x-required-scope: role:list
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+            default: 'false'
+          required: false
+          name: withUsageCount
+          in: query
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  global:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        displayName:
+                          type: string
+                        description:
+                          type: string
+                          nullable: true
+                        systemRole:
+                          type: boolean
+                        roleType:
+                          type: string
+                          enum:
+                            - global
+                        scopes:
+                          type: array
+                          items:
+                            type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        licensed:
+                          type: boolean
+                        usedByUsers:
+                          type: number
+                        usedByProjects:
+                          type: number
+                      required:
+                        - slug
+                        - displayName
+                        - description
+                        - systemRole
+                        - roleType
+                        - scopes
+                        - createdAt
+                        - updatedAt
+                        - licensed
+                  project:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        slug:
+                          type: string
+                        displayName:
+                          type: string
+                        description:
+                          type: string
+                          nullable: true
+                        systemRole:
+                          type: boolean
+                        roleType:
+                          type: string
+                          enum:
+                            - project
+                        scopes:
+                          type: array
+                          items:
+                            type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        licensed:
+                          type: boolean
+                        usedByUsers:
+                          type: number
+                        usedByProjects:
+                          type: number
+                      required:
+                        - slug
+                        - displayName
+                        - description
+                        - systemRole
+                        - roleType
+                        - scopes
+                        - createdAt
+                        - updatedAt
+                        - licensed
+                required:
+                  - global
+                  - project
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
     post:
       operationId: createRole
       tags:
@@ -4264,6 +4573,88 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+  /roles/{slug}:
+    get:
+      operationId: getRole
+      tags:
+        - Role
+      summary: Retrieve a role
+      description: Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.
+      x-required-scope: role:read
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: slug
+          in: path
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+            default: 'false'
+          required: false
+          name: withUsageCount
+          in: query
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  slug:
+                    type: string
+                  displayName:
+                    type: string
+                  description:
+                    type: string
+                    nullable: true
+                  systemRole:
+                    type: boolean
+                  roleType:
+                    type: string
+                    enum:
+                      - project
+                      - global
+                  scopes:
+                    type: array
+                    items:
+                      type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  licensed:
+                    type: boolean
+                  usedByUsers:
+                    type: number
+                  usedByProjects:
+                    type: number
+                required:
+                  - slug
+                  - displayName
+                  - description
+                  - systemRole
+                  - roleType
+                  - scopes
+                  - createdAt
+                  - updatedAt
+                  - licensed
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
   /workflows/{workflowId}:
     get:
       operationId: getWorkflow
@@ -4606,6 +4997,82 @@ paths:
                 required:
                   - data
                   - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /workflows/{workflowId}/tags:
+    get:
+      operationId: getWorkflowTags
+      tags:
+        - Workflow
+      summary: Get workflow tags
+      description: Get workflow tags.
+      x-required-scope: workflowTags:list
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowTagsPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+    put:
+      operationId: updateWorkflowTags
+      tags:
+        - Workflow
+      summary: Update tags of a workflow
+      description: Update tags of a workflow.
+      x-required-scope: workflowTags:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                required:
+                  - id
+                additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowTagsPublicDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -6362,6 +6829,110 @@ components:
           type: string
           format: date-time
           readOnly: true
+    workflowCreate:
+      type: object
+      additionalProperties: false
+      required:
+        - name
+        - nodes
+        - connections
+        - settings
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 2tUt1wbLX592XDdX
+        name:
+          type: string
+          example: Workflow 1
+        active:
+          type: boolean
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+        isArchived:
+          type: boolean
+          readOnly: true
+        versionId:
+          type: string
+          readOnly: true
+          description: Current version identifier used for optimistic locking
+        triggerCount:
+          type: integer
+          readOnly: true
+          description: Number of active trigger nodes in the workflow
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/node'
+        connections:
+          type: object
+          example:
+            Jira:
+              main:
+                - - node: Jira
+                    type: main
+                    index: 0
+        nodeGroups:
+          type: array
+          description: Visual groupings of nodes shown as frames on the canvas
+          items:
+            $ref: '#/components/schemas/workflowNodeGroup'
+        settings:
+          $ref: '#/components/schemas/workflowSettings'
+        staticData:
+          example:
+            lastId: 1
+          anyOf:
+            - type: string
+              format: jsonString
+              nullable: true
+            - type: object
+              nullable: true
+        pinData:
+          type: object
+          nullable: true
+          description: Pinned sample data for nodes, keyed by node name
+        projectId:
+          type: string
+          description: Target project to create the workflow in. Defaults to the user's personal project.
+          example: VmwOO9HeTEj20kxM
+        parentFolderId:
+          type: string
+          nullable: true
+          description: ID of the folder to place the workflow in. Omit or null to place at the project root.
+          example: X8ovzm8lTQjcXRZQ
+        meta:
+          type: object
+          nullable: true
+          readOnly: true
+          description: Workflow metadata such as template information
+          properties:
+            onboardingId:
+              type: string
+            templateId:
+              type: string
+            instanceId:
+              type: string
+            templateCredsSetupCompleted:
+              type: boolean
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/tag'
+          readOnly: true
+        shared:
+          type: array
+          items:
+            $ref: '#/components/schemas/sharedWorkflow'
+        activeVersion:
+          $ref: '#/components/schemas/activeVersion'
     workflow:
       type: object
       additionalProperties: false
@@ -6442,122 +7013,6 @@ components:
           type: object
           nullable: true
           description: Pinned sample data for nodes, keyed by node name
-        meta:
-          type: object
-          nullable: true
-          readOnly: true
-          description: Workflow metadata such as template information
-          properties:
-            onboardingId:
-              type: string
-            templateId:
-              type: string
-            instanceId:
-              type: string
-            templateCredsSetupCompleted:
-              type: boolean
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/tag'
-          readOnly: true
-        shared:
-          type: array
-          items:
-            $ref: '#/components/schemas/sharedWorkflow'
-        activeVersion:
-          $ref: '#/components/schemas/activeVersion'
-    workflowList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/workflow'
-        nextCursor:
-          type: string
-          description: Paginate through workflows by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
-          nullable: true
-          example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
-    workflowCreate:
-      type: object
-      additionalProperties: false
-      required:
-        - name
-        - nodes
-        - connections
-        - settings
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: 2tUt1wbLX592XDdX
-        name:
-          type: string
-          example: Workflow 1
-        active:
-          type: boolean
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-        isArchived:
-          type: boolean
-          readOnly: true
-        versionId:
-          type: string
-          readOnly: true
-          description: Current version identifier used for optimistic locking
-        triggerCount:
-          type: integer
-          readOnly: true
-          description: Number of active trigger nodes in the workflow
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/node'
-        connections:
-          type: object
-          example:
-            Jira:
-              main:
-                - - node: Jira
-                    type: main
-                    index: 0
-        nodeGroups:
-          type: array
-          description: Visual groupings of nodes shown as frames on the canvas
-          items:
-            $ref: '#/components/schemas/workflowNodeGroup'
-        settings:
-          $ref: '#/components/schemas/workflowSettings'
-        staticData:
-          example:
-            lastId: 1
-          anyOf:
-            - type: string
-              format: jsonString
-              nullable: true
-            - type: object
-              nullable: true
-        pinData:
-          type: object
-          nullable: true
-          description: Pinned sample data for nodes, keyed by node name
-        projectId:
-          type: string
-          description: Target project to create the workflow in. Defaults to the user's personal project.
-          example: VmwOO9HeTEj20kxM
-        parentFolderId:
-          type: string
-          nullable: true
-          description: ID of the folder to place the workflow in. Omit or null to place at the project root.
-          example: X8ovzm8lTQjcXRZQ
         meta:
           type: object
           nullable: true
@@ -6664,10 +7119,6 @@ components:
           format: date-time
           readOnly: true
           description: When this version was last updated
-    workflowTags:
-      type: array
-      items:
-        $ref: '#/components/schemas/tag'
     testRunSummary:
       type: object
       properties:
@@ -7695,6 +8146,16 @@ components:
           description: Policy for missing static sub-workflow dependencies. `fail` aborts the export when any static sub-workflow is missing from the package; `include-in-package` automatically adds missing static sub-workflows. `reference-only` keeps missing static sub-workflows out of the package and lists them in the package requirements as workflows expected to already exist on the target.
           example: fail
           default: fail
+        workflowVersionPolicy:
+          type: string
+          enum:
+            - published-strict
+            - prefer-published
+            - ignore-unpublished
+            - latest
+          description: Which version of each workflow travels in the package. `latest` exports the latest version, published or not. `published-strict` exports the published version and aborts the export if any workflow has none. `prefer-published` falls back to the latest version where there is no published one. `ignore-unpublished` leaves unpublished workflows out of the package entirely. The chosen version decides which credentials, data tables, variables and sub-workflows are bundled alongside it; the workflow's name, settings and tags are not versioned and always come from the latest version.
+          example: latest
+          default: latest
     importBlockingIssue:
       oneOf:
         - type: object
@@ -8336,6 +8797,18 @@ components:
           description: Last time the role was updated.
           format: date-time
           readOnly: true
+    workflowList:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            $ref: '#/components/schemas/workflow'
+        nextCursor:
+          type: string
+          description: Paginate through workflows by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
+          nullable: true
+          example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
     credentialType:
       type: object
       properties:
@@ -8391,6 +8864,26 @@ components:
       $ref: '#/components/schemas/userList'
     User:
       $ref: '#/components/schemas/user'
+    workflowTagsPublicDto.generated:
+      type: array
+      items:
+        type: object
+        properties:
+          id:
+            type: string
+          name:
+            type: string
+          createdAt:
+            type: string
+            format: date-time
+          updatedAt:
+            type: string
+            format: date-time
+        required:
+          - id
+          - name
+          - createdAt
+          - updatedAt
   responses:
     unauthorized:
       description: Unauthorized
@@ -8577,4 +9070,8 @@ components:
       type: http
       scheme: bearer
       bearerFormat: JWT
+    CookieAuth:
+      type: apiKey
+      in: cookie
+      name: n8n-auth
 x-enable-proxy: false

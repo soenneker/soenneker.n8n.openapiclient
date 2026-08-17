@@ -35,7 +35,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkflowsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows{?active*,cursor*,excludePinnedData*,limit*,name,projectId,tags}", pathParameters)
+        public WorkflowsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows{?active*,cursor*,excludePinnedData*,limit*,name*,offset*,projectId*,tags*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,26 +43,26 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkflowsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows{?active*,cursor*,excludePinnedData*,limit*,name,projectId,tags}", rawUrl)
+        public WorkflowsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows{?active*,cursor*,excludePinnedData*,limit*,name*,offset*,projectId*,tags*}", rawUrl)
         {
         }
         /// <summary>
         /// Retrieve all workflows from your instance.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.WorkflowList?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.WorkflowsRequestBuilder.WorkflowsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.WorkflowsRequestBuilder.WorkflowsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.WorkflowList> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.WorkflowsRequestBuilder.WorkflowsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.WorkflowsRequestBuilder.WorkflowsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a workflow in your instance.
@@ -141,7 +141,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
         public partial class WorkflowsRequestBuilderGetQueryParameters 
         {
             [QueryParameter("active")]
-            public bool? Active { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowsActiveParameter? Active { get; set; }
             /// <summary>Paginate by setting the cursor parameter to the nextCursor attribute returned by the previous request&apos;s response. Default value fetches the first &quot;page&quot; of the collection. See pagination for more detail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -152,9 +152,8 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
             [QueryParameter("cursor")]
             public string Cursor { get; set; }
 #endif
-            /// <summary>Set this to avoid retrieving pinned data</summary>
             [QueryParameter("excludePinnedData")]
-            public bool? ExcludePinnedData { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowsExcludePinnedDataParameter? ExcludePinnedData { get; set; }
             /// <summary>The maximum number of items to return.</summary>
             [QueryParameter("limit")]
             public double? Limit { get; set; }
@@ -167,6 +166,9 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
             [QueryParameter("name")]
             public string Name { get; set; }
 #endif
+            /// <summary>The number of items to skip before starting to collect the result set.</summary>
+            [QueryParameter("offset")]
+            public double? Offset { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             [QueryParameter("projectId")]

@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
+using Soenneker.N8n.OpenApiClient.Roles.Item;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,12 +18,24 @@ namespace Soenneker.N8n.OpenApiClient.Roles
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RolesRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.roles.item collection</summary>
+        /// <param name="position">Unique identifier of the item</param>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder this[string position]
+        {
+            get
+            {
+                var urlTplParams = new Dictionary<string, object>(PathParameters);
+                urlTplParams.Add("slug", position);
+                return new global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder(urlTplParams, RequestAdapter);
+            }
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Roles.RolesRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RolesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/roles", pathParameters)
+        public RolesRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/roles{?withUsageCount*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,8 +43,26 @@ namespace Soenneker.N8n.OpenApiClient.Roles
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public RolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/roles", rawUrl)
+        public RolesRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/roles{?withUsageCount*}", rawUrl)
         {
+        }
+        /// <summary>
+        /// Returns all roles grouped by type (global and project). Set `withUsageCount` to include how many users and projects use each role.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAllRoles200Response"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetAllRoles200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Roles.RolesRequestBuilder.RolesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetAllRoles200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Roles.RolesRequestBuilder.RolesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToGetRequestInformation(requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetAllRoles200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetAllRoles200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a custom role. Set `roleType` to `global` for an instance-wide role or `project` for a project role.
@@ -52,6 +83,25 @@ namespace Soenneker.N8n.OpenApiClient.Roles
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Returns all roles grouped by type (global and project). Set `withUsageCount` to include how many users and projects use each role.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Roles.RolesRequestBuilder.RolesRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Roles.RolesRequestBuilder.RolesRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// Creates a custom role. Set `roleType` to `global` for an instance-wide role or `project` for a project role.
@@ -83,6 +133,15 @@ namespace Soenneker.N8n.OpenApiClient.Roles
         public global::Soenneker.N8n.OpenApiClient.Roles.RolesRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.N8n.OpenApiClient.Roles.RolesRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Returns all roles grouped by type (global and project). Set `withUsageCount` to include how many users and projects use each role.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class RolesRequestBuilderGetQueryParameters 
+        {
+            [QueryParameter("withUsageCount")]
+            public global::Soenneker.N8n.OpenApiClient.Models.GetAllRolesWithUsageCountParameter? WithUsageCount { get; set; }
         }
     }
 }

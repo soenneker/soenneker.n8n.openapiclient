@@ -43,6 +43,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> WorkflowIds { get; set; }
 #endif
+        /// <summary>Which version of each workflow travels in the package. `latest` exports the latest version, published or not. `published-strict` exports the published version and aborts the export if any workflow has none. `prefer-published` falls back to the latest version where there is no published one. `ignore-unpublished` leaves unpublished workflows out of the package entirely. The chosen version decides which credentials, data tables, variables and sub-workflows are bundled alongside it; the workflow&apos;s name, settings and tags are not versioned and always come from the latest version.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestWorkflowVersionPolicy? WorkflowVersionPolicy { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequest"/> and sets the default values.
         /// </summary>
@@ -75,6 +77,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "missingWorkflowDependencyPolicy", n => { MissingWorkflowDependencyPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>(); } },
                 { "projectIds", n => { ProjectIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "workflowIds", n => { WorkflowIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "workflowVersionPolicy", n => { WorkflowVersionPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestWorkflowVersionPolicy>(); } },
             };
         }
         /// <summary>
@@ -90,6 +93,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>("missingWorkflowDependencyPolicy", MissingWorkflowDependencyPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("projectIds", ProjectIds);
             writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestWorkflowVersionPolicy>("workflowVersionPolicy", WorkflowVersionPolicy);
         }
     }
 }

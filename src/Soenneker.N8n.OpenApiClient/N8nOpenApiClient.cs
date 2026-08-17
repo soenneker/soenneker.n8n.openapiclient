@@ -15,6 +15,7 @@ using Soenneker.N8n.OpenApiClient.Executions;
 using Soenneker.N8n.OpenApiClient.Insights;
 using Soenneker.N8n.OpenApiClient.N8nPackages;
 using Soenneker.N8n.OpenApiClient.Projects;
+using Soenneker.N8n.OpenApiClient.RoleMappingRules;
 using Soenneker.N8n.OpenApiClient.Roles;
 using Soenneker.N8n.OpenApiClient.Settings;
 using Soenneker.N8n.OpenApiClient.SourceControl;
@@ -78,6 +79,11 @@ namespace Soenneker.N8n.OpenApiClient
         public global::Soenneker.N8n.OpenApiClient.Projects.ProjectsRequestBuilder Projects
         {
             get => new global::Soenneker.N8n.OpenApiClient.Projects.ProjectsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The roleMappingRules property</summary>
+        public global::Soenneker.N8n.OpenApiClient.RoleMappingRules.RoleMappingRulesRequestBuilder RoleMappingRules
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.RoleMappingRules.RoleMappingRulesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The roles property</summary>
         public global::Soenneker.N8n.OpenApiClient.Roles.RolesRequestBuilder Roles

@@ -1502,57 +1502,48 @@
         "operationId": "GetWorkflows",
         "parameters": [
           {
-            "name": "active",
-            "in": "query",
-            "schema": {
-              "type": "boolean",
-              "example": true
-            }
-          },
-          {
-            "name": "tags",
-            "in": "query",
-            "explode": false,
-            "allowReserved": true,
-            "schema": {
-              "type": "string",
-              "example": "test,production"
-            }
-          },
-          {
-            "name": "name",
-            "in": "query",
-            "explode": false,
-            "allowReserved": true,
-            "schema": {
-              "type": "string",
-              "example": "My Workflow"
-            }
-          },
-          {
-            "name": "projectId",
-            "in": "query",
-            "explode": false,
-            "allowReserved": true,
-            "schema": {
-              "type": "string",
-              "example": "VmwOO9HeTEj20kxM"
-            }
-          },
-          {
-            "name": "excludePinnedData",
-            "in": "query",
-            "description": "Set this to avoid retrieving pinned data",
-            "schema": {
-              "type": "boolean",
-              "example": true
-            }
+            "$ref": "#/components/parameters/offset"
           },
           {
             "$ref": "#/components/parameters/limit"
           },
           {
             "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "name": "active",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/GetWorkflowsActiveParameter"
+            }
+          },
+          {
+            "name": "tags",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "excludePinnedData",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/GetWorkflowsExcludePinnedDataParameter"
+            }
           }
         ],
         "responses": {
@@ -1561,13 +1552,19 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/WorkflowList"
+                  "$ref": "#/components/schemas/GetWorkflows200Response"
                 }
               }
             }
           },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
           "401": {
             "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
           }
         }
       }
@@ -2040,87 +2037,6 @@
         "responses": {
           "200": {
             "description": "Operation successful."
-          },
-          "400": {
-            "$ref": "#/components/responses/badRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/notFound"
-          }
-        }
-      }
-    },
-    "/workflows/{id}/tags": {
-      "get": {
-        "tags": [
-          "Workflow"
-        ],
-        "summary": "Get workflow tags",
-        "description": "Get workflow tags.",
-        "operationId": "GetWorkflowsByIdTags",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/workflowId"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "List of tags",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/GetWorkflowsByIdTags200Response"
-                }
-              }
-            }
-          },
-          "400": {
-            "$ref": "#/components/responses/badRequest"
-          },
-          "401": {
-            "$ref": "#/components/responses/unauthorized"
-          },
-          "404": {
-            "$ref": "#/components/responses/notFound"
-          }
-        }
-      },
-      "put": {
-        "tags": [
-          "Workflow"
-        ],
-        "summary": "Update tags of a workflow",
-        "description": "Update tags of a workflow.",
-        "operationId": "PutWorkflowsByIdTags",
-        "parameters": [
-          {
-            "$ref": "#/components/parameters/workflowId"
-          }
-        ],
-        "requestBody": {
-          "description": "List of tags",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/PutWorkflowsByIdTagsRequest"
-              }
-            }
-          },
-          "required": true
-        },
-        "responses": {
-          "200": {
-            "description": "List of tags after add the tag",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/PutWorkflowsByIdTags200Response"
-                }
-              }
-            }
           },
           "400": {
             "$ref": "#/components/responses/badRequest"
@@ -4887,7 +4803,88 @@
         }
       }
     },
+    "/role-mapping-rules": {
+      "post": {
+        "tags": [
+          "RoleMappingRule"
+        ],
+        "summary": "Create a role-mapping rule",
+        "description": "Creates a rule that maps an identity-provider claim expression to a role. Set \u0060type\u0060 to \u0060instance\u0060 for a rule granting a global role, or \u0060project\u0060 for a rule granting a project role on the projects named in \u0060projectIds\u0060. Omitting \u0060order\u0060 appends the rule to the end of the evaluation order for its type.",
+        "operationId": "CreateRoleMappingRule",
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateRoleMappingRuleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateRoleMappingRule201Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        }
+      }
+    },
     "/roles": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "summary": "Retrieve all roles",
+        "description": "Returns all roles grouped by type (global and project). Set \u0060withUsageCount\u0060 to include how many users and projects use each role.",
+        "operationId": "GetAllRoles",
+        "parameters": [
+          {
+            "name": "withUsageCount",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/GetAllRolesWithUsageCountParameter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetAllRoles200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          }
+        }
+      },
       "post": {
         "tags": [
           "Role"
@@ -4927,6 +4924,57 @@
         }
       }
     },
+    "/roles/{slug}": {
+      "get": {
+        "tags": [
+          "Role"
+        ],
+        "summary": "Retrieve a role",
+        "description": "Returns a single role with its scopes. Set \u0060withUsageCount\u0060 to include how many users and projects use the role.",
+        "operationId": "GetRole",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "withUsageCount",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/GetRoleWithUsageCountParameter"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetRole200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        }
+      }
+    },
     "/workflows/{workflowId}/history": {
       "get": {
         "tags": [
@@ -4961,6 +5009,101 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetWorkflowHistory200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        }
+      }
+    },
+    "/workflows/{workflowId}/tags": {
+      "get": {
+        "tags": [
+          "Workflow"
+        ],
+        "summary": "Get workflow tags",
+        "description": "Get workflow tags.",
+        "operationId": "GetWorkflowTags",
+        "parameters": [
+          {
+            "name": "workflowId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetWorkflowTags200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Workflow"
+        ],
+        "summary": "Update tags of a workflow",
+        "description": "Update tags of a workflow.",
+        "operationId": "UpdateWorkflowTags",
+        "parameters": [
+          {
+            "name": "workflowId",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateWorkflowTagsRequestRequestBody"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/UpdateWorkflowTags200Response"
                 }
               }
             }
@@ -6649,6 +6792,110 @@
         "nullable": true,
         "readOnly": true
       },
+      "WorkflowCreate": {
+        "required": [
+          "name",
+          "nodes",
+          "connections",
+          "settings"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "readOnly": true,
+            "example": "2tUt1wbLX592XDdX"
+          },
+          "name": {
+            "type": "string",
+            "example": "Workflow 1"
+          },
+          "active": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time",
+            "readOnly": true
+          },
+          "isArchived": {
+            "type": "boolean",
+            "readOnly": true
+          },
+          "versionId": {
+            "type": "string",
+            "description": "Current version identifier used for optimistic locking",
+            "readOnly": true
+          },
+          "triggerCount": {
+            "type": "integer",
+            "description": "Number of active trigger nodes in the workflow",
+            "readOnly": true
+          },
+          "nodes": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Node"
+            }
+          },
+          "connections": {
+            "$ref": "#/components/schemas/WorkflowCreateConnectionsProperty"
+          },
+          "nodeGroups": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/WorkflowNodeGroup"
+            },
+            "description": "Visual groupings of nodes shown as frames on the canvas"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/WorkflowSettings"
+          },
+          "staticData": {
+            "$ref": "#/components/schemas/WorkflowCreateStaticData"
+          },
+          "pinData": {
+            "$ref": "#/components/schemas/WorkflowCreatePinDataProperty"
+          },
+          "projectId": {
+            "type": "string",
+            "description": "Target project to create the workflow in. Defaults to the user\u0027s personal project.",
+            "example": "VmwOO9HeTEj20kxM"
+          },
+          "parentFolderId": {
+            "type": "string",
+            "description": "ID of the folder to place the workflow in. Omit or null to place at the project root.",
+            "nullable": true,
+            "example": "X8ovzm8lTQjcXRZQ"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/WorkflowCreateMeta"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Tag"
+            },
+            "readOnly": true
+          },
+          "shared": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/SharedWorkflow"
+            }
+          },
+          "activeVersion": {
+            "$ref": "#/components/schemas/ActiveVersion"
+          }
+        },
+        "additionalProperties": false
+      },
       "Workflow": {
         "required": [
           "name",
@@ -6734,127 +6981,6 @@
           },
           "meta": {
             "$ref": "#/components/schemas/WorkflowMeta"
-          },
-          "tags": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Tag"
-            },
-            "readOnly": true
-          },
-          "shared": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/SharedWorkflow"
-            }
-          },
-          "activeVersion": {
-            "$ref": "#/components/schemas/ActiveVersion"
-          }
-        },
-        "additionalProperties": false
-      },
-      "WorkflowList": {
-        "type": "object",
-        "properties": {
-          "data": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Workflow"
-            }
-          },
-          "nextCursor": {
-            "type": "string",
-            "description": "Paginate through workflows by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first \u0022page\u0022 of the collection.",
-            "nullable": true,
-            "example": "MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA"
-          }
-        }
-      },
-      "WorkflowCreate": {
-        "required": [
-          "name",
-          "nodes",
-          "connections",
-          "settings"
-        ],
-        "type": "object",
-        "properties": {
-          "id": {
-            "type": "string",
-            "readOnly": true,
-            "example": "2tUt1wbLX592XDdX"
-          },
-          "name": {
-            "type": "string",
-            "example": "Workflow 1"
-          },
-          "active": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time",
-            "readOnly": true
-          },
-          "isArchived": {
-            "type": "boolean",
-            "readOnly": true
-          },
-          "versionId": {
-            "type": "string",
-            "description": "Current version identifier used for optimistic locking",
-            "readOnly": true
-          },
-          "triggerCount": {
-            "type": "integer",
-            "description": "Number of active trigger nodes in the workflow",
-            "readOnly": true
-          },
-          "nodes": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/Node"
-            }
-          },
-          "connections": {
-            "$ref": "#/components/schemas/WorkflowCreateConnectionsProperty"
-          },
-          "nodeGroups": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/WorkflowNodeGroup"
-            },
-            "description": "Visual groupings of nodes shown as frames on the canvas"
-          },
-          "settings": {
-            "$ref": "#/components/schemas/WorkflowSettings"
-          },
-          "staticData": {
-            "$ref": "#/components/schemas/WorkflowCreateStaticData"
-          },
-          "pinData": {
-            "$ref": "#/components/schemas/WorkflowCreatePinDataProperty"
-          },
-          "projectId": {
-            "type": "string",
-            "description": "Target project to create the workflow in. Defaults to the user\u0027s personal project.",
-            "example": "VmwOO9HeTEj20kxM"
-          },
-          "parentFolderId": {
-            "type": "string",
-            "description": "ID of the folder to place the workflow in. Omit or null to place at the project root.",
-            "nullable": true,
-            "example": "X8ovzm8lTQjcXRZQ"
-          },
-          "meta": {
-            "$ref": "#/components/schemas/WorkflowCreateMeta"
           },
           "tags": {
             "type": "array",
@@ -6965,12 +7091,6 @@
           }
         },
         "additionalProperties": false
-      },
-      "WorkflowTags": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Tag"
-        }
       },
       "TestRunSummary": {
         "type": "object",
@@ -7964,6 +8084,9 @@
           },
           "missingWorkflowDependencyPolicy": {
             "$ref": "#/components/schemas/ExportPackageRequestMissingWorkflowDependencyPolicy"
+          },
+          "workflowVersionPolicy": {
+            "$ref": "#/components/schemas/ExportPackageRequestWorkflowVersionPolicy"
           }
         },
         "additionalProperties": false,
@@ -8596,6 +8719,23 @@
         },
         "readOnly": true
       },
+      "WorkflowList": {
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/Workflow"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "description": "Paginate through workflows by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first \u0022page\u0022 of the collection.",
+            "nullable": true,
+            "example": "MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA"
+          }
+        }
+      },
       "CredentialType": {
         "type": "object",
         "properties": {
@@ -8678,6 +8818,37 @@
       "User2": {
         "$ref": "#/components/schemas/User"
       },
+      "WorkflowTagsPublicDtoGenerated": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/WorkflowTagsPublicDtoGeneratedItem"
+        }
+      },
+      "WorkflowTagsPublicDtoGeneratedItem": {
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "CredentialListItemAllOf2": {
         "required": [
           "shared"
@@ -8693,11 +8864,11 @@
           }
         }
       },
-      "WorkflowStaticData": {
+      "WorkflowCreateStaticData": {
         "type": "object",
         "anyOf": [
           {
-            "$ref": "#/components/schemas/WorkflowStaticDataBranch1"
+            "$ref": "#/components/schemas/WorkflowCreateStaticDataBranch1"
           },
           {
             "type": "object",
@@ -8715,11 +8886,11 @@
           "lastId": 1
         }
       },
-      "WorkflowCreateStaticData": {
+      "WorkflowStaticData": {
         "type": "object",
         "anyOf": [
           {
-            "$ref": "#/components/schemas/WorkflowCreateStaticDataBranch1"
+            "$ref": "#/components/schemas/WorkflowStaticDataBranch1"
           },
           {
             "type": "object",
@@ -9584,47 +9755,6 @@
           }
         }
       },
-      "WorkflowConnections": {
-        "type": "object",
-        "example": {
-          "Jira": {
-            "main": [
-              [
-                {
-                  "node": "Jira",
-                  "type": "main",
-                  "index": 0
-                }
-              ]
-            ]
-          }
-        }
-      },
-      "WorkflowPinData": {
-        "type": "object",
-        "description": "Pinned sample data for nodes, keyed by node name",
-        "nullable": true
-      },
-      "WorkflowMeta": {
-        "type": "object",
-        "properties": {
-          "onboardingId": {
-            "type": "string"
-          },
-          "templateId": {
-            "type": "string"
-          },
-          "instanceId": {
-            "type": "string"
-          },
-          "templateCredsSetupCompleted": {
-            "type": "boolean"
-          }
-        },
-        "description": "Workflow metadata such as template information",
-        "nullable": true,
-        "readOnly": true
-      },
       "WorkflowCreateConnections": {
         "type": "object",
         "example": {
@@ -9647,6 +9777,47 @@
         "nullable": true
       },
       "WorkflowCreateMeta": {
+        "type": "object",
+        "properties": {
+          "onboardingId": {
+            "type": "string"
+          },
+          "templateId": {
+            "type": "string"
+          },
+          "instanceId": {
+            "type": "string"
+          },
+          "templateCredsSetupCompleted": {
+            "type": "boolean"
+          }
+        },
+        "description": "Workflow metadata such as template information",
+        "nullable": true,
+        "readOnly": true
+      },
+      "WorkflowConnections": {
+        "type": "object",
+        "example": {
+          "Jira": {
+            "main": [
+              [
+                {
+                  "node": "Jira",
+                  "type": "main",
+                  "index": 0
+                }
+              ]
+            ]
+          }
+        }
+      },
+      "WorkflowPinData": {
+        "type": "object",
+        "description": "Pinned sample data for nodes, keyed by node name",
+        "nullable": true
+      },
+      "WorkflowMeta": {
         "type": "object",
         "properties": {
           "onboardingId": {
@@ -10252,6 +10423,25 @@
           }
         }
       },
+      "GetWorkflows200Response": {
+        "required": [
+          "data",
+          "nextCursor"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflows200ResponseDataItem"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
       "GetWorkflow200Response": {
         "required": [
           "id",
@@ -10748,6 +10938,103 @@
           }
         }
       },
+      "CreateRoleMappingRuleRequest": {
+        "required": [
+          "expression",
+          "role",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "expression": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "role": {
+            "maxLength": 128,
+            "minLength": 1,
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/CreateRoleMappingRuleRequestType"
+          },
+          "order": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "projectIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
+      },
+      "CreateRoleMappingRule201Response": {
+        "required": [
+          "id",
+          "expression",
+          "role",
+          "type",
+          "order",
+          "projectIds",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "expression": {
+            "type": "string"
+          },
+          "role": {
+            "type": "string"
+          },
+          "type": {
+            "$ref": "#/components/schemas/CreateRoleMappingRule201ResponseType"
+          },
+          "order": {
+            "type": "integer"
+          },
+          "projectIds": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetAllRoles200Response": {
+        "required": [
+          "global",
+          "project"
+        ],
+        "type": "object",
+        "properties": {
+          "global": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAllRoles200ResponseGlobalItem"
+            }
+          },
+          "project": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetAllRoles200ResponseProjectItem"
+            }
+          }
+        }
+      },
       "CreateRoleRequest": {
         "required": [
           "displayName",
@@ -10821,6 +11108,61 @@
           }
         }
       },
+      "GetRole200Response": {
+        "required": [
+          "slug",
+          "displayName",
+          "description",
+          "systemRole",
+          "roleType",
+          "scopes",
+          "createdAt",
+          "updatedAt",
+          "licensed"
+        ],
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "systemRole": {
+            "type": "boolean"
+          },
+          "roleType": {
+            "$ref": "#/components/schemas/GetRole200ResponseRoleType"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "licensed": {
+            "type": "boolean"
+          },
+          "usedByUsers": {
+            "type": "number"
+          },
+          "usedByProjects": {
+            "type": "number"
+          }
+        }
+      },
       "GetWorkflowHistory200Response": {
         "required": [
           "data",
@@ -10840,11 +11182,17 @@
           }
         }
       },
+      "UpdateWorkflowTagsRequest": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UpdateWorkflowTagsRequestItem"
+        }
+      },
       "ExamplePayload": {
         "type": "object",
         "description": "Placeholder schema for path example refs"
       },
-      "WorkflowStaticDataBranch1": {
+      "WorkflowCreateStaticDataBranch1": {
         "required": [
           "value"
         ],
@@ -10857,7 +11205,7 @@
           }
         }
       },
-      "WorkflowCreateStaticDataBranch1": {
+      "WorkflowStaticDataBranch1": {
         "required": [
           "value"
         ],
@@ -10928,24 +11276,6 @@
         }
       },
       "PutExecutionsByIdTags200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Tag"
-        }
-      },
-      "GetWorkflowsByIdTags200Response": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/Tag"
-        }
-      },
-      "PutWorkflowsByIdTagsRequest": {
-        "type": "array",
-        "items": {
-          "$ref": "#/components/schemas/TagIdsItem"
-        }
-      },
-      "PutWorkflowsByIdTags200Response": {
         "type": "array",
         "items": {
           "$ref": "#/components/schemas/Tag"
@@ -11036,6 +11366,24 @@
           }
         }
       },
+      "GetWorkflowTags200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/WorkflowTagsPublicDtoGeneratedItem"
+        }
+      },
+      "UpdateWorkflowTagsRequestRequestBody": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/UpdateWorkflowTagsRequestRequestBodyItem"
+        }
+      },
+      "UpdateWorkflowTags200Response": {
+        "type": "array",
+        "items": {
+          "$ref": "#/components/schemas/WorkflowTagsPublicDtoGeneratedItem"
+        }
+      },
       "InsertDataTableRows200ResponseOneOf1": {
         "type": "object",
         "properties": {
@@ -11102,17 +11450,17 @@
       "ActiveVersionConnectionsProperty": {
         "type": "object"
       },
-      "WorkflowConnectionsProperty": {
-        "type": "object"
-      },
-      "WorkflowPinDataProperty": {
-        "type": "object",
-        "description": "Pinned sample data for nodes, keyed by node name"
-      },
       "WorkflowCreateConnectionsProperty": {
         "type": "object"
       },
       "WorkflowCreatePinDataProperty": {
+        "type": "object",
+        "description": "Pinned sample data for nodes, keyed by node name"
+      },
+      "WorkflowConnectionsProperty": {
+        "type": "object"
+      },
+      "WorkflowPinDataProperty": {
         "type": "object",
         "description": "Pinned sample data for nodes, keyed by node name"
       },
@@ -11201,6 +11549,96 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "GetWorkflows200ResponseDataItem": {
+        "required": [
+          "id",
+          "name",
+          "active",
+          "activeVersionId",
+          "createdAt",
+          "updatedAt",
+          "isArchived",
+          "versionId",
+          "triggerCount",
+          "nodes",
+          "connections",
+          "nodeGroups",
+          "settings",
+          "staticData",
+          "meta",
+          "shared",
+          "activeVersion"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "active": {
+            "type": "boolean"
+          },
+          "activeVersionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "isArchived": {
+            "type": "boolean"
+          },
+          "versionId": {
+            "type": "string"
+          },
+          "triggerCount": {
+            "type": "number"
+          },
+          "nodes": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemNodes"
+          },
+          "connections": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemConnections"
+          },
+          "nodeGroups": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemNodeGroups"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemSettings"
+          },
+          "staticData": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemStaticData"
+          },
+          "pinData": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemPinData"
+          },
+          "meta": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemMeta"
+          },
+          "tags": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemTagsItem"
+            }
+          },
+          "shared": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemSharedItem"
+            }
+          },
+          "activeVersion": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemActiveVersion"
           }
         }
       },
@@ -11677,6 +12115,116 @@
         },
         "description": "Source id \u2192 target id mappings produced during import, one map per entity type. Each value maps an id as it appeared in the package to the id on the target instance.\n"
       },
+      "GetAllRoles200ResponseGlobalItem": {
+        "required": [
+          "slug",
+          "displayName",
+          "description",
+          "systemRole",
+          "roleType",
+          "scopes",
+          "createdAt",
+          "updatedAt",
+          "licensed"
+        ],
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "systemRole": {
+            "type": "boolean"
+          },
+          "roleType": {
+            "$ref": "#/components/schemas/GlobalRoleType"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "licensed": {
+            "type": "boolean"
+          },
+          "usedByUsers": {
+            "type": "number"
+          },
+          "usedByProjects": {
+            "type": "number"
+          }
+        }
+      },
+      "GetAllRoles200ResponseProjectItem": {
+        "required": [
+          "slug",
+          "displayName",
+          "description",
+          "systemRole",
+          "roleType",
+          "scopes",
+          "createdAt",
+          "updatedAt",
+          "licensed"
+        ],
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "systemRole": {
+            "type": "boolean"
+          },
+          "roleType": {
+            "$ref": "#/components/schemas/ProjectRoleType"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "licensed": {
+            "type": "boolean"
+          },
+          "usedByUsers": {
+            "type": "number"
+          },
+          "usedByProjects": {
+            "type": "number"
+          }
+        }
+      },
       "GetWorkflowHistory200ResponseDataItem": {
         "required": [
           "versionId",
@@ -11716,6 +12264,18 @@
           }
         }
       },
+      "UpdateWorkflowTagsRequestItem": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
       "PostUsersRequestRequestBodyItem": {
         "required": [
           "email"
@@ -11731,6 +12291,149 @@
             "example": "global:member"
           }
         }
+      },
+      "UpdateWorkflowTagsRequestRequestBodyItem": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetWorkflows200ResponseDataItemNodes": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemConnections": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemNodeGroups": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemSettings": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemStaticData": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemPinData": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemMeta": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemTagsItem": {
+        "required": [
+          "id",
+          "name",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetWorkflows200ResponseDataItemSharedItem": {
+        "required": [
+          "role",
+          "workflowId",
+          "projectId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "role": {
+            "type": "string"
+          },
+          "workflowId": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
+      "GetWorkflows200ResponseDataItemActiveVersion": {
+        "required": [
+          "versionId",
+          "workflowId",
+          "nodes",
+          "connections",
+          "nodeGroups",
+          "authors",
+          "name",
+          "description",
+          "autosaved",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "versionId": {
+            "type": "string"
+          },
+          "workflowId": {
+            "type": "string"
+          },
+          "nodes": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemActiveVersionNodes"
+          },
+          "connections": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemActiveVersionConnections"
+          },
+          "nodeGroups": {
+            "$ref": "#/components/schemas/GetWorkflows200ResponseDataItemActiveVersionNodeGroups"
+          },
+          "authors": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string",
+            "nullable": true
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "autosaved": {
+            "type": "boolean"
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "nullable": true
       },
       "GetWorkflow200ResponseSharedItemProject": {
         "required": [
@@ -11872,6 +12575,15 @@
           "type": "string"
         },
         "description": "Credential id from \u0060requirements.credentials\u0060 in the package manifest \u2192 matched credential id on the target instance.\n"
+      },
+      "GetWorkflows200ResponseDataItemActiveVersionNodes": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemActiveVersionConnections": {
+        "type": "object"
+      },
+      "GetWorkflows200ResponseDataItemActiveVersionNodeGroups": {
+        "type": "object"
       },
       "GetWorkflow200ResponseSharedItemProjectIcon": {
         "required": [
@@ -12994,6 +13706,40 @@
             {
               "value": "include-in-package",
               "name": "IncludeInPackage"
+            }
+          ]
+        }
+      },
+      "ExportPackageRequestWorkflowVersionPolicy": {
+        "enum": [
+          "published-strict",
+          "prefer-published",
+          "ignore-unpublished",
+          "latest"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "description": "Which version of each workflow travels in the package. \u0060latest\u0060 exports the latest version, published or not. \u0060published-strict\u0060 exports the published version and aborts the export if any workflow has none. \u0060prefer-published\u0060 falls back to the latest version where there is no published one. \u0060ignore-unpublished\u0060 leaves unpublished workflows out of the package entirely. The chosen version decides which credentials, data tables, variables and sub-workflows are bundled alongside it; the workflow\u0027s name, settings and tags are not versioned and always come from the latest version.",
+        "example": "latest",
+        "x-ms-enum": {
+          "name": "ExportPackageRequestWorkflowVersionPolicy",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "published-strict",
+              "name": "PublishedStrict"
+            },
+            {
+              "value": "prefer-published",
+              "name": "PreferPublished"
+            },
+            {
+              "value": "ignore-unpublished",
+              "name": "IgnoreUnpublished"
+            },
+            {
+              "value": "latest",
+              "name": "Latest"
             }
           ]
         }
@@ -14331,6 +15077,50 @@
           ]
         }
       },
+      "CreateRoleMappingRuleRequestType": {
+        "enum": [
+          "instance",
+          "project"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CreateRoleMappingRuleRequestType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "instance",
+              "name": "Instance"
+            },
+            {
+              "value": "project",
+              "name": "Project"
+            }
+          ]
+        }
+      },
+      "CreateRoleMappingRule201ResponseType": {
+        "enum": [
+          "instance",
+          "project"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "CreateRoleMappingRule201ResponseType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "instance",
+              "name": "Instance"
+            },
+            {
+              "value": "project",
+              "name": "Project"
+            }
+          ]
+        }
+      },
       "CreateRoleRequestRoleType": {
         "enum": [
           "project",
@@ -14362,6 +15152,28 @@
         "additionalProperties": false,
         "x-ms-enum": {
           "name": "CreateRole201ResponseRoleType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "global",
+              "name": "Global"
+            }
+          ]
+        }
+      },
+      "GetRole200ResponseRoleType": {
+        "enum": [
+          "project",
+          "global"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetRole200ResponseRoleType",
           "modelAsString": false,
           "values": [
             {
@@ -14487,6 +15299,40 @@
             {
               "value": "skipped",
               "name": "Skipped"
+            }
+          ]
+        }
+      },
+      "GlobalRoleType": {
+        "enum": [
+          "global"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GlobalRoleType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "global",
+              "name": "Global"
+            }
+          ]
+        }
+      },
+      "ProjectRoleType": {
+        "enum": [
+          "project"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "ProjectRoleType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "project",
+              "name": "Project"
             }
           ]
         }
@@ -14693,6 +15539,50 @@
           ]
         }
       },
+      "GetWorkflowsActiveParameter": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetWorkflowsActiveParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
+      "GetWorkflowsExcludePinnedDataParameter": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetWorkflowsExcludePinnedDataParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
       "GetWorkflowExcludePinnedDataParameter": {
         "enum": [
           "true",
@@ -14824,6 +15714,50 @@
             {
               "value": "updatedAt:desc",
               "name": "UpdatedAtColonDesc"
+            }
+          ]
+        }
+      },
+      "GetAllRolesWithUsageCountParameter": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetAllRolesWithUsageCountParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
+            }
+          ]
+        }
+      },
+      "GetRoleWithUsageCountParameter": {
+        "enum": [
+          "true",
+          "false"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "GetRoleWithUsageCountParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "true",
+              "name": "TrueValue"
+            },
+            {
+              "value": "false",
+              "name": "FalseValue"
             }
           ]
         }
@@ -15067,6 +16001,11 @@
         "type": "http",
         "scheme": "bearer",
         "bearerFormat": "JWT"
+      },
+      "CookieAuth": {
+        "type": "apiKey",
+        "name": "n8n-auth",
+        "in": "cookie"
       }
     }
   },
@@ -15076,6 +16015,9 @@
     },
     {
       "BearerAuth": []
+    },
+    {
+      "CookieAuth": []
     }
   ],
   "tags": [
@@ -15130,6 +16072,10 @@
     {
       "name": "Role",
       "description": "Operations about roles"
+    },
+    {
+      "name": "RoleMappingRule",
+      "description": "Operations about identity-provider role-mapping rules"
     },
     {
       "name": "SecurityPolicy",
