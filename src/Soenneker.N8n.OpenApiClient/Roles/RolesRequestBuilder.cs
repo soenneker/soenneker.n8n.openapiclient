@@ -67,22 +67,22 @@ namespace Soenneker.N8n.OpenApiClient.Roles
         /// <summary>
         /// Creates a custom role. Set `roleType` to `global` for an instance-wide role or `project` for a project role.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CreateRoleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CreateRoleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CreateRoleRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CreateRoleRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns all roles grouped by type (global and project). Set `withUsageCount` to include how many users and projects use each role.

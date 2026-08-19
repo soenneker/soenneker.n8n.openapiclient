@@ -4907,7 +4907,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/CreateRole201Response"
+                  "$ref": "#/components/schemas/RolePublicDtoGenerated"
                 }
               }
             }
@@ -4956,6 +4956,57 @@
               "application/json": {
                 "schema": {
                   "$ref": "#/components/schemas/GetRole200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          }
+        }
+      },
+      "put": {
+        "tags": [
+          "Role"
+        ],
+        "summary": "Update a custom role",
+        "description": "Replaces a custom role\u0027s display name, description, and scopes. System roles cannot be updated.",
+        "operationId": "UpdateRole",
+        "parameters": [
+          {
+            "name": "slug",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateRoleRequest"
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolePublicDtoGenerated"
                 }
               }
             }
@@ -8818,6 +8869,51 @@
       "User2": {
         "$ref": "#/components/schemas/User"
       },
+      "RolePublicDtoGenerated": {
+        "required": [
+          "slug",
+          "displayName",
+          "description",
+          "systemRole",
+          "roleType",
+          "scopes",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "slug": {
+            "type": "string"
+          },
+          "displayName": {
+            "type": "string"
+          },
+          "description": {
+            "type": "string",
+            "nullable": true
+          },
+          "systemRole": {
+            "type": "boolean"
+          },
+          "roleType": {
+            "$ref": "#/components/schemas/RolePublicDtoGeneratedRoleType"
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        }
+      },
       "WorkflowTagsPublicDtoGenerated": {
         "type": "array",
         "items": {
@@ -11063,51 +11159,6 @@
           }
         }
       },
-      "CreateRole201Response": {
-        "required": [
-          "slug",
-          "displayName",
-          "description",
-          "systemRole",
-          "roleType",
-          "scopes",
-          "createdAt",
-          "updatedAt"
-        ],
-        "type": "object",
-        "properties": {
-          "slug": {
-            "type": "string"
-          },
-          "displayName": {
-            "type": "string"
-          },
-          "description": {
-            "type": "string",
-            "nullable": true
-          },
-          "systemRole": {
-            "type": "boolean"
-          },
-          "roleType": {
-            "$ref": "#/components/schemas/CreateRole201ResponseRoleType"
-          },
-          "scopes": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          },
-          "createdAt": {
-            "type": "string",
-            "format": "date-time"
-          },
-          "updatedAt": {
-            "type": "string",
-            "format": "date-time"
-          }
-        }
-      },
       "GetRole200Response": {
         "required": [
           "slug",
@@ -11160,6 +11211,32 @@
           },
           "usedByProjects": {
             "type": "number"
+          }
+        }
+      },
+      "UpdateRoleRequest": {
+        "required": [
+          "displayName",
+          "description",
+          "scopes"
+        ],
+        "type": "object",
+        "properties": {
+          "displayName": {
+            "maxLength": 100,
+            "minLength": 2,
+            "type": "string"
+          },
+          "description": {
+            "maxLength": 500,
+            "type": "string",
+            "nullable": true
+          },
+          "scopes": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
           }
         }
       },
@@ -13830,6 +13907,28 @@
           ]
         }
       },
+      "RolePublicDtoGeneratedRoleType": {
+        "enum": [
+          "project",
+          "global"
+        ],
+        "type": "string",
+        "additionalProperties": false,
+        "x-ms-enum": {
+          "name": "RolePublicDtoGeneratedRoleType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "global",
+              "name": "Global"
+            }
+          ]
+        }
+      },
       "WorkflowConflictType": {
         "enum": [
           "workflow-conflict"
@@ -15130,28 +15229,6 @@
         "additionalProperties": false,
         "x-ms-enum": {
           "name": "CreateRoleRequestRoleType",
-          "modelAsString": false,
-          "values": [
-            {
-              "value": "project",
-              "name": "Project"
-            },
-            {
-              "value": "global",
-              "name": "Global"
-            }
-          ]
-        }
-      },
-      "CreateRole201ResponseRoleType": {
-        "enum": [
-          "project",
-          "global"
-        ],
-        "type": "string",
-        "additionalProperties": false,
-        "x-ms-enum": {
-          "name": "CreateRole201ResponseRoleType",
           "modelAsString": false,
           "values": [
             {

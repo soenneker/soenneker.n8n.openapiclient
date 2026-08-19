@@ -52,6 +52,26 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetRole200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetRole200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
+        /// Replaces a custom role&apos;s display name, description, and scopes. System roles cannot be updated.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated"/></returns>
+        /// <param name="body">The request body</param>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.UpdateRoleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.UpdateRoleRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPutRequestInformation(body, requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
         /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
@@ -68,6 +88,28 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
+        }
+        /// <summary>
+        /// Replaces a custom role&apos;s display name, description, and scopes. System roles cannot be updated.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">The request body</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.UpdateRoleRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.UpdateRoleRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = new RequestInformation(Method.PUT, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
         /// <summary>

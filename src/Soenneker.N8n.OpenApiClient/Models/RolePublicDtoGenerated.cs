@@ -9,7 +9,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class CreateRole201Response : IAdditionalDataHolder, IParsable
+    public partial class RolePublicDtoGenerated : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -33,7 +33,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string DisplayName { get; set; }
 #endif
         /// <summary>The roleType property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateRole201ResponseRoleType? RoleType { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGeneratedRoleType? RoleType { get; set; }
         /// <summary>The scopes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -55,21 +55,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The updatedAt property</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated"/> and sets the default values.
         /// </summary>
-        public CreateRole201Response()
+        public RolePublicDtoGenerated()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.CreateRole201Response();
+            return new global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated();
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,7 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "displayName", n => { DisplayName = n.GetStringValue(); } },
-                { "roleType", n => { RoleType = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateRole201ResponseRoleType>(); } },
+                { "roleType", n => { RoleType = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGeneratedRoleType>(); } },
                 { "scopes", n => { Scopes = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "slug", n => { Slug = n.GetStringValue(); } },
                 { "systemRole", n => { SystemRole = n.GetBoolValue(); } },
@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("displayName", DisplayName);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateRole201ResponseRoleType>("roleType", RoleType);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGeneratedRoleType>("roleType", RoleType);
             writer.WriteCollectionOfPrimitiveValues<string>("scopes", Scopes);
             writer.WriteStringValue("slug", Slug);
             writer.WriteBoolValue("systemRole", SystemRole);
