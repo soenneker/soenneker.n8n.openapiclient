@@ -8,52 +8,26 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A tag referenced by the package&apos;s workflows that could not be resolved on the target instance. `kind` distinguishes the cause: `rename-drift` (the same-id target tag carries a different name — under `tagConflictPolicy=fail`, or `rename` when the package name is held by another tag), `name-collision` (the id is free but the name belongs to a different tag under `tagMissingMode=create` with `tagConflictPolicy=fail`; also raised when two package tags collide with each other, or when the target tag a reconcile would re-key is claimed by another package tag), `invalid-name` / `invalid-id` (the package tag&apos;s name or id cannot be written on this instance), or `permission-denied` (the importing user lacks the global `tag:create` / `tag:update` scope the plan needs).
+    /// A node type — or a version of a node type — used by a package workflow that this instance does not have, under `missingNodeTypeMode=fail`. One issue is reported per missing `(nodeType, typeVersion)` pair.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf8 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>For `rename-drift`: the current name of the same-id target tag.</summary>
+        /// <summary>Full node type name as used by the package&apos;s workflows.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExistingName { get; set; }
+        public string? NodeType { get; set; }
 #nullable restore
 #else
-        public string ExistingName { get; set; }
-#endif
-        /// <summary>Id of the contested target tag — the different tag currently holding the wanted name, or the target tag a blocked reconcile would re-key. Absent when two package tags collide with each other rather than over a target tag.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ExistingTagId { get; set; }
-#nullable restore
-#else
-        public string ExistingTagId { get; set; }
-#endif
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8Kind? Kind { get; set; }
-        /// <summary>For `permission-denied`: the global scope the importing user lacks.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8MissingScope? MissingScope { get; set; }
-        /// <summary>The (trimmed) package tag name. Absent for `permission-denied`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Name { get; set; }
-#nullable restore
-#else
-        public string Name { get; set; }
-#endif
-        /// <summary>Tag id as it appears in the package. Absent for `permission-denied`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SourceId { get; set; }
-#nullable restore
-#else
-        public string SourceId { get; set; }
+        public string NodeType { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType? Type { get; set; }
-        /// <summary>Package workflow ids (non-skipped) that reference the source tag — not workflows attached to the contested target tag.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType? Type { get; set; }
+        /// <summary>Node type version the package&apos;s workflows use.</summary>
+        public double? TypeVersion { get; set; }
+        /// <summary>Package workflow ids that use this node type and version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? UsedByWorkflows { get; set; }
@@ -86,13 +60,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "existingName", n => { ExistingName = n.GetStringValue(); } },
-                { "existingTagId", n => { ExistingTagId = n.GetStringValue(); } },
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8Kind>(); } },
-                { "missingScope", n => { MissingScope = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8MissingScope>(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType>(); } },
+                { "nodeType", n => { NodeType = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType>(); } },
+                { "typeVersion", n => { TypeVersion = n.GetDoubleValue(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -103,13 +73,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("existingName", ExistingName);
-            writer.WriteStringValue("existingTagId", ExistingTagId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8Kind>("kind", Kind);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8MissingScope>("missingScope", MissingScope);
-            writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType>("type", Type);
+            writer.WriteStringValue("nodeType", NodeType);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType>("type", Type);
+            writer.WriteDoubleValue("typeVersion", TypeVersion);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

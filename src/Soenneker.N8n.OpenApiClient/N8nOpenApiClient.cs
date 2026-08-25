@@ -12,6 +12,7 @@ using Soenneker.N8n.OpenApiClient.Credentials;
 using Soenneker.N8n.OpenApiClient.DataTables;
 using Soenneker.N8n.OpenApiClient.Discover;
 using Soenneker.N8n.OpenApiClient.Executions;
+using Soenneker.N8n.OpenApiClient.GitConnections;
 using Soenneker.N8n.OpenApiClient.Insights;
 using Soenneker.N8n.OpenApiClient.N8nPackages;
 using Soenneker.N8n.OpenApiClient.Projects;
@@ -64,6 +65,11 @@ namespace Soenneker.N8n.OpenApiClient
         public global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder Executions
         {
             get => new global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The gitConnections property</summary>
+        public global::Soenneker.N8n.OpenApiClient.GitConnections.GitConnectionsRequestBuilder GitConnections
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.GitConnections.GitConnectionsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The insights property</summary>
         public global::Soenneker.N8n.OpenApiClient.Insights.InsightsRequestBuilder Insights

@@ -7,13 +7,40 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// Workflow metadata such as template information
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class GetWorkflows200ResponseDataItemMeta : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The instanceId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? InstanceId { get; set; }
+#nullable restore
+#else
+        public string InstanceId { get; set; }
+#endif
+        /// <summary>The onboardingId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? OnboardingId { get; set; }
+#nullable restore
+#else
+        public string OnboardingId { get; set; }
+#endif
+        /// <summary>The templateCredsSetupCompleted property</summary>
+        public bool? TemplateCredsSetupCompleted { get; set; }
+        /// <summary>The templateId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TemplateId { get; set; }
+#nullable restore
+#else
+        public string TemplateId { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemMeta"/> and sets the default values.
         /// </summary>
@@ -39,6 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "instanceId", n => { InstanceId = n.GetStringValue(); } },
+                { "onboardingId", n => { OnboardingId = n.GetStringValue(); } },
+                { "templateCredsSetupCompleted", n => { TemplateCredsSetupCompleted = n.GetBoolValue(); } },
+                { "templateId", n => { TemplateId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -48,6 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("instanceId", InstanceId);
+            writer.WriteStringValue("onboardingId", OnboardingId);
+            writer.WriteBoolValue("templateCredsSetupCompleted", TemplateCredsSetupCompleted);
+            writer.WriteStringValue("templateId", TemplateId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

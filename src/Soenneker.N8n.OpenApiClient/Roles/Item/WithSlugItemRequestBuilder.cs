@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithSlugItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/roles/{slug}{?withUsageCount*}", pathParameters)
+        public WithSlugItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/roles/{slug}{?reassignRoleSlug*,withUsageCount*}", pathParameters)
         {
         }
         /// <summary>
@@ -30,8 +30,26 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithSlugItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/roles/{slug}{?withUsageCount*}", rawUrl)
+        public WithSlugItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/roles/{slug}{?reassignRoleSlug*,withUsageCount*}", rawUrl)
         {
+        }
+        /// <summary>
+        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.
+        /// </summary>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated"/></returns>
+        /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated?> DeleteAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder.WithSlugItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#nullable restore
+#else
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated> DeleteAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder.WithSlugItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        {
+#endif
+            var requestInfo = ToDeleteRequestInformation(requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.
@@ -70,6 +88,25 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+        }
+        /// <summary>
+        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.
+        /// </summary>
+        /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder.WithSlugItemRequestBuilderDeleteQueryParameters>>? requestConfiguration = default)
+        {
+#nullable restore
+#else
+        public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder.WithSlugItemRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
+        {
+#endif
+            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            requestInfo.Configure(requestConfiguration);
+            requestInfo.Headers.TryAdd("Accept", "application/json");
+            return requestInfo;
         }
         /// <summary>
         /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.
@@ -120,6 +157,22 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
         public global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder(rawUrl, RequestAdapter);
+        }
+        /// <summary>
+        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.
+        /// </summary>
+        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+        public partial class WithSlugItemRequestBuilderDeleteQueryParameters 
+        {
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+            [QueryParameter("reassignRoleSlug")]
+            public string? ReassignRoleSlug { get; set; }
+#nullable restore
+#else
+            [QueryParameter("reassignRoleSlug")]
+            public string ReassignRoleSlug { get; set; }
+#endif
         }
         /// <summary>
         /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.

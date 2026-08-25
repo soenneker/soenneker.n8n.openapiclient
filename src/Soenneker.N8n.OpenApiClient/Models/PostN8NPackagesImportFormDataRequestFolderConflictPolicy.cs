@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Controls what happens when a package folder (matched by id in the target project) already exists at the same position. `merge` (default) reuses the existing folder as-is and merges the package&apos;s children into it; `fail` rejects the import. A folder whose id exists under a different parent, or belongs to another project, always blocks the import. Requires the `folder:create` scope and a license that supports folders when the package contains folders.</summary>
+    /// <summary>What to do when a package folder already exists at the same position in the target project. Defaults to whatever `projectConflictPolicy` is, so the intent is stated once; a workflow package defines no projects, so it defaults to `merge` there. `merge` reuses the existing folder and merges the package&apos;s children into it. `fail` rejects the import. `overwrite` reuses folders as `merge` does and additionally removes workflows the package does not contain — at a project&apos;s root and in folders the package defines, leaving target-only folders and their contents alone. Folders it does not define are then removed too, but only once nothing is left inside them. Removals are listed under `removedWorkflows` and `removedFolders`; see `overwriteDeletionPolicy`. A folder whose id sits under a different parent, or belongs to another project, always blocks the import.`overwrite` is project-packages-only, needs the `workflow:delete` and `folder:delete` scopes, is rejected against a `projectConflictPolicy` other than `overwrite`, and blocks up front if the caller cannot delete something it would remove. Folders need the `folder:create` scope and a folders-enabled licence.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestFolderConflictPolicy
     {
@@ -14,6 +14,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         [EnumMember(Value = "fail")]
         #pragma warning disable CS1591
         Fail,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "overwrite")]
+        #pragma warning disable CS1591
+        Overwrite,
         #pragma warning restore CS1591
     }
 }

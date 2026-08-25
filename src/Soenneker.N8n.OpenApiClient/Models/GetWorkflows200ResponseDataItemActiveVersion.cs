@@ -24,7 +24,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>The autosaved property</summary>
         public bool? Autosaved { get; set; }
-        /// <summary>The connections property</summary>
+        /// <summary>Connections between nodes, keyed by source node name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionConnections? Connections { get; set; }
@@ -50,21 +50,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>The nodeGroups property</summary>
+        /// <summary>Visual groupings of nodes shown as frames on the canvas</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroups? NodeGroups { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroupsItem>? NodeGroups { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroups NodeGroups { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroupsItem> NodeGroups { get; set; }
 #endif
-        /// <summary>The nodes property</summary>
+        /// <summary>Nodes that make up the workflow</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodes? Nodes { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItem>? Nodes { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodes Nodes { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItem> Nodes { get; set; }
 #endif
         /// <summary>The updatedAt property</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
@@ -115,8 +115,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "nodeGroups", n => { NodeGroups = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroups>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroups.CreateFromDiscriminatorValue); } },
-                { "nodes", n => { Nodes = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodes>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodes.CreateFromDiscriminatorValue); } },
+                { "nodeGroups", n => { NodeGroups = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroupsItem>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroupsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "nodes", n => { Nodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItem>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "versionId", n => { VersionId = n.GetStringValue(); } },
                 { "workflowId", n => { WorkflowId = n.GetStringValue(); } },
@@ -135,8 +135,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteStringValue("description", Description);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroups>("nodeGroups", NodeGroups);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodes>("nodes", Nodes);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodeGroupsItem>("nodeGroups", NodeGroups);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItem>("nodes", Nodes);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteStringValue("versionId", VersionId);
             writer.WriteStringValue("workflowId", WorkflowId);

@@ -8,57 +8,39 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A credential reference that could not be resolved in the target project.
+    /// A folder that `folderConflictPolicy=overwrite` would delete — the package does not define it and reconciliation leaves it empty — but the caller lacks `folder:delete` on the target project. Reported instead of removing a subset, which would leave the project matching neither the package nor its previous state.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf7 : IAdditionalDataHolder, IParsable
     {
-        /// <summary>For `type_mismatch`: the actual type of the resolved target credential.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ActualType { get; set; }
-#nullable restore
-#else
-        public string ActualType { get; set; }
-#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>For `type_mismatch`: the credential type the package&apos;s workflow node requires.</summary>
+        /// <summary>The folderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExpectedType { get; set; }
+        public string? FolderId { get; set; }
 #nullable restore
 #else
-        public string ExpectedType { get; set; }
+        public string FolderId { get; set; }
 #endif
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7Kind? Kind { get; set; }
-        /// <summary>The sourceId property</summary>
+        /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string Name { get; set; }
 #endif
-        /// <summary>Target credential id for an explicit credential binding.</summary>
+        /// <summary>Project the folder was being reconciled against.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TargetId { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public string TargetId { get; set; }
+        public string ProjectId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType? Type { get; set; }
-        /// <summary>The usedByWorkflows property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? UsedByWorkflows { get; set; }
-#nullable restore
-#else
-        public List<string> UsedByWorkflows { get; set; }
-#endif
+        public global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7"/> and sets the default values.
         /// </summary>
@@ -84,13 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "actualType", n => { ActualType = n.GetStringValue(); } },
-                { "expectedType", n => { ExpectedType = n.GetStringValue(); } },
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7Kind>(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "targetId", n => { TargetId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>(); } },
-                { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "folderId", n => { FolderId = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType>(); } },
             };
         }
         /// <summary>
@@ -100,13 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("actualType", ActualType);
-            writer.WriteStringValue("expectedType", ExpectedType);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf7Kind>("kind", Kind);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteStringValue("targetId", TargetId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>("type", Type);
-            writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
+            writer.WriteStringValue("folderId", FolderId);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

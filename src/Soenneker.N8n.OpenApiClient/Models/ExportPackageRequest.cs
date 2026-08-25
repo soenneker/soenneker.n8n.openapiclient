@@ -13,6 +13,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ExportPackageRequest : IParsable
     {
+        /// <summary>Whether expression values from credential data are bundled into the package. `expression-values-only` includes credential fields whose value is an n8n expression (for example `={{ $secrets.apiKey }}`); literal values never travel either way. `no-values` keeps credential data out of the package entirely, so each credential file carries only its id, name and type.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy? CredentialExportPolicy { get; set; }
         /// <summary>IDs of the folders to include in the exported package. Each folder is exported with its nested folders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,6 +73,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "credentialExportPolicy", n => { CredentialExportPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy>(); } },
                 { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "includeTags", n => { IncludeTags = n.GetBoolValue(); } },
                 { "includeVariableValues", n => { IncludeVariableValues = n.GetBoolValue(); } },
@@ -87,6 +90,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy>("credentialExportPolicy", CredentialExportPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
             writer.WriteBoolValue("includeTags", IncludeTags);
             writer.WriteBoolValue("includeVariableValues", IncludeVariableValues);

@@ -7,13 +7,96 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// Execution and behaviour settings for the workflow
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class GetWorkflows200ResponseDataItemSettings : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Controls whether this workflow is reachable over the Model Context Protocol (MCP). Defaults to false. The workflow must be active and must hold at least one active Webhook node.</summary>
+        public bool? AvailableInMCP { get; set; }
+        /// <summary>Controls how binary data is resolved from a node&apos;s input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsBinaryMode? BinaryMode { get; set; }
+        /// <summary>Comma-separated list of workflow IDs allowed to call this workflow (only used with the workflowsFromAList policy)</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CallerIds { get; set; }
+#nullable restore
+#else
+        public string CallerIds { get; set; }
+#endif
+        /// <summary>Controls which workflows are allowed to call this workflow using the Execute Workflow node. Defaults to workflowsFromSameOwner.Available options:- `any`: Any workflow can call this workflow (no restrictions)- `none`: No other workflows can call this workflow (completely blocked)- `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow- `workflowsFromAList`: Only the workflows listed in `callerIds` can call this workflow</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsCallerPolicy? CallerPolicy { get; set; }
+        /// <summary>ID of the credential resolver that resolves credentials for this workflow. This is a derived, internal setting managed through the credential resolver configuration rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CredentialResolverId { get; set; }
+#nullable restore
+#else
+        public string CredentialResolverId { get; set; }
+#endif
+        /// <summary>The customTelemetryTags property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsCustomTelemetryTagsItem>? CustomTelemetryTags { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsCustomTelemetryTagsItem> CustomTelemetryTags { get; set; }
+#endif
+        /// <summary>The ID of the workflow that contains the error trigger node.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ErrorWorkflow { get; set; }
+#nullable restore
+#else
+        public string ErrorWorkflow { get; set; }
+#endif
+        /// <summary>The executionOrder property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExecutionOrder { get; set; }
+#nullable restore
+#else
+        public string ExecutionOrder { get; set; }
+#endif
+        /// <summary>The executionTimeout property</summary>
+        public double? ExecutionTimeout { get; set; }
+        /// <summary>Controls whether execution data is redacted for this workflow.Available options:- `none` (default): No redaction. All execution data is stored.- `non-manual`: Redact production (non-manually triggered) executions only.- `manual-only`: Redact manually triggered executions only.- `all`: Redact all executions, manual and production.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsRedactionPolicy? RedactionPolicy { get; set; }
+        /// <summary>The saveDataErrorExecution property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveDataErrorExecution? SaveDataErrorExecution { get; set; }
+        /// <summary>The saveDataSuccessExecution property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveDataSuccessExecution? SaveDataSuccessExecution { get; set; }
+        /// <summary>The saveExecutionProgress property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveExecutionProgress? SaveExecutionProgress { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveExecutionProgress SaveExecutionProgress { get; set; }
+#endif
+        /// <summary>The saveManualExecutions property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveManualExecutions? SaveManualExecutions { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveManualExecutions SaveManualExecutions { get; set; }
+#endif
+        /// <summary>Controls how the time saved per execution is calculated.Available options:- `fixed`: Uses the value in `timeSavedPerExecution`. Use when the time saved is the same for every execution.- `dynamic`: Calculates the time saved from actual execution metrics. `timeSavedPerExecution` is ignored.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsTimeSavedMode? TimeSavedMode { get; set; }
+        /// <summary>Estimated time saved per execution in minutes</summary>
+        public double? TimeSavedPerExecution { get; set; }
+        /// <summary>The timezone property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Timezone { get; set; }
+#nullable restore
+#else
+        public string Timezone { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettings"/> and sets the default values.
         /// </summary>
@@ -39,6 +122,23 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "availableInMCP", n => { AvailableInMCP = n.GetBoolValue(); } },
+                { "binaryMode", n => { BinaryMode = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsBinaryMode>(); } },
+                { "callerIds", n => { CallerIds = n.GetStringValue(); } },
+                { "callerPolicy", n => { CallerPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsCallerPolicy>(); } },
+                { "credentialResolverId", n => { CredentialResolverId = n.GetStringValue(); } },
+                { "customTelemetryTags", n => { CustomTelemetryTags = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsCustomTelemetryTagsItem>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsCustomTelemetryTagsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "errorWorkflow", n => { ErrorWorkflow = n.GetStringValue(); } },
+                { "executionOrder", n => { ExecutionOrder = n.GetStringValue(); } },
+                { "executionTimeout", n => { ExecutionTimeout = n.GetDoubleValue(); } },
+                { "redactionPolicy", n => { RedactionPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsRedactionPolicy>(); } },
+                { "saveDataErrorExecution", n => { SaveDataErrorExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveDataErrorExecution>(); } },
+                { "saveDataSuccessExecution", n => { SaveDataSuccessExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveDataSuccessExecution>(); } },
+                { "saveExecutionProgress", n => { SaveExecutionProgress = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveExecutionProgress>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveExecutionProgress.CreateFromDiscriminatorValue); } },
+                { "saveManualExecutions", n => { SaveManualExecutions = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveManualExecutions>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveManualExecutions.CreateFromDiscriminatorValue); } },
+                { "timeSavedMode", n => { TimeSavedMode = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsTimeSavedMode>(); } },
+                { "timeSavedPerExecution", n => { TimeSavedPerExecution = n.GetDoubleValue(); } },
+                { "timezone", n => { Timezone = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -48,6 +148,23 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("availableInMCP", AvailableInMCP);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsBinaryMode>("binaryMode", BinaryMode);
+            writer.WriteStringValue("callerIds", CallerIds);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsCallerPolicy>("callerPolicy", CallerPolicy);
+            writer.WriteStringValue("credentialResolverId", CredentialResolverId);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsCustomTelemetryTagsItem>("customTelemetryTags", CustomTelemetryTags);
+            writer.WriteStringValue("errorWorkflow", ErrorWorkflow);
+            writer.WriteStringValue("executionOrder", ExecutionOrder);
+            writer.WriteDoubleValue("executionTimeout", ExecutionTimeout);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsRedactionPolicy>("redactionPolicy", RedactionPolicy);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveDataErrorExecution>("saveDataErrorExecution", SaveDataErrorExecution);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveDataSuccessExecution>("saveDataSuccessExecution", SaveDataSuccessExecution);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveExecutionProgress>("saveExecutionProgress", SaveExecutionProgress);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsSaveManualExecutions>("saveManualExecutions", SaveManualExecutions);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettingsTimeSavedMode>("timeSavedMode", TimeSavedMode);
+            writer.WriteDoubleValue("timeSavedPerExecution", TimeSavedPerExecution);
+            writer.WriteStringValue("timezone", Timezone);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

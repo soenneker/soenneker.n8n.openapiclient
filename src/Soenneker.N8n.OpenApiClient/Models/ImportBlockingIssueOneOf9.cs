@@ -8,23 +8,49 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A variable reference that could not be resolved in the target project or the global scope, under `variableMissingMode=must-preexist`.
+    /// A credential reference that could not be resolved in the target project.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf9 : IAdditionalDataHolder, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Requirement name with no match in the target project or global scope.</summary>
+        /// <summary>For `type_mismatch`: the actual type of the resolved target credential.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? ActualType { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string ActualType { get; set; }
+#endif
+        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
+        public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>For `type_mismatch`: the credential type the package&apos;s workflow node requires.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExpectedType { get; set; }
+#nullable restore
+#else
+        public string ExpectedType { get; set; }
+#endif
+        /// <summary>The kind property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Kind? Kind { get; set; }
+        /// <summary>The sourceId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceId { get; set; }
+#nullable restore
+#else
+        public string SourceId { get; set; }
+#endif
+        /// <summary>Target credential id for an explicit credential binding.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? TargetId { get; set; }
+#nullable restore
+#else
+        public string TargetId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType? Type { get; set; }
         /// <summary>The usedByWorkflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -58,8 +84,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>(); } },
+                { "actualType", n => { ActualType = n.GetStringValue(); } },
+                { "expectedType", n => { ExpectedType = n.GetStringValue(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Kind>(); } },
+                { "sourceId", n => { SourceId = n.GetStringValue(); } },
+                { "targetId", n => { TargetId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -70,8 +100,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>("type", Type);
+            writer.WriteStringValue("actualType", ActualType);
+            writer.WriteStringValue("expectedType", ExpectedType);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Kind>("kind", Kind);
+            writer.WriteStringValue("sourceId", SourceId);
+            writer.WriteStringValue("targetId", TargetId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

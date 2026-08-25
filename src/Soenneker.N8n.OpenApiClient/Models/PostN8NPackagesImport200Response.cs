@@ -54,6 +54,22 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem> Projects { get; set; }
 #endif
+        /// <summary>Folders the package does not define that reconciliation left empty, removed by `folderConflictPolicy=overwrite`. A folder still holding anything survives, so target-only content is never swept up. Empty under every other policy.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedFoldersItem>? RemovedFolders { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedFoldersItem> RemovedFolders { get; set; }
+#endif
+        /// <summary>Workflows the target had that the package does not, removed by `folderConflictPolicy=overwrite`. Empty under every other policy.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedWorkflowsItem>? RemovedWorkflows { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedWorkflowsItem> RemovedWorkflows { get; set; }
+#endif
         /// <summary>Resolution of the tags referenced by the imported workflows, matched by source id. Tag names only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -108,6 +124,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "folders", n => { Folders = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "package", n => { Package = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage.CreateFromDiscriminatorValue); } },
                 { "projects", n => { Projects = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "removedFolders", n => { RemovedFolders = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedFoldersItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedFoldersItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "removedWorkflows", n => { RemovedWorkflows = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedWorkflowsItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedWorkflowsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "tags", n => { Tags = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags.CreateFromDiscriminatorValue); } },
                 { "variables", n => { Variables = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables.CreateFromDiscriminatorValue); } },
                 { "workflows", n => { Workflows = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -125,6 +143,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem>("folders", Folders);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage>("package", Package);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem>("projects", Projects);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedFoldersItem>("removedFolders", RemovedFolders);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseRemovedWorkflowsItem>("removedWorkflows", RemovedWorkflows);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseTags>("tags", Tags);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseVariables>("variables", Variables);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseWorkflowsItem>("workflows", Workflows);
