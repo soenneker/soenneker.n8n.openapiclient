@@ -5443,7 +5443,6 @@
             "name": "reassignRoleSlug",
             "in": "query",
             "schema": {
-              "type": "object",
               "anyOf": [
                 {
                   "$ref": "#/components/schemas/DeleteRoleReassignRoleSlugParameterAnyOf1"
