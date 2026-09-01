@@ -30,6 +30,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials Credentials { get; set; }
 #endif
+        /// <summary>The dataTables property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseDataTables? DataTables { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseDataTables DataTables { get; set; }
+#endif
         /// <summary>Folder shells created or skipped in the target project.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -121,6 +129,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "bindings", n => { Bindings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseBindings>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseBindings.CreateFromDiscriminatorValue); } },
                 { "credentials", n => { Credentials = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials.CreateFromDiscriminatorValue); } },
+                { "dataTables", n => { DataTables = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseDataTables>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseDataTables.CreateFromDiscriminatorValue); } },
                 { "folders", n => { Folders = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "package", n => { Package = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage.CreateFromDiscriminatorValue); } },
                 { "projects", n => { Projects = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem>(global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -140,6 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseBindings>("bindings", Bindings);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseCredentials>("credentials", Credentials);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseDataTables>("dataTables", DataTables);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseFoldersItem>("folders", Folders);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponsePackage>("package", Package);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200ResponseProjectsItem>("projects", Projects);

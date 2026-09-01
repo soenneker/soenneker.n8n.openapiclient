@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.GitConnections
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetGitConnections200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetGitConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a Git connection and its authentication material.
+        /// Creates a Git connection and its authentication material. Only one Git connection can exist.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GitConnectionPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.GitConnections
             return requestInfo;
         }
         /// <summary>
-        /// Creates a Git connection and its authentication material.
+        /// Creates a Git connection and its authentication material. Only one Git connection can exist.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -6,6 +6,7 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.GitConnections.Item.Clone;
 using Soenneker.N8n.OpenApiClient.GitConnections.Item.Disconnect;
 using Soenneker.N8n.OpenApiClient.GitConnections.Item.Projects;
+using Soenneker.N8n.OpenApiClient.GitConnections.Item.Pull;
 using Soenneker.N8n.OpenApiClient.GitConnections.Item.Push;
 using Soenneker.N8n.OpenApiClient.Models;
 using System.Collections.Generic;
@@ -35,6 +36,11 @@ namespace Soenneker.N8n.OpenApiClient.GitConnections.Item
         public global::Soenneker.N8n.OpenApiClient.GitConnections.Item.Projects.ProjectsRequestBuilder Projects
         {
             get => new global::Soenneker.N8n.OpenApiClient.GitConnections.Item.Projects.ProjectsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The pull property</summary>
+        public global::Soenneker.N8n.OpenApiClient.GitConnections.Item.Pull.PullRequestBuilder Pull
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.GitConnections.Item.Pull.PullRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The push property</summary>
         public global::Soenneker.N8n.OpenApiClient.GitConnections.Item.Push.PushRequestBuilder Push

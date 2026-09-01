@@ -109,20 +109,20 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// <summary>
         /// Delete a workflow.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Workflow"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response?> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response> DeleteAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.Workflow>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.Workflow.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve a workflow.
@@ -145,27 +145,27 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// <summary>
         /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Workflow"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
-        /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishBlockedError">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow409Response">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequest body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Workflow> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequest body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
-                { "409", global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishBlockedError.CreateFromDiscriminatorValue },
+                { "409", global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow409Response.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.Workflow>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.Workflow.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete a workflow.
@@ -213,11 +213,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequest body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Workflow body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequest body, Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder.ItemRequestBuilderPutQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -251,9 +251,8 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ItemRequestBuilderPutQueryParameters 
         {
-            /// <summary>Whether to publish the update if the workflow is currently published. Set to `false` to save the change as a draft on the existing published version instead of releasing it. Has no effect on a workflow that isn&apos;t currently published.</summary>
             [QueryParameter("publishIfActive")]
-            public bool? PublishIfActive { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowPublishIfActiveParameter? PublishIfActive { get; set; }
         }
     }
 }

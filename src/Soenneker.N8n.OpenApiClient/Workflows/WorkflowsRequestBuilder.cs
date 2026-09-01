@@ -19,7 +19,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
     public partial class WorkflowsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.workflows.item collection</summary>
-        /// <param name="position">The ID of the workflow.</param>
+        /// <param name="position">Unique identifier of the item</param>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder"/></returns>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.ItemRequestBuilder this[string position]
         {

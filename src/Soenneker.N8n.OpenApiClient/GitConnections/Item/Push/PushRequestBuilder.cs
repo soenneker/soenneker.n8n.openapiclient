@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.GitConnections.Item.Push
         {
         }
         /// <summary>
-        /// Work in progress. Exports all linked projects to the local repository working copy. It does not commit or push changes to the selected branch yet.
+        /// Work in progress. Exports all team projects to the local repository working copy; personal projects are ignored. It does not commit or push changes to the selected branch yet.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PushGitConnectionProjects200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.GitConnections.Item.Push
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PushGitConnectionProjects200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PushGitConnectionProjects200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Work in progress. Exports all linked projects to the local repository working copy. It does not commit or push changes to the selected branch yet.
+        /// Work in progress. Exports all team projects to the local repository working copy; personal projects are ignored. It does not commit or push changes to the selected branch yet.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

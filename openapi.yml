@@ -1182,71 +1182,6 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
-  /workflows/{id}:
-    delete:
-      x-eov-operation-id: deleteWorkflow
-      x-required-scope: workflow:delete
-      x-eov-operation-handler: v1/handlers/workflows/workflows.handler
-      tags:
-        - Workflow
-      summary: Delete a workflow
-      description: Delete a workflow.
-      parameters:
-        - $ref: '#/components/parameters/workflowId'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflow'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-    put:
-      x-eov-operation-id: updateWorkflow
-      x-required-scope: workflow:update
-      x-eov-operation-handler: v1/handlers/workflows/workflows.handler
-      tags:
-        - Workflow
-      summary: Update a workflow
-      description: Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
-      parameters:
-        - $ref: '#/components/parameters/workflowId'
-        - name: publishIfActive
-          in: query
-          required: false
-          description: Whether to publish the update if the workflow is currently published. Set to `false` to save the change as a draft on the existing published version instead of releasing it. Has no effect on a workflow that isn't currently published.
-          schema:
-            type: boolean
-            default: true
-      requestBody:
-        description: Updated workflow object.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/workflow'
-        required: true
-      responses:
-        '200':
-          description: Workflow object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflow'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '409':
-          description: Conflict, e.g. re-publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present; the update itself is still saved as a draft) or a webhook path conflict.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflowPublishBlockedError'
   /workflows/{id}/{versionId}:
     get:
       x-eov-operation-id: getWorkflowVersion
@@ -1272,77 +1207,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/workflowVersion'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /workflows/{id}/activate:
-    post:
-      x-eov-operation-id: activateWorkflow
-      x-required-scope: workflow:activate
-      x-eov-operation-handler: v1/handlers/workflows/workflows.handler
-      tags:
-        - Workflow
-      summary: Publish a workflow
-      description: 'Deprecated: use POST /workflows/{id}/publish instead. Publish a workflow. In n8n v1, this action was termed activating a workflow.'
-      deprecated: true
-      parameters:
-        - $ref: '#/components/parameters/workflowId'
-      requestBody:
-        description: Optional parameters to publish the workflow.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                versionId:
-                  type: string
-                  description: The specific version ID to activate or publish. If not provided, the latest version is used.
-                name:
-                  type: string
-                  description: Optional name for the workflow version during activation.
-                description:
-                  type: string
-                  description: Optional description for the workflow version during activation.
-        required: false
-      responses:
-        '200':
-          description: Workflow object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflow'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '409':
-          description: Conflict, e.g. publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present) or a webhook path conflict.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflowPublishBlockedError'
-  /workflows/{id}/deactivate:
-    post:
-      x-eov-operation-id: deactivateWorkflow
-      x-required-scope: workflow:deactivate
-      x-eov-operation-handler: v1/handlers/workflows/workflows.handler
-      tags:
-        - Workflow
-      summary: Deactivate a workflow
-      description: 'Deprecated: use POST /workflows/{id}/unpublish instead. Deactivate a workflow.'
-      deprecated: true
-      parameters:
-        - $ref: '#/components/parameters/workflowId'
-      responses:
-        '200':
-          description: Workflow object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflow'
         '401':
           $ref: '#/components/responses/unauthorized'
         '404':
@@ -3401,6 +3265,7 @@ paths:
                   - projects
                   - bindings
                   - credentials
+                  - dataTables
                   - variables
                   - tags
                 properties:
@@ -3627,6 +3492,18 @@ paths:
                           type: string
                         description: |
                           Source credential ids for which empty placeholder credentials were created in the target project.
+                  dataTables:
+                    type: object
+                    required:
+                      - matched
+                      - created
+                    properties:
+                      matched:
+                        type: integer
+                        minimum: 0
+                      created:
+                        type: integer
+                        minimum: 0
                   variables:
                     type: object
                     description: |
@@ -3979,7 +3856,7 @@ paths:
       tags:
         - GitConnections
       summary: Create a Git connection
-      description: Creates a Git connection and its authentication material.
+      description: Creates a Git connection and its authentication material. Only one Git connection can exist.
       x-required-scope: gitConnection:create
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -4035,6 +3912,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
     get:
@@ -4313,8 +4192,8 @@ paths:
       operationId: pushGitConnectionProjects
       tags:
         - GitConnections
-      summary: Push all projects linked to a Git connection
-      description: Work in progress. Exports all linked projects to the local repository working copy. It does not commit or push changes to the selected branch yet.
+      summary: Push all team projects to a Git connection
+      description: Work in progress. Exports all team projects to the local repository working copy; personal projects are ignored. It does not commit or push changes to the selected branch yet.
       x-required-scope: gitConnection:push
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -4490,6 +4369,210 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+  /git-connections/{id}/pull:
+    post:
+      operationId: pullGitConnectionProjects
+      tags:
+        - GitConnections
+      summary: Import all projects from a Git connection working copy
+      description: Work in progress. Imports all projects from the local repository working copy into the instance, overwriting to match it. It does not pull from the remote yet, so it imports whatever the last clone produced.
+      x-required-scope: gitConnection:pull
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: id
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  connectionId:
+                    type: string
+                  counts:
+                    type: object
+                    properties:
+                      projects:
+                        type: object
+                        properties:
+                          created:
+                            type: integer
+                            minimum: 0
+                          updated:
+                            type: integer
+                            minimum: 0
+                          skipped:
+                            type: integer
+                            minimum: 0
+                        required:
+                          - created
+                          - updated
+                          - skipped
+                      folders:
+                        type: object
+                        properties:
+                          created:
+                            type: integer
+                            minimum: 0
+                          skipped:
+                            type: integer
+                            minimum: 0
+                          removed:
+                            type: integer
+                            minimum: 0
+                        required:
+                          - created
+                          - skipped
+                          - removed
+                      workflows:
+                        type: object
+                        properties:
+                          created:
+                            type: integer
+                            minimum: 0
+                          updated:
+                            type: integer
+                            minimum: 0
+                          skipped:
+                            type: integer
+                            minimum: 0
+                          archived:
+                            type: integer
+                            minimum: 0
+                          deleted:
+                            type: integer
+                            minimum: 0
+                          publishing:
+                            type: object
+                            properties:
+                              published:
+                                type: integer
+                                minimum: 0
+                              unpublished:
+                                type: integer
+                                minimum: 0
+                              unchanged:
+                                type: integer
+                                minimum: 0
+                              blocked:
+                                type: integer
+                                minimum: 0
+                              failed:
+                                type: integer
+                                minimum: 0
+                            required:
+                              - published
+                              - unpublished
+                              - unchanged
+                              - blocked
+                              - failed
+                        required:
+                          - created
+                          - updated
+                          - skipped
+                          - archived
+                          - deleted
+                          - publishing
+                      credentials:
+                        type: object
+                        properties:
+                          matched:
+                            type: integer
+                            minimum: 0
+                          stubbed:
+                            type: integer
+                            minimum: 0
+                        required:
+                          - matched
+                          - stubbed
+                      dataTables:
+                        type: object
+                        properties:
+                          matched:
+                            type: integer
+                            minimum: 0
+                          created:
+                            type: integer
+                            minimum: 0
+                        required:
+                          - matched
+                          - created
+                      variables:
+                        type: object
+                        properties:
+                          matched:
+                            type: integer
+                            minimum: 0
+                          created:
+                            type: integer
+                            minimum: 0
+                          updated:
+                            type: integer
+                            minimum: 0
+                          stubbed:
+                            type: integer
+                            minimum: 0
+                          missing:
+                            type: integer
+                            minimum: 0
+                        required:
+                          - matched
+                          - created
+                          - updated
+                          - stubbed
+                          - missing
+                      tags:
+                        type: object
+                        properties:
+                          matched:
+                            type: integer
+                            minimum: 0
+                          created:
+                            type: integer
+                            minimum: 0
+                          renamed:
+                            type: integer
+                            minimum: 0
+                          reconciled:
+                            type: integer
+                            minimum: 0
+                          skipped:
+                            type: integer
+                            minimum: 0
+                        required:
+                          - matched
+                          - created
+                          - renamed
+                          - reconciled
+                          - skipped
+                    required:
+                      - projects
+                      - folders
+                      - workflows
+                      - credentials
+                      - dataTables
+                      - variables
+                      - tags
+                required:
+                  - connectionId
+                  - counts
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
   /role-mapping-rules:
     get:
       operationId: getRoleMappingRules
@@ -6928,76 +7011,13 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
-  /workflows/{workflowId}/archive:
-    post:
-      operationId: archiveWorkflow
-      tags:
-        - Workflow
-      summary: Archive a workflow
-      description: 'Soft-deletes a workflow by archiving it. Idempotent: archiving an already archived workflow returns 200 with the current workflow.'
-      x-required-scope: workflow:delete
-      x-eov-operation-id: unreachable
-      x-eov-operation-handler: v1/handlers/decorator-routed.handler
-      x-decorator-routed: true
-      parameters:
-        - schema:
-            type: string
-          required: true
-          name: workflowId
-          in: path
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflowPublicDto.generated'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /workflows/{workflowId}/unarchive:
-    post:
-      operationId: unarchiveWorkflow
-      tags:
-        - Workflow
-      summary: Unarchive a workflow
-      description: Restores an archived workflow.
-      x-required-scope: workflow:delete
-      x-eov-operation-id: unreachable
-      x-eov-operation-handler: v1/handlers/decorator-routed.handler
-      x-decorator-routed: true
-      parameters:
-        - schema:
-            type: string
-          required: true
-          name: workflowId
-          in: path
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/workflowPublicDto.generated'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /workflows/{workflowId}/transfer:
     put:
-      operationId: transferWorkflow
+      operationId: updateWorkflow
       tags:
         - Workflow
-      summary: Transfer a workflow to another project
-      description: Transfer a workflow to another project.
-      x-required-scope: workflow:move
+      summary: Update a workflow
+      description: Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
+      x-required-scope: workflow:update
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
       x-decorator-routed: true
@@ -7007,6 +7027,16 @@ paths:
           required: true
           name: workflowId
           in: path
+        - schema:
+            type: string
+            enum:
+              - 'true'
+              - 'false'
+            default: 'true'
+            description: Whether to publish the update if the workflow is currently published. Set to `false` to save the change as a draft on the existing published version instead of releasing it. Has no effect on a workflow that isn't currently published.
+          required: false
+          name: publishIfActive
+          in: query
       requestBody:
         required: true
         content:
@@ -7014,55 +7044,550 @@ paths:
             schema:
               type: object
               properties:
-                destinationProjectId:
+                id:
                   type: string
-              required:
-                - destinationProjectId
-      responses:
-        '204':
-          description: Operation successful.
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '415':
-          $ref: '#/components/responses/unsupportedMediaType'
-  /workflows/{workflowId}/publish:
-    post:
-      operationId: publishWorkflow
-      tags:
-        - Workflow
-      summary: Publish a workflow
-      description: Publish a workflow. In n8n v1, this action was termed activating a workflow.
-      x-required-scope: workflow:activate
-      x-eov-operation-id: unreachable
-      x-eov-operation-handler: v1/handlers/decorator-routed.handler
-      x-decorator-routed: true
-      parameters:
-        - schema:
-            type: string
-          required: true
-          name: workflowId
-          in: path
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                versionId:
-                  type: string
-                  description: The specific version ID to publish. If not provided, the latest version is used.
+                  readOnly: true
+                  example: 2tUt1wbLX592XDdX
                 name:
                   type: string
-                  description: Optional name for the workflow version during publication.
+                  example: Workflow 1
+                active:
+                  type: boolean
+                  readOnly: true
+                createdAt:
+                  type: string
+                  format: date-time
+                  readOnly: true
+                updatedAt:
+                  type: string
+                  format: date-time
+                  readOnly: true
+                isArchived:
+                  type: boolean
+                  readOnly: true
+                versionId:
+                  type: string
+                  description: Current version identifier used for optimistic locking
+                  readOnly: true
+                triggerCount:
+                  type: integer
+                  description: Number of active trigger nodes in the workflow
+                  readOnly: true
+                nodes:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        example: 0f5532f9-36ba-4bef-86c7-30d607400b15
+                      name:
+                        type: string
+                        example: Jira
+                      webhookId:
+                        type: string
+                      disabled:
+                        type: boolean
+                      notesInFlow:
+                        type: boolean
+                      notes:
+                        type: string
+                      type:
+                        type: string
+                        example: n8n-nodes-base.jira
+                      typeVersion:
+                        type: number
+                        example: 1
+                      executeOnce:
+                        type: boolean
+                        example: false
+                      alwaysOutputData:
+                        type: boolean
+                        example: false
+                      retryOnFail:
+                        type: boolean
+                        example: false
+                      maxTries:
+                        type: number
+                      waitBetweenTries:
+                        type: number
+                      continueOnFail:
+                        type: boolean
+                        description: use onError instead
+                        example: false
+                        deprecated: true
+                      onError:
+                        type: string
+                        example: stopWorkflow
+                      position:
+                        type: array
+                        items:
+                          type: number
+                        example:
+                          - -100
+                          - 80
+                      parameters:
+                        type: object
+                        additionalProperties:
+                          nullable: true
+                      credentials:
+                        type: object
+                        additionalProperties:
+                          nullable: true
+                        example:
+                          jiraSoftwareCloudApi:
+                            name: jiraApi
+                      customTelemetryTags:
+                        type: object
+                        properties:
+                          tag:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                key:
+                                  type: string
+                                value:
+                                  type: string
+                              required:
+                                - key
+                                - value
+                              additionalProperties: false
+                        additionalProperties: false
+                      createdAt:
+                        type: string
+                        format: date-time
+                        readOnly: true
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        readOnly: true
+                    additionalProperties: false
+                  description: Nodes that make up the workflow
+                connections:
+                  type: object
+                  description: Connections between nodes, keyed by source node name
+                  example:
+                    Jira:
+                      main:
+                        - - node: Jira
+                            type: main
+                            index: 0
+                settings:
+                  type: object
+                  properties:
+                    saveExecutionProgress:
+                      type: boolean
+                    saveManualExecutions:
+                      type: boolean
+                    saveDataErrorExecution:
+                      type: string
+                      enum:
+                        - all
+                        - none
+                    saveDataSuccessExecution:
+                      type: string
+                      enum:
+                        - all
+                        - none
+                    executionTimeout:
+                      type: number
+                      example: 3600
+                    errorWorkflow:
+                      type: string
+                      description: The ID of the workflow that contains the error trigger node.
+                      example: VzqKEW0ShTXA5vPj
+                    timezone:
+                      type: string
+                      example: America/New_York
+                    executionOrder:
+                      type: string
+                      example: v1
+                    binaryMode:
+                      type: string
+                      enum:
+                        - separate
+                        - combined
+                      description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                    callerPolicy:
+                      type: string
+                      enum:
+                        - any
+                        - none
+                        - workflowsFromAList
+                        - workflowsFromSameOwner
+                      description: |-
+                        Controls which workflows are allowed to call this workflow using the Execute Workflow node. Defaults to workflowsFromSameOwner.
+
+                        Available options:
+                        - `any`: Any workflow can call this workflow (no restrictions)
+                        - `none`: No other workflows can call this workflow (completely blocked)
+                        - `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow
+                        - `workflowsFromAList`: Only the workflows listed in `callerIds` can call this workflow
+                      example: workflowsFromSameOwner
+                    callerIds:
+                      type: string
+                      description: Comma-separated list of workflow IDs allowed to call this workflow (only used with the workflowsFromAList policy)
+                      example: 14, 18, 23
+                    timeSavedMode:
+                      type: string
+                      enum:
+                        - fixed
+                        - dynamic
+                      description: |-
+                        Controls how the time saved per execution is calculated.
+
+                        Available options:
+                        - `fixed`: Uses the value in `timeSavedPerExecution`. Use when the time saved is the same for every execution.
+                        - `dynamic`: Calculates the time saved from actual execution metrics. `timeSavedPerExecution` is ignored.
+                    timeSavedPerExecution:
+                      type: number
+                      description: Estimated time saved per execution in minutes
+                    redactionPolicy:
+                      type: string
+                      enum:
+                        - none
+                        - non-manual
+                        - manual-only
+                        - all
+                      description: |-
+                        Controls whether execution data is redacted for this workflow.
+
+                        Available options:
+                        - `none` (default): No redaction. All execution data is stored.
+                        - `non-manual`: Redact production (non-manually triggered) executions only.
+                        - `manual-only`: Redact manually triggered executions only.
+                        - `all`: Redact all executions, manual and production.
+                      example: non-manual
+                    availableInMCP:
+                      type: boolean
+                      description: Controls whether this workflow is reachable over the Model Context Protocol (MCP). Defaults to false. The workflow must be active and must hold at least one active Webhook node.
+                      example: false
+                    customTelemetryTags:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          key:
+                            type: string
+                          value:
+                            type: string
+                        required:
+                          - key
+                          - value
+                        additionalProperties: false
+                    credentialResolverId:
+                      type: string
+                      description: ID of the credential resolver that resolves credentials for this workflow. This is a derived, internal setting managed through the credential resolver configuration rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                  additionalProperties: false
+                nodeGroups:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        description: Unique identifier for the node group
+                        example: 9b1c8e2a-4d3f-4a6b-8c7d-1e2f3a4b5c6d
+                      name:
+                        type: string
+                        description: Display name of the node group
+                        example: Data processing
+                      description:
+                        type: string
+                        maxLength: 155
+                        description: Optional plain-text description of the node group
+                        example: Cleans and normalizes incoming records
+                      nodeIds:
+                        type: array
+                        items:
+                          type: string
+                        description: IDs of the nodes that belong to this group
+                    required:
+                      - id
+                      - name
+                      - nodeIds
+                    additionalProperties: false
+                  description: Visual groupings of nodes shown as frames on the canvas
+                staticData:
+                  anyOf:
+                    - type: string
+                      format: jsonString
+                    - type: object
+                      additionalProperties:
+                        nullable: true
+                    - nullable: true
+                  description: Data the workflow keeps between executions
+                  example:
+                    lastId: 1
+                pinData:
+                  type: object
+                  nullable: true
+                  additionalProperties:
+                    nullable: true
+                  description: Pinned sample data for nodes, keyed by node name
+                parentFolderId:
+                  type: string
+                  nullable: true
+                  description: ID of the folder to move the workflow into. Pass null to move it to the project root; omit to leave its current folder unchanged.
+                  writeOnly: true
+                  example: X8ovzm8lTQjcXRZQ
+                meta:
+                  type: object
+                  description: Workflow metadata such as template information
+                  readOnly: true
+                  properties:
+                    onboardingId:
+                      type: string
+                    templateId:
+                      type: string
+                    instanceId:
+                      type: string
+                    templateCredsSetupCompleted:
+                      type: boolean
+                  nullable: true
+                tags:
+                  type: array
+                  readOnly: true
+                  items:
+                    type: object
+                    additionalProperties: false
+                    required:
+                      - name
+                    properties:
+                      id:
+                        type: string
+                        readOnly: true
+                        example: 2tUt1wbLX592XDdX
+                      name:
+                        type: string
+                        example: Production
+                      createdAt:
+                        type: string
+                        format: date-time
+                        readOnly: true
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        readOnly: true
+                shared:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      role:
+                        type: string
+                        example: workflow:owner
+                      workflowId:
+                        type: string
+                        example: 2tUt1wbLX592XDdX
+                      projectId:
+                        type: string
+                        example: 2tUt1wbLX592XDdX
+                      project:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            readOnly: true
+                          name:
+                            type: string
+                          type:
+                            type: string
+                            readOnly: true
+                      createdAt:
+                        type: string
+                        format: date-time
+                        readOnly: true
+                      updatedAt:
+                        type: string
+                        format: date-time
+                        readOnly: true
+                    additionalProperties: false
+                  description: Accepted for compatibility and ignored. The owner share is derived from the target project.
+                activeVersion:
+                  type: object
+                  readOnly: true
+                  nullable: true
+                  additionalProperties: false
+                  properties:
+                    versionId:
+                      type: string
+                      readOnly: true
+                      description: Unique identifier for this workflow version
+                      example: 7c6b9e3f-8d4a-4b2c-9f1e-6a5d3b8c7e4f
+                    workflowId:
+                      type: string
+                      readOnly: true
+                      description: The workflow this version belongs to
+                      example: 2tUt1wbLX592XDdX
+                    nodes:
+                      type: array
+                      description: Nodes that make up the workflow
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            example: 0f5532f9-36ba-4bef-86c7-30d607400b15
+                          name:
+                            type: string
+                            example: Jira
+                          webhookId:
+                            type: string
+                          disabled:
+                            type: boolean
+                          notesInFlow:
+                            type: boolean
+                          notes:
+                            type: string
+                          type:
+                            type: string
+                            example: n8n-nodes-base.jira
+                          typeVersion:
+                            type: number
+                            example: 1
+                          executeOnce:
+                            type: boolean
+                            example: false
+                          alwaysOutputData:
+                            type: boolean
+                            example: false
+                          retryOnFail:
+                            type: boolean
+                            example: false
+                          maxTries:
+                            type: number
+                          waitBetweenTries:
+                            type: number
+                          continueOnFail:
+                            type: boolean
+                            example: false
+                            description: use onError instead
+                            deprecated: true
+                          onError:
+                            type: string
+                            example: stopWorkflow
+                          position:
+                            type: array
+                            items:
+                              type: number
+                            example:
+                              - -100
+                              - 80
+                          parameters:
+                            type: object
+                            additionalProperties: true
+                          credentials:
+                            type: object
+                            example:
+                              jiraSoftwareCloudApi:
+                                name: jiraApi
+                          customTelemetryTags:
+                            type: object
+                            additionalProperties: false
+                            properties:
+                              tag:
+                                type: array
+                                items:
+                                  type: object
+                                  additionalProperties: false
+                                  required:
+                                    - key
+                                    - value
+                                  properties:
+                                    key:
+                                      type: string
+                                    value:
+                                      type: string
+                          createdAt:
+                            type: string
+                            format: date-time
+                            readOnly: true
+                          updatedAt:
+                            type: string
+                            format: date-time
+                            readOnly: true
+                        additionalProperties: false
+                      readOnly: true
+                    connections:
+                      type: object
+                      description: Connections between nodes, keyed by source node name
+                      example:
+                        Jira:
+                          main:
+                            - - node: Jira
+                                type: main
+                                index: 0
+                      readOnly: true
+                    nodeGroups:
+                      type: array
+                      description: Visual groupings of nodes shown as frames on the canvas
+                      items:
+                        type: object
+                        properties:
+                          id:
+                            type: string
+                            description: Unique identifier for the node group
+                            example: 9b1c8e2a-4d3f-4a6b-8c7d-1e2f3a4b5c6d
+                          name:
+                            type: string
+                            description: Display name of the node group
+                            example: Data processing
+                          description:
+                            type: string
+                            maxLength: 155
+                            description: Optional plain-text description of the node group
+                            example: Cleans and normalizes incoming records
+                          nodeIds:
+                            type: array
+                            description: IDs of the nodes that belong to this group
+                            items:
+                              type: string
+                        required:
+                          - id
+                          - name
+                          - nodeIds
+                        additionalProperties: false
+                      readOnly: true
+                    authors:
+                      type: string
+                      readOnly: true
+                      description: Comma-separated list of author IDs who contributed to this version
+                      example: 1,2,3
+                    name:
+                      type: string
+                      nullable: true
+                      readOnly: true
+                      description: Optional name for this workflow version
+                      example: Production release
+                    description:
+                      type: string
+                      nullable: true
+                      readOnly: true
+                      description: Optional description for this workflow version
+                    autosaved:
+                      type: boolean
+                      readOnly: true
+                      description: Whether this version was created by autosave
+                    createdAt:
+                      type: string
+                      format: date-time
+                      readOnly: true
+                    updatedAt:
+                      type: string
+                      format: date-time
+                      readOnly: true
                 description:
                   type: string
-                  description: Optional description for the workflow version during publication.
+                  description: Description of the workflow
+                  example: My workflow description
+              required:
+                - name
+                - nodes
+                - connections
+                - settings
+              additionalProperties: false
       responses:
         '200':
           description: Operation successful.
@@ -7566,7 +8091,6 @@ paths:
                       - autosaved
                       - createdAt
                       - updatedAt
-                      - workflowPublishHistory
                 required:
                   - id
                   - name
@@ -7587,6 +8111,810 @@ paths:
                   - staticData
                   - meta
                   - activeVersion
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          description: Conflict, e.g. re-publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present; the update itself is still saved as a draft) or a webhook path conflict.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  reason:
+                    type: string
+                    enum:
+                      - review_pending
+                      - changes_requested
+                  workflowReviewRequestId:
+                    type: string
+                required:
+                  - message
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '422':
+          $ref: '#/components/responses/unprocessableEntity'
+    delete:
+      operationId: deleteWorkflow
+      tags:
+        - Workflow
+      summary: Delete a workflow
+      description: Delete a workflow.
+      x-required-scope: workflow:delete
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  name:
+                    type: string
+                  description:
+                    type: string
+                    nullable: true
+                  active:
+                    type: boolean
+                  activeVersionId:
+                    type: string
+                    nullable: true
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  isArchived:
+                    type: boolean
+                  versionId:
+                    type: string
+                  versionCounter:
+                    type: number
+                  sourceWorkflowId:
+                    type: string
+                    nullable: true
+                  triggerCount:
+                    type: number
+                  nodes:
+                    type: array
+                    description: Nodes that make up the workflow
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          example: 0f5532f9-36ba-4bef-86c7-30d607400b15
+                        name:
+                          type: string
+                          example: Jira
+                        webhookId:
+                          type: string
+                        disabled:
+                          type: boolean
+                        notesInFlow:
+                          type: boolean
+                        notes:
+                          type: string
+                        type:
+                          type: string
+                          example: n8n-nodes-base.jira
+                        typeVersion:
+                          type: number
+                          example: 1
+                        executeOnce:
+                          type: boolean
+                          example: false
+                        alwaysOutputData:
+                          type: boolean
+                          example: false
+                        retryOnFail:
+                          type: boolean
+                          example: false
+                        maxTries:
+                          type: number
+                        waitBetweenTries:
+                          type: number
+                        continueOnFail:
+                          type: boolean
+                          example: false
+                          description: use onError instead
+                          deprecated: true
+                        onError:
+                          type: string
+                          example: stopWorkflow
+                        position:
+                          type: array
+                          items:
+                            type: number
+                          example:
+                            - -100
+                            - 80
+                        parameters:
+                          type: object
+                          additionalProperties: true
+                        credentials:
+                          type: object
+                          example:
+                            jiraSoftwareCloudApi:
+                              name: jiraApi
+                        customTelemetryTags:
+                          type: object
+                          properties:
+                            tag:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  key:
+                                    type: string
+                                  value:
+                                    type: string
+                                required:
+                                  - key
+                                  - value
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                  connections:
+                    type: object
+                    description: Connections between nodes, keyed by source node name
+                    example:
+                      Jira:
+                        main:
+                          - - node: Jira
+                              type: main
+                              index: 0
+                  nodeGroups:
+                    type: array
+                    description: Visual groupings of nodes shown as frames on the canvas
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: Unique identifier for the node group
+                          example: 9b1c8e2a-4d3f-4a6b-8c7d-1e2f3a4b5c6d
+                        name:
+                          type: string
+                          description: Display name of the node group
+                          example: Data processing
+                        description:
+                          type: string
+                          maxLength: 155
+                          description: Optional plain-text description of the node group
+                          example: Cleans and normalizes incoming records
+                        nodeIds:
+                          type: array
+                          description: IDs of the nodes that belong to this group
+                          items:
+                            type: string
+                      required:
+                        - id
+                        - name
+                        - nodeIds
+                  settings:
+                    type: object
+                    description: Execution and behaviour settings for the workflow
+                    properties:
+                      saveExecutionProgress:
+                        oneOf:
+                          - type: boolean
+                          - type: string
+                            enum:
+                              - DEFAULT
+                      saveManualExecutions:
+                        oneOf:
+                          - type: boolean
+                          - type: string
+                            enum:
+                              - DEFAULT
+                      saveDataErrorExecution:
+                        type: string
+                        enum:
+                          - DEFAULT
+                          - all
+                          - none
+                      saveDataSuccessExecution:
+                        type: string
+                        enum:
+                          - DEFAULT
+                          - all
+                          - none
+                      executionTimeout:
+                        type: number
+                        example: 3600
+                      errorWorkflow:
+                        type: string
+                        example: VzqKEW0ShTXA5vPj
+                        description: The ID of the workflow that contains the error trigger node.
+                      timezone:
+                        type: string
+                        example: America/New_York
+                      executionOrder:
+                        type: string
+                        example: v1
+                      binaryMode:
+                        type: string
+                        enum:
+                          - separate
+                          - combined
+                        description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      callerPolicy:
+                        type: string
+                        enum:
+                          - any
+                          - none
+                          - workflowsFromAList
+                          - workflowsFromSameOwner
+                        example: workflowsFromSameOwner
+                        description: |-
+                          Controls which workflows are allowed to call this workflow using the Execute Workflow node. Defaults to workflowsFromSameOwner.
+
+                          Available options:
+                          - `any`: Any workflow can call this workflow (no restrictions)
+                          - `none`: No other workflows can call this workflow (completely blocked)
+                          - `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow
+                          - `workflowsFromAList`: Only the workflows listed in `callerIds` can call this workflow
+                      callerIds:
+                        type: string
+                        example: 14, 18, 23
+                        description: Comma-separated list of workflow IDs allowed to call this workflow (only used with the workflowsFromAList policy)
+                      timeSavedMode:
+                        type: string
+                        enum:
+                          - fixed
+                          - dynamic
+                        description: |-
+                          Controls how the time saved per execution is calculated.
+
+                          Available options:
+                          - `fixed`: Uses the value in `timeSavedPerExecution`. Use when the time saved is the same for every execution.
+                          - `dynamic`: Calculates the time saved from actual execution metrics. `timeSavedPerExecution` is ignored.
+                      timeSavedPerExecution:
+                        type: number
+                        description: Estimated time saved per execution in minutes
+                      redactionPolicy:
+                        type: string
+                        enum:
+                          - none
+                          - non-manual
+                          - manual-only
+                          - all
+                        example: non-manual
+                        description: |-
+                          Controls whether execution data is redacted for this workflow.
+
+                          Available options:
+                          - `none` (default): No redaction. All execution data is stored.
+                          - `non-manual`: Redact production (non-manually triggered) executions only.
+                          - `manual-only`: Redact manually triggered executions only.
+                          - `all`: Redact all executions, manual and production.
+                      availableInMCP:
+                        type: boolean
+                        example: false
+                        description: Controls whether this workflow is reachable over the Model Context Protocol (MCP). Defaults to false. The workflow must be active and must hold at least one active Webhook node.
+                      customTelemetryTags:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            key:
+                              type: string
+                            value:
+                              type: string
+                          required:
+                            - key
+                            - value
+                      credentialResolverId:
+                        type: string
+                        description: ID of the credential resolver that resolves credentials for this workflow. This is a derived, internal setting managed through the credential resolver configuration rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                    nullable: true
+                  staticData:
+                    type: object
+                    description: Data the workflow keeps between executions
+                    example:
+                      lastId: 1
+                    nullable: true
+                  pinData:
+                    type: object
+                    description: Pinned sample data for nodes, keyed by node name
+                    nullable: true
+                  meta:
+                    type: object
+                    description: Workflow metadata such as template information
+                    properties:
+                      onboardingId:
+                        type: string
+                      templateId:
+                        type: string
+                      instanceId:
+                        type: string
+                      templateCredsSetupCompleted:
+                        type: boolean
+                    nullable: true
+                  tags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                        - id
+                        - name
+                        - createdAt
+                        - updatedAt
+                  shared:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        role:
+                          type: string
+                        workflowId:
+                          type: string
+                        projectId:
+                          type: string
+                        project:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                            name:
+                              type: string
+                            type:
+                              type: string
+                              enum:
+                                - personal
+                                - team
+                            icon:
+                              type: object
+                              nullable: true
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - emoji
+                                    - icon
+                                value:
+                                  type: string
+                              required:
+                                - type
+                                - value
+                            description:
+                              type: string
+                              nullable: true
+                            customTelemetryTags:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  key:
+                                    type: string
+                                  value:
+                                    type: string
+                                required:
+                                  - key
+                                  - value
+                            creatorId:
+                              type: string
+                              nullable: true
+                            createdAt:
+                              type: string
+                              format: date-time
+                            updatedAt:
+                              type: string
+                              format: date-time
+                          required:
+                            - id
+                            - name
+                            - type
+                            - icon
+                            - description
+                            - customTelemetryTags
+                            - creatorId
+                            - createdAt
+                            - updatedAt
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                        - role
+                        - workflowId
+                        - projectId
+                        - project
+                        - createdAt
+                        - updatedAt
+                  activeVersion:
+                    type: object
+                    nullable: true
+                    properties:
+                      versionId:
+                        type: string
+                      workflowId:
+                        type: string
+                      nodes:
+                        type: array
+                        description: Nodes that make up the workflow
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              example: 0f5532f9-36ba-4bef-86c7-30d607400b15
+                            name:
+                              type: string
+                              example: Jira
+                            webhookId:
+                              type: string
+                            disabled:
+                              type: boolean
+                            notesInFlow:
+                              type: boolean
+                            notes:
+                              type: string
+                            type:
+                              type: string
+                              example: n8n-nodes-base.jira
+                            typeVersion:
+                              type: number
+                              example: 1
+                            executeOnce:
+                              type: boolean
+                              example: false
+                            alwaysOutputData:
+                              type: boolean
+                              example: false
+                            retryOnFail:
+                              type: boolean
+                              example: false
+                            maxTries:
+                              type: number
+                            waitBetweenTries:
+                              type: number
+                            continueOnFail:
+                              type: boolean
+                              example: false
+                              description: use onError instead
+                              deprecated: true
+                            onError:
+                              type: string
+                              example: stopWorkflow
+                            position:
+                              type: array
+                              items:
+                                type: number
+                              example:
+                                - -100
+                                - 80
+                            parameters:
+                              type: object
+                              additionalProperties: true
+                            credentials:
+                              type: object
+                              example:
+                                jiraSoftwareCloudApi:
+                                  name: jiraApi
+                            customTelemetryTags:
+                              type: object
+                              properties:
+                                tag:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      key:
+                                        type: string
+                                      value:
+                                        type: string
+                                    required:
+                                      - key
+                                      - value
+                            createdAt:
+                              type: string
+                              format: date-time
+                            updatedAt:
+                              type: string
+                              format: date-time
+                      connections:
+                        type: object
+                        description: Connections between nodes, keyed by source node name
+                        example:
+                          Jira:
+                            main:
+                              - - node: Jira
+                                  type: main
+                                  index: 0
+                      nodeGroups:
+                        type: array
+                        description: Visual groupings of nodes shown as frames on the canvas
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              description: Unique identifier for the node group
+                              example: 9b1c8e2a-4d3f-4a6b-8c7d-1e2f3a4b5c6d
+                            name:
+                              type: string
+                              description: Display name of the node group
+                              example: Data processing
+                            description:
+                              type: string
+                              maxLength: 155
+                              description: Optional plain-text description of the node group
+                              example: Cleans and normalizes incoming records
+                            nodeIds:
+                              type: array
+                              description: IDs of the nodes that belong to this group
+                              items:
+                                type: string
+                          required:
+                            - id
+                            - name
+                            - nodeIds
+                      authors:
+                        type: string
+                      name:
+                        type: string
+                        nullable: true
+                      description:
+                        type: string
+                        nullable: true
+                      autosaved:
+                        type: boolean
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+                      workflowPublishHistory:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            id:
+                              type: number
+                            workflowId:
+                              type: string
+                            versionId:
+                              type: string
+                              nullable: true
+                            event:
+                              type: string
+                              enum:
+                                - activated
+                                - deactivated
+                            userId:
+                              type: string
+                              nullable: true
+                            createdAt:
+                              type: string
+                              format: date-time
+                          required:
+                            - id
+                            - workflowId
+                            - versionId
+                            - event
+                            - userId
+                            - createdAt
+                    required:
+                      - versionId
+                      - workflowId
+                      - nodes
+                      - connections
+                      - nodeGroups
+                      - authors
+                      - name
+                      - description
+                      - autosaved
+                      - createdAt
+                      - updatedAt
+                      - workflowPublishHistory
+                required:
+                  - id
+                  - name
+                  - description
+                  - active
+                  - activeVersionId
+                  - createdAt
+                  - updatedAt
+                  - isArchived
+                  - versionId
+                  - versionCounter
+                  - sourceWorkflowId
+                  - triggerCount
+                  - nodes
+                  - connections
+                  - nodeGroups
+                  - settings
+                  - staticData
+                  - meta
+                  - shared
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+  /workflows/{workflowId}/archive:
+    post:
+      operationId: archiveWorkflow
+      tags:
+        - Workflow
+      summary: Archive a workflow
+      description: 'Soft-deletes a workflow by archiving it. Idempotent: archiving an already archived workflow returns 200 with the current workflow.'
+      x-required-scope: workflow:delete
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowPublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /workflows/{workflowId}/unarchive:
+    post:
+      operationId: unarchiveWorkflow
+      tags:
+        - Workflow
+      summary: Unarchive a workflow
+      description: Restores an archived workflow.
+      x-required-scope: workflow:delete
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /workflows/{workflowId}/transfer:
+    put:
+      operationId: transferWorkflow
+      tags:
+        - Workflow
+      summary: Transfer a workflow to another project
+      description: Transfer a workflow to another project.
+      x-required-scope: workflow:move
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                destinationProjectId:
+                  type: string
+              required:
+                - destinationProjectId
+      responses:
+        '204':
+          description: Operation successful.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+  /workflows/{workflowId}/publish:
+    post:
+      operationId: publishWorkflow
+      tags:
+        - Workflow
+      summary: Publish a workflow
+      description: Publish a workflow. In n8n v1, this action was termed activating a workflow.
+      x-required-scope: workflow:activate
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                versionId:
+                  type: string
+                  description: The specific version ID to publish. If not provided, the latest version is used.
+                name:
+                  type: string
+                  description: Optional name for the workflow version during publication.
+                description:
+                  type: string
+                  description: Optional description for the workflow version during publication.
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowPublishPublicDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -7623,6 +8951,105 @@ paths:
       summary: Unpublish a workflow
       description: Unpublish a workflow. In n8n v1, this action was termed deactivating a workflow.
       x-required-scope: workflow:deactivate
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowPublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /workflows/{workflowId}/activate:
+    post:
+      operationId: activateWorkflow
+      tags:
+        - Workflow
+      summary: Publish a workflow
+      description: 'Deprecated: use POST /workflows/{id}/publish instead. Publish a workflow. In n8n v1, this action was termed activating a workflow.'
+      x-required-scope: workflow:activate
+      deprecated: true
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          name: workflowId
+          in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                versionId:
+                  type: string
+                  description: The specific version ID to activate or publish. If not provided, the latest version is used.
+                name:
+                  type: string
+                  description: Optional name for the workflow version during activation.
+                description:
+                  type: string
+                  description: Optional description for the workflow version during activation.
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/workflowPublishPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          description: Conflict, e.g. publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present) or a webhook path conflict.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  message:
+                    type: string
+                  reason:
+                    type: string
+                    enum:
+                      - review_pending
+                      - changes_requested
+                  workflowReviewRequestId:
+                    type: string
+                required:
+                  - message
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+  /workflows/{workflowId}/deactivate:
+    post:
+      operationId: deactivateWorkflow
+      tags:
+        - Workflow
+      summary: Deactivate a workflow
+      description: 'Deprecated: use POST /workflows/{id}/unpublish instead. Deactivate a workflow.'
+      x-required-scope: workflow:deactivate
+      deprecated: true
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
       x-decorator-routed: true
@@ -9302,369 +10729,6 @@ components:
           description: IDs of the nodes that belong to this group
           items:
             type: string
-    workflowSettings:
-      type: object
-      additionalProperties: false
-      properties:
-        saveExecutionProgress:
-          type: boolean
-        saveManualExecutions:
-          type: boolean
-        saveDataErrorExecution:
-          type: string
-          enum:
-            - all
-            - none
-        saveDataSuccessExecution:
-          type: string
-          enum:
-            - all
-            - none
-        executionTimeout:
-          type: number
-          example: 3600
-          maxLength: 3600
-        errorWorkflow:
-          type: string
-          example: VzqKEW0ShTXA5vPj
-          description: The ID of the workflow that contains the error trigger node.
-        timezone:
-          type: string
-          example: America/New_York
-        executionOrder:
-          type: string
-          example: v1
-        binaryMode:
-          type: string
-          enum:
-            - separate
-            - combined
-          description: |
-            Controls how binary data is resolved from a node's input. This is a derived,
-            internal setting rather than something intended to be set programmatically.
-            It is included in workflow responses for reference, but any value sent when
-            creating or updating a workflow is ignored.
-        callerPolicy:
-          type: string
-          enum:
-            - any
-            - none
-            - workflowsFromAList
-            - workflowsFromSameOwner
-          description: |
-            Controls which workflows are allowed to call this workflow using the Execute Workflow node.
-            Defaults to workflowsFromSameOwner.
-
-            Available options:
-            - `any`: **Deprecated, removed in version 3.** Any workflow can call this workflow.
-              Switch to `workflowsFromAList` or `workflowsFromSameOwner` before upgrading.
-            - `none`: No other workflows can call this workflow (completely blocked)
-            - `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow
-              * For personal projects: Only workflows created by the same user
-              * For team projects: Only workflows within the same team project
-            - `workflowsFromAList`: Only specific workflows listed in the `callerIds` field can call this workflow
-              * Requires the `callerIds` field to specify which workflow IDs are allowed
-              * See `callerIds` field documentation for usage
-          example: workflowsFromSameOwner
-        callerIds:
-          type: string
-          description: Comma-separated list of workflow IDs allowed to call this workflow (only used with workflowsFromAList policy)
-          example: 14, 18, 23
-        timeSavedMode:
-          type: string
-          enum:
-            - fixed
-            - dynamic
-          description: |
-            Controls how the time saved per execution is calculated.
-            Available options:
-            - `fixed`: Uses a predetermined time value specified in the `timeSavedPerExecution` field.
-              * Requires the `timeSavedPerExecution` field to be set
-              * Use when the time saved is consistent across all executions
-            - `dynamic`: Automatically calculates time saved based on actual execution metrics
-              * The `timeSavedPerExecution` field is ignored when this mode is active
-              * Use when time saved varies between executions
-        timeSavedPerExecution:
-          type: number
-          description: Estimated time saved per execution in minutes
-        redactionPolicy:
-          type: string
-          enum:
-            - none
-            - non-manual
-            - manual-only
-            - all
-          description: |
-            Controls whether execution data is redacted for this workflow.
-
-            Available options:
-            - `none` (default): No redaction — all execution data is stored.
-            - `non-manual`: Redact production (non-manually triggered) executions only.
-            - `manual-only`: Redact manually triggered executions only.
-            - `all`: Redact all executions (manual and production).
-
-            When the instance has a redaction floor configured, the policy must be equal to
-            or stricter than the floor. A policy weaker than the floor is rejected with 422
-            on create, and on update when it changes the stored policy; an unchanged
-            pre-existing below-floor policy is preserved (the floor is not applied
-            retroactively). Omitting this field when creating a workflow seeds it to the
-            instance floor instead.
-          example: non-manual
-        availableInMCP:
-          type: boolean
-          description: |
-            Controls whether this workflow is accessible via the Model Context Protocol (MCP).
-            Defaults to false.
-
-            When enabled, this workflow can be called by MCP clients (AI assistants and other tools
-            that support MCP). This allows external AI tools to discover and execute this workflow
-            as part of their capabilities.
-
-            Requirements for enabling MCP access:
-            - The workflow must be active (not deactivated)
-            - The workflow must contain at least one active Webhook node
-            - Only webhook-triggered workflows can be exposed via MCP
-
-            Security note: When a workflow is available in MCP, it can be discovered and executed
-            by any MCP client that has the appropriate API credentials for your n8n instance.
-          example: false
-        customTelemetryTags:
-          type: array
-          items:
-            type: object
-            additionalProperties: false
-            required:
-              - key
-              - value
-            properties:
-              key:
-                type: string
-              value:
-                type: string
-        credentialResolverId:
-          type: string
-          description: |
-            ID of the credential resolver used to resolve credentials for this workflow.
-            This is a derived, internal setting managed via the workflow's credential
-            resolver configuration rather than something intended to be set programmatically.
-            It is included in workflow responses for reference, but any value sent when
-            creating or updating a workflow is ignored.
-    sharedWorkflow:
-      type: object
-      additionalProperties: false
-      properties:
-        role:
-          type: string
-          example: workflow:owner
-        workflowId:
-          type: string
-          example: 2tUt1wbLX592XDdX
-        projectId:
-          type: string
-          example: 2tUt1wbLX592XDdX
-        project:
-          type: object
-          properties:
-            id:
-              type: string
-              readOnly: true
-            name:
-              type: string
-            type:
-              type: string
-              readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-    activeVersion:
-      type: object
-      readOnly: true
-      nullable: true
-      additionalProperties: false
-      properties:
-        versionId:
-          type: string
-          readOnly: true
-          description: Unique identifier for this workflow version
-          example: 7c6b9e3f-8d4a-4b2c-9f1e-6a5d3b8c7e4f
-        workflowId:
-          type: string
-          readOnly: true
-          description: The workflow this version belongs to
-          example: 2tUt1wbLX592XDdX
-        nodes:
-          type: array
-          readOnly: true
-          items:
-            $ref: '#/components/schemas/node'
-        connections:
-          type: object
-          readOnly: true
-          example:
-            Jira:
-              main:
-                - - node: Jira
-                    type: main
-                    index: 0
-        nodeGroups:
-          type: array
-          readOnly: true
-          description: Visual groupings of nodes shown as frames on the canvas
-          items:
-            $ref: '#/components/schemas/workflowNodeGroup'
-        authors:
-          type: string
-          readOnly: true
-          description: Comma-separated list of author IDs who contributed to this version
-          example: 1,2,3
-        name:
-          type: string
-          nullable: true
-          readOnly: true
-          description: Optional name for this workflow version
-          example: Production release
-        description:
-          type: string
-          nullable: true
-          readOnly: true
-          description: Optional description for this workflow version
-        autosaved:
-          type: boolean
-          readOnly: true
-          description: Whether this version was created by autosave
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-    workflow:
-      type: object
-      additionalProperties: false
-      required:
-        - name
-        - nodes
-        - connections
-        - settings
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: 2tUt1wbLX592XDdX
-        name:
-          type: string
-          example: Workflow 1
-        description:
-          type: string
-          description: Description of the workflow
-          example: My workflow description
-        parentFolderId:
-          type: string
-          nullable: true
-          writeOnly: true
-          description: ID of the folder to move the workflow into. Pass null to move it to the project root; omit to leave its current folder unchanged.
-          example: X8ovzm8lTQjcXRZQ
-        active:
-          type: boolean
-          readOnly: true
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-        isArchived:
-          type: boolean
-          readOnly: true
-        versionId:
-          type: string
-          readOnly: true
-          description: Current version identifier used for optimistic locking
-        triggerCount:
-          type: integer
-          readOnly: true
-          description: Number of active trigger nodes in the workflow
-        nodes:
-          type: array
-          items:
-            $ref: '#/components/schemas/node'
-        connections:
-          type: object
-          example:
-            Jira:
-              main:
-                - - node: Jira
-                    type: main
-                    index: 0
-        nodeGroups:
-          type: array
-          description: Visual groupings of nodes shown as frames on the canvas
-          items:
-            $ref: '#/components/schemas/workflowNodeGroup'
-        settings:
-          $ref: '#/components/schemas/workflowSettings'
-        staticData:
-          example:
-            lastId: 1
-          anyOf:
-            - type: string
-              format: jsonString
-              nullable: true
-            - type: object
-              nullable: true
-        pinData:
-          type: object
-          nullable: true
-          description: Pinned sample data for nodes, keyed by node name
-        meta:
-          type: object
-          nullable: true
-          readOnly: true
-          description: Workflow metadata such as template information
-          properties:
-            onboardingId:
-              type: string
-            templateId:
-              type: string
-            instanceId:
-              type: string
-            templateCredsSetupCompleted:
-              type: boolean
-        tags:
-          type: array
-          items:
-            $ref: '#/components/schemas/tag'
-          readOnly: true
-        shared:
-          type: array
-          items:
-            $ref: '#/components/schemas/sharedWorkflow'
-        activeVersion:
-          $ref: '#/components/schemas/activeVersion'
-    workflowPublishBlockedError:
-      type: object
-      description: Conflict response. `reason` and `workflowReviewRequestId` are present only when the conflict is an open workflow review blocking publication.
-      required:
-        - message
-      properties:
-        message:
-          type: string
-        reason:
-          type: string
-          enum:
-            - review_pending
-            - changes_requested
-        workflowReviewRequestId:
-          type: string
     workflowVersion:
       type: object
       additionalProperties: false
@@ -11457,6 +12521,354 @@ components:
           description: Last time the role was updated.
           format: date-time
           readOnly: true
+    workflowSettings:
+      type: object
+      additionalProperties: false
+      properties:
+        saveExecutionProgress:
+          type: boolean
+        saveManualExecutions:
+          type: boolean
+        saveDataErrorExecution:
+          type: string
+          enum:
+            - all
+            - none
+        saveDataSuccessExecution:
+          type: string
+          enum:
+            - all
+            - none
+        executionTimeout:
+          type: number
+          example: 3600
+          maxLength: 3600
+        errorWorkflow:
+          type: string
+          example: VzqKEW0ShTXA5vPj
+          description: The ID of the workflow that contains the error trigger node.
+        timezone:
+          type: string
+          example: America/New_York
+        executionOrder:
+          type: string
+          example: v1
+        binaryMode:
+          type: string
+          enum:
+            - separate
+            - combined
+          description: |
+            Controls how binary data is resolved from a node's input. This is a derived,
+            internal setting rather than something intended to be set programmatically.
+            It is included in workflow responses for reference, but any value sent when
+            creating or updating a workflow is ignored.
+        callerPolicy:
+          type: string
+          enum:
+            - any
+            - none
+            - workflowsFromAList
+            - workflowsFromSameOwner
+          description: |
+            Controls which workflows are allowed to call this workflow using the Execute Workflow node.
+            Defaults to workflowsFromSameOwner.
+
+            Available options:
+            - `any`: **Deprecated, removed in version 3.** Any workflow can call this workflow.
+              Switch to `workflowsFromAList` or `workflowsFromSameOwner` before upgrading.
+            - `none`: No other workflows can call this workflow (completely blocked)
+            - `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow
+              * For personal projects: Only workflows created by the same user
+              * For team projects: Only workflows within the same team project
+            - `workflowsFromAList`: Only specific workflows listed in the `callerIds` field can call this workflow
+              * Requires the `callerIds` field to specify which workflow IDs are allowed
+              * See `callerIds` field documentation for usage
+          example: workflowsFromSameOwner
+        callerIds:
+          type: string
+          description: Comma-separated list of workflow IDs allowed to call this workflow (only used with workflowsFromAList policy)
+          example: 14, 18, 23
+        timeSavedMode:
+          type: string
+          enum:
+            - fixed
+            - dynamic
+          description: |
+            Controls how the time saved per execution is calculated.
+            Available options:
+            - `fixed`: Uses a predetermined time value specified in the `timeSavedPerExecution` field.
+              * Requires the `timeSavedPerExecution` field to be set
+              * Use when the time saved is consistent across all executions
+            - `dynamic`: Automatically calculates time saved based on actual execution metrics
+              * The `timeSavedPerExecution` field is ignored when this mode is active
+              * Use when time saved varies between executions
+        timeSavedPerExecution:
+          type: number
+          description: Estimated time saved per execution in minutes
+        redactionPolicy:
+          type: string
+          enum:
+            - none
+            - non-manual
+            - manual-only
+            - all
+          description: |
+            Controls whether execution data is redacted for this workflow.
+
+            Available options:
+            - `none` (default): No redaction — all execution data is stored.
+            - `non-manual`: Redact production (non-manually triggered) executions only.
+            - `manual-only`: Redact manually triggered executions only.
+            - `all`: Redact all executions (manual and production).
+
+            When the instance has a redaction floor configured, the policy must be equal to
+            or stricter than the floor. A policy weaker than the floor is rejected with 422
+            on create, and on update when it changes the stored policy; an unchanged
+            pre-existing below-floor policy is preserved (the floor is not applied
+            retroactively). Omitting this field when creating a workflow seeds it to the
+            instance floor instead.
+          example: non-manual
+        availableInMCP:
+          type: boolean
+          description: |
+            Controls whether this workflow is accessible via the Model Context Protocol (MCP).
+            Defaults to false.
+
+            When enabled, this workflow can be called by MCP clients (AI assistants and other tools
+            that support MCP). This allows external AI tools to discover and execute this workflow
+            as part of their capabilities.
+
+            Requirements for enabling MCP access:
+            - The workflow must be active (not deactivated)
+            - The workflow must contain at least one active Webhook node
+            - Only webhook-triggered workflows can be exposed via MCP
+
+            Security note: When a workflow is available in MCP, it can be discovered and executed
+            by any MCP client that has the appropriate API credentials for your n8n instance.
+          example: false
+        customTelemetryTags:
+          type: array
+          items:
+            type: object
+            additionalProperties: false
+            required:
+              - key
+              - value
+            properties:
+              key:
+                type: string
+              value:
+                type: string
+        credentialResolverId:
+          type: string
+          description: |
+            ID of the credential resolver used to resolve credentials for this workflow.
+            This is a derived, internal setting managed via the workflow's credential
+            resolver configuration rather than something intended to be set programmatically.
+            It is included in workflow responses for reference, but any value sent when
+            creating or updating a workflow is ignored.
+    sharedWorkflow:
+      type: object
+      additionalProperties: false
+      properties:
+        role:
+          type: string
+          example: workflow:owner
+        workflowId:
+          type: string
+          example: 2tUt1wbLX592XDdX
+        projectId:
+          type: string
+          example: 2tUt1wbLX592XDdX
+        project:
+          type: object
+          properties:
+            id:
+              type: string
+              readOnly: true
+            name:
+              type: string
+            type:
+              type: string
+              readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+    activeVersion:
+      type: object
+      readOnly: true
+      nullable: true
+      additionalProperties: false
+      properties:
+        versionId:
+          type: string
+          readOnly: true
+          description: Unique identifier for this workflow version
+          example: 7c6b9e3f-8d4a-4b2c-9f1e-6a5d3b8c7e4f
+        workflowId:
+          type: string
+          readOnly: true
+          description: The workflow this version belongs to
+          example: 2tUt1wbLX592XDdX
+        nodes:
+          type: array
+          readOnly: true
+          items:
+            $ref: '#/components/schemas/node'
+        connections:
+          type: object
+          readOnly: true
+          example:
+            Jira:
+              main:
+                - - node: Jira
+                    type: main
+                    index: 0
+        nodeGroups:
+          type: array
+          readOnly: true
+          description: Visual groupings of nodes shown as frames on the canvas
+          items:
+            $ref: '#/components/schemas/workflowNodeGroup'
+        authors:
+          type: string
+          readOnly: true
+          description: Comma-separated list of author IDs who contributed to this version
+          example: 1,2,3
+        name:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Optional name for this workflow version
+          example: Production release
+        description:
+          type: string
+          nullable: true
+          readOnly: true
+          description: Optional description for this workflow version
+        autosaved:
+          type: boolean
+          readOnly: true
+          description: Whether this version was created by autosave
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+    workflow:
+      type: object
+      additionalProperties: false
+      required:
+        - name
+        - nodes
+        - connections
+        - settings
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 2tUt1wbLX592XDdX
+        name:
+          type: string
+          example: Workflow 1
+        description:
+          type: string
+          description: Description of the workflow
+          example: My workflow description
+        parentFolderId:
+          type: string
+          nullable: true
+          writeOnly: true
+          description: ID of the folder to move the workflow into. Pass null to move it to the project root; omit to leave its current folder unchanged.
+          example: X8ovzm8lTQjcXRZQ
+        active:
+          type: boolean
+          readOnly: true
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+        isArchived:
+          type: boolean
+          readOnly: true
+        versionId:
+          type: string
+          readOnly: true
+          description: Current version identifier used for optimistic locking
+        triggerCount:
+          type: integer
+          readOnly: true
+          description: Number of active trigger nodes in the workflow
+        nodes:
+          type: array
+          items:
+            $ref: '#/components/schemas/node'
+        connections:
+          type: object
+          example:
+            Jira:
+              main:
+                - - node: Jira
+                    type: main
+                    index: 0
+        nodeGroups:
+          type: array
+          description: Visual groupings of nodes shown as frames on the canvas
+          items:
+            $ref: '#/components/schemas/workflowNodeGroup'
+        settings:
+          $ref: '#/components/schemas/workflowSettings'
+        staticData:
+          example:
+            lastId: 1
+          anyOf:
+            - type: string
+              format: jsonString
+              nullable: true
+            - type: object
+              nullable: true
+        pinData:
+          type: object
+          nullable: true
+          description: Pinned sample data for nodes, keyed by node name
+        meta:
+          type: object
+          nullable: true
+          readOnly: true
+          description: Workflow metadata such as template information
+          properties:
+            onboardingId:
+              type: string
+            templateId:
+              type: string
+            instanceId:
+              type: string
+            templateCredsSetupCompleted:
+              type: boolean
+        tags:
+          type: array
+          items:
+            $ref: '#/components/schemas/tag'
+          readOnly: true
+        shared:
+          type: array
+          items:
+            $ref: '#/components/schemas/sharedWorkflow'
+        activeVersion:
+          $ref: '#/components/schemas/activeVersion'
     workflowList:
       type: object
       properties:
@@ -12244,6 +13656,525 @@ components:
         - staticData
         - meta
         - shared
+        - activeVersion
+    workflowPublishPublicDto.generated:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        description:
+          type: string
+          nullable: true
+        active:
+          type: boolean
+        activeVersionId:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        isArchived:
+          type: boolean
+        versionId:
+          type: string
+        versionCounter:
+          type: number
+        sourceWorkflowId:
+          type: string
+          nullable: true
+        triggerCount:
+          type: number
+        nodes:
+          type: array
+          description: Nodes that make up the workflow
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                example: 0f5532f9-36ba-4bef-86c7-30d607400b15
+              name:
+                type: string
+                example: Jira
+              webhookId:
+                type: string
+              disabled:
+                type: boolean
+              notesInFlow:
+                type: boolean
+              notes:
+                type: string
+              type:
+                type: string
+                example: n8n-nodes-base.jira
+              typeVersion:
+                type: number
+                example: 1
+              executeOnce:
+                type: boolean
+                example: false
+              alwaysOutputData:
+                type: boolean
+                example: false
+              retryOnFail:
+                type: boolean
+                example: false
+              maxTries:
+                type: number
+              waitBetweenTries:
+                type: number
+              continueOnFail:
+                type: boolean
+                example: false
+                description: use onError instead
+                deprecated: true
+              onError:
+                type: string
+                example: stopWorkflow
+              position:
+                type: array
+                items:
+                  type: number
+                example:
+                  - -100
+                  - 80
+              parameters:
+                type: object
+                additionalProperties: true
+              credentials:
+                type: object
+                example:
+                  jiraSoftwareCloudApi:
+                    name: jiraApi
+              customTelemetryTags:
+                type: object
+                properties:
+                  tag:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        value:
+                          type: string
+                      required:
+                        - key
+                        - value
+              createdAt:
+                type: string
+                format: date-time
+              updatedAt:
+                type: string
+                format: date-time
+        connections:
+          type: object
+          description: Connections between nodes, keyed by source node name
+          example:
+            Jira:
+              main:
+                - - node: Jira
+                    type: main
+                    index: 0
+        nodeGroups:
+          type: array
+          description: Visual groupings of nodes shown as frames on the canvas
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                description: Unique identifier for the node group
+                example: 9b1c8e2a-4d3f-4a6b-8c7d-1e2f3a4b5c6d
+              name:
+                type: string
+                description: Display name of the node group
+                example: Data processing
+              description:
+                type: string
+                maxLength: 155
+                description: Optional plain-text description of the node group
+                example: Cleans and normalizes incoming records
+              nodeIds:
+                type: array
+                description: IDs of the nodes that belong to this group
+                items:
+                  type: string
+            required:
+              - id
+              - name
+              - nodeIds
+        settings:
+          type: object
+          description: Execution and behaviour settings for the workflow
+          properties:
+            saveExecutionProgress:
+              oneOf:
+                - type: boolean
+                - type: string
+                  enum:
+                    - DEFAULT
+            saveManualExecutions:
+              oneOf:
+                - type: boolean
+                - type: string
+                  enum:
+                    - DEFAULT
+            saveDataErrorExecution:
+              type: string
+              enum:
+                - DEFAULT
+                - all
+                - none
+            saveDataSuccessExecution:
+              type: string
+              enum:
+                - DEFAULT
+                - all
+                - none
+            executionTimeout:
+              type: number
+              example: 3600
+            errorWorkflow:
+              type: string
+              example: VzqKEW0ShTXA5vPj
+              description: The ID of the workflow that contains the error trigger node.
+            timezone:
+              type: string
+              example: America/New_York
+            executionOrder:
+              type: string
+              example: v1
+            binaryMode:
+              type: string
+              enum:
+                - separate
+                - combined
+              description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+            callerPolicy:
+              type: string
+              enum:
+                - any
+                - none
+                - workflowsFromAList
+                - workflowsFromSameOwner
+              example: workflowsFromSameOwner
+              description: |-
+                Controls which workflows are allowed to call this workflow using the Execute Workflow node. Defaults to workflowsFromSameOwner.
+
+                Available options:
+                - `any`: Any workflow can call this workflow (no restrictions)
+                - `none`: No other workflows can call this workflow (completely blocked)
+                - `workflowsFromSameOwner` (default): Only workflows owned by the same project can call this workflow
+                - `workflowsFromAList`: Only the workflows listed in `callerIds` can call this workflow
+            callerIds:
+              type: string
+              example: 14, 18, 23
+              description: Comma-separated list of workflow IDs allowed to call this workflow (only used with the workflowsFromAList policy)
+            timeSavedMode:
+              type: string
+              enum:
+                - fixed
+                - dynamic
+              description: |-
+                Controls how the time saved per execution is calculated.
+
+                Available options:
+                - `fixed`: Uses the value in `timeSavedPerExecution`. Use when the time saved is the same for every execution.
+                - `dynamic`: Calculates the time saved from actual execution metrics. `timeSavedPerExecution` is ignored.
+            timeSavedPerExecution:
+              type: number
+              description: Estimated time saved per execution in minutes
+            redactionPolicy:
+              type: string
+              enum:
+                - none
+                - non-manual
+                - manual-only
+                - all
+              example: non-manual
+              description: |-
+                Controls whether execution data is redacted for this workflow.
+
+                Available options:
+                - `none` (default): No redaction. All execution data is stored.
+                - `non-manual`: Redact production (non-manually triggered) executions only.
+                - `manual-only`: Redact manually triggered executions only.
+                - `all`: Redact all executions, manual and production.
+            availableInMCP:
+              type: boolean
+              example: false
+              description: Controls whether this workflow is reachable over the Model Context Protocol (MCP). Defaults to false. The workflow must be active and must hold at least one active Webhook node.
+            customTelemetryTags:
+              type: array
+              items:
+                type: object
+                properties:
+                  key:
+                    type: string
+                  value:
+                    type: string
+                required:
+                  - key
+                  - value
+            credentialResolverId:
+              type: string
+              description: ID of the credential resolver that resolves credentials for this workflow. This is a derived, internal setting managed through the credential resolver configuration rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+          nullable: true
+        staticData:
+          type: object
+          description: Data the workflow keeps between executions
+          example:
+            lastId: 1
+          nullable: true
+        pinData:
+          type: object
+          description: Pinned sample data for nodes, keyed by node name
+          nullable: true
+        meta:
+          type: object
+          description: Workflow metadata such as template information
+          properties:
+            onboardingId:
+              type: string
+            templateId:
+              type: string
+            instanceId:
+              type: string
+            templateCredsSetupCompleted:
+              type: boolean
+          nullable: true
+        tags:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+              name:
+                type: string
+              createdAt:
+                type: string
+                format: date-time
+              updatedAt:
+                type: string
+                format: date-time
+            required:
+              - id
+              - name
+              - createdAt
+              - updatedAt
+        activeVersion:
+          type: object
+          nullable: true
+          properties:
+            versionId:
+              type: string
+            workflowId:
+              type: string
+            nodes:
+              type: array
+              description: Nodes that make up the workflow
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    example: 0f5532f9-36ba-4bef-86c7-30d607400b15
+                  name:
+                    type: string
+                    example: Jira
+                  webhookId:
+                    type: string
+                  disabled:
+                    type: boolean
+                  notesInFlow:
+                    type: boolean
+                  notes:
+                    type: string
+                  type:
+                    type: string
+                    example: n8n-nodes-base.jira
+                  typeVersion:
+                    type: number
+                    example: 1
+                  executeOnce:
+                    type: boolean
+                    example: false
+                  alwaysOutputData:
+                    type: boolean
+                    example: false
+                  retryOnFail:
+                    type: boolean
+                    example: false
+                  maxTries:
+                    type: number
+                  waitBetweenTries:
+                    type: number
+                  continueOnFail:
+                    type: boolean
+                    example: false
+                    description: use onError instead
+                    deprecated: true
+                  onError:
+                    type: string
+                    example: stopWorkflow
+                  position:
+                    type: array
+                    items:
+                      type: number
+                    example:
+                      - -100
+                      - 80
+                  parameters:
+                    type: object
+                    additionalProperties: true
+                  credentials:
+                    type: object
+                    example:
+                      jiraSoftwareCloudApi:
+                        name: jiraApi
+                  customTelemetryTags:
+                    type: object
+                    properties:
+                      tag:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            key:
+                              type: string
+                            value:
+                              type: string
+                          required:
+                            - key
+                            - value
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+            connections:
+              type: object
+              description: Connections between nodes, keyed by source node name
+              example:
+                Jira:
+                  main:
+                    - - node: Jira
+                        type: main
+                        index: 0
+            nodeGroups:
+              type: array
+              description: Visual groupings of nodes shown as frames on the canvas
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    description: Unique identifier for the node group
+                    example: 9b1c8e2a-4d3f-4a6b-8c7d-1e2f3a4b5c6d
+                  name:
+                    type: string
+                    description: Display name of the node group
+                    example: Data processing
+                  description:
+                    type: string
+                    maxLength: 155
+                    description: Optional plain-text description of the node group
+                    example: Cleans and normalizes incoming records
+                  nodeIds:
+                    type: array
+                    description: IDs of the nodes that belong to this group
+                    items:
+                      type: string
+                required:
+                  - id
+                  - name
+                  - nodeIds
+            authors:
+              type: string
+            name:
+              type: string
+              nullable: true
+            description:
+              type: string
+              nullable: true
+            autosaved:
+              type: boolean
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+            workflowPublishHistory:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: number
+                  workflowId:
+                    type: string
+                  versionId:
+                    type: string
+                    nullable: true
+                  event:
+                    type: string
+                    enum:
+                      - activated
+                      - deactivated
+                  userId:
+                    type: string
+                    nullable: true
+                  createdAt:
+                    type: string
+                    format: date-time
+                required:
+                  - id
+                  - workflowId
+                  - versionId
+                  - event
+                  - userId
+                  - createdAt
+          required:
+            - versionId
+            - workflowId
+            - nodes
+            - connections
+            - nodeGroups
+            - authors
+            - name
+            - description
+            - autosaved
+            - createdAt
+            - updatedAt
+            - workflowPublishHistory
+      required:
+        - id
+        - name
+        - description
+        - active
+        - activeVersionId
+        - createdAt
+        - updatedAt
+        - isArchived
+        - versionId
+        - versionCounter
+        - sourceWorkflowId
+        - triggerCount
+        - nodes
+        - connections
+        - nodeGroups
+        - settings
+        - staticData
+        - meta
         - activeVersion
     workflowTagsPublicDto.generated:
       type: array
