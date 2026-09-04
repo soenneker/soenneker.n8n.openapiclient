@@ -153,15 +153,21 @@ namespace Soenneker.N8n.OpenApiClient.Variables
             public double? Limit { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("projectId")]
             public string? ProjectId { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("projectId")]
             public string ProjectId { get; set; }
+            #pragma warning restore CS1591
 #endif
+            #pragma warning disable CS1591
             [QueryParameter("state")]
             public global::Soenneker.N8n.OpenApiClient.Models.EmptyState? State { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

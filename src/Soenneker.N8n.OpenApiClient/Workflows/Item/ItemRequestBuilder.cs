@@ -242,8 +242,10 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ItemRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("excludePinnedData")]
             public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowExcludePinnedDataParameter? ExcludePinnedData { get; set; }
+            #pragma warning restore CS1591
         }
         /// <summary>
         /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
@@ -251,8 +253,10 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ItemRequestBuilderPutQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("publishIfActive")]
             public global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowPublishIfActiveParameter? PublishIfActive { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

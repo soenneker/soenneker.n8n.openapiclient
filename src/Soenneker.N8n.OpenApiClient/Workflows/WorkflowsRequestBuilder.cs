@@ -140,8 +140,10 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WorkflowsRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("active")]
             public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowsActiveParameter? Active { get; set; }
+            #pragma warning restore CS1591
             /// <summary>Paginate by setting the cursor parameter to the nextCursor attribute returned by the previous request&apos;s response. Default value fetches the first &quot;page&quot; of the collection. See pagination for more detail.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -152,40 +154,54 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
             [QueryParameter("cursor")]
             public string Cursor { get; set; }
 #endif
+            #pragma warning disable CS1591
             [QueryParameter("excludePinnedData")]
             public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowsExcludePinnedDataParameter? ExcludePinnedData { get; set; }
+            #pragma warning restore CS1591
             /// <summary>The maximum number of items to return.</summary>
             [QueryParameter("limit")]
             public double? Limit { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("name")]
             public string? Name { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("name")]
             public string Name { get; set; }
+            #pragma warning restore CS1591
 #endif
             /// <summary>The number of items to skip before starting to collect the result set.</summary>
             [QueryParameter("offset")]
             public double? Offset { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("projectId")]
             public string? ProjectId { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("projectId")]
             public string ProjectId { get; set; }
+            #pragma warning restore CS1591
 #endif
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("tags")]
             public string? Tags { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("tags")]
             public string Tags { get; set; }
+            #pragma warning restore CS1591
 #endif
         }
     }

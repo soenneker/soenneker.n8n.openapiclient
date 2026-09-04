@@ -140,8 +140,10 @@ namespace Soenneker.N8n.OpenApiClient.Roles
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RolesRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("withUsageCount")]
             public global::Soenneker.N8n.OpenApiClient.Models.GetAllRolesWithUsageCountParameter? WithUsageCount { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

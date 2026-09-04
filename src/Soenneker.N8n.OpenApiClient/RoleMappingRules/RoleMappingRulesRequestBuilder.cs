@@ -153,8 +153,10 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules
             /// <summary>The maximum number of items to return.</summary>
             [QueryParameter("limit")]
             public double? Limit { get; set; }
+            #pragma warning disable CS1591
             [QueryParameter("type")]
             public global::Soenneker.N8n.OpenApiClient.Models.GetRoleMappingRulesTypeParameter? Type { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

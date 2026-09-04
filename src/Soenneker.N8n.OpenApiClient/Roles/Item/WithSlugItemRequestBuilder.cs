@@ -166,12 +166,16 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
         {
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("reassignRoleSlug")]
             public string? ReassignRoleSlug { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("reassignRoleSlug")]
             public string ReassignRoleSlug { get; set; }
+            #pragma warning restore CS1591
 #endif
         }
         /// <summary>
@@ -180,8 +184,10 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithSlugItemRequestBuilderGetQueryParameters 
         {
+            #pragma warning disable CS1591
             [QueryParameter("withUsageCount")]
             public global::Soenneker.N8n.OpenApiClient.Models.GetRoleWithUsageCountParameter? WithUsageCount { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }
