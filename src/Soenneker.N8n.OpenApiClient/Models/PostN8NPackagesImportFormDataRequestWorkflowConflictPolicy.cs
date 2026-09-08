@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>`new-version` updates matching workflows and creates a new version, `fail` rejects the import when any matching workflow exists, and `skip` leaves matching workflows unchanged.</summary>
+    /// <summary>`new-version` updates matching workflows and creates a new version; the archived state follows the package, so a matching workflow is archived or unarchived to match it. `fail` rejects the import when any matching workflow exists, and `skip` leaves matching workflows unchanged. Archived workflows in the target project match like any other. An archive state change also needs the `workflow:delete` scope.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestWorkflowConflictPolicy
     {

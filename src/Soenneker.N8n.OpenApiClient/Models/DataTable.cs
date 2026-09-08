@@ -48,6 +48,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string ProjectId { get; set; }
 #endif
+        /// <summary>Physical storage in bytes, including indexes and internal overhead. Not reduced immediately by row deletion, and may be a few seconds stale.</summary>
+        public int? SizeBytes { get; set; }
         /// <summary>Timestamp when the table was last updated</summary>
         public DateTimeOffset? UpdatedAt { get; set; }
         /// <summary>
@@ -80,6 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "sizeBytes", n => { SizeBytes = n.GetIntValue(); } },
                 { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
             };
         }
@@ -95,6 +98,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteIntValue("sizeBytes", SizeBytes);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteAdditionalData(AdditionalData);
         }

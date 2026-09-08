@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.GitConnections.Item.Pull
         {
         }
         /// <summary>
-        /// Work in progress. Imports all projects from the local repository working copy into the instance, overwriting to match it. It does not pull from the remote yet, so it imports whatever the last clone produced.
+        /// Resets the local clone to the configured branch tip and imports projects into the instance, overwriting to match. Requires the repository to be cloned first.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PullGitConnectionProjects200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.GitConnections.Item.Pull
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PullGitConnectionProjects200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PullGitConnectionProjects200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Work in progress. Imports all projects from the local repository working copy into the instance, overwriting to match it. It does not pull from the remote yet, so it imports whatever the last clone produced.
+        /// Resets the local clone to the configured branch tip and imports projects into the instance, overwriting to match. Requires the repository to be cloned first.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

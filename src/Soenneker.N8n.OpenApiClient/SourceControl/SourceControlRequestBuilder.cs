@@ -3,6 +3,8 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.SourceControl.Pull;
+using Soenneker.N8n.OpenApiClient.SourceControl.Push;
+using Soenneker.N8n.OpenApiClient.SourceControl.Status;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +21,16 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl
         public global::Soenneker.N8n.OpenApiClient.SourceControl.Pull.PullRequestBuilder Pull
         {
             get => new global::Soenneker.N8n.OpenApiClient.SourceControl.Pull.PullRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The push property</summary>
+        public global::Soenneker.N8n.OpenApiClient.SourceControl.Push.PushRequestBuilder Push
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.SourceControl.Push.PushRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The status property</summary>
+        public global::Soenneker.N8n.OpenApiClient.SourceControl.Status.StatusRequestBuilder Status
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.SourceControl.Status.StatusRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.SourceControl.SourceControlRequestBuilder"/> and sets the default values.

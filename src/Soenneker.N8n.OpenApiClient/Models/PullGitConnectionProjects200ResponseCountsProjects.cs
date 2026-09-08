@@ -16,6 +16,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The created property</summary>
         public int? Created { get; set; }
+        /// <summary>The deleted property</summary>
+        public int? Deleted { get; set; }
         /// <summary>The skipped property</summary>
         public int? Skipped { get; set; }
         /// <summary>The updated property</summary>
@@ -46,6 +48,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "created", n => { Created = n.GetIntValue(); } },
+                { "deleted", n => { Deleted = n.GetIntValue(); } },
                 { "skipped", n => { Skipped = n.GetIntValue(); } },
                 { "updated", n => { Updated = n.GetIntValue(); } },
             };
@@ -58,6 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("created", Created);
+            writer.WriteIntValue("deleted", Deleted);
             writer.WriteIntValue("skipped", Skipped);
             writer.WriteIntValue("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);

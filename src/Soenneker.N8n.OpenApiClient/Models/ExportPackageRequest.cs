@@ -23,6 +23,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> FolderIds { get; set; }
 #endif
+        /// <summary>Whether folder and project exports include their archived workflows. When `false` (default) they are left out. When `true` they travel with `isArchived: true` and are archived on import. Workflows listed in `workflowIds` always export, also when archived.</summary>
+        public bool? IncludeArchivedWorkflows { get; set; }
         /// <summary>Whether tags assigned to the exported workflows are bundled into the package. When `false`, no tag files, tag references, or tag requirements travel with the package.</summary>
         public bool? IncludeTags { get; set; }
         /// <summary>Whether values of variables referenced by the exported workflows are bundled into the package. When `false`, variables still travel as name/type files and are listed in the package requirements, but no values travel with the package.</summary>
@@ -52,6 +54,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// </summary>
         public ExportPackageRequest()
         {
+            IncludeArchivedWorkflows = false;
             IncludeTags = true;
             IncludeVariableValues = true;
         }
@@ -75,6 +78,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "credentialExportPolicy", n => { CredentialExportPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy>(); } },
                 { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "includeArchivedWorkflows", n => { IncludeArchivedWorkflows = n.GetBoolValue(); } },
                 { "includeTags", n => { IncludeTags = n.GetBoolValue(); } },
                 { "includeVariableValues", n => { IncludeVariableValues = n.GetBoolValue(); } },
                 { "missingWorkflowDependencyPolicy", n => { MissingWorkflowDependencyPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>(); } },
@@ -92,6 +96,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy>("credentialExportPolicy", CredentialExportPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
+            writer.WriteBoolValue("includeArchivedWorkflows", IncludeArchivedWorkflows);
             writer.WriteBoolValue("includeTags", IncludeTags);
             writer.WriteBoolValue("includeVariableValues", IncludeVariableValues);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>("missingWorkflowDependencyPolicy", MissingWorkflowDependencyPolicy);

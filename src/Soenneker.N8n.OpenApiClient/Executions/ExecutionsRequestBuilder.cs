@@ -25,15 +25,15 @@ namespace Soenneker.N8n.OpenApiClient.Executions
             get => new global::Soenneker.N8n.OpenApiClient.Executions.Stop.StopRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.executions.item collection</summary>
-        /// <param name="position">The ID of the execution.</param>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Executions.Item.ExecutionsItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Executions.Item.ExecutionsItemRequestBuilder this[double position]
+        /// <param name="position">Unique identifier of the item</param>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Executions.Item.WithExecutionItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Executions.Item.WithExecutionItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("id", position);
-                return new global::Soenneker.N8n.OpenApiClient.Executions.Item.ExecutionsItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("executionId", position);
+                return new global::Soenneker.N8n.OpenApiClient.Executions.Item.WithExecutionItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -41,7 +41,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecutionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,ignoreDataSizeLimit*,includeData*,limit*,projectId,redactExecutionData*,startedAfter*,startedBefore*,status*,workflowId*}", pathParameters)
+        public ExecutionsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,ignoreDataSizeLimit*,includeData*,limit*,projectId*,redactExecutionData*,startedAfter*,startedBefore*,status*,workflowId*}", pathParameters)
         {
         }
         /// <summary>
@@ -49,26 +49,26 @@ namespace Soenneker.N8n.OpenApiClient.Executions
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public ExecutionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,ignoreDataSizeLimit*,includeData*,limit*,projectId,redactExecutionData*,startedAfter*,startedBefore*,status*,workflowId*}", rawUrl)
+        public ExecutionsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/executions{?cursor*,ignoreDataSizeLimit*,includeData*,limit*,projectId*,redactExecutionData*,startedAfter*,startedBefore*,status*,workflowId*}", rawUrl)
         {
         }
         /// <summary>
         /// Retrieve all executions from your instance.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ExecutionList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ExecutionList?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder.ExecutionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder.ExecutionsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ExecutionList> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder.ExecutionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder.ExecutionsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ExecutionList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ExecutionList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve all executions from your instance.
@@ -114,12 +114,14 @@ namespace Soenneker.N8n.OpenApiClient.Executions
             [QueryParameter("cursor")]
             public string Cursor { get; set; }
 #endif
-            /// <summary>Whether to return the full execution data even if it exceeds the configured size limit (EXECUTIONS_DATA_MAX_DISPLAY_SIZE). Oversized executions are otherwise returned without their data.</summary>
+            #pragma warning disable CS1591
             [QueryParameter("ignoreDataSizeLimit")]
-            public bool? IgnoreDataSizeLimit { get; set; }
-            /// <summary>Whether or not to include the execution&apos;s detailed data.</summary>
+            public global::Soenneker.N8n.OpenApiClient.Models.GetExecutionsIgnoreDataSizeLimitParameter? IgnoreDataSizeLimit { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("includeData")]
-            public bool? IncludeData { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetExecutionsIncludeDataParameter? IncludeData { get; set; }
+            #pragma warning restore CS1591
             /// <summary>The maximum number of items to return.</summary>
             [QueryParameter("limit")]
             public double? Limit { get; set; }
@@ -136,27 +138,34 @@ namespace Soenneker.N8n.OpenApiClient.Executions
             public string ProjectId { get; set; }
             #pragma warning restore CS1591
 #endif
-            /// <summary>Controls execution data redaction. When `true`, execution output data is always redacted. When `false`, requests unredacted (revealed) data — requires the `execution:reveal` scope. When omitted, follows the workflow redaction policy.</summary>
+            #pragma warning disable CS1591
             [QueryParameter("redactExecutionData")]
-            public bool? RedactExecutionData { get; set; }
-            /// <summary>Only return executions that started after this time.</summary>
+            public global::Soenneker.N8n.OpenApiClient.Models.GetExecutionsRedactExecutionDataParameter? RedactExecutionData { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("startedAfter")]
             public DateTimeOffset? StartedAfter { get; set; }
-            /// <summary>Only return executions that started before this time.</summary>
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("startedBefore")]
             public DateTimeOffset? StartedBefore { get; set; }
-            /// <summary>Status to filter the executions by.</summary>
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
             [QueryParameter("status")]
             public global::Soenneker.N8n.OpenApiClient.Models.GetExecutionsStatusParameter? Status { get; set; }
-            /// <summary>Workflow to filter the executions by.</summary>
+            #pragma warning restore CS1591
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("workflowId")]
             public string? WorkflowId { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("workflowId")]
             public string WorkflowId { get; set; }
+            #pragma warning restore CS1591
 #endif
         }
     }

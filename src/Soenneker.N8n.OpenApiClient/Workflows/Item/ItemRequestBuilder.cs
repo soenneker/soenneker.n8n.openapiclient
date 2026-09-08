@@ -15,6 +15,7 @@ using Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Unarchive;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.Versions;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -78,9 +79,15 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish.UnpublishRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The versions property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Versions.VersionsRequestBuilder Versions
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Versions.VersionsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.workflows.item.item collection</summary>
         /// <param name="position">The version ID to retrieve</param>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Item.WithVersionItemRequestBuilder"/></returns>
+        [Obsolete("")]
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Item.WithVersionItemRequestBuilder this[string position]
         {
             get
@@ -143,12 +150,13 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
+        /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow403Response">When receiving a 403 status code</exception>
         /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow409Response">When receiving a 409 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -163,6 +171,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
+                { "403", global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow403Response.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow409Response.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
@@ -206,7 +215,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -248,7 +257,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             #pragma warning restore CS1591
         }
         /// <summary>
-        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`.
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ItemRequestBuilderPutQueryParameters 

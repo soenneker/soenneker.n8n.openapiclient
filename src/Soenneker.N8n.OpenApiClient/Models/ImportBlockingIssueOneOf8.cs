@@ -8,33 +8,49 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A node type — or a version of a node type — used by a package workflow that this instance does not have, under `missingNodeTypeMode=fail`. One issue is reported per missing `(nodeType, typeVersion)` pair.
+    /// A matched workflow whose archived state differs from the package, so the import must archive or unarchive it, but the caller lacks `workflow:delete` on it. Reported at plan time so nothing is written.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf8 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Full node type name as used by the package&apos;s workflows.</summary>
+        /// <summary>The existingWorkflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NodeType { get; set; }
+        public string? ExistingWorkflowId { get; set; }
 #nullable restore
 #else
-        public string NodeType { get; set; }
+        public string ExistingWorkflowId { get; set; }
 #endif
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>Project that owns the matched workflow.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProjectId { get; set; }
+#nullable restore
+#else
+        public string ProjectId { get; set; }
+#endif
+        /// <summary>The sourceWorkflowId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceWorkflowId { get; set; }
+#nullable restore
+#else
+        public string SourceWorkflowId { get; set; }
+#endif
+        /// <summary>The step the import needs to bring the workflow to the package&apos;s state.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8Transition? Transition { get; set; }
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType? Type { get; set; }
-        /// <summary>Node type version the package&apos;s workflows use.</summary>
-        public double? TypeVersion { get; set; }
-        /// <summary>Package workflow ids that use this node type and version.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? UsedByWorkflows { get; set; }
-#nullable restore
-#else
-        public List<string> UsedByWorkflows { get; set; }
-#endif
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8"/> and sets the default values.
         /// </summary>
@@ -60,10 +76,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "nodeType", n => { NodeType = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType>(); } },
-                { "typeVersion", n => { TypeVersion = n.GetDoubleValue(); } },
-                { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "existingWorkflowId", n => { ExistingWorkflowId = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
+                { "transition", n => { Transition = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8Transition>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType>(); } },
             };
         }
         /// <summary>
@@ -73,10 +91,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("nodeType", NodeType);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType>("type", Type);
-            writer.WriteDoubleValue("typeVersion", TypeVersion);
-            writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
+            writer.WriteStringValue("existingWorkflowId", ExistingWorkflowId);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf8Transition>("transition", Transition);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

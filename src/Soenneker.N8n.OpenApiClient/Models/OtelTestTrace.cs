@@ -13,7 +13,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class OtelTestTrace : IParsable
     {
-        /// <summary>The base URL of the OTLP collector to export traces to.</summary>
+        /// <summary>The base URL of the OTLP collector to export traces to. The value must be an `http://` or `https://` URL, because the scheme selects TLS — for gRPC, `https://` uses SSL and `http://` is plaintext.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExporterEndpoint { get; set; }
@@ -29,6 +29,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string ExporterHeaders { get; set; }
 #endif
+        /// <summary>The wire protocol used to send the test span. Collectors conventionally serve OTLP/HTTP on port 4318 and OTLP/gRPC on port 4317. The endpoint scheme (`http://` or `https://`) controls TLS for both protocols. Optional: omitting it selects `http/protobuf`, unless an environment variable manages this field, which then supplies the value.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.OtelTestTraceExporterProtocol? ExporterProtocol { get; set; }
         /// <summary>The `service.name` resource attribute reported on the test span.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -37,7 +39,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string ExporterServiceName { get; set; }
 #endif
-        /// <summary>The path appended to the endpoint for the OTLP traces signal.</summary>
+        /// <summary>The path appended to the endpoint for the OTLP traces signal. Ignored when `exporterProtocol` is `grpc`, which takes no URL path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExporterTracingPath { get; set; }
@@ -67,6 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "exporterEndpoint", n => { ExporterEndpoint = n.GetStringValue(); } },
                 { "exporterHeaders", n => { ExporterHeaders = n.GetStringValue(); } },
+                { "exporterProtocol", n => { ExporterProtocol = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.OtelTestTraceExporterProtocol>(); } },
                 { "exporterServiceName", n => { ExporterServiceName = n.GetStringValue(); } },
                 { "exporterTracingPath", n => { ExporterTracingPath = n.GetStringValue(); } },
                 { "startupConnectivityTimeoutMs", n => { StartupConnectivityTimeoutMs = n.GetIntValue(); } },
@@ -81,6 +84,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("exporterEndpoint", ExporterEndpoint);
             writer.WriteStringValue("exporterHeaders", ExporterHeaders);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.OtelTestTraceExporterProtocol>("exporterProtocol", ExporterProtocol);
             writer.WriteStringValue("exporterServiceName", ExporterServiceName);
             writer.WriteStringValue("exporterTracingPath", ExporterTracingPath);
             writer.WriteIntValue("startupConnectivityTimeoutMs", StartupConnectivityTimeoutMs);

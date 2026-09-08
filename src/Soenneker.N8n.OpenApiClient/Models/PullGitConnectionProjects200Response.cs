@@ -14,6 +14,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The commitSha property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CommitSha { get; set; }
+#nullable restore
+#else
+        public string CommitSha { get; set; }
+#endif
         /// <summary>The connectionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -55,6 +63,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "commitSha", n => { CommitSha = n.GetStringValue(); } },
                 { "connectionId", n => { ConnectionId = n.GetStringValue(); } },
                 { "counts", n => { Counts = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullGitConnectionProjects200ResponseCounts>(global::Soenneker.N8n.OpenApiClient.Models.PullGitConnectionProjects200ResponseCounts.CreateFromDiscriminatorValue); } },
             };
@@ -66,6 +75,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("commitSha", CommitSha);
             writer.WriteStringValue("connectionId", ConnectionId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullGitConnectionProjects200ResponseCounts>("counts", Counts);
             writer.WriteAdditionalData(AdditionalData);

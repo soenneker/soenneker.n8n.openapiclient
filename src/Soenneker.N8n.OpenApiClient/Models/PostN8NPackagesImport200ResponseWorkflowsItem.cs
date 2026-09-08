@@ -22,6 +22,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Whether the workflow is archived on the target after import. Under `new-version` this follows the package&apos;s `isArchived` flag. A skipped workflow keeps its own state.</summary>
+        public bool? IsArchived { get; set; }
         /// <summary>Workflow id on the target instance: newly assigned for `created` (fresh under `workflowIdPolicy=new`, the package id under `source`), the existing workflow&apos;s id for `updated`/`skipped`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -98,6 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "activeVersionId", n => { ActiveVersionId = n.GetStringValue(); } },
+                { "isArchived", n => { IsArchived = n.GetBoolValue(); } },
                 { "localId", n => { LocalId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
@@ -115,6 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("activeVersionId", ActiveVersionId);
+            writer.WriteBoolValue("isArchived", IsArchived);
             writer.WriteStringValue("localId", LocalId);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("parentFolderId", ParentFolderId);

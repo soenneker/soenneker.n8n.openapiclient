@@ -25,7 +25,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
             get => new global::Soenneker.N8n.OpenApiClient.Credentials.Schema.SchemaRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.credentials.item collection</summary>
-        /// <param name="position">The credential ID</param>
+        /// <param name="position">The credential ID that needs to be updated</param>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Credentials.Item.CredentialsItemRequestBuilder"/></returns>
         public global::Soenneker.N8n.OpenApiClient.Credentials.Item.CredentialsItemRequestBuilder this[string position]
         {
@@ -55,20 +55,20 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
         /// <summary>
         /// Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetCredentials200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CredentialList?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetCredentials200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CredentialList> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetCredentials200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Credentials.CredentialsRequestBuilder.CredentialsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetCredentials200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetCredentials200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Creates a credential that can be used by nodes of the specified type.
