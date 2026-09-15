@@ -19,7 +19,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules
     public partial class RoleMappingRulesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.roleMappingRules.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The ID of the role mapping rule.</param>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.RoleMappingRules.Item.WithRoleMappingRuleItemRequestBuilder"/></returns>
         public global::Soenneker.N8n.OpenApiClient.RoleMappingRules.Item.WithRoleMappingRuleItemRequestBuilder this[string position]
         {

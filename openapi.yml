@@ -38,16 +38,18 @@ tags:
     description: Operations about executions
   - name: Folders
     description: Operations about folders
-  - name: GitConnections
-    description: Operations about Git connections
   - name: Insights
     description: Operations about insights
   - name: LogStreaming
     description: Operations about log streaming destinations
   - name: N8nPackage
     description: Beta — breaking changes may still occur without major version bump.
+  - name: NodeTypePolicy
+    description: Operations about node type availability policies
   - name: Projects
     description: Operations about projects
+  - name: Promotions
+    description: Operations about promotion providers, connections, and package operations
   - name: Role
     description: Operations about roles
   - name: RoleMappingRule
@@ -460,184 +462,6 @@ paths:
           $ref: '#/components/responses/forbidden'
         '409':
           $ref: '#/components/responses/conflict'
-  /credentials:
-    post:
-      operationId: createCredential
-      x-eov-operation-id: createCredential
-      x-required-scope: credential:create
-      x-eov-operation-handler: v1/handlers/credentials/credentials.handler
-      tags:
-        - Credential
-      summary: Create a credential
-      description: Creates a credential that can be used by nodes of the specified type.
-      requestBody:
-        description: Credential to be created.
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/credentialCreate'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/create-credential-response'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '415':
-          description: Unsupported media type.
-    get:
-      operationId: getCredentials
-      tags:
-        - Credential
-      summary: List credentials
-      description: Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.
-      x-required-scope: credential:list
-      parameters:
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/cursor'
-      x-eov-operation-id: unreachable
-      x-eov-operation-handler: v1/handlers/decorator-routed.handler
-      x-decorator-routed: true
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                        name:
-                          type: string
-                        type:
-                          type: string
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                        shared:
-                          type: array
-                          items:
-                            type: object
-                            properties:
-                              id:
-                                type: string
-                              name:
-                                type: string
-                              role:
-                                type: string
-                              createdAt:
-                                type: string
-                                format: date-time
-                              updatedAt:
-                                type: string
-                                format: date-time
-                            required:
-                              - id
-                              - name
-                              - role
-                              - createdAt
-                              - updatedAt
-                      required:
-                        - id
-                        - name
-                        - type
-                        - createdAt
-                        - updatedAt
-                        - shared
-                  nextCursor:
-                    type: string
-                    nullable: true
-                required:
-                  - data
-                  - nextCursor
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-  /credentials/{id}:
-    patch:
-      x-eov-operation-id: updateCredential
-      x-required-scope: credential:update
-      x-eov-operation-handler: v1/handlers/credentials/credentials.handler
-      tags:
-        - Credential
-      summary: Update credential by ID
-      description: Updates an existing credential. You must be the owner of the credential.
-      operationId: updateCredential
-      parameters:
-        - name: id
-          in: path
-          description: The credential ID that needs to be updated
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Credential data to update. All fields are optional.
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/update-credential-request'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/create-credential-response'
-        '400':
-          description: Bad request - invalid credential type or data.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-    delete:
-      x-eov-operation-id: deleteCredential
-      x-required-scope: credential:delete
-      x-eov-operation-handler: v1/handlers/credentials/credentials.handler
-      tags:
-        - Credential
-      summary: Delete credential by ID
-      description: Deletes a credential from your instance. You must be the owner of the credentials
-      operationId: deleteCredential
-      parameters:
-        - name: id
-          in: path
-          description: The credential ID that needs to be deleted
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/credential'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
   /credentials/{id}/test:
     post:
       x-eov-operation-id: testCredential
@@ -717,148 +541,7 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '404':
           $ref: '#/components/responses/notFound'
-  /credentials/{id}/transfer:
-    put:
-      x-eov-operation-id: transferCredential
-      x-required-scope: credential:move
-      x-eov-operation-handler: v1/handlers/credentials/credentials.handler
-      tags:
-        - Credential
-      summary: Transfer a credential to another project.
-      description: Transfer a credential to another project.
-      parameters:
-        - $ref: '#/components/parameters/credentialId'
-      requestBody:
-        description: Destination project for the credential transfer.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                destinationProjectId:
-                  type: string
-                  description: The ID of the project to transfer the credential to.
-              required:
-                - destinationProjectId
-        required: true
-      responses:
-        '200':
-          description: Operation successful.
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /tags:
-    post:
-      x-eov-operation-id: createTag
-      x-required-scope: tag:create
-      x-eov-operation-handler: v1/handlers/tags/tags.handler
-      tags:
-        - Tags
-      summary: Create a tag
-      description: Create a tag in your instance.
-      requestBody:
-        description: Created tag object.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/tag'
-        required: true
-      responses:
-        '201':
-          description: A tag object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tag'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '409':
-          $ref: '#/components/responses/conflict'
-    get:
-      operationId: getTags
-      tags:
-        - Tags
-      summary: Retrieve all tags
-      description: Retrieve all tags from your instance.
-      x-required-scope: tag:list
-      parameters:
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/cursor'
-      x-eov-operation-id: unreachable
-      x-eov-operation-handler: v1/handlers/decorator-routed.handler
-      x-decorator-routed: true
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  data:
-                    type: array
-                    items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          readOnly: true
-                          example: 2tUt1wbLX592XDdX
-                        name:
-                          type: string
-                          example: Production
-                        createdAt:
-                          type: string
-                          format: date-time
-                          readOnly: true
-                        updatedAt:
-                          type: string
-                          format: date-time
-                          readOnly: true
-                      required:
-                        - id
-                        - name
-                        - createdAt
-                        - updatedAt
-                  nextCursor:
-                    type: string
-                    nullable: true
-                required:
-                  - data
-                  - nextCursor
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
   /tags/{id}:
-    get:
-      x-eov-operation-id: getTag
-      x-required-scope: tag:read
-      x-eov-operation-handler: v1/handlers/tags/tags.handler
-      tags:
-        - Tags
-      summary: Retrieves a tag
-      description: Retrieves a tag.
-      parameters:
-        - $ref: '#/components/parameters/tagId'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tag'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
     delete:
       x-eov-operation-id: deleteTag
       x-required-scope: tag:delete
@@ -922,7 +605,7 @@ paths:
       tags:
         - Workflow
       summary: Retrieves a specific version of a workflow
-      description: 'Deprecated: use GET /workflows/{workflowId}/versions/{versionId} instead. Retrieves a specific version of a workflow from workflow history.'
+      description: 'Deprecated: use GET /workflows/{workflowId}/versions/{workflowVersionId} instead. Retrieves a specific version of a workflow from workflow history.'
       deprecated: true
       parameters:
         - $ref: '#/components/parameters/workflowId'
@@ -1237,142 +920,6 @@ paths:
       responses:
         '200':
           description: Operation successful.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /source-control/pull:
-    post:
-      x-eov-operation-id: pull
-      x-required-scope: sourceControl:pull
-      x-eov-operation-handler: v1/handlers/source-control/source-control.handler
-      tags:
-        - SourceControl
-      summary: Pull changes from the remote repository
-      description: Requires the Source Control feature to be licensed and connected to a repository.
-      requestBody:
-        description: Pull options
-        required: true
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/pull'
-      responses:
-        '200':
-          description: Pull result containing the list of files that were pulled from the remote repository.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/pullResult'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '409':
-          description: |
-            Conflict due to uncommitted local changes or merge conflicts. The response body lists every file in the pull diff; files causing the conflict have `conflict: true` or `status: modified`. Retry with `force=true` to discard local changes.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/pullResult'
-  /variables:
-    post:
-      x-eov-operation-id: createVariable
-      x-required-scope: variable:create
-      x-eov-operation-handler: v1/handlers/variables/variables.handler
-      tags:
-        - Variables
-      summary: Create a variable
-      description: Create a variable in your instance.
-      requestBody:
-        description: Payload for variable to create.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/variable.create'
-        required: true
-      responses:
-        '201':
-          description: Operation successful.
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-    get:
-      x-eov-operation-id: getVariables
-      x-required-scope: variable:list
-      x-eov-operation-handler: v1/handlers/variables/variables.handler
-      tags:
-        - Variables
-      summary: Retrieve variables
-      description: Retrieve variables from your instance.
-      parameters:
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/cursor'
-        - name: projectId
-          in: query
-          required: false
-          explode: false
-          allowReserved: true
-          schema:
-            type: string
-            example: VmwOO9HeTEj20kxM
-        - name: state
-          in: query
-          required: false
-          schema:
-            type: string
-            enum:
-              - empty
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/variableList'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-  /variables/{id}:
-    delete:
-      x-eov-operation-id: deleteVariable
-      x-required-scope: variable:delete
-      x-eov-operation-handler: v1/handlers/variables/variables.handler
-      tags:
-        - Variables
-      summary: Delete a variable
-      description: Delete a variable from your instance.
-      parameters:
-        - $ref: '#/components/parameters/variableId'
-      responses:
-        '204':
-          description: Operation successful.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-    put:
-      x-eov-operation-id: updateVariable
-      x-required-scope: variable:update
-      x-eov-operation-handler: v1/handlers/variables/variables.handler
-      tags:
-        - Variables
-      summary: Update a variable
-      description: Update a variable from your instance.
-      parameters:
-        - $ref: '#/components/parameters/variableId'
-      requestBody:
-        description: Payload for variable to update.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/variable.create'
-        required: true
-      responses:
-        '204':
-          description: Operation successful.
-        '400':
-          $ref: '#/components/responses/badRequest'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
@@ -1962,262 +1509,6 @@ paths:
           $ref: '#/components/responses/conflict'
       security:
         - ApiKeyAuth: []
-  /projects:
-    post:
-      x-eov-operation-id: createProject
-      x-required-scope: project:create
-      x-eov-operation-handler: v1/handlers/projects/projects.handler
-      tags:
-        - Projects
-      summary: Create a project
-      description: Create a project on your instance.
-      requestBody:
-        description: Payload for project to create.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/project'
-        required: true
-      responses:
-        '201':
-          description: Operation successful.
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-    get:
-      x-eov-operation-id: getProjects
-      x-required-scope: project:list
-      x-eov-operation-handler: v1/handlers/projects/projects.handler
-      tags:
-        - Projects
-      summary: Retrieve projects
-      description: Retrieve projects from your instance.
-      parameters:
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/cursor'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/projectList'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-  /projects/{projectId}:
-    delete:
-      x-eov-operation-id: deleteProject
-      x-required-scope: project:delete
-      x-eov-operation-handler: v1/handlers/projects/projects.handler
-      tags:
-        - Projects
-      summary: Delete a project
-      description: Delete a project from your instance.
-      parameters:
-        - in: path
-          name: projectId
-          description: The ID of the project.
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Operation successful.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-    put:
-      x-eov-operation-id: updateProject
-      x-required-scope: project:update
-      x-eov-operation-handler: v1/handlers/projects/projects.handler
-      tags:
-        - Projects
-      summary: Update a project
-      description: Update a project on your instance.
-      parameters:
-        - in: path
-          name: projectId
-          description: The ID of the project.
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Updated project object.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/project'
-        required: true
-      responses:
-        '204':
-          description: Operation successful.
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /projects/{projectId}/users:
-    get:
-      x-eov-operation-id: getProjectUsers
-      x-required-scope: user:list
-      x-eov-operation-handler: v1/handlers/projects/projects.handler
-      tags:
-        - Projects
-      summary: List project members
-      description: Returns a list of all members of a project including their role. Requires user:list scope.
-      parameters:
-        - name: projectId
-          in: path
-          description: The ID of the project.
-          required: true
-          schema:
-            type: string
-        - $ref: '#/components/parameters/limit'
-        - $ref: '#/components/parameters/cursor'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/projectMemberList'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-    post:
-      x-eov-operation-id: addUsersToProject
-      x-required-scope: project:manageMembers
-      x-eov-operation-handler: v1/handlers/projects/projects.handler
-      tags:
-        - Projects
-      summary: Add one or more users to a project
-      description: Add one or more users to a project on your instance.
-      parameters:
-        - name: projectId
-          in: path
-          description: The ID of the project.
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Payload containing an array of one or more users to add to the project.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                relations:
-                  type: array
-                  description: A list of userIds and roles to add to the project.
-                  items:
-                    type: object
-                    properties:
-                      userId:
-                        type: string
-                        description: The unique identifier of the user.
-                        example: 91765f0d-3b29-45df-adb9-35b23937eb92
-                      role:
-                        type: string
-                        description: The role assigned to the user in the project.
-                        example: project:viewer
-                    required:
-                      - userId
-                      - role
-              required:
-                - relations
-      responses:
-        '201':
-          description: Operation successful.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /projects/{projectId}/users/{userId}:
-    delete:
-      x-eov-operation-id: deleteUserFromProject
-      x-required-scope: project:manageMembers
-      x-eov-operation-handler: v1/handlers/projects/projects.handler
-      tags:
-        - Projects
-      summary: Delete a user from a project
-      description: Delete a user from a project on your instance.
-      parameters:
-        - name: projectId
-          in: path
-          description: The ID of the project.
-          required: true
-          schema:
-            type: string
-        - name: userId
-          in: path
-          description: The ID of the user.
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Operation successful.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-    patch:
-      x-eov-operation-id: changeUserRoleInProject
-      x-required-scope: project:manageMembers
-      x-eov-operation-handler: v1/handlers/projects/projects.handler
-      tags:
-        - Projects
-      summary: Change a user's role in a project
-      description: Change a user's role in a project.
-      parameters:
-        - name: projectId
-          in: path
-          description: The ID of the project.
-          required: true
-          schema:
-            type: string
-        - name: userId
-          in: path
-          description: The ID of the user.
-          required: true
-          schema:
-            type: string
-      requestBody:
-        description: Payload containing the new role to assign to the project user.
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                role:
-                  type: string
-                  description: The role assigned to the user in the project.
-                  example: project:viewer
-              required:
-                - role
-      responses:
-        '204':
-          description: Operation successful.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
   /community-packages:
     post:
       x-eov-operation-id: installPackage
@@ -2887,7 +2178,7 @@ paths:
                     - unpublish-all
                   default: preserve-published-state
                   description: |
-                    Controls whether imported workflows are published after content is written. `preserve-published-state` keeps new workflows inactive and republishes an updated workflow only when it was already published and the package workflow is published too, so drafts are never published. `match-source` follows the package workflow's published flag. `publish-all` publishes every imported workflow. `unpublish-all` leaves new workflows inactive and unpublishes updated workflows that were published.
+                    Controls whether imported workflows are published after content is written. `preserve-published-state` keeps new workflows inactive and republishes an updated workflow only when it was already published and the package carries the version the source publishes, so drafts are never published. `match-source` publishes the version the package carries when the source publishes it, and unpublishes when the source publishes nothing; when the source publishes a version the package does not carry, the target keeps its published version. `publish-all` publishes every imported workflow. `unpublish-all` leaves new workflows inactive and unpublishes updated workflows that were published.
                 projectConflictPolicy:
                   type: string
                   enum:
@@ -3588,6 +2879,160 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+  /credentials:
+    get:
+      operationId: getCredentials
+      tags:
+        - Credential
+      summary: List credentials
+      description: Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.
+      x-required-scope: credential:list
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        name:
+                          type: string
+                        type:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                        shared:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              name:
+                                type: string
+                              role:
+                                type: string
+                              createdAt:
+                                type: string
+                                format: date-time
+                              updatedAt:
+                                type: string
+                                format: date-time
+                            required:
+                              - id
+                              - name
+                              - role
+                              - createdAt
+                              - updatedAt
+                      required:
+                        - id
+                        - name
+                        - type
+                        - createdAt
+                        - updatedAt
+                        - shared
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+    post:
+      operationId: createCredential
+      tags:
+        - Credential
+      summary: Create a credential
+      description: Creates a credential that can be used by nodes of the specified type.
+      x-required-scope: credential:create
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  readOnly: true
+                  example: R2DjclaysHbqn778
+                name:
+                  type: string
+                  example: Joe's Github Credentials
+                type:
+                  type: string
+                  example: githubApi
+                data:
+                  type: object
+                  additionalProperties:
+                    nullable: true
+                  writeOnly: true
+                  example:
+                    accessToken: ada612vad6fa5df4adf5a5dsf4389adsf76da7s
+                isResolvable:
+                  type: boolean
+                  description: Whether this credential has resolvable fields
+                  example: false
+                createdAt:
+                  type: string
+                  format: date-time
+                  readOnly: true
+                  example: 2022-04-29T11:02:29.842Z
+                updatedAt:
+                  type: string
+                  format: date-time
+                  readOnly: true
+                  example: 2022-04-29T11:02:29.842Z
+                projectId:
+                  type: string
+                  description: Project to create the credential in. Defaults to the user's personal project.
+                  example: VmwOO9HeTEj20kxM
+              required:
+                - name
+                - type
+                - data
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/credentialPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
   /credentials/{credentialId}:
     get:
       operationId: getCredential
@@ -3603,6 +3048,107 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the credential.
+          name: credentialId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/credentialPublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+    patch:
+      operationId: updateCredential
+      tags:
+        - Credential
+      summary: Update credential by ID
+      description: Updates an existing credential. You must be the owner of the credential.
+      x-required-scope: credential:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the credential.
+          name: credentialId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  description: The name of the credential
+                  example: Updated Credential Name
+                type:
+                  type: string
+                  description: The credential type. If changing type, data must also be provided.
+                  example: githubApi
+                data:
+                  type: object
+                  additionalProperties:
+                    nullable: true
+                  description: The credential data. Required when changing credential type.
+                  writeOnly: true
+                  example:
+                    accessToken: new_token_value
+                isGlobal:
+                  type: boolean
+                  description: Whether this credential is available globally
+                  example: false
+                isResolvable:
+                  type: boolean
+                  description: Whether this credential has resolvable fields
+                  example: false
+                isPartialData:
+                  type: boolean
+                  default: false
+                  description: If true, unredacts and merges existing credential data with the provided data. If false, replaces the entire data object.
+                  example: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/credentialPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+    delete:
+      operationId: deleteCredential
+      tags:
+        - Credential
+      summary: Delete credential by ID
+      description: Deletes a credential from your instance. You must be the owner of the credential.
+      x-required-scope: credential:delete
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the credential.
           name: credentialId
           in: path
       responses:
@@ -3636,6 +3182,11 @@ paths:
                   updatedAt:
                     type: string
                     format: date-time
+                  usageScope:
+                    type: string
+                    enum:
+                      - project
+                      - instance
                 required:
                   - id
                   - name
@@ -3647,12 +3198,57 @@ paths:
                   - resolverId
                   - createdAt
                   - updatedAt
+                  - usageScope
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+  /credentials/{credentialId}/transfer:
+    put:
+      operationId: transferCredential
+      tags:
+        - Credential
+      summary: Transfer a credential to another project.
+      description: Transfer a credential to another project.
+      x-required-scope: credential:move
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the credential.
+          name: credentialId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                destinationProjectId:
+                  type: string
+                  description: The ID of the project to transfer the credential to.
+                  example: VmwOO9HeTEj20kxM
+              required:
+                - destinationProjectId
+      responses:
+        '204':
+          description: Operation successful.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
   /executions:
     get:
       operationId: getExecutions
@@ -3901,8 +3497,10 @@ paths:
       x-decorator-routed: true
       parameters:
         - schema:
-            type: string
+            type: integer
+            minimum: 1
           required: true
+          description: The ID of the execution.
           name: executionId
           in: path
         - schema:
@@ -4121,8 +3719,10 @@ paths:
       x-decorator-routed: true
       parameters:
         - schema:
-            type: string
+            type: integer
+            minimum: 1
           required: true
+          description: The ID of the execution.
           name: executionId
           in: path
       responses:
@@ -4283,8 +3883,10 @@ paths:
       x-decorator-routed: true
       parameters:
         - schema:
-            type: string
+            type: integer
+            minimum: 1
           required: true
+          description: The ID of the execution.
           name: executionId
           in: path
       responses:
@@ -4314,8 +3916,10 @@ paths:
       x-decorator-routed: true
       parameters:
         - schema:
-            type: string
+            type: integer
+            minimum: 1
           required: true
+          description: The ID of the execution.
           name: executionId
           in: path
       requestBody:
@@ -4435,8 +4039,10 @@ paths:
       x-decorator-routed: true
       parameters:
         - schema:
-            type: string
+            type: integer
+            minimum: 1
           required: true
+          description: The ID of the execution.
           name: executionId
           in: path
       responses:
@@ -4515,8 +4121,10 @@ paths:
       x-decorator-routed: true
       parameters:
         - schema:
-            type: string
+            type: integer
+            minimum: 1
           required: true
+          description: The ID of the execution.
           name: executionId
           in: path
       requestBody:
@@ -4677,13 +4285,817 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
-  /git-connections:
-    post:
-      operationId: createGitConnection
+  /node-type-policies/instance:
+    get:
+      operationId: getInstancePolicy
       tags:
-        - GitConnections
-      summary: Create a Git connection
-      description: Creates a Git connection and its authentication material. Only one Git connection can exist.
+        - NodeTypePolicy
+      summary: Retrieve the instance node type policy
+      description: 'Returns the composed instance-scope policy: its default action and the rules of every attached policy document in evaluation order. An instance that was never configured reports `scopeId: null`, no rules, `defaultAction: allow`, and `version: 0`.'
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/nodeTypePolicyEffectivePublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    put:
+      operationId: putInstancePolicy
+      tags:
+        - NodeTypePolicy
+      summary: Replace the instance node type policy
+      description: Sets the instance default action and replaces the rules of its single policy document, creating both on first write. `version` must equal the version last read; a stale value is rejected with 409. Rule ids must be unique within the list.
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rules:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      action:
+                        type: string
+                        enum:
+                          - allow
+                          - deny
+                          - delegate
+                      selector:
+                        oneOf:
+                          - type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - name
+                              value:
+                                type: string
+                                minLength: 1
+                            required:
+                              - kind
+                              - value
+                          - type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - package
+                              value:
+                                type: string
+                                minLength: 1
+                            required:
+                              - kind
+                              - value
+                    required:
+                      - id
+                      - action
+                      - selector
+                defaultAction:
+                  type: string
+                  enum:
+                    - allow
+                    - deny
+                    - delegate
+                version:
+                  type: integer
+                  minimum: 0
+              required:
+                - rules
+                - defaultAction
+                - version
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/nodeTypePolicyEffectiveWriteResultPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /node-type-policies/projects/{projectId}:
+    get:
+      operationId: getProjectPolicy
+      tags:
+        - NodeTypePolicy
+      summary: Retrieve a project's node type policy
+      description: "Returns the project's own composed policy, not the result of combining it with the instance policy. A project that was never configured reports `scopeId: null`, no rules, `defaultAction: allow`, and `version: 0`."
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/nodeTypePolicyEffectivePublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    put:
+      operationId: putProjectPolicy
+      tags:
+        - NodeTypePolicy
+      summary: Replace a project's node type policy
+      description: Sets the project's default action and replaces the rules of its single policy document, creating both on first write. The `delegate` action is not accepted at project scope. `version` must equal the version last read; a stale value is rejected with 409, as is a project document that is shared with another scope.
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rules:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      action:
+                        type: string
+                        enum:
+                          - allow
+                          - deny
+                      selector:
+                        oneOf:
+                          - type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - name
+                              value:
+                                type: string
+                                minLength: 1
+                            required:
+                              - kind
+                              - value
+                          - type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - package
+                              value:
+                                type: string
+                                minLength: 1
+                            required:
+                              - kind
+                              - value
+                    required:
+                      - id
+                      - action
+                      - selector
+                defaultAction:
+                  type: string
+                  enum:
+                    - allow
+                    - deny
+                version:
+                  type: integer
+                  minimum: 0
+              required:
+                - rules
+                - defaultAction
+                - version
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/nodeTypePolicyEffectiveWriteResultPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /projects:
+    get:
+      operationId: getProjects
+      tags:
+        - Projects
+      summary: Retrieve projects
+      description: Retrieve projects from your instance.
+      x-required-scope: project:list
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          example: VmwOO9HeTEj20kxM
+                        name:
+                          type: string
+                          example: Marketing
+                        type:
+                          type: string
+                          enum:
+                            - personal
+                            - team
+                          readOnly: true
+                          example: team
+                        icon:
+                          type: object
+                          description: Icon of the project, or null when the project has none
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                                - emoji
+                                - icon
+                            value:
+                              type: string
+                            color:
+                              type: string
+                          required:
+                            - type
+                            - value
+                          nullable: true
+                        description:
+                          type: string
+                          nullable: true
+                          example: Workflows the marketing team owns.
+                        customTelemetryTags:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                              value:
+                                type: string
+                            required:
+                              - key
+                              - value
+                        creatorId:
+                          type: string
+                          nullable: true
+                          example: f9a2cbb8-0b1e-4b64-9c1c-0d5f5f1f2a3b
+                        createdAt:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - id
+                        - name
+                        - type
+                        - icon
+                        - description
+                        - customTelemetryTags
+                        - creatorId
+                        - createdAt
+                        - updatedAt
+                  nextCursor:
+                    type: string
+                    nullable: true
+                    description: Paginate through projects by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
+                    example: eyJvZmZzZXQiOjEwMCwibGltaXQiOjEwMH0=
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+    post:
+      operationId: createProject
+      tags:
+        - Projects
+      summary: Create a project
+      description: Create a project on your instance.
+      x-required-scope: project:create
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  example: Marketing
+                id:
+                  type: string
+                  readOnly: true
+                type:
+                  type: string
+                  readOnly: true
+              required:
+                - name
+              additionalProperties: false
+      responses:
+        '201':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    readOnly: true
+                    example: VmwOO9HeTEj20kxM
+                  name:
+                    type: string
+                    example: Marketing
+                  type:
+                    type: string
+                    enum:
+                      - personal
+                      - team
+                    readOnly: true
+                    example: team
+                  icon:
+                    type: object
+                    description: Icon of the project, or null when the project has none
+                    properties:
+                      type:
+                        type: string
+                        enum:
+                          - emoji
+                          - icon
+                      value:
+                        type: string
+                      color:
+                        type: string
+                    required:
+                      - type
+                      - value
+                    nullable: true
+                  description:
+                    type: string
+                    nullable: true
+                    example: Workflows the marketing team owns.
+                  customTelemetryTags:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        key:
+                          type: string
+                        value:
+                          type: string
+                      required:
+                        - key
+                        - value
+                  creatorId:
+                    type: string
+                    nullable: true
+                    example: f9a2cbb8-0b1e-4b64-9c1c-0d5f5f1f2a3b
+                  createdAt:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  role:
+                    type: string
+                    description: The caller's role in the new project.
+                    example: project:admin
+                  scopes:
+                    type: array
+                    items:
+                      type: string
+                    description: Scopes the caller holds in the new project.
+                required:
+                  - id
+                  - name
+                  - type
+                  - icon
+                  - description
+                  - customTelemetryTags
+                  - creatorId
+                  - createdAt
+                  - updatedAt
+                  - role
+                  - scopes
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+  /projects/{projectId}:
+    put:
+      operationId: updateProject
+      tags:
+        - Projects
+      summary: Update a project
+      description: Update a project on your instance.
+      x-required-scope: project:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+                  example: Marketing
+                id:
+                  type: string
+                  readOnly: true
+                type:
+                  type: string
+                  readOnly: true
+              required:
+                - name
+              additionalProperties: false
+      responses:
+        '204':
+          description: Operation successful.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+    delete:
+      operationId: deleteProject
+      tags:
+        - Projects
+      summary: Delete a project
+      description: Delete a project from your instance.
+      x-required-scope: project:delete
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+      responses:
+        '204':
+          description: Operation successful.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /projects/{projectId}/users:
+    get:
+      operationId: getProjectUsers
+      tags:
+        - Projects
+      summary: List project members
+      description: Returns a list of all members of a project including their role. Requires user:list scope.
+      x-required-scope: user:list
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          description: The user's unique identifier.
+                          readOnly: true
+                          example: 123e4567-e89b-12d3-a456-426614174000
+                        email:
+                          type: string
+                          format: email
+                          description: The user's email address.
+                          readOnly: true
+                          example: john.doe@company.com
+                        firstName:
+                          type: string
+                          nullable: true
+                          maxLength: 32
+                          description: The user's first name.
+                          readOnly: true
+                          example: john
+                        lastName:
+                          type: string
+                          nullable: true
+                          maxLength: 32
+                          description: The user's last name.
+                          readOnly: true
+                          example: Doe
+                        createdAt:
+                          type: string
+                          format: date-time
+                          description: When the user was created.
+                          readOnly: true
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          description: When the user was last updated.
+                          readOnly: true
+                        role:
+                          type: string
+                          nullable: true
+                          description: The user's role in the project (e.g. project:admin, project:viewer).
+                          readOnly: true
+                          example: project:viewer
+                      required:
+                        - id
+                        - email
+                        - firstName
+                        - lastName
+                        - createdAt
+                        - updatedAt
+                        - role
+                      description: A project member (user with their role in the project).
+                  nextCursor:
+                    type: string
+                    nullable: true
+                    description: Paginate through project members by setting the cursor parameter to the nextCursor attribute returned by a previous request. Default value fetches the first page of the collection.
+                    example: eyJvZmZzZXQiOjEwMCwibGltaXQiOjEwMH0=
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+    post:
+      operationId: addUsersToProject
+      tags:
+        - Projects
+      summary: Add one or more users to a project
+      description: Add one or more users to a project on your instance.
+      x-required-scope: project:manageMembers
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                relations:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      userId:
+                        type: string
+                        minLength: 1
+                        description: The unique identifier of the user.
+                        example: 91765f0d-3b29-45df-adb9-35b23937eb92
+                      role:
+                        type: string
+                        minLength: 1
+                        description: The role assigned to the user in the project.
+                        example: project:viewer
+                    required:
+                      - userId
+                      - role
+                  minItems: 1
+                  description: A list of userIds and roles to add to the project.
+              required:
+                - relations
+      responses:
+        '201':
+          description: Operation successful.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+  /projects/{projectId}/users/{userId}:
+    patch:
+      operationId: changeUserRoleInProject
+      tags:
+        - Projects
+      summary: Change a user's role in a project
+      description: Change a user's role in a project.
+      x-required-scope: project:manageMembers
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+        - schema:
+            type: string
+          required: true
+          description: The ID of the user.
+          name: userId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                role:
+                  type: string
+                  minLength: 1
+                  description: The role assigned to the user in the project.
+                  example: project:viewer
+              required:
+                - role
+      responses:
+        '204':
+          description: Operation successful.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+    delete:
+      operationId: deleteUserFromProject
+      tags:
+        - Projects
+      summary: Delete a user from a project
+      description: Delete a user from a project on your instance.
+      x-required-scope: project:manageMembers
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+        - schema:
+            type: string
+          required: true
+          description: The ID of the user.
+          name: userId
+          in: path
+      responses:
+        '204':
+          description: Operation successful.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /promotions/providers:
+    post:
+      operationId: createPromotionProvider
+      tags:
+        - Promotions
+      summary: Create a promotion provider
+      description: Creates a provider and its authentication material. An SSH provider returns the generated public key; add it to the remote as a deploy key.
       x-required-scope: gitConnection:create
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -4699,56 +5111,141 @@ paths:
                   type: string
                   minLength: 1
                   maxLength: 128
-                repositoryUrl:
-                  type: string
-                  minLength: 1
-                branchName:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                connectionType:
+                type:
                   type: string
                   enum:
-                    - ssh
-                    - https
-                keyGeneratorType:
-                  type: string
-                  enum:
-                    - ed25519
-                    - rsa
-                username:
-                  type: string
-                  minLength: 1
-                password:
-                  type: string
-                  minLength: 1
+                    - git
+                auth:
+                  oneOf:
+                    - type: object
+                      properties:
+                        authType:
+                          type: string
+                          enum:
+                            - ssh-key
+                        keyType:
+                          type: string
+                          enum:
+                            - ed25519
+                            - rsa
+                          default: ed25519
+                      required:
+                        - authType
+                      additionalProperties: false
+                    - type: object
+                      properties:
+                        authType:
+                          type: string
+                          enum:
+                            - token
+                        username:
+                          type: string
+                          minLength: 1
+                        password:
+                          type: string
+                          minLength: 1
+                      required:
+                        - authType
+                        - username
+                        - password
+                      additionalProperties: false
               required:
                 - name
-                - repositoryUrl
-                - connectionType
+                - type
+                - auth
+              additionalProperties: false
       responses:
         '201':
           description: Operation successful.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gitConnectionPublicDto.generated'
+                type: object
+                properties:
+                  provider:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                        maxLength: 36
+                      name:
+                        type: string
+                      type:
+                        type: string
+                        enum:
+                          - git
+                      authType:
+                        type: string
+                        enum:
+                          - ssh-key
+                          - token
+                      config:
+                        anyOf:
+                          - type: object
+                            properties:
+                              schemaVersion:
+                                type: number
+                                enum:
+                                  - 1
+                              publicKey:
+                                type: string
+                                minLength: 1
+                              keyType:
+                                type: string
+                                enum:
+                                  - ed25519
+                                  - rsa
+                            required:
+                              - schemaVersion
+                              - publicKey
+                              - keyType
+                            additionalProperties: false
+                          - type: object
+                            properties:
+                              schemaVersion:
+                                type: number
+                                enum:
+                                  - 1
+                            required:
+                              - schemaVersion
+                            additionalProperties: false
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+                    required:
+                      - id
+                      - name
+                      - type
+                      - authType
+                      - config
+                      - createdAt
+                      - updatedAt
+                  publicKey:
+                    type: string
+                    nullable: true
+                required:
+                  - provider
+                  - publicKey
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
-        '409':
-          $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
     get:
-      operationId: getGitConnections
+      operationId: getPromotionProviders
       tags:
-        - GitConnections
-      summary: List Git connections
-      description: Returns a cursor-paginated list of Git connections.
+        - Promotions
+      summary: List promotion providers
+      description: Returns a cursor-paginated list of providers, without their public keys.
       x-required-scope: gitConnection:list
       parameters:
         - $ref: '#/components/parameters/limit'
@@ -4771,27 +5268,19 @@ paths:
                       properties:
                         id:
                           type: string
+                          minLength: 1
+                          maxLength: 36
                         name:
                           type: string
-                        repositoryUrl:
-                          type: string
-                        branchName:
-                          type: string
-                          nullable: true
-                        connectionType:
+                        type:
                           type: string
                           enum:
-                            - ssh
-                            - https
-                        keyGeneratorType:
+                            - git
+                        authType:
                           type: string
-                          nullable: true
                           enum:
-                            - ed25519
-                            - rsa
-                        baseCommit:
-                          type: string
-                          nullable: true
+                            - ssh-key
+                            - token
                         createdAt:
                           type: string
                           format: date-time
@@ -4801,11 +5290,8 @@ paths:
                       required:
                         - id
                         - name
-                        - repositoryUrl
-                        - branchName
-                        - connectionType
-                        - keyGeneratorType
-                        - baseCommit
+                        - type
+                        - authType
                         - createdAt
                         - updatedAt
                   nextCursor:
@@ -4820,12 +5306,15 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
-  /git-connections/{id}:
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/providers/{promotionProviderId}:
     get:
-      operationId: getGitConnection
+      operationId: getPromotionProvider
       tags:
-        - GitConnections
-      summary: Retrieve a Git connection
+        - Promotions
+      summary: Retrieve a promotion provider
+      description: Returns the provider with its public configuration. Secrets are never returned.
       x-required-scope: gitConnection:read
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -4834,7 +5323,8 @@ paths:
         - schema:
             type: string
           required: true
-          name: id
+          description: The ID of the promotion provider.
+          name: promotionProviderId
           in: path
       responses:
         '200':
@@ -4842,19 +5332,21 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gitConnectionPublicDto.generated'
+                $ref: '#/components/schemas/promotionProviderPublicDto.generated'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
     put:
-      operationId: updateGitConnection
+      operationId: updatePromotionProvider
       tags:
-        - GitConnections
-      summary: Update a Git connection
-      description: Updates only the supplied fields. Secrets are never returned.
+        - Promotions
+      summary: Update a promotion provider
+      description: Renames the provider, and replaces its credentials when `auth` is sent. New credentials apply to every connection that uses this provider. The authentication method cannot change.
       x-required-scope: gitConnection:update
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -4863,9 +5355,11 @@ paths:
         - schema:
             type: string
           required: true
-          name: id
+          description: The ID of the promotion provider.
+          name: promotionProviderId
           in: path
       requestBody:
+        required: true
         content:
           application/json:
             schema:
@@ -4875,36 +5369,48 @@ paths:
                   type: string
                   minLength: 1
                   maxLength: 128
-                repositoryUrl:
-                  type: string
-                  minLength: 1
-                branchName:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
-                connectionType:
-                  type: string
-                  enum:
-                    - ssh
-                    - https
-                keyGeneratorType:
-                  type: string
-                  enum:
-                    - ed25519
-                    - rsa
-                username:
-                  type: string
-                  minLength: 1
-                password:
-                  type: string
-                  minLength: 1
+                auth:
+                  oneOf:
+                    - type: object
+                      properties:
+                        authType:
+                          type: string
+                          enum:
+                            - ssh-key
+                        keyType:
+                          type: string
+                          enum:
+                            - ed25519
+                            - rsa
+                      required:
+                        - authType
+                      additionalProperties: false
+                    - type: object
+                      properties:
+                        authType:
+                          type: string
+                          enum:
+                            - token
+                        username:
+                          type: string
+                          minLength: 1
+                        password:
+                          type: string
+                          minLength: 1
+                      required:
+                        - authType
+                        - username
+                        - password
+                      additionalProperties: false
+              additionalProperties: false
+              minProperties: 1
       responses:
         '200':
           description: Operation successful.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gitConnectionPublicDto.generated'
+                $ref: '#/components/schemas/promotionProviderPublicDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -4915,12 +5421,14 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
     delete:
-      operationId: deleteGitConnection
+      operationId: deletePromotionProvider
       tags:
-        - GitConnections
-      summary: Delete a Git connection
-      description: Deletes a Git connection and its local files.
+        - Promotions
+      summary: Delete a promotion provider
+      description: A provider used by a connection cannot be deleted.
       x-required-scope: gitConnection:delete
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -4929,7 +5437,8 @@ paths:
         - schema:
             type: string
           required: true
-          name: id
+          description: The ID of the promotion provider.
+          name: promotionProviderId
           in: path
       responses:
         '204':
@@ -4940,14 +5449,351 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
-  /git-connections/{id}/clone:
+        '409':
+          $ref: '#/components/responses/conflict'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections:
     post:
-      operationId: cloneGitConnection
+      operationId: createPromotionConnection
       tags:
-        - GitConnections
-      summary: Clone a Git connection
-      description: Clones the repository into local storage. Safe to call repeatedly.
-      x-required-scope: gitConnection:clone
+        - Promotions
+      summary: Create a promotion connection
+      description: Creates a connection on an existing provider, with up to one initial configuration for each direction. Only one instance connection can exist.
+      x-required-scope: gitConnection:create
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 128
+                scope:
+                  type: string
+                  enum:
+                    - instance
+                    - projects
+                providerId:
+                  type: string
+                  minLength: 1
+                  maxLength: 36
+                target:
+                  type: object
+                  properties:
+                    schemaVersion:
+                      type: number
+                      enum:
+                        - 1
+                    remoteUrl:
+                      type: string
+                      minLength: 1
+                  required:
+                    - schemaVersion
+                    - remoteUrl
+                  additionalProperties: false
+                configs:
+                  type: object
+                  properties:
+                    apply:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                          maxLength: 128
+                        settings:
+                          type: object
+                          properties:
+                            schemaVersion:
+                              type: number
+                              enum:
+                                - 1
+                            branchName:
+                              type: string
+                              minLength: 1
+                              maxLength: 255
+                          required:
+                            - schemaVersion
+                            - branchName
+                          additionalProperties: false
+                      required:
+                        - settings
+                      additionalProperties: false
+                    promote:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                          minLength: 1
+                          maxLength: 128
+                        settings:
+                          type: object
+                          properties:
+                            schemaVersion:
+                              type: number
+                              enum:
+                                - 1
+                            baseBranchName:
+                              type: string
+                              minLength: 1
+                              maxLength: 255
+                            createBranchOnPromotion:
+                              type: boolean
+                          required:
+                            - schemaVersion
+                            - baseBranchName
+                            - createBranchOnPromotion
+                          additionalProperties: false
+                      required:
+                        - settings
+                      additionalProperties: false
+                  additionalProperties: false
+              required:
+                - name
+                - scope
+                - providerId
+                - target
+              additionalProperties: false
+      responses:
+        '201':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionConnectionPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    get:
+      operationId: getPromotionConnections
+      tags:
+        - Promotions
+      summary: List promotion connections
+      description: Returns a cursor-paginated list of connections with their configurations. Filter by `scope` for the instance connection, or by `providerId` to see which connections a provider edit affects.
+      x-required-scope: gitConnection:list
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+            enum:
+              - instance
+              - projects
+          required: false
+          name: scope
+          in: query
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 36
+          required: false
+          name: providerId
+          in: query
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                          maxLength: 36
+                        name:
+                          type: string
+                        scope:
+                          type: string
+                          enum:
+                            - instance
+                            - projects
+                        target:
+                          type: object
+                          properties:
+                            schemaVersion:
+                              type: number
+                              enum:
+                                - 1
+                            remoteUrl:
+                              type: string
+                              minLength: 1
+                          required:
+                            - schemaVersion
+                            - remoteUrl
+                          additionalProperties: false
+                        provider:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              minLength: 1
+                              maxLength: 36
+                            name:
+                              type: string
+                            type:
+                              type: string
+                              enum:
+                                - git
+                            authType:
+                              type: string
+                              enum:
+                                - ssh-key
+                                - token
+                            createdAt:
+                              type: string
+                              format: date-time
+                            updatedAt:
+                              type: string
+                              format: date-time
+                          required:
+                            - id
+                            - name
+                            - type
+                            - authType
+                            - createdAt
+                            - updatedAt
+                        configs:
+                          type: object
+                          properties:
+                            apply:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 36
+                                name:
+                                  type: string
+                                createdAt:
+                                  type: string
+                                  format: date-time
+                                updatedAt:
+                                  type: string
+                                  format: date-time
+                                settings:
+                                  type: object
+                                  properties:
+                                    schemaVersion:
+                                      type: number
+                                      enum:
+                                        - 1
+                                    branchName:
+                                      type: string
+                                      minLength: 1
+                                      maxLength: 255
+                                  required:
+                                    - schemaVersion
+                                    - branchName
+                                  additionalProperties: false
+                              required:
+                                - id
+                                - name
+                                - createdAt
+                                - updatedAt
+                                - settings
+                            promote:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 36
+                                name:
+                                  type: string
+                                createdAt:
+                                  type: string
+                                  format: date-time
+                                updatedAt:
+                                  type: string
+                                  format: date-time
+                                settings:
+                                  type: object
+                                  properties:
+                                    schemaVersion:
+                                      type: number
+                                      enum:
+                                        - 1
+                                    baseBranchName:
+                                      type: string
+                                      minLength: 1
+                                      maxLength: 255
+                                    createBranchOnPromotion:
+                                      type: boolean
+                                  required:
+                                    - schemaVersion
+                                    - baseBranchName
+                                    - createBranchOnPromotion
+                                  additionalProperties: false
+                              required:
+                                - id
+                                - name
+                                - createdAt
+                                - updatedAt
+                                - settings
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                        - id
+                        - name
+                        - scope
+                        - target
+                        - provider
+                        - configs
+                        - createdAt
+                        - updatedAt
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}:
+    get:
+      operationId: getPromotionConnection
+      tags:
+        - Promotions
+      summary: Retrieve a promotion connection
+      description: Returns the connection with its provider summary and its configurations.
+      x-required-scope: gitConnection:read
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
       x-decorator-routed: true
@@ -4955,25 +5801,79 @@ paths:
         - schema:
             type: string
           required: true
-          name: id
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
           in: path
-      requestBody:
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                branchName:
-                  type: string
-                  minLength: 1
-                  maxLength: 255
       responses:
         '200':
           description: Operation successful.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gitConnectionPublicDto.generated'
+                $ref: '#/components/schemas/promotionConnectionPublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    put:
+      operationId: updatePromotionConnection
+      tags:
+        - Promotions
+      summary: Update a promotion connection
+      description: Updates the name, target, or provider. Scope cannot change, and configurations have their own routes.
+      x-required-scope: gitConnection:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 128
+                target:
+                  type: object
+                  properties:
+                    schemaVersion:
+                      type: number
+                      enum:
+                        - 1
+                    remoteUrl:
+                      type: string
+                      minLength: 1
+                  required:
+                    - schemaVersion
+                    - remoteUrl
+                  additionalProperties: false
+                providerId:
+                  type: string
+                  minLength: 1
+                  maxLength: 36
+              additionalProperties: false
+              minProperties: 1
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionConnectionPublicDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -4984,13 +5884,288 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
-  /git-connections/{id}/disconnect:
-    post:
-      operationId: disconnectGitConnection
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    delete:
+      operationId: deletePromotionConnection
       tags:
-        - GitConnections
-      summary: Disconnect a Git connection
-      description: Removes the local clone. The connection and its authentication material are retained.
+        - Promotions
+      summary: Delete a promotion connection
+      description: Deletes the connection with its configurations, project links, and local checkouts. Its provider is kept.
+      x-required-scope: gitConnection:delete
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+      responses:
+        '204':
+          description: Operation successful.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/configs/apply:
+    put:
+      operationId: upsertPromotionApplyConfig
+      tags:
+        - Promotions
+      summary: Create or replace the Apply configuration
+      description: Replaces the whole configuration, so an omitted name resets it to "Apply". Answers 200 whether it created or replaced.
+      x-required-scope: gitConnection:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 128
+                settings:
+                  type: object
+                  properties:
+                    schemaVersion:
+                      type: number
+                      enum:
+                        - 1
+                    branchName:
+                      type: string
+                      minLength: 1
+                      maxLength: 255
+                  required:
+                    - schemaVersion
+                    - branchName
+                  additionalProperties: false
+              required:
+                - settings
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                    maxLength: 36
+                  name:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  settings:
+                    type: object
+                    properties:
+                      schemaVersion:
+                        type: number
+                        enum:
+                          - 1
+                      branchName:
+                        type: string
+                        minLength: 1
+                        maxLength: 255
+                    required:
+                      - schemaVersion
+                      - branchName
+                    additionalProperties: false
+                required:
+                  - id
+                  - name
+                  - createdAt
+                  - updatedAt
+                  - settings
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/configs/promote:
+    put:
+      operationId: upsertPromotionPromoteConfig
+      tags:
+        - Promotions
+      summary: Create or replace the Promote configuration
+      description: Replaces the whole configuration, so an omitted name resets it to "Promote" and `createBranchOnPromotion` is always required. Answers 200 whether it created or replaced.
+      x-required-scope: gitConnection:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                name:
+                  type: string
+                  minLength: 1
+                  maxLength: 128
+                settings:
+                  type: object
+                  properties:
+                    schemaVersion:
+                      type: number
+                      enum:
+                        - 1
+                    baseBranchName:
+                      type: string
+                      minLength: 1
+                      maxLength: 255
+                    createBranchOnPromotion:
+                      type: boolean
+                  required:
+                    - schemaVersion
+                    - baseBranchName
+                    - createBranchOnPromotion
+                  additionalProperties: false
+              required:
+                - settings
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                    maxLength: 36
+                  name:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  settings:
+                    type: object
+                    properties:
+                      schemaVersion:
+                        type: number
+                        enum:
+                          - 1
+                      baseBranchName:
+                        type: string
+                        minLength: 1
+                        maxLength: 255
+                      createBranchOnPromotion:
+                        type: boolean
+                    required:
+                      - schemaVersion
+                      - baseBranchName
+                      - createBranchOnPromotion
+                    additionalProperties: false
+                required:
+                  - id
+                  - name
+                  - createdAt
+                  - updatedAt
+                  - settings
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/configs/{direction}:
+    delete:
+      operationId: deletePromotionConfig
+      tags:
+        - Promotions
+      summary: Remove one direction
+      description: Deletes the configuration and its local checkout. Nothing in Git changes.
+      x-required-scope: gitConnection:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+        - schema:
+            type: string
+          required: true
+          description: 'The direction of the promotion: apply or promote.'
+          name: direction
+          in: path
+      responses:
+        '204':
+          description: Operation successful.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/{direction}/clone:
+    post:
+      operationId: clonePromotionCheckout
+      tags:
+        - Promotions
+      summary: Clone one direction's repository
+      description: Clones the configured branch into local storage on the instance that handles the request. Safe to call repeatedly. Cloning one direction does not make the other ready.
       x-required-scope: gitConnection:clone
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -4999,7 +6174,14 @@ paths:
         - schema:
             type: string
           required: true
-          name: id
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+        - schema:
+            type: string
+          required: true
+          description: 'The direction of the promotion: apply or promote.'
+          name: direction
           in: path
       responses:
         '200':
@@ -5007,20 +6189,194 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/gitConnectionPublicDto.generated'
+                $ref: '#/components/schemas/promotionCheckoutPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
-  /git-connections/{id}/push:
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/{direction}/disconnect:
     post:
-      operationId: pushGitConnectionProjects
+      operationId: disconnectPromotionCheckout
       tags:
-        - GitConnections
-      summary: Push all team projects to a Git connection
-      description: Exports all team projects, commits them, and pushes to the configured branch. Personal projects are ignored. Requires the repository to be cloned first.
+        - Promotions
+      summary: Remove one direction's local checkout
+      description: Removes the local checkout and keeps the configuration, its credentials, and the trusted SSH host keys.
+      x-required-scope: gitConnection:clone
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+        - schema:
+            type: string
+          required: true
+          description: 'The direction of the promotion: apply or promote.'
+          name: direction
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionCheckoutPublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/projects:
+    get:
+      operationId: getPromotionConnectionProjects
+      tags:
+        - Promotions
+      summary: List projects linked to a promotion connection
+      x-required-scope: gitConnection:read
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projectIds:
+                    type: array
+                    items:
+                      type: string
+                      minLength: 1
+                      maxLength: 36
+                required:
+                  - projectIds
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/projects/{projectId}:
+    post:
+      operationId: addProjectToPromotionConnection
+      tags:
+        - Promotions
+      summary: Link a project to a promotion connection
+      description: Links a team project to a project-scoped connection. A project can be linked to only one connection.
+      x-required-scope: gitConnection:manageProjects
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  projectId:
+                    type: string
+                    minLength: 1
+                    maxLength: 36
+                  connectionId:
+                    type: string
+                    minLength: 1
+                    maxLength: 36
+                required:
+                  - projectId
+                  - connectionId
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    delete:
+      operationId: removeProjectFromPromotionConnection
+      tags:
+        - Promotions
+      summary: Unlink a project from a promotion connection
+      x-required-scope: gitConnection:manageProjects
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+      responses:
+        '204':
+          description: Operation successful.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/promote:
+    post:
+      operationId: promotePackage
+      tags:
+        - Promotions
+      summary: Promote all team projects
+      description: Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. Requires the Promote direction to be cloned first, and is available on the instance connection only. The API key also needs variable:list when the workflows reference variables.
       x-required-scope: gitConnection:push
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -5029,7 +6385,8 @@ paths:
         - schema:
             type: string
           required: true
-          name: id
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
           in: path
       requestBody:
         required: true
@@ -5057,6 +6414,12 @@ paths:
                 properties:
                   connectionId:
                     type: string
+                    minLength: 1
+                    maxLength: 36
+                  configId:
+                    type: string
+                    minLength: 1
+                    maxLength: 36
                   counts:
                     type: object
                     properties:
@@ -5085,12 +6448,21 @@ paths:
                       - dataTables
                       - variables
                       - tags
-                  commitSha:
-                    type: string
+                  git:
+                    type: object
+                    properties:
+                      commitSha:
+                        type: string
+                      branchName:
+                        type: string
+                    required:
+                      - commitSha
+                      - branchName
                 required:
                   - connectionId
+                  - configId
                   - counts
-                  - commitSha
+                  - git
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -5103,127 +6475,13 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /git-connections/{id}/projects:
-    get:
-      operationId: getGitConnectionProjects
-      tags:
-        - GitConnections
-      summary: List projects added to a Git connection
-      x-required-scope: gitConnection:read
-      x-eov-operation-id: unreachable
-      x-eov-operation-handler: v1/handlers/decorator-routed.handler
-      x-decorator-routed: true
-      parameters:
-        - schema:
-            type: string
-          required: true
-          name: id
-          in: path
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  projectIds:
-                    type: array
-                    items:
-                      type: string
-                required:
-                  - projectIds
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /git-connections/{id}/projects/{projectId}:
+  /promotions/connections/{promotionConnectionId}/apply:
     post:
-      operationId: addProjectToGitConnection
+      operationId: applyPackage
       tags:
-        - GitConnections
-      summary: Add a project to a Git connection
-      description: Adds a team project to the connection. A project can be added to only one connection.
-      x-required-scope: gitConnection:manageProjects
-      x-eov-operation-id: unreachable
-      x-eov-operation-handler: v1/handlers/decorator-routed.handler
-      x-decorator-routed: true
-      parameters:
-        - schema:
-            type: string
-          required: true
-          name: id
-          in: path
-        - schema:
-            type: string
-          required: true
-          name: projectId
-          in: path
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  projectId:
-                    type: string
-                  gitConnectionId:
-                    type: string
-                required:
-                  - projectId
-                  - gitConnectionId
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '409':
-          $ref: '#/components/responses/conflict'
-    delete:
-      operationId: removeProjectFromGitConnection
-      tags:
-        - GitConnections
-      summary: Remove a project from a Git connection
-      x-required-scope: gitConnection:manageProjects
-      x-eov-operation-id: unreachable
-      x-eov-operation-handler: v1/handlers/decorator-routed.handler
-      x-decorator-routed: true
-      parameters:
-        - schema:
-            type: string
-          required: true
-          name: id
-          in: path
-        - schema:
-            type: string
-          required: true
-          name: projectId
-          in: path
-      responses:
-        '204':
-          description: Operation successful.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '409':
-          $ref: '#/components/responses/conflict'
-  /git-connections/{id}/pull:
-    post:
-      operationId: pullGitConnectionProjects
-      tags:
-        - GitConnections
-      summary: Pull projects from a Git connection
-      description: Resets the local clone to the configured branch tip and imports projects into the instance, overwriting to match. Requires the repository to be cloned first.
+        - Promotions
+      summary: Apply a package to the instance
+      description: Resets the local checkout to the configured branch tip and imports the package, overwriting to match. Requires the Apply direction to be cloned first, and is available on the instance connection only.
       x-required-scope: gitConnection:pull
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -5232,7 +6490,8 @@ paths:
         - schema:
             type: string
           required: true
-          name: id
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
           in: path
       responses:
         '200':
@@ -5244,6 +6503,12 @@ paths:
                 properties:
                   connectionId:
                     type: string
+                    minLength: 1
+                    maxLength: 36
+                  configId:
+                    type: string
+                    minLength: 1
+                    maxLength: 36
                   counts:
                     type: object
                     properties:
@@ -5412,12 +6677,21 @@ paths:
                       - dataTables
                       - variables
                       - tags
-                  commitSha:
-                    type: string
+                  git:
+                    type: object
+                    properties:
+                      commitSha:
+                        type: string
+                      branchName:
+                        type: string
+                    required:
+                      - commitSha
+                      - branchName
                 required:
                   - connectionId
+                  - configId
                   - counts
-                  - commitSha
+                  - git
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -5583,6 +6857,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the role mapping rule.
           name: roleMappingRuleId
           in: path
       requestBody:
@@ -5629,6 +6904,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the role mapping rule.
           name: roleMappingRuleId
           in: path
       requestBody:
@@ -5679,6 +6955,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the role mapping rule.
           name: roleMappingRuleId
           in: path
       responses:
@@ -5872,7 +7149,7 @@ paths:
           $ref: '#/components/responses/forbidden'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
-  /roles/{slug}:
+  /roles/{roleSlug}:
     get:
       operationId: getRole
       tags:
@@ -5887,7 +7164,8 @@ paths:
         - schema:
             type: string
           required: true
-          name: slug
+          description: The slug of the role.
+          name: roleSlug
           in: path
         - schema:
             type: string
@@ -5968,7 +7246,8 @@ paths:
         - schema:
             type: string
           required: true
-          name: slug
+          description: The slug of the role.
+          name: roleSlug
           in: path
       requestBody:
         required: true
@@ -6024,7 +7303,8 @@ paths:
         - schema:
             type: string
           required: true
-          name: slug
+          description: The slug of the role.
+          name: roleSlug
           in: path
         - schema:
             anyOf:
@@ -6059,7 +7339,7 @@ paths:
       tags:
         - SourceControl
       summary: Preview pending source control changes
-      description: Previews the pending changes between the instance and the connected Git repository in either the `push` or `pull` direction.
+      description: Previews the pending changes between the instance and the connected Git branch in either the `push` or `pull` direction.
       x-required-scope: sourceControl:read
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -6242,7 +7522,7 @@ paths:
       tags:
         - SourceControl
       summary: Push local source control changes
-      description: Commits and pushes the selected files to the connected Git repository. Each entry in `fileNames` is resolved against a fresh preview of the pending changes.
+      description: Commits and pushes the selected files to the connected Git branch. Each entry in `fileNames` is resolved against a fresh preview of the pending changes.
       x-required-scope: sourceControl:push
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -6610,6 +7890,773 @@ paths:
                   - conflicts
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+  /source-control/pull:
+    post:
+      operationId: pullSourceControl
+      tags:
+        - SourceControl
+      summary: Pull changes from the remote repository
+      description: Fetches changes from the connected Git branch into the instance.
+      x-required-scope: sourceControl:pull
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                force:
+                  type: boolean
+                  description: Discard local changes and force the pull to complete.
+                autoPublish:
+                  type: string
+                  enum:
+                    - none
+                    - all
+                    - published
+                  default: none
+                  description: |-
+                    Controls automatic workflow publishing after import:
+                    - `none`: Keep workflows in their local published state (default)
+                    - `all`: Publish all imported workflows
+                    - `published`: Publish only workflows that were published locally before import
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    file:
+                      type: string
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - credential
+                        - workflow
+                        - tags
+                        - variables
+                        - file
+                        - folders
+                        - project
+                        - datatable
+                    status:
+                      type: string
+                      enum:
+                        - new
+                        - modified
+                        - deleted
+                        - created
+                        - renamed
+                        - conflicted
+                        - ignored
+                        - staged
+                        - unknown
+                    location:
+                      type: string
+                      enum:
+                        - local
+                        - remote
+                    conflict:
+                      type: boolean
+                    updatedAt:
+                      type: string
+                    pushed:
+                      type: boolean
+                    isLocalPublished:
+                      type: boolean
+                    isRemoteArchived:
+                      type: boolean
+                    parentFolderId:
+                      type: string
+                      nullable: true
+                    folderPath:
+                      type: array
+                      items:
+                        type: string
+                    remoteFolderPath:
+                      type: array
+                      items:
+                        type: string
+                    owner:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - personal
+                            - team
+                        projectId:
+                          type: string
+                        projectName:
+                          type: string
+                      required:
+                        - type
+                        - projectId
+                        - projectName
+                    publishingError:
+                      type: string
+                    publishingErrorDetails:
+                      type: object
+                      properties:
+                        reason:
+                          type: string
+                          enum:
+                            - review_pending
+                            - changes_requested
+                            - insufficient_api_key_scope
+                            - insufficient_permissions
+                        workflowReviewRequestId:
+                          type: string
+                          minLength: 1
+                        versionId:
+                          type: string
+                          minLength: 1
+                      required:
+                        - reason
+                      additionalProperties: false
+                    contentImportPolicy:
+                      type: object
+                      properties:
+                        violations:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              kind:
+                                type: string
+                              checkId:
+                                type: string
+                              message:
+                                type: string
+                              subject:
+                                type: string
+                              subjectType:
+                                type: string
+                              scope:
+                                type: string
+                              matchedRuleId:
+                                type: string
+                            required:
+                              - kind
+                              - checkId
+                              - message
+                        checkErrors:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              checkId:
+                                type: string
+                              correlationId:
+                                type: string
+                            required:
+                              - checkId
+                              - correlationId
+                      required:
+                        - violations
+                        - checkErrors
+                  required:
+                    - file
+                    - id
+                    - name
+                    - type
+                    - status
+                    - location
+                    - conflict
+                    - updatedAt
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          description: 'Conflict due to uncommitted local changes or merge conflicts. The response body lists every file in the pull diff; files causing the conflict have `conflict: true` or `status: modified`. Retry with `force: true` to discard local changes.'
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    file:
+                      type: string
+                    id:
+                      type: string
+                    name:
+                      type: string
+                    type:
+                      type: string
+                      enum:
+                        - credential
+                        - workflow
+                        - tags
+                        - variables
+                        - file
+                        - folders
+                        - project
+                        - datatable
+                    status:
+                      type: string
+                      enum:
+                        - new
+                        - modified
+                        - deleted
+                        - created
+                        - renamed
+                        - conflicted
+                        - ignored
+                        - staged
+                        - unknown
+                    location:
+                      type: string
+                      enum:
+                        - local
+                        - remote
+                    conflict:
+                      type: boolean
+                    updatedAt:
+                      type: string
+                    pushed:
+                      type: boolean
+                    isLocalPublished:
+                      type: boolean
+                    isRemoteArchived:
+                      type: boolean
+                    parentFolderId:
+                      type: string
+                      nullable: true
+                    folderPath:
+                      type: array
+                      items:
+                        type: string
+                    remoteFolderPath:
+                      type: array
+                      items:
+                        type: string
+                    owner:
+                      type: object
+                      properties:
+                        type:
+                          type: string
+                          enum:
+                            - personal
+                            - team
+                        projectId:
+                          type: string
+                        projectName:
+                          type: string
+                      required:
+                        - type
+                        - projectId
+                        - projectName
+                    publishingError:
+                      type: string
+                    publishingErrorDetails:
+                      type: object
+                      properties:
+                        reason:
+                          type: string
+                          enum:
+                            - review_pending
+                            - changes_requested
+                            - insufficient_api_key_scope
+                            - insufficient_permissions
+                        workflowReviewRequestId:
+                          type: string
+                          minLength: 1
+                        versionId:
+                          type: string
+                          minLength: 1
+                      required:
+                        - reason
+                      additionalProperties: false
+                    contentImportPolicy:
+                      type: object
+                      properties:
+                        violations:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              kind:
+                                type: string
+                              checkId:
+                                type: string
+                              message:
+                                type: string
+                              subject:
+                                type: string
+                              subjectType:
+                                type: string
+                              scope:
+                                type: string
+                              matchedRuleId:
+                                type: string
+                            required:
+                              - kind
+                              - checkId
+                              - message
+                        checkErrors:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              checkId:
+                                type: string
+                              correlationId:
+                                type: string
+                            required:
+                              - checkId
+                              - correlationId
+                      required:
+                        - violations
+                        - checkErrors
+                  required:
+                    - file
+                    - id
+                    - name
+                    - type
+                    - status
+                    - location
+                    - conflict
+                    - updatedAt
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+  /tags:
+    get:
+      operationId: getTags
+      tags:
+        - Tags
+      summary: Retrieve all tags
+      description: Retrieve all tags from your instance.
+      x-required-scope: tag:list
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          example: 2tUt1wbLX592XDdX
+                        name:
+                          type: string
+                          example: Production
+                        createdAt:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                      required:
+                        - id
+                        - name
+                        - createdAt
+                        - updatedAt
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+    post:
+      operationId: createTag
+      tags:
+        - Tags
+      summary: Create a tag
+      description: Create a tag in your instance.
+      x-required-scope: tag:create
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  readOnly: true
+                  example: 2tUt1wbLX592XDdX
+                name:
+                  type: string
+                  example: Production
+                createdAt:
+                  type: string
+                  format: date-time
+                  readOnly: true
+                updatedAt:
+                  type: string
+                  format: date-time
+                  readOnly: true
+              required:
+                - name
+              additionalProperties: false
+      responses:
+        '201':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tagPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+  /tags/{tagId}:
+    get:
+      operationId: getTag
+      tags:
+        - Tags
+      summary: Retrieves a tag
+      description: Retrieves a tag.
+      x-required-scope: tag:read
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the tag.
+          name: tagId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tagPublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /variables:
+    get:
+      operationId: getVariables
+      tags:
+        - Variables
+      summary: Retrieve variables
+      description: Retrieve variables from your instance.
+      x-required-scope: variable:list
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+            example: VmwOO9HeTEj20kxM
+          required: false
+          name: projectId
+          in: query
+        - schema:
+            type: string
+            enum:
+              - empty
+          required: false
+          name: state
+          in: query
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                        key:
+                          type: string
+                        value:
+                          type: string
+                          example: test
+                        type:
+                          type: string
+                          readOnly: true
+                        project:
+                          type: object
+                          nullable: true
+                          properties:
+                            id:
+                              type: string
+                              readOnly: true
+                              example: VmwOO9HeTEj20kxM
+                            name:
+                              type: string
+                              example: Marketing
+                            type:
+                              type: string
+                              enum:
+                                - personal
+                                - team
+                              readOnly: true
+                              example: team
+                            icon:
+                              type: object
+                              description: Icon of the project, or null when the project has none
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - emoji
+                                    - icon
+                                value:
+                                  type: string
+                                color:
+                                  type: string
+                              required:
+                                - type
+                                - value
+                              nullable: true
+                            description:
+                              type: string
+                              nullable: true
+                              example: Workflows the marketing team owns.
+                            customTelemetryTags:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  key:
+                                    type: string
+                                  value:
+                                    type: string
+                                required:
+                                  - key
+                                  - value
+                            creatorId:
+                              type: string
+                              nullable: true
+                              example: f9a2cbb8-0b1e-4b64-9c1c-0d5f5f1f2a3b
+                            createdAt:
+                              type: string
+                              format: date-time
+                              readOnly: true
+                            updatedAt:
+                              type: string
+                              format: date-time
+                              readOnly: true
+                          required:
+                            - id
+                            - name
+                            - type
+                            - icon
+                            - description
+                            - customTelemetryTags
+                            - creatorId
+                            - createdAt
+                            - updatedAt
+                      required:
+                        - id
+                        - key
+                        - value
+                        - type
+                        - project
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+    post:
+      operationId: createVariable
+      tags:
+        - Variables
+      summary: Create a variable
+      description: Create a variable in your instance.
+      x-required-scope: variable:create
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  readOnly: true
+                key:
+                  type: string
+                  minLength: 1
+                  maxLength: 50
+                  pattern: ^[A-Za-z_][A-Za-z0-9_]*$
+                value:
+                  type: string
+                  maxLength: 1000
+                  example: test
+                type:
+                  type: string
+                  readOnly: true
+                projectId:
+                  type: string
+                  maxLength: 36
+                  example: VmwOO9HeTEj20kxM
+              required:
+                - key
+                - value
+              additionalProperties: false
+      responses:
+        '201':
+          description: Operation successful.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+  /variables/{id}:
+    put:
+      operationId: updateVariable
+      tags:
+        - Variables
+      summary: Update a variable
+      description: Update a variable from your instance.
+      x-required-scope: variable:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the variable.
+          name: id
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  readOnly: true
+                key:
+                  type: string
+                  minLength: 1
+                  maxLength: 50
+                  pattern: ^[A-Za-z0-9_]+$
+                value:
+                  type: string
+                  maxLength: 1000
+                  example: test
+                type:
+                  type: string
+                  readOnly: true
+                projectId:
+                  type: string
+                  nullable: true
+                  maxLength: 36
+                  example: VmwOO9HeTEj20kxM
+              required:
+                - key
+                - value
+              additionalProperties: false
+      responses:
+        '204':
+          description: Operation successful.
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+    delete:
+      operationId: deleteVariable
+      tags:
+        - Variables
+      summary: Delete a variable
+      description: Delete a variable from your instance.
+      x-required-scope: variable:delete
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the variable.
+          name: id
+          in: path
+      responses:
+        '204':
+          description: Operation successful.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
   /workflows:
     get:
       operationId: getWorkflows
@@ -8083,16 +10130,21 @@ paths:
                           properties:
                             id:
                               type: string
+                              readOnly: true
+                              example: VmwOO9HeTEj20kxM
                             name:
                               type: string
+                              example: Marketing
                             type:
                               type: string
                               enum:
                                 - personal
                                 - team
+                              readOnly: true
+                              example: team
                             icon:
                               type: object
-                              nullable: true
+                              description: Icon of the project, or null when the project has none
                               properties:
                                 type:
                                   type: string
@@ -8101,12 +10153,16 @@ paths:
                                     - icon
                                 value:
                                   type: string
+                                color:
+                                  type: string
                               required:
                                 - type
                                 - value
+                              nullable: true
                             description:
                               type: string
                               nullable: true
+                              example: Workflows the marketing team owns.
                             customTelemetryTags:
                               type: array
                               items:
@@ -8122,12 +10178,15 @@ paths:
                             creatorId:
                               type: string
                               nullable: true
+                              example: f9a2cbb8-0b1e-4b64-9c1c-0d5f5f1f2a3b
                             createdAt:
                               type: string
                               format: date-time
+                              readOnly: true
                             updatedAt:
                               type: string
                               format: date-time
+                              readOnly: true
                           required:
                             - id
                             - name
@@ -8411,6 +10470,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
         - schema:
@@ -8451,6 +10511,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
         - schema:
@@ -9602,6 +11663,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       responses:
@@ -9942,16 +12004,21 @@ paths:
                           properties:
                             id:
                               type: string
+                              readOnly: true
+                              example: VmwOO9HeTEj20kxM
                             name:
                               type: string
+                              example: Marketing
                             type:
                               type: string
                               enum:
                                 - personal
                                 - team
+                              readOnly: true
+                              example: team
                             icon:
                               type: object
-                              nullable: true
+                              description: Icon of the project, or null when the project has none
                               properties:
                                 type:
                                   type: string
@@ -9960,12 +12027,16 @@ paths:
                                     - icon
                                 value:
                                   type: string
+                                color:
+                                  type: string
                               required:
                                 - type
                                 - value
+                              nullable: true
                             description:
                               type: string
                               nullable: true
+                              example: Workflows the marketing team owns.
                             customTelemetryTags:
                               type: array
                               items:
@@ -9981,12 +12052,15 @@ paths:
                             creatorId:
                               type: string
                               nullable: true
+                              example: f9a2cbb8-0b1e-4b64-9c1c-0d5f5f1f2a3b
                             createdAt:
                               type: string
                               format: date-time
+                              readOnly: true
                             updatedAt:
                               type: string
                               format: date-time
+                              readOnly: true
                           required:
                             - id
                             - name
@@ -10240,6 +12314,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       responses:
@@ -10270,6 +12345,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       responses:
@@ -10302,6 +12378,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       requestBody:
@@ -10343,6 +12420,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       requestBody:
@@ -10410,6 +12488,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       responses:
@@ -10441,6 +12520,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       requestBody:
@@ -10509,6 +12589,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       responses:
@@ -10538,6 +12619,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       x-eov-operation-id: unreachable
@@ -10596,7 +12678,7 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
-  /workflows/{workflowId}/versions/{versionId}:
+  /workflows/{workflowId}/versions/{workflowVersionId}:
     get:
       operationId: getWorkflowVersion
       tags:
@@ -10611,12 +12693,14 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
         - schema:
             type: string
           required: true
-          name: versionId
+          description: The ID of the workflow version.
+          name: workflowVersionId
           in: path
       responses:
         '200':
@@ -10796,6 +12880,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       responses:
@@ -10827,6 +12912,7 @@ paths:
         - schema:
             type: string
           required: true
+          description: The ID of the workflow.
           name: workflowId
           in: path
       requestBody:
@@ -11922,171 +14008,6 @@ components:
           description: |
             Assertion Consumer Service return URL. Returned by GET for convenience; ignored on write so a GET response can be sent back as a PUT body.
           example: https://n8n.example.com/rest/sso/saml/acs
-    credentialCreate:
-      required:
-        - name
-        - type
-        - data
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: R2DjclaysHbqn778
-        name:
-          type: string
-          example: Joe's Github Credentials
-        type:
-          type: string
-          example: githubApi
-        data:
-          type: object
-          writeOnly: true
-          example:
-            accessToken: ada612vad6fa5df4adf5a5dsf4389adsf76da7s
-        isResolvable:
-          type: boolean
-          example: false
-          description: Whether this credential has resolvable fields
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: 2022-04-29T11:02:29.842Z
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: 2022-04-29T11:02:29.842Z
-        projectId:
-          type: string
-          description: Project to create the credential in. Defaults to the user's personal project.
-          example: VmwOO9HeTEj20kxM
-    create-credential-response:
-      required:
-        - id
-        - name
-        - type
-        - isManaged
-        - isGlobal
-        - isResolvable
-        - resolvableAllowFallback
-        - createdAt
-        - updatedAt
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: vHxaz5UaCghVYl9C
-        name:
-          type: string
-          example: John's Github account
-        type:
-          type: string
-          example: githubApi
-        isManaged:
-          type: boolean
-          readOnly: true
-          description: Whether the credential is managed by n8n (managed credentials cannot be edited via the API).
-          example: false
-        isGlobal:
-          type: boolean
-          readOnly: true
-          description: Whether the credential is available for use by all users.
-          example: false
-        isResolvable:
-          type: boolean
-          readOnly: true
-          description: Whether the credential can be dynamically resolved by a resolver.
-          example: false
-        resolvableAllowFallback:
-          type: boolean
-          readOnly: true
-          description: Whether the credential resolver may fall back to static credentials if dynamic resolution fails.
-          example: false
-        resolverId:
-          type: string
-          nullable: true
-          readOnly: true
-          description: ID of the dynamic credential resolver associated with this credential, if any.
-          example: null
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: 2022-04-29T11:02:29.842Z
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: 2022-04-29T11:02:29.842Z
-    credential:
-      required:
-        - name
-        - type
-        - data
-      type: object
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: R2DjclaysHbqn778
-        name:
-          type: string
-          example: Joe's Github Credentials
-        type:
-          type: string
-          example: githubApi
-        data:
-          type: object
-          writeOnly: true
-          example:
-            accessToken: ada612vad6fa5df4adf5a5dsf4389adsf76da7s
-        isResolvable:
-          type: boolean
-          example: false
-          description: Whether this credential has resolvable fields
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: 2022-04-29T11:02:29.842Z
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
-          example: 2022-04-29T11:02:29.842Z
-    update-credential-request:
-      type: object
-      properties:
-        name:
-          type: string
-          example: Updated Credential Name
-          description: The name of the credential
-        type:
-          type: string
-          example: githubApi
-          description: The credential type. If changing type, data must also be provided.
-        data:
-          type: object
-          writeOnly: true
-          example:
-            accessToken: new_token_value
-          description: The credential data. Required when changing credential type.
-        isGlobal:
-          type: boolean
-          example: false
-          description: Whether this credential is available globally
-        isResolvable:
-          type: boolean
-          example: false
-          description: Whether this credential has resolvable fields
-        isPartialData:
-          type: boolean
-          example: false
-          default: false
-          description: If true, unredacts and merges existing credential data with the provided data. If false, replaces the entire data object.
     credentialTestResponse:
       type: object
       required:
@@ -12513,178 +14434,6 @@ components:
           description: Paginate through users by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
           nullable: true
           example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
-    pull:
-      type: object
-      properties:
-        force:
-          type: boolean
-          example: true
-        autoPublish:
-          type: string
-          enum:
-            - none
-            - all
-            - published
-          default: none
-          description: |
-            Controls automatic workflow publishing after import:
-            - `none`: Keep workflows in their local published state (default)
-            - `all`: Publish all imported workflows
-            - `published`: Publish only workflows that were published locally before import
-          example: published
-    sourceControlledFile:
-      type: object
-      required:
-        - file
-        - id
-        - name
-        - type
-        - status
-        - location
-        - conflict
-        - updatedAt
-      properties:
-        file:
-          type: string
-        id:
-          type: string
-        name:
-          type: string
-        type:
-          type: string
-          enum:
-            - credential
-            - workflow
-            - tags
-            - variables
-            - file
-            - folders
-            - project
-            - datatable
-        status:
-          type: string
-          enum:
-            - new
-            - modified
-            - deleted
-            - created
-            - renamed
-            - conflicted
-            - ignored
-            - staged
-            - unknown
-        location:
-          type: string
-          enum:
-            - local
-            - remote
-        conflict:
-          type: boolean
-        updatedAt:
-          type: string
-        pushed:
-          type: boolean
-        isLocalPublished:
-          type: boolean
-        isRemoteArchived:
-          type: boolean
-        parentFolderId:
-          type: string
-          nullable: true
-        folderPath:
-          type: array
-          items:
-            type: string
-        owner:
-          type: object
-          required:
-            - type
-            - projectId
-            - projectName
-          properties:
-            type:
-              type: string
-              enum:
-                - personal
-                - team
-            projectId:
-              type: string
-            projectName:
-              type: string
-        publishingError:
-          type: string
-    pullResult:
-      type: array
-      items:
-        $ref: '#/components/schemas/sourceControlledFile'
-    project:
-      type: object
-      additionalProperties: false
-      required:
-        - name
-      properties:
-        id:
-          type: string
-          readOnly: true
-        name:
-          type: string
-        type:
-          type: string
-          readOnly: true
-    variable:
-      type: object
-      additionalProperties: false
-      required:
-        - key
-        - value
-      properties:
-        id:
-          type: string
-          readOnly: true
-        key:
-          type: string
-        value:
-          type: string
-          example: test
-        type:
-          type: string
-          readOnly: true
-        project:
-          $ref: '#/components/schemas/project'
-    variableList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/variable'
-        nextCursor:
-          type: string
-          description: Paginate through variables by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
-          nullable: true
-          example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
-    variable.create:
-      type: object
-      additionalProperties: false
-      required:
-        - key
-        - value
-      properties:
-        id:
-          type: string
-          readOnly: true
-        key:
-          type: string
-        value:
-          type: string
-          example: test
-        type:
-          type: string
-          readOnly: true
-        projectId:
-          type: string
-          example: VmwOO9HeTEj20kxM
-          nullable: true
     dataTable:
       type: object
       properties:
@@ -13027,72 +14776,6 @@ components:
             - name
         - required:
             - index
-    projectList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/project'
-        nextCursor:
-          type: string
-          description: Paginate through projects by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
-          nullable: true
-          example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
-    projectMember:
-      type: object
-      description: A project member (user with their role in the project).
-      properties:
-        id:
-          type: string
-          description: The user's unique identifier.
-          readOnly: true
-          example: 123e4567-e89b-12d3-a456-426614174000
-        email:
-          type: string
-          format: email
-          description: The user's email address.
-          readOnly: true
-          example: john.doe@company.com
-        firstName:
-          type: string
-          maxLength: 32
-          description: The user's first name.
-          readOnly: true
-          example: john
-        lastName:
-          type: string
-          maxLength: 32
-          description: The user's last name.
-          readOnly: true
-          example: Doe
-        createdAt:
-          type: string
-          format: date-time
-          description: When the user was created.
-          readOnly: true
-        updatedAt:
-          type: string
-          format: date-time
-          description: When the user was last updated.
-          readOnly: true
-        role:
-          type: string
-          description: The user's role in the project (e.g. project:admin, project:viewer).
-          readOnly: true
-          example: project:viewer
-    projectMemberList:
-      type: object
-      properties:
-        data:
-          type: array
-          items:
-            $ref: '#/components/schemas/projectMember'
-        nextCursor:
-          type: string
-          description: Paginate through project members by setting the cursor parameter to the nextCursor attribute returned by a previous request. Default value fetches the first page of the collection.
-          nullable: true
-          example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
     communityPackage:
       type: object
       properties:
@@ -14545,22 +16228,51 @@ components:
       $ref: '#/components/schemas/workflowSettings'
     WorkflowList:
       $ref: '#/components/schemas/workflowList'
-    Credential:
-      $ref: '#/components/schemas/credential'
     CredentialType:
       $ref: '#/components/schemas/credentialType'
     Audit:
       $ref: '#/components/schemas/audit'
-    Pull:
-      $ref: '#/components/schemas/pull'
-    PullResult:
-      $ref: '#/components/schemas/pullResult'
-    SourceControlledFile:
-      $ref: '#/components/schemas/sourceControlledFile'
     UserList:
       $ref: '#/components/schemas/userList'
     User:
       $ref: '#/components/schemas/user'
+    credentialPublicDto.generated:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        type:
+          type: string
+        isManaged:
+          type: boolean
+        isGlobal:
+          type: boolean
+        isResolvable:
+          type: boolean
+        resolvableAllowFallback:
+          type: boolean
+        resolverId:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - type
+        - isManaged
+        - isGlobal
+        - isResolvable
+        - resolvableAllowFallback
+        - resolverId
+        - createdAt
+        - updatedAt
     executionTagsPublicDto.generated:
       type: array
       items:
@@ -14586,35 +16298,195 @@ components:
           - name
           - createdAt
           - updatedAt
-    gitConnectionPublicDto.generated:
+    nodeTypePolicyEffectivePublicDto.generated:
+      type: object
+      properties:
+        scopeId:
+          type: string
+          nullable: true
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+              action:
+                type: string
+                enum:
+                  - allow
+                  - deny
+                  - delegate
+              selector:
+                oneOf:
+                  - type: object
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                          - name
+                      value:
+                        type: string
+                        minLength: 1
+                    required:
+                      - kind
+                      - value
+                  - type: object
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                          - package
+                      value:
+                        type: string
+                        minLength: 1
+                    required:
+                      - kind
+                      - value
+            required:
+              - id
+              - action
+              - selector
+        defaultAction:
+          type: string
+          enum:
+            - allow
+            - deny
+            - delegate
+        version:
+          type: integer
+          minimum: 0
+      required:
+        - scopeId
+        - rules
+        - defaultAction
+        - version
+    nodeTypePolicyEffectiveWriteResultPublicDto.generated:
+      type: object
+      properties:
+        scopeId:
+          type: string
+          nullable: true
+        rules:
+          type: array
+          items:
+            type: object
+            properties:
+              id:
+                type: string
+                minLength: 1
+              action:
+                type: string
+                enum:
+                  - allow
+                  - deny
+                  - delegate
+              selector:
+                oneOf:
+                  - type: object
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                          - name
+                      value:
+                        type: string
+                        minLength: 1
+                    required:
+                      - kind
+                      - value
+                  - type: object
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                          - package
+                      value:
+                        type: string
+                        minLength: 1
+                    required:
+                      - kind
+                      - value
+            required:
+              - id
+              - action
+              - selector
+        defaultAction:
+          type: string
+          enum:
+            - allow
+            - deny
+            - delegate
+        version:
+          type: integer
+          minimum: 0
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              ruleId:
+                type: string
+              shadowedByRuleId:
+                type: string
+            required:
+              - ruleId
+              - shadowedByRuleId
+      required:
+        - scopeId
+        - rules
+        - defaultAction
+        - version
+        - warnings
+    promotionProviderPublicDto.generated:
       type: object
       properties:
         id:
           type: string
+          minLength: 1
+          maxLength: 36
         name:
           type: string
-        repositoryUrl:
-          type: string
-        branchName:
-          type: string
-          nullable: true
-        connectionType:
+        type:
           type: string
           enum:
-            - ssh
-            - https
-        publicKey:
+            - git
+        authType:
           type: string
-          nullable: true
-        keyGeneratorType:
-          type: string
-          nullable: true
           enum:
-            - ed25519
-            - rsa
-        baseCommit:
-          type: string
-          nullable: true
+            - ssh-key
+            - token
+        config:
+          anyOf:
+            - type: object
+              properties:
+                schemaVersion:
+                  type: number
+                  enum:
+                    - 1
+                publicKey:
+                  type: string
+                  minLength: 1
+                keyType:
+                  type: string
+                  enum:
+                    - ed25519
+                    - rsa
+              required:
+                - schemaVersion
+                - publicKey
+                - keyType
+              additionalProperties: false
+            - type: object
+              properties:
+                schemaVersion:
+                  type: number
+                  enum:
+                    - 1
+              required:
+                - schemaVersion
+              additionalProperties: false
         createdAt:
           type: string
           format: date-time
@@ -14624,14 +16496,189 @@ components:
       required:
         - id
         - name
-        - repositoryUrl
-        - branchName
-        - connectionType
-        - publicKey
-        - keyGeneratorType
-        - baseCommit
+        - type
+        - authType
+        - config
         - createdAt
         - updatedAt
+    promotionConnectionPublicDto.generated:
+      type: object
+      properties:
+        id:
+          type: string
+          minLength: 1
+          maxLength: 36
+        name:
+          type: string
+        scope:
+          type: string
+          enum:
+            - instance
+            - projects
+        target:
+          type: object
+          properties:
+            schemaVersion:
+              type: number
+              enum:
+                - 1
+            remoteUrl:
+              type: string
+              minLength: 1
+          required:
+            - schemaVersion
+            - remoteUrl
+          additionalProperties: false
+        provider:
+          type: object
+          properties:
+            id:
+              type: string
+              minLength: 1
+              maxLength: 36
+            name:
+              type: string
+            type:
+              type: string
+              enum:
+                - git
+            authType:
+              type: string
+              enum:
+                - ssh-key
+                - token
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          required:
+            - id
+            - name
+            - type
+            - authType
+            - createdAt
+            - updatedAt
+        configs:
+          type: object
+          properties:
+            apply:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                  maxLength: 36
+                name:
+                  type: string
+                createdAt:
+                  type: string
+                  format: date-time
+                updatedAt:
+                  type: string
+                  format: date-time
+                settings:
+                  type: object
+                  properties:
+                    schemaVersion:
+                      type: number
+                      enum:
+                        - 1
+                    branchName:
+                      type: string
+                      minLength: 1
+                      maxLength: 255
+                  required:
+                    - schemaVersion
+                    - branchName
+                  additionalProperties: false
+              required:
+                - id
+                - name
+                - createdAt
+                - updatedAt
+                - settings
+            promote:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                  maxLength: 36
+                name:
+                  type: string
+                createdAt:
+                  type: string
+                  format: date-time
+                updatedAt:
+                  type: string
+                  format: date-time
+                settings:
+                  type: object
+                  properties:
+                    schemaVersion:
+                      type: number
+                      enum:
+                        - 1
+                    baseBranchName:
+                      type: string
+                      minLength: 1
+                      maxLength: 255
+                    createBranchOnPromotion:
+                      type: boolean
+                  required:
+                    - schemaVersion
+                    - baseBranchName
+                    - createBranchOnPromotion
+                  additionalProperties: false
+              required:
+                - id
+                - name
+                - createdAt
+                - updatedAt
+                - settings
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+      required:
+        - id
+        - name
+        - scope
+        - target
+        - provider
+        - configs
+        - createdAt
+        - updatedAt
+    promotionCheckoutPublicDto.generated:
+      type: object
+      properties:
+        connectionId:
+          type: string
+          minLength: 1
+          maxLength: 36
+        configId:
+          type: string
+          minLength: 1
+          maxLength: 36
+        direction:
+          type: string
+          enum:
+            - apply
+            - promote
+        branchName:
+          type: string
+        hasCheckout:
+          type: boolean
+      required:
+        - connectionId
+        - configId
+        - direction
+        - branchName
+        - hasCheckout
     roleMappingRulePublicDto.generated:
       type: object
       properties:
@@ -14701,6 +16748,29 @@ components:
         - systemRole
         - roleType
         - scopes
+        - createdAt
+        - updatedAt
+    tagPublicDto.generated:
+      type: object
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 2tUt1wbLX592XDdX
+        name:
+          type: string
+          example: Production
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
+      required:
+        - id
+        - name
         - createdAt
         - updatedAt
     workflowPublicDto.generated:
@@ -15036,16 +17106,21 @@ components:
                 properties:
                   id:
                     type: string
+                    readOnly: true
+                    example: VmwOO9HeTEj20kxM
                   name:
                     type: string
+                    example: Marketing
                   type:
                     type: string
                     enum:
                       - personal
                       - team
+                    readOnly: true
+                    example: team
                   icon:
                     type: object
-                    nullable: true
+                    description: Icon of the project, or null when the project has none
                     properties:
                       type:
                         type: string
@@ -15054,12 +17129,16 @@ components:
                           - icon
                       value:
                         type: string
+                      color:
+                        type: string
                     required:
                       - type
                       - value
+                    nullable: true
                   description:
                     type: string
                     nullable: true
+                    example: Workflows the marketing team owns.
                   customTelemetryTags:
                     type: array
                     items:
@@ -15075,12 +17154,15 @@ components:
                   creatorId:
                     type: string
                     nullable: true
+                    example: f9a2cbb8-0b1e-4b64-9c1c-0d5f5f1f2a3b
                   createdAt:
                     type: string
                     format: date-time
+                    readOnly: true
                   updatedAt:
                     type: string
                     format: date-time
+                    readOnly: true
                 required:
                   - id
                   - name
@@ -15917,13 +17999,6 @@ components:
       style: form
       schema:
         type: string
-    credentialId:
-      name: id
-      in: path
-      description: The ID of the credential.
-      required: true
-      schema:
-        type: string
     tagId:
       name: id
       in: path
@@ -15979,13 +18054,6 @@ components:
       schema:
         type: string
         format: identifier
-    variableId:
-      name: id
-      in: path
-      description: The ID of the variable.
-      required: true
-      schema:
-        type: string
     dataTableId:
       name: dataTableId
       in: path
@@ -16020,8 +18088,6 @@ components:
       $ref: '#/components/parameters/userIdentifier'
     IncludeRole:
       $ref: '#/components/parameters/includeRole'
-    VariableId:
-      $ref: '#/components/parameters/variableId'
   securitySchemes:
     ApiKeyAuth:
       type: apiKey

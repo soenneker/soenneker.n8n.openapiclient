@@ -19,15 +19,15 @@ namespace Soenneker.N8n.OpenApiClient.Roles
     public partial class RolesRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.roles.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder this[string position]
+        /// <param name="position">The slug of the role.</param>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Roles.Item.WithRoleSlugItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Roles.Item.WithRoleSlugItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("slug", position);
-                return new global::Soenneker.N8n.OpenApiClient.Roles.Item.WithSlugItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("roleSlug", position);
+                return new global::Soenneker.N8n.OpenApiClient.Roles.Item.WithRoleSlugItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

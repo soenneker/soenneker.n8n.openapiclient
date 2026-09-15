@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Push
         {
         }
         /// <summary>
-        /// Commits and pushes the selected files to the connected Git repository. Each entry in `fileNames` is resolved against a fresh preview of the pending changes.
+        /// Commits and pushes the selected files to the connected Git branch. Each entry in `fileNames` is resolved against a fresh preview of the pending changes.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Push
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Commits and pushes the selected files to the connected Git repository. Each entry in `fileNames` is resolved against a fresh preview of the pending changes.
+        /// Commits and pushes the selected files to the connected Git branch. Each entry in `fileNames` is resolved against a fresh preview of the pending changes.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

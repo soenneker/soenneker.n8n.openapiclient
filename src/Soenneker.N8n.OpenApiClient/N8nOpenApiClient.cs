@@ -12,10 +12,11 @@ using Soenneker.N8n.OpenApiClient.Credentials;
 using Soenneker.N8n.OpenApiClient.DataTables;
 using Soenneker.N8n.OpenApiClient.Discover;
 using Soenneker.N8n.OpenApiClient.Executions;
-using Soenneker.N8n.OpenApiClient.GitConnections;
 using Soenneker.N8n.OpenApiClient.Insights;
 using Soenneker.N8n.OpenApiClient.N8nPackages;
+using Soenneker.N8n.OpenApiClient.NodeTypePolicies;
 using Soenneker.N8n.OpenApiClient.Projects;
+using Soenneker.N8n.OpenApiClient.Promotions;
 using Soenneker.N8n.OpenApiClient.RoleMappingRules;
 using Soenneker.N8n.OpenApiClient.Roles;
 using Soenneker.N8n.OpenApiClient.Settings;
@@ -66,11 +67,6 @@ namespace Soenneker.N8n.OpenApiClient
         {
             get => new global::Soenneker.N8n.OpenApiClient.Executions.ExecutionsRequestBuilder(PathParameters, RequestAdapter);
         }
-        /// <summary>The gitConnections property</summary>
-        public global::Soenneker.N8n.OpenApiClient.GitConnections.GitConnectionsRequestBuilder GitConnections
-        {
-            get => new global::Soenneker.N8n.OpenApiClient.GitConnections.GitConnectionsRequestBuilder(PathParameters, RequestAdapter);
-        }
         /// <summary>The insights property</summary>
         public global::Soenneker.N8n.OpenApiClient.Insights.InsightsRequestBuilder Insights
         {
@@ -81,10 +77,20 @@ namespace Soenneker.N8n.OpenApiClient
         {
             get => new global::Soenneker.N8n.OpenApiClient.N8nPackages.N8nPackagesRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The nodeTypePolicies property</summary>
+        public global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.NodeTypePoliciesRequestBuilder NodeTypePolicies
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.NodeTypePoliciesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The projects property</summary>
         public global::Soenneker.N8n.OpenApiClient.Projects.ProjectsRequestBuilder Projects
         {
             get => new global::Soenneker.N8n.OpenApiClient.Projects.ProjectsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The promotions property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.PromotionsRequestBuilder Promotions
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.PromotionsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The roleMappingRules property</summary>
         public global::Soenneker.N8n.OpenApiClient.RoleMappingRules.RoleMappingRulesRequestBuilder RoleMappingRules

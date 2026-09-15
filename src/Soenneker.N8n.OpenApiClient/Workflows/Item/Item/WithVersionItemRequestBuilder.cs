@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Item
         {
         }
         /// <summary>
-        /// Deprecated: use GET /workflows/{workflowId}/versions/{versionId} instead. Retrieves a specific version of a workflow from workflow history.
+        /// Deprecated: use GET /workflows/{workflowId}/versions/{workflowVersionId} instead. Retrieves a specific version of a workflow from workflow history.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersion"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -53,7 +53,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersion>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowVersion.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deprecated: use GET /workflows/{workflowId}/versions/{versionId} instead. Retrieves a specific version of a workflow from workflow history.
+        /// Deprecated: use GET /workflows/{workflowId}/versions/{workflowVersionId} instead. Retrieves a specific version of a workflow from workflow history.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

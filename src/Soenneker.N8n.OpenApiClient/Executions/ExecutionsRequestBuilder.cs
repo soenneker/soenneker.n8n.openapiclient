@@ -25,9 +25,9 @@ namespace Soenneker.N8n.OpenApiClient.Executions
             get => new global::Soenneker.N8n.OpenApiClient.Executions.Stop.StopRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.executions.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
+        /// <param name="position">The ID of the execution.</param>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Executions.Item.WithExecutionItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Executions.Item.WithExecutionItemRequestBuilder this[string position]
+        public global::Soenneker.N8n.OpenApiClient.Executions.Item.WithExecutionItemRequestBuilder this[int position]
         {
             get
             {

@@ -16,15 +16,15 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Versions
     public partial class VersionsRequestBuilder : BaseRequestBuilder
     {
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.workflows.item.versions.item collection</summary>
-        /// <param name="position">Unique identifier of the item</param>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Versions.Item.WithVersionItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Versions.Item.WithVersionItemRequestBuilder this[string position]
+        /// <param name="position">The ID of the workflow version.</param>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Workflows.Item.Versions.Item.WithWorkflowVersionItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Versions.Item.WithWorkflowVersionItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("versionId", position);
-                return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Versions.Item.WithVersionItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("workflowVersionId", position);
+                return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Versions.Item.WithWorkflowVersionItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

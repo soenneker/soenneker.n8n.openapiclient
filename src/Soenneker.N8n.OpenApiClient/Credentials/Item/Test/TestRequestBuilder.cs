@@ -12,7 +12,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Credentials.Item.Test
 {
     /// <summary>
-    /// Builds and executes requests for operations under \credentials\{id}\test
+    /// Builds and executes requests for operations under \credentials\{credential-id}\test
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TestRequestBuilder : BaseRequestBuilder
@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item.Test
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TestRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/credentials/{id}/test", pathParameters)
+        public TestRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/credentials/{credential%2Did}/test", pathParameters)
         {
         }
         /// <summary>
@@ -30,7 +30,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item.Test
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public TestRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/credentials/{id}/test", rawUrl)
+        public TestRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/credentials/{credential%2Did}/test", rawUrl)
         {
         }
         /// <summary>

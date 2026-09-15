@@ -15,7 +15,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The createdAt property</summary>
-        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get; private set; }
         /// <summary>The creatorId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Description { get; set; }
 #endif
-        /// <summary>The icon property</summary>
+        /// <summary>Icon of the project, or null when the project has none</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200ResponseSharedItemProjectIcon? Icon { get; set; }
@@ -51,10 +51,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Id { get; private set; }
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Id { get; private set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,9 +65,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Name { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200ResponseSharedItemProjectType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200ResponseSharedItemProjectType? Type { get; private set; }
         /// <summary>The updatedAt property</summary>
-        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get; private set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200ResponseSharedItemProject"/> and sets the default values.
         /// </summary>
@@ -111,15 +111,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteStringValue("creatorId", CreatorId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200ResponseSharedItemProjectCustomTelemetryTagsItem>("customTelemetryTags", CustomTelemetryTags);
             writer.WriteStringValue("description", Description);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200ResponseSharedItemProjectIcon>("icon", Icon);
-            writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200ResponseSharedItemProjectType>("type", Type);
-            writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -7,13 +7,22 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// Icon of the project, or null when the project has none
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
     public partial class WorkflowPublicDtoGeneratedSharedItemProjectIcon : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The color property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Color { get; set; }
+#nullable restore
+#else
+        public string Color { get; set; }
+#endif
         /// <summary>The type property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGeneratedSharedItemProjectIconType? Type { get; set; }
         /// <summary>The value property</summary>
@@ -49,6 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "color", n => { Color = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGeneratedSharedItemProjectIconType>(); } },
                 { "value", n => { Value = n.GetStringValue(); } },
             };
@@ -60,6 +70,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("color", Color);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGeneratedSharedItemProjectIconType>("type", Type);
             writer.WriteStringValue("value", Value);
             writer.WriteAdditionalData(AdditionalData);

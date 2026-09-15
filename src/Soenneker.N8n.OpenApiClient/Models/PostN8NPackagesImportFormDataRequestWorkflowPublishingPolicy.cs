@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Controls whether imported workflows are published after content is written. `preserve-published-state` keeps new workflows inactive and republishes an updated workflow only when it was already published and the package workflow is published too, so drafts are never published. `match-source` follows the package workflow&apos;s published flag. `publish-all` publishes every imported workflow. `unpublish-all` leaves new workflows inactive and unpublishes updated workflows that were published.</summary>
+    /// <summary>Controls whether imported workflows are published after content is written. `preserve-published-state` keeps new workflows inactive and republishes an updated workflow only when it was already published and the package carries the version the source publishes, so drafts are never published. `match-source` publishes the version the package carries when the source publishes it, and unpublishes when the source publishes nothing; when the source publishes a version the package does not carry, the target keeps its published version. `publish-all` publishes every imported workflow. `unpublish-all` leaves new workflows inactive and unpublishes updated workflows that were published.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum PostN8NPackagesImportFormDataRequestWorkflowPublishingPolicy
     {
