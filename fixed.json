@@ -63,7 +63,10 @@
           "500": {
             "description": "Internal server error."
           }
-        }
+        },
+        "x-eov-operation-id": "generateAudit",
+        "x-required-scope": "securityAudit:generate",
+        "x-eov-operation-handler": "v1/handlers/audit/audit.handler"
       }
     },
     "/settings/ldap": {
@@ -91,7 +94,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getLdapConfiguration",
+        "x-required-scope": "ldap:manage",
+        "x-eov-operation-handler": "v1/handlers/ldap/ldap.handler"
       },
       "put": {
         "tags": [
@@ -131,7 +137,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "updateLdapConfiguration",
+        "x-required-scope": "ldap:manage",
+        "x-eov-operation-handler": "v1/handlers/ldap/ldap.handler"
       }
     },
     "/settings/ldap/sync": {
@@ -167,7 +176,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getLdapSync",
+        "x-required-scope": "ldap:sync",
+        "x-eov-operation-handler": "v1/handlers/ldap/ldap.handler"
       },
       "post": {
         "tags": [
@@ -207,7 +219,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "runLdapSync",
+        "x-required-scope": "ldap:sync",
+        "x-eov-operation-handler": "v1/handlers/ldap/ldap.handler"
       }
     },
     "/settings/security-policy": {
@@ -235,7 +250,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getSecurityPolicy",
+        "x-required-scope": "securitySettings:manage",
+        "x-eov-operation-handler": "v1/handlers/security-policy/security-policy.handler"
       },
       "put": {
         "tags": [
@@ -278,7 +296,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "updateSecurityPolicy",
+        "x-required-scope": "securitySettings:manage",
+        "x-eov-operation-handler": "v1/handlers/security-policy/security-policy.handler"
       }
     },
     "/settings/otel": {
@@ -306,7 +327,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getOtelSettings",
+        "x-required-scope": "otel:manage",
+        "x-eov-operation-handler": "v1/handlers/otel/otel.handler"
       },
       "put": {
         "tags": [
@@ -349,7 +373,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "updateOtelSettings",
+        "x-required-scope": "otel:manage",
+        "x-eov-operation-handler": "v1/handlers/otel/otel.handler"
       }
     },
     "/settings/otel/test-trace": {
@@ -391,7 +418,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "testOtelTrace",
+        "x-required-scope": "otel:manage",
+        "x-eov-operation-handler": "v1/handlers/otel/otel.handler"
       }
     },
     "/settings/sso/oidc": {
@@ -419,7 +449,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getOidcConfiguration",
+        "x-required-scope": "oidc:manage",
+        "x-eov-operation-handler": "v1/handlers/sso-oidc/sso-oidc.handler"
       },
       "put": {
         "tags": [
@@ -462,7 +495,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "setOidcConfiguration",
+        "x-required-scope": "oidc:manage",
+        "x-eov-operation-handler": "v1/handlers/sso-oidc/sso-oidc.handler"
       }
     },
     "/settings/sso/saml": {
@@ -490,7 +526,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getSamlConfiguration",
+        "x-required-scope": "saml:manage",
+        "x-eov-operation-handler": "v1/handlers/sso-saml/sso-saml.handler"
       },
       "put": {
         "tags": [
@@ -533,7 +572,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "updateSamlConfiguration",
+        "x-required-scope": "saml:manage",
+        "x-eov-operation-handler": "v1/handlers/sso-saml/sso-saml.handler"
       }
     },
     "/credentials/{id}/test": {
@@ -572,7 +614,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "testCredential",
+        "x-required-scope": "credential:read",
+        "x-eov-operation-handler": "v1/handlers/credentials/credentials.handler"
       }
     },
     "/credentials/schema/{credentialTypeName}": {
@@ -648,7 +693,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "getCredentialType",
+        "x-required-scope": "none",
+        "x-eov-operation-handler": "v1/handlers/credentials/credentials.handler"
       }
     },
     "/tags/{id}": {
@@ -684,7 +732,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "deleteTag",
+        "x-required-scope": "tag:delete",
+        "x-eov-operation-handler": "v1/handlers/tags/tags.handler"
       },
       "put": {
         "tags": [
@@ -732,7 +783,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "updateTag",
+        "x-required-scope": "tag:update",
+        "x-eov-operation-handler": "v1/handlers/tags/tags.handler"
       },
       "get": {
         "tags": [
@@ -772,7 +826,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "tag:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{id}/{versionId}": {
@@ -816,7 +874,10 @@
             "$ref": "#/components/responses/notFound"
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "x-eov-operation-id": "getWorkflowVersion",
+        "x-required-scope": "workflow:read",
+        "x-eov-operation-handler": "v1/handlers/workflows/workflows.handler"
       }
     },
     "/workflows/{id}/test-runs": {
@@ -866,7 +927,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "getTestRuns",
+        "x-required-scope": "testRun:list",
+        "x-eov-operation-handler": "v1/handlers/evaluations/evaluations.handler"
       },
       "post": {
         "tags": [
@@ -906,7 +970,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "createTestRun",
+        "x-required-scope": "testRun:create",
+        "x-eov-operation-handler": "v1/handlers/evaluations/evaluations.handler"
       }
     },
     "/workflows/{id}/test-runs/{runId}": {
@@ -945,7 +1012,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "getTestRun",
+        "x-required-scope": "testRun:read",
+        "x-eov-operation-handler": "v1/handlers/evaluations/evaluations.handler"
       }
     },
     "/workflows/{id}/test-runs/{runId}/cancel": {
@@ -987,7 +1057,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "cancelTestRun",
+        "x-required-scope": "testRun:cancel",
+        "x-eov-operation-handler": "v1/handlers/evaluations/evaluations.handler"
       }
     },
     "/workflows/{id}/test-runs/{runId}/test-cases": {
@@ -1032,7 +1105,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "getTestCases",
+        "x-required-scope": "testRun:read",
+        "x-eov-operation-handler": "v1/handlers/evaluations/evaluations.handler"
       }
     },
     "/users": {
@@ -1081,7 +1157,10 @@
           "401": {
             "$ref": "#/components/responses/unauthorized"
           }
-        }
+        },
+        "x-eov-operation-id": "getUsers",
+        "x-required-scope": "user:list",
+        "x-eov-operation-handler": "v1/handlers/users/users.handler.ee"
       },
       "post": {
         "tags": [
@@ -1118,7 +1197,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "createUser",
+        "x-required-scope": "user:create",
+        "x-eov-operation-handler": "v1/handlers/users/users.handler.ee"
       }
     },
     "/users/{id}": {
@@ -1151,7 +1233,10 @@
           "401": {
             "$ref": "#/components/responses/unauthorized"
           }
-        }
+        },
+        "x-eov-operation-id": "getUser",
+        "x-required-scope": "user:read",
+        "x-eov-operation-handler": "v1/handlers/users/users.handler.ee"
       },
       "delete": {
         "tags": [
@@ -1178,7 +1263,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "deleteUser",
+        "x-required-scope": "user:delete",
+        "x-eov-operation-handler": "v1/handlers/users/users.handler.ee"
       }
     },
     "/users/{id}/role": {
@@ -1218,7 +1306,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "changeRole",
+        "x-required-scope": "user:changeRole",
+        "x-eov-operation-handler": "v1/handlers/users/users.handler.ee"
       }
     },
     "/data-tables": {
@@ -1278,7 +1369,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "listDataTables",
+        "x-required-scope": "dataTable:list",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.handler"
       },
       "post": {
         "tags": [
@@ -1364,7 +1458,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "createDataTable",
+        "x-required-scope": "dataTable:create",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.handler"
       }
     },
     "/data-tables/{dataTableId}": {
@@ -1402,7 +1499,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "getDataTable",
+        "x-required-scope": "dataTable:read",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.handler"
       },
       "patch": {
         "tags": [
@@ -1457,7 +1557,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "updateDataTable",
+        "x-required-scope": "dataTable:update",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.handler"
       },
       "delete": {
         "tags": [
@@ -1486,7 +1589,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "deleteDataTable",
+        "x-required-scope": "dataTable:delete",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.handler"
       }
     },
     "/data-tables/{dataTableId}/rows": {
@@ -1560,7 +1666,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "getDataTableRows",
+        "x-required-scope": "dataTableRow:read",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.rows.handler"
       },
       "post": {
         "tags": [
@@ -1624,7 +1733,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "insertDataTableRows",
+        "x-required-scope": "dataTableRow:create",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.rows.handler"
       }
     },
     "/data-tables/{dataTableId}/rows/update": {
@@ -1693,7 +1805,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "updateDataTableRows",
+        "x-required-scope": "dataTableRow:update",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.rows.handler"
       }
     },
     "/data-tables/{dataTableId}/rows/upsert": {
@@ -1763,7 +1878,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "upsertDataTableRow",
+        "x-required-scope": "dataTableRow:upsert",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.rows.handler"
       }
     },
     "/data-tables/{dataTableId}/rows/clear": {
@@ -1801,7 +1919,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "clearDataTableRows",
+        "x-required-scope": "dataTableRow:delete",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.rows.handler"
       }
     },
     "/data-tables/{dataTableId}/rows/delete": {
@@ -1871,7 +1992,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "deleteDataTableRows",
+        "x-required-scope": "dataTableRow:delete",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.rows.handler"
       }
     },
     "/data-tables/{dataTableId}/columns": {
@@ -1909,7 +2033,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "listDataTableColumns",
+        "x-required-scope": "dataTableColumn:read",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.columns.handler"
       },
       "post": {
         "tags": [
@@ -1965,7 +2092,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "createDataTableColumn",
+        "x-required-scope": "dataTableColumn:create",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.columns.handler"
       }
     },
     "/data-tables/{dataTableId}/columns/{columnId}": {
@@ -1999,7 +2129,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "deleteDataTableColumn",
+        "x-required-scope": "dataTableColumn:delete",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.columns.handler"
       },
       "patch": {
         "tags": [
@@ -2058,7 +2191,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "updateDataTableColumn",
+        "x-required-scope": "dataTableColumn:update",
+        "x-eov-operation-handler": "v1/handlers/data-tables/data-tables.columns.handler"
       }
     },
     "/community-packages": {
@@ -2102,7 +2238,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "installPackage",
+        "x-required-scope": "communityPackage:install",
+        "x-eov-operation-handler": "v1/handlers/community-packages/community-packages.handler"
       },
       "get": {
         "tags": [
@@ -2130,7 +2269,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "getInstalledPackages",
+        "x-required-scope": "communityPackage:list",
+        "x-eov-operation-handler": "v1/handlers/community-packages/community-packages.handler"
       }
     },
     "/community-packages/{name}": {
@@ -2187,7 +2329,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "updatePackage",
+        "x-required-scope": "communityPackage:update",
+        "x-eov-operation-handler": "v1/handlers/community-packages/community-packages.handler"
       },
       "delete": {
         "tags": [
@@ -2225,7 +2370,10 @@
           {
             "ApiKeyAuth": []
           }
-        ]
+        ],
+        "x-eov-operation-id": "uninstallPackage",
+        "x-required-scope": "communityPackage:uninstall",
+        "x-eov-operation-handler": "v1/handlers/community-packages/community-packages.handler"
       }
     },
     "/discover": {
@@ -2276,7 +2424,10 @@
           "401": {
             "$ref": "#/components/responses/unauthorized"
           }
-        }
+        },
+        "x-eov-operation-id": "getDiscover",
+        "x-required-scope": "none",
+        "x-eov-operation-handler": "v1/handlers/discover/discover.handler"
       }
     },
     "/insights/summary": {
@@ -2336,7 +2487,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getInsightsSummary",
+        "x-required-scope": "insights:read",
+        "x-eov-operation-handler": "v1/handlers/insights/insights.handler"
       }
     },
     "/projects/{projectId}/folders": {
@@ -2392,7 +2546,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "createFolder",
+        "x-required-scope": "folder:create",
+        "x-eov-operation-handler": "v1/handlers/folders/folders.handler"
       },
       "get": {
         "tags": [
@@ -2477,7 +2634,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "getFolders",
+        "x-required-scope": "folder:list",
+        "x-eov-operation-handler": "v1/handlers/folders/folders.handler"
       }
     },
     "/projects/{projectId}/folders/{folderId}": {
@@ -2532,7 +2692,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "deleteFolder",
+        "x-required-scope": "folder:delete",
+        "x-eov-operation-handler": "v1/handlers/folders/folders.handler"
       },
       "get": {
         "tags": [
@@ -2581,7 +2744,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "getFolder",
+        "x-required-scope": "folder:read",
+        "x-eov-operation-handler": "v1/handlers/folders/folders.handler"
       },
       "patch": {
         "tags": [
@@ -2644,7 +2810,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "updateFolder",
+        "x-required-scope": "folder:update",
+        "x-eov-operation-handler": "v1/handlers/folders/folders.handler"
       }
     },
     "/n8n-packages/export": {
@@ -2697,7 +2866,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "exportPackage",
+        "x-required-scope": "project:export,workflow:export",
+        "x-eov-operation-handler": "v1/handlers/n8n-packages/n8n-packages.handler"
       }
     },
     "/n8n-packages/import": {
@@ -2761,7 +2933,10 @@
               }
             }
           }
-        }
+        },
+        "x-eov-operation-id": "importPackage",
+        "x-required-scope": "workflow:import",
+        "x-eov-operation-handler": "v1/handlers/n8n-packages/n8n-packages.handler"
       }
     },
     "/settings/log-streaming/event-types": {
@@ -2789,7 +2964,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getEventTypes",
+        "x-required-scope": "eventBusDestination:list",
+        "x-eov-operation-handler": "v1/handlers/log-streaming/log-streaming.handler"
       }
     },
     "/settings/log-streaming/destinations": {
@@ -2817,7 +2995,10 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-eov-operation-id": "getDestinations",
+        "x-required-scope": "eventBusDestination:list",
+        "x-eov-operation-handler": "v1/handlers/log-streaming/log-streaming.handler"
       },
       "post": {
         "tags": [
@@ -2860,7 +3041,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "createDestination",
+        "x-required-scope": "eventBusDestination:create",
+        "x-eov-operation-handler": "v1/handlers/log-streaming/log-streaming.handler"
       }
     },
     "/settings/log-streaming/destinations/{id}/test": {
@@ -2902,7 +3086,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "testDestination",
+        "x-required-scope": "eventBusDestination:test",
+        "x-eov-operation-handler": "v1/handlers/log-streaming/log-streaming.handler"
       }
     },
     "/settings/log-streaming/destinations/{id}": {
@@ -2944,7 +3131,10 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-eov-operation-id": "getDestination",
+        "x-required-scope": "eventBusDestination:read",
+        "x-eov-operation-handler": "v1/handlers/log-streaming/log-streaming.handler"
       },
       "put": {
         "tags": [
@@ -3001,7 +3191,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "updateDestination",
+        "x-required-scope": "eventBusDestination:update",
+        "x-eov-operation-handler": "v1/handlers/log-streaming/log-streaming.handler"
       },
       "delete": {
         "tags": [
@@ -3044,7 +3237,10 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-eov-operation-id": "deleteDestination",
+        "x-required-scope": "eventBusDestination:delete",
+        "x-eov-operation-handler": "v1/handlers/log-streaming/log-streaming.handler"
       }
     },
     "/credentials": {
@@ -3083,7 +3279,11 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-required-scope": "credential:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "post": {
         "tags": [
@@ -3128,7 +3328,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "credential:create",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/credentials/{credentialId}": {
@@ -3170,7 +3374,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "credential:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "patch": {
         "tags": [
@@ -3226,7 +3434,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "credential:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -3266,7 +3478,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "credential:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/credentials/{credentialId}/transfer": {
@@ -3317,7 +3533,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "credential:move",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/executions": {
@@ -3424,7 +3644,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "execution:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/executions/{executionId}": {
@@ -3491,7 +3715,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "execution:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -3535,7 +3763,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "execution:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/executions/{executionId}/tags": {
@@ -3581,7 +3813,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "executionTags:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "put": {
         "tags": [
@@ -3638,7 +3874,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "executionTags:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/executions/stop": {
@@ -3685,7 +3925,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "execution:stop",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/executions/{executionId}/stop": {
@@ -3734,7 +3978,11 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-required-scope": "execution:stop",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/executions/{executionId}/retry": {
@@ -3795,7 +4043,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "execution:retry",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/node-type-policies/instance": {
@@ -3826,7 +4078,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "nodeTypePolicy:manage",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "put": {
         "tags": [
@@ -3874,7 +4130,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "nodeTypePolicy:manage",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/node-type-policies/projects/{projectId}": {
@@ -3916,7 +4176,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "nodeTypePolicy:manage",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "put": {
         "tags": [
@@ -3975,7 +4239,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "nodeTypePolicy:manage",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/projects": {
@@ -4014,7 +4282,11 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-required-scope": "project:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "post": {
         "tags": [
@@ -4056,7 +4328,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "project:create",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/projects/{projectId}": {
@@ -4107,7 +4383,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "project:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -4143,7 +4423,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "project:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/projects/{projectId}/users": {
@@ -4194,7 +4478,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "user:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "post": {
         "tags": [
@@ -4243,7 +4531,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "project:manageMembers",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/projects/{projectId}/users/{userId}": {
@@ -4303,7 +4595,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "project:manageMembers",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -4345,7 +4641,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "project:manageMembers",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/providers": {
@@ -4392,7 +4692,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:create",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "get": {
         "tags": [
@@ -4432,7 +4736,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/providers/{promotionProviderId}": {
@@ -4477,7 +4785,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "put": {
         "tags": [
@@ -4536,7 +4848,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -4575,7 +4891,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections": {
@@ -4628,7 +4948,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:create",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "get": {
         "tags": [
@@ -4684,7 +5008,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}": {
@@ -4729,7 +5057,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "put": {
         "tags": [
@@ -4788,7 +5120,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -4824,7 +5160,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/configs/apply": {
@@ -4888,7 +5228,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/configs/promote": {
@@ -4952,7 +5296,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/configs/{direction}": {
@@ -4999,7 +5347,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/{direction}/clone": {
@@ -5056,7 +5408,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:clone",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/{direction}/disconnect": {
@@ -5110,7 +5466,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:clone",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/projects": {
@@ -5154,7 +5514,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/projects/{projectId}": {
@@ -5214,7 +5578,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:manageProjects",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -5261,7 +5629,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:manageProjects",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/promote": {
@@ -5322,7 +5694,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:push",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/promotions/connections/{promotionConnectionId}/apply": {
@@ -5376,7 +5752,11 @@
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
           }
-        }
+        },
+        "x-required-scope": "gitConnection:pull",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/role-mapping-rules": {
@@ -5422,7 +5802,11 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-required-scope": "roleMappingRule:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "post": {
         "tags": [
@@ -5467,7 +5851,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "roleMappingRule:create",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/role-mapping-rules/{roleMappingRuleId}/move": {
@@ -5525,7 +5913,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "roleMappingRule:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/role-mapping-rules/{roleMappingRuleId}": {
@@ -5582,7 +5974,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "roleMappingRule:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -5622,7 +6018,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "roleMappingRule:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/roles": {
@@ -5662,7 +6062,11 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-required-scope": "role:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "post": {
         "tags": [
@@ -5704,7 +6108,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "role:manage,role:manageProject",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/roles/{roleSlug}": {
@@ -5756,7 +6164,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "role:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "put": {
         "tags": [
@@ -5812,7 +6224,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "role:manage,role:manageProject",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -5870,7 +6286,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "role:manage,role:manageProject",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/source-control/status": {
@@ -5911,7 +6331,11 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-required-scope": "sourceControl:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/source-control/push": {
@@ -5965,7 +6389,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "sourceControl:push",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/source-control/pull": {
@@ -6019,7 +6447,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "sourceControl:pull",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/tags": {
@@ -6058,7 +6490,11 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-required-scope": "tag:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "post": {
         "tags": [
@@ -6103,7 +6539,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "tag:create",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/variables": {
@@ -6157,7 +6597,11 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-required-scope": "variable:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "post": {
         "tags": [
@@ -6192,7 +6636,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "variable:create",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/variables/{id}": {
@@ -6243,7 +6691,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "variable:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -6276,7 +6728,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "variable:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows": {
@@ -6353,7 +6809,11 @@
           "403": {
             "$ref": "#/components/responses/forbidden"
           }
-        }
+        },
+        "x-required-scope": "workflow:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "post": {
         "tags": [
@@ -6401,7 +6861,11 @@
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
           }
-        }
+        },
+        "x-required-scope": "workflow:create",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}": {
@@ -6453,7 +6917,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "workflow:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "put": {
         "tags": [
@@ -6536,7 +7004,11 @@
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
           }
-        }
+        },
+        "x-required-scope": "workflow:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "delete": {
         "tags": [
@@ -6579,7 +7051,11 @@
           "409": {
             "$ref": "#/components/responses/conflict"
           }
-        }
+        },
+        "x-required-scope": "workflow:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/archive": {
@@ -6621,7 +7097,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "workflow:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/unarchive": {
@@ -6666,7 +7146,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "workflow:delete",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/transfer": {
@@ -6717,7 +7201,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "workflow:move",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/publish": {
@@ -6784,7 +7272,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "workflow:activate",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/unpublish": {
@@ -6826,7 +7318,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "workflow:deactivate",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/activate": {
@@ -6894,7 +7390,11 @@
             "$ref": "#/components/responses/unsupportedMediaType"
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "x-required-scope": "workflow:activate",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/deactivate": {
@@ -6937,7 +7437,11 @@
             "$ref": "#/components/responses/notFound"
           }
         },
-        "deprecated": true
+        "deprecated": true,
+        "x-required-scope": "workflow:deactivate",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/history": {
@@ -6988,7 +7492,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "workflow:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/versions/{workflowVersionId}": {
@@ -7039,7 +7547,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "workflow:read",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     },
     "/workflows/{workflowId}/tags": {
@@ -7084,7 +7596,11 @@
           "404": {
             "$ref": "#/components/responses/notFound"
           }
-        }
+        },
+        "x-required-scope": "workflowTags:list",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       },
       "put": {
         "tags": [
@@ -7140,7 +7656,11 @@
           "415": {
             "$ref": "#/components/responses/unsupportedMediaType"
           }
-        }
+        },
+        "x-required-scope": "workflowTags:update",
+        "x-eov-operation-id": "unreachable",
+        "x-eov-operation-handler": "v1/handlers/decorator-routed.handler",
+        "x-decorator-routed": true
       }
     }
   },
@@ -33026,5 +33546,6 @@
   "externalDocs": {
     "description": "n8n API documentation",
     "url": "https://docs.n8n.io/api/"
-  }
+  },
+  "x-enable-proxy": false
 }
