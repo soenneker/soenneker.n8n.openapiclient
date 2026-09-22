@@ -462,141 +462,6 @@ paths:
           $ref: '#/components/responses/forbidden'
         '409':
           $ref: '#/components/responses/conflict'
-  /credentials/{id}/test:
-    post:
-      x-eov-operation-id: testCredential
-      x-required-scope: credential:read
-      x-eov-operation-handler: v1/handlers/credentials/credentials.handler
-      tags:
-        - Credential
-      summary: Test credential by ID
-      description: Tests a credential by ID using the stored credential data.
-      operationId: testCredential
-      parameters:
-        - name: id
-          in: path
-          description: The credential ID
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/credentialTestResponse'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /credentials/schema/{credentialTypeName}:
-    get:
-      x-eov-operation-id: getCredentialType
-      x-required-scope: none
-      x-eov-operation-handler: v1/handlers/credentials/credentials.handler
-      tags:
-        - Credential
-      summary: Show credential data schema
-      parameters:
-        - name: credentialTypeName
-          in: path
-          description: The credential type name that you want to get the schema for
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                type: object
-              examples:
-                freshdeskApi:
-                  value:
-                    additionalProperties: false
-                    type: object
-                    properties:
-                      apiKey:
-                        type: string
-                      domain:
-                        type: string
-                    required:
-                      - apiKey
-                      - domain
-                slackOAuth2Api:
-                  value:
-                    additionalProperties: false
-                    type: object
-                    properties:
-                      clientId:
-                        type: string
-                      clientSecret:
-                        type: string
-                    required:
-                      - clientId
-                      - clientSecret
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-  /tags/{id}:
-    delete:
-      x-eov-operation-id: deleteTag
-      x-required-scope: tag:delete
-      x-eov-operation-handler: v1/handlers/tags/tags.handler
-      tags:
-        - Tags
-      summary: Delete a tag
-      description: Deletes a tag.
-      parameters:
-        - $ref: '#/components/parameters/tagId'
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tag'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-    put:
-      x-eov-operation-id: updateTag
-      x-required-scope: tag:update
-      x-eov-operation-handler: v1/handlers/tags/tags.handler
-      tags:
-        - Tags
-      summary: Update a tag
-      description: Update a tag.
-      parameters:
-        - $ref: '#/components/parameters/tagId'
-      requestBody:
-        description: Updated tag object.
-        content:
-          application/json:
-            schema:
-              $ref: '#/components/schemas/tag'
-        required: true
-      responses:
-        '200':
-          description: Tag object
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/tag'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '409':
-          $ref: '#/components/responses/conflict'
   /workflows/{id}/{versionId}:
     get:
       x-eov-operation-id: getWorkflowVersion
@@ -1721,50 +1586,6 @@ paths:
                         description: URL to the full OpenAPI specification
         '401':
           $ref: '#/components/responses/unauthorized'
-  /insights/summary:
-    get:
-      x-eov-operation-id: getInsightsSummary
-      x-required-scope: insights:read
-      x-eov-operation-handler: v1/handlers/insights/insights.handler
-      tags:
-        - Insights
-      summary: Retrieve insights summary
-      description: Retrieve the insights summary for the selected date range.
-      parameters:
-        - name: startDate
-          in: query
-          required: false
-          description: ISO 8601 start date. Defaults to 7 days ago.
-          schema:
-            type: string
-            format: date-time
-        - name: endDate
-          in: query
-          required: false
-          description: ISO 8601 end date. Defaults to now.
-          schema:
-            type: string
-            format: date-time
-        - name: projectId
-          in: query
-          required: false
-          description: Project identifier to filter insights by project.
-          schema:
-            type: string
-            example: VmwOO9HeTEj20kxM
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/insights'
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
   /projects/{projectId}/folders:
     post:
       x-eov-operation-id: createFolder
@@ -1804,39 +1625,37 @@ paths:
         '404':
           $ref: '#/components/responses/notFound'
     get:
-      x-eov-operation-id: getFolders
-      x-required-scope: folder:list
-      x-eov-operation-handler: v1/handlers/folders/folders.handler
+      operationId: listFolders
       tags:
         - Folders
       summary: Retrieve folders
       description: Retrieve folders within a project. Supports filtering, sorting, field selection, and pagination.
+      x-required-scope: folder:list
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
       parameters:
-        - name: projectId
-          in: path
-          description: The ID of the project.
+        - schema:
+            type: string
           required: true
-          schema:
+          description: The ID of the project.
+          name: projectId
+          in: path
+        - schema:
             type: string
-        - name: filter
-          in: query
-          required: false
-          description: JSON-encoded filter object. Supported fields — parentFolderId, name, tags (array of tag names), excludeFolderIdAndDescendants.
-          schema:
-            type: string
+            description: JSON-encoded filter object. Supported fields — parentFolderId, name, tags (array of tag names), excludeFolderIdAndDescendants.
             example: '{"parentFolderId":"abc123","name":"My Folder"}'
-        - name: select
-          in: query
           required: false
-          description: JSON-encoded array of fields to include. Valid fields — id, name, createdAt, updatedAt, project, tags, parentFolder, workflowCount, subFolderCount, path.
-          schema:
+          name: filter
+          in: query
+        - schema:
             type: string
+            description: JSON-encoded array of fields to include. Valid fields — id, name, createdAt, updatedAt, project, tags, parentFolder, workflowCount, subFolderCount, path.
             example: '["id","name","tags","workflowCount"]'
-        - name: sortBy
-          in: query
           required: false
-          description: Sort order for results.
-          schema:
+          name: select
+          in: query
+        - schema:
             type: string
             enum:
               - name:asc
@@ -1845,18 +1664,22 @@ paths:
               - createdAt:desc
               - updatedAt:asc
               - updatedAt:desc
-        - name: skip
-          in: query
+            description: Sort order for results.
           required: false
-          description: Number of items to skip for pagination. Defaults to 0.
-          schema:
-            type: string
-        - name: take
+          name: sortBy
           in: query
-          required: false
-          description: Number of items to return. Defaults to 10.
-          schema:
+        - schema:
             type: string
+            description: Number of items to skip for pagination. Defaults to 0.
+          required: false
+          name: skip
+          in: query
+        - schema:
+            type: string
+            description: Number of items to return. Defaults to 10.
+          required: false
+          name: take
+          in: query
       responses:
         '200':
           description: Operation successful.
@@ -1871,7 +1694,118 @@ paths:
                   data:
                     type: array
                     items:
-                      $ref: '#/components/schemas/folder'
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          readOnly: true
+                          example: zLXWgYyZrZ4Gn1Vk
+                        name:
+                          type: string
+                          example: My Folder
+                        parentFolderId:
+                          type: string
+                          nullable: true
+                          example: kRZ0ewrAEAhCkTBd
+                        createdAt:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        updatedAt:
+                          type: string
+                          format: date-time
+                          readOnly: true
+                        homeProject:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              readOnly: true
+                              example: VmwOO9HeTEj20kxM
+                            name:
+                              type: string
+                              example: Marketing
+                            type:
+                              type: string
+                              readOnly: true
+                              example: team
+                              enum:
+                                - personal
+                                - team
+                            icon:
+                              type: object
+                              description: Icon of the project, or null when the project has none
+                              properties:
+                                type:
+                                  type: string
+                                  enum:
+                                    - emoji
+                                    - icon
+                                value:
+                                  type: string
+                                color:
+                                  type: string
+                              required:
+                                - type
+                                - value
+                              nullable: true
+                          required:
+                            - id
+                            - name
+                            - type
+                            - icon
+                        parentFolder:
+                          type: object
+                          nullable: true
+                          properties:
+                            id:
+                              type: string
+                              readOnly: true
+                              example: zLXWgYyZrZ4Gn1Vk
+                            name:
+                              type: string
+                              example: My Folder
+                            parentFolderId:
+                              type: string
+                              nullable: true
+                          required:
+                            - id
+                            - name
+                            - parentFolderId
+                        tags:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                              name:
+                                type: string
+                            required:
+                              - id
+                              - name
+                        workflowCount:
+                          type: number
+                          description: Number of workflows the folder holds.
+                          readOnly: true
+                        subFolderCount:
+                          type: number
+                          description: Number of folders the folder holds.
+                          readOnly: true
+                        path:
+                          type: array
+                          items:
+                            type: string
+                          description: Names of every folder from the project root down to this folder.
+                          readOnly: true
+                          example:
+                            - Marketing
+                            - Campaigns
+                      required:
+                        - id
+                required:
+                  - count
+                  - data
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -1919,64 +1853,6 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
-    get:
-      x-eov-operation-id: getFolder
-      x-required-scope: folder:read
-      x-eov-operation-handler: v1/handlers/folders/folders.handler
-      tags:
-        - Folders
-      summary: Get folder details
-      description: Get folder details including sub-folder and workflow counts.
-      parameters:
-        - name: projectId
-          in: path
-          description: The ID of the project.
-          required: true
-          schema:
-            type: string
-        - name: folderId
-          in: path
-          description: The ID of the folder.
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                type: object
-                additionalProperties: false
-                properties:
-                  id:
-                    type: string
-                    readOnly: true
-                  name:
-                    type: string
-                  parentFolderId:
-                    type: string
-                    nullable: true
-                  createdAt:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  updatedAt:
-                    type: string
-                    format: date-time
-                    readOnly: true
-                  totalSubFolders:
-                    type: integer
-                    description: Total number of sub-folders (recursive).
-                  totalWorkflows:
-                    type: integer
-                    description: Total number of workflows (recursive).
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
     patch:
       x-eov-operation-id: updateFolder
       x-required-scope: folder:update
@@ -2014,6 +1890,76 @@ paths:
                 $ref: '#/components/schemas/folder'
         '400':
           $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+    get:
+      operationId: getFolder
+      tags:
+        - Folders
+      summary: Get folder details
+      description: Get folder details including sub-folder and workflow counts.
+      x-required-scope: folder:read
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+        - schema:
+            type: string
+          required: true
+          description: The ID of the folder.
+          name: folderId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    readOnly: true
+                    example: zLXWgYyZrZ4Gn1Vk
+                  name:
+                    type: string
+                    example: My Folder
+                  parentFolderId:
+                    type: string
+                    nullable: true
+                    example: kRZ0ewrAEAhCkTBd
+                  createdAt:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  totalSubFolders:
+                    type: integer
+                    description: Total number of sub-folders (recursive).
+                  totalWorkflows:
+                    type: integer
+                    description: Total number of workflows (recursive).
+                required:
+                  - id
+                  - name
+                  - parentFolderId
+                  - createdAt
+                  - updatedAt
+                  - totalSubFolders
+                  - totalWorkflows
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
@@ -2979,7 +2925,10 @@ paths:
               properties:
                 id:
                   type: string
-                  readOnly: true
+                  minLength: 1
+                  maxLength: 16
+                  pattern: ^[a-zA-Z0-9_-]+$
+                  description: An unused credential ID of 1–16 letters, digits, underscores, or hyphens. The supplied ID is preserved exactly. Omit to generate an ID.
                   example: R2DjclaysHbqn778
                 name:
                   type: string
@@ -3031,6 +2980,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
   /credentials/{credentialId}:
@@ -3249,6 +3200,114 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+  /credentials/{credentialId}/test:
+    post:
+      operationId: testCredential
+      tags:
+        - Credential
+      summary: Test credential by ID
+      description: Tests a credential by ID using the stored credential data.
+      x-required-scope: credential:read
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the credential.
+          name: credentialId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  status:
+                    type: string
+                    enum:
+                      - OK
+                      - Error
+                    example: OK
+                  message:
+                    type: string
+                    example: Connection successful!
+                required:
+                  - status
+                  - message
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /credentials/schema/{credentialTypeName}:
+    get:
+      operationId: getCredentialType
+      tags:
+        - Credential
+      summary: Show credential data schema
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The credential type name that you want to get the schema for
+          name: credentialTypeName
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  additionalProperties:
+                    type: boolean
+                    enum:
+                      - false
+                  type:
+                    type: string
+                    enum:
+                      - object
+                  properties:
+                    type: object
+                    additionalProperties:
+                      nullable: true
+                    description: JSON Schema fragment for each of the credential type's fields, keyed by field name.
+                    example:
+                      apiKey:
+                        type: string
+                      domain:
+                        type: string
+                  required:
+                    type: array
+                    items:
+                      type: string
+                    description: Names of the fields that are required for this credential type.
+                    example:
+                      - apiKey
+                      - domain
+                  allOf:
+                    type: array
+                    items:
+                      nullable: true
+                required:
+                  - additionalProperties
+                  - type
+                  - properties
+                  - required
+                additionalProperties: false
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/notFound'
   /executions:
     get:
       operationId: getExecutions
@@ -4285,6 +4344,139 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+  /insights/summary:
+    get:
+      operationId: getInsightsSummary
+      tags:
+        - Insights
+      summary: Retrieve insights summary
+      description: Retrieve the insights summary for the selected date range.
+      x-required-scope: insights:read
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+            format: date-time
+            description: ISO 8601 start date. Defaults to 7 days ago.
+          required: false
+          name: startDate
+          in: query
+        - schema:
+            type: string
+            format: date-time
+            description: ISO 8601 end date. Defaults to now.
+          required: false
+          name: endDate
+          in: query
+        - schema:
+            type: string
+            description: Project identifier to filter insights by project.
+            example: VmwOO9HeTEj20kxM
+          required: false
+          name: projectId
+          in: query
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  total:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      deviation:
+                        type: number
+                        nullable: true
+                      unit:
+                        type: string
+                        enum:
+                          - count
+                    required:
+                      - value
+                      - deviation
+                      - unit
+                  failed:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      deviation:
+                        type: number
+                        nullable: true
+                      unit:
+                        type: string
+                        enum:
+                          - count
+                    required:
+                      - value
+                      - deviation
+                      - unit
+                  failureRate:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      deviation:
+                        type: number
+                        nullable: true
+                      unit:
+                        type: string
+                        enum:
+                          - ratio
+                    required:
+                      - value
+                      - deviation
+                      - unit
+                  timeSaved:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      deviation:
+                        type: number
+                        nullable: true
+                      unit:
+                        type: string
+                        enum:
+                          - minute
+                    required:
+                      - value
+                      - deviation
+                      - unit
+                  averageRunTime:
+                    type: object
+                    properties:
+                      value:
+                        type: number
+                      deviation:
+                        type: number
+                        nullable: true
+                      unit:
+                        type: string
+                        enum:
+                          - millisecond
+                    required:
+                      - value
+                      - deviation
+                      - unit
+                required:
+                  - total
+                  - failed
+                  - failureRate
+                  - timeSaved
+                  - averageRunTime
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
   /node-type-policies/instance:
     get:
       operationId: getInstancePolicy
@@ -4302,7 +4494,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/nodeTypePolicyEffectivePublicDto.generated'
+                $ref: '#/components/schemas/policyEffectivePublicDto.generated'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
@@ -4389,7 +4581,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/nodeTypePolicyEffectiveWriteResultPublicDto.generated'
+                $ref: '#/components/schemas/policyEffectiveWriteResultPublicDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -4426,7 +4618,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/nodeTypePolicyEffectivePublicDto.generated'
+                $ref: '#/components/schemas/policyEffectivePublicDto.generated'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
@@ -4518,7 +4710,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/nodeTypePolicyEffectiveWriteResultPublicDto.generated'
+                $ref: '#/components/schemas/policyEffectiveWriteResultPublicDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -4527,6 +4719,551 @@ paths:
           $ref: '#/components/responses/forbidden'
         '409':
           $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /node-type-policies/policies:
+    get:
+      operationId: listPolicyDocuments
+      tags:
+        - NodeTypePolicy
+      summary: List node type policy documents
+      description: Returns a cursor-paginated list of reusable policy documents.
+      x-required-scope: nodeTypePolicy:manage
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        kind:
+                          type: string
+                        rules:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              action:
+                                type: string
+                                enum:
+                                  - allow
+                                  - deny
+                                  - delegate
+                              selector:
+                                oneOf:
+                                  - type: object
+                                    properties:
+                                      kind:
+                                        type: string
+                                        enum:
+                                          - name
+                                      value:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - kind
+                                      - value
+                                  - type: object
+                                    properties:
+                                      kind:
+                                        type: string
+                                        enum:
+                                          - package
+                                      value:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - kind
+                                      - value
+                            required:
+                              - id
+                              - action
+                              - selector
+                        version:
+                          type: integer
+                          minimum: 0
+                          exclusiveMinimum: true
+                        updatedBy:
+                          type: string
+                        createdAt:
+                          type: string
+                          format: date-time
+                        updatedAt:
+                          type: string
+                          format: date-time
+                      required:
+                        - id
+                        - kind
+                        - rules
+                        - version
+                        - updatedBy
+                        - createdAt
+                        - updatedAt
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    post:
+      operationId: createPolicyDocument
+      tags:
+        - NodeTypePolicy
+      summary: Create a node type policy document
+      description: Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rules:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      action:
+                        type: string
+                        enum:
+                          - allow
+                          - deny
+                          - delegate
+                      selector:
+                        oneOf:
+                          - type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - name
+                              value:
+                                type: string
+                                minLength: 1
+                            required:
+                              - kind
+                              - value
+                          - type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - package
+                              value:
+                                type: string
+                                minLength: 1
+                            required:
+                              - kind
+                              - value
+                    required:
+                      - id
+                      - action
+                      - selector
+              required:
+                - rules
+      responses:
+        '201':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/policyDocumentWriteResultPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /node-type-policies/policies/{policyId}:
+    get:
+      operationId: getPolicyDocument
+      tags:
+        - NodeTypePolicy
+      summary: Retrieve a node type policy document
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the node type policy document.
+          name: policyId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                  kind:
+                    type: string
+                  rules:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        action:
+                          type: string
+                          enum:
+                            - allow
+                            - deny
+                            - delegate
+                        selector:
+                          oneOf:
+                            - type: object
+                              properties:
+                                kind:
+                                  type: string
+                                  enum:
+                                    - name
+                                value:
+                                  type: string
+                                  minLength: 1
+                              required:
+                                - kind
+                                - value
+                            - type: object
+                              properties:
+                                kind:
+                                  type: string
+                                  enum:
+                                    - package
+                                value:
+                                  type: string
+                                  minLength: 1
+                              required:
+                                - kind
+                                - value
+                      required:
+                        - id
+                        - action
+                        - selector
+                  version:
+                    type: integer
+                    minimum: 0
+                    exclusiveMinimum: true
+                  updatedBy:
+                    type: string
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                required:
+                  - id
+                  - kind
+                  - rules
+                  - version
+                  - updatedBy
+                  - createdAt
+                  - updatedAt
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    put:
+      operationId: updatePolicyDocument
+      tags:
+        - NodeTypePolicy
+      summary: Replace the rules of a node type policy document
+      description: Replaces the document's whole rule list. `version` must equal the version last read; a stale value is rejected with 409. Every scope the document is attached to has its version bumped. A `delegate` rule is rejected when the document is attached to a project scope.
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the node type policy document.
+          name: policyId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                rules:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      id:
+                        type: string
+                        minLength: 1
+                      action:
+                        type: string
+                        enum:
+                          - allow
+                          - deny
+                          - delegate
+                      selector:
+                        oneOf:
+                          - type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - name
+                              value:
+                                type: string
+                                minLength: 1
+                            required:
+                              - kind
+                              - value
+                          - type: object
+                            properties:
+                              kind:
+                                type: string
+                                enum:
+                                  - package
+                              value:
+                                type: string
+                                minLength: 1
+                            required:
+                              - kind
+                              - value
+                    required:
+                      - id
+                      - action
+                      - selector
+                version:
+                  type: integer
+                  minimum: 0
+              required:
+                - rules
+                - version
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/policyDocumentWriteResultPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+    delete:
+      operationId: deletePolicyDocument
+      tags:
+        - NodeTypePolicy
+      summary: Delete a node type policy document
+      description: Deletes a policy document. A document that is still attached to a scope is rejected with 409; detach it first.
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the node type policy document.
+          name: policyId
+          in: path
+      responses:
+        '204':
+          description: Operation successful.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /node-type-policies/scopes/{scopeId}/attachments:
+    put:
+      operationId: replaceAttachments
+      tags:
+        - NodeTypePolicy
+      summary: Replace a scope's attached policy documents
+      description: Replaces every attachment on a scope. `scopeId` comes from the scope's `GET` response once it has been written. Each `policyId` and each `(isFloor, priority)` pair must be unique within the list. Last write wins; the scope's version is bumped.
+      x-required-scope: nodeTypePolicy:manage
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the node type policy scope.
+          name: scopeId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                attachments:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      policyId:
+                        type: string
+                        minLength: 1
+                      priority:
+                        type: integer
+                      isFloor:
+                        type: boolean
+                    required:
+                      - policyId
+                      - priority
+                      - isFloor
+              required:
+                - attachments
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  attachments:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        policyId:
+                          type: string
+                        rules:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              action:
+                                type: string
+                                enum:
+                                  - allow
+                                  - deny
+                                  - delegate
+                              selector:
+                                oneOf:
+                                  - type: object
+                                    properties:
+                                      kind:
+                                        type: string
+                                        enum:
+                                          - name
+                                      value:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - kind
+                                      - value
+                                  - type: object
+                                    properties:
+                                      kind:
+                                        type: string
+                                        enum:
+                                          - package
+                                      value:
+                                        type: string
+                                        minLength: 1
+                                    required:
+                                      - kind
+                                      - value
+                            required:
+                              - id
+                              - action
+                              - selector
+                        priority:
+                          type: integer
+                        isFloor:
+                          type: boolean
+                      required:
+                        - policyId
+                        - rules
+                        - priority
+                        - isFloor
+                  version:
+                    type: integer
+                    minimum: 0
+                    exclusiveMinimum: true
+                required:
+                  - attachments
+                  - version
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
         '503':
@@ -5981,6 +6718,16 @@ paths:
                   updatedAt:
                     type: string
                     format: date-time
+                  checkout:
+                    type: object
+                    properties:
+                      hasCheckout:
+                        type: boolean
+                      matchesConfig:
+                        type: boolean
+                    required:
+                      - hasCheckout
+                      - matchesConfig
                   settings:
                     type: object
                     properties:
@@ -6001,6 +6748,7 @@ paths:
                   - name
                   - createdAt
                   - updatedAt
+                  - checkout
                   - settings
         '400':
           $ref: '#/components/responses/badRequest'
@@ -6086,6 +6834,16 @@ paths:
                   updatedAt:
                     type: string
                     format: date-time
+                  checkout:
+                    type: object
+                    properties:
+                      hasCheckout:
+                        type: boolean
+                      matchesConfig:
+                        type: boolean
+                    required:
+                      - hasCheckout
+                      - matchesConfig
                   settings:
                     type: object
                     properties:
@@ -6109,6 +6867,7 @@ paths:
                   - name
                   - createdAt
                   - updatedAt
+                  - checkout
                   - settings
         '400':
           $ref: '#/components/responses/badRequest'
@@ -6144,6 +6903,9 @@ paths:
           in: path
         - schema:
             type: string
+            enum:
+              - apply
+              - promote
           required: true
           description: 'The direction of the promotion: apply or promote.'
           name: direction
@@ -6179,6 +6941,9 @@ paths:
           in: path
         - schema:
             type: string
+            enum:
+              - apply
+              - promote
           required: true
           description: 'The direction of the promotion: apply or promote.'
           name: direction
@@ -6220,6 +6985,9 @@ paths:
           in: path
         - schema:
             type: string
+            enum:
+              - apply
+              - promote
           required: true
           description: 'The direction of the promotion: apply or promote.'
           name: direction
@@ -6481,7 +7249,7 @@ paths:
       tags:
         - Promotions
       summary: Apply a package to the instance
-      description: Resets the local checkout to the configured branch tip and imports the package, overwriting to match. Requires the Apply direction to be cloned first, and is available on the instance connection only.
+      description: Checks the full package at the configured branch tip. Optionally send expectedSource with the configId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup. Retain configId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Requires a cloned Apply direction on an instance connection. The API key needs the gitConnection:pull scope. The importer checks user write permissions; granular API-key write scopes are not passed to it.
       x-required-scope: gitConnection:pull
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
@@ -6493,205 +7261,38 @@ paths:
           description: The ID of the promotion connection.
           name: promotionConnectionId
           in: path
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expectedSource:
+                  type: object
+                  properties:
+                    configId:
+                      type: string
+                      minLength: 1
+                      maxLength: 36
+                    branchName:
+                      type: string
+                      minLength: 1
+                    commitSha:
+                      type: string
+                      pattern: ^[0-9a-f]{40}([0-9a-f]{24})?$
+                  required:
+                    - configId
+                    - branchName
+                    - commitSha
+                  additionalProperties: false
+              additionalProperties: false
       responses:
         '200':
           description: Operation successful.
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  connectionId:
-                    type: string
-                    minLength: 1
-                    maxLength: 36
-                  configId:
-                    type: string
-                    minLength: 1
-                    maxLength: 36
-                  counts:
-                    type: object
-                    properties:
-                      projects:
-                        type: object
-                        properties:
-                          created:
-                            type: integer
-                            minimum: 0
-                          updated:
-                            type: integer
-                            minimum: 0
-                          skipped:
-                            type: integer
-                            minimum: 0
-                          deleted:
-                            type: integer
-                            minimum: 0
-                        required:
-                          - created
-                          - updated
-                          - skipped
-                          - deleted
-                      folders:
-                        type: object
-                        properties:
-                          created:
-                            type: integer
-                            minimum: 0
-                          skipped:
-                            type: integer
-                            minimum: 0
-                          removed:
-                            type: integer
-                            minimum: 0
-                        required:
-                          - created
-                          - skipped
-                          - removed
-                      workflows:
-                        type: object
-                        properties:
-                          created:
-                            type: integer
-                            minimum: 0
-                          updated:
-                            type: integer
-                            minimum: 0
-                          skipped:
-                            type: integer
-                            minimum: 0
-                          archived:
-                            type: integer
-                            minimum: 0
-                          deleted:
-                            type: integer
-                            minimum: 0
-                          publishing:
-                            type: object
-                            properties:
-                              published:
-                                type: integer
-                                minimum: 0
-                              unpublished:
-                                type: integer
-                                minimum: 0
-                              unchanged:
-                                type: integer
-                                minimum: 0
-                              blocked:
-                                type: integer
-                                minimum: 0
-                              failed:
-                                type: integer
-                                minimum: 0
-                            required:
-                              - published
-                              - unpublished
-                              - unchanged
-                              - blocked
-                              - failed
-                        required:
-                          - created
-                          - updated
-                          - skipped
-                          - archived
-                          - deleted
-                          - publishing
-                      credentials:
-                        type: object
-                        properties:
-                          matched:
-                            type: integer
-                            minimum: 0
-                          stubbed:
-                            type: integer
-                            minimum: 0
-                        required:
-                          - matched
-                          - stubbed
-                      dataTables:
-                        type: object
-                        properties:
-                          matched:
-                            type: integer
-                            minimum: 0
-                          created:
-                            type: integer
-                            minimum: 0
-                        required:
-                          - matched
-                          - created
-                      variables:
-                        type: object
-                        properties:
-                          matched:
-                            type: integer
-                            minimum: 0
-                          created:
-                            type: integer
-                            minimum: 0
-                          updated:
-                            type: integer
-                            minimum: 0
-                          stubbed:
-                            type: integer
-                            minimum: 0
-                          missing:
-                            type: integer
-                            minimum: 0
-                        required:
-                          - matched
-                          - created
-                          - updated
-                          - stubbed
-                          - missing
-                      tags:
-                        type: object
-                        properties:
-                          matched:
-                            type: integer
-                            minimum: 0
-                          created:
-                            type: integer
-                            minimum: 0
-                          renamed:
-                            type: integer
-                            minimum: 0
-                          reconciled:
-                            type: integer
-                            minimum: 0
-                          skipped:
-                            type: integer
-                            minimum: 0
-                        required:
-                          - matched
-                          - created
-                          - renamed
-                          - reconciled
-                          - skipped
-                    required:
-                      - projects
-                      - folders
-                      - workflows
-                      - credentials
-                      - dataTables
-                      - variables
-                      - tags
-                  git:
-                    type: object
-                    properties:
-                      commitSha:
-                        type: string
-                      branchName:
-                        type: string
-                    required:
-                      - commitSha
-                      - branchName
-                required:
-                  - connectionId
-                  - configId
-                  - counts
-                  - git
+                $ref: '#/components/schemas/applyPackageResultDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -6702,8 +7303,200 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/connections/{promotionConnectionId}/apply/continue:
+    post:
+      operationId: continueApplyPackage
+      tags:
+        - Promotions
+      summary: Continue Apply after binding setup
+      description: Rechecks the configured source and current target bindings. Send expectedSource with the configId, branchName, and full commitSha from the reviewed Apply result. Status `source-changed` requires a new Apply review. Status `blocked` returns fresh binding details without import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same cloned instance connection and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided.
+      x-required-scope: gitConnection:pull
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the promotion connection.
+          name: promotionConnectionId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                expectedSource:
+                  type: object
+                  properties:
+                    configId:
+                      type: string
+                      minLength: 1
+                      maxLength: 36
+                    branchName:
+                      type: string
+                      minLength: 1
+                    commitSha:
+                      type: string
+                      pattern: ^[0-9a-f]{40}([0-9a-f]{24})?$
+                  required:
+                    - configId
+                    - branchName
+                    - commitSha
+                  additionalProperties: false
+              required:
+                - expectedSource
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/applyPackageResultDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '422':
+          $ref: '#/components/responses/unprocessableEntity'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/projects/{projectId}/changes/{direction}:
+    get:
+      operationId: getPromotionChanges
+      tags:
+        - Promotions
+      summary: List the changes of a project in one direction
+      description: Compares a team project on this instance with the branch of its promotion configuration and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the direction to be cloned first.
+      x-required-scope: gitConnection:push,gitConnection:pull
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the project.
+          name: projectId
+          in: path
+        - schema:
+            type: string
+            enum:
+              - apply
+              - promote
+          required: true
+          description: 'The direction of the promotion: apply or promote.'
+          name: direction
+          in: path
+        - schema:
+            type: string
+          required: false
+          name: search
+          in: query
+        - schema:
+            type: string
+            enum:
+              - name
+              - updatedAt
+              - status
+            default: name
+          required: false
+          name: sort
+          in: query
+        - schema:
+            type: string
+            enum:
+              - asc
+              - desc
+            default: asc
+          required: false
+          name: order
+          in: query
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commitSha:
+                    type: string
+                    nullable: true
+                  changes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                          maxLength: 36
+                        name:
+                          type: string
+                        type:
+                          type: string
+                          enum:
+                            - workflow
+                        status:
+                          type: string
+                          enum:
+                            - new
+                            - modified
+                            - renamed
+                            - renamed-and-modified
+                            - archived
+                            - deleted
+                        version:
+                          type: integer
+                          nullable: true
+                          minimum: 0
+                        updatedAt:
+                          type: string
+                          nullable: true
+                        updatedBy:
+                          type: string
+                          nullable: true
+                        dependencyCount:
+                          type: integer
+                          minimum: 0
+                      required:
+                        - id
+                        - name
+                        - type
+                        - status
+                        - version
+                        - updatedAt
+                        - updatedBy
+                        - dependencyCount
+                required:
+                  - commitSha
+                  - changes
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /role-mapping-rules:
@@ -8353,6 +9146,116 @@ paths:
       summary: Retrieves a tag
       description: Retrieves a tag.
       x-required-scope: tag:read
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the tag.
+          name: tagId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/tagPublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+    put:
+      operationId: updateTag
+      tags:
+        - Tags
+      summary: Update a tag
+      description: Update a tag.
+      x-required-scope: tag:update
+      x-eov-operation-id: unreachable
+      x-eov-operation-handler: v1/handlers/decorator-routed.handler
+      x-decorator-routed: true
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the tag.
+          name: tagId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                id:
+                  type: string
+                  readOnly: true
+                  example: 2tUt1wbLX592XDdX
+                name:
+                  type: string
+                  example: Production
+                createdAt:
+                  type: string
+                  format: date-time
+                  readOnly: true
+                updatedAt:
+                  type: string
+                  format: date-time
+                  readOnly: true
+              required:
+                - name
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    readOnly: true
+                    example: 2tUt1wbLX592XDdX
+                  name:
+                    type: string
+                    example: Production
+                  createdAt:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                  updatedAt:
+                    type: string
+                    format: date-time
+                    readOnly: true
+                required:
+                  - id
+                  - name
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+    delete:
+      operationId: deleteTag
+      tags:
+        - Tags
+      summary: Delete a tag
+      description: Deletes a tag.
+      x-required-scope: tag:delete
       x-eov-operation-id: unreachable
       x-eov-operation-handler: v1/handlers/decorator-routed.handler
       x-decorator-routed: true
@@ -14008,40 +14911,6 @@ components:
           description: |
             Assertion Consumer Service return URL. Returned by GET for convenience; ignored on write so a GET response can be sent back as a PUT body.
           example: https://n8n.example.com/rest/sso/saml/acs
-    credentialTestResponse:
-      type: object
-      required:
-        - status
-        - message
-      properties:
-        status:
-          type: string
-          enum:
-            - OK
-            - Error
-        message:
-          type: string
-    tag:
-      type: object
-      additionalProperties: false
-      required:
-        - name
-      properties:
-        id:
-          type: string
-          readOnly: true
-          example: 2tUt1wbLX592XDdX
-        name:
-          type: string
-          example: Production
-        createdAt:
-          type: string
-          format: date-time
-          readOnly: true
-        updatedAt:
-          type: string
-          format: date-time
-          readOnly: true
     node:
       type: object
       additionalProperties: false
@@ -14834,95 +15703,18 @@ components:
           type: boolean
           description: |
             Whether to verify the package against the n8n-vetted package list. Required when the instance has N8N_UNVERIFIED_PACKAGES_ENABLED=false.
-    insights:
+    folder.create:
       type: object
+      additionalProperties: false
       required:
-        - total
-        - failed
-        - failureRate
-        - timeSaved
-        - averageRunTime
+        - name
       properties:
-        total:
-          type: object
-          required:
-            - value
-            - deviation
-            - unit
-          properties:
-            value:
-              type: number
-            deviation:
-              type: number
-              nullable: true
-            unit:
-              type: string
-              enum:
-                - count
-        failed:
-          type: object
-          required:
-            - value
-            - deviation
-            - unit
-          properties:
-            value:
-              type: number
-            deviation:
-              type: number
-              nullable: true
-            unit:
-              type: string
-              enum:
-                - count
-        failureRate:
-          type: object
-          required:
-            - value
-            - deviation
-            - unit
-          properties:
-            value:
-              type: number
-            deviation:
-              type: number
-              nullable: true
-            unit:
-              type: string
-              enum:
-                - ratio
-        timeSaved:
-          type: object
-          required:
-            - value
-            - deviation
-            - unit
-          properties:
-            value:
-              type: number
-            deviation:
-              type: number
-              nullable: true
-            unit:
-              type: string
-              enum:
-                - minute
-        averageRunTime:
-          type: object
-          required:
-            - value
-            - deviation
-            - unit
-          properties:
-            value:
-              type: number
-            deviation:
-              type: number
-              nullable: true
-            unit:
-              type: string
-              enum:
-                - millisecond
+        name:
+          type: string
+          example: My Folder
+        parentFolderId:
+          type: string
+          example: abc123
     folder:
       type: object
       additionalProperties: false
@@ -14944,18 +15736,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-    folder.create:
-      type: object
-      additionalProperties: false
-      required:
-        - name
-      properties:
-        name:
-          type: string
-          example: My Folder
-        parentFolderId:
-          type: string
-          example: abc123
     folder.update:
       type: object
       additionalProperties: false
@@ -15833,6 +16613,27 @@ components:
           description: Last time the role was updated.
           format: date-time
           readOnly: true
+    tag:
+      type: object
+      additionalProperties: false
+      required:
+        - name
+      properties:
+        id:
+          type: string
+          readOnly: true
+          example: 2tUt1wbLX592XDdX
+        name:
+          type: string
+          example: Production
+        createdAt:
+          type: string
+          format: date-time
+          readOnly: true
+        updatedAt:
+          type: string
+          format: date-time
+          readOnly: true
     workflowSettings:
       type: object
       additionalProperties: false
@@ -16193,25 +16994,6 @@ components:
           description: Paginate through workflows by setting the cursor parameter to a nextCursor attribute returned by a previous request. Default value fetches the first "page" of the collection.
           nullable: true
           example: MTIzZTQ1NjctZTg5Yi0xMmQzLWE0NTYtNDI2NjE0MTc0MDA
-    credentialType:
-      type: object
-      properties:
-        displayName:
-          type: string
-          readOnly: true
-          example: Email
-        name:
-          type: string
-          readOnly: true
-          example: email
-        type:
-          type: string
-          readOnly: true
-          example: string
-        default:
-          type: string
-          readOnly: true
-          example: string
     Error:
       $ref: '#/components/schemas/error'
     Role:
@@ -16228,8 +17010,6 @@ components:
       $ref: '#/components/schemas/workflowSettings'
     WorkflowList:
       $ref: '#/components/schemas/workflowList'
-    CredentialType:
-      $ref: '#/components/schemas/credentialType'
     Audit:
       $ref: '#/components/schemas/audit'
     UserList:
@@ -16298,7 +17078,7 @@ components:
           - name
           - createdAt
           - updatedAt
-    nodeTypePolicyEffectivePublicDto.generated:
+    policyEffectivePublicDto.generated:
       type: object
       properties:
         scopeId:
@@ -16362,7 +17142,7 @@ components:
         - rules
         - defaultAction
         - version
-    nodeTypePolicyEffectiveWriteResultPublicDto.generated:
+    policyEffectiveWriteResultPublicDto.generated:
       type: object
       properties:
         scopeId:
@@ -16438,6 +17218,95 @@ components:
         - rules
         - defaultAction
         - version
+        - warnings
+    policyDocumentWriteResultPublicDto.generated:
+      type: object
+      properties:
+        policy:
+          type: object
+          properties:
+            id:
+              type: string
+            kind:
+              type: string
+            rules:
+              type: array
+              items:
+                type: object
+                properties:
+                  id:
+                    type: string
+                    minLength: 1
+                  action:
+                    type: string
+                    enum:
+                      - allow
+                      - deny
+                      - delegate
+                  selector:
+                    oneOf:
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - name
+                          value:
+                            type: string
+                            minLength: 1
+                        required:
+                          - kind
+                          - value
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - package
+                          value:
+                            type: string
+                            minLength: 1
+                        required:
+                          - kind
+                          - value
+                required:
+                  - id
+                  - action
+                  - selector
+            version:
+              type: integer
+              minimum: 0
+              exclusiveMinimum: true
+            updatedBy:
+              type: string
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          required:
+            - id
+            - kind
+            - rules
+            - version
+            - updatedBy
+            - createdAt
+            - updatedAt
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              ruleId:
+                type: string
+              shadowedByRuleId:
+                type: string
+            required:
+              - ruleId
+              - shadowedByRuleId
+      required:
+        - policy
         - warnings
     promotionProviderPublicDto.generated:
       type: object
@@ -16578,6 +17447,16 @@ components:
                 updatedAt:
                   type: string
                   format: date-time
+                checkout:
+                  type: object
+                  properties:
+                    hasCheckout:
+                      type: boolean
+                    matchesConfig:
+                      type: boolean
+                  required:
+                    - hasCheckout
+                    - matchesConfig
                 settings:
                   type: object
                   properties:
@@ -16598,6 +17477,7 @@ components:
                 - name
                 - createdAt
                 - updatedAt
+                - checkout
                 - settings
             promote:
               type: object
@@ -16614,6 +17494,16 @@ components:
                 updatedAt:
                   type: string
                   format: date-time
+                checkout:
+                  type: object
+                  properties:
+                    hasCheckout:
+                      type: boolean
+                    matchesConfig:
+                      type: boolean
+                  required:
+                    - hasCheckout
+                    - matchesConfig
                 settings:
                   type: object
                   properties:
@@ -16637,6 +17527,7 @@ components:
                 - name
                 - createdAt
                 - updatedAt
+                - checkout
                 - settings
         createdAt:
           type: string
@@ -16679,6 +17570,1167 @@ components:
         - direction
         - branchName
         - hasCheckout
+    promotionCredentialExpressionValue.generated:
+      anyOf:
+        - type: string
+        - type: array
+          items:
+            $ref: '#/components/schemas/promotionCredentialExpressionValue.generated'
+        - type: object
+          additionalProperties:
+            $ref: '#/components/schemas/promotionCredentialExpressionValue.generated'
+      description: Values can be strings, arrays, or nested objects. Every leaf is an expression string.
+    applyPackageResultDto.generated:
+      oneOf:
+        - type: object
+          properties:
+            connectionId:
+              type: string
+              minLength: 1
+              maxLength: 36
+            configId:
+              type: string
+              minLength: 1
+              maxLength: 36
+            git:
+              type: object
+              properties:
+                commitSha:
+                  type: string
+                branchName:
+                  type: string
+              required:
+                - commitSha
+                - branchName
+            status:
+              type: string
+              enum:
+                - applied
+            counts:
+              type: object
+              properties:
+                projects:
+                  type: object
+                  properties:
+                    created:
+                      type: integer
+                      minimum: 0
+                    updated:
+                      type: integer
+                      minimum: 0
+                    skipped:
+                      type: integer
+                      minimum: 0
+                    deleted:
+                      type: integer
+                      minimum: 0
+                  required:
+                    - created
+                    - updated
+                    - skipped
+                    - deleted
+                folders:
+                  type: object
+                  properties:
+                    created:
+                      type: integer
+                      minimum: 0
+                    skipped:
+                      type: integer
+                      minimum: 0
+                    removed:
+                      type: integer
+                      minimum: 0
+                  required:
+                    - created
+                    - skipped
+                    - removed
+                workflows:
+                  type: object
+                  properties:
+                    created:
+                      type: integer
+                      minimum: 0
+                    updated:
+                      type: integer
+                      minimum: 0
+                    skipped:
+                      type: integer
+                      minimum: 0
+                    archived:
+                      type: integer
+                      minimum: 0
+                    deleted:
+                      type: integer
+                      minimum: 0
+                    publishing:
+                      type: object
+                      properties:
+                        published:
+                          type: integer
+                          minimum: 0
+                        unpublished:
+                          type: integer
+                          minimum: 0
+                        unchanged:
+                          type: integer
+                          minimum: 0
+                        blocked:
+                          type: integer
+                          minimum: 0
+                        failed:
+                          type: integer
+                          minimum: 0
+                      required:
+                        - published
+                        - unpublished
+                        - unchanged
+                        - blocked
+                        - failed
+                  required:
+                    - created
+                    - updated
+                    - skipped
+                    - archived
+                    - deleted
+                    - publishing
+                credentials:
+                  type: object
+                  properties:
+                    matched:
+                      type: integer
+                      minimum: 0
+                    stubbed:
+                      type: integer
+                      minimum: 0
+                  required:
+                    - matched
+                    - stubbed
+                dataTables:
+                  type: object
+                  properties:
+                    matched:
+                      type: integer
+                      minimum: 0
+                    created:
+                      type: integer
+                      minimum: 0
+                  required:
+                    - matched
+                    - created
+                variables:
+                  type: object
+                  properties:
+                    matched:
+                      type: integer
+                      minimum: 0
+                    created:
+                      type: integer
+                      minimum: 0
+                    updated:
+                      type: integer
+                      minimum: 0
+                    stubbed:
+                      type: integer
+                      minimum: 0
+                    missing:
+                      type: integer
+                      minimum: 0
+                  required:
+                    - matched
+                    - created
+                    - updated
+                    - stubbed
+                    - missing
+                tags:
+                  type: object
+                  properties:
+                    matched:
+                      type: integer
+                      minimum: 0
+                    created:
+                      type: integer
+                      minimum: 0
+                    renamed:
+                      type: integer
+                      minimum: 0
+                    reconciled:
+                      type: integer
+                      minimum: 0
+                    skipped:
+                      type: integer
+                      minimum: 0
+                  required:
+                    - matched
+                    - created
+                    - renamed
+                    - reconciled
+                    - skipped
+              required:
+                - projects
+                - folders
+                - workflows
+                - credentials
+                - dataTables
+                - variables
+                - tags
+            warnings:
+              type: array
+              items:
+                type: object
+                properties:
+                  kind:
+                    type: string
+                    enum:
+                      - variable
+                  code:
+                    type: string
+                    enum:
+                      - variable-shadowed
+                  name:
+                    type: string
+                    minLength: 1
+                  scope:
+                    type: object
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                          - global
+                    required:
+                      - kind
+                  consumers:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        project:
+                          type: object
+                          properties:
+                            id:
+                              type: string
+                              minLength: 1
+                            name:
+                              type: string
+                          required:
+                            - id
+                            - name
+                        workflows:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              name:
+                                type: string
+                            required:
+                              - id
+                              - name
+                          minItems: 1
+                      required:
+                        - project
+                        - workflows
+                    minItems: 1
+                required:
+                  - kind
+                  - code
+                  - name
+                  - scope
+                  - consumers
+          required:
+            - connectionId
+            - configId
+            - git
+            - status
+            - counts
+            - warnings
+        - type: object
+          properties:
+            connectionId:
+              type: string
+              minLength: 1
+              maxLength: 36
+            configId:
+              type: string
+              minLength: 1
+              maxLength: 36
+            git:
+              type: object
+              properties:
+                commitSha:
+                  type: string
+                branchName:
+                  type: string
+              required:
+                - commitSha
+                - branchName
+            status:
+              type: string
+              enum:
+                - blocked
+            preflight:
+              type: object
+              properties:
+                missingBindings:
+                  type: array
+                  items:
+                    oneOf:
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - credential
+                          sourceId:
+                            type: string
+                            minLength: 1
+                          name:
+                            type: string
+                          credentialType:
+                            type: string
+                            minLength: 1
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                          ownerProject:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              name:
+                                type: string
+                            required:
+                              - id
+                              - name
+                          expressionData:
+                            type: object
+                            additionalProperties:
+                              $ref: '#/components/schemas/promotionCredentialExpressionValue.generated'
+                            description: Credential expressions.
+                        required:
+                          - kind
+                          - sourceId
+                          - name
+                          - credentialType
+                          - consumers
+                          - ownerProject
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - variable
+                          name:
+                            type: string
+                            minLength: 1
+                          variableType:
+                            type: string
+                            enum:
+                              - string
+                            default: string
+                          scope:
+                            oneOf:
+                              - type: object
+                                properties:
+                                  kind:
+                                    type: string
+                                    enum:
+                                      - global
+                                required:
+                                  - kind
+                              - type: object
+                                properties:
+                                  kind:
+                                    type: string
+                                    enum:
+                                      - project
+                                  project:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                required:
+                                  - kind
+                                  - project
+                          sourceValue:
+                            type: string
+                            maxLength: 1000
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                        required:
+                          - kind
+                          - name
+                          - scope
+                          - consumers
+                accessRequirements:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                          - credential
+                      sourceId:
+                        type: string
+                        minLength: 1
+                      name:
+                        type: string
+                      credentialType:
+                        type: string
+                        minLength: 1
+                      consumers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            project:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  minLength: 1
+                                name:
+                                  type: string
+                              required:
+                                - id
+                                - name
+                            workflows:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    minLength: 1
+                                  name:
+                                    type: string
+                                required:
+                                  - id
+                                  - name
+                              minItems: 1
+                          required:
+                            - project
+                            - workflows
+                        minItems: 1
+                      code:
+                        type: string
+                        enum:
+                          - access-required
+                    required:
+                      - kind
+                      - sourceId
+                      - name
+                      - credentialType
+                      - consumers
+                      - code
+                conflicts:
+                  type: array
+                  items:
+                    oneOf:
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - credential
+                          sourceId:
+                            type: string
+                            nullable: true
+                            minLength: 1
+                          name:
+                            type: string
+                          expectedTypes:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          filePath:
+                            type: string
+                          referenceFiles:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                          code:
+                            type: string
+                            enum:
+                              - missing-id
+                        required:
+                          - kind
+                          - sourceId
+                          - name
+                          - expectedTypes
+                          - referenceFiles
+                          - consumers
+                          - code
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - credential
+                          sourceId:
+                            type: string
+                            nullable: true
+                            minLength: 1
+                          name:
+                            type: string
+                          expectedTypes:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          filePath:
+                            type: string
+                          referenceFiles:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                          code:
+                            type: string
+                            enum:
+                              - conflicting-types
+                        required:
+                          - kind
+                          - sourceId
+                          - name
+                          - expectedTypes
+                          - referenceFiles
+                          - consumers
+                          - code
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - credential
+                          sourceId:
+                            type: string
+                            nullable: true
+                            minLength: 1
+                          name:
+                            type: string
+                          expectedTypes:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          filePath:
+                            type: string
+                          referenceFiles:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                          code:
+                            type: string
+                            enum:
+                              - unknown-type
+                        required:
+                          - kind
+                          - sourceId
+                          - name
+                          - expectedTypes
+                          - referenceFiles
+                          - consumers
+                          - code
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - credential
+                          sourceId:
+                            type: string
+                            nullable: true
+                            minLength: 1
+                          name:
+                            type: string
+                          expectedTypes:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          filePath:
+                            type: string
+                          referenceFiles:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                          code:
+                            type: string
+                            enum:
+                              - unknown-owner
+                        required:
+                          - kind
+                          - sourceId
+                          - name
+                          - expectedTypes
+                          - referenceFiles
+                          - consumers
+                          - code
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - credential
+                          sourceId:
+                            type: string
+                            nullable: true
+                            minLength: 1
+                          name:
+                            type: string
+                          expectedTypes:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          filePath:
+                            type: string
+                          referenceFiles:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                          code:
+                            type: string
+                            enum:
+                              - type-mismatch
+                          targetType:
+                            type: string
+                        required:
+                          - kind
+                          - sourceId
+                          - name
+                          - expectedTypes
+                          - referenceFiles
+                          - consumers
+                          - code
+                          - targetType
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - credential
+                          sourceId:
+                            type: string
+                            nullable: true
+                            minLength: 1
+                          name:
+                            type: string
+                          expectedTypes:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          filePath:
+                            type: string
+                          referenceFiles:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                          code:
+                            type: string
+                            enum:
+                              - incompatible-usage-scope
+                          usageScope:
+                            type: string
+                        required:
+                          - kind
+                          - sourceId
+                          - name
+                          - expectedTypes
+                          - referenceFiles
+                          - consumers
+                          - code
+                          - usageScope
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - variable
+                          code:
+                            type: string
+                            enum:
+                              - missing-definition
+                          name:
+                            type: string
+                            minLength: 1
+                          referenceFiles:
+                            type: array
+                            items:
+                              type: string
+                            minItems: 1
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                        required:
+                          - kind
+                          - code
+                          - name
+                          - referenceFiles
+                          - consumers
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - project
+                          code:
+                            type: string
+                            enum:
+                              - project-not-team
+                          project:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              name:
+                                type: string
+                            required:
+                              - id
+                              - name
+                          filePath:
+                            type: string
+                          workflows:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  minLength: 1
+                                name:
+                                  type: string
+                              required:
+                                - id
+                                - name
+                        required:
+                          - kind
+                          - code
+                          - project
+                          - filePath
+                          - workflows
+                warnings:
+                  type: array
+                  items:
+                    type: object
+                    properties:
+                      kind:
+                        type: string
+                        enum:
+                          - variable
+                      code:
+                        type: string
+                        enum:
+                          - variable-shadowed
+                      name:
+                        type: string
+                        minLength: 1
+                      scope:
+                        type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - global
+                        required:
+                          - kind
+                      consumers:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            project:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  minLength: 1
+                                name:
+                                  type: string
+                              required:
+                                - id
+                                - name
+                            workflows:
+                              type: array
+                              items:
+                                type: object
+                                properties:
+                                  id:
+                                    type: string
+                                    minLength: 1
+                                  name:
+                                    type: string
+                                required:
+                                  - id
+                                  - name
+                              minItems: 1
+                          required:
+                            - project
+                            - workflows
+                        minItems: 1
+                    required:
+                      - kind
+                      - code
+                      - name
+                      - scope
+                      - consumers
+              required:
+                - missingBindings
+                - accessRequirements
+                - conflicts
+                - warnings
+          required:
+            - connectionId
+            - configId
+            - git
+            - status
+            - preflight
+        - type: object
+          properties:
+            connectionId:
+              type: string
+              minLength: 1
+              maxLength: 36
+            configId:
+              type: string
+              minLength: 1
+              maxLength: 36
+            git:
+              type: object
+              properties:
+                commitSha:
+                  type: string
+                branchName:
+                  type: string
+              required:
+                - commitSha
+                - branchName
+            status:
+              type: string
+              enum:
+                - source-changed
+          required:
+            - connectionId
+            - configId
+            - git
+            - status
     roleMappingRulePublicDto.generated:
       type: object
       properties:
@@ -17999,13 +20051,6 @@ components:
       style: form
       schema:
         type: string
-    tagId:
-      name: id
-      in: path
-      description: The ID of the tag.
-      required: true
-      schema:
-        type: string
     workflowId:
       name: id
       in: path
@@ -18082,8 +20127,6 @@ components:
       $ref: '#/components/parameters/testRunWorkflowId'
     TestRunId:
       $ref: '#/components/parameters/testRunId'
-    TagId:
-      $ref: '#/components/parameters/tagId'
     UserIdentifier:
       $ref: '#/components/parameters/userIdentifier'
     IncludeRole:

@@ -20,14 +20,14 @@ namespace Soenneker.N8n.OpenApiClient.Tags
     {
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.tags.item collection</summary>
         /// <param name="position">The ID of the tag.</param>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Tags.Item.TagsItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Tags.Item.TagsItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Tags.Item.WithTagItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Tags.Item.WithTagItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("id", position);
-                return new global::Soenneker.N8n.OpenApiClient.Tags.Item.TagsItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("tagId", position);
+                return new global::Soenneker.N8n.OpenApiClient.Tags.Item.WithTagItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

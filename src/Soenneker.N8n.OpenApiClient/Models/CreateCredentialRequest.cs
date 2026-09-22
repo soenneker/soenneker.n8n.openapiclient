@@ -24,13 +24,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialRequestData Data { get; set; }
 #endif
-        /// <summary>The id property</summary>
+        /// <summary>An unused credential ID of 1–16 letters, digits, underscores, or hyphens. The supplied ID is preserved exactly. Omit to generate an ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; private set; }
+        public string? Id { get; set; }
 #nullable restore
 #else
-        public string Id { get; private set; }
+        public string Id { get; set; }
 #endif
         /// <summary>Whether this credential has resolvable fields</summary>
         public bool? IsResolvable { get; set; }
@@ -103,6 +103,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialRequestData>("data", Data);
+            writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isResolvable", IsResolvable);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("projectId", ProjectId);

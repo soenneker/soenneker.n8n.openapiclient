@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
+using Soenneker.N8n.OpenApiClient.Promotions.Connections.Item.Apply.Continue;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Connections.Item.Apply
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ApplyRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The continue property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.Connections.Item.Apply.Continue.ContinueRequestBuilder Continue
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Connections.Item.Apply.Continue.ContinueRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Promotions.Connections.Item.Apply.ApplyRequestBuilder"/> and sets the default values.
         /// </summary>
@@ -34,40 +40,45 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Connections.Item.Apply
         {
         }
         /// <summary>
-        /// Resets the local checkout to the configured branch tip and imports the package, overwriting to match. Requires the Apply direction to be cloned first, and is available on the instance connection only.
+        /// Checks the full package at the configured branch tip. Optionally send expectedSource with the configId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup. Retain configId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Requires a cloned Apply direction on an instance connection. The API key needs the gitConnection:pull scope. The importer checks user write permissions; granular API-key write scopes are not passed to it.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackage200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGenerated"/></returns>
+        /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackage200Response?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGenerated?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackage200Response> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGenerated> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
-            var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackage200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ApplyPackage200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
+            var requestInfo = ToPostRequestInformation(body, requestConfiguration);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Resets the local checkout to the configured branch tip and imports the package, overwriting to match. Requires the Apply direction to be cloned first, and is available on the instance connection only.
+        /// Checks the full package at the configured branch tip. Optionally send expectedSource with the configId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup. Retain configId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Requires a cloned Apply direction on an instance connection. The API key needs the gitConnection:pull scope. The importer checks user write permissions; granular API-key write scopes are not passed to it.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
+        /// <param name="body">The request body</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
+            if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = new RequestInformation(Method.POST, UrlTemplate, PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
+            requestInfo.SetContentFromParsable(RequestAdapter, "application/json", body);
             return requestInfo;
         }
         /// <summary>

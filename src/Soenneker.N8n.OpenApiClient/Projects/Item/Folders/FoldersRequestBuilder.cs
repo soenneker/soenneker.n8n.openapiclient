@@ -49,20 +49,20 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders
         /// <summary>
         /// Retrieve folders within a project. Supports filtering, sorting, field selection, and pagination.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ListFolders200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder.FoldersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ListFolders200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder.FoldersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder.FoldersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ListFolders200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.FoldersRequestBuilder.FoldersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFolders200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ListFolders200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListFolders200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a folder within a project.
@@ -140,48 +140,61 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class FoldersRequestBuilderGetQueryParameters 
         {
-            /// <summary>JSON-encoded filter object. Supported fields — parentFolderId, name, tags (array of tag names), excludeFolderIdAndDescendants.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("filter")]
             public string? Filter { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("filter")]
             public string Filter { get; set; }
+            #pragma warning restore CS1591
 #endif
-            /// <summary>JSON-encoded array of fields to include. Valid fields — id, name, createdAt, updatedAt, project, tags, parentFolder, workflowCount, subFolderCount, path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("select")]
             public string? Select { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("select")]
             public string Select { get; set; }
+            #pragma warning restore CS1591
 #endif
-            /// <summary>Number of items to skip for pagination. Defaults to 0.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("skip")]
             public string? Skip { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("skip")]
             public string Skip { get; set; }
+            #pragma warning restore CS1591
 #endif
-            /// <summary>Sort order for results.</summary>
+            #pragma warning disable CS1591
             [QueryParameter("sortBy")]
-            public global::Soenneker.N8n.OpenApiClient.Models.GetProjectsByProjectIdFoldersSortByParameter? SortBy { get; set; }
-            /// <summary>Number of items to return. Defaults to 10.</summary>
+            public global::Soenneker.N8n.OpenApiClient.Models.ListFoldersSortByParameter? SortBy { get; set; }
+            #pragma warning restore CS1591
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
+            #pragma warning disable CS1591
             [QueryParameter("take")]
             public string? Take { get; set; }
+            #pragma warning restore CS1591
 #nullable restore
 #else
+            #pragma warning disable CS1591
             [QueryParameter("take")]
             public string Take { get; set; }
+            #pragma warning restore CS1591
 #endif
         }
     }

@@ -26,14 +26,14 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
         }
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.credentials.item collection</summary>
         /// <param name="position">The ID of the credential.</param>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Credentials.Item.CredentialItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Credentials.Item.CredentialItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Credentials.Item.WithCredentialItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Credentials.Item.WithCredentialItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("credential%2Did", position);
-                return new global::Soenneker.N8n.OpenApiClient.Credentials.Item.CredentialItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("credentialId", position);
+                return new global::Soenneker.N8n.OpenApiClient.Credentials.Item.WithCredentialItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>

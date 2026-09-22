@@ -3,7 +3,9 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.NodeTypePolicies.Instance;
+using Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies;
 using Soenneker.N8n.OpenApiClient.NodeTypePolicies.Projects;
+using Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -21,10 +23,20 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies
         {
             get => new global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.Instance.InstanceRequestBuilder(PathParameters, RequestAdapter);
         }
+        /// <summary>The policies property</summary>
+        public global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.PoliciesRequestBuilder Policies
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.PoliciesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The projects property</summary>
         public global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.Projects.ProjectsRequestBuilder Projects
         {
             get => new global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.Projects.ProjectsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The scopes property</summary>
+        public global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.ScopesRequestBuilder Scopes
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.ScopesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.NodeTypePoliciesRequestBuilder"/> and sets the default values.

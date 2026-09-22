@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Promotions.Connections;
+using Soenneker.N8n.OpenApiClient.Promotions.Projects;
 using Soenneker.N8n.OpenApiClient.Promotions.Providers;
 using System.Collections.Generic;
 using System.IO;
@@ -20,6 +21,11 @@ namespace Soenneker.N8n.OpenApiClient.Promotions
         public global::Soenneker.N8n.OpenApiClient.Promotions.Connections.ConnectionsRequestBuilder Connections
         {
             get => new global::Soenneker.N8n.OpenApiClient.Promotions.Connections.ConnectionsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The projects property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.Projects.ProjectsRequestBuilder Projects
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Projects.ProjectsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The providers property</summary>
         public global::Soenneker.N8n.OpenApiClient.Promotions.Providers.ProvidersRequestBuilder Providers
