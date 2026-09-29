@@ -36,22 +36,22 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.Item.Attachments
         /// <summary>
         /// Replaces every attachment on a scope. `scopeId` comes from the scope&apos;s `GET` response once it has been written. Each `policyId` and each `(isFloor, priority)` pair must be unique within the list. Last write wins; the scope&apos;s version is bumped.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachments200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachments200Response?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachmentsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachments200Response> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachmentsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachments200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachments200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Replaces every attachment on a scope. `scopeId` comes from the scope&apos;s `GET` response once it has been written. Each `policyId` and each `(isFloor, priority)` pair must be unique within the list. Last write wins; the scope&apos;s version is bumped.
@@ -61,11 +61,11 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.Item.Attachments
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachmentsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ReplaceAttachmentsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

@@ -39,6 +39,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public bool? Disabled { get; set; }
         /// <summary>The executeOnce property</summary>
         public bool? ExecuteOnce { get; set; }
+        /// <summary>The extendsCredential property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExtendsCredential { get; set; }
+#nullable restore
+#else
+        public string ExtendsCredential { get; set; }
+#endif
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -140,6 +148,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "customTelemetryTags", n => { CustomTelemetryTags = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateWorkflowRequestNodesItemCustomTelemetryTags>(global::Soenneker.N8n.OpenApiClient.Models.CreateWorkflowRequestNodesItemCustomTelemetryTags.CreateFromDiscriminatorValue); } },
                 { "disabled", n => { Disabled = n.GetBoolValue(); } },
                 { "executeOnce", n => { ExecuteOnce = n.GetBoolValue(); } },
+                { "extendsCredential", n => { ExtendsCredential = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "maxTries", n => { MaxTries = n.GetDoubleValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -169,6 +178,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateWorkflowRequestNodesItemCustomTelemetryTags>("customTelemetryTags", CustomTelemetryTags);
             writer.WriteBoolValue("disabled", Disabled);
             writer.WriteBoolValue("executeOnce", ExecuteOnce);
+            writer.WriteStringValue("extendsCredential", ExtendsCredential);
             writer.WriteStringValue("id", Id);
             writer.WriteDoubleValue("maxTries", MaxTries);
             writer.WriteStringValue("name", Name);

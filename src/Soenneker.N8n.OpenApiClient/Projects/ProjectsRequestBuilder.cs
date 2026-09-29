@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetProjects200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetProjects200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a project on your instance.
+        /// Create a team project on your instance.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateProject201Response"/></returns>
         /// <param name="body">The request body</param>
@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects
             return requestInfo;
         }
         /// <summary>
-        /// Create a project on your instance.
+        /// Create a team project on your instance.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

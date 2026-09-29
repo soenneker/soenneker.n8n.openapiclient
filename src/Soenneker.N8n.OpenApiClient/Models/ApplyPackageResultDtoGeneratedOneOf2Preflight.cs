@@ -38,6 +38,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem> MissingBindings { get; set; }
 #endif
+        /// <summary>Projects in the package that do not exist on this instance. Preflight preserves their metadata without checking project creation rules. The project creation API can reject invalid values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem>? MissingProjects { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem> MissingProjects { get; set; }
+#endif
         /// <summary>The warnings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -74,6 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "accessRequirements", n => { AccessRequirements = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "conflicts", n => { Conflicts = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "missingBindings", n => { MissingBindings = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "missingProjects", n => { MissingProjects = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -87,6 +96,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem>("accessRequirements", AccessRequirements);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem>("conflicts", Conflicts);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem>("missingBindings", MissingBindings);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem>("missingProjects", MissingProjects);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }

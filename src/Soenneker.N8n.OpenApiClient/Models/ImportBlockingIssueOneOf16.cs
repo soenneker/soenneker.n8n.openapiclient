@@ -8,38 +8,36 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A workflow the content-import policy refused. Takes down the whole package rather than skipping the workflow: the import rewrites cross-workflow references to the ids each workflow would get, so dropping one leaves the workflows that call it pointing at a row nothing ever wrote.
+    /// Creating the package&apos;s variables under `create-stub` or `create-with-value` would exceed the instance variable quota (`quota:maxVariables`). Reported once for the whole import; nothing is created.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf16 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>The instance variable quota.</summary>
+        public int? Limit { get; set; }
+        /// <summary>The unique variable names the import would create.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public List<string>? Names { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public List<string> Names { get; set; }
 #endif
-        /// <summary>Workflow id as it appears in the package.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SourceWorkflowId { get; set; }
-#nullable restore
-#else
-        public string SourceWorkflowId { get; set; }
-#endif
+        /// <summary>Variable rows still available under the quota. The import is blocked because `requested` exceeds this, not because it exceeds `limit`.</summary>
+        public int? Remaining { get; set; }
+        /// <summary>Number of new variable rows the import would create (destination-deduplicated).</summary>
+        public int? Requested { get; set; }
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PolicyViolationType? Type { get; set; }
-        /// <summary>The violations property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType? Type { get; set; }
+        /// <summary>Package workflow ids that reference any of the listed variables.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyViolation>? Violations { get; set; }
+        public List<string>? UsedByWorkflows { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyViolation> Violations { get; set; }
+        public List<string> UsedByWorkflows { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf16"/> and sets the default values.
@@ -66,10 +64,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PolicyViolationType>(); } },
-                { "violations", n => { Violations = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PolicyViolation>(global::Soenneker.N8n.OpenApiClient.Models.PolicyViolation.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "limit", n => { Limit = n.GetIntValue(); } },
+                { "names", n => { Names = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "remaining", n => { Remaining = n.GetIntValue(); } },
+                { "requested", n => { Requested = n.GetIntValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>(); } },
+                { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -79,10 +79,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PolicyViolationType>("type", Type);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PolicyViolation>("violations", Violations);
+            writer.WriteIntValue("limit", Limit);
+            writer.WriteCollectionOfPrimitiveValues<string>("names", Names);
+            writer.WriteIntValue("remaining", Remaining);
+            writer.WriteIntValue("requested", Requested);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>("type", Type);
+            writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

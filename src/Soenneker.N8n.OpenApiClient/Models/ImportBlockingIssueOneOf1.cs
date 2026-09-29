@@ -8,28 +8,20 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A workflow whose source id already matches one in the target project, under the `fail` conflict policy.
+    /// A selected workflow resolves to a destination id in `deletedWorkflowIds`. The import stops before any writes, including when the conflict policy is `skip`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf1 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The existingWorkflowId property</summary>
+        /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExistingWorkflowId { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public string ExistingWorkflowId { get; set; }
-#endif
-        /// <summary>The name property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Name { get; set; }
-#nullable restore
-#else
-        public string Name { get; set; }
+        public string ProjectId { get; set; }
 #endif
         /// <summary>The sourceWorkflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +32,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string SourceWorkflowId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType? Type { get; set; }
+        /// <summary>The destination id of the selected workflow.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? WorkflowId { get; set; }
+#nullable restore
+#else
+        public string WorkflowId { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf1"/> and sets the default values.
         /// </summary>
@@ -66,10 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "existingWorkflowId", n => { ExistingWorkflowId = n.GetStringValue(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType>(); } },
+                { "workflowId", n => { WorkflowId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -79,10 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("existingWorkflowId", ExistingWorkflowId);
-            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("projectId", ProjectId);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType>("type", Type);
+            writer.WriteStringValue("workflowId", WorkflowId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

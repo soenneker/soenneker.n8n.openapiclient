@@ -22,6 +22,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem> Columns { get; set; }
 #endif
+        /// <summary>ID of a CSV file that you uploaded in the n8n editor. If you set it, n8n fills the new table with the rows from that file. Only a session-authenticated caller can upload a file, so an API-key caller cannot use this field.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? FileId { get; set; }
+#nullable restore
+#else
+        public string FileId { get; set; }
+#endif
+        /// <summary>Set to true if the first row of the CSV file holds the column names. Applies only when you set `fileId`. The default is true.</summary>
+        public bool? HasHeaders { get; set; }
         /// <summary>Name of the data table</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,6 +74,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "columns", n => { Columns = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "fileId", n => { FileId = n.GetStringValue(); } },
+                { "hasHeaders", n => { HasHeaders = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
             };
@@ -76,6 +88,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItem>("columns", Columns);
+            writer.WriteStringValue("fileId", FileId);
+            writer.WriteBoolValue("hasHeaders", HasHeaders);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteAdditionalData(AdditionalData);

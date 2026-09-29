@@ -8,14 +8,14 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A variable that resolved in the target project or the global scope, but whose value differs from the one the package bundles for it, under `variableConflictPolicy=fail`. Also reported under `overwrite`, once per scope, when the projects of a package resolve one row and disagree about the value it should hold. Values are never reported — only the name and the scope the variable was found in.
+    /// A variable reference that could not be resolved in the target project or the global scope, under `variableMissingMode=must-preexist`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf14 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Name of the variable whose value differs.</summary>
+        /// <summary>Requirement name with no match in the target project or global scope.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -23,16 +23,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Project owning the resolved variable. Absent when it resolved at the global scope.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ProjectId { get; set; }
-#nullable restore
-#else
-        public string ProjectId { get; set; }
-#endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType? Type { get; set; }
         /// <summary>The usedByWorkflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -67,8 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "projectId", n => { ProjectId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -80,8 +71,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("projectId", ProjectId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

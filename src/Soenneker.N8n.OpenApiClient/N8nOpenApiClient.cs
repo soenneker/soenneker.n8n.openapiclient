@@ -8,6 +8,7 @@ using Microsoft.Kiota.Serialization.Multipart;
 using Microsoft.Kiota.Serialization.Text;
 using Soenneker.N8n.OpenApiClient.Audit;
 using Soenneker.N8n.OpenApiClient.CommunityPackages;
+using Soenneker.N8n.OpenApiClient.CredentialTypePolicies;
 using Soenneker.N8n.OpenApiClient.Credentials;
 using Soenneker.N8n.OpenApiClient.DataTables;
 using Soenneker.N8n.OpenApiClient.Discover;
@@ -51,6 +52,11 @@ namespace Soenneker.N8n.OpenApiClient
         public global::Soenneker.N8n.OpenApiClient.Credentials.CredentialsRequestBuilder Credentials
         {
             get => new global::Soenneker.N8n.OpenApiClient.Credentials.CredentialsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The credentialTypePolicies property</summary>
+        public global::Soenneker.N8n.OpenApiClient.CredentialTypePolicies.CredentialTypePoliciesRequestBuilder CredentialTypePolicies
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.CredentialTypePolicies.CredentialTypePoliciesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The dataTables property</summary>
         public global::Soenneker.N8n.OpenApiClient.DataTables.DataTablesRequestBuilder DataTables

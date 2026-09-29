@@ -22,6 +22,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestData Data { get; set; }
 #endif
+        /// <summary>Plain text, up to 512 characters. Send null or a blank value to clear it. Omit it to keep the stored value. Ignored when credential descriptions are disabled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>Whether this credential is available globally</summary>
         public bool? IsGlobal { get; set; }
         /// <summary>If true, unredacts and merges existing credential data with the provided data. If false, replaces the entire data object.</summary>
@@ -71,6 +79,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestData>(global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestData.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "isGlobal", n => { IsGlobal = n.GetBoolValue(); } },
                 { "isPartialData", n => { IsPartialData = n.GetBoolValue(); } },
                 { "isResolvable", n => { IsResolvable = n.GetBoolValue(); } },
@@ -86,6 +95,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestData>("data", Data);
+            writer.WriteStringValue("description", Description);
             writer.WriteBoolValue("isGlobal", IsGlobal);
             writer.WriteBoolValue("isPartialData", IsPartialData);
             writer.WriteBoolValue("isResolvable", IsResolvable);

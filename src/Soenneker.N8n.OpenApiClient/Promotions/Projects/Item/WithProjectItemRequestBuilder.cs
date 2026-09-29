@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes;
+using Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Promote;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -19,6 +20,11 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item
         public global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.ChangesRequestBuilder Changes
         {
             get => new global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.ChangesRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The promote property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Promote.PromoteRequestBuilder Promote
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Promote.PromoteRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.WithProjectItemRequestBuilder"/> and sets the default values.

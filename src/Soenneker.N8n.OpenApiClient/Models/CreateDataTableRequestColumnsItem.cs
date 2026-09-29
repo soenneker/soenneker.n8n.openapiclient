@@ -14,6 +14,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Name of the CSV column to read the values from. If you do not set it, n8n maps the CSV columns by position.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CsvColumnName { get; set; }
+#nullable restore
+#else
+        public string CsvColumnName { get; set; }
+#endif
         /// <summary>Column name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -49,6 +57,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "csvColumnName", n => { CsvColumnName = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItemType>(); } },
             };
@@ -60,6 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("csvColumnName", CsvColumnName);
             writer.WriteStringValue("name", Name);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRequestColumnsItemType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);

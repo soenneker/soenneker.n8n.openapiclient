@@ -8,20 +8,20 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A folder that `folderConflictPolicy=overwrite` would delete — the package does not define it and reconciliation leaves it empty — but the caller lacks `folder:delete` on the target project. Reported instead of removing a subset, which would leave the project matching neither the package nor its previous state.
+    /// A matched workflow whose archived state differs from the package, so the import must archive or unarchive it, but the caller lacks `workflow:delete` on it. Reported at plan time so nothing is written.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf9 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The folderId property</summary>
+        /// <summary>The existingWorkflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FolderId { get; set; }
+        public string? ExistingWorkflowId { get; set; }
 #nullable restore
 #else
-        public string FolderId { get; set; }
+        public string ExistingWorkflowId { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -31,7 +31,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Project the folder was being reconciled against.</summary>
+        /// <summary>Project that owns the matched workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ProjectId { get; set; }
@@ -39,8 +39,18 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string ProjectId { get; set; }
 #endif
+        /// <summary>The sourceWorkflowId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceWorkflowId { get; set; }
+#nullable restore
+#else
+        public string SourceWorkflowId { get; set; }
+#endif
+        /// <summary>The step the import needs to bring the workflow to the package&apos;s state.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Transition? Transition { get; set; }
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9"/> and sets the default values.
         /// </summary>
@@ -66,10 +76,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "folderId", n => { FolderId = n.GetStringValue(); } },
+                { "existingWorkflowId", n => { ExistingWorkflowId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType>(); } },
+                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
+                { "transition", n => { Transition = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Transition>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType>(); } },
             };
         }
         /// <summary>
@@ -79,10 +91,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("folderId", FolderId);
+            writer.WriteStringValue("existingWorkflowId", ExistingWorkflowId);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("projectId", ProjectId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType>("type", Type);
+            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf9Transition>("transition", Transition);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

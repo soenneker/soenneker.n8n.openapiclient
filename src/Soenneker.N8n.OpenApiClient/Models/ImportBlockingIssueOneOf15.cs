@@ -8,30 +8,32 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Creating the package&apos;s variables under `create-stub` or `create-with-value` would exceed the instance variable quota (`quota:maxVariables`). Reported once for the whole import; nothing is created.
+    /// A variable that resolved in the target project or the global scope, but whose value differs from the one the package bundles for it, under `variableConflictPolicy=fail`. Also reported under `overwrite`, once per scope, when the projects of a package resolve one row and disagree about the value it should hold. Values are never reported — only the name and the scope the variable was found in.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf15 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The instance variable quota.</summary>
-        public int? Limit { get; set; }
-        /// <summary>The unique variable names the import would create.</summary>
+        /// <summary>Name of the variable whose value differs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Names { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public List<string> Names { get; set; }
+        public string Name { get; set; }
 #endif
-        /// <summary>Variable rows still available under the quota. The import is blocked because `requested` exceeds this, not because it exceeds `limit`.</summary>
-        public int? Remaining { get; set; }
-        /// <summary>Number of new variable rows the import would create (destination-deduplicated).</summary>
-        public int? Requested { get; set; }
+        /// <summary>Project owning the resolved variable. Absent when it resolved at the global scope.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProjectId { get; set; }
+#nullable restore
+#else
+        public string ProjectId { get; set; }
+#endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType? Type { get; set; }
-        /// <summary>Package workflow ids that reference any of the listed variables.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType? Type { get; set; }
+        /// <summary>The usedByWorkflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? UsedByWorkflows { get; set; }
@@ -64,11 +66,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "limit", n => { Limit = n.GetIntValue(); } },
-                { "names", n => { Names = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "remaining", n => { Remaining = n.GetIntValue(); } },
-                { "requested", n => { Requested = n.GetIntValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType>(); } },
                 { "usedByWorkflows", n => { UsedByWorkflows = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -79,11 +79,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("limit", Limit);
-            writer.WriteCollectionOfPrimitiveValues<string>("names", Names);
-            writer.WriteIntValue("remaining", Remaining);
-            writer.WriteIntValue("requested", Requested);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>("type", Type);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType>("type", Type);
             writer.WriteCollectionOfPrimitiveValues<string>("usedByWorkflows", UsedByWorkflows);
             writer.WriteAdditionalData(AdditionalData);
         }

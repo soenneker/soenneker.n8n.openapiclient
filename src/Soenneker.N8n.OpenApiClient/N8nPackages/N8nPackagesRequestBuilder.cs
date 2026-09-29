@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.N8nPackages.Export;
 using Soenneker.N8n.OpenApiClient.N8nPackages.Import;
+using Soenneker.N8n.OpenApiClient.N8nPackages.ImportSelection;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -25,6 +26,11 @@ namespace Soenneker.N8n.OpenApiClient.N8nPackages
         public global::Soenneker.N8n.OpenApiClient.N8nPackages.Import.ImportRequestBuilder Import
         {
             get => new global::Soenneker.N8n.OpenApiClient.N8nPackages.Import.ImportRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The importSelection property</summary>
+        public global::Soenneker.N8n.OpenApiClient.N8nPackages.ImportSelection.ImportSelectionRequestBuilder ImportSelection
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.N8nPackages.ImportSelection.ImportSelectionRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.N8nPackages.N8nPackagesRequestBuilder"/> and sets the default values.

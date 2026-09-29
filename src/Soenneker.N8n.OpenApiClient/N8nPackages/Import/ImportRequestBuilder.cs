@@ -36,7 +36,7 @@ namespace Soenneker.N8n.OpenApiClient.N8nPackages.Import
         /// <summary>
         /// **Beta** — breaking changes may still occur without major version bump.Imports a gzip-compressed tar package (`.n8np`) into the target project. Send thearchive as the multipart field `package`. Optional routing uses form fields`projectId` and `folderId` (omit or send empty for defaults). Every optionalmode/policy field (credential, workflow, project, folder, data table, variable,and tag) takes its default when omitted; the one non-fixed default is`folderConflictPolicy`, which follows `projectConflictPolicy` on a projectpackage (see its description). The required`workflowConflictPolicy` field controls what happens when a package workflowmatches an existing workflow by source id in the target project. Maximum uploadsize is `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).The package must declare its manifest at `manifest.json` and include every filereferenced by the manifest. The caller is authorised through the `workflow:import`scope. With the default `workflowIdPolicy=new`, newly created workflows receive afresh local id; imported workflows arrive inactive unless `workflowPublishingPolicy`publishes them after import.Credential references are resolved before any workflow is written. Credentials owned by,shared with, or global to the target project (with `credential:read`) match.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResult"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -44,11 +44,11 @@ namespace Soenneker.N8n.OpenApiClient.N8nPackages.Import
         /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422Response">When receiving a 422 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response?> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ImportResult?> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ImportResult> PostAsync(MultipartBody body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.N8nPackages.Import
                 { "409", global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport409Response.CreateFromDiscriminatorValue },
                 { "422", global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport422Response.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PostN8NPackagesImport200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ImportResult>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ImportResult.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Beta** — breaking changes may still occur without major version bump.Imports a gzip-compressed tar package (`.n8np`) into the target project. Send thearchive as the multipart field `package`. Optional routing uses form fields`projectId` and `folderId` (omit or send empty for defaults). Every optionalmode/policy field (credential, workflow, project, folder, data table, variable,and tag) takes its default when omitted; the one non-fixed default is`folderConflictPolicy`, which follows `projectConflictPolicy` on a projectpackage (see its description). The required`workflowConflictPolicy` field controls what happens when a package workflowmatches an existing workflow by source id in the target project. Maximum uploadsize is `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).The package must declare its manifest at `manifest.json` and include every filereferenced by the manifest. The caller is authorised through the `workflow:import`scope. With the default `workflowIdPolicy=new`, newly created workflows receive afresh local id; imported workflows arrive inactive unless `workflowPublishingPolicy`publishes them after import.Credential references are resolved before any workflow is written. Credentials owned by,shared with, or global to the target project (with `credential:read`) match.

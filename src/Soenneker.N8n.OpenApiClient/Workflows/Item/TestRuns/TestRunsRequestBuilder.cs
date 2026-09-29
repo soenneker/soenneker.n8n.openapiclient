@@ -49,38 +49,38 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
         /// <summary>
         /// Retrieve the evaluation test runs of a workflow.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestRunList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetTestRuns200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.TestRunList?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.TestRunsRequestBuilder.TestRunsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetTestRuns200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.TestRunsRequestBuilder.TestRunsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.TestRunList> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.TestRunsRequestBuilder.TestRunsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetTestRuns200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.TestRunsRequestBuilder.TestRunsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TestRunList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TestRunList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetTestRuns200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetTestRuns200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Start a new evaluation test run for a workflow. The workflow must contain a configured evaluation trigger. Requires the `workflow:execute` project scope in addition to the `testRun:create` API key scope.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestRun"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateTestRun201Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.TestRun?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateTestRun201Response?> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.TestRun> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateTestRun201Response> PostAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TestRun>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TestRun.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateTestRun201Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateTestRun201Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve the evaluation test runs of a workflow.
@@ -148,9 +148,10 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
             /// <summary>The maximum number of items to return.</summary>
             [QueryParameter("limit")]
             public double? Limit { get; set; }
-            /// <summary>Status to filter the test runs by.</summary>
+            #pragma warning disable CS1591
             [QueryParameter("status")]
-            public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowsByIdTestRunsStatusParameter? Status { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetTestRunsStatusParameter? Status { get; set; }
+            #pragma warning restore CS1591
         }
     }
 }

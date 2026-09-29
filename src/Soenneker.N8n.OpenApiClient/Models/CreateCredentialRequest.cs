@@ -24,6 +24,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialRequestData Data { get; set; }
 #endif
+        /// <summary>Plain text, up to 512 characters. A blank value is saved as null. Ignored when credential descriptions are disabled.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
         /// <summary>An unused credential ID of 1–16 letters, digits, underscores, or hyphens. The supplied ID is preserved exactly. Omit to generate an ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -87,6 +95,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "data", n => { Data = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialRequestData>(global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialRequestData.CreateFromDiscriminatorValue); } },
+                { "description", n => { Description = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isResolvable", n => { IsResolvable = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
@@ -103,6 +112,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialRequestData>("data", Data);
+            writer.WriteStringValue("description", Description);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isResolvable", IsResolvable);
             writer.WriteStringValue("name", Name);

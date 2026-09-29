@@ -30,7 +30,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties Properties { get; set; }
 #endif
-        /// <summary>Names of the fields that are required for this credential type.</summary>
+        /// <summary>Names of the fields that a request must include. A field with a default value is not listed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? Required { get; set; }

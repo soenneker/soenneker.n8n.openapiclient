@@ -36,20 +36,20 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.TestCases
         /// <summary>
         /// Retrieve the per-case results of an evaluation test run.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.TestCases.TestCasesRequestBuilder.TestCasesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.TestCases.TestCasesRequestBuilder.TestCasesRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.TestCases.TestCasesRequestBuilder.TestCasesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.TestCases.TestCasesRequestBuilder.TestCasesRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TestCaseExecutionList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve the per-case results of an evaluation test run.

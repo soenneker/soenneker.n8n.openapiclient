@@ -20,14 +20,14 @@ namespace Soenneker.N8n.OpenApiClient.Users
     {
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.users.item collection</summary>
         /// <param name="position">The ID or email of the user.</param>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Users.Item.UsersItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Users.Item.UsersItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Users.Item.WithUserItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Users.Item.WithUserItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("id", position);
-                return new global::Soenneker.N8n.OpenApiClient.Users.Item.UsersItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("userId", position);
+                return new global::Soenneker.N8n.OpenApiClient.Users.Item.WithUserItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -35,7 +35,7 @@ namespace Soenneker.N8n.OpenApiClient.Users
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users{?cursor*,includeRole*,limit*,offset*,projectId}", pathParameters)
+        public UsersRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users{?cursor*,includeRole*,limit*,projectId*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,46 +43,47 @@ namespace Soenneker.N8n.OpenApiClient.Users
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users{?cursor*,includeRole*,limit*,offset*,projectId}", rawUrl)
+        public UsersRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/users{?cursor*,includeRole*,limit*,projectId*}", rawUrl)
         {
         }
         /// <summary>
         /// Retrieve all users from your instance. Only available for the instance owner.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UserList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetUsers200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.UserList?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetUsers200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.UserList> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetUsers200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Users.UsersRequestBuilder.UsersRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UserList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UserList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetUsers200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetUsers200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create one or more users.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PostUsers200Response"/></returns>
+        /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItem&gt;</returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PostUsers200Response?> PostAsync(List<global::Soenneker.N8n.OpenApiClient.Models.PostUsersRequestRequestBodyItem> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItem>?> PostAsync(List<global::Soenneker.N8n.OpenApiClient.Models.CreateUserRequestRequestBodyItem> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PostUsers200Response> PostAsync(List<global::Soenneker.N8n.OpenApiClient.Models.PostUsersRequestRequestBodyItem> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<List<global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItem>> PostAsync(List<global::Soenneker.N8n.OpenApiClient.Models.CreateUserRequestRequestBodyItem> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PostUsers200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PostUsers200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItem>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItem.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return collectionResult?.AsList();
         }
         /// <summary>
         /// Retrieve all users from your instance. Only available for the instance owner.
@@ -111,11 +112,11 @@ namespace Soenneker.N8n.OpenApiClient.Users
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(List<global::Soenneker.N8n.OpenApiClient.Models.PostUsersRequestRequestBodyItem> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(List<global::Soenneker.N8n.OpenApiClient.Models.CreateUserRequestRequestBodyItem> body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(List<global::Soenneker.N8n.OpenApiClient.Models.PostUsersRequestRequestBodyItem> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(List<global::Soenneker.N8n.OpenApiClient.Models.CreateUserRequestRequestBodyItem> body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -150,15 +151,13 @@ namespace Soenneker.N8n.OpenApiClient.Users
             [QueryParameter("cursor")]
             public string Cursor { get; set; }
 #endif
-            /// <summary>Whether to include the user&apos;s role or not.</summary>
+            #pragma warning disable CS1591
             [QueryParameter("includeRole")]
-            public bool? IncludeRole { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.GetUsersIncludeRoleParameter? IncludeRole { get; set; }
+            #pragma warning restore CS1591
             /// <summary>The maximum number of items to return.</summary>
             [QueryParameter("limit")]
             public double? Limit { get; set; }
-            /// <summary>The number of items to skip before starting to collect the result set.</summary>
-            [QueryParameter("offset")]
-            public double? Offset { get; set; }
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
             #pragma warning disable CS1591

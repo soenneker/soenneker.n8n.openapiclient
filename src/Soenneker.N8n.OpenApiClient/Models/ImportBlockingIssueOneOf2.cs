@@ -8,28 +8,28 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A package workflow whose source id matches multiple workflows in the target project. The import cannot choose a workflow safely.
+    /// A workflow whose source id already matches one in the target project, under the `fail` conflict policy.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueOneOf2 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The existingWorkflows property</summary>
+        /// <summary>The existingWorkflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2ExistingWorkflowsItem>? ExistingWorkflows { get; set; }
+        public string? ExistingWorkflowId { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2ExistingWorkflowsItem> ExistingWorkflows { get; set; }
+        public string ExistingWorkflowId { get; set; }
 #endif
-        /// <summary>The projectId property</summary>
+        /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProjectId { get; set; }
+        public string? Name { get; set; }
 #nullable restore
 #else
-        public string ProjectId { get; set; }
+        public string Name { get; set; }
 #endif
         /// <summary>The sourceWorkflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string SourceWorkflowId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowLineageConflictType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2"/> and sets the default values.
         /// </summary>
@@ -66,10 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "existingWorkflows", n => { ExistingWorkflows = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2ExistingWorkflowsItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2ExistingWorkflowsItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "existingWorkflowId", n => { ExistingWorkflowId = n.GetStringValue(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
                 { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowLineageConflictType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>(); } },
             };
         }
         /// <summary>
@@ -79,10 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueOneOf2ExistingWorkflowsItem>("existingWorkflows", ExistingWorkflows);
-            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteStringValue("existingWorkflowId", ExistingWorkflowId);
+            writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowLineageConflictType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

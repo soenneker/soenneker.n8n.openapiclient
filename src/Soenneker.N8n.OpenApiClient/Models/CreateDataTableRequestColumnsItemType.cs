@@ -23,9 +23,5 @@ namespace Soenneker.N8n.OpenApiClient.Models
         #pragma warning disable CS1591
         Date,
         #pragma warning restore CS1591
-        [EnumMember(Value = "json")]
-        #pragma warning disable CS1591
-        Json,
-        #pragma warning restore CS1591
     }
 }

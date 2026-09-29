@@ -12,13 +12,37 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public partial class CreateProjectRequest : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The id property</summary>
+        /// <summary>The customTelemetryTags property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; private set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestCustomTelemetryTagsItem>? CustomTelemetryTags { get; set; }
 #nullable restore
 #else
-        public string Id { get; private set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestCustomTelemetryTagsItem> CustomTelemetryTags { get; set; }
+#endif
+        /// <summary>The description property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Description { get; set; }
+#nullable restore
+#else
+        public string Description { get; set; }
+#endif
+        /// <summary>The icon property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestIcon? Icon { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestIcon Icon { get; set; }
+#endif
+        /// <summary>Project ID. The server generates an ID when omitted. An ID that is in use returns HTTP 409.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Id { get; set; }
+#nullable restore
+#else
+        public string Id { get; set; }
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -54,6 +78,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "customTelemetryTags", n => { CustomTelemetryTags = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestCustomTelemetryTagsItem>(global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestCustomTelemetryTagsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "description", n => { Description = n.GetStringValue(); } },
+                { "icon", n => { Icon = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestIcon>(global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestIcon.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
@@ -66,6 +93,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestCustomTelemetryTagsItem>("customTelemetryTags", CustomTelemetryTags);
+            writer.WriteStringValue("description", Description);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateProjectRequestIcon>("icon", Icon);
+            writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
         }
     }
