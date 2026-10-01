@@ -21,6 +21,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Email { get; set; }
 #endif
+        /// <summary>SAML attribute that states whether the identity provider verified the user&apos;s email. An empty string when unused.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EmailVerified { get; set; }
+#nullable restore
+#else
+        public string EmailVerified { get; set; }
+#endif
         /// <summary>SAML attribute mapped to the user&apos;s first name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -80,6 +88,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "email", n => { Email = n.GetStringValue(); } },
+                { "emailVerified", n => { EmailVerified = n.GetStringValue(); } },
                 { "firstName", n => { FirstName = n.GetStringValue(); } },
                 { "lastName", n => { LastName = n.GetStringValue(); } },
                 { "n8nInstanceRole", n => { N8nInstanceRole = n.GetStringValue(); } },
@@ -95,6 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("email", Email);
+            writer.WriteStringValue("emailVerified", EmailVerified);
             writer.WriteStringValue("firstName", FirstName);
             writer.WriteStringValue("lastName", LastName);
             writer.WriteStringValue("n8nInstanceRole", N8nInstanceRole);

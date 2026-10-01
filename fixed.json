@@ -9433,6 +9433,7 @@
           "authnRequestsSigned",
           "wantAssertionsSigned",
           "wantMessageSigned",
+          "emailVerifiedRequired",
           "signingPrivateKey",
           "signingCertificate",
           "acsBinding",
@@ -9498,6 +9499,11 @@
             "description": "Whether signed SAML messages are required.",
             "example": true
           },
+          "emailVerifiedRequired": {
+            "type": "boolean",
+            "description": "Whether the identity provider must assert that the user\u0027s email address is verified before a login is linked to an existing user by email. When disabled, only an explicit negative assertion is rejected.\n",
+            "example": false
+          },
           "signingPrivateKey": {
             "type": "string",
             "description": "PEM-encoded private key for signing SAML AuthnRequests. Redacted on read when set; never echoed back in plaintext. Use an empty string when unset.\n",
@@ -9534,6 +9540,7 @@
           "authnRequestsSigned",
           "wantAssertionsSigned",
           "wantMessageSigned",
+          "emailVerifiedRequired",
           "signingPrivateKey",
           "signingCertificate",
           "acsBinding",
@@ -9585,6 +9592,11 @@
             "type": "boolean",
             "description": "Whether signed SAML messages are required.",
             "example": true
+          },
+          "emailVerifiedRequired": {
+            "type": "boolean",
+            "description": "Whether the identity provider must assert that the user\u0027s email address is verified before a login is linked to an existing user by email. When disabled, only an explicit negative assertion is rejected.\n",
+            "example": false
           },
           "signingPrivateKey": {
             "type": "string",
@@ -14023,6 +14035,7 @@
           "firstName",
           "lastName",
           "userPrincipalName",
+          "emailVerified",
           "n8nInstanceRole",
           "n8nProjectRoles"
         ],
@@ -14043,6 +14056,10 @@
           "userPrincipalName": {
             "type": "string",
             "description": "SAML attribute mapped to the user\u0027s principal name."
+          },
+          "emailVerified": {
+            "type": "string",
+            "description": "SAML attribute that states whether the identity provider verified the user\u0027s email. An empty string when unused.\n"
           },
           "n8nInstanceRole": {
             "type": "string",
@@ -14083,6 +14100,7 @@
           "firstName",
           "lastName",
           "userPrincipalName",
+          "emailVerified",
           "n8nInstanceRole",
           "n8nProjectRoles"
         ],
@@ -14103,6 +14121,10 @@
           "userPrincipalName": {
             "type": "string",
             "description": "SAML attribute mapped to the user\u0027s principal name."
+          },
+          "emailVerified": {
+            "type": "string",
+            "description": "SAML attribute that states whether the identity provider verified the user\u0027s email. Accepted values are \u0060true\u0060 and \u0060false\u0060, case-insensitive. Use an empty string when unused.\n"
           },
           "n8nInstanceRole": {
             "type": "string",
@@ -18297,11 +18319,7 @@
           },
           "version": {
             "type": "string",
-            "description": "Semver version or npm dist-tag, such as latest or beta"
-          },
-          "verify": {
-            "type": "boolean",
-            "description": "Whether to verify the package against the n8n-vetted package list. Required when the instance has N8N_UNVERIFIED_PACKAGES_ENABLED=false."
+            "description": "Semver version or npm dist-tag, such as latest or beta. When unverified packages are disabled, only versions verified by n8n can be installed."
           }
         }
       },
@@ -18310,11 +18328,7 @@
         "properties": {
           "version": {
             "type": "string",
-            "description": "Semver version or npm dist-tag to update to, such as latest or beta"
-          },
-          "verify": {
-            "type": "boolean",
-            "description": "Whether to verify the package against the n8n-vetted package list. Setting to false will allow installing or updating to an unverified version. Default is true."
+            "description": "Semver version or npm dist-tag to update to, such as latest or beta. When unverified packages are disabled, only versions verified by n8n can be installed."
           }
         }
       },

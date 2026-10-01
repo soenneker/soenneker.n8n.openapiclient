@@ -16,6 +16,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationAcsBinding? AcsBinding { get; set; }
         /// <summary>Whether authentication requests are signed.</summary>
         public bool? AuthnRequestsSigned { get; set; }
+        /// <summary>Whether the identity provider must assert that the user&apos;s email address is verified before a login is linked to an existing user by email. When disabled, only an explicit negative assertion is rejected.</summary>
+        public bool? EmailVerifiedRequired { get; set; }
         /// <summary>Service provider entity ID (metadata URL).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -126,6 +128,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "acsBinding", n => { AcsBinding = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationAcsBinding>(); } },
                 { "authnRequestsSigned", n => { AuthnRequestsSigned = n.GetBoolValue(); } },
+                { "emailVerifiedRequired", n => { EmailVerifiedRequired = n.GetBoolValue(); } },
                 { "entityID", n => { EntityID = n.GetStringValue(); } },
                 { "ignoreSSL", n => { IgnoreSSL = n.GetBoolValue(); } },
                 { "loginBinding", n => { LoginBinding = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationLoginBinding>(); } },
@@ -152,6 +155,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationAcsBinding>("acsBinding", AcsBinding);
             writer.WriteBoolValue("authnRequestsSigned", AuthnRequestsSigned);
+            writer.WriteBoolValue("emailVerifiedRequired", EmailVerifiedRequired);
             writer.WriteBoolValue("ignoreSSL", IgnoreSSL);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationLoginBinding>("loginBinding", LoginBinding);
             writer.WriteBoolValue("loginEnabled", LoginEnabled);
