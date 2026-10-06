@@ -58,45 +58,45 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
         {
         }
         /// <summary>
-        /// Query and retrieve rows from a data table with optional filtering, sorting, and pagination.
+        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DataTableRowList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ListDataTableRows200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.DataTableRowList?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.RowsRequestBuilder.RowsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ListDataTableRows200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.RowsRequestBuilder.RowsRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.DataTableRowList> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.RowsRequestBuilder.RowsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.ListDataTableRows200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.RowsRequestBuilder.RowsRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTableRowList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTableRowList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ListDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListDataTableRows200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Insert one or more rows into a data table.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200Response?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200Response> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.InsertDataTableRows200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Query and retrieve rows from a data table with optional filtering, sorting, and pagination.
+        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -122,11 +122,11 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.InsertRowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -146,7 +146,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
             return new global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.RowsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Query and retrieve rows from a data table with optional filtering, sorting, and pagination.
+        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RowsRequestBuilderGetQueryParameters 

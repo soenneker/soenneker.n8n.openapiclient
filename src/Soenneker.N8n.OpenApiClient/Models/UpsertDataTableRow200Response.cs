@@ -8,26 +8,28 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseBranch1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseOneOf2"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, List&lt;global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item&gt;, List&lt;global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpsertDataTableRow200Response : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseBranch1"/></summary>
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseBranch1? UpsertDataTableRow200ResponseBranch1 { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item>? UpsertDataTableRow200ResponseAnyOf2Item { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseBranch1 UpsertDataTableRow200ResponseBranch1 { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item> UpsertDataTableRow200ResponseAnyOf2Item { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseOneOf2"/></summary>
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseOneOf2? UpsertDataTableRow200ResponseOneOf2 { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item>? UpsertDataTableRow200ResponseAnyOf3Item { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseOneOf2 UpsertDataTableRow200ResponseOneOf2 { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item> UpsertDataTableRow200ResponseAnyOf3Item { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,15 +39,18 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200Response();
-            if("UpsertDataTableRow200ResponseBranch1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if(parseNode.GetBoolValue() is bool booleanValue)
             {
-                result.UpsertDataTableRow200ResponseBranch1 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseBranch1();
+                result.Boolean = booleanValue;
             }
-            else if("UpsertDataTableRow200ResponseOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item>(global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item> upsertDataTableRow200ResponseAnyOf2ItemValue)
             {
-                result.UpsertDataTableRow200ResponseOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseOneOf2();
+                result.UpsertDataTableRow200ResponseAnyOf2Item = upsertDataTableRow200ResponseAnyOf2ItemValue;
+            }
+            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item>(global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item> upsertDataTableRow200ResponseAnyOf3ItemValue)
+            {
+                result.UpsertDataTableRow200ResponseAnyOf3Item = upsertDataTableRow200ResponseAnyOf3ItemValue;
             }
             return result;
         }
@@ -55,14 +60,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(UpsertDataTableRow200ResponseBranch1 != null)
-            {
-                return UpsertDataTableRow200ResponseBranch1.GetFieldDeserializers();
-            }
-            else if(UpsertDataTableRow200ResponseOneOf2 != null)
-            {
-                return UpsertDataTableRow200ResponseOneOf2.GetFieldDeserializers();
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -72,13 +69,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(UpsertDataTableRow200ResponseBranch1 != null)
+            if(Boolean != null)
             {
-                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseBranch1>(null, UpsertDataTableRow200ResponseBranch1);
+                writer.WriteBoolValue(null, Boolean);
             }
-            else if(UpsertDataTableRow200ResponseOneOf2 != null)
+            else if(UpsertDataTableRow200ResponseAnyOf2Item != null)
             {
-                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseOneOf2>(null, UpsertDataTableRow200ResponseOneOf2);
+                writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item>(null, UpsertDataTableRow200ResponseAnyOf2Item);
+            }
+            else if(UpsertDataTableRow200ResponseAnyOf3Item != null)
+            {
+                writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item>(null, UpsertDataTableRow200ResponseAnyOf3Item);
             }
         }
     }

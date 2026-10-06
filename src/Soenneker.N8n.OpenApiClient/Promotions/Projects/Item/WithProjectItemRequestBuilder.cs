@@ -2,6 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Apply;
 using Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes;
 using Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Promote;
 using System.Collections.Generic;
@@ -16,6 +17,11 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithProjectItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The apply property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Apply.ApplyRequestBuilder Apply
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Apply.ApplyRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The changes property</summary>
         public global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.ChangesRequestBuilder Changes
         {

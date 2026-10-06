@@ -36,40 +36,40 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync
         /// <summary>
         /// Retrieve the history of LDAP synchronizations, most recent first. Requires the `ldap:sync` scope and the LDAP feature to be licensed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistoryList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetLdapSync200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistoryList?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync.SyncRequestBuilder.SyncRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetLdapSync200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync.SyncRequestBuilder.SyncRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistoryList> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync.SyncRequestBuilder.SyncRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetLdapSync200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync.SyncRequestBuilder.SyncRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistoryList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistoryList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetLdapSync200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetLdapSync200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Manually trigger an LDAP synchronization. The response returns the new sync history record. Requires the `ldap:sync` scope and the LDAP feature to be licensed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistory"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response"/></returns>
         /// <param name="body">Request body for triggering an LDAP synchronization.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistory?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.LdapSyncUpdate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.RunLdapSyncRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistory> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.LdapSyncUpdate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.RunLdapSyncRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistory>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LdapSyncHistory.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve the history of LDAP synchronizations, most recent first. Requires the `ldap:sync` scope and the LDAP feature to be licensed.
@@ -98,11 +98,11 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.LdapSyncUpdate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.RunLdapSyncRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.LdapSyncUpdate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.RunLdapSyncRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

@@ -36,40 +36,40 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Sso.Saml
         /// <summary>
         /// Retrieve the current SAML SSO configuration, including every field exposed in the UI plus the service provider entity ID and ACS return URL. Signing private keys, signing certificates, and identity provider metadata are redacted on read. Requires the `saml:manage` scope and the SAML feature to be licensed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Replace the SAML SSO configuration with the provided full object. Every writable field must be sent; use empty strings or empty arrays when a value is unset. Read-only `entityID` / `returnUrl` from GET are ignored if included, so a GET response can be sent back as a PUT body. Redacted secret placeholders keep the stored values unchanged. The update takes effect exactly as it would from the UI, using the same validation. Requires the `saml:manage` scope and the SAML feature to be licensed. When the configuration is managed via environment variables, the write is rejected with 409 and no changes are made.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated"/></returns>
         /// <param name="body">Full SAML SSO configuration. Every field must be provided; use empty strings or empty arrays when a value is unset. Partial updates are not supported.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationUpdate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.UpdateSamlConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationUpdate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.UpdateSamlConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.SamlConfiguration.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve the current SAML SSO configuration, including every field exposed in the UI plus the service provider entity ID and ACS return URL. Signing private keys, signing certificates, and identity provider metadata are redacted on read. Requires the `saml:manage` scope and the SAML feature to be licensed.
@@ -98,11 +98,11 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Sso.Saml
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationUpdate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.UpdateSamlConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationUpdate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.UpdateSamlConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

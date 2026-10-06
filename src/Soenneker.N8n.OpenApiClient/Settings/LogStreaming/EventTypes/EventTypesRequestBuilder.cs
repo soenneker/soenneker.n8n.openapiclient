@@ -36,20 +36,20 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.EventTypes
         /// <summary>
         /// List the event types that can be streamed to a log streaming destination. Requires the `eventBusDestination:list` scope and the Log Streaming feature to be licensed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.EventTypes"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingEventTypes200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.EventTypes?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingEventTypes200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.EventTypes> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingEventTypes200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.EventTypes>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.EventTypes.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingEventTypes200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingEventTypes200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List the event types that can be streamed to a log streaming destination. Requires the `eventBusDestination:list` scope and the Log Streaming feature to be licensed.

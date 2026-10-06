@@ -42,40 +42,40 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap
         /// <summary>
         /// Retrieve the current LDAP configuration, including every field exposed in the UI. The binding admin password is redacted on read. Requires the `ldap:manage` scope and the LDAP feature to be licensed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the `ldap:manage` scope  and the LDAP feature to be licensed. Setting loginEnabled to false is destructive  and it deletes all stored LDAP user identities and disables synchronization.
+        /// Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the `ldap:manage` scope and the LDAP feature to be licensed. Setting loginEnabled to false is destructive and it deletes all stored LDAP user identities and disables synchronization.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated"/></returns>
         /// <param name="body">Full LDAP configuration. Use empty strings for unset fields.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationUpdate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated?> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationUpdate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated> PutAsync(global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LdapConfiguration.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve the current LDAP configuration, including every field exposed in the UI. The binding admin password is redacted on read. Requires the `ldap:manage` scope and the LDAP feature to be licensed.
@@ -97,18 +97,18 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap
             return requestInfo;
         }
         /// <summary>
-        /// Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the `ldap:manage` scope  and the LDAP feature to be licensed. Setting loginEnabled to false is destructive  and it deletes all stored LDAP user identities and disables synchronization.
+        /// Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the `ldap:manage` scope and the LDAP feature to be licensed. Setting loginEnabled to false is destructive and it deletes all stored LDAP user identities and disables synchronization.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Full LDAP configuration. Use empty strings for unset fields.</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationUpdate body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationUpdate body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPutRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

@@ -85,9 +85,9 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DeleteRequestBuilderDeleteQueryParameters 
         {
-            /// <summary>If true, preview which rows would be deleted without actually deleting them</summary>
+            /// <summary>If true, preview which rows would be deleted without actually deleting them.</summary>
             [QueryParameter("dryRun")]
-            public bool? DryRun { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRowsDryRunParameter? DryRun { get; set; }
             /// <summary>JSON string of filter conditions. Required to prevent accidental deletion of all data.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -98,9 +98,9 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete
             [QueryParameter("filter")]
             public string Filter { get; set; }
 #endif
-            /// <summary>If true, return the deleted rows; if false, return true on success</summary>
+            /// <summary>If true, return the deleted rows. If false, return true on success.</summary>
             [QueryParameter("returnData")]
-            public bool? ReturnData { get; set; }
+            public global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRowsReturnDataParameter? ReturnData { get; set; }
         }
     }
 }

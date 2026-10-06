@@ -8,20 +8,28 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="bool"/>, List&lt;global::Soenneker.N8n.OpenApiClient.Models.DataTableRow&gt;
+    /// Composed type wrapper for classes <see cref="bool"/>, List&lt;global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf2Item&gt;, List&lt;global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf3Item&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class DeleteDataTableRows200Response : IComposedTypeWrapper, IParsable
     {
         /// <summary>Composed type representation for type <see cref="bool"/></summary>
         public bool? Boolean { get; set; }
-        /// <summary>Composed type representation for type List&lt;global::Soenneker.N8n.OpenApiClient.Models.DataTableRow&gt;</summary>
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf2Item&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.DataTableRow>? DataTableRow { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf2Item>? DeleteDataTableRows200ResponseAnyOf2Item { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.DataTableRow> DataTableRow { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf2Item> DeleteDataTableRows200ResponseAnyOf2Item { get; set; }
+#endif
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf3Item&gt;</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf3Item>? DeleteDataTableRows200ResponseAnyOf3Item { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf3Item> DeleteDataTableRows200ResponseAnyOf3Item { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -31,15 +39,18 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200Response();
             if(parseNode.GetBoolValue() is bool booleanValue)
             {
                 result.Boolean = booleanValue;
             }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DataTableRow>(global::Soenneker.N8n.OpenApiClient.Models.DataTableRow.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.DataTableRow> dataTableRowValue)
+            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf2Item>(global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf2Item> deleteDataTableRows200ResponseAnyOf2ItemValue)
             {
-                result.DataTableRow = dataTableRowValue;
+                result.DeleteDataTableRows200ResponseAnyOf2Item = deleteDataTableRows200ResponseAnyOf2ItemValue;
+            }
+            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf3Item>(global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf3Item> deleteDataTableRows200ResponseAnyOf3ItemValue)
+            {
+                result.DeleteDataTableRows200ResponseAnyOf3Item = deleteDataTableRows200ResponseAnyOf3ItemValue;
             }
             return result;
         }
@@ -62,9 +73,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 writer.WriteBoolValue(null, Boolean);
             }
-            else if(DataTableRow != null)
+            else if(DeleteDataTableRows200ResponseAnyOf2Item != null)
             {
-                writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DataTableRow>(null, DataTableRow);
+                writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf2Item>(null, DeleteDataTableRows200ResponseAnyOf2Item);
+            }
+            else if(DeleteDataTableRows200ResponseAnyOf3Item != null)
+            {
+                writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200ResponseAnyOf3Item>(null, DeleteDataTableRows200ResponseAnyOf3Item);
             }
         }
     }
