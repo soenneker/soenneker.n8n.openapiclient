@@ -8,13 +8,23 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Selects what to export. Provide `workflowIds` and/or `folderIds` to export loose workflows and folders, or `projectIds` to export whole projects, but not both groups in the same request. At least one id must be supplied.
+    /// Selects what to export. Provide `agentIds`, `workflowIds`, and/or `folderIds` to export loose entities, or `projectIds` to export whole projects. Do not combine these two groups. Supply at least one ID.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ExportPackageRequest : IParsable
     {
+        /// <summary>IDs of the agents to include. Requires the agents module.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? AgentIds { get; set; }
+#nullable restore
+#else
+        public List<string> AgentIds { get; set; }
+#endif
         /// <summary>Whether expression values from credential data are bundled into the package. `expression-values-only` includes credential fields whose value is an n8n expression (for example `={{ $secrets.apiKey }}`); literal values never travel either way. `no-values` keeps credential data out of the package entirely, so each credential file carries only its id, name and type.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy? CredentialExportPolicy { get; set; }
+        /// <summary>Policy for workflow and agent dependencies outside the selected package contents. Includes static workflow references and disabled agent references. `fail` aborts when a required workflow or agent is absent from the package. `include-in-package` adds accessible dependencies recursively. `reference-only` records external requirements without including those definitions. The same policy applies to workflows and agents.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestDependencyPolicy? DependencyPolicy { get; set; }
         /// <summary>IDs of the folders to include in the exported package. Each folder is exported with its nested folders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -27,11 +37,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public bool? IncludeArchivedWorkflows { get; set; }
         /// <summary>Whether tags assigned to the exported workflows are bundled into the package. When `false`, no tag files, tag references, or tag requirements travel with the package.</summary>
         public bool? IncludeTags { get; set; }
-        /// <summary>Whether values of variables referenced by the exported workflows are bundled into the package. When `false`, variables still travel as name/type files and are listed in the package requirements, but no values travel with the package.</summary>
+        /// <summary>Whether values of variables referenced by the exported entities are bundled into the package. When `false`, variables still travel as name/type files and are listed in the package requirements, but no values travel with the package.</summary>
         public bool? IncludeVariableValues { get; set; }
-        /// <summary>Policy for missing static sub-workflow dependencies. `fail` aborts the export when any static sub-workflow is missing from the package; `include-in-package` automatically adds missing static sub-workflows. `reference-only` keeps missing static sub-workflows out of the package and lists them in the package requirements as workflows expected to already exist on the target.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy? MissingWorkflowDependencyPolicy { get; set; }
-        /// <summary>IDs of the projects to include in the exported package.</summary>
+        /// <summary>IDs of the projects to include in the exported package. Includes their agents when the agents module is enabled.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<string>? ProjectIds { get; set; }
@@ -39,6 +47,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> ProjectIds { get; set; }
 #endif
+        /// <summary>Which version of each workflow and agent travels in the package. `latest` exports the current draft. `published-strict` requires a published version. `prefer-published` uses the published version when available and the draft otherwise. `ignore-unpublished` skips unpublished selections. Dependencies that cannot be included cause the export to fail only when `dependencyPolicy` is `fail` or `include-in-package`. With `reference-only`, the export records them as external requirements. The selected version supplies the definition and its references. Workflow names, settings, and tags always use their current values. Agent IDs, names, and MCP availability always use their current values.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestVersionPolicy? VersionPolicy { get; set; }
         /// <summary>IDs of the workflows to include in the exported package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,8 +57,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> WorkflowIds { get; set; }
 #endif
-        /// <summary>Which version of each workflow travels in the package. `latest` exports the latest version, published or not. `published-strict` exports the published version and aborts the export if any workflow has none. `prefer-published` falls back to the latest version where there is no published one. `ignore-unpublished` leaves unpublished workflows out of the package entirely. The chosen version decides which credentials, data tables, variables and sub-workflows are bundled alongside it; the workflow&apos;s name, settings and tags are not versioned and always come from the latest version.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestWorkflowVersionPolicy? WorkflowVersionPolicy { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequest"/> and sets the default values.
         /// </summary>
@@ -76,15 +84,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "agentIds", n => { AgentIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "credentialExportPolicy", n => { CredentialExportPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy>(); } },
+                { "dependencyPolicy", n => { DependencyPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestDependencyPolicy>(); } },
                 { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "includeArchivedWorkflows", n => { IncludeArchivedWorkflows = n.GetBoolValue(); } },
                 { "includeTags", n => { IncludeTags = n.GetBoolValue(); } },
                 { "includeVariableValues", n => { IncludeVariableValues = n.GetBoolValue(); } },
-                { "missingWorkflowDependencyPolicy", n => { MissingWorkflowDependencyPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>(); } },
                 { "projectIds", n => { ProjectIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "versionPolicy", n => { VersionPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestVersionPolicy>(); } },
                 { "workflowIds", n => { WorkflowIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "workflowVersionPolicy", n => { WorkflowVersionPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestWorkflowVersionPolicy>(); } },
             };
         }
         /// <summary>
@@ -94,15 +103,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfPrimitiveValues<string>("agentIds", AgentIds);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy>("credentialExportPolicy", CredentialExportPolicy);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestDependencyPolicy>("dependencyPolicy", DependencyPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
             writer.WriteBoolValue("includeArchivedWorkflows", IncludeArchivedWorkflows);
             writer.WriteBoolValue("includeTags", IncludeTags);
             writer.WriteBoolValue("includeVariableValues", IncludeVariableValues);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestMissingWorkflowDependencyPolicy>("missingWorkflowDependencyPolicy", MissingWorkflowDependencyPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("projectIds", ProjectIds);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestVersionPolicy>("versionPolicy", VersionPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestWorkflowVersionPolicy>("workflowVersionPolicy", WorkflowVersionPolicy);
         }
     }
 }

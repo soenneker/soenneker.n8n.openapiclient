@@ -26,7 +26,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Password { get; set; }
 #endif
-        /// <summary>The username property</summary>
+        /// <summary>Required for plain Git token authentication. For GitLab, the service ignores this field and uses n8n for Git transport.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Username { get; set; }

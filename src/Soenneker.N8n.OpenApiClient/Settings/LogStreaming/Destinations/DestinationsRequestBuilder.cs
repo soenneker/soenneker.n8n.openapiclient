@@ -20,14 +20,14 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations
     {
         /// <summary>Gets an item from the Soenneker.N8n.OpenApiClient.settings.logStreaming.destinations.item collection</summary>
         /// <param name="position">The id of the log streaming destination.</param>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item.DestinationsItemRequestBuilder"/></returns>
-        public global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item.DestinationsItemRequestBuilder this[string position]
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item.WithDestinationItemRequestBuilder"/></returns>
+        public global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item.WithDestinationItemRequestBuilder this[string position]
         {
             get
             {
                 var urlTplParams = new Dictionary<string, object>(PathParameters);
-                urlTplParams.Add("id", position);
-                return new global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item.DestinationsItemRequestBuilder(urlTplParams, RequestAdapter);
+                urlTplParams.Add("destinationId", position);
+                return new global::Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item.WithDestinationItemRequestBuilder(urlTplParams, RequestAdapter);
             }
         }
         /// <summary>
@@ -49,40 +49,40 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations
         /// <summary>
         /// List the configured log streaming destinations. Requires the `eventBusDestination:list` scope and the Log Streaming feature to be licensed.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DestinationList"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.DestinationList?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.DestinationList> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DestinationList>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DestinationList.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Create a log streaming destination. The destination takes effect exactly as it would from the UI, using the same validation. Requires the `eventBusDestination:create` scope and the Log Streaming feature to be licensed. When destinations are managed via environment variables, the write is rejected with 409 and nothing is created; reads still return the current values.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.Destination"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated"/></returns>
         /// <param name="body">A log streaming destination. The `type` field selects the variant and its type-specific fields: `webhook`, `syslog`, or `sentry`.</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Destination?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.Destination body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.Destination> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.Destination body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.Destination>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.Destination.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// List the configured log streaming destinations. Requires the `eventBusDestination:list` scope and the Log Streaming feature to be licensed.
@@ -111,11 +111,11 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Destination body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.Destination body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToPostRequestInformation(global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));

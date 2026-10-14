@@ -8,11 +8,15 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided, except `exporterProtocol`, which defaults to `http/protobuf` when omitted. Fields managed declaratively via environment variables are returned with their effective value. A write can repeat these values, but changing them returns 409.
+    /// The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided, except `exporterProtocol`, which defaults to `http/protobuf` when omitted, and `emitWorkflowStartSpan` and `emitNodeStartSpan`, which default to `false` when omitted. Fields managed declaratively via environment variables are returned with their effective value. A write can repeat these values, but changing them returns 409.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdateOtelSettingsRequest : IParsable
     {
+        /// <summary>Whether to emit a `node.execute.started` span with a duration of 0 ms when each node span starts. This doubles the number of node spans. Has no effect when `includeNodeSpans` is false. Optional: a write that omits it selects `false`, but an instance that sets this field to `true` with an environment variable rejects that write with 409.</summary>
+        public bool? EmitNodeStartSpan { get; set; }
+        /// <summary>Whether to emit a `workflow.execute.started` span with a duration of 0 ms when each execution or resumed segment starts. Optional: a write that omits it selects `false`, but an instance that sets this field to `true` with an environment variable rejects that write with 409.</summary>
+        public bool? EmitWorkflowStartSpan { get; set; }
         /// <summary>Whether OpenTelemetry tracing is enabled.</summary>
         public bool? Enabled { get; set; }
         /// <summary>The base URL of the OTLP collector to export traces to. The value must be an `http://` or `https://` URL, because the scheme selects TLS — for gRPC, `https://` uses SSL and `http://` is plaintext.</summary>
@@ -60,6 +64,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The ratio of traces to sample, between 0 (none) and 1 (all).</summary>
         public double? TracesSampleRate { get; set; }
         /// <summary>
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateOtelSettingsRequest"/> and sets the default values.
+        /// </summary>
+        public UpdateOtelSettingsRequest()
+        {
+            EmitNodeStartSpan = false;
+            EmitWorkflowStartSpan = false;
+        }
+        /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateOtelSettingsRequest"/></returns>
@@ -77,6 +89,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "emitNodeStartSpan", n => { EmitNodeStartSpan = n.GetBoolValue(); } },
+                { "emitWorkflowStartSpan", n => { EmitWorkflowStartSpan = n.GetBoolValue(); } },
                 { "enabled", n => { Enabled = n.GetBoolValue(); } },
                 { "exporterEndpoint", n => { ExporterEndpoint = n.GetStringValue(); } },
                 { "exporterHeaders", n => { ExporterHeaders = n.GetStringValue(); } },
@@ -97,6 +111,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("emitNodeStartSpan", EmitNodeStartSpan);
+            writer.WriteBoolValue("emitWorkflowStartSpan", EmitWorkflowStartSpan);
             writer.WriteBoolValue("enabled", Enabled);
             writer.WriteStringValue("exporterEndpoint", ExporterEndpoint);
             writer.WriteStringValue("exporterHeaders", ExporterHeaders);

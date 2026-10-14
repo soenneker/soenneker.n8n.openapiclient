@@ -30,6 +30,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string CommitSha { get; set; }
 #endif
+        /// <summary>The source property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource? Source { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource Source { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response"/> and sets the default values.
         /// </summary>
@@ -57,6 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "changes", n => { Changes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "commitSha", n => { CommitSha = n.GetStringValue(); } },
+                { "source", n => { Source = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -68,6 +77,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem>("changes", Changes);
             writer.WriteStringValue("commitSha", CommitSha);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource>("source", Source);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

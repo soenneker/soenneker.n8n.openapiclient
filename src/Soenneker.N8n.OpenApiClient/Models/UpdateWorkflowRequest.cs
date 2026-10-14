@@ -12,7 +12,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public partial class UpdateWorkflowRequest : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The active property</summary>
+        /// <summary>Deprecated. Check whether `activeVersionId` is not null instead.</summary>
+        [Obsolete("")]
         public bool? Active { get; private set; }
         /// <summary>The activeVersion property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -21,6 +22,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestActiveVersion ActiveVersion { get; private set; }
+#endif
+        /// <summary>The activeVersionId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ActiveVersionId { get; private set; }
+#nullable restore
+#else
+        public string ActiveVersionId { get; private set; }
 #endif
         /// <summary>Connections between nodes, keyed by source node name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -162,6 +171,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "active", n => { Active = n.GetBoolValue(); } },
                 { "activeVersion", n => { ActiveVersion = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestActiveVersion>(global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestActiveVersion.CreateFromDiscriminatorValue); } },
+                { "activeVersionId", n => { ActiveVersionId = n.GetStringValue(); } },
                 { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestConnections>(global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestConnections.CreateFromDiscriminatorValue); } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "description", n => { Description = n.GetStringValue(); } },

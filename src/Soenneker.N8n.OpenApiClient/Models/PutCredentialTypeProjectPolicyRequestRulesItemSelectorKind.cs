@@ -16,5 +16,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         #pragma warning disable CS1591
         Package,
         #pragma warning restore CS1591
+        [EnumMember(Value = "extends")]
+        #pragma warning disable CS1591
+        Extends,
+        #pragma warning restore CS1591
     }
 }

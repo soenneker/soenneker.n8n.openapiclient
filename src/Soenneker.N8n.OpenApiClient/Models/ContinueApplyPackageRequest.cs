@@ -12,6 +12,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public partial class ContinueApplyPackageRequest : IParsable
     #pragma warning restore CS1591
     {
+        /// <summary>Also applies destructive data table changes, which a `destructive-change` conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. The confirmation covers every such change when Continue runs, including changes that are not in the reviewed result.</summary>
+        public bool? ConfirmDestructiveChanges { get; set; }
         /// <summary>The expectedSource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -38,6 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "confirmDestructiveChanges", n => { ConfirmDestructiveChanges = n.GetBoolValue(); } },
                 { "expectedSource", n => { ExpectedSource = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyPackageRequestExpectedSource>(global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyPackageRequestExpectedSource.CreateFromDiscriminatorValue); } },
             };
         }
@@ -48,6 +51,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteBoolValue("confirmDestructiveChanges", ConfirmDestructiveChanges);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyPackageRequestExpectedSource>("expectedSource", ExpectedSource);
         }
     }

@@ -18,6 +18,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public int? Created { get; set; }
         /// <summary>The matched property</summary>
         public int? Matched { get; set; }
+        /// <summary>The updated property</summary>
+        public int? Updated { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsDataTables"/> and sets the default values.
         /// </summary>
@@ -45,6 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "created", n => { Created = n.GetIntValue(); } },
                 { "matched", n => { Matched = n.GetIntValue(); } },
+                { "updated", n => { Updated = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -56,6 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("created", Created);
             writer.WriteIntValue("matched", Matched);
+            writer.WriteIntValue("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

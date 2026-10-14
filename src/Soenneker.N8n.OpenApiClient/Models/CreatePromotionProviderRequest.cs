@@ -20,6 +20,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth Auth { get; set; }
 #endif
+        /// <summary>The config property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig? Config { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig Config { get; set; }
+#endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -29,7 +37,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Name { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GitType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestType? Type { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -49,8 +57,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "auth", n => { Auth = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth>(global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth.CreateFromDiscriminatorValue); } },
+                { "config", n => { Config = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig>(global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig.CreateFromDiscriminatorValue); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GitType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestType>(); } },
             };
         }
         /// <summary>
@@ -61,8 +70,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth>("auth", Auth);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig>("config", Config);
             writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GitType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestType>("type", Type);
         }
     }
 }

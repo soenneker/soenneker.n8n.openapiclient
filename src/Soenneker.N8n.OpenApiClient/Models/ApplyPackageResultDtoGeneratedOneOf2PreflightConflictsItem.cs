@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem : IComposedTypeWrapper, IParsable
@@ -77,6 +77,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8 ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8 { get; set; }
 #endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9? ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9 ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -119,6 +127,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8();
             }
+            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9();
+            }
             return result;
         }
         /// <summary>
@@ -158,6 +170,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if(ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8 != null)
             {
                 return ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8.GetFieldDeserializers();
+            }
+            else if(ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9 != null)
+            {
+                return ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9.GetFieldDeserializers();
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -199,6 +215,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if(ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8 != null)
             {
                 writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8>(null, ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8);
+            }
+            else if(ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9>(null, ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9);
             }
         }
     }

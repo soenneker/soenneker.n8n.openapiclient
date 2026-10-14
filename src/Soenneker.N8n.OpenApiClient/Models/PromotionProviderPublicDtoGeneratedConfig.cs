@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf2"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf3"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PromotionProviderPublicDtoGeneratedConfig : IComposedTypeWrapper, IParsable
@@ -29,6 +29,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf2 PromotionProviderPublicDtoGeneratedConfigAnyOf2 { get; set; }
 #endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf3"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf3? PromotionProviderPublicDtoGeneratedConfigAnyOf3 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf3 PromotionProviderPublicDtoGeneratedConfigAnyOf3 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -40,6 +48,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var result = new global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfig();
             result.PromotionProviderPublicDtoGeneratedConfigAnyOf1 = new global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf1();
             result.PromotionProviderPublicDtoGeneratedConfigAnyOf2 = new global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf2();
+            result.PromotionProviderPublicDtoGeneratedConfigAnyOf3 = new global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf3();
             return result;
         }
         /// <summary>
@@ -48,9 +57,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(PromotionProviderPublicDtoGeneratedConfigAnyOf1 != null || PromotionProviderPublicDtoGeneratedConfigAnyOf2 != null)
+            if(PromotionProviderPublicDtoGeneratedConfigAnyOf1 != null || PromotionProviderPublicDtoGeneratedConfigAnyOf2 != null || PromotionProviderPublicDtoGeneratedConfigAnyOf3 != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PromotionProviderPublicDtoGeneratedConfigAnyOf1, PromotionProviderPublicDtoGeneratedConfigAnyOf2);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(PromotionProviderPublicDtoGeneratedConfigAnyOf1, PromotionProviderPublicDtoGeneratedConfigAnyOf2, PromotionProviderPublicDtoGeneratedConfigAnyOf3);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -61,7 +70,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf1>(null, PromotionProviderPublicDtoGeneratedConfigAnyOf1, PromotionProviderPublicDtoGeneratedConfigAnyOf2);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionProviderPublicDtoGeneratedConfigAnyOf1>(null, PromotionProviderPublicDtoGeneratedConfigAnyOf1, PromotionProviderPublicDtoGeneratedConfigAnyOf2, PromotionProviderPublicDtoGeneratedConfigAnyOf3);
         }
     }
 }

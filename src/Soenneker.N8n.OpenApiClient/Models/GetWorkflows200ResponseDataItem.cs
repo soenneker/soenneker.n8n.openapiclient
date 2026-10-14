@@ -12,7 +12,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public partial class GetWorkflows200ResponseDataItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>The active property</summary>
+        /// <summary>Deprecated. Check whether `activeVersionId` is not null instead.</summary>
+        [Obsolete("")]
         public bool? Active { get; set; }
         /// <summary>The activeVersion property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
