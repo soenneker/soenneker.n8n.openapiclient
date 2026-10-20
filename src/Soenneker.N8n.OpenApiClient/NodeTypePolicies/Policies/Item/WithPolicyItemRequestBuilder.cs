@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.Item
         {
         }
         /// <summary>
-        /// Deletes a policy document. A document that is still attached to a scope is rejected with 409; detach it first.
+        /// **Preview** — breaking changes may still occur without major version bump.Deletes a policy document. A document that is still attached to a scope is rejected with 409; detach it first.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -51,7 +51,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a node type policy document
+        /// **Preview** — breaking changes may still occur without major version bump.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetNodeTypePolicyDocument200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -69,7 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetNodeTypePolicyDocument200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetNodeTypePolicyDocument200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Replaces the document&apos;s whole rule list. `version` must equal the version last read; a stale value is rejected with 409. Every scope the document is attached to has its version bumped. A `delegate` rule is rejected when the document is attached to a project scope.
+        /// **Preview** — breaking changes may still occur without major version bump.Replaces the document&apos;s whole rule list. `version` must equal the version last read; a stale value is rejected with 409. Every scope the document is attached to has its version bumped. A `delegate` rule is rejected when the document is attached to a project scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -89,7 +89,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes a policy document. A document that is still attached to a scope is rejected with 409; detach it first.
+        /// **Preview** — breaking changes may still occur without major version bump.Deletes a policy document. A document that is still attached to a scope is rejected with 409; detach it first.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -107,7 +107,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.Item
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a node type policy document
+        /// **Preview** — breaking changes may still occur without major version bump.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -126,7 +126,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.Item
             return requestInfo;
         }
         /// <summary>
-        /// Replaces the document&apos;s whole rule list. `version` must equal the version last read; a stale value is rejected with 409. Every scope the document is attached to has its version bumped. A `delegate` rule is rejected when the document is attached to a project scope.
+        /// **Preview** — breaking changes may still occur without major version bump.Replaces the document&apos;s whole rule list. `version` must equal the version last read; a stale value is rejected with 409. Every scope the document is attached to has its version bumped. A `delegate` rule is rejected when the document is attached to a project scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

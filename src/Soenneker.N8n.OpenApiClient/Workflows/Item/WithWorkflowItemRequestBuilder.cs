@@ -134,20 +134,20 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         /// <summary>
         /// Retrieve a workflow.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.WithWorkflowItemRequestBuilder.WithWorkflowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.WithWorkflowItemRequestBuilder.WithWorkflowItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.WithWorkflowItemRequestBuilder.WithWorkflowItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Workflows.Item.WithWorkflowItemRequestBuilder.WithWorkflowItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.

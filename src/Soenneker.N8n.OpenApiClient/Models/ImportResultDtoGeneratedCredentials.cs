@@ -8,13 +8,21 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Source credential ids grouped by whether they matched an existing credential or were created as stubs. Full source→target id mapping is in `bindings.credentials`.
+    /// Source credential ids grouped by whether they matched an existing credential or were created as empty stubs, seeded credentials, or incomplete credentials. Full source→target id mapping is in `bindings.credentials`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportResultDtoGeneratedCredentials : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Source credential ids for which credentials were created in the target project with bundled expression values, but the package does not confirm that it carries all source data. These credentials need input. The import does not publish the imported version of workflows that use them (`incomplete-credential`).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Incomplete { get; set; }
+#nullable restore
+#else
+        public List<string> Incomplete { get; set; }
+#endif
         /// <summary>Source credential ids from the package that matched existing credentials on the target instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -22,6 +30,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #nullable restore
 #else
         public List<string> Matched { get; set; }
+#endif
+        /// <summary>Source credential ids for which credentials were created in the target project with all their source data from the bundled expression values.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Seeded { get; set; }
+#nullable restore
+#else
+        public List<string> Seeded { get; set; }
 #endif
         /// <summary>Source credential ids for which empty placeholder credentials were created in the target project.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -56,7 +72,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "incomplete", n => { Incomplete = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "matched", n => { Matched = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "seeded", n => { Seeded = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "stubbed", n => { Stubbed = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -67,7 +85,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfPrimitiveValues<string>("incomplete", Incomplete);
             writer.WriteCollectionOfPrimitiveValues<string>("matched", Matched);
+            writer.WriteCollectionOfPrimitiveValues<string>("seeded", Seeded);
             writer.WriteCollectionOfPrimitiveValues<string>("stubbed", Stubbed);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Credential id from `requirements.credentials` in the package manifest → resolved target credential id on the target instance. Covers both a matched existing credential and a credential created as a stub under `credentialMissingMode=create-stub`.
+    /// Credential id from `requirements.credentials` in the package manifest → resolved target credential id on the target instance. Covers both a matched existing credential and a credential that the import created under `credentialMissingMode=create-stub` or `create-with-values`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportResultDtoGeneratedBindingsCredentialsProperty : IAdditionalDataHolder, IParsable

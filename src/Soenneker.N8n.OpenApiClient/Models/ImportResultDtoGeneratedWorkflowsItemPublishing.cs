@@ -25,9 +25,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Error { get; set; }
 #endif
-        /// <summary>Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with stubbed credentials).</summary>
+        /// <summary>Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with empty or incomplete credentials).</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingSkippedPublishReason? SkippedPublishReason { get; set; }
-        /// <summary>`blocked` means the imported version could not be published and no version is active (for example because the workflow uses a stubbed credential, or uses a node type this instance does not have). When a prior published version remains active, `state` is `unchanged` with `skippedPublishReason` instead. `failed` means publish or unpublish was attempted but did not succeed.</summary>
+        /// <summary>`blocked` means the imported version could not be published and no version is active (for example because the workflow uses an empty or incomplete credential, or uses a node type this instance does not have). When a prior published version remains active, `state` is `unchanged` with `skippedPublishReason` instead. `failed` means publish or unpublish was attempted but did not succeed.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingState? State { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing"/> and sets the default values.

@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies
         {
         }
         /// <summary>
-        /// Returns a cursor-paginated list of reusable policy documents.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.
+        /// **Preview** — breaking changes may still occur without major version bump.Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -85,7 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns a cursor-paginated list of reusable policy documents.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies
             return requestInfo;
         }
         /// <summary>
-        /// Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.
+        /// **Preview** — breaking changes may still occur without major version bump.Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -135,7 +135,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies
             return new global::Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies.PoliciesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns a cursor-paginated list of reusable policy documents.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PoliciesRequestBuilderGetQueryParameters 

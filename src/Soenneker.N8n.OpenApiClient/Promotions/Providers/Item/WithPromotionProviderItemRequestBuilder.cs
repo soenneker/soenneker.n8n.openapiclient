@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
+using Soenneker.N8n.OpenApiClient.Promotions.Providers.Item.Repositories;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,6 +18,11 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Providers.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithPromotionProviderItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The repositories property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.Providers.Item.Repositories.RepositoriesRequestBuilder Repositories
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Providers.Item.Repositories.RepositoriesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Promotions.Providers.Item.WithPromotionProviderItemRequestBuilder"/> and sets the default values.
         /// </summary>

@@ -35,7 +35,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkflowsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows{?active*,cursor*,excludePinnedData*,limit*,name*,offset*,projectId*,tags*}", pathParameters)
+        public WorkflowsRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows{?active*,cursor*,excludePinnedData*,includeParentFolder*,limit*,name*,offset*,projectId*,tags*}", pathParameters)
         {
         }
         /// <summary>
@@ -43,7 +43,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WorkflowsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows{?active*,cursor*,excludePinnedData*,limit*,name*,offset*,projectId*,tags*}", rawUrl)
+        public WorkflowsRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/workflows{?active*,cursor*,excludePinnedData*,includeParentFolder*,limit*,name*,offset*,projectId*,tags*}", rawUrl)
         {
         }
         /// <summary>
@@ -157,6 +157,10 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
             #pragma warning disable CS1591
             [QueryParameter("excludePinnedData")]
             public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowsExcludePinnedDataParameter? ExcludePinnedData { get; set; }
+            #pragma warning restore CS1591
+            #pragma warning disable CS1591
+            [QueryParameter("includeParentFolder")]
+            public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowsIncludeParentFolderParameter? IncludeParentFolder { get; set; }
             #pragma warning restore CS1591
             /// <summary>The maximum number of items to return.</summary>
             [QueryParameter("limit")]

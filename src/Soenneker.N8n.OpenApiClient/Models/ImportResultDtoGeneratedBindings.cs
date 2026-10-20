@@ -15,7 +15,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Credential id from `requirements.credentials` in the package manifest → resolved target credential id on the target instance. Covers both a matched existing credential and a credential created as a stub under `credentialMissingMode=create-stub`.</summary>
+        /// <summary>Credential id from `requirements.credentials` in the package manifest → resolved target credential id on the target instance. Covers both a matched existing credential and a credential that the import created under `credentialMissingMode=create-stub` or `create-with-values`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty? Credentials { get; set; }

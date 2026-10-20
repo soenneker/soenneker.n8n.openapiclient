@@ -106,7 +106,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Connections.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotionConnectionPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotionConnectionPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates the name, target, or provider. Scope cannot change, and configurations have their own routes.
+        /// Updates the name, target, or provider. A target replaces the whole saved target. GitLab connections store a repository path and derive remoteUrl from the provider. Plain Git connections keep the full remote URL. If the provider changes during a target or provider update, the update returns 409. Reload the connection and try again. Scope cannot change, and configurations have their own routes.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionConnectionPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -163,7 +163,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Connections.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates the name, target, or provider. Scope cannot change, and configurations have their own routes.
+        /// Updates the name, target, or provider. A target replaces the whole saved target. GitLab connections store a repository path and derive remoteUrl from the provider. Plain Git connections keep the full remote URL. If the provider changes during a target or provider update, the update returns 409. Reload the connection and try again. Scope cannot change, and configurations have their own routes.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

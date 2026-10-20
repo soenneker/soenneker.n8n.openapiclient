@@ -8,34 +8,22 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A tag referenced by the package&apos;s workflows that could not be resolved on the target instance. `kind` distinguishes the cause: `rename-drift` (the same-id target tag carries a different name — under `tagConflictPolicy=fail`, or `rename` when the package name is held by another tag), `name-collision` (the id is free but the name belongs to a different tag under `tagMissingMode=create` with `tagConflictPolicy=fail`; also raised when two package tags collide with each other, or when the target tag a reconcile would re-key is claimed by another package tag), `invalid-name` / `invalid-id` (the package tag&apos;s name or id cannot be written on this instance), or `permission-denied` (the importing user lacks the global `tag:create` / `tag:update` scope the plan needs).
+    /// A folder that `folderConflictPolicy=overwrite` would delete — the package does not define it and reconciliation leaves it empty — but the caller lacks `folder:delete` on the target project. Reported instead of removing a subset, which would leave the project matching neither the package nor its previous state.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf13 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>For `rename-drift`: the current name of the same-id target tag.</summary>
+        /// <summary>The folderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExistingName { get; set; }
+        public string? FolderId { get; set; }
 #nullable restore
 #else
-        public string ExistingName { get; set; }
+        public string FolderId { get; set; }
 #endif
-        /// <summary>Id of the contested target tag — the different tag currently holding the wanted name, or the target tag a blocked reconcile would re-key. Absent when two package tags collide with each other rather than over a target tag.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ExistingTagId { get; set; }
-#nullable restore
-#else
-        public string ExistingTagId { get; set; }
-#endif
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13Kind? Kind { get; set; }
-        /// <summary>For `permission-denied`: the global scope the importing user lacks.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13MissingScope? MissingScope { get; set; }
-        /// <summary>The (trimmed) package tag name. Absent for `permission-denied`.</summary>
+        /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -43,24 +31,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Tag id as it appears in the package. Absent for `permission-denied`.</summary>
+        /// <summary>Project the folder was being reconciled against.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string ProjectId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType? Type { get; set; }
-        /// <summary>Package consumers that reference the source tag. This excludes skipped consumers and workflows attached to the contested target tag.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
-#endif
+        public global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13"/> and sets the default values.
         /// </summary>
@@ -86,14 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "existingName", n => { ExistingName = n.GetStringValue(); } },
-                { "existingTagId", n => { ExistingTagId = n.GetStringValue(); } },
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13Kind>(); } },
-                { "missingScope", n => { MissingScope = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13MissingScope>(); } },
+                { "folderId", n => { FolderId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType>(); } },
-                { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType>(); } },
             };
         }
         /// <summary>
@@ -103,14 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("existingName", ExistingName);
-            writer.WriteStringValue("existingTagId", ExistingTagId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13Kind>("kind", Kind);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13MissingScope>("missingScope", MissingScope);
+            writer.WriteStringValue("folderId", FolderId);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType>("type", Type);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

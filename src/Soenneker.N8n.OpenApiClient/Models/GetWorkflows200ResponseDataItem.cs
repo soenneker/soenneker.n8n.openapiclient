@@ -85,6 +85,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemNodesItem> Nodes { get; set; }
 #endif
+        /// <summary>Folder that contains the workflow, or null at the project root. The field is present only when `includeParentFolder` is `true`.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemParentFolder? ParentFolder { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemParentFolder ParentFolder { get; set; }
+#endif
         /// <summary>Pinned sample data for nodes, keyed by node name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -173,6 +181,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "nodeGroups", n => { NodeGroups = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemNodeGroupsItem>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemNodeGroupsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "nodes", n => { Nodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemNodesItem>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemNodesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "parentFolder", n => { ParentFolder = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemParentFolder>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemParentFolder.CreateFromDiscriminatorValue); } },
                 { "pinData", n => { PinData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemPinData>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemPinData.CreateFromDiscriminatorValue); } },
                 { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettings>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettings.CreateFromDiscriminatorValue); } },
                 { "shared", n => { Shared = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSharedItem>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSharedItem.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -201,6 +210,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemNodeGroupsItem>("nodeGroups", NodeGroups);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemNodesItem>("nodes", Nodes);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemParentFolder>("parentFolder", ParentFolder);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemPinData>("pinData", PinData);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSettings>("settings", Settings);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemSharedItem>("shared", Shared);

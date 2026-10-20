@@ -3,13 +3,17 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with stubbed credentials).</summary>
+    /// <summary>Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with empty or incomplete credentials).</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ImportResultDtoGeneratedWorkflowsItemPublishingSkippedPublishReason
     {
         [EnumMember(Value = "stub-credential")]
         #pragma warning disable CS1591
         StubCredential,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "incomplete-credential")]
+        #pragma warning disable CS1591
+        IncompleteCredential,
         #pragma warning restore CS1591
         [EnumMember(Value = "missing-node-type")]
         #pragma warning disable CS1591

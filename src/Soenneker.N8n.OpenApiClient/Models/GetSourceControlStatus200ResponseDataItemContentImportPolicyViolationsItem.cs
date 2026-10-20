@@ -46,6 +46,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Message { get; set; }
 #endif
+        /// <summary>The optInAvailable property</summary>
+        public bool? OptInAvailable { get; set; }
+        /// <summary>The projectId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ProjectId { get; set; }
+#nullable restore
+#else
+        public string ProjectId { get; set; }
+#endif
         /// <summary>The scope property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -99,6 +109,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "kind", n => { Kind = n.GetStringValue(); } },
                 { "matchedRuleId", n => { MatchedRuleId = n.GetStringValue(); } },
                 { "message", n => { Message = n.GetStringValue(); } },
+                { "optInAvailable", n => { OptInAvailable = n.GetBoolValue(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "scope", n => { Scope = n.GetStringValue(); } },
                 { "subject", n => { Subject = n.GetStringValue(); } },
                 { "subjectType", n => { SubjectType = n.GetStringValue(); } },
@@ -115,6 +127,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("kind", Kind);
             writer.WriteStringValue("matchedRuleId", MatchedRuleId);
             writer.WriteStringValue("message", Message);
+            writer.WriteBoolValue("optInAvailable", OptInAvailable);
+            writer.WriteStringValue("projectId", ProjectId);
             writer.WriteStringValue("scope", Scope);
             writer.WriteStringValue("subject", Subject);
             writer.WriteStringValue("subjectType", SubjectType);

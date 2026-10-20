@@ -8,54 +8,32 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A credential the import would write that the credential-save policy refused, for example a stub of a credential type this instance does not allow. The import stops before any writes.
+    /// A node type — or a version of a node type — used by a package workflow that this instance does not have, under `missingNodeTypeMode=fail`. One issue is reported per missing `(nodeType, typeVersion)` pair.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf19 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The credentialType property</summary>
+        /// <summary>Full node type name as used by the package&apos;s workflows.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CredentialType { get; set; }
+        public string? NodeType { get; set; }
 #nullable restore
 #else
-        public string CredentialType { get; set; }
-#endif
-        /// <summary>The name property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Name { get; set; }
-#nullable restore
-#else
-        public string Name { get; set; }
-#endif
-        /// <summary>Credential id as it appears in the package.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SourceId { get; set; }
-#nullable restore
-#else
-        public string SourceId { get; set; }
+        public string NodeType { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialPolicyViolationType? Type { get; set; }
-        /// <summary>Package consumers that use this credential.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType? Type { get; set; }
+        /// <summary>Node type version the package&apos;s workflows use.</summary>
+        public double? TypeVersion { get; set; }
+        /// <summary>Package consumers that use this node type and version.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
 #nullable restore
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
-#endif
-        /// <summary>The violations property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19ViolationsItem>? Violations { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19ViolationsItem> Violations { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19"/> and sets the default values.
@@ -82,12 +60,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "credentialType", n => { CredentialType = n.GetStringValue(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialPolicyViolationType>(); } },
+                { "nodeType", n => { NodeType = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType>(); } },
+                { "typeVersion", n => { TypeVersion = n.GetDoubleValue(); } },
                 { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "violations", n => { Violations = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19ViolationsItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19ViolationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -97,12 +73,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("credentialType", CredentialType);
-            writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialPolicyViolationType>("type", Type);
+            writer.WriteStringValue("nodeType", NodeType);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.MissingNodeTypeType>("type", Type);
+            writer.WriteDoubleValue("typeVersion", TypeVersion);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19ViolationsItem>("violations", Violations);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

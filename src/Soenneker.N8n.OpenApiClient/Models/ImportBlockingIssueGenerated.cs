@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf11"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf15"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf16"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf17"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf4"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf7"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf8"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf9"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf11"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf15"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf16"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf17"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf4"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf7"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf8"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf9"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGenerated : IComposedTypeWrapper, IParsable
@@ -108,6 +108,22 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2 ImportBlockingIssueGeneratedOneOf2 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20? ImportBlockingIssueGeneratedOneOf20 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20 ImportBlockingIssueGeneratedOneOf20 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21? ImportBlockingIssueGeneratedOneOf21 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21 ImportBlockingIssueGeneratedOneOf21 { get; set; }
 #endif
         /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -223,6 +239,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 result.ImportBlockingIssueGeneratedOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2();
             }
+            else if("ImportBlockingIssueGeneratedOneOf20".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.ImportBlockingIssueGeneratedOneOf20 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20();
+            }
+            else if("ImportBlockingIssueGeneratedOneOf21".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.ImportBlockingIssueGeneratedOneOf21 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21();
+            }
             else if("ImportBlockingIssueGeneratedOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3();
@@ -306,6 +330,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if(ImportBlockingIssueGeneratedOneOf2 != null)
             {
                 return ImportBlockingIssueGeneratedOneOf2.GetFieldDeserializers();
+            }
+            else if(ImportBlockingIssueGeneratedOneOf20 != null)
+            {
+                return ImportBlockingIssueGeneratedOneOf20.GetFieldDeserializers();
+            }
+            else if(ImportBlockingIssueGeneratedOneOf21 != null)
+            {
+                return ImportBlockingIssueGeneratedOneOf21.GetFieldDeserializers();
             }
             else if(ImportBlockingIssueGeneratedOneOf3 != null)
             {
@@ -391,6 +423,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if(ImportBlockingIssueGeneratedOneOf2 != null)
             {
                 writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2>(null, ImportBlockingIssueGeneratedOneOf2);
+            }
+            else if(ImportBlockingIssueGeneratedOneOf20 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20>(null, ImportBlockingIssueGeneratedOneOf20);
+            }
+            else if(ImportBlockingIssueGeneratedOneOf21 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21>(null, ImportBlockingIssueGeneratedOneOf21);
             }
             else if(ImportBlockingIssueGeneratedOneOf3 != null)
             {

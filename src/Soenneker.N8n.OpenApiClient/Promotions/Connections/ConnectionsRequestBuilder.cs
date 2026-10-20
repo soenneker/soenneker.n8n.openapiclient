@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Connections
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionConnections200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetPromotionConnections200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a connection on an existing provider, with up to one initial configuration for each direction. Only one instance connection can exist.
+        /// Creates a connection on an existing provider, with up to one initial configuration for each direction. A GitLab target URL must belong to the saved provider. The connection stores only the repository path and derives remoteUrl from the current provider base URL. Plain Git connections keep the full remote URL. Only one instance connection can exist.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionConnectionPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Connections
             return requestInfo;
         }
         /// <summary>
-        /// Creates a connection on an existing provider, with up to one initial configuration for each direction. Only one instance connection can exist.
+        /// Creates a connection on an existing provider, with up to one initial configuration for each direction. A GitLab target URL must belong to the saved provider. The connection stores only the repository path and derives remoteUrl from the current provider base URL. Plain Git connections keep the full remote URL. Only one instance connection can exist.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

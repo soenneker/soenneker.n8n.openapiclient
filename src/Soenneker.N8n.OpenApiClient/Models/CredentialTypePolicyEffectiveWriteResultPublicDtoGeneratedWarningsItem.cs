@@ -7,36 +7,28 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The ruleId property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RuleId { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1? CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 { get; set; }
 #nullable restore
 #else
-        public string RuleId { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 { get; set; }
 #endif
-        /// <summary>The shadowedByRuleId property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ShadowedByRuleId { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2? CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2 { get; set; }
 #nullable restore
 #else
-        public string ShadowedByRuleId { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2 CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2 { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem"/> and sets the default values.
-        /// </summary>
-        public CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -45,7 +37,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem();
+            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var result = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem();
+            if("CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1();
+            }
+            else if("CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -53,11 +55,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 != null)
             {
-                { "ruleId", n => { RuleId = n.GetStringValue(); } },
-                { "shadowedByRuleId", n => { ShadowedByRuleId = n.GetStringValue(); } },
-            };
+                return CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1.GetFieldDeserializers();
+            }
+            else if(CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2 != null)
+            {
+                return CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -66,9 +72,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("ruleId", RuleId);
-            writer.WriteStringValue("shadowedByRuleId", ShadowedByRuleId);
-            writer.WriteAdditionalData(AdditionalData);
+            if(CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1>(null, CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1);
+            }
+            else if(CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2>(null, CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2);
+            }
         }
     }
 }

@@ -7,11 +7,10 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>
-    /// Selects what to export. Provide `agentIds`, `workflowIds`, and/or `folderIds` to export loose entities, or `projectIds` to export whole projects. Do not combine these two groups. Supply at least one ID.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+    #pragma warning disable CS1591
     public partial class ExportPackageRequest : IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>IDs of the agents to include. Requires the agents module.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER

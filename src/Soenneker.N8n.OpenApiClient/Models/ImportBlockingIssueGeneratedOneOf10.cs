@@ -8,39 +8,57 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A selected workflow resolves to a destination id in `deletedWorkflowIds`. The import stops before any writes, including when the conflict policy is `skip`.
+    /// A package folder that cannot be imported as-is. `kind` distinguishes the cause: `parent-mismatch` (a folder matched by id sits under a different parent than the package places it), `id-in-other-project` (the folder id already exists in a different project — ids are globally unique), or `fail-policy` (the folder already exists and `folderConflictPolicy` is `fail`).
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf10 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The projectId property</summary>
+        /// <summary>For `parent-mismatch`: the matched folder&apos;s current parent in the target.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProjectId { get; set; }
+        public string? ExistingParentFolderId { get; set; }
 #nullable restore
 #else
-        public string ProjectId { get; set; }
+        public string ExistingParentFolderId { get; set; }
 #endif
-        /// <summary>The sourceWorkflowId property</summary>
+        /// <summary>For `id-in-other-project`: the project that already owns the id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceWorkflowId { get; set; }
+        public string? ExistingProjectId { get; set; }
 #nullable restore
 #else
-        public string SourceWorkflowId { get; set; }
+        public string ExistingProjectId { get; set; }
+#endif
+        /// <summary>For `parent-mismatch`: the parent the package would place the folder under.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExpectedParentFolderId { get; set; }
+#nullable restore
+#else
+        public string ExpectedParentFolderId { get; set; }
+#endif
+        /// <summary>The kind property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10Kind? Kind { get; set; }
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>The sourceFolderId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceFolderId { get; set; }
+#nullable restore
+#else
+        public string SourceFolderId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType? Type { get; set; }
-        /// <summary>The destination id of the selected workflow.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? WorkflowId { get; set; }
-#nullable restore
-#else
-        public string WorkflowId { get; set; }
-#endif
+        public global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10"/> and sets the default values.
         /// </summary>
@@ -66,10 +84,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "projectId", n => { ProjectId = n.GetStringValue(); } },
-                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType>(); } },
-                { "workflowId", n => { WorkflowId = n.GetStringValue(); } },
+                { "existingParentFolderId", n => { ExistingParentFolderId = n.GetStringValue(); } },
+                { "existingProjectId", n => { ExistingProjectId = n.GetStringValue(); } },
+                { "expectedParentFolderId", n => { ExpectedParentFolderId = n.GetStringValue(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10Kind>(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "sourceFolderId", n => { SourceFolderId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType>(); } },
             };
         }
         /// <summary>
@@ -79,10 +100,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("projectId", ProjectId);
-            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType>("type", Type);
-            writer.WriteStringValue("workflowId", WorkflowId);
+            writer.WriteStringValue("existingParentFolderId", ExistingParentFolderId);
+            writer.WriteStringValue("existingProjectId", ExistingProjectId);
+            writer.WriteStringValue("expectedParentFolderId", ExpectedParentFolderId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10Kind>("kind", Kind);
+            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("sourceFolderId", SourceFolderId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

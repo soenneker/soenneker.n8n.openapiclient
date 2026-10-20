@@ -8,98 +8,38 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A data table referenced by the package&apos;s workflows that could not be resolved against the target project — under `dataTableMissingMode=must-preexist` or `dataTableSchemaConflictPolicy`, or because the data table module is disabled on this instance, or the caller lacks the scope the resolution needs.
+    /// A selected workflow resolves to a destination id in `deletedWorkflowIds`. The import stops before any writes, including when the conflict policy is `skip`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf12 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>For `name-conflict`: the other table that holds or claims the name.</summary>
+        /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConflictingTableId { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public string ConflictingTableId { get; set; }
+        public string ProjectId { get; set; }
 #endif
-        /// <summary>For a rename `name-conflict`: the matched table&apos;s current name.</summary>
+        /// <summary>The sourceWorkflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentName { get; set; }
+        public string? SourceWorkflowId { get; set; }
 #nullable restore
 #else
-        public string CurrentName { get; set; }
-#endif
-        /// <summary>For `id-conflict`: the project owning the conflicting target table.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ExistingProjectId { get; set; }
-#nullable restore
-#else
-        public string ExistingProjectId { get; set; }
-#endif
-        /// <summary>For `schema-incompatible` under the `fail` policy: target columns not in the package schema.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? ExtraColumns { get; set; }
-#nullable restore
-#else
-        public List<string> ExtraColumns { get; set; }
-#endif
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12Kind? Kind { get; set; }
-        /// <summary>For `schema-incompatible`: package columns absent from the target table.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? MissingColumns { get; set; }
-#nullable restore
-#else
-        public List<string> MissingColumns { get; set; }
-#endif
-        /// <summary>For `permission-denied`: the project scope the user lacks.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12MissingScope? MissingScope { get; set; }
-        /// <summary>The name property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Name { get; set; }
-#nullable restore
-#else
-        public string Name { get; set; }
-#endif
-        /// <summary>For `schema-incompatible`: the changes `overwrite` would make to the target table.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12OverwriteChangesItem>? OverwriteChanges { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12OverwriteChangesItem> OverwriteChanges { get; set; }
-#endif
-        /// <summary>Absent for import-wide failures (`module-disabled`, `permission-denied`).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SourceId { get; set; }
-#nullable restore
-#else
-        public string SourceId { get; set; }
+        public string SourceWorkflowId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType? Type { get; set; }
-        /// <summary>For `schema-incompatible`: package columns whose target type differs.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType? Type { get; set; }
+        /// <summary>The destination id of the selected workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12TypeMismatchesItem>? TypeMismatches { get; set; }
+        public string? WorkflowId { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12TypeMismatchesItem> TypeMismatches { get; set; }
-#endif
-        /// <summary>The usedBy property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
+        public string WorkflowId { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12"/> and sets the default values.
@@ -126,19 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "conflictingTableId", n => { ConflictingTableId = n.GetStringValue(); } },
-                { "currentName", n => { CurrentName = n.GetStringValue(); } },
-                { "existingProjectId", n => { ExistingProjectId = n.GetStringValue(); } },
-                { "extraColumns", n => { ExtraColumns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12Kind>(); } },
-                { "missingColumns", n => { MissingColumns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "missingScope", n => { MissingScope = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12MissingScope>(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "overwriteChanges", n => { OverwriteChanges = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12OverwriteChangesItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12OverwriteChangesItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType>(); } },
-                { "typeMismatches", n => { TypeMismatches = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12TypeMismatchesItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12TypeMismatchesItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType>(); } },
+                { "workflowId", n => { WorkflowId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -148,19 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("conflictingTableId", ConflictingTableId);
-            writer.WriteStringValue("currentName", CurrentName);
-            writer.WriteStringValue("existingProjectId", ExistingProjectId);
-            writer.WriteCollectionOfPrimitiveValues<string>("extraColumns", ExtraColumns);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12Kind>("kind", Kind);
-            writer.WriteCollectionOfPrimitiveValues<string>("missingColumns", MissingColumns);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12MissingScope>("missingScope", MissingScope);
-            writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12OverwriteChangesItem>("overwriteChanges", OverwriteChanges);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType>("type", Type);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12TypeMismatchesItem>("typeMismatches", TypeMismatches);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType>("type", Type);
+            writer.WriteStringValue("workflowId", WorkflowId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

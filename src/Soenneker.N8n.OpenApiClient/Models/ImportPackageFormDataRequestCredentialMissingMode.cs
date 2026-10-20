@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>What to do when a credential reference cannot be resolved. `create-stub` (default) creates empty credential placeholders in the target project for missing references. `must-preexist` requires every referenced credential to already exist.</summary>
+    /// <summary>What to do when a credential reference cannot be resolved. `create-stub` (default) creates empty credential placeholders in the target project for missing references. `create-with-values` also creates them, seeded from the expression data bundled in the package (see the export option `credentialExportPolicy`); a reference the package carries no data for falls back to an empty stub. A credential created with package data is listed under `credentials.seeded` when the package confirms that all source data was retained. Otherwise, also when the package has no completeness flag, it is listed under `credentials.incomplete` and blocks workflow publishing with `incomplete-credential`. `create-with-values` requires the `credential:create` scope when the import creates a credential. `must-preexist` requires every referenced credential to already exist.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ImportPackageFormDataRequestCredentialMissingMode
     {
@@ -14,6 +14,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         [EnumMember(Value = "create-stub")]
         #pragma warning disable CS1591
         CreateStub,
+        #pragma warning restore CS1591
+        [EnumMember(Value = "create-with-values")]
+        #pragma warning disable CS1591
+        CreateWithValues,
         #pragma warning restore CS1591
     }
 }

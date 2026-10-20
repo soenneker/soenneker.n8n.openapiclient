@@ -8,14 +8,16 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A workflow the import would remove but the caller lacks `workflow:delete` on: either `folderConflictPolicy=overwrite` would remove it because the package does not contain it, or it is named in the selection&apos;s `deletedWorkflowIds`. Reported instead of removing a subset, which would leave the project matching neither the package nor its previous state.
+    /// A project defined by the package that already exists on this instance, under `projectConflictPolicy=fail`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf9 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>The kind property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind? Kind { get; set; }
+        /// <summary>The project&apos;s name as it appears in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -23,24 +25,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Project the workflow was being reconciled against.</summary>
+        /// <summary>The sourceProjectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProjectId { get; set; }
+        public string? SourceProjectId { get; set; }
 #nullable restore
 #else
-        public string ProjectId { get; set; }
+        public string SourceProjectId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalForbiddenType? Type { get; set; }
-        /// <summary>The workflowId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? WorkflowId { get; set; }
-#nullable restore
-#else
-        public string WorkflowId { get; set; }
-#endif
+        public global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf9"/> and sets the default values.
         /// </summary>
@@ -66,10 +60,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "projectId", n => { ProjectId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalForbiddenType>(); } },
-                { "workflowId", n => { WorkflowId = n.GetStringValue(); } },
+                { "sourceProjectId", n => { SourceProjectId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType>(); } },
             };
         }
         /// <summary>
@@ -79,10 +73,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind>("kind", Kind);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("projectId", ProjectId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalForbiddenType>("type", Type);
-            writer.WriteStringValue("workflowId", WorkflowId);
+            writer.WriteStringValue("sourceProjectId", SourceProjectId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

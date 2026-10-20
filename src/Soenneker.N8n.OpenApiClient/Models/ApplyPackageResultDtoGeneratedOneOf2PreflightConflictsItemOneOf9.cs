@@ -14,41 +14,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The changes property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ChangesItem>? Changes { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ChangesItem> Changes { get; set; }
-#endif
         /// <summary>The code property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DestructiveChangeCode? Code { get; set; }
-        /// <summary>The consumers property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ConsumersItem>? Consumers { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ConsumersItem> Consumers { get; set; }
-#endif
-        /// <summary>The id property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Id { get; set; }
-#nullable restore
-#else
-        public string Id { get; set; }
-#endif
+        public global::Soenneker.N8n.OpenApiClient.Models.ProjectDeletionCode? Code { get; set; }
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DataTableKind? Kind { get; set; }
-        /// <summary>The name property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ProjectKind? Kind { get; set; }
+        /// <summary>The project property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9Project? Project { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9Project Project { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9"/> and sets the default values.
@@ -75,12 +51,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "changes", n => { Changes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ChangesItem>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ChangesItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "code", n => { Code = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestructiveChangeCode>(); } },
-                { "consumers", n => { Consumers = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ConsumersItem>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ConsumersItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "id", n => { Id = n.GetStringValue(); } },
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableKind>(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
+                { "code", n => { Code = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectDeletionCode>(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectKind>(); } },
+                { "project", n => { Project = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9Project>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9Project.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -90,12 +63,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ChangesItem>("changes", Changes);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DestructiveChangeCode>("code", Code);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9ConsumersItem>("consumers", Consumers);
-            writer.WriteStringValue("id", Id);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableKind>("kind", Kind);
-            writer.WriteStringValue("name", Name);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectDeletionCode>("code", Code);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectKind>("kind", Kind);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9Project>("project", Project);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

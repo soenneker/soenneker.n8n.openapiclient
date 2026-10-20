@@ -20,6 +20,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string RemoteUrl { get; set; }
 #endif
+        /// <summary>The stored repository path of a GitLab target. URL-encode it before you use it as repositoryId to list branches. Requests do not accept it.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? RepositoryPath { get; set; }
+#nullable restore
+#else
+        public string RepositoryPath { get; set; }
+#endif
         /// <summary>The schemaVersion property</summary>
         public double? SchemaVersion { get; set; }
         /// <summary>
@@ -41,6 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "remoteUrl", n => { RemoteUrl = n.GetStringValue(); } },
+                { "repositoryPath", n => { RepositoryPath = n.GetStringValue(); } },
                 { "schemaVersion", n => { SchemaVersion = n.GetDoubleValue(); } },
             };
         }
@@ -52,6 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("remoteUrl", RemoteUrl);
+            writer.WriteStringValue("repositoryPath", RepositoryPath);
             writer.WriteDoubleValue("schemaVersion", SchemaVersion);
         }
     }

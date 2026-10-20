@@ -22,6 +22,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequestAttachmentsItem> Attachments { get; set; }
 #endif
+        /// <summary>The version property</summary>
+        public int? Version { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequest"/> and sets the default values.
         /// </summary>
@@ -48,6 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "attachments", n => { Attachments = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequestAttachmentsItem>(global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequestAttachmentsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "version", n => { Version = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -58,6 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ReplaceNodeTypePolicyAttachmentsRequestAttachmentsItem>("attachments", Attachments);
+            writer.WriteIntValue("version", Version);
             writer.WriteAdditionalData(AdditionalData);
         }
     }
