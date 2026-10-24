@@ -24,13 +24,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItem> Filters { get; set; }
 #endif
         /// <summary>The type property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterType? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterType Type { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilter"/> and sets the default values.
         /// </summary>
@@ -57,7 +51,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItem>(global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterType>(global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterType.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterType>(); } },
             };
         }
         /// <summary>
@@ -68,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItem>("filters", Filters);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

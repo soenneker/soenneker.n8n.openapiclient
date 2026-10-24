@@ -7,94 +7,44 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The filePath property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FilePath { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1? GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1 { get; set; }
 #nullable restore
 #else
-        public string FilePath { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1 GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1 { get; set; }
 #endif
-        /// <summary>The id property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2? GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2 { get; set; }
 #nullable restore
 #else
-        public string Id { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2 GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2 { get; set; }
 #endif
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemKind? Kind { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3? GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3 { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3 GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3 { get; set; }
 #endif
-        /// <summary>The nodeId property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NodeId { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4? GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4 { get; set; }
 #nullable restore
 #else
-        public string NodeId { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4 GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4 { get; set; }
 #endif
-        /// <summary>The nodeName property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? NodeName { get; set; }
-#nullable restore
-#else
-        public string NodeName { get; set; }
-#endif
-        /// <summary>The nodeType property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? NodeType { get; set; }
-#nullable restore
-#else
-        public string NodeType { get; set; }
-#endif
-        /// <summary>The packageUrl property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? PackageUrl { get; set; }
-#nullable restore
-#else
-        public string PackageUrl { get; set; }
-#endif
-        /// <summary>The workflowId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? WorkflowId { get; set; }
-#nullable restore
-#else
-        public string WorkflowId { get; set; }
-#endif
-        /// <summary>The workflowName property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? WorkflowName { get; set; }
-#nullable restore
-#else
-        public string WorkflowName { get; set; }
-#endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem"/> and sets the default values.
-        /// </summary>
-        public GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -103,7 +53,25 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
+            var result = new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem();
+            if("node".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1();
+            }
+            else if("credential".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2();
+            }
+            else if("community".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3();
+            }
+            else if("custom".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4 = new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -111,19 +79,23 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1 != null)
             {
-                { "filePath", n => { FilePath = n.GetStringValue(); } },
-                { "id", n => { Id = n.GetStringValue(); } },
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemKind>(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "nodeId", n => { NodeId = n.GetStringValue(); } },
-                { "nodeName", n => { NodeName = n.GetStringValue(); } },
-                { "nodeType", n => { NodeType = n.GetStringValue(); } },
-                { "packageUrl", n => { PackageUrl = n.GetStringValue(); } },
-                { "workflowId", n => { WorkflowId = n.GetStringValue(); } },
-                { "workflowName", n => { WorkflowName = n.GetStringValue(); } },
-            };
+                return GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1.GetFieldDeserializers();
+            }
+            else if(GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2 != null)
+            {
+                return GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2.GetFieldDeserializers();
+            }
+            else if(GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3 != null)
+            {
+                return GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3.GetFieldDeserializers();
+            }
+            else if(GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4 != null)
+            {
+                return GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -132,17 +104,22 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("filePath", FilePath);
-            writer.WriteStringValue("id", Id);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemKind>("kind", Kind);
-            writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("nodeId", NodeId);
-            writer.WriteStringValue("nodeName", NodeName);
-            writer.WriteStringValue("nodeType", NodeType);
-            writer.WriteStringValue("packageUrl", PackageUrl);
-            writer.WriteStringValue("workflowId", WorkflowId);
-            writer.WriteStringValue("workflowName", WorkflowName);
-            writer.WriteAdditionalData(AdditionalData);
+            if(GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1>(null, GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1);
+            }
+            else if(GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2>(null, GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2);
+            }
+            else if(GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3>(null, GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3);
+            }
+            else if(GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4>(null, GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4);
+            }
         }
     }
 }

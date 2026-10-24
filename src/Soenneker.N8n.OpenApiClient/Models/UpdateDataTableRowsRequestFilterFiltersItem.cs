@@ -23,13 +23,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string ColumnName { get; set; }
 #endif
         /// <summary>The condition property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemCondition? Condition { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemCondition Condition { get; set; }
-#endif
         /// <summary>The value property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -64,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "columnName", n => { ColumnName = n.GetStringValue(); } },
-                { "condition", n => { Condition = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemCondition>(global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemCondition.CreateFromDiscriminatorValue); } },
+                { "condition", n => { Condition = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemCondition>(); } },
                 { "value", n => { Value = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemValue>(global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemValue.CreateFromDiscriminatorValue); } },
             };
         }
@@ -76,7 +70,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("columnName", ColumnName);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemCondition>("condition", Condition);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemCondition>("condition", Condition);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRowsRequestFilterFiltersItemValue>("value", Value);
             writer.WriteAdditionalData(AdditionalData);
         }

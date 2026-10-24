@@ -37,13 +37,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector();
-            if("PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("name".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1();
             }
-            else if("PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("package".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2();
             }

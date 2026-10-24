@@ -45,17 +45,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("status")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGenerated();
-            if("ApplyPackageResultDtoGeneratedOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("applied".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("blocked".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("source-changed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf3();
             }

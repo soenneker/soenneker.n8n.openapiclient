@@ -8,42 +8,22 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch4"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember2"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="double"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember2"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpsertDataTableRowRequestFilterFiltersItemValue : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch1"/></summary>
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
+        /// <summary>Composed type representation for type <see cref="double"/></summary>
+        public double? Double { get; set; }
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch1? UpsertDataTableRowRequestFilterFiltersItemValueBranch1 { get; set; }
+        public string? String { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch1 UpsertDataTableRowRequestFilterFiltersItemValueBranch1 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch2? UpsertDataTableRowRequestFilterFiltersItemValueBranch2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch2 UpsertDataTableRowRequestFilterFiltersItemValueBranch2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch3? UpsertDataTableRowRequestFilterFiltersItemValueBranch3 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch3 UpsertDataTableRowRequestFilterFiltersItemValueBranch3 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch4"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch4? UpsertDataTableRowRequestFilterFiltersItemValueBranch4 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch4 UpsertDataTableRowRequestFilterFiltersItemValueBranch4 { get; set; }
+        public string String { get; set; }
 #endif
         /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -70,12 +50,22 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValue();
-            result.UpsertDataTableRowRequestFilterFiltersItemValueBranch1 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch1();
-            result.UpsertDataTableRowRequestFilterFiltersItemValueBranch2 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch2();
-            result.UpsertDataTableRowRequestFilterFiltersItemValueBranch3 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch3();
-            result.UpsertDataTableRowRequestFilterFiltersItemValueBranch4 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch4();
-            result.UpsertDataTableRowRequestFilterFiltersItemValueMember1 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember1();
-            result.UpsertDataTableRowRequestFilterFiltersItemValueMember2 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember2();
+            if(parseNode.GetBoolValue() is bool booleanValue)
+            {
+                result.Boolean = booleanValue;
+            }
+            else if(parseNode.GetDoubleValue() is double doubleValue)
+            {
+                result.Double = doubleValue;
+            }
+            else if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else {
+                result.UpsertDataTableRowRequestFilterFiltersItemValueMember1 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember1();
+                result.UpsertDataTableRowRequestFilterFiltersItemValueMember2 = new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember2();
+            }
             return result;
         }
         /// <summary>
@@ -84,9 +74,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(UpsertDataTableRowRequestFilterFiltersItemValueBranch1 != null || UpsertDataTableRowRequestFilterFiltersItemValueBranch2 != null || UpsertDataTableRowRequestFilterFiltersItemValueBranch3 != null || UpsertDataTableRowRequestFilterFiltersItemValueBranch4 != null || UpsertDataTableRowRequestFilterFiltersItemValueMember1 != null || UpsertDataTableRowRequestFilterFiltersItemValueMember2 != null)
+            if(UpsertDataTableRowRequestFilterFiltersItemValueMember1 != null || UpsertDataTableRowRequestFilterFiltersItemValueMember2 != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(UpsertDataTableRowRequestFilterFiltersItemValueBranch1, UpsertDataTableRowRequestFilterFiltersItemValueBranch2, UpsertDataTableRowRequestFilterFiltersItemValueBranch3, UpsertDataTableRowRequestFilterFiltersItemValueBranch4, UpsertDataTableRowRequestFilterFiltersItemValueMember1, UpsertDataTableRowRequestFilterFiltersItemValueMember2);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(UpsertDataTableRowRequestFilterFiltersItemValueMember1, UpsertDataTableRowRequestFilterFiltersItemValueMember2);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -97,7 +87,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueBranch1>(null, UpsertDataTableRowRequestFilterFiltersItemValueBranch1, UpsertDataTableRowRequestFilterFiltersItemValueBranch2, UpsertDataTableRowRequestFilterFiltersItemValueBranch3, UpsertDataTableRowRequestFilterFiltersItemValueBranch4, UpsertDataTableRowRequestFilterFiltersItemValueMember1, UpsertDataTableRowRequestFilterFiltersItemValueMember2);
+            if(Boolean != null)
+            {
+                writer.WriteBoolValue(null, Boolean);
+            }
+            else if(Double != null)
+            {
+                writer.WriteDoubleValue(null, Double);
+            }
+            else if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItemValueMember1>(null, UpsertDataTableRowRequestFilterFiltersItemValueMember1, UpsertDataTableRowRequestFilterFiltersItemValueMember2);
+            }
         }
     }
 }

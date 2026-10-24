@@ -37,13 +37,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItem();
-            if("PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("shadowed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1();
             }
-            else if("PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("notLoaded".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2();
             }

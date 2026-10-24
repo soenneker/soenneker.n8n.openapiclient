@@ -7,30 +7,36 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class UpdateCredentialTypePolicyDocumentRequestRulesItemSelector : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class UpdateCredentialTypePolicyDocumentRequestRulesItemSelector : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorKind? Kind { get; set; }
-        /// <summary>The value property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Value { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1? UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1 { get; set; }
 #nullable restore
 #else
-        public string Value { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1 UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1 { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelector"/> and sets the default values.
-        /// </summary>
-        public UpdateCredentialTypePolicyDocumentRequestRulesItemSelector()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2? UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2 UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3? UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3 UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -39,7 +45,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelector CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelector();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
+            var result = new global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelector();
+            if("name".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1();
+            }
+            else if("package".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2();
+            }
+            else if("extends".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,11 +67,19 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1 != null)
             {
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorKind>(); } },
-                { "value", n => { Value = n.GetStringValue(); } },
-            };
+                return UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1.GetFieldDeserializers();
+            }
+            else if(UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2 != null)
+            {
+                return UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2.GetFieldDeserializers();
+            }
+            else if(UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3 != null)
+            {
+                return UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -60,9 +88,18 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorKind>("kind", Kind);
-            writer.WriteStringValue("value", Value);
-            writer.WriteAdditionalData(AdditionalData);
+            if(UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1>(null, UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1);
+            }
+            else if(UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2>(null, UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2);
+            }
+            else if(UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3>(null, UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3);
+            }
         }
     }
 }

@@ -7,30 +7,28 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class CreateNodeTypePolicyDocumentRequestRulesItemSelector : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class CreateNodeTypePolicyDocumentRequestRulesItemSelector : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorKind? Kind { get; set; }
-        /// <summary>The value property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Value { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1? CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1 { get; set; }
 #nullable restore
 #else
-        public string Value { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1 CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1 { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelector"/> and sets the default values.
-        /// </summary>
-        public CreateNodeTypePolicyDocumentRequestRulesItemSelector()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2? CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2 CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2 { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -39,7 +37,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelector CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelector();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
+            var result = new global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelector();
+            if("name".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1();
+            }
+            else if("package".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -47,11 +55,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1 != null)
             {
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorKind>(); } },
-                { "value", n => { Value = n.GetStringValue(); } },
-            };
+                return CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1.GetFieldDeserializers();
+            }
+            else if(CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2 != null)
+            {
+                return CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -60,9 +72,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorKind>("kind", Kind);
-            writer.WriteStringValue("value", Value);
-            writer.WriteAdditionalData(AdditionalData);
+            if(CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1>(null, CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1);
+            }
+            else if(CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2>(null, CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2);
+            }
         }
     }
 }

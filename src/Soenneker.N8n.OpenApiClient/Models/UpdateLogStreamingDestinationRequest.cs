@@ -8,164 +8,35 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A log streaming destination. The `type` field selects the variant and its type-specific fields: `webhook`, `syslog`, or `sentry`.
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class UpdateLogStreamingDestinationRequest : IAdditionalDataHolder, IParsable
+    public partial class UpdateLogStreamingDestinationRequest : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Whether audit message payloads are anonymized before being sent.</summary>
-        public bool? AnonymizeAuditMessages { get; set; }
-        /// <summary>Application name reported in the syslog message.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AppName { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1? UpdateLogStreamingDestinationRequestOneOf1 { get; set; }
 #nullable restore
 #else
-        public string AppName { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1 UpdateLogStreamingDestinationRequestOneOf1 { get; set; }
 #endif
-        /// <summary>Circuit-breaker tuning for delivery. After repeated failures the destination stops sending for a cool-down window instead of hammering an unhealthy target. All fields are optional; sensible defaults apply when omitted.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestCircuitBreaker? CircuitBreaker { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf2? UpdateLogStreamingDestinationRequestOneOf2 { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestCircuitBreaker CircuitBreaker { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf2 UpdateLogStreamingDestinationRequestOneOf2 { get; set; }
 #endif
-        /// <summary>Sentry DSN the events are sent to.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Dsn { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3? UpdateLogStreamingDestinationRequestOneOf3 { get; set; }
 #nullable restore
 #else
-        public string Dsn { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3 UpdateLogStreamingDestinationRequestOneOf3 { get; set; }
 #endif
-        /// <summary>Whether the destination currently receives events.</summary>
-        public bool? Enabled { get; set; }
-        /// <summary>Syslog facility code (0–23, per RFC 5424). Common values: 0 Kernel, 1 User, 3 System, 13 Audit, 14 Alert, 16 Local0, 17 Local1, 18 Local2, 19 Local3, 20 Local4, 21 Local5, 22 Local6, 23 Local7.</summary>
-        public int? Facility { get; set; }
-        /// <summary>Key-value pairs used when the matching `specify*` field is `keypair`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestHeaderParameters? HeaderParameters { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestHeaderParameters HeaderParameters { get; set; }
-#endif
-        /// <summary>Syslog server host.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Host { get; set; }
-#nullable restore
-#else
-        public string Host { get; set; }
-#endif
-        /// <summary>Custom headers as a JSON string when `specifyHeaders` is `json`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? JsonHeaders { get; set; }
-#nullable restore
-#else
-        public string JsonHeaders { get; set; }
-#endif
-        /// <summary>Query parameters as a JSON string when `specifyQuery` is `json`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? JsonQuery { get; set; }
-#nullable restore
-#else
-        public string JsonQuery { get; set; }
-#endif
-        /// <summary>Human-readable name shown in the UI.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Label { get; set; }
-#nullable restore
-#else
-        public string Label { get; set; }
-#endif
-        /// <summary>HTTP method used for the request.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Method { get; set; }
-#nullable restore
-#else
-        public string Method { get; set; }
-#endif
-        /// <summary>Additional HTTP request options.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOptions? Options { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOptions Options { get; set; }
-#endif
-        /// <summary>Syslog server port.</summary>
-        public int? Port { get; set; }
-        /// <summary>Transport protocol.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestProtocol? Protocol { get; set; }
-        /// <summary>Key-value pairs used when the matching `specify*` field is `keypair`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestQueryParameters? QueryParameters { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestQueryParameters QueryParameters { get; set; }
-#endif
-        /// <summary>Whether to attach custom headers to the request.</summary>
-        public bool? SendHeaders { get; set; }
-        /// <summary>Whether to attach query parameters to the request.</summary>
-        public bool? SendQuery { get; set; }
-        /// <summary>How custom headers are provided — `keypair` or `json`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SpecifyHeaders { get; set; }
-#nullable restore
-#else
-        public string SpecifyHeaders { get; set; }
-#endif
-        /// <summary>How query parameters are provided — `keypair` or `json`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SpecifyQuery { get; set; }
-#nullable restore
-#else
-        public string SpecifyQuery { get; set; }
-#endif
-        /// <summary>Event names (or group prefixes, e.g. `n8n.workflow`, which matches all `n8n.workflow.*` events) this destination receives. Retrieve the full list of streamable event names from `GET /settings/log-streaming/event-types`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? SubscribedEvents { get; set; }
-#nullable restore
-#else
-        public List<string> SubscribedEvents { get; set; }
-#endif
-        /// <summary>PEM-encoded CA certificate used when `protocol` is `tls`.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? TlsCa { get; set; }
-#nullable restore
-#else
-        public string TlsCa { get; set; }
-#endif
-        /// <summary>Sends each event as an HTTP request to a URL.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestType? Type { get; set; }
-        /// <summary>Target URL that receives the event payload.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? Url { get; set; }
-#nullable restore
-#else
-        public string Url { get; set; }
-#endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequest"/> and sets the default values.
-        /// </summary>
-        public UpdateLogStreamingDestinationRequest()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -174,7 +45,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequest();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
+            var result = new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequest();
+            if("webhook".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.UpdateLogStreamingDestinationRequestOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1();
+            }
+            else if("syslog".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.UpdateLogStreamingDestinationRequestOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf2();
+            }
+            else if("sentry".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.UpdateLogStreamingDestinationRequestOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -182,33 +67,19 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(UpdateLogStreamingDestinationRequestOneOf1 != null)
             {
-                { "anonymizeAuditMessages", n => { AnonymizeAuditMessages = n.GetBoolValue(); } },
-                { "app_name", n => { AppName = n.GetStringValue(); } },
-                { "circuitBreaker", n => { CircuitBreaker = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestCircuitBreaker>(global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestCircuitBreaker.CreateFromDiscriminatorValue); } },
-                { "dsn", n => { Dsn = n.GetStringValue(); } },
-                { "enabled", n => { Enabled = n.GetBoolValue(); } },
-                { "facility", n => { Facility = n.GetIntValue(); } },
-                { "headerParameters", n => { HeaderParameters = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestHeaderParameters>(global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestHeaderParameters.CreateFromDiscriminatorValue); } },
-                { "host", n => { Host = n.GetStringValue(); } },
-                { "jsonHeaders", n => { JsonHeaders = n.GetStringValue(); } },
-                { "jsonQuery", n => { JsonQuery = n.GetStringValue(); } },
-                { "label", n => { Label = n.GetStringValue(); } },
-                { "method", n => { Method = n.GetStringValue(); } },
-                { "options", n => { Options = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOptions>(global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOptions.CreateFromDiscriminatorValue); } },
-                { "port", n => { Port = n.GetIntValue(); } },
-                { "protocol", n => { Protocol = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestProtocol>(); } },
-                { "queryParameters", n => { QueryParameters = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestQueryParameters>(global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestQueryParameters.CreateFromDiscriminatorValue); } },
-                { "sendHeaders", n => { SendHeaders = n.GetBoolValue(); } },
-                { "sendQuery", n => { SendQuery = n.GetBoolValue(); } },
-                { "specifyHeaders", n => { SpecifyHeaders = n.GetStringValue(); } },
-                { "specifyQuery", n => { SpecifyQuery = n.GetStringValue(); } },
-                { "subscribedEvents", n => { SubscribedEvents = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "tlsCa", n => { TlsCa = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestType>(); } },
-                { "url", n => { Url = n.GetStringValue(); } },
-            };
+                return UpdateLogStreamingDestinationRequestOneOf1.GetFieldDeserializers();
+            }
+            else if(UpdateLogStreamingDestinationRequestOneOf2 != null)
+            {
+                return UpdateLogStreamingDestinationRequestOneOf2.GetFieldDeserializers();
+            }
+            else if(UpdateLogStreamingDestinationRequestOneOf3 != null)
+            {
+                return UpdateLogStreamingDestinationRequestOneOf3.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -217,31 +88,18 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteBoolValue("anonymizeAuditMessages", AnonymizeAuditMessages);
-            writer.WriteStringValue("app_name", AppName);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestCircuitBreaker>("circuitBreaker", CircuitBreaker);
-            writer.WriteStringValue("dsn", Dsn);
-            writer.WriteBoolValue("enabled", Enabled);
-            writer.WriteIntValue("facility", Facility);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestHeaderParameters>("headerParameters", HeaderParameters);
-            writer.WriteStringValue("host", Host);
-            writer.WriteStringValue("jsonHeaders", JsonHeaders);
-            writer.WriteStringValue("jsonQuery", JsonQuery);
-            writer.WriteStringValue("label", Label);
-            writer.WriteStringValue("method", Method);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOptions>("options", Options);
-            writer.WriteIntValue("port", Port);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestProtocol>("protocol", Protocol);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestQueryParameters>("queryParameters", QueryParameters);
-            writer.WriteBoolValue("sendHeaders", SendHeaders);
-            writer.WriteBoolValue("sendQuery", SendQuery);
-            writer.WriteStringValue("specifyHeaders", SpecifyHeaders);
-            writer.WriteStringValue("specifyQuery", SpecifyQuery);
-            writer.WriteCollectionOfPrimitiveValues<string>("subscribedEvents", SubscribedEvents);
-            writer.WriteStringValue("tlsCa", TlsCa);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestType>("type", Type);
-            writer.WriteStringValue("url", Url);
-            writer.WriteAdditionalData(AdditionalData);
+            if(UpdateLogStreamingDestinationRequestOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1>(null, UpdateLogStreamingDestinationRequestOneOf1);
+            }
+            else if(UpdateLogStreamingDestinationRequestOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf2>(null, UpdateLogStreamingDestinationRequestOneOf2);
+            }
+            else if(UpdateLogStreamingDestinationRequestOneOf3 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3>(null, UpdateLogStreamingDestinationRequestOneOf3);
+            }
         }
     }
 }

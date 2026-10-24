@@ -45,17 +45,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated();
-            if("LogStreamingDestinationPublicDtoGeneratedOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("webhook".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.LogStreamingDestinationPublicDtoGeneratedOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1();
             }
-            else if("LogStreamingDestinationPublicDtoGeneratedOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("syslog".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.LogStreamingDestinationPublicDtoGeneratedOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf2();
             }
-            else if("LogStreamingDestinationPublicDtoGeneratedOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("sentry".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.LogStreamingDestinationPublicDtoGeneratedOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf3();
             }

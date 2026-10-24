@@ -24,13 +24,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItem> Filters { get; set; }
 #endif
         /// <summary>The type property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterType? Type { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterType Type { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilter"/> and sets the default values.
         /// </summary>
@@ -57,7 +51,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "filters", n => { Filters = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItem>(global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "type", n => { Type = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterType>(global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterType.CreateFromDiscriminatorValue); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterType>(); } },
             };
         }
         /// <summary>
@@ -68,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterFiltersItem>("filters", Filters);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilterType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

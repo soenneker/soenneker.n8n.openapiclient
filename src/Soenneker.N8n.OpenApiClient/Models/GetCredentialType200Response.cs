@@ -17,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The allOf property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseAllOfItem>? AllOf { get; set; }
+        public UntypedNode? AllOf { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseAllOfItem> AllOf { get; set; }
+        public UntypedNode AllOf { get; set; }
 #endif
         /// <summary>JSON Schema fragment for each of the credential type&apos;s fields, keyed by field name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "additionalProperties", n => { AdditionalProperties = n.GetBoolValue(); } },
-                { "allOf", n => { AllOf = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseAllOfItem>(global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseAllOfItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "allOf", n => { AllOf = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "properties", n => { Properties = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties>(global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties.CreateFromDiscriminatorValue); } },
                 { "required", n => { Required = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ObjectValueType>(); } },
@@ -73,7 +73,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("additionalProperties", AdditionalProperties);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseAllOfItem>("allOf", AllOf);
+            writer.WriteObjectValue<UntypedNode>("allOf", AllOf);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties>("properties", Properties);
             writer.WriteCollectionOfPrimitiveValues<string>("required", Required);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ObjectValueType>("type", Type);

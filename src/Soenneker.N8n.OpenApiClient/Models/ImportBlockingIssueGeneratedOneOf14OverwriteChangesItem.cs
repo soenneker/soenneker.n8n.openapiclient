@@ -69,29 +69,29 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItem();
-            if("ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("add-column".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf1();
             }
-            else if("ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("remove-column".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf2();
             }
-            else if("ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("change-column-type".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf3();
             }
-            else if("ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf4".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("rename-column".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf4 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf4();
             }
-            else if("ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf5".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("reorder-columns".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf5 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf5();
             }
-            else if("ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf6".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("rename-table".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf6 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItemOneOf6();
             }

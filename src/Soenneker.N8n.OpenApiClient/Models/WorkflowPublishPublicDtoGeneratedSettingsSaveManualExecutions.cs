@@ -8,27 +8,15 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutions : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1? WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1 WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper? WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper { get; set; }
-#endif
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2"/></summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2? WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2 { get; set; }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -39,13 +27,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutions();
-            if("WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if(parseNode.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2>() is global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2 workflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2Value)
             {
-                result.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1 = new global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1();
+                result.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2 = workflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2Value;
             }
-            else if("WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if(parseNode.GetBoolValue() is bool booleanValue)
             {
-                result.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper = new global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper();
+                result.Boolean = booleanValue;
             }
             return result;
         }
@@ -55,14 +43,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1 != null)
-            {
-                return WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1.GetFieldDeserializers();
-            }
-            else if(WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper != null)
-            {
-                return WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper.GetFieldDeserializers();
-            }
             return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
@@ -72,13 +52,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            if(WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1 != null)
+            if(WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2 != null)
             {
-                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1>(null, WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsBranch1);
+                writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2>(null, WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsOneOf2);
             }
-            else if(WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper != null)
+            else if(Boolean != null)
             {
-                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper>(null, WorkflowPublishPublicDtoGeneratedSettingsSaveManualExecutionsWrapper);
+                writer.WriteBoolValue(null, Boolean);
             }
         }
     }

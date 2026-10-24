@@ -69,29 +69,29 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem();
-            if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("add-column".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("remove-column".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("change-column-type".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("rename-column".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("reorder-columns".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("rename-table".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6();
             }

@@ -45,17 +45,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector();
-            if("CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("name".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1();
             }
-            else if("CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("package".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2();
             }
-            else if("CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("extends".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf3();
             }

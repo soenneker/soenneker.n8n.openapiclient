@@ -7,40 +7,28 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
+    /// <summary>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2"/>
+    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    #pragma warning disable CS1591
-    public partial class CreatePromotionProviderRequestAuth : IAdditionalDataHolder, IParsable
-    #pragma warning restore CS1591
+    public partial class CreatePromotionProviderRequestAuth : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
-        public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The authType property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthAuthType? AuthType { get; set; }
-        /// <summary>The keyType property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthKeyType? KeyType { get; set; }
-        /// <summary>The password property</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Password { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1? CreatePromotionProviderRequestAuthOneOf1 { get; set; }
 #nullable restore
 #else
-        public string Password { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1 CreatePromotionProviderRequestAuthOneOf1 { get; set; }
 #endif
-        /// <summary>Required for plain Git token authentication. For GitLab, the service ignores this field and uses n8n for Git transport.</summary>
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Username { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2? CreatePromotionProviderRequestAuthOneOf2 { get; set; }
 #nullable restore
 #else
-        public string Username { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2 CreatePromotionProviderRequestAuthOneOf2 { get; set; }
 #endif
-        /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth"/> and sets the default values.
-        /// </summary>
-        public CreatePromotionProviderRequestAuth()
-        {
-            AdditionalData = new Dictionary<string, object>();
-        }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -49,7 +37,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth();
+            var mappingValue = parseNode.GetChildNode("authType")?.GetStringValue();
+            var result = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth();
+            if("ssh-key".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CreatePromotionProviderRequestAuthOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1();
+            }
+            else if("token".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.CreatePromotionProviderRequestAuthOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2();
+            }
+            return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,13 +55,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            if(CreatePromotionProviderRequestAuthOneOf1 != null)
             {
-                { "authType", n => { AuthType = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthAuthType>(); } },
-                { "keyType", n => { KeyType = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthKeyType>(); } },
-                { "password", n => { Password = n.GetStringValue(); } },
-                { "username", n => { Username = n.GetStringValue(); } },
-            };
+                return CreatePromotionProviderRequestAuthOneOf1.GetFieldDeserializers();
+            }
+            else if(CreatePromotionProviderRequestAuthOneOf2 != null)
+            {
+                return CreatePromotionProviderRequestAuthOneOf2.GetFieldDeserializers();
+            }
+            return new Dictionary<string, Action<IParseNode>>();
         }
         /// <summary>
         /// Serializes information the current object
@@ -72,11 +72,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthAuthType>("authType", AuthType);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthKeyType>("keyType", KeyType);
-            writer.WriteStringValue("password", Password);
-            writer.WriteStringValue("username", Username);
-            writer.WriteAdditionalData(AdditionalData);
+            if(CreatePromotionProviderRequestAuthOneOf1 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1>(null, CreatePromotionProviderRequestAuthOneOf1);
+            }
+            else if(CreatePromotionProviderRequestAuthOneOf2 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2>(null, CreatePromotionProviderRequestAuthOneOf2);
+            }
         }
     }
 }

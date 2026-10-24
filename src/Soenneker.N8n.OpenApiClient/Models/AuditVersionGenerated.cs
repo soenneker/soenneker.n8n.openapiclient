@@ -55,10 +55,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The nodes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.AuditVersionGeneratedNodesItem>? Nodes { get; set; }
+        public UntypedNode? Nodes { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.AuditVersionGeneratedNodesItem> Nodes { get; set; }
+        public UntypedNode Nodes { get; set; }
 #endif
         /// <summary>The securityIssueFixVersion property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -100,7 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "hasSecurityFix", n => { HasSecurityFix = n.GetBoolValue(); } },
                 { "hasSecurityIssue", n => { HasSecurityIssue = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "nodes", n => { Nodes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.AuditVersionGeneratedNodesItem>(global::Soenneker.N8n.OpenApiClient.Models.AuditVersionGeneratedNodesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "nodes", n => { Nodes = n.GetObjectValue<UntypedNode>(UntypedNode.CreateFromDiscriminatorValue); } },
                 { "securityIssueFixVersion", n => { SecurityIssueFixVersion = n.GetStringValue(); } },
             };
         }
@@ -118,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("hasSecurityFix", HasSecurityFix);
             writer.WriteBoolValue("hasSecurityIssue", HasSecurityIssue);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.AuditVersionGeneratedNodesItem>("nodes", Nodes);
+            writer.WriteObjectValue<UntypedNode>("nodes", Nodes);
             writer.WriteStringValue("securityIssueFixVersion", SecurityIssueFixVersion);
             writer.WriteAdditionalData(AdditionalData);
         }

@@ -45,17 +45,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelector CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelector();
-            if("CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("name".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1();
             }
-            else if("CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("package".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2();
             }
-            else if("CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("extends".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf3();
             }

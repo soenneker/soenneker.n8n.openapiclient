@@ -189,89 +189,89 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGenerated();
-            if("ImportBlockingIssueGeneratedOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("workflow-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1();
             }
-            else if("ImportBlockingIssueGeneratedOneOf10".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("folder-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf10 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10();
             }
-            else if("ImportBlockingIssueGeneratedOneOf11".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-removal-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf11 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf11();
             }
-            else if("ImportBlockingIssueGeneratedOneOf12".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-removal-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf12 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12();
             }
-            else if("ImportBlockingIssueGeneratedOneOf13".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("folder-removal-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf13 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13();
             }
-            else if("ImportBlockingIssueGeneratedOneOf14".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("data-table-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf14 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14();
             }
-            else if("ImportBlockingIssueGeneratedOneOf15".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("tag-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf15 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf15();
             }
-            else if("ImportBlockingIssueGeneratedOneOf16".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("variable-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf16 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf16();
             }
-            else if("ImportBlockingIssueGeneratedOneOf17".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("variable-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf17 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf17();
             }
-            else if("ImportBlockingIssueGeneratedOneOf18".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("variable-limit-exceeded".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf18 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18();
             }
-            else if("ImportBlockingIssueGeneratedOneOf19".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("missing-node-type".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf19 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19();
             }
-            else if("ImportBlockingIssueGeneratedOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-lineage-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2();
             }
-            else if("ImportBlockingIssueGeneratedOneOf20".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("policy-violation".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf20 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20();
             }
-            else if("ImportBlockingIssueGeneratedOneOf21".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("credential-policy-violation".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf21 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21();
             }
-            else if("ImportBlockingIssueGeneratedOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-id-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3();
             }
-            else if("ImportBlockingIssueGeneratedOneOf4".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-folder-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf4 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf4();
             }
-            else if("ImportBlockingIssueGeneratedOneOf5".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-archive-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf5 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5();
             }
-            else if("ImportBlockingIssueGeneratedOneOf6".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("credential-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf6 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6();
             }
-            else if("ImportBlockingIssueGeneratedOneOf7".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("credential-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf7 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf7();
             }
-            else if("ImportBlockingIssueGeneratedOneOf8".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("credential-update-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf8 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf8();
             }
-            else if("ImportBlockingIssueGeneratedOneOf9".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("project-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf9 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf9();
             }

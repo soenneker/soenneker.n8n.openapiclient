@@ -20,10 +20,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The contentImportPolicy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicy? ContentImportPolicy { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemContentImportPolicy? ContentImportPolicy { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicy ContentImportPolicy { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemContentImportPolicy ContentImportPolicy { get; set; }
 #endif
         /// <summary>The file property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -68,10 +68,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The owner property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemOwner? Owner { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemOwner? Owner { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemOwner Owner { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemOwner Owner { get; set; }
 #endif
         /// <summary>The parentFolderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -92,10 +92,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The publishingErrorDetails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemPublishingErrorDetails? PublishingErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemPublishingErrorDetails? PublishingErrorDetails { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemPublishingErrorDetails PublishingErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemPublishingErrorDetails PublishingErrorDetails { get; set; }
 #endif
         /// <summary>The pushed property</summary>
         public bool? Pushed { get; set; }
@@ -145,7 +145,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "conflict", n => { Conflict = n.GetBoolValue(); } },
-                { "contentImportPolicy", n => { ContentImportPolicy = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicy>(global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicy.CreateFromDiscriminatorValue); } },
+                { "contentImportPolicy", n => { ContentImportPolicy = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemContentImportPolicy>(global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemContentImportPolicy.CreateFromDiscriminatorValue); } },
                 { "file", n => { File = n.GetStringValue(); } },
                 { "folderPath", n => { FolderPath = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
@@ -153,10 +153,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "isRemoteArchived", n => { IsRemoteArchived = n.GetBoolValue(); } },
                 { "location", n => { Location = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemLocation>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "owner", n => { Owner = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemOwner>(global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemOwner.CreateFromDiscriminatorValue); } },
+                { "owner", n => { Owner = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemOwner>(global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemOwner.CreateFromDiscriminatorValue); } },
                 { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
                 { "publishingError", n => { PublishingError = n.GetStringValue(); } },
-                { "publishingErrorDetails", n => { PublishingErrorDetails = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemPublishingErrorDetails>(global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemPublishingErrorDetails.CreateFromDiscriminatorValue); } },
+                { "publishingErrorDetails", n => { PublishingErrorDetails = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemPublishingErrorDetails>(global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemPublishingErrorDetails.CreateFromDiscriminatorValue); } },
                 { "pushed", n => { Pushed = n.GetBoolValue(); } },
                 { "remoteFolderPath", n => { RemoteFolderPath = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemStatus>(); } },
@@ -172,7 +172,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("conflict", Conflict);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicy>("contentImportPolicy", ContentImportPolicy);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemContentImportPolicy>("contentImportPolicy", ContentImportPolicy);
             writer.WriteStringValue("file", File);
             writer.WriteCollectionOfPrimitiveValues<string>("folderPath", FolderPath);
             writer.WriteStringValue("id", Id);
@@ -180,10 +180,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("isRemoteArchived", IsRemoteArchived);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemLocation>("location", Location);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemOwner>("owner", Owner);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemOwner>("owner", Owner);
             writer.WriteStringValue("parentFolderId", ParentFolderId);
             writer.WriteStringValue("publishingError", PublishingError);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemPublishingErrorDetails>("publishingErrorDetails", PublishingErrorDetails);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaItemPublishingErrorDetails>("publishingErrorDetails", PublishingErrorDetails);
             writer.WriteBoolValue("pushed", Pushed);
             writer.WriteCollectionOfPrimitiveValues<string>("remoteFolderPath", RemoteFolderPath);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemStatus>("status", Status);

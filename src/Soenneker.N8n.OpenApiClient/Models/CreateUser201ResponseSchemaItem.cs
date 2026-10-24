@@ -25,10 +25,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The user property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseItemUser? User { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItemUser? User { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseItemUser User { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItemUser User { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItem"/> and sets the default values.
@@ -56,7 +56,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "error", n => { Error = n.GetStringValue(); } },
-                { "user", n => { User = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseItemUser>(global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseItemUser.CreateFromDiscriminatorValue); } },
+                { "user", n => { User = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItemUser>(global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItemUser.CreateFromDiscriminatorValue); } },
             };
         }
         /// <summary>
@@ -66,7 +66,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseItemUser>("user", User);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItemUser>("user", User);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -101,45 +101,45 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("code")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem();
-            if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("missing-id".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("destructive-change".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("conflicting-types".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("unknown-type".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("unknown-owner".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("type-mismatch".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("incompatible-usage-scope".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("missing-definition".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("project-not-team".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("project-deletion".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9();
             }

@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch3"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf1"/>, List&lt;global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item&gt;, List&lt;global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item&gt;
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreateDataTableRows200Response : IComposedTypeWrapper, IParsable
@@ -21,21 +21,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf1 CreateDataTableRows200ResponseAnyOf1 { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch2"/></summary>
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch2? CreateDataTableRows200ResponseBranch2 { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item>? CreateDataTableRows200ResponseAnyOf2Item { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch2 CreateDataTableRows200ResponseBranch2 { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item> CreateDataTableRows200ResponseAnyOf2Item { get; set; }
 #endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch3"/></summary>
+        /// <summary>Composed type representation for type List&lt;global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item&gt;</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch3? CreateDataTableRows200ResponseBranch3 { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item>? CreateDataTableRows200ResponseAnyOf3Item { get; set; }
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch3 CreateDataTableRows200ResponseBranch3 { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item> CreateDataTableRows200ResponseAnyOf3Item { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -46,9 +46,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response();
-            result.CreateDataTableRows200ResponseAnyOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf1();
-            result.CreateDataTableRows200ResponseBranch2 = new global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch2();
-            result.CreateDataTableRows200ResponseBranch3 = new global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseBranch3();
+            if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item> createDataTableRows200ResponseAnyOf2ItemValue)
+            {
+                result.CreateDataTableRows200ResponseAnyOf2Item = createDataTableRows200ResponseAnyOf2ItemValue;
+            }
+            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item> createDataTableRows200ResponseAnyOf3ItemValue)
+            {
+                result.CreateDataTableRows200ResponseAnyOf3Item = createDataTableRows200ResponseAnyOf3ItemValue;
+            }
+            else {
+                result.CreateDataTableRows200ResponseAnyOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf1();
+            }
             return result;
         }
         /// <summary>
@@ -57,9 +65,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(CreateDataTableRows200ResponseAnyOf1 != null || CreateDataTableRows200ResponseBranch2 != null || CreateDataTableRows200ResponseBranch3 != null)
+            if(CreateDataTableRows200ResponseAnyOf1 != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(CreateDataTableRows200ResponseAnyOf1, CreateDataTableRows200ResponseBranch2, CreateDataTableRows200ResponseBranch3);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(CreateDataTableRows200ResponseAnyOf1);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -70,7 +78,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf1>(null, CreateDataTableRows200ResponseAnyOf1, CreateDataTableRows200ResponseBranch2, CreateDataTableRows200ResponseBranch3);
+            if(CreateDataTableRows200ResponseAnyOf2Item != null)
+            {
+                writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item>(null, CreateDataTableRows200ResponseAnyOf2Item);
+            }
+            else if(CreateDataTableRows200ResponseAnyOf3Item != null)
+            {
+                writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item>(null, CreateDataTableRows200ResponseAnyOf3Item);
+            }
+            else {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf1>(null, CreateDataTableRows200ResponseAnyOf1);
+            }
         }
     }
 }

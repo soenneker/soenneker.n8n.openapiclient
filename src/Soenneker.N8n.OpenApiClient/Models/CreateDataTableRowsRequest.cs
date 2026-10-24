@@ -23,13 +23,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem> Data { get; set; }
 #endif
         /// <summary>count: return only the number of rows inserted. id: return an array of objects with the id of each inserted row. all: return the full row data for all inserted rows.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType? ReturnType { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType ReturnType { get; set; }
-#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest"/> and sets the default values.
         /// </summary>
@@ -56,7 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "data", n => { Data = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "returnType", n => { ReturnType = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType.CreateFromDiscriminatorValue); } },
+                { "returnType", n => { ReturnType = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType>(); } },
             };
         }
         /// <summary>
@@ -67,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem>("data", Data);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType>("returnType", ReturnType);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType>("returnType", ReturnType);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

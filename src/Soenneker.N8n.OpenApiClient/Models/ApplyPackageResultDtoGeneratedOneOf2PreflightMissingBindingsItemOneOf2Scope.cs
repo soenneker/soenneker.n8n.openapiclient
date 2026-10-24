@@ -37,13 +37,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope();
-            if("ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("global".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("project".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2();
             }

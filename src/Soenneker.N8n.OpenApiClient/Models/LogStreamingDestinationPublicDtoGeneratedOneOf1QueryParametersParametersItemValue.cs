@@ -8,35 +8,15 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2"/>
+    /// Composed type wrapper for classes <see cref="bool"/>, <see cref="double"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2"/>, <see cref="string"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValue : IComposedTypeWrapper, IParsable
     {
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1? LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1 LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2? LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2 LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2 { get; set; }
-#endif
-        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3"/></summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3? LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3 { get; set; }
-#nullable restore
-#else
-        public global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3 LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3 { get; set; }
-#endif
+        /// <summary>Composed type representation for type <see cref="bool"/></summary>
+        public bool? Boolean { get; set; }
+        /// <summary>Composed type representation for type <see cref="double"/></summary>
+        public double? Double { get; set; }
         /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -53,6 +33,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2 LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2 { get; set; }
 #endif
+        /// <summary>Composed type representation for type <see cref="string"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? String { get; set; }
+#nullable restore
+#else
+        public string String { get; set; }
+#endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -62,11 +50,22 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValue();
-            result.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1();
-            result.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2();
-            result.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3();
-            result.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1();
-            result.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2();
+            if(parseNode.GetBoolValue() is bool booleanValue)
+            {
+                result.Boolean = booleanValue;
+            }
+            else if(parseNode.GetDoubleValue() is double doubleValue)
+            {
+                result.Double = doubleValue;
+            }
+            else if(parseNode.GetStringValue() is string stringValue)
+            {
+                result.String = stringValue;
+            }
+            else {
+                result.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1();
+                result.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2 = new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2();
+            }
             return result;
         }
         /// <summary>
@@ -75,9 +74,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            if(LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1 != null || LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2 != null || LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3 != null || LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1 != null || LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2 != null)
+            if(LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1 != null || LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2 != null)
             {
-                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2);
+                return ParseNodeHelper.MergeDeserializersForIntersectionWrapper(LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2);
             }
             return new Dictionary<string, Action<IParseNode>>();
         }
@@ -88,7 +87,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1>(null, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch1, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch2, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueBranch3, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2);
+            if(Boolean != null)
+            {
+                writer.WriteBoolValue(null, Boolean);
+            }
+            else if(Double != null)
+            {
+                writer.WriteDoubleValue(null, Double);
+            }
+            else if(String != null)
+            {
+                writer.WriteStringValue(null, String);
+            }
+            else {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1>(null, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember1, LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValueMember2);
+            }
         }
     }
 }

@@ -37,13 +37,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem();
-            if("ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("credential".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf1();
             }
-            else if("ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("variable".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2();
             }

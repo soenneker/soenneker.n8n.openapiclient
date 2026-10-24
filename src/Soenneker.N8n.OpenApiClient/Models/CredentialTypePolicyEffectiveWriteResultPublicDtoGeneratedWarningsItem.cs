@@ -37,13 +37,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            var mappingValue = parseNode.GetChildNode("")?.GetStringValue();
+            var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem();
-            if("CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("shadowed".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1();
             }
-            else if("CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("notLoaded".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2();
             }
