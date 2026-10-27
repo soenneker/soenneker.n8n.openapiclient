@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Source credential ids grouped by whether they matched an existing credential or were created as empty stubs, seeded credentials, or incomplete credentials. Full source→target id mapping is in `bindings.credentials`.
+    /// Source credential ids grouped by whether they matched an existing credential, were created as empty stubs, seeded credentials, or incomplete credentials, or matched a credential that this import updated. Full source→target id mapping is in `bindings.credentials`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportResultDtoGeneratedCredentials : IAdditionalDataHolder, IParsable
@@ -47,6 +47,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<string> Stubbed { get; set; }
 #endif
+        /// <summary>Source credential ids whose matched credential this import changed under `credentialConflictPolicy=overwrite`. These ids are not listed under `matched`. Empty for other policies.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? Updated { get; set; }
+#nullable restore
+#else
+        public List<string> Updated { get; set; }
+#endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials"/> and sets the default values.
         /// </summary>
@@ -76,6 +84,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "matched", n => { Matched = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "seeded", n => { Seeded = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "stubbed", n => { Stubbed = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "updated", n => { Updated = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
         /// <summary>
@@ -89,6 +98,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("matched", Matched);
             writer.WriteCollectionOfPrimitiveValues<string>("seeded", Seeded);
             writer.WriteCollectionOfPrimitiveValues<string>("stubbed", Stubbed);
+            writer.WriteCollectionOfPrimitiveValues<string>("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

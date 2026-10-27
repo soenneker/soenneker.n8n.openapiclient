@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// The credential data. Required when changing credential type.
+    /// The credential data. Required when changing credential type. Fields also accept n8n expressions, which are strings that start with &quot;=&quot;.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdateCredentialRequestData : IAdditionalDataHolder, IParsable

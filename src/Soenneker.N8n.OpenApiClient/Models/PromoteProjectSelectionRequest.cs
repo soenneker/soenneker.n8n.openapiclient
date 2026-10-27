@@ -12,7 +12,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public partial class PromoteProjectSelectionRequest : IParsable
     #pragma warning restore CS1591
     {
-        /// <summary>Message for the promotion commit. A default is used when omitted.</summary>
+        /// <summary>Message for the promotion commit. If you omit it, the commit uses a generated message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? CommitMessage { get; set; }

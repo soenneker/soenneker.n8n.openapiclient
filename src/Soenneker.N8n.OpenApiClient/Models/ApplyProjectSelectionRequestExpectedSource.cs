@@ -28,13 +28,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string CommitSha { get; set; }
 #endif
-        /// <summary>The configId property</summary>
+        /// <summary>The environmentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConfigId { get; set; }
+        public string? EnvironmentId { get; set; }
 #nullable restore
 #else
-        public string ConfigId { get; set; }
+        public string EnvironmentId { get; set; }
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -56,7 +56,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "branchName", n => { BranchName = n.GetStringValue(); } },
                 { "commitSha", n => { CommitSha = n.GetStringValue(); } },
-                { "configId", n => { ConfigId = n.GetStringValue(); } },
+                { "environmentId", n => { EnvironmentId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -68,7 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("branchName", BranchName);
             writer.WriteStringValue("commitSha", CommitSha);
-            writer.WriteStringValue("configId", ConfigId);
+            writer.WriteStringValue("environmentId", EnvironmentId);
         }
     }
 }

@@ -8,57 +8,39 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A credential reference that could not be resolved in the target project.
+    /// A package workflow whose source id matches multiple workflows in the target project. The import cannot choose a workflow safely.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf6 : IAdditionalDataHolder, IParsable
     {
-        /// <summary>For `type_mismatch`: the actual type of the resolved target credential.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ActualType { get; set; }
-#nullable restore
-#else
-        public string ActualType { get; set; }
-#endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>For `type_mismatch`: the credential type the package&apos;s workflow node requires.</summary>
+        /// <summary>The existingWorkflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExpectedType { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6ExistingWorkflowsItem>? ExistingWorkflows { get; set; }
 #nullable restore
 #else
-        public string ExpectedType { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6ExistingWorkflowsItem> ExistingWorkflows { get; set; }
 #endif
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6Kind? Kind { get; set; }
-        /// <summary>The sourceId property</summary>
+        /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string ProjectId { get; set; }
 #endif
-        /// <summary>Target credential id: for `not_found`, the explicit binding that could not be resolved; for `type_mismatch`, the credential id that was resolved — via an explicit binding or automatic matching — but has the wrong type.</summary>
+        /// <summary>The sourceWorkflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TargetId { get; set; }
+        public string? SourceWorkflowId { get; set; }
 #nullable restore
 #else
-        public string TargetId { get; set; }
+        public string SourceWorkflowId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType? Type { get; set; }
-        /// <summary>The usedBy property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
-#endif
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowLineageConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6"/> and sets the default values.
         /// </summary>
@@ -84,13 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "actualType", n => { ActualType = n.GetStringValue(); } },
-                { "expectedType", n => { ExpectedType = n.GetStringValue(); } },
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6Kind>(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "targetId", n => { TargetId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>(); } },
-                { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "existingWorkflows", n => { ExistingWorkflows = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6ExistingWorkflowsItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6ExistingWorkflowsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowLineageConflictType>(); } },
             };
         }
         /// <summary>
@@ -100,13 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("actualType", ActualType);
-            writer.WriteStringValue("expectedType", ExpectedType);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6Kind>("kind", Kind);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteStringValue("targetId", TargetId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>("type", Type);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6ExistingWorkflowsItem>("existingWorkflows", ExistingWorkflows);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowLineageConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

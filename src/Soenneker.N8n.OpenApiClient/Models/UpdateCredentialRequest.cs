@@ -14,7 +14,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The credential data. Required when changing credential type.</summary>
+        /// <summary>The credential data. Required when changing credential type. Fields also accept n8n expressions, which are strings that start with &quot;=&quot;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.UpdateCredentialRequestData? Data { get; set; }

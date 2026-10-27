@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// The workflow as it was saved when the original execution ran. `loadWorkflow` changes which workflow the retry runs, not what this field reports.
+    /// The workflow as it was saved when the original execution ran. `loadWorkflow` changes which workflow the retry runs, not what this field reports. Absent when the API key&apos;s user cannot read the executions of the workflow.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RetryExecution200ResponseWorkflowData : IAdditionalDataHolder, IParsable

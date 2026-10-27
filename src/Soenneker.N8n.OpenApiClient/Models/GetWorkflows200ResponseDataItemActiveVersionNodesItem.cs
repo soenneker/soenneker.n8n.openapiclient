@@ -19,8 +19,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>use onError instead</summary>
         [Obsolete("")]
         public bool? ContinueOnFail { get; set; }
-        /// <summary>The createdAt property</summary>
-        public DateTimeOffset? CreatedAt { get; set; }
         /// <summary>The credentials property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -105,8 +103,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>The typeVersion property</summary>
         public double? TypeVersion { get; set; }
-        /// <summary>The updatedAt property</summary>
-        public DateTimeOffset? UpdatedAt { get; set; }
         /// <summary>The waitBetweenTries property</summary>
         public double? WaitBetweenTries { get; set; }
         /// <summary>The webhookId property</summary>
@@ -144,7 +140,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "alwaysOutputData", n => { AlwaysOutputData = n.GetBoolValue(); } },
                 { "continueOnFail", n => { ContinueOnFail = n.GetBoolValue(); } },
-                { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "credentials", n => { Credentials = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItemCredentials>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItemCredentials.CreateFromDiscriminatorValue); } },
                 { "customTelemetryTags", n => { CustomTelemetryTags = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItemCustomTelemetryTags>(global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItemCustomTelemetryTags.CreateFromDiscriminatorValue); } },
                 { "disabled", n => { Disabled = n.GetBoolValue(); } },
@@ -160,7 +155,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "retryOnFail", n => { RetryOnFail = n.GetBoolValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
                 { "typeVersion", n => { TypeVersion = n.GetDoubleValue(); } },
-                { "updatedAt", n => { UpdatedAt = n.GetDateTimeOffsetValue(); } },
                 { "waitBetweenTries", n => { WaitBetweenTries = n.GetDoubleValue(); } },
                 { "webhookId", n => { WebhookId = n.GetStringValue(); } },
             };
@@ -174,7 +168,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("alwaysOutputData", AlwaysOutputData);
             writer.WriteBoolValue("continueOnFail", ContinueOnFail);
-            writer.WriteDateTimeOffsetValue("createdAt", CreatedAt);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItemCredentials>("credentials", Credentials);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200ResponseDataItemActiveVersionNodesItemCustomTelemetryTags>("customTelemetryTags", CustomTelemetryTags);
             writer.WriteBoolValue("disabled", Disabled);
@@ -190,7 +183,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("retryOnFail", RetryOnFail);
             writer.WriteStringValue("type", Type);
             writer.WriteDoubleValue("typeVersion", TypeVersion);
-            writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
             writer.WriteDoubleValue("waitBetweenTries", WaitBetweenTries);
             writer.WriteStringValue("webhookId", WebhookId);
             writer.WriteAdditionalData(AdditionalData);

@@ -14,7 +14,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Annotation on the original execution. Absent when it carries none.</summary>
+        /// <summary>Annotation on the original execution. Absent when it carries none, or when the API key&apos;s user cannot read the executions of the workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotation? Annotation { get; set; }
@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotation Annotation { get; set; }
 #endif
-        /// <summary>Execution metadata carried over from the original execution.</summary>
+        /// <summary>Execution metadata carried over from the original execution. Absent when the API key&apos;s user cannot read the executions of the workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseCustomData? CustomData { get; set; }
@@ -30,7 +30,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseCustomData CustomData { get; set; }
 #endif
-        /// <summary>Run data of the new execution.</summary>
+        /// <summary>Run data of the new execution. Absent when the API key&apos;s user cannot read the executions of the workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseData? Data { get; set; }
@@ -67,7 +67,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseStoredAt? StoredAt { get; set; }
         /// <summary>The time at which a waiting execution resumes.</summary>
         public DateTimeOffset? WaitTill { get; set; }
-        /// <summary>The workflow as it was saved when the original execution ran. `loadWorkflow` changes which workflow the retry runs, not what this field reports.</summary>
+        /// <summary>The workflow as it was saved when the original execution ran. `loadWorkflow` changes which workflow the retry runs, not what this field reports. Absent when the API key&apos;s user cannot read the executions of the workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseWorkflowData? WorkflowData { get; set; }

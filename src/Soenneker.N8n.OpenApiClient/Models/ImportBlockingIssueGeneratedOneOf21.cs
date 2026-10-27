@@ -8,22 +8,14 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A credential the import would write that the credential-save policy refused, for example a stub of a credential type this instance does not allow. The import stops before any writes.
+    /// A variable that resolved in the target project or the global scope, but whose value differs from the one the package bundles for it, under `variableConflictPolicy=fail`. Also reported under `overwrite`, once per scope, when the projects of a package resolve one row and disagree about the value it should hold. Values are never reported — only the name and the scope the variable was found in.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf21 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The credentialType property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CredentialType { get; set; }
-#nullable restore
-#else
-        public string CredentialType { get; set; }
-#endif
-        /// <summary>The name property</summary>
+        /// <summary>Name of the variable whose value differs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -31,31 +23,23 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Credential id as it appears in the package.</summary>
+        /// <summary>Project owning the resolved variable. Absent when it resolved at the global scope.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string ProjectId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialPolicyViolationType? Type { get; set; }
-        /// <summary>Package consumers that use this credential.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType? Type { get; set; }
+        /// <summary>The usedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
 #nullable restore
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
-#endif
-        /// <summary>The violations property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21ViolationsItem>? Violations { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21ViolationsItem> Violations { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21"/> and sets the default values.
@@ -82,12 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "credentialType", n => { CredentialType = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialPolicyViolationType>(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType>(); } },
                 { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "violations", n => { Violations = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21ViolationsItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21ViolationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -97,12 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("credentialType", CredentialType);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialPolicyViolationType>("type", Type);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableConflictType>("type", Type);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21ViolationsItem>("violations", Violations);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

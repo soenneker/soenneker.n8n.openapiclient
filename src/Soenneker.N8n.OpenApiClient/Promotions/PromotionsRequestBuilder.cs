@@ -2,7 +2,7 @@
 #pragma warning disable CS0618
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions;
-using Soenneker.N8n.OpenApiClient.Promotions.Connections;
+using Soenneker.N8n.OpenApiClient.Promotions.Environments;
 using Soenneker.N8n.OpenApiClient.Promotions.Projects;
 using Soenneker.N8n.OpenApiClient.Promotions.Providers;
 using System.Collections.Generic;
@@ -17,10 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Promotions
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class PromotionsRequestBuilder : BaseRequestBuilder
     {
-        /// <summary>The connections property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Promotions.Connections.ConnectionsRequestBuilder Connections
+        /// <summary>The environments property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.Environments.EnvironmentsRequestBuilder Environments
         {
-            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Connections.ConnectionsRequestBuilder(PathParameters, RequestAdapter);
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Environments.EnvironmentsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The projects property</summary>
         public global::Soenneker.N8n.OpenApiClient.Promotions.Projects.ProjectsRequestBuilder Projects

@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Run data of the new execution.
+    /// Run data of the new execution. Absent when the API key&apos;s user cannot read the executions of the workflow.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RetryExecution200ResponseData : IAdditionalDataHolder, IParsable

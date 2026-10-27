@@ -20,6 +20,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public int? Created { get; set; }
         /// <summary>The deleted property</summary>
         public int? Deleted { get; set; }
+        /// <summary>Updated workflows that Apply also moved to another folder of their project. Included in `updated`.</summary>
+        public int? Moved { get; set; }
         /// <summary>The publishing property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -60,6 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "archived", n => { Archived = n.GetIntValue(); } },
                 { "created", n => { Created = n.GetIntValue(); } },
                 { "deleted", n => { Deleted = n.GetIntValue(); } },
+                { "moved", n => { Moved = n.GetIntValue(); } },
                 { "publishing", n => { Publishing = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsWorkflowsPublishing>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsWorkflowsPublishing.CreateFromDiscriminatorValue); } },
                 { "skipped", n => { Skipped = n.GetIntValue(); } },
                 { "updated", n => { Updated = n.GetIntValue(); } },
@@ -75,6 +78,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("archived", Archived);
             writer.WriteIntValue("created", Created);
             writer.WriteIntValue("deleted", Deleted);
+            writer.WriteIntValue("moved", Moved);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsWorkflowsPublishing>("publishing", Publishing);
             writer.WriteIntValue("skipped", Skipped);
             writer.WriteIntValue("updated", Updated);

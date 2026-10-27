@@ -8,29 +8,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
     public enum ImportBlockingIssueGeneratedOneOf14Kind
     #pragma warning restore CS1591
     {
-        [EnumMember(Value = "missing")]
+        [EnumMember(Value = "parent-mismatch")]
         #pragma warning disable CS1591
-        Missing,
+        ParentMismatch,
         #pragma warning restore CS1591
-        [EnumMember(Value = "id-conflict")]
+        [EnumMember(Value = "id-in-other-project")]
         #pragma warning disable CS1591
-        IdConflict,
+        IdInOtherProject,
         #pragma warning restore CS1591
-        [EnumMember(Value = "name-conflict")]
+        [EnumMember(Value = "fail-policy")]
         #pragma warning disable CS1591
-        NameConflict,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "schema-incompatible")]
-        #pragma warning disable CS1591
-        SchemaIncompatible,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "module-disabled")]
-        #pragma warning disable CS1591
-        ModuleDisabled,
-        #pragma warning restore CS1591
-        [EnumMember(Value = "permission-denied")]
-        #pragma warning disable CS1591
-        PermissionDenied,
+        FailPolicy,
         #pragma warning restore CS1591
     }
 }

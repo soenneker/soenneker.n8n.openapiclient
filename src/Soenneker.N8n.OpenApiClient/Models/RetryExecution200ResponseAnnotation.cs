@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Annotation on the original execution. Absent when it carries none.
+    /// Annotation on the original execution. Absent when it carries none, or when the API key&apos;s user cannot read the executions of the workflow.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RetryExecution200ResponseAnnotation : IAdditionalDataHolder, IParsable

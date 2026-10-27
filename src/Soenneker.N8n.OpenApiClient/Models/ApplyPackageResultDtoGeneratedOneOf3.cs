@@ -14,21 +14,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The configId property</summary>
+        /// <summary>The environmentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConfigId { get; set; }
+        public string? EnvironmentId { get; set; }
 #nullable restore
 #else
-        public string ConfigId { get; set; }
-#endif
-        /// <summary>The connectionId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ConnectionId { get; set; }
-#nullable restore
-#else
-        public string ConnectionId { get; set; }
+        public string EnvironmentId { get; set; }
 #endif
         /// <summary>The git property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -65,8 +57,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "configId", n => { ConfigId = n.GetStringValue(); } },
-                { "connectionId", n => { ConnectionId = n.GetStringValue(); } },
+                { "environmentId", n => { EnvironmentId = n.GetStringValue(); } },
                 { "git", n => { Git = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf3Git>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf3Git.CreateFromDiscriminatorValue); } },
                 { "status", n => { Status = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceChangedStatus>(); } },
             };
@@ -78,8 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("configId", ConfigId);
-            writer.WriteStringValue("connectionId", ConnectionId);
+            writer.WriteStringValue("environmentId", EnvironmentId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf3Git>("git", Git);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SourceChangedStatus>("status", Status);
             writer.WriteAdditionalData(AdditionalData);

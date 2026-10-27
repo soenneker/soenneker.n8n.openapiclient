@@ -45,6 +45,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public List<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsCustomTelemetryTagsItem> CustomTelemetryTags { get; set; }
 #endif
+        /// <summary>The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EngineType { get; set; }
+#nullable restore
+#else
+        public string EngineType { get; set; }
+#endif
         /// <summary>The ID of the workflow that contains the error trigger node.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -63,6 +71,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #endif
         /// <summary>The executionTimeout property</summary>
         public double? ExecutionTimeout { get; set; }
+        /// <summary>Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.</summary>
+        public bool? RedactCallerExecutions { get; set; }
         /// <summary>Controls whether execution data is redacted for this workflow.Available options:- `none` (default): No redaction. All execution data is stored.- `non-manual`: Redact production (non-manually triggered) executions only.- `manual-only`: Redact manually triggered executions only.- `all`: Redact all executions, manual and production.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsRedactionPolicy? RedactionPolicy { get; set; }
         /// <summary>The saveDataErrorExecution property</summary>
@@ -128,9 +138,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "callerPolicy", n => { CallerPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsCallerPolicy>(); } },
                 { "credentialResolverId", n => { CredentialResolverId = n.GetStringValue(); } },
                 { "customTelemetryTags", n => { CustomTelemetryTags = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsCustomTelemetryTagsItem>(global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsCustomTelemetryTagsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "engineType", n => { EngineType = n.GetStringValue(); } },
                 { "errorWorkflow", n => { ErrorWorkflow = n.GetStringValue(); } },
                 { "executionOrder", n => { ExecutionOrder = n.GetStringValue(); } },
                 { "executionTimeout", n => { ExecutionTimeout = n.GetDoubleValue(); } },
+                { "redactCallerExecutions", n => { RedactCallerExecutions = n.GetBoolValue(); } },
                 { "redactionPolicy", n => { RedactionPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsRedactionPolicy>(); } },
                 { "saveDataErrorExecution", n => { SaveDataErrorExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsSaveDataErrorExecution>(); } },
                 { "saveDataSuccessExecution", n => { SaveDataSuccessExecution = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsSaveDataSuccessExecution>(); } },
@@ -154,9 +166,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsCallerPolicy>("callerPolicy", CallerPolicy);
             writer.WriteStringValue("credentialResolverId", CredentialResolverId);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsCustomTelemetryTagsItem>("customTelemetryTags", CustomTelemetryTags);
+            writer.WriteStringValue("engineType", EngineType);
             writer.WriteStringValue("errorWorkflow", ErrorWorkflow);
             writer.WriteStringValue("executionOrder", ExecutionOrder);
             writer.WriteDoubleValue("executionTimeout", ExecutionTimeout);
+            writer.WriteBoolValue("redactCallerExecutions", RedactCallerExecutions);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsRedactionPolicy>("redactionPolicy", RedactionPolicy);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsSaveDataErrorExecution>("saveDataErrorExecution", SaveDataErrorExecution);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200ResponseSettingsSaveDataSuccessExecution>("saveDataSuccessExecution", SaveDataSuccessExecution);

@@ -8,30 +8,38 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A variable reference that could not be resolved in the target project or the global scope, under `variableMissingMode=must-preexist`.
+    /// A selected workflow resolves to a destination id in `deletedWorkflowIds`. The import stops before any writes, including when the conflict policy is `skip`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf16 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>Requirement name with no match in the target project or global scope.</summary>
+        /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string ProjectId { get; set; }
+#endif
+        /// <summary>The sourceWorkflowId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceWorkflowId { get; set; }
+#nullable restore
+#else
+        public string SourceWorkflowId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType? Type { get; set; }
-        /// <summary>The usedBy property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType? Type { get; set; }
+        /// <summary>The destination id of the selected workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
+        public string? WorkflowId { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
+        public string WorkflowId { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf16"/> and sets the default values.
@@ -58,9 +66,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>(); } },
-                { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType>(); } },
+                { "workflowId", n => { WorkflowId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -70,9 +79,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("name", Name);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>("type", Type);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowRemovalConflictType>("type", Type);
+            writer.WriteStringValue("workflowId", WorkflowId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

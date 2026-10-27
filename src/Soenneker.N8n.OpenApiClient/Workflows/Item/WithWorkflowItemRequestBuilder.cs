@@ -7,6 +7,7 @@ using Soenneker.N8n.OpenApiClient.Models;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Activate;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Archive;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.Dependencies;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.History;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Item;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Publish;
@@ -43,6 +44,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder Deactivate
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The dependencies property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Dependencies.DependenciesRequestBuilder Dependencies
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Dependencies.DependenciesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The history property</summary>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.History.HistoryRequestBuilder History

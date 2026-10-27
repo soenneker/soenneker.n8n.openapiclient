@@ -44,11 +44,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 result.Boolean = booleanValue;
             }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item>(global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item> upsertDataTableRow200ResponseAnyOf2ItemValue)
+            else if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item>(global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2Item> upsertDataTableRow200ResponseAnyOf2ItemValue)
             {
                 result.UpsertDataTableRow200ResponseAnyOf2Item = upsertDataTableRow200ResponseAnyOf2ItemValue;
             }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item>(global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item> upsertDataTableRow200ResponseAnyOf3ItemValue)
+            else if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item>(global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf3Item> upsertDataTableRow200ResponseAnyOf3ItemValue)
             {
                 result.UpsertDataTableRow200ResponseAnyOf3Item = upsertDataTableRow200ResponseAnyOf3ItemValue;
             }

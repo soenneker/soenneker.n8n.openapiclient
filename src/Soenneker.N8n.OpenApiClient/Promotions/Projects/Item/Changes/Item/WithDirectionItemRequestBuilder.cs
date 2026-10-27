@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
         {
         }
         /// <summary>
-        /// Compares a team project on this instance with the branch of its promotion configuration and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the direction to be cloned first.
+        /// Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -52,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Compares a team project on this instance with the branch of its promotion configuration and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the direction to be cloned first.
+        /// Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -80,7 +80,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
             return new global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.WithDirectionItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Compares a team project on this instance with the branch of its promotion configuration and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the direction to be cloned first.
+        /// Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithDirectionItemRequestBuilderGetQueryParameters 

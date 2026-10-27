@@ -7,40 +7,49 @@ using System.IO;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>
-    /// A workflow whose source id already matches one in the target project, under the `fail` conflict policy.
-    /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
+    #pragma warning disable CS1591
     public partial class ImportBlockingIssueGeneratedOneOf1 : IAdditionalDataHolder, IParsable
+    #pragma warning restore CS1591
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The existingWorkflowId property</summary>
+        /// <summary>The kind property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1Kind? Kind { get; set; }
+        /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExistingWorkflowId { get; set; }
+        public string? ProjectId { get; set; }
 #nullable restore
 #else
-        public string ExistingWorkflowId { get; set; }
+        public string ProjectId { get; set; }
 #endif
-        /// <summary>The name property</summary>
+        /// <summary>The sourceAgentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? SourceAgentId { get; set; }
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string SourceAgentId { get; set; }
 #endif
-        /// <summary>The sourceWorkflowId property</summary>
+        /// <summary>The sourceTaskId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceWorkflowId { get; set; }
+        public string? SourceTaskId { get; set; }
 #nullable restore
 #else
-        public string SourceWorkflowId { get; set; }
+        public string SourceTaskId { get; set; }
+#endif
+        /// <summary>The targetIds property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? TargetIds { get; set; }
+#nullable restore
+#else
+        public List<string> TargetIds { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1"/> and sets the default values.
         /// </summary>
@@ -66,10 +75,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "existingWorkflowId", n => { ExistingWorkflowId = n.GetStringValue(); } },
-                { "name", n => { Name = n.GetStringValue(); } },
-                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1Kind>(); } },
+                { "projectId", n => { ProjectId = n.GetStringValue(); } },
+                { "sourceAgentId", n => { SourceAgentId = n.GetStringValue(); } },
+                { "sourceTaskId", n => { SourceTaskId = n.GetStringValue(); } },
+                { "targetIds", n => { TargetIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.AgentConflictType>(); } },
             };
         }
         /// <summary>
@@ -79,10 +90,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("existingWorkflowId", ExistingWorkflowId);
-            writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1Kind>("kind", Kind);
+            writer.WriteStringValue("projectId", ProjectId);
+            writer.WriteStringValue("sourceAgentId", SourceAgentId);
+            writer.WriteStringValue("sourceTaskId", SourceTaskId);
+            writer.WriteCollectionOfPrimitiveValues<string>("targetIds", TargetIds);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.AgentConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

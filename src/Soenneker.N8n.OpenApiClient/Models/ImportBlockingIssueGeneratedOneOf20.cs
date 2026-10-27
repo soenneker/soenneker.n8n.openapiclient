@@ -8,14 +8,14 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A workflow the content-import policy refused. Takes down the whole package rather than skipping the workflow: the import rewrites cross-workflow references to the ids each workflow would get, so dropping one leaves the workflows that call it pointing at a row nothing ever wrote.
+    /// A variable reference that could not be resolved in the target project or the global scope, under `variableMissingMode=must-preexist`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf20 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The name property</summary>
+        /// <summary>Requirement name with no match in the target project or global scope.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -23,23 +23,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Workflow id as it appears in the package.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SourceWorkflowId { get; set; }
-#nullable restore
-#else
-        public string SourceWorkflowId { get; set; }
-#endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PolicyViolationType? Type { get; set; }
-        /// <summary>The violations property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType? Type { get; set; }
+        /// <summary>The usedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20ViolationsItem>? Violations { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20ViolationsItem> Violations { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20"/> and sets the default values.
@@ -67,9 +59,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PolicyViolationType>(); } },
-                { "violations", n => { Violations = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20ViolationsItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20ViolationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>(); } },
+                { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -80,9 +71,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PolicyViolationType>("type", Type);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20ViolationsItem>("violations", Violations);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableUnresolvedType>("type", Type);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

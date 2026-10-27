@@ -23,58 +23,85 @@ servers:
         default: https://example.com
 tags:
   - name: Audit
+    x-displayName: Audit
     description: Operations about security audit
   - name: CommunityPackage
+    x-displayName: Community Package
     description: Operations about community packages
   - name: Credential
+    x-displayName: Credential
     description: Operations about credentials
   - name: CredentialTypePolicy
+    x-displayName: Credential Type Policy
     description: Preview — breaking changes may still occur without major version bump.
   - name: DataTable
+    x-displayName: Data Table
     description: Operations about data tables and their rows
   - name: Discover
+    x-displayName: Discover
     description: API capability discovery
   - name: Evaluation
+    x-displayName: Evaluation
     description: Operations about evaluation test runs
   - name: Executions
+    x-displayName: Executions
     description: Operations about executions
   - name: Folders
+    x-displayName: Folders
     description: Operations about folders
   - name: Insights
+    x-displayName: Insights
     description: Operations about insights
   - name: LogStreaming
+    x-displayName: Log Streaming
     description: Operations about log streaming destinations
   - name: N8nPackage
+    x-displayName: n8n Package
     description: Beta — breaking changes may still occur without major version bump.
   - name: NodeTypePolicy
+    x-displayName: Node Type Policy
     description: Preview — breaking changes may still occur without major version bump.
   - name: Projects
+    x-displayName: Projects
     description: Operations about projects
   - name: Promotions
-    description: Operations about promotion providers, connections, and package operations
+    x-displayName: Promotions
+    description: Operations about promotion providers, environments, and package operations
   - name: Role
+    x-displayName: Role
     description: Operations about roles
   - name: RoleMappingRule
+    x-displayName: Role Mapping Rule
     description: Operations about identity-provider role-mapping rules
   - name: SecurityPolicy
+    x-displayName: Security Policy
     description: Operations about the instance security policy settings
   - name: SettingsLdap
+    x-displayName: Settings LDAP
     description: Operations about LDAP settings
   - name: SettingsOtel
+    x-displayName: Settings OTel
     description: Operations about OpenTelemetry settings
   - name: SettingsSsoOidc
+    x-displayName: Settings SSO OIDC
     description: Operations about OIDC SSO settings
   - name: SettingsSsoSaml
+    x-displayName: Settings SSO SAML
     description: Operations about SAML SSO settings
   - name: SourceControl
+    x-displayName: Source Control
     description: Operations about source control
   - name: Tags
+    x-displayName: Tags
     description: Operations about tags
   - name: User
+    x-displayName: User
     description: Operations about users
   - name: Variables
+    x-displayName: Variables
     description: Operations about variables
   - name: Workflow
+    x-displayName: Workflow
     description: Operations about workflows
 paths:
   /audit:
@@ -820,7 +847,78 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/communityPackagePublicDto.generated'
+                type: object
+                properties:
+                  packageName:
+                    type: string
+                    description: npm package name
+                  installedVersion:
+                    type: string
+                    description: Currently installed version
+                  authorName:
+                    type: string
+                    description: Package author name
+                  authorEmail:
+                    type: string
+                    description: Package author email
+                  installedNodes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        type:
+                          type: string
+                        latestVersion:
+                          type: number
+                    description: Nodes included in this package
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  updateAvailable:
+                    type: string
+                    description: Version available for update, if any
+                  failedLoading:
+                    type: boolean
+                    description: Whether the package failed to load
+                  policyRestrictions:
+                    type: object
+                    properties:
+                      nodeTypes:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              description: Full node type name, such as n8n-nodes-example.exampleNode.
+                            blockedOn:
+                              type: string
+                              enum:
+                                - instance
+                                - projects
+                              description: 'instance: blocked on the instance by default. projects: allowed on the instance, but blocked in one or more projects.'
+                            optInAvailable:
+                              type: boolean
+                              description: Whether a project can allow this node type. True when an instance policy blocks the node type unless a project allows it.
+                          required:
+                            - type
+                            - blockedOn
+                            - optInAvailable
+                        description: Blocked node types from this package. Lists only the node types that are blocked.
+                    required:
+                      - nodeTypes
+                    description: Node types from this package that a node type policy blocks. The install does not fail because of a policy. Absent when no policy was evaluated, for example when node type policies are not licensed. An empty nodeTypes list means that no policy blocks a node type from this package.
+                required:
+                  - packageName
+                  - installedVersion
+                  - installedNodes
+                  - createdAt
+                  - updatedAt
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -863,7 +961,50 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/communityPackagePublicDto.generated'
+                type: object
+                properties:
+                  packageName:
+                    type: string
+                    description: npm package name
+                  installedVersion:
+                    type: string
+                    description: Currently installed version
+                  authorName:
+                    type: string
+                    description: Package author name
+                  authorEmail:
+                    type: string
+                    description: Package author email
+                  installedNodes:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        name:
+                          type: string
+                        type:
+                          type: string
+                        latestVersion:
+                          type: number
+                    description: Nodes included in this package
+                  createdAt:
+                    type: string
+                    format: date-time
+                  updatedAt:
+                    type: string
+                    format: date-time
+                  updateAvailable:
+                    type: string
+                    description: Version available for update, if any
+                  failedLoading:
+                    type: boolean
+                    description: Whether the package failed to load
+                required:
+                  - packageName
+                  - installedVersion
+                  - installedNodes
+                  - createdAt
+                  - updatedAt
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -1864,6 +2005,7 @@ paths:
                 data:
                   type: object
                   additionalProperties: {}
+                  description: The credential data. Fields also accept n8n expressions, which are strings that start with "=".
                   writeOnly: true
                   example:
                     accessToken: ada612vad6fa5df4adf5a5dsf4389adsf76da7s
@@ -1976,7 +2118,7 @@ paths:
                 data:
                   type: object
                   additionalProperties: {}
-                  description: The credential data. Required when changing credential type.
+                  description: The credential data. Required when changing credential type. Fields also accept n8n expressions, which are strings that start with "=".
                   writeOnly: true
                   example:
                     accessToken: new_token_value
@@ -2222,6 +2364,38 @@ paths:
                 additionalProperties: false
         '401':
           $ref: '#/components/responses/unauthorized'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /credentials/{credentialId}/dependencies:
+    get:
+      operationId: getCredentialDependencies
+      tags:
+        - Credential
+      summary: List credential dependencies
+      description: List the workflows and agents that use the credential.
+      x-required-scope: credential:read
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+          required: true
+          description: The ID of the credential.
+          name: credentialId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dependencyListPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
   /data-tables:
@@ -2532,6 +2706,40 @@ paths:
       responses:
         '204':
           description: Operation successful.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+  /data-tables/{dataTableId}/dependencies:
+    get:
+      operationId: getDataTableDependencies
+      tags:
+        - DataTable
+      summary: List data table dependencies
+      description: List the workflows that use the data table.
+      x-required-scope: dataTable:read
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+            format: nanoid
+            pattern: ^[A-Za-z0-9]{16}$
+          required: true
+          description: The ID of the data table
+          name: dataTableId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dependencyListPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
@@ -4953,7 +5161,7 @@ paths:
                     description: The time at which a waiting execution resumes.
                   data:
                     type: object
-                    description: Run data of the new execution.
+                    description: Run data of the new execution. Absent when the API key's user cannot read the executions of the workflow.
                     additionalProperties: true
                     properties:
                       redactionInfo:
@@ -4972,11 +5180,11 @@ paths:
                             description: Whether the current user has permission to reveal the redacted data.
                   workflowData:
                     type: object
-                    description: The workflow as it was saved when the original execution ran. `loadWorkflow` changes which workflow the retry runs, not what this field reports.
+                    description: The workflow as it was saved when the original execution ran. `loadWorkflow` changes which workflow the retry runs, not what this field reports. Absent when the API key's user cannot read the executions of the workflow.
                     additionalProperties: true
                   customData:
                     type: object
-                    description: Execution metadata carried over from the original execution.
+                    description: Execution metadata carried over from the original execution. Absent when the API key's user cannot read the executions of the workflow.
                     additionalProperties:
                       type: string
                   annotation:
@@ -5007,7 +5215,7 @@ paths:
                       - id
                       - vote
                       - tags
-                    description: Annotation on the original execution. Absent when it carries none.
+                    description: Annotation on the original execution. Absent when it carries none, or when the API key's user cannot read the executions of the workflow.
                   storedAt:
                     type: string
                     description: Where the execution data is stored.
@@ -5024,9 +5232,6 @@ paths:
                   - finished
                   - retryOf
                   - status
-                  - data
-                  - workflowData
-                  - customData
                   - storedAt
         '400':
           $ref: '#/components/responses/badRequest'
@@ -7307,6 +7512,14 @@ paths:
                     - create-with-values
                   default: create-stub
                   description: What to do when a credential reference cannot be resolved. `create-stub` (default) creates empty credential placeholders in the target project for missing references. `create-with-values` also creates them, seeded from the expression data bundled in the package (see the export option `credentialExportPolicy`); a reference the package carries no data for falls back to an empty stub. A credential created with package data is listed under `credentials.seeded` when the package confirms that all source data was retained. Otherwise, also when the package has no completeness flag, it is listed under `credentials.incomplete` and blocks workflow publishing with `incomplete-credential`. `create-with-values` requires the `credential:create` scope when the import creates a credential. `must-preexist` requires every referenced credential to already exist.
+                credentialConflictPolicy:
+                  type: string
+                  enum:
+                    - keep-existing
+                    - overwrite
+                    - fail
+                  default: keep-existing
+                  description: 'What to do when a credential reference matches an existing credential and the package has different values for it. `keep-existing` (default) never changes a matched credential. `overwrite` writes the package name and the expression values from the package to a matched credential that a project of the import owns. It keeps all other stored values: secrets, other fields, the OAuth connection, and array fields. It never changes a global credential that a different project owns, or a managed, end-user (resolvable) or instance-level credential. The import lists the source ids of changed credentials under `credentials.updated`. An API key needs the `credential:update` scope when the import changes a credential. `fail` rejects the import with a 409 (`credential-conflict`) when `overwrite` would change a matched credential. Every policy leaves a matched credential alone when the package values are the same as the stored values. `overwrite` and `fail` compare stored values, so they need the `credential:update` permission on each matched credential that a project of the import owns, also when it would not change. Without it, the import is rejected with `credential-update-forbidden`.'
                 bindings:
                   type: string
                   description: 'Optional JSON object of explicit source→target id bindings, keyed by entity type. Only `credentials` is supported today: send `{"credentials":{"<packageCredentialId>":"<targetCredentialId>"}}` to map credential ids from the package to credential ids on the target instance. These explicit bindings are validated on type and applied before `credentialMatchingMode` resolution runs.'
@@ -9606,7 +9819,7 @@ paths:
       tags:
         - Promotions
       summary: Update a promotion provider
-      description: Renames the provider, and replaces its credentials when `auth` is sent. A Git host provider can also update its base URL. A different API destination requires `auth` in the same request. Changed credentials and host settings are validated before they save. If another request changes the credentials or configuration before this update saves, the update returns 409. Reload the provider and try again. For GitLab, the service uses n8n as the Git transport username. Its auth.username is optional. The service ignores any supplied username. Plain Git token authentication requires auth.username. New credentials apply to every connection that uses this provider. The authentication method cannot change.
+      description: Renames the provider, and replaces its credentials when `auth` is sent. A Git host provider can also update its base URL. A different API destination requires `auth` in the same request. Changed credentials and host settings are validated before they save. If another request changes the credentials or configuration before this update saves, the update returns 409. Reload the provider and try again. For GitLab, the service uses n8n as the Git transport username. Its auth.username is optional. The service ignores any supplied username. Plain Git token authentication requires auth.username. New credentials apply to every environment that uses this provider. The authentication method cannot change.
       x-required-scope: gitConnection:update
       parameters:
         - schema:
@@ -9701,7 +9914,7 @@ paths:
       tags:
         - Promotions
       summary: Delete a promotion provider
-      description: A provider used by a connection cannot be deleted.
+      description: A provider used by an environment cannot be deleted.
       x-required-scope: gitConnection:delete
       parameters:
         - schema:
@@ -9729,7 +9942,7 @@ paths:
       tags:
         - Promotions
       summary: List repositories of a promotion provider
-      description: Lists repositories where the GitLab token identity has at least the Developer role. The token also needs Git write scope for promotions. Protected branches can restrict pushes. Use remoteUrl as a connection target. Search matches names and namespaces in similarity order. Unfiltered results use ascending repository ID order. The limit is an upper bound. GitLab returns at most 100 items per page. Follow nextCursor even when a page has fewer items than the requested limit. A saved connection is not required. Invalid credentials return an error, not an empty list. If a response is too large, restart the list with a smaller limit and no cursor.
+      description: Lists repositories where the GitLab token identity has at least the Developer role. The token also needs Git write scope for promotions. Protected branches can restrict pushes. Use remoteUrl as an environment remote. Search matches names and namespaces in similarity order. Unfiltered results use ascending repository ID order. The limit is an upper bound. GitLab returns at most 100 items per page. Follow nextCursor even when a page has fewer items than the requested limit. A saved environment is not required. Invalid credentials return an error, not an empty list. If a response is too large, restart the list with a smaller limit and no cursor.
       x-required-scope: gitConnection:discover
       parameters:
         - $ref: '#/components/parameters/limit'
@@ -9798,7 +10011,7 @@ paths:
       tags:
         - Promotions
       summary: List branches of a promotion repository
-      description: Lists branches of the selected GitLab repository and identifies its default branch. Pass the URL-encoded fullPath from repository discovery, or the repositoryPath of a saved GitLab connection, as repositoryId. GitLab project IDs are also accepted, but connections do not store them. Supports branch search and cursor pagination. The limit is an upper bound. GitLab returns at most 100 items per page. Follow nextCursor even when a page has fewer items than the requested limit. A saved connection is not required. Invalid credentials and inaccessible repositories return errors, not empty lists. If a response is too large, restart the list with a smaller limit and no cursor.
+      description: Lists branches of the selected GitLab repository and identifies its default branch. Pass the URL-encoded fullPath from repository discovery, or the repositoryPath of a saved GitLab environment, as repositoryId. GitLab project IDs are also accepted, but environments do not store them. Supports branch search and cursor pagination. The limit is an upper bound. GitLab returns at most 100 items per page. Follow nextCursor even when a page has fewer items than the requested limit. A saved environment is not required. Invalid credentials and inaccessible repositories return errors, not empty lists. If a response is too large, restart the list with a smaller limit and no cursor.
       x-required-scope: gitConnection:discover
       parameters:
         - $ref: '#/components/parameters/limit'
@@ -9859,13 +10072,13 @@ paths:
           $ref: '#/components/responses/notFound'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections:
+  /promotions/environments:
     post:
-      operationId: createPromotionConnection
+      operationId: createPromotionEnvironment
       tags:
         - Promotions
-      summary: Create a promotion connection
-      description: Creates a connection on an existing provider, with up to one initial configuration for each direction. A GitLab target URL must belong to the saved provider. The connection stores only the repository path and derives remoteUrl from the current provider base URL. Plain Git connections keep the full remote URL. Only one instance connection can exist.
+      summary: Create a promotion environment
+      description: Creates an environment for one direction on an existing provider. The settings must match the direction. A GitLab remote URL must belong to the saved provider. The environment stores only the repository path and derives remoteUrl from the current provider base URL. Plain Git environments keep the full remote URL. The instance can have one environment for each direction.
       x-required-scope: gitConnection:create
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
@@ -9874,105 +10087,130 @@ paths:
         content:
           application/json:
             schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                  maxLength: 128
-                scope:
-                  type: string
-                  enum:
-                    - instance
-                    - projects
-                providerId:
-                  type: string
-                  minLength: 1
-                  maxLength: 36
-                target:
-                  type: object
+              oneOf:
+                - type: object
                   properties:
-                    schemaVersion:
-                      type: number
-                      enum:
-                        - 1
-                    remoteUrl:
+                    name:
                       type: string
                       minLength: 1
+                      maxLength: 128
+                    scope:
+                      type: string
+                      enum:
+                        - instance
+                        - projects
+                    providerId:
+                      type: string
+                      minLength: 1
+                      maxLength: 36
+                    remote:
+                      type: object
+                      properties:
+                        schemaVersion:
+                          type: number
+                          enum:
+                            - 1
+                        remoteUrl:
+                          type: string
+                          minLength: 1
+                      required:
+                        - schemaVersion
+                        - remoteUrl
+                      additionalProperties: false
+                    direction:
+                      type: string
+                      enum:
+                        - apply
+                    settings:
+                      type: object
+                      properties:
+                        schemaVersion:
+                          type: number
+                          enum:
+                            - 1
+                        branchName:
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                      required:
+                        - schemaVersion
+                        - branchName
+                      additionalProperties: false
                   required:
-                    - schemaVersion
-                    - remoteUrl
+                    - name
+                    - scope
+                    - providerId
+                    - remote
+                    - direction
+                    - settings
                   additionalProperties: false
-                configs:
-                  type: object
+                - type: object
                   properties:
-                    apply:
+                    name:
+                      type: string
+                      minLength: 1
+                      maxLength: 128
+                    scope:
+                      type: string
+                      enum:
+                        - instance
+                        - projects
+                    providerId:
+                      type: string
+                      minLength: 1
+                      maxLength: 36
+                    remote:
                       type: object
                       properties:
-                        name:
+                        schemaVersion:
+                          type: number
+                          enum:
+                            - 1
+                        remoteUrl:
                           type: string
                           minLength: 1
-                          maxLength: 128
-                        settings:
-                          type: object
-                          properties:
-                            schemaVersion:
-                              type: number
-                              enum:
-                                - 1
-                            branchName:
-                              type: string
-                              minLength: 1
-                              maxLength: 255
-                          required:
-                            - schemaVersion
-                            - branchName
-                          additionalProperties: false
                       required:
-                        - settings
+                        - schemaVersion
+                        - remoteUrl
                       additionalProperties: false
-                    promote:
+                    direction:
+                      type: string
+                      enum:
+                        - promote
+                    settings:
                       type: object
                       properties:
-                        name:
+                        schemaVersion:
+                          type: number
+                          enum:
+                            - 1
+                        baseBranchName:
                           type: string
                           minLength: 1
-                          maxLength: 128
-                        settings:
-                          type: object
-                          properties:
-                            schemaVersion:
-                              type: number
-                              enum:
-                                - 1
-                            baseBranchName:
-                              type: string
-                              minLength: 1
-                              maxLength: 255
-                            createBranchOnPromotion:
-                              type: boolean
-                          required:
-                            - schemaVersion
-                            - baseBranchName
-                            - createBranchOnPromotion
-                          additionalProperties: false
+                          maxLength: 255
+                        createBranchOnPromotion:
+                          type: boolean
                       required:
-                        - settings
+                        - schemaVersion
+                        - baseBranchName
+                        - createBranchOnPromotion
                       additionalProperties: false
+                  required:
+                    - name
+                    - scope
+                    - providerId
+                    - remote
+                    - direction
+                    - settings
                   additionalProperties: false
-              required:
-                - name
-                - scope
-                - providerId
-                - target
-              additionalProperties: false
+              type: object
       responses:
         '201':
           description: Operation successful.
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/promotionConnectionPublicDto.generated'
+                $ref: '#/components/schemas/promotionEnvironmentPublicDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -9990,11 +10228,11 @@ paths:
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     get:
-      operationId: getPromotionConnections
+      operationId: getPromotionEnvironments
       tags:
         - Promotions
-      summary: List promotion connections
-      description: Returns a cursor-paginated list of connections with their configurations. Filter by `scope` for the instance connection, or by `providerId` to see which connections a provider edit affects.
+      summary: List promotion environments
+      description: Returns a cursor-paginated list of environments. Filter by `scope` and `direction` for the instance environments, or by `providerId` to see which environments a provider edit affects.
       x-required-scope: gitConnection:list
       parameters:
         - $ref: '#/components/parameters/limit'
@@ -10006,6 +10244,14 @@ paths:
               - projects
           required: false
           name: scope
+          in: query
+        - schema:
+            type: string
+            enum:
+              - apply
+              - promote
+          required: false
+          name: direction
           in: query
         - schema:
             type: string
@@ -10025,38 +10271,8 @@ paths:
                   data:
                     type: array
                     items:
-                      type: object
-                      properties:
-                        id:
-                          type: string
-                          minLength: 1
-                          maxLength: 36
-                        name:
-                          type: string
-                        scope:
-                          type: string
-                          enum:
-                            - instance
-                            - projects
-                        target:
-                          type: object
-                          properties:
-                            schemaVersion:
-                              type: number
-                              enum:
-                                - 1
-                            remoteUrl:
-                              type: string
-                              minLength: 1
-                            repositoryPath:
-                              type: string
-                              description: The stored repository path of a GitLab target. URL-encode it before you use it as repositoryId to list branches. Requests do not accept it.
-                          required:
-                            - schemaVersion
-                            - remoteUrl
-                          additionalProperties: false
-                        provider:
-                          type: object
+                      oneOf:
+                        - type: object
                           properties:
                             id:
                               type: string
@@ -10064,33 +10280,126 @@ paths:
                               maxLength: 36
                             name:
                               type: string
-                            type:
+                            scope:
                               type: string
                               enum:
-                                - git
-                                - gitlab
-                            authType:
-                              type: string
-                              enum:
-                                - ssh-key
-                                - token
+                                - instance
+                                - projects
+                            remote:
+                              type: object
+                              properties:
+                                schemaVersion:
+                                  type: number
+                                  enum:
+                                    - 1
+                                remoteUrl:
+                                  type: string
+                                  minLength: 1
+                                repositoryPath:
+                                  type: string
+                                  description: The stored repository path of a Git host remote. URL-encode it before you use it as repositoryId to list branches. Requests do not accept it.
+                              required:
+                                - schemaVersion
+                                - remoteUrl
+                              additionalProperties: false
+                            provider:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 36
+                                name:
+                                  type: string
+                                type:
+                                  type: string
+                                  enum:
+                                    - git
+                                    - gitlab
+                                authType:
+                                  type: string
+                                  enum:
+                                    - ssh-key
+                                    - token
+                                createdAt:
+                                  type: string
+                                  format: date-time
+                                updatedAt:
+                                  type: string
+                                  format: date-time
+                              required:
+                                - id
+                                - name
+                                - type
+                                - authType
+                                - createdAt
+                                - updatedAt
                             createdAt:
                               type: string
                               format: date-time
                             updatedAt:
                               type: string
                               format: date-time
+                            direction:
+                              type: string
+                              enum:
+                                - apply
+                            settings:
+                              type: object
+                              properties:
+                                schemaVersion:
+                                  type: number
+                                  enum:
+                                    - 1
+                                branchName:
+                                  type: string
+                                  minLength: 1
+                                  maxLength: 255
+                              required:
+                                - schemaVersion
+                                - branchName
+                              additionalProperties: false
                           required:
                             - id
                             - name
-                            - type
-                            - authType
+                            - scope
+                            - remote
+                            - provider
                             - createdAt
                             - updatedAt
-                        configs:
-                          type: object
+                            - direction
+                            - settings
+                        - type: object
                           properties:
-                            apply:
+                            id:
+                              type: string
+                              minLength: 1
+                              maxLength: 36
+                            name:
+                              type: string
+                            scope:
+                              type: string
+                              enum:
+                                - instance
+                                - projects
+                            remote:
+                              type: object
+                              properties:
+                                schemaVersion:
+                                  type: number
+                                  enum:
+                                    - 1
+                                remoteUrl:
+                                  type: string
+                                  minLength: 1
+                                repositoryPath:
+                                  type: string
+                                  description: The stored repository path of a Git host remote. URL-encode it before you use it as repositoryId to list branches. Requests do not accept it.
+                              required:
+                                - schemaVersion
+                                - remoteUrl
+                              additionalProperties: false
+                            provider:
                               type: object
                               properties:
                                 id:
@@ -10099,87 +10408,68 @@ paths:
                                   maxLength: 36
                                 name:
                                   type: string
+                                type:
+                                  type: string
+                                  enum:
+                                    - git
+                                    - gitlab
+                                authType:
+                                  type: string
+                                  enum:
+                                    - ssh-key
+                                    - token
                                 createdAt:
                                   type: string
                                   format: date-time
                                 updatedAt:
                                   type: string
                                   format: date-time
-                                settings:
-                                  type: object
-                                  properties:
-                                    schemaVersion:
-                                      type: number
-                                      enum:
-                                        - 1
-                                    branchName:
-                                      type: string
-                                      minLength: 1
-                                      maxLength: 255
-                                  required:
-                                    - schemaVersion
-                                    - branchName
-                                  additionalProperties: false
                               required:
                                 - id
                                 - name
+                                - type
+                                - authType
                                 - createdAt
                                 - updatedAt
-                                - settings
-                            promote:
+                            createdAt:
+                              type: string
+                              format: date-time
+                            updatedAt:
+                              type: string
+                              format: date-time
+                            direction:
+                              type: string
+                              enum:
+                                - promote
+                            settings:
                               type: object
                               properties:
-                                id:
+                                schemaVersion:
+                                  type: number
+                                  enum:
+                                    - 1
+                                baseBranchName:
                                   type: string
                                   minLength: 1
-                                  maxLength: 36
-                                name:
-                                  type: string
-                                createdAt:
-                                  type: string
-                                  format: date-time
-                                updatedAt:
-                                  type: string
-                                  format: date-time
-                                settings:
-                                  type: object
-                                  properties:
-                                    schemaVersion:
-                                      type: number
-                                      enum:
-                                        - 1
-                                    baseBranchName:
-                                      type: string
-                                      minLength: 1
-                                      maxLength: 255
-                                    createBranchOnPromotion:
-                                      type: boolean
-                                  required:
-                                    - schemaVersion
-                                    - baseBranchName
-                                    - createBranchOnPromotion
-                                  additionalProperties: false
+                                  maxLength: 255
+                                createBranchOnPromotion:
+                                  type: boolean
                               required:
-                                - id
-                                - name
-                                - createdAt
-                                - updatedAt
-                                - settings
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
-                      required:
-                        - id
-                        - name
-                        - scope
-                        - target
-                        - provider
-                        - configs
-                        - createdAt
-                        - updatedAt
+                                - schemaVersion
+                                - baseBranchName
+                                - createBranchOnPromotion
+                              additionalProperties: false
+                          required:
+                            - id
+                            - name
+                            - scope
+                            - remote
+                            - provider
+                            - createdAt
+                            - updatedAt
+                            - direction
+                            - settings
+                      type: object
                   nextCursor:
                     type: string
                     nullable: true
@@ -10194,20 +10484,21 @@ paths:
           $ref: '#/components/responses/forbidden'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}:
+  /promotions/environments/{promotionEnvironmentId}:
     get:
-      operationId: getPromotionConnection
+      operationId: getPromotionEnvironment
       tags:
         - Promotions
-      summary: Retrieve a promotion connection
-      description: Returns the connection with its provider summary and its configurations.
+      summary: Retrieve a promotion environment
+      description: Returns the environment with its provider summary and the state of its local checkout.
       x-required-scope: gitConnection:read
       parameters:
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       responses:
         '200':
@@ -10215,7 +10506,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/promotionConnectionPublicDto.generated'
+                $ref: '#/components/schemas/promotionEnvironmentPublicDto.generated'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
@@ -10225,18 +10516,19 @@ paths:
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
-      operationId: updatePromotionConnection
+      operationId: updatePromotionEnvironment
       tags:
         - Promotions
-      summary: Update a promotion connection
-      description: Updates the name, target, or provider. A target replaces the whole saved target. GitLab connections store a repository path and derive remoteUrl from the provider. Plain Git connections keep the full remote URL. If the provider changes during a target or provider update, the update returns 409. Reload the connection and try again. Scope cannot change, and configurations have their own routes.
+      summary: Update a promotion environment
+      description: Updates the name, provider, remote, or settings. A remote replaces the whole saved remote, and settings replace the whole saved settings. The settings must match the direction of the environment, so `createBranchOnPromotion` is always required for Promote. GitLab environments store a repository path and derive remoteUrl from the provider. Plain Git environments keep the full remote URL. If the provider changes during the update, the update returns 409. Reload the environment and try again. Direction and scope cannot change.
       x-required-scope: gitConnection:update
       parameters:
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       requestBody:
         required: true
@@ -10249,7 +10541,11 @@ paths:
                   type: string
                   minLength: 1
                   maxLength: 128
-                target:
+                providerId:
+                  type: string
+                  minLength: 1
+                  maxLength: 36
+                remote:
                   type: object
                   properties:
                     schemaVersion:
@@ -10263,10 +10559,39 @@ paths:
                     - schemaVersion
                     - remoteUrl
                   additionalProperties: false
-                providerId:
-                  type: string
-                  minLength: 1
-                  maxLength: 36
+                settings:
+                  anyOf:
+                    - type: object
+                      properties:
+                        schemaVersion:
+                          type: number
+                          enum:
+                            - 1
+                        branchName:
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                      required:
+                        - schemaVersion
+                        - branchName
+                      additionalProperties: false
+                    - type: object
+                      properties:
+                        schemaVersion:
+                          type: number
+                          enum:
+                            - 1
+                        baseBranchName:
+                          type: string
+                          minLength: 1
+                          maxLength: 255
+                        createBranchOnPromotion:
+                          type: boolean
+                      required:
+                        - schemaVersion
+                        - baseBranchName
+                        - createBranchOnPromotion
+                      additionalProperties: false
               additionalProperties: false
               minProperties: 1
       responses:
@@ -10275,7 +10600,7 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/promotionConnectionPublicDto.generated'
+                $ref: '#/components/schemas/promotionEnvironmentPublicDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -10291,18 +10616,19 @@ paths:
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     delete:
-      operationId: deletePromotionConnection
+      operationId: deletePromotionEnvironment
       tags:
         - Promotions
-      summary: Delete a promotion connection
-      description: Deletes the connection with its configurations, project links, and local checkouts. Its provider is kept.
+      summary: Delete a promotion environment
+      description: Deletes the environment with its project links and local checkout. Its provider is kept. Nothing in Git changes.
       x-required-scope: gitConnection:delete
       parameters:
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       responses:
         '204':
@@ -10315,291 +10641,22 @@ paths:
           $ref: '#/components/responses/notFound'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/configs/apply:
-    put:
-      operationId: upsertPromotionApplyConfig
-      tags:
-        - Promotions
-      summary: Create or replace the Apply configuration
-      description: Replaces the whole configuration, so an omitted name resets it to "Apply". Answers 200 whether it created or replaced.
-      x-required-scope: gitConnection:update
-      parameters:
-        - schema:
-            type: string
-          required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
-          in: path
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                  maxLength: 128
-                settings:
-                  type: object
-                  properties:
-                    schemaVersion:
-                      type: number
-                      enum:
-                        - 1
-                    branchName:
-                      type: string
-                      minLength: 1
-                      maxLength: 255
-                  required:
-                    - schemaVersion
-                    - branchName
-                  additionalProperties: false
-              required:
-                - settings
-              additionalProperties: false
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    minLength: 1
-                    maxLength: 36
-                  name:
-                    type: string
-                  createdAt:
-                    type: string
-                    format: date-time
-                  updatedAt:
-                    type: string
-                    format: date-time
-                  checkout:
-                    type: object
-                    properties:
-                      hasCheckout:
-                        type: boolean
-                      matchesConfig:
-                        type: boolean
-                    required:
-                      - hasCheckout
-                      - matchesConfig
-                  settings:
-                    type: object
-                    properties:
-                      schemaVersion:
-                        type: number
-                        enum:
-                          - 1
-                      branchName:
-                        type: string
-                        minLength: 1
-                        maxLength: 255
-                    required:
-                      - schemaVersion
-                      - branchName
-                    additionalProperties: false
-                required:
-                  - id
-                  - name
-                  - createdAt
-                  - updatedAt
-                  - checkout
-                  - settings
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '409':
-          $ref: '#/components/responses/conflict'
-        '415':
-          $ref: '#/components/responses/unsupportedMediaType'
-        '503':
-          $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/configs/promote:
-    put:
-      operationId: upsertPromotionPromoteConfig
-      tags:
-        - Promotions
-      summary: Create or replace the Promote configuration
-      description: Replaces the whole configuration, so an omitted name resets it to "Promote" and `createBranchOnPromotion` is always required. Answers 200 whether it created or replaced.
-      x-required-scope: gitConnection:update
-      parameters:
-        - schema:
-            type: string
-          required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
-          in: path
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                name:
-                  type: string
-                  minLength: 1
-                  maxLength: 128
-                settings:
-                  type: object
-                  properties:
-                    schemaVersion:
-                      type: number
-                      enum:
-                        - 1
-                    baseBranchName:
-                      type: string
-                      minLength: 1
-                      maxLength: 255
-                    createBranchOnPromotion:
-                      type: boolean
-                  required:
-                    - schemaVersion
-                    - baseBranchName
-                    - createBranchOnPromotion
-                  additionalProperties: false
-              required:
-                - settings
-              additionalProperties: false
-      responses:
-        '200':
-          description: Operation successful.
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                    minLength: 1
-                    maxLength: 36
-                  name:
-                    type: string
-                  createdAt:
-                    type: string
-                    format: date-time
-                  updatedAt:
-                    type: string
-                    format: date-time
-                  checkout:
-                    type: object
-                    properties:
-                      hasCheckout:
-                        type: boolean
-                      matchesConfig:
-                        type: boolean
-                    required:
-                      - hasCheckout
-                      - matchesConfig
-                  settings:
-                    type: object
-                    properties:
-                      schemaVersion:
-                        type: number
-                        enum:
-                          - 1
-                      baseBranchName:
-                        type: string
-                        minLength: 1
-                        maxLength: 255
-                      createBranchOnPromotion:
-                        type: boolean
-                    required:
-                      - schemaVersion
-                      - baseBranchName
-                      - createBranchOnPromotion
-                    additionalProperties: false
-                required:
-                  - id
-                  - name
-                  - createdAt
-                  - updatedAt
-                  - checkout
-                  - settings
-        '400':
-          $ref: '#/components/responses/badRequest'
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '409':
-          $ref: '#/components/responses/conflict'
-        '415':
-          $ref: '#/components/responses/unsupportedMediaType'
-        '503':
-          $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/configs/{direction}:
-    delete:
-      operationId: deletePromotionConfig
-      tags:
-        - Promotions
-      summary: Remove one direction
-      description: Deletes the configuration and its local checkout. Nothing in Git changes.
-      x-required-scope: gitConnection:update
-      parameters:
-        - schema:
-            type: string
-          required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
-          in: path
-        - schema:
-            type: string
-            enum:
-              - apply
-              - promote
-          required: true
-          description: 'The direction of the promotion: apply or promote.'
-          name: direction
-          in: path
-      responses:
-        '204':
-          description: Operation successful.
-        '401':
-          $ref: '#/components/responses/unauthorized'
-        '403':
-          $ref: '#/components/responses/forbidden'
-        '404':
-          $ref: '#/components/responses/notFound'
-        '503':
-          $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/{direction}/clone:
+  /promotions/environments/{promotionEnvironmentId}/connect:
     post:
-      operationId: clonePromotionCheckout
+      operationId: connectPromotionCheckout
       tags:
         - Promotions
-      summary: Clone one direction's repository
-      description: Clones the configured branch into local storage on the instance that handles the request. Safe to call repeatedly. Cloning one direction does not make the other ready.
+      summary: Connect an environment
+      description: Prepares the environment on the instance that handles the request. For a Git provider, this clones the configured branch into local storage. Safe to call repeatedly. Connecting one environment does not make another ready.
       x-required-scope: gitConnection:clone
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
-          in: path
-        - schema:
-            type: string
-            enum:
-              - apply
-              - promote
-          required: true
-          description: 'The direction of the promotion: apply or promote.'
-          name: direction
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       responses:
         '200':
@@ -10622,29 +10679,21 @@ paths:
           $ref: '#/components/responses/unprocessableEntity'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/{direction}/disconnect:
+  /promotions/environments/{promotionEnvironmentId}/disconnect:
     post:
       operationId: disconnectPromotionCheckout
       tags:
         - Promotions
-      summary: Remove one direction's local checkout
-      description: Removes the local checkout and keeps the configuration, its credentials, and the trusted SSH host keys.
+      summary: Remove an environment's local checkout
+      description: Removes the local checkout and keeps the environment, its credentials, and the trusted SSH host keys.
       x-required-scope: gitConnection:clone
       parameters:
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
-          in: path
-        - schema:
-            type: string
-            enum:
-              - apply
-              - promote
-          required: true
-          description: 'The direction of the promotion: apply or promote.'
-          name: direction
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       responses:
         '200':
@@ -10661,19 +10710,20 @@ paths:
           $ref: '#/components/responses/notFound'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/projects:
+  /promotions/environments/{promotionEnvironmentId}/projects:
     get:
-      operationId: getPromotionConnectionProjects
+      operationId: getPromotionEnvironmentProjects
       tags:
         - Promotions
-      summary: List projects linked to a promotion connection
+      summary: List projects linked to a promotion environment
       x-required-scope: gitConnection:read
       parameters:
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       responses:
         '200':
@@ -10699,21 +10749,22 @@ paths:
           $ref: '#/components/responses/notFound'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/projects/{projectId}:
+  /promotions/environments/{promotionEnvironmentId}/projects/{projectId}:
     post:
-      operationId: addProjectToPromotionConnection
+      operationId: addProjectToPromotionEnvironment
       tags:
         - Promotions
-      summary: Link a project to a promotion connection
-      description: Links a team project to a project-scoped connection. A project can be linked to only one connection.
+      summary: Link a project to a promotion environment
+      description: Links a team project to a project-scoped environment. A project can have one environment for each direction. A direction without a project environment uses the instance environment.
       x-required-scope: gitConnection:manageProjects
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
         - schema:
             type: string
@@ -10733,13 +10784,13 @@ paths:
                     type: string
                     minLength: 1
                     maxLength: 36
-                  connectionId:
+                  environmentId:
                     type: string
                     minLength: 1
                     maxLength: 36
                 required:
                   - projectId
-                  - connectionId
+                  - environmentId
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -10755,17 +10806,18 @@ paths:
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     delete:
-      operationId: removeProjectFromPromotionConnection
+      operationId: removeProjectFromPromotionEnvironment
       tags:
         - Promotions
-      summary: Unlink a project from a promotion connection
+      summary: Unlink a project from a promotion environment
       x-required-scope: gitConnection:manageProjects
       parameters:
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
         - schema:
             type: string
@@ -10786,24 +10838,24 @@ paths:
           $ref: '#/components/responses/conflict'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/promote:
+  /promotions/environments/{promotionEnvironmentId}/promote:
     post:
       operationId: promotePackage
       tags:
         - Promotions
       summary: Promote all team projects
-      description: Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. Requires the Promote direction to be cloned first, and is available on the instance connection only. The API key also needs variable:list when the workflows reference variables.
+      description: Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can't move it between projects. Requires a connected Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables.
       x-required-scope: gitConnection:push
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       requestBody:
-        required: true
         content:
           application/json:
             schema:
@@ -10813,10 +10865,9 @@ paths:
                   type: string
                   minLength: 1
                   maxLength: 1000
+                  description: Message for the promotion commit. If you omit it, the commit uses a generated message.
                 force:
                   type: boolean
-              required:
-                - commitMessage
               additionalProperties: false
       responses:
         '200':
@@ -10841,21 +10892,22 @@ paths:
           $ref: '#/components/responses/unprocessableEntity'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/apply:
+  /promotions/environments/{promotionEnvironmentId}/apply:
     post:
       operationId: applyPackage
       tags:
         - Promotions
       summary: Apply a package to the instance
-      description: Checks the full package at the configured branch tip. Optionally send expectedSource with the configId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup or if the apply would delete team projects that the package does not hold. Retain configId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Requires a cloned Apply direction on an instance connection. The API key needs the gitConnection:pull scope. The importer checks user write permissions; granular API-key write scopes are not passed to it.
+      description: Checks the full package at the configured branch tip. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup or if the apply would delete team projects that the package does not hold. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Workflows and folders move within their project to match the branch, and folders take the name on the branch; a workflow or folder that the branch and the instance hold in different projects is refused with 409 before any write. Requires a connected Apply environment with instance scope. The API key needs the gitConnection:pull scope. The importer checks user write permissions; granular API-key write scopes are not passed to it.
       x-required-scope: gitConnection:pull
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       requestBody:
         content:
@@ -10866,7 +10918,7 @@ paths:
                 expectedSource:
                   type: object
                   properties:
-                    configId:
+                    environmentId:
                       type: string
                       minLength: 1
                       maxLength: 36
@@ -10877,7 +10929,7 @@ paths:
                       type: string
                       pattern: ^[0-9a-f]{40}([0-9a-f]{24})?$
                   required:
-                    - configId
+                    - environmentId
                     - branchName
                     - commitSha
                   additionalProperties: false
@@ -10905,21 +10957,22 @@ paths:
           $ref: '#/components/responses/unprocessableEntity'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
-  /promotions/connections/{promotionConnectionId}/apply/continue:
+  /promotions/environments/{promotionEnvironmentId}/apply/continue:
     post:
       operationId: continueApplyPackage
       tags:
         - Promotions
       summary: Continue Apply after binding setup
-      description: 'Rechecks the configured source and current target bindings. Send expectedSource with the configId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes and delete the reported team projects. Status `source-changed` requires a new Apply review. Status `blocked` returns fresh binding details without import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same cloned instance connection and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided.'
+      description: 'Rechecks the configured source and current target bindings. Send expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes and delete the reported team projects. Status `source-changed` requires a new Apply review. Status `blocked` returns fresh binding details without import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same connected instance environment and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided.'
       x-required-scope: gitConnection:pull
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
             type: string
+            format: uuid
           required: true
-          description: The ID of the promotion connection.
-          name: promotionConnectionId
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
           in: path
       requestBody:
         required: true
@@ -10931,7 +10984,7 @@ paths:
                 expectedSource:
                   type: object
                   properties:
-                    configId:
+                    environmentId:
                       type: string
                       minLength: 1
                       maxLength: 36
@@ -10942,7 +10995,7 @@ paths:
                       type: string
                       pattern: ^[0-9a-f]{40}([0-9a-f]{24})?$
                   required:
-                    - configId
+                    - environmentId
                     - branchName
                     - commitSha
                   additionalProperties: false
@@ -10981,7 +11034,7 @@ paths:
       tags:
         - Promotions
       summary: List the changes of a project in one direction
-      description: Compares a team project on this instance with the branch of its promotion configuration and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the direction to be cloned first.
+      description: Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
       x-required-scope: gitConnection:push,gitConnection:pull
       parameters:
         - schema:
@@ -11037,14 +11090,14 @@ paths:
                   source:
                     type: object
                     properties:
-                      configId:
+                      environmentId:
                         type: string
                         minLength: 1
                         maxLength: 36
                       branchName:
                         type: string
                     required:
-                      - configId
+                      - environmentId
                       - branchName
                   changes:
                     type: array
@@ -11112,7 +11165,7 @@ paths:
       tags:
         - Promotions
       summary: Promote a selection of a project's workflows
-      description: Promotes a chosen set of a team project's workflows to the Promote branch of the project's promotion configuration. Send workflow ids only; the server reads each one now, so the push carries the current state. Live and archived workflows the project owns are exported, so an archived id stays on the branch as archived; an id the project no longer owns (its workflow is gone, or moved to another project) leaves the branch, matching the project's change list. A deletion the branch does not hold under this project rejects the whole request before any write. Requires the Promote direction to be cloned first, and a promotion connection to resolve for the project (its own connection, otherwise the instance connection). The API key also needs variable:list when the workflows reference variables.
+      description: Promotes a chosen set of a team project's workflows to the branch of the project's Promote environment. Send workflow ids only; the server reads each one now, so the push carries the current state. Live and archived workflows the project owns are exported, so an archived id stays on the branch as archived; an id whose workflow is gone from the instance leaves the branch, matching the project's change list. A workflow that moved into or out of the project since the branch was written is refused with 400; move it back first. A deletion the branch does not hold under this project rejects the whole request before any write. Requires a Promote environment to resolve for the project (its own Promote environment, otherwise the instance Promote environment), and requires it to be connected first. The API key also needs variable:list when the workflows reference variables.
       x-required-scope: gitConnection:push
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
@@ -11140,7 +11193,7 @@ paths:
                   type: string
                   minLength: 1
                   maxLength: 1000
-                  description: Message for the promotion commit. A default is used when omitted.
+                  description: Message for the promotion commit. If you omit it, the commit uses a generated message.
               required:
                 - workflowIds
               additionalProperties: false
@@ -11173,7 +11226,7 @@ paths:
       tags:
         - Promotions
       summary: Apply a selection of a project's workflows
-      description: Applies selected workflow changes from the project's Apply branch. Send the selected change-list IDs in workflowIds. The server imports IDs present on the branch for this project. It removes instance workflows owned by this project when their IDs are absent from the branch. Duplicate or invalid IDs reject the whole request. Unselected content stays unchanged. Optionally send expectedSource with the configId, branchName, and full commitSha from the reviewed change preview. Status `source-changed` means the source changed since that review and nothing was imported. Status `blocked` returns binding details before import writes when the selection needs binding setup. Retain configId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Requires a cloned Apply direction for the project's resolved promotion connection. The API key needs the gitConnection:pull scope. The importer checks user write permissions.
+      description: "Applies selected workflow changes from the project's Apply branch. Send the selected change-list IDs in workflowIds. The server imports IDs present on the branch for this project. It removes instance workflows owned by this project when their IDs are absent from the branch. Duplicate or invalid IDs reject the whole request. Unselected content stays unchanged. A selected workflow moves within the project to match the branch, together with the folders that hold it, and those folders take the name on the branch; other folders stay as they are. A selected workflow, or a folder the branch holds in this project, that the branch and the instance hold in different projects is refused with 409 before any write. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview. Status `source-changed` means the source changed since that review and nothing was imported. Status `blocked` returns binding details before import writes when the selection needs binding setup. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Requires a connected Apply environment for the project: its own Apply environment, otherwise the instance Apply environment. The API key needs the gitConnection:pull scope. The importer checks user write permissions."
       x-required-scope: gitConnection:pull
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
@@ -11200,7 +11253,7 @@ paths:
                 expectedSource:
                   type: object
                   properties:
-                    configId:
+                    environmentId:
                       type: string
                       minLength: 1
                       maxLength: 36
@@ -11211,7 +11264,7 @@ paths:
                       type: string
                       pattern: ^[0-9a-f]{40}([0-9a-f]{24})?$
                   required:
-                    - configId
+                    - environmentId
                     - branchName
                     - commitSha
                   additionalProperties: false
@@ -11247,7 +11300,7 @@ paths:
       tags:
         - Promotions
       summary: Continue applying a selection after binding setup
-      description: "Rechecks the project's Apply source and the current bindings for the selection. Resend the full selection in workflowIds. Send the required expectedSource with the configId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes. The server does not keep a session. Status `source-changed` requires a new Apply review. Status `blocked` returns fresh binding details before import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Unselected content stays unchanged. Requires the same cloned Apply direction and permissions as the initial selection apply. The API key needs the gitConnection:pull scope. The importer checks user write permissions."
+      description: "Rechecks the project's Apply source and the current bindings for the selection. Resend the full selection in workflowIds. Send the required expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes. The server does not keep a session. Status `source-changed` requires a new Apply review. Status `blocked` returns fresh binding details before import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Unselected content stays unchanged. Requires the same connected Apply environment and permissions as the initial selection apply. The API key needs the gitConnection:pull scope. The importer checks user write permissions."
       x-required-scope: gitConnection:pull
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
@@ -11274,7 +11327,7 @@ paths:
                 expectedSource:
                   type: object
                   properties:
-                    configId:
+                    environmentId:
                       type: string
                       minLength: 1
                       maxLength: 36
@@ -11285,7 +11338,7 @@ paths:
                       type: string
                       pattern: ^[0-9a-f]{40}([0-9a-f]{24})?$
                   required:
-                    - configId
+                    - environmentId
                     - branchName
                     - commitSha
                   additionalProperties: false
@@ -14292,12 +14345,6 @@ paths:
                                       required:
                                         - key
                                         - value
-                              createdAt:
-                                type: string
-                                format: date-time
-                              updatedAt:
-                                type: string
-                                format: date-time
                         connections:
                           type: object
                           description: Connections between nodes, keyed by source node name
@@ -14382,6 +14429,11 @@ paths:
                                 - separate
                                 - combined
                               description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                            engineType:
+                              type: string
+                              nullable: true
+                              example: v1
+                              description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                             callerPolicy:
                               type: string
                               enum:
@@ -14432,6 +14484,10 @@ paths:
                                 - `non-manual`: Redact production (non-manually triggered) executions only.
                                 - `manual-only`: Redact manually triggered executions only.
                                 - `all`: Redact all executions, manual and production.
+                            redactCallerExecutions:
+                              type: boolean
+                              example: true
+                              description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
                             availableInMCP:
                               type: boolean
                               example: false
@@ -14608,12 +14664,6 @@ paths:
                                           required:
                                             - key
                                             - value
-                                  createdAt:
-                                    type: string
-                                    format: date-time
-                                  updatedAt:
-                                    type: string
-                                    format: date-time
                             connections:
                               type: object
                               description: Connections between nodes, keyed by source node name
@@ -14905,6 +14955,11 @@ paths:
                         - separate
                         - combined
                       description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                    engineType:
+                      type: string
+                      nullable: true
+                      description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      example: v1
                     callerPolicy:
                       type: string
                       enum:
@@ -14955,6 +15010,10 @@ paths:
                         - `manual-only`: Redact manually triggered executions only.
                         - `all`: Redact all executions, manual and production.
                       example: non-manual
+                    redactCallerExecutions:
+                      type: boolean
+                      description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
+                      example: true
                     availableInMCP:
                       type: boolean
                       description: Controls whether this workflow is reachable over the Model Context Protocol (MCP). Defaults to false. The workflow must be active and must hold at least one active Webhook node.
@@ -15401,12 +15460,6 @@ paths:
                                 required:
                                   - key
                                   - value
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
                   connections:
                     type: object
                     description: Connections between nodes, keyed by source node name
@@ -15491,6 +15544,11 @@ paths:
                           - separate
                           - combined
                         description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      engineType:
+                        type: string
+                        nullable: true
+                        example: v1
+                        description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       callerPolicy:
                         type: string
                         enum:
@@ -15541,6 +15599,10 @@ paths:
                           - `non-manual`: Redact production (non-manually triggered) executions only.
                           - `manual-only`: Redact manually triggered executions only.
                           - `all`: Redact all executions, manual and production.
+                      redactCallerExecutions:
+                        type: boolean
+                        example: true
+                        description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
                       availableInMCP:
                         type: boolean
                         example: false
@@ -15790,12 +15852,6 @@ paths:
                                     required:
                                       - key
                                       - value
-                            createdAt:
-                              type: string
-                              format: date-time
-                            updatedAt:
-                              type: string
-                              format: date-time
                       connections:
                         type: object
                         description: Connections between nodes, keyed by source node name
@@ -16092,12 +16148,6 @@ paths:
                                 required:
                                   - key
                                   - value
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
                   connections:
                     type: object
                     description: Connections between nodes, keyed by source node name
@@ -16182,6 +16232,11 @@ paths:
                           - separate
                           - combined
                         description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      engineType:
+                        type: string
+                        nullable: true
+                        example: v1
+                        description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       callerPolicy:
                         type: string
                         enum:
@@ -16232,6 +16287,10 @@ paths:
                           - `non-manual`: Redact production (non-manually triggered) executions only.
                           - `manual-only`: Redact manually triggered executions only.
                           - `all`: Redact all executions, manual and production.
+                      redactCallerExecutions:
+                        type: boolean
+                        example: true
+                        description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
                       availableInMCP:
                         type: boolean
                         example: false
@@ -16481,12 +16540,6 @@ paths:
                                     required:
                                       - key
                                       - value
-                            createdAt:
-                              type: string
-                              format: date-time
-                            updatedAt:
-                              type: string
-                              format: date-time
                       connections:
                         type: object
                         description: Connections between nodes, keyed by source node name
@@ -16839,6 +16892,11 @@ paths:
                         - separate
                         - combined
                       description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                    engineType:
+                      type: string
+                      nullable: true
+                      description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      example: v1
                     callerPolicy:
                       type: string
                       enum:
@@ -16889,6 +16947,10 @@ paths:
                         - `manual-only`: Redact manually triggered executions only.
                         - `all`: Redact all executions, manual and production.
                       example: non-manual
+                    redactCallerExecutions:
+                      type: boolean
+                      description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
+                      example: true
                     availableInMCP:
                       type: boolean
                       description: Controls whether this workflow is reachable over the Model Context Protocol (MCP). Defaults to false. The workflow must be active and must hold at least one active Webhook node.
@@ -17332,12 +17394,6 @@ paths:
                                 required:
                                   - key
                                   - value
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
                   connections:
                     type: object
                     description: Connections between nodes, keyed by source node name
@@ -17422,6 +17478,11 @@ paths:
                           - separate
                           - combined
                         description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      engineType:
+                        type: string
+                        nullable: true
+                        example: v1
+                        description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       callerPolicy:
                         type: string
                         enum:
@@ -17472,6 +17533,10 @@ paths:
                           - `non-manual`: Redact production (non-manually triggered) executions only.
                           - `manual-only`: Redact manually triggered executions only.
                           - `all`: Redact all executions, manual and production.
+                      redactCallerExecutions:
+                        type: boolean
+                        example: true
+                        description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
                       availableInMCP:
                         type: boolean
                         example: false
@@ -17625,12 +17690,6 @@ paths:
                                     required:
                                       - key
                                       - value
-                            createdAt:
-                              type: string
-                              format: date-time
-                            updatedAt:
-                              type: string
-                              format: date-time
                       connections:
                         type: object
                         description: Connections between nodes, keyed by source node name
@@ -17922,12 +17981,6 @@ paths:
                                 required:
                                   - key
                                   - value
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
                   connections:
                     type: object
                     description: Connections between nodes, keyed by source node name
@@ -18012,6 +18065,11 @@ paths:
                           - separate
                           - combined
                         description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      engineType:
+                        type: string
+                        nullable: true
+                        example: v1
+                        description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       callerPolicy:
                         type: string
                         enum:
@@ -18062,6 +18120,10 @@ paths:
                           - `non-manual`: Redact production (non-manually triggered) executions only.
                           - `manual-only`: Redact manually triggered executions only.
                           - `all`: Redact all executions, manual and production.
+                      redactCallerExecutions:
+                        type: boolean
+                        example: true
+                        description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
                       availableInMCP:
                         type: boolean
                         example: false
@@ -18311,12 +18373,6 @@ paths:
                                     required:
                                       - key
                                       - value
-                            createdAt:
-                              type: string
-                              format: date-time
-                            updatedAt:
-                              type: string
-                              format: date-time
                       connections:
                         type: object
                         description: Connections between nodes, keyed by source node name
@@ -18906,12 +18962,6 @@ paths:
                                 required:
                                   - key
                                   - value
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
                   connections:
                     type: object
                     description: Connections between nodes, keyed by source node name
@@ -19056,6 +19106,38 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+  /workflows/{workflowId}/dependencies:
+    get:
+      operationId: getWorkflowDependencies
+      tags:
+        - Workflow
+      summary: List workflow dependencies
+      description: List the credentials, data tables, sub-workflows and error workflow that the workflow uses, and the workflows and agents that use the workflow.
+      x-required-scope: workflow:read
+      parameters:
+        - $ref: '#/components/parameters/limit'
+        - $ref: '#/components/parameters/cursor'
+        - schema:
+            type: string
+          required: true
+          description: The ID of the workflow.
+          name: workflowId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/dependencyListPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
   /workflows/{workflowId}/{workflowVersionId}:
     get:
       operationId: getDeprecatedWorkflowVersion
@@ -19167,12 +19249,6 @@ paths:
                                 required:
                                   - key
                                   - value
-                        createdAt:
-                          type: string
-                          format: date-time
-                        updatedAt:
-                          type: string
-                          format: date-time
                   connections:
                     type: object
                     description: Connections between nodes, keyed by source node name
@@ -19312,51 +19388,6 @@ components:
         - hasSecurityFix
         - hasSecurityIssue
         - securityIssueFixVersion
-    communityPackagePublicDto.generated:
-      type: object
-      properties:
-        packageName:
-          type: string
-          description: npm package name
-        installedVersion:
-          type: string
-          description: Currently installed version
-        authorName:
-          type: string
-          description: Package author name
-        authorEmail:
-          type: string
-          description: Package author email
-        installedNodes:
-          type: array
-          items:
-            type: object
-            properties:
-              name:
-                type: string
-              type:
-                type: string
-              latestVersion:
-                type: number
-          description: Nodes included in this package
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-        updateAvailable:
-          type: string
-          description: Version available for update, if any
-        failedLoading:
-          type: boolean
-          description: Whether the package failed to load
-      required:
-        - packageName
-        - installedVersion
-        - installedNodes
-        - createdAt
-        - updatedAt
     credentialTypePolicyEffectivePublicDto.generated:
       type: object
       properties:
@@ -19791,6 +19822,49 @@ components:
         - resolverId
         - createdAt
         - updatedAt
+    dependencyListPublicDto.generated:
+      type: object
+      properties:
+        data:
+          type: array
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                enum:
+                  - agent
+                  - credential
+                  - dataTable
+                  - errorWorkflow
+                  - errorWorkflowParent
+                  - parentWorkflow
+                  - subWorkflow
+                description: 'The relation to the requested resource. `credential`, `dataTable`, `subWorkflow`, `errorWorkflow`: the requested workflow uses this dependency. `parentWorkflow`: this workflow uses the requested resource. `errorWorkflowParent`: this workflow uses the requested workflow as its error workflow. `agent`: this agent uses the requested resource.'
+              id:
+                type: string
+                example: 2tUt1wbLX592XDdX
+              name:
+                type: string
+                example: Sync customers
+              projectId:
+                type: string
+                description: The project that owns the dependency, when it is known.
+            required:
+              - type
+              - id
+              - name
+        nextCursor:
+          type: string
+          nullable: true
+        inaccessibleCount:
+          type: integer
+          minimum: 0
+          description: The number of dependencies that you do not have access to. They are not listed.
+      required:
+        - data
+        - nextCursor
+        - inaccessibleCount
     dataTablePublicDto.generated:
       type: object
       properties:
@@ -20627,12 +20701,18 @@ components:
               items:
                 type: string
               description: Source credential ids for which credentials were created in the target project with bundled expression values, but the package does not confirm that it carries all source data. These credentials need input. The import does not publish the imported version of workflows that use them (`incomplete-credential`).
+            updated:
+              type: array
+              items:
+                type: string
+              description: Source credential ids whose matched credential this import changed under `credentialConflictPolicy=overwrite`. These ids are not listed under `matched`. Empty for other policies.
           required:
             - matched
             - stubbed
             - seeded
             - incomplete
-          description: Source credential ids grouped by whether they matched an existing credential or were created as empty stubs, seeded credentials, or incomplete credentials. Full source→target id mapping is in `bindings.credentials`.
+            - updated
+          description: Source credential ids grouped by whether they matched an existing credential, were created as empty stubs, seeded credentials, or incomplete credentials, or matched a credential that this import updated. Full source→target id mapping is in `bindings.credentials`.
         dataTables:
           type: object
           properties:
@@ -20752,6 +20832,128 @@ components:
             type:
               type: string
               enum:
+                - agent-conflict
+            kind:
+              type: string
+              enum:
+                - existing
+                - id
+                - task-id
+            sourceAgentId:
+              type: string
+            projectId:
+              type: string
+            sourceTaskId:
+              type: string
+            targetIds:
+              type: array
+              items:
+                type: string
+          required:
+            - type
+            - kind
+            - sourceAgentId
+            - projectId
+            - targetIds
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - agent-invalid
+            sourceAgentId:
+              type: string
+            path:
+              type: string
+            message:
+              type: string
+          required:
+            - type
+            - sourceAgentId
+            - path
+            - message
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - agent-dependency-unresolved
+            sourceAgentId:
+              type: string
+            projectId:
+              type: string
+            dependencyType:
+              type: string
+              enum:
+                - agent
+                - workflow
+                - credential
+            referenceId:
+              type: string
+            path:
+              type: string
+            reason:
+              type: string
+              enum:
+                - missing
+                - inaccessible
+                - ambiguous
+                - unsupported
+          required:
+            - type
+            - sourceAgentId
+            - projectId
+            - dependencyType
+            - referenceId
+            - path
+            - reason
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - agent-policy-violation
+            sourceAgentId:
+              type: string
+            name:
+              type: string
+            violations:
+              type: array
+              items:
+                type: object
+                properties:
+                  kind:
+                    type: string
+                  checkId:
+                    type: string
+                  message:
+                    type: string
+                  subject:
+                    type: string
+                  subjectType:
+                    type: string
+                  scope:
+                    type: string
+                  matchedRuleId:
+                    type: string
+                  projectId:
+                    type: string
+                  optInAvailable:
+                    type: boolean
+                required:
+                  - kind
+                  - checkId
+                  - message
+          required:
+            - type
+            - sourceAgentId
+            - name
+            - violations
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
                 - workflow-conflict
             sourceWorkflowId:
               type: string
@@ -20839,7 +21041,8 @@ components:
               description: Folder that currently contains the matched workflow, or null when it lives at the project root.
             targetFolderId:
               type: string
-              description: Folder the import was requested to land in.
+              nullable: true
+              description: Folder the import was requested to land in, or null when a project package puts the workflow at the project root.
             name:
               type: string
           required:
@@ -20849,7 +21052,7 @@ components:
             - existingParentFolderId
             - targetFolderId
             - name
-          description: A workflow whose source id already matches one in the target project but lives outside the requested import folder. Folder-targeted imports cannot update workflows in place at a different location.
+          description: A workflow whose source id already matches one in the target project but lives in a different folder than the import target. An import cannot move a workflow while it updates it in place. For a project package, the project root is a target too.
         - type: object
           properties:
             type:
@@ -21488,6 +21691,9 @@ components:
             sourceId:
               type: string
               description: Credential id as it appears in the package.
+            targetId:
+              type: string
+              description: Id of the matched credential on the target instance. Set when the policy refused an update of this credential under `credentialConflictPolicy=overwrite`. Absent when the policy refused a credential that the import would create.
             name:
               type: string
             credentialType:
@@ -21530,7 +21736,7 @@ components:
             - credentialType
             - usedBy
             - violations
-          description: A credential the import would write that the credential-save policy refused, for example a stub of a credential type this instance does not allow. The import stops before any writes.
+          description: A credential the import would write that a credential-save or content-import policy refused, for example a stub of a credential type this instance does not allow, or an update of a matched credential. The import stops before any writes.
       type: object
     policyEffectivePublicDto.generated:
       type: object
@@ -22027,39 +22233,9 @@ components:
         - config
         - createdAt
         - updatedAt
-    promotionConnectionPublicDto.generated:
-      type: object
-      properties:
-        id:
-          type: string
-          minLength: 1
-          maxLength: 36
-        name:
-          type: string
-        scope:
-          type: string
-          enum:
-            - instance
-            - projects
-        target:
-          type: object
-          properties:
-            schemaVersion:
-              type: number
-              enum:
-                - 1
-            remoteUrl:
-              type: string
-              minLength: 1
-            repositoryPath:
-              type: string
-              description: The stored repository path of a GitLab target. URL-encode it before you use it as repositoryId to list branches. Requests do not accept it.
-          required:
-            - schemaVersion
-            - remoteUrl
-          additionalProperties: false
-        provider:
-          type: object
+    promotionEnvironmentPublicDto.generated:
+      oneOf:
+        - type: object
           properties:
             id:
               type: string
@@ -22067,33 +22243,137 @@ components:
               maxLength: 36
             name:
               type: string
-            type:
+            scope:
               type: string
               enum:
-                - git
-                - gitlab
-            authType:
-              type: string
-              enum:
-                - ssh-key
-                - token
+                - instance
+                - projects
+            remote:
+              type: object
+              properties:
+                schemaVersion:
+                  type: number
+                  enum:
+                    - 1
+                remoteUrl:
+                  type: string
+                  minLength: 1
+                repositoryPath:
+                  type: string
+                  description: The stored repository path of a Git host remote. URL-encode it before you use it as repositoryId to list branches. Requests do not accept it.
+              required:
+                - schemaVersion
+                - remoteUrl
+              additionalProperties: false
+            provider:
+              type: object
+              properties:
+                id:
+                  type: string
+                  minLength: 1
+                  maxLength: 36
+                name:
+                  type: string
+                type:
+                  type: string
+                  enum:
+                    - git
+                    - gitlab
+                authType:
+                  type: string
+                  enum:
+                    - ssh-key
+                    - token
+                createdAt:
+                  type: string
+                  format: date-time
+                updatedAt:
+                  type: string
+                  format: date-time
+              required:
+                - id
+                - name
+                - type
+                - authType
+                - createdAt
+                - updatedAt
             createdAt:
               type: string
               format: date-time
             updatedAt:
               type: string
               format: date-time
+            direction:
+              type: string
+              enum:
+                - apply
+            settings:
+              type: object
+              properties:
+                schemaVersion:
+                  type: number
+                  enum:
+                    - 1
+                branchName:
+                  type: string
+                  minLength: 1
+                  maxLength: 255
+              required:
+                - schemaVersion
+                - branchName
+              additionalProperties: false
+            checkout:
+              type: object
+              properties:
+                hasCheckout:
+                  type: boolean
+                matchesEnvironment:
+                  type: boolean
+              required:
+                - hasCheckout
+                - matchesEnvironment
           required:
             - id
             - name
-            - type
-            - authType
+            - scope
+            - remote
+            - provider
             - createdAt
             - updatedAt
-        configs:
-          type: object
+            - direction
+            - settings
+            - checkout
+        - type: object
           properties:
-            apply:
+            id:
+              type: string
+              minLength: 1
+              maxLength: 36
+            name:
+              type: string
+            scope:
+              type: string
+              enum:
+                - instance
+                - projects
+            remote:
+              type: object
+              properties:
+                schemaVersion:
+                  type: number
+                  enum:
+                    - 1
+                remoteUrl:
+                  type: string
+                  minLength: 1
+                repositoryPath:
+                  type: string
+                  description: The stored repository path of a Git host remote. URL-encode it before you use it as repositoryId to list branches. Requests do not accept it.
+              required:
+                - schemaVersion
+                - remoteUrl
+              additionalProperties: false
+            provider:
               type: object
               properties:
                 id:
@@ -22102,117 +22382,83 @@ components:
                   maxLength: 36
                 name:
                   type: string
+                type:
+                  type: string
+                  enum:
+                    - git
+                    - gitlab
+                authType:
+                  type: string
+                  enum:
+                    - ssh-key
+                    - token
                 createdAt:
                   type: string
                   format: date-time
                 updatedAt:
                   type: string
                   format: date-time
-                checkout:
-                  type: object
-                  properties:
-                    hasCheckout:
-                      type: boolean
-                    matchesConfig:
-                      type: boolean
-                  required:
-                    - hasCheckout
-                    - matchesConfig
-                settings:
-                  type: object
-                  properties:
-                    schemaVersion:
-                      type: number
-                      enum:
-                        - 1
-                    branchName:
-                      type: string
-                      minLength: 1
-                      maxLength: 255
-                  required:
-                    - schemaVersion
-                    - branchName
-                  additionalProperties: false
               required:
                 - id
                 - name
+                - type
+                - authType
                 - createdAt
                 - updatedAt
-                - checkout
-                - settings
-            promote:
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+            direction:
+              type: string
+              enum:
+                - promote
+            settings:
               type: object
               properties:
-                id:
+                schemaVersion:
+                  type: number
+                  enum:
+                    - 1
+                baseBranchName:
                   type: string
                   minLength: 1
-                  maxLength: 36
-                name:
-                  type: string
-                createdAt:
-                  type: string
-                  format: date-time
-                updatedAt:
-                  type: string
-                  format: date-time
-                checkout:
-                  type: object
-                  properties:
-                    hasCheckout:
-                      type: boolean
-                    matchesConfig:
-                      type: boolean
-                  required:
-                    - hasCheckout
-                    - matchesConfig
-                settings:
-                  type: object
-                  properties:
-                    schemaVersion:
-                      type: number
-                      enum:
-                        - 1
-                    baseBranchName:
-                      type: string
-                      minLength: 1
-                      maxLength: 255
-                    createBranchOnPromotion:
-                      type: boolean
-                  required:
-                    - schemaVersion
-                    - baseBranchName
-                    - createBranchOnPromotion
-                  additionalProperties: false
+                  maxLength: 255
+                createBranchOnPromotion:
+                  type: boolean
               required:
-                - id
-                - name
-                - createdAt
-                - updatedAt
-                - checkout
-                - settings
-        createdAt:
-          type: string
-          format: date-time
-        updatedAt:
-          type: string
-          format: date-time
-      required:
-        - id
-        - name
-        - scope
-        - target
-        - provider
-        - configs
-        - createdAt
-        - updatedAt
+                - schemaVersion
+                - baseBranchName
+                - createBranchOnPromotion
+              additionalProperties: false
+            checkout:
+              type: object
+              properties:
+                hasCheckout:
+                  type: boolean
+                matchesEnvironment:
+                  type: boolean
+              required:
+                - hasCheckout
+                - matchesEnvironment
+          required:
+            - id
+            - name
+            - scope
+            - remote
+            - provider
+            - createdAt
+            - updatedAt
+            - direction
+            - settings
+            - checkout
+      type: object
     promotionCheckoutPublicDto.generated:
       type: object
       properties:
-        connectionId:
-          type: string
-          minLength: 1
-          maxLength: 36
-        configId:
+        environmentId:
           type: string
           minLength: 1
           maxLength: 36
@@ -22226,19 +22472,14 @@ components:
         hasCheckout:
           type: boolean
       required:
-        - connectionId
-        - configId
+        - environmentId
         - direction
         - branchName
         - hasCheckout
     promotePackageResultDto.generated:
       type: object
       properties:
-        connectionId:
-          type: string
-          minLength: 1
-          maxLength: 36
-        configId:
+        environmentId:
           type: string
           minLength: 1
           maxLength: 36
@@ -22280,9 +22521,34 @@ components:
           required:
             - commitSha
             - branchName
+        review:
+          type: object
+          properties:
+            reviewId:
+              type: string
+              minLength: 1
+              maxLength: 36
+            number:
+              type: integer
+            webUrl:
+              type: string
+          required:
+            - reviewId
+            - number
+            - webUrl
+        warnings:
+          type: array
+          items:
+            type: object
+            properties:
+              message:
+                type: string
+              linkUrl:
+                type: string
+            required:
+              - message
       required:
-        - connectionId
-        - configId
+        - environmentId
         - counts
         - git
     promotionCredentialExpressionValue.generated:
@@ -22299,11 +22565,7 @@ components:
       oneOf:
         - type: object
           properties:
-            connectionId:
-              type: string
-              minLength: 1
-              maxLength: 36
-            configId:
+            environmentId:
               type: string
               minLength: 1
               maxLength: 36
@@ -22350,15 +22612,30 @@ components:
                     created:
                       type: integer
                       minimum: 0
+                    updated:
+                      type: integer
+                      minimum: 0
+                      description: Existing folders that Apply moved or renamed to match the branch.
                     skipped:
                       type: integer
                       minimum: 0
+                    moved:
+                      type: integer
+                      minimum: 0
+                      description: Updated folders that Apply moved under another parent of their project. Included in `updated`.
+                    renamed:
+                      type: integer
+                      minimum: 0
+                      description: Updated folders that Apply gave the name on the branch. Included in `updated`.
                     removed:
                       type: integer
                       minimum: 0
                   required:
                     - created
+                    - updated
                     - skipped
+                    - moved
+                    - renamed
                     - removed
                 workflows:
                   type: object
@@ -22372,6 +22649,10 @@ components:
                     skipped:
                       type: integer
                       minimum: 0
+                    moved:
+                      type: integer
+                      minimum: 0
+                      description: Updated workflows that Apply also moved to another folder of their project. Included in `updated`.
                     archived:
                       type: integer
                       minimum: 0
@@ -22406,6 +22687,7 @@ components:
                     - created
                     - updated
                     - skipped
+                    - moved
                     - archived
                     - deleted
                     - publishing
@@ -22418,9 +22700,13 @@ components:
                     stubbed:
                       type: integer
                       minimum: 0
+                    updated:
+                      type: integer
+                      minimum: 0
                   required:
                     - matched
                     - stubbed
+                    - updated
                 dataTables:
                   type: object
                   properties:
@@ -22559,19 +22845,14 @@ components:
                   - scope
                   - consumers
           required:
-            - connectionId
-            - configId
+            - environmentId
             - git
             - status
             - counts
             - warnings
         - type: object
           properties:
-            connectionId:
-              type: string
-              minLength: 1
-              maxLength: 36
-            configId:
+            environmentId:
               type: string
               minLength: 1
               maxLength: 36
@@ -23679,18 +23960,13 @@ components:
                 - conflicts
                 - warnings
           required:
-            - connectionId
-            - configId
+            - environmentId
             - git
             - status
             - preflight
         - type: object
           properties:
-            connectionId:
-              type: string
-              minLength: 1
-              maxLength: 36
-            configId:
+            environmentId:
               type: string
               minLength: 1
               maxLength: 36
@@ -23709,8 +23985,7 @@ components:
               enum:
                 - source-changed
           required:
-            - connectionId
-            - configId
+            - environmentId
             - git
             - status
       type: object
@@ -24187,12 +24462,6 @@ components:
                       required:
                         - key
                         - value
-              createdAt:
-                type: string
-                format: date-time
-              updatedAt:
-                type: string
-                format: date-time
         connections:
           type: object
           description: Connections between nodes, keyed by source node name
@@ -24277,6 +24546,11 @@ components:
                 - separate
                 - combined
               description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+            engineType:
+              type: string
+              nullable: true
+              example: v1
+              description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
             callerPolicy:
               type: string
               enum:
@@ -24327,6 +24601,10 @@ components:
                 - `non-manual`: Redact production (non-manually triggered) executions only.
                 - `manual-only`: Redact manually triggered executions only.
                 - `all`: Redact all executions, manual and production.
+            redactCallerExecutions:
+              type: boolean
+              example: true
+              description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
             availableInMCP:
               type: boolean
               example: false
@@ -24576,12 +24854,6 @@ components:
                           required:
                             - key
                             - value
-                  createdAt:
-                    type: string
-                    format: date-time
-                  updatedAt:
-                    type: string
-                    format: date-time
             connections:
               type: object
               description: Connections between nodes, keyed by source node name
@@ -24810,12 +25082,6 @@ components:
                       required:
                         - key
                         - value
-              createdAt:
-                type: string
-                format: date-time
-              updatedAt:
-                type: string
-                format: date-time
         connections:
           type: object
           description: Connections between nodes, keyed by source node name
@@ -24900,6 +25166,11 @@ components:
                 - separate
                 - combined
               description: Controls how binary data is resolved from a node's input. This is a derived, internal setting rather than something intended to be set programmatically. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+            engineType:
+              type: string
+              nullable: true
+              example: v1
+              description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
             callerPolicy:
               type: string
               enum:
@@ -24950,6 +25221,10 @@ components:
                 - `non-manual`: Redact production (non-manually triggered) executions only.
                 - `manual-only`: Redact manually triggered executions only.
                 - `all`: Redact all executions, manual and production.
+            redactCallerExecutions:
+              type: boolean
+              example: true
+              description: Controls whether a workflow that calls this workflow as a sub-workflow has its executions redacted on the same channels as this workflow. The calling execution keeps a copy of the output of this workflow. Defaults to true. Turn it off only when the output of this workflow is not sensitive. Redaction that this workflow received from its own sub-workflows always passes to the caller.
             availableInMCP:
               type: boolean
               example: false
@@ -25103,12 +25378,6 @@ components:
                           required:
                             - key
                             - value
-                  createdAt:
-                    type: string
-                    format: date-time
-                  updatedAt:
-                    type: string
-                    format: date-time
             connections:
               type: object
               description: Connections between nodes, keyed by source node name

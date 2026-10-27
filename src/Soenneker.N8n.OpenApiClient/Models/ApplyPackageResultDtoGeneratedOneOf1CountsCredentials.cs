@@ -18,6 +18,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public int? Matched { get; set; }
         /// <summary>The stubbed property</summary>
         public int? Stubbed { get; set; }
+        /// <summary>The updated property</summary>
+        public int? Updated { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsCredentials"/> and sets the default values.
         /// </summary>
@@ -45,6 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "matched", n => { Matched = n.GetIntValue(); } },
                 { "stubbed", n => { Stubbed = n.GetIntValue(); } },
+                { "updated", n => { Updated = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -56,6 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("matched", Matched);
             writer.WriteIntValue("stubbed", Stubbed);
+            writer.WriteIntValue("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -8,22 +8,16 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A folder that `folderConflictPolicy=overwrite` would delete — the package does not define it and reconciliation leaves it empty — but the caller lacks `folder:delete` on the target project. Reported instead of removing a subset, which would leave the project matching neither the package nor its previous state.
+    /// A project defined by the package that already exists on this instance, under `projectConflictPolicy=fail`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf13 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The folderId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? FolderId { get; set; }
-#nullable restore
-#else
-        public string FolderId { get; set; }
-#endif
-        /// <summary>The name property</summary>
+        /// <summary>The kind property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind? Kind { get; set; }
+        /// <summary>The project&apos;s name as it appears in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Name { get; set; }
@@ -31,16 +25,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Project the folder was being reconciled against.</summary>
+        /// <summary>The sourceProjectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProjectId { get; set; }
+        public string? SourceProjectId { get; set; }
 #nullable restore
 #else
-        public string ProjectId { get; set; }
+        public string SourceProjectId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13"/> and sets the default values.
         /// </summary>
@@ -66,10 +60,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "folderId", n => { FolderId = n.GetStringValue(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "projectId", n => { ProjectId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType>(); } },
+                { "sourceProjectId", n => { SourceProjectId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType>(); } },
             };
         }
         /// <summary>
@@ -79,10 +73,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("folderId", FolderId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind>("kind", Kind);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("projectId", ProjectId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderRemovalForbiddenType>("type", Type);
+            writer.WriteStringValue("sourceProjectId", SourceProjectId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ProjectConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

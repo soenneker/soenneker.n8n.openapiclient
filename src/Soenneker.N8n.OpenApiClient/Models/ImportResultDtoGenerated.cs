@@ -22,7 +22,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings Bindings { get; set; }
 #endif
-        /// <summary>Source credential ids grouped by whether they matched an existing credential or were created as empty stubs, seeded credentials, or incomplete credentials. Full source→target id mapping is in `bindings.credentials`.</summary>
+        /// <summary>Source credential ids grouped by whether they matched an existing credential, were created as empty stubs, seeded credentials, or incomplete credentials, or matched a credential that this import updated. Full source→target id mapping is in `bindings.credentials`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials? Credentials { get; set; }

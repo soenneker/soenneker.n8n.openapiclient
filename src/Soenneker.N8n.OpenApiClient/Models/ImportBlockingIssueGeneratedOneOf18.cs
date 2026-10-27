@@ -8,30 +8,92 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Creating the package&apos;s variables under `create-stub` or `create-with-value` would exceed the instance variable quota (`quota:maxVariables`). Reported once for the whole import; nothing is created.
+    /// A data table referenced by the package&apos;s workflows that could not be resolved against the target project — under `dataTableMissingMode=must-preexist` or `dataTableSchemaConflictPolicy`, or because the data table module is disabled on this instance, or the caller lacks the scope the resolution needs.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf18 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The instance variable quota.</summary>
-        public int? Limit { get; set; }
-        /// <summary>The unique variable names the import would create.</summary>
+        /// <summary>For `name-conflict`: the other table that holds or claims the name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Names { get; set; }
+        public string? ConflictingTableId { get; set; }
 #nullable restore
 #else
-        public List<string> Names { get; set; }
+        public string ConflictingTableId { get; set; }
 #endif
-        /// <summary>Variable rows still available under the quota. The import is blocked because `requested` exceeds this, not because it exceeds `limit`.</summary>
-        public int? Remaining { get; set; }
-        /// <summary>Number of new variable rows the import would create (destination-deduplicated).</summary>
-        public int? Requested { get; set; }
+        /// <summary>For a rename `name-conflict`: the matched table&apos;s current name.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? CurrentName { get; set; }
+#nullable restore
+#else
+        public string CurrentName { get; set; }
+#endif
+        /// <summary>For `id-conflict`: the project owning the conflicting target table.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExistingProjectId { get; set; }
+#nullable restore
+#else
+        public string ExistingProjectId { get; set; }
+#endif
+        /// <summary>For `schema-incompatible` under the `fail` policy: target columns not in the package schema.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? ExtraColumns { get; set; }
+#nullable restore
+#else
+        public List<string> ExtraColumns { get; set; }
+#endif
+        /// <summary>The kind property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Kind? Kind { get; set; }
+        /// <summary>For `schema-incompatible`: package columns absent from the target table.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? MissingColumns { get; set; }
+#nullable restore
+#else
+        public List<string> MissingColumns { get; set; }
+#endif
+        /// <summary>For `permission-denied`: the project scope the user lacks.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18MissingScope? MissingScope { get; set; }
+        /// <summary>The name property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Name { get; set; }
+#nullable restore
+#else
+        public string Name { get; set; }
+#endif
+        /// <summary>For `schema-incompatible`: the changes `overwrite` would make to the target table.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem>? OverwriteChanges { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem> OverwriteChanges { get; set; }
+#endif
+        /// <summary>Absent for import-wide failures (`module-disabled`, `permission-denied`).</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? SourceId { get; set; }
+#nullable restore
+#else
+        public string SourceId { get; set; }
+#endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType? Type { get; set; }
-        /// <summary>Package consumers that reference any of the listed variables.</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType? Type { get; set; }
+        /// <summary>For `schema-incompatible`: package columns whose target type differs.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem>? TypeMismatches { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem> TypeMismatches { get; set; }
+#endif
+        /// <summary>The usedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
@@ -64,11 +126,18 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "limit", n => { Limit = n.GetIntValue(); } },
-                { "names", n => { Names = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "remaining", n => { Remaining = n.GetIntValue(); } },
-                { "requested", n => { Requested = n.GetIntValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>(); } },
+                { "conflictingTableId", n => { ConflictingTableId = n.GetStringValue(); } },
+                { "currentName", n => { CurrentName = n.GetStringValue(); } },
+                { "existingProjectId", n => { ExistingProjectId = n.GetStringValue(); } },
+                { "extraColumns", n => { ExtraColumns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Kind>(); } },
+                { "missingColumns", n => { MissingColumns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "missingScope", n => { MissingScope = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18MissingScope>(); } },
+                { "name", n => { Name = n.GetStringValue(); } },
+                { "overwriteChanges", n => { OverwriteChanges = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "sourceId", n => { SourceId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType>(); } },
+                { "typeMismatches", n => { TypeMismatches = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
@@ -79,11 +148,18 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteIntValue("limit", Limit);
-            writer.WriteCollectionOfPrimitiveValues<string>("names", Names);
-            writer.WriteIntValue("remaining", Remaining);
-            writer.WriteIntValue("requested", Requested);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>("type", Type);
+            writer.WriteStringValue("conflictingTableId", ConflictingTableId);
+            writer.WriteStringValue("currentName", CurrentName);
+            writer.WriteStringValue("existingProjectId", ExistingProjectId);
+            writer.WriteCollectionOfPrimitiveValues<string>("extraColumns", ExtraColumns);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Kind>("kind", Kind);
+            writer.WriteCollectionOfPrimitiveValues<string>("missingColumns", MissingColumns);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18MissingScope>("missingScope", MissingScope);
+            writer.WriteStringValue("name", Name);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem>("overwriteChanges", OverwriteChanges);
+            writer.WriteStringValue("sourceId", SourceId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType>("type", Type);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem>("typeMismatches", TypeMismatches);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
             writer.WriteAdditionalData(AdditionalData);
         }

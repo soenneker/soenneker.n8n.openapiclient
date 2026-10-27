@@ -16,7 +16,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; private set; }
-        /// <summary>The data property</summary>
+        /// <summary>The credential data. Fields also accept n8n expressions, which are strings that start with &quot;=&quot;.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public global::Soenneker.N8n.OpenApiClient.Models.CreateCredentialRequestData? Data { get; set; }

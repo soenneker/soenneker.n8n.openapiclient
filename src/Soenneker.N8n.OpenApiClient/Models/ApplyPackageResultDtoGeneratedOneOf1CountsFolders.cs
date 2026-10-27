@@ -16,10 +16,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The created property</summary>
         public int? Created { get; set; }
+        /// <summary>Updated folders that Apply moved under another parent of their project. Included in `updated`.</summary>
+        public int? Moved { get; set; }
         /// <summary>The removed property</summary>
         public int? Removed { get; set; }
+        /// <summary>Updated folders that Apply gave the name on the branch. Included in `updated`.</summary>
+        public int? Renamed { get; set; }
         /// <summary>The skipped property</summary>
         public int? Skipped { get; set; }
+        /// <summary>Existing folders that Apply moved or renamed to match the branch.</summary>
+        public int? Updated { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsFolders"/> and sets the default values.
         /// </summary>
@@ -46,8 +52,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "created", n => { Created = n.GetIntValue(); } },
+                { "moved", n => { Moved = n.GetIntValue(); } },
                 { "removed", n => { Removed = n.GetIntValue(); } },
+                { "renamed", n => { Renamed = n.GetIntValue(); } },
                 { "skipped", n => { Skipped = n.GetIntValue(); } },
+                { "updated", n => { Updated = n.GetIntValue(); } },
             };
         }
         /// <summary>
@@ -58,8 +67,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("created", Created);
+            writer.WriteIntValue("moved", Moved);
             writer.WriteIntValue("removed", Removed);
+            writer.WriteIntValue("renamed", Renamed);
             writer.WriteIntValue("skipped", Skipped);
+            writer.WriteIntValue("updated", Updated);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

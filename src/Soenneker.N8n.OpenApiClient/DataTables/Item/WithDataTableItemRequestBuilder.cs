@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.DataTables.Item.Columns;
+using Soenneker.N8n.OpenApiClient.DataTables.Item.Dependencies;
 using Soenneker.N8n.OpenApiClient.DataTables.Item.Rows;
 using Soenneker.N8n.OpenApiClient.Models;
 using System.Collections.Generic;
@@ -23,6 +24,11 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item
         public global::Soenneker.N8n.OpenApiClient.DataTables.Item.Columns.ColumnsRequestBuilder Columns
         {
             get => new global::Soenneker.N8n.OpenApiClient.DataTables.Item.Columns.ColumnsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The dependencies property</summary>
+        public global::Soenneker.N8n.OpenApiClient.DataTables.Item.Dependencies.DependenciesRequestBuilder Dependencies
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.DataTables.Item.Dependencies.DependenciesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The rows property</summary>
         public global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.RowsRequestBuilder Rows

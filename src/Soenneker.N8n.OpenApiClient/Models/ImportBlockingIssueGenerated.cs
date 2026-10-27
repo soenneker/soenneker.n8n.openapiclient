@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf11"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf15"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf16"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf17"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf4"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf7"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf8"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf9"/>
+    /// Composed type wrapper for classes <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf11"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf15"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf16"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf17"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf23"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf24"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf25"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf4"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf7"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf8"/>, <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf9"/>
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGenerated : IComposedTypeWrapper, IParsable
@@ -125,6 +125,38 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21 ImportBlockingIssueGeneratedOneOf21 { get; set; }
 #endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22? ImportBlockingIssueGeneratedOneOf22 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22 ImportBlockingIssueGeneratedOneOf22 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf23"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf23? ImportBlockingIssueGeneratedOneOf23 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf23 ImportBlockingIssueGeneratedOneOf23 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf24"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf24? ImportBlockingIssueGeneratedOneOf24 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf24 ImportBlockingIssueGeneratedOneOf24 { get; set; }
+#endif
+        /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf25"/></summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf25? ImportBlockingIssueGeneratedOneOf25 { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf25 ImportBlockingIssueGeneratedOneOf25 { get; set; }
+#endif
         /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -191,87 +223,103 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             var result = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGenerated();
-            if("workflow-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            if("agent-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1();
             }
-            else if("folder-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("credential-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf10 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10();
             }
-            else if("workflow-removal-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("credential-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf11 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf11();
             }
-            else if("workflow-removal-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("credential-update-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf12 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf12();
             }
-            else if("folder-removal-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("project-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf13 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13();
             }
-            else if("data-table-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("folder-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf14 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14();
             }
-            else if("tag-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-removal-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf15 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf15();
             }
-            else if("variable-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-removal-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf16 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf16();
             }
-            else if("variable-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("folder-removal-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf17 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf17();
             }
-            else if("variable-limit-exceeded".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("data-table-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf18 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18();
             }
-            else if("missing-node-type".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("tag-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf19 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19();
             }
-            else if("workflow-lineage-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("agent-invalid".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf2();
             }
-            else if("policy-violation".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("variable-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf20 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf20();
             }
-            else if("credential-policy-violation".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("variable-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf21 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21();
             }
-            else if("workflow-id-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("variable-limit-exceeded".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.ImportBlockingIssueGeneratedOneOf22 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22();
+            }
+            else if("missing-node-type".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.ImportBlockingIssueGeneratedOneOf23 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf23();
+            }
+            else if("policy-violation".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.ImportBlockingIssueGeneratedOneOf24 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf24();
+            }
+            else if("credential-policy-violation".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            {
+                result.ImportBlockingIssueGeneratedOneOf25 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf25();
+            }
+            else if("agent-dependency-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf3 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf3();
             }
-            else if("workflow-folder-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("agent-policy-violation".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf4 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf4();
             }
-            else if("workflow-archive-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf5 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5();
             }
-            else if("credential-unresolved".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-lineage-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf6 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf6();
             }
-            else if("credential-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-id-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf7 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf7();
             }
-            else if("credential-update-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-folder-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf8 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf8();
             }
-            else if("project-conflict".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
+            else if("workflow-archive-forbidden".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
                 result.ImportBlockingIssueGeneratedOneOf9 = new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf9();
             }
@@ -338,6 +386,22 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if(ImportBlockingIssueGeneratedOneOf21 != null)
             {
                 return ImportBlockingIssueGeneratedOneOf21.GetFieldDeserializers();
+            }
+            else if(ImportBlockingIssueGeneratedOneOf22 != null)
+            {
+                return ImportBlockingIssueGeneratedOneOf22.GetFieldDeserializers();
+            }
+            else if(ImportBlockingIssueGeneratedOneOf23 != null)
+            {
+                return ImportBlockingIssueGeneratedOneOf23.GetFieldDeserializers();
+            }
+            else if(ImportBlockingIssueGeneratedOneOf24 != null)
+            {
+                return ImportBlockingIssueGeneratedOneOf24.GetFieldDeserializers();
+            }
+            else if(ImportBlockingIssueGeneratedOneOf25 != null)
+            {
+                return ImportBlockingIssueGeneratedOneOf25.GetFieldDeserializers();
             }
             else if(ImportBlockingIssueGeneratedOneOf3 != null)
             {
@@ -431,6 +495,22 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if(ImportBlockingIssueGeneratedOneOf21 != null)
             {
                 writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf21>(null, ImportBlockingIssueGeneratedOneOf21);
+            }
+            else if(ImportBlockingIssueGeneratedOneOf22 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22>(null, ImportBlockingIssueGeneratedOneOf22);
+            }
+            else if(ImportBlockingIssueGeneratedOneOf23 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf23>(null, ImportBlockingIssueGeneratedOneOf23);
+            }
+            else if(ImportBlockingIssueGeneratedOneOf24 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf24>(null, ImportBlockingIssueGeneratedOneOf24);
+            }
+            else if(ImportBlockingIssueGeneratedOneOf25 != null)
+            {
+                writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf25>(null, ImportBlockingIssueGeneratedOneOf25);
             }
             else if(ImportBlockingIssueGeneratedOneOf3 != null)
             {

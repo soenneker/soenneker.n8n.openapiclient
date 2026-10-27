@@ -22,24 +22,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string BranchName { get; set; }
 #endif
-        /// <summary>The configId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ConfigId { get; set; }
-#nullable restore
-#else
-        public string ConfigId { get; set; }
-#endif
-        /// <summary>The connectionId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ConnectionId { get; set; }
-#nullable restore
-#else
-        public string ConnectionId { get; set; }
-#endif
         /// <summary>The direction property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGeneratedDirection? Direction { get; set; }
+        /// <summary>The environmentId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnvironmentId { get; set; }
+#nullable restore
+#else
+        public string EnvironmentId { get; set; }
+#endif
         /// <summary>The hasCheckout property</summary>
         public bool? HasCheckout { get; set; }
         /// <summary>
@@ -68,9 +60,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "branchName", n => { BranchName = n.GetStringValue(); } },
-                { "configId", n => { ConfigId = n.GetStringValue(); } },
-                { "connectionId", n => { ConnectionId = n.GetStringValue(); } },
                 { "direction", n => { Direction = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGeneratedDirection>(); } },
+                { "environmentId", n => { EnvironmentId = n.GetStringValue(); } },
                 { "hasCheckout", n => { HasCheckout = n.GetBoolValue(); } },
             };
         }
@@ -82,9 +73,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("branchName", BranchName);
-            writer.WriteStringValue("configId", ConfigId);
-            writer.WriteStringValue("connectionId", ConnectionId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGeneratedDirection>("direction", Direction);
+            writer.WriteStringValue("environmentId", EnvironmentId);
             writer.WriteBoolValue("hasCheckout", HasCheckout);
             writer.WriteAdditionalData(AdditionalData);
         }

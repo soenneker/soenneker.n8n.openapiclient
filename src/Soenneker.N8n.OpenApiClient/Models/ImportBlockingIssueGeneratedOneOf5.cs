@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A matched workflow whose archived state differs from the package, so the import must archive or unarchive it, but the caller lacks `workflow:delete` on it. Reported at plan time so nothing is written.
+    /// A workflow whose source id already matches one in the target project, under the `fail` conflict policy.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf5 : IAdditionalDataHolder, IParsable
@@ -31,14 +31,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>Project that owns the matched workflow.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ProjectId { get; set; }
-#nullable restore
-#else
-        public string ProjectId { get; set; }
-#endif
         /// <summary>The sourceWorkflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -47,10 +39,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string SourceWorkflowId { get; set; }
 #endif
-        /// <summary>The step the import needs to bring the workflow to the package&apos;s state.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5Transition? Transition { get; set; }
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5"/> and sets the default values.
         /// </summary>
@@ -78,10 +68,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "existingWorkflowId", n => { ExistingWorkflowId = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "sourceWorkflowId", n => { SourceWorkflowId = n.GetStringValue(); } },
-                { "transition", n => { Transition = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5Transition>(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType>(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>(); } },
             };
         }
         /// <summary>
@@ -93,10 +81,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("existingWorkflowId", ExistingWorkflowId);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("projectId", ProjectId);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf5Transition>("transition", Transition);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowArchiveForbiddenType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.WorkflowConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

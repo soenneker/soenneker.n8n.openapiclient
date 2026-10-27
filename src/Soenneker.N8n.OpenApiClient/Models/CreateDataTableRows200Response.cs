@@ -46,11 +46,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             var result = new global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response();
-            if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item> createDataTableRows200ResponseAnyOf2ItemValue)
+            if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf2Item> createDataTableRows200ResponseAnyOf2ItemValue)
             {
                 result.CreateDataTableRows200ResponseAnyOf2Item = createDataTableRows200ResponseAnyOf2ItemValue;
             }
-            else if(parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item> createDataTableRows200ResponseAnyOf3ItemValue)
+            else if(parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedArray && parseNode.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item>(global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item.CreateFromDiscriminatorValue)?.AsList() is List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200ResponseAnyOf3Item> createDataTableRows200ResponseAnyOf3ItemValue)
             {
                 result.CreateDataTableRows200ResponseAnyOf3Item = createDataTableRows200ResponseAnyOf3ItemValue;
             }

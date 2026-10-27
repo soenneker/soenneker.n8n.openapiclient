@@ -14,22 +14,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The configId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ConfigId { get; set; }
-#nullable restore
-#else
-        public string ConfigId { get; set; }
-#endif
-        /// <summary>The connectionId property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? ConnectionId { get; set; }
-#nullable restore
-#else
-        public string ConnectionId { get; set; }
-#endif
         /// <summary>The counts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -38,6 +22,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts Counts { get; set; }
 #endif
+        /// <summary>The environmentId property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? EnvironmentId { get; set; }
+#nullable restore
+#else
+        public string EnvironmentId { get; set; }
+#endif
         /// <summary>The git property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -45,6 +37,22 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #nullable restore
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit Git { get; set; }
+#endif
+        /// <summary>The review property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview? Review { get; set; }
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview Review { get; set; }
+#endif
+        /// <summary>The warnings property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem>? Warnings { get; set; }
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem> Warnings { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated"/> and sets the default values.
@@ -71,10 +79,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "configId", n => { ConfigId = n.GetStringValue(); } },
-                { "connectionId", n => { ConnectionId = n.GetStringValue(); } },
                 { "counts", n => { Counts = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts>(global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts.CreateFromDiscriminatorValue); } },
+                { "environmentId", n => { EnvironmentId = n.GetStringValue(); } },
                 { "git", n => { Git = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit>(global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit.CreateFromDiscriminatorValue); } },
+                { "review", n => { Review = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview>(global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview.CreateFromDiscriminatorValue); } },
+                { "warnings", n => { Warnings = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem>(global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem.CreateFromDiscriminatorValue)?.AsList(); } },
             };
         }
         /// <summary>
@@ -84,10 +93,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("configId", ConfigId);
-            writer.WriteStringValue("connectionId", ConnectionId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts>("counts", Counts);
+            writer.WriteStringValue("environmentId", EnvironmentId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit>("git", Git);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview>("review", Review);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem>("warnings", Warnings);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

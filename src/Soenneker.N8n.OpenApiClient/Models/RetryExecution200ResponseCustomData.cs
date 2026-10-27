@@ -8,7 +8,7 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Execution metadata carried over from the original execution.
+    /// Execution metadata carried over from the original execution. Absent when the API key&apos;s user cannot read the executions of the workflow.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RetryExecution200ResponseCustomData : IAdditionalDataHolder, IParsable

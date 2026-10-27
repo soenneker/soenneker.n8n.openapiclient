@@ -8,30 +8,22 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// A data table referenced by the package&apos;s workflows that could not be resolved against the target project — under `dataTableMissingMode=must-preexist` or `dataTableSchemaConflictPolicy`, or because the data table module is disabled on this instance, or the caller lacks the scope the resolution needs.
+    /// A package folder that cannot be imported as-is. `kind` distinguishes the cause: `parent-mismatch` (a folder matched by id sits under a different parent than the package places it), `id-in-other-project` (the folder id already exists in a different project — ids are globally unique), or `fail-policy` (the folder already exists and `folderConflictPolicy` is `fail`).
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf14 : IAdditionalDataHolder, IParsable
     {
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>For `name-conflict`: the other table that holds or claims the name.</summary>
+        /// <summary>For `parent-mismatch`: the matched folder&apos;s current parent in the target.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConflictingTableId { get; set; }
+        public string? ExistingParentFolderId { get; set; }
 #nullable restore
 #else
-        public string ConflictingTableId { get; set; }
+        public string ExistingParentFolderId { get; set; }
 #endif
-        /// <summary>For a rename `name-conflict`: the matched table&apos;s current name.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? CurrentName { get; set; }
-#nullable restore
-#else
-        public string CurrentName { get; set; }
-#endif
-        /// <summary>For `id-conflict`: the project owning the conflicting target table.</summary>
+        /// <summary>For `id-in-other-project`: the project that already owns the id.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExistingProjectId { get; set; }
@@ -39,26 +31,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string ExistingProjectId { get; set; }
 #endif
-        /// <summary>For `schema-incompatible` under the `fail` policy: target columns not in the package schema.</summary>
+        /// <summary>For `parent-mismatch`: the parent the package would place the folder under.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ExtraColumns { get; set; }
+        public string? ExpectedParentFolderId { get; set; }
 #nullable restore
 #else
-        public List<string> ExtraColumns { get; set; }
+        public string ExpectedParentFolderId { get; set; }
 #endif
         /// <summary>The kind property</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14Kind? Kind { get; set; }
-        /// <summary>For `schema-incompatible`: package columns absent from the target table.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<string>? MissingColumns { get; set; }
-#nullable restore
-#else
-        public List<string> MissingColumns { get; set; }
-#endif
-        /// <summary>For `permission-denied`: the project scope the user lacks.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14MissingScope? MissingScope { get; set; }
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -67,40 +49,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string Name { get; set; }
 #endif
-        /// <summary>For `schema-incompatible`: the changes `overwrite` would make to the target table.</summary>
+        /// <summary>The sourceFolderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItem>? OverwriteChanges { get; set; }
+        public string? SourceFolderId { get; set; }
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItem> OverwriteChanges { get; set; }
-#endif
-        /// <summary>Absent for import-wide failures (`module-disabled`, `permission-denied`).</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public string? SourceId { get; set; }
-#nullable restore
-#else
-        public string SourceId { get; set; }
+        public string SourceFolderId { get; set; }
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType? Type { get; set; }
-        /// <summary>For `schema-incompatible`: package columns whose target type differs.</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14TypeMismatchesItem>? TypeMismatches { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14TypeMismatchesItem> TypeMismatches { get; set; }
-#endif
-        /// <summary>The usedBy property</summary>
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
-#nullable restore
-#else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
-#endif
+        public global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType? Type { get; set; }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14"/> and sets the default values.
         /// </summary>
@@ -126,19 +84,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "conflictingTableId", n => { ConflictingTableId = n.GetStringValue(); } },
-                { "currentName", n => { CurrentName = n.GetStringValue(); } },
+                { "existingParentFolderId", n => { ExistingParentFolderId = n.GetStringValue(); } },
                 { "existingProjectId", n => { ExistingProjectId = n.GetStringValue(); } },
-                { "extraColumns", n => { ExtraColumns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
+                { "expectedParentFolderId", n => { ExpectedParentFolderId = n.GetStringValue(); } },
                 { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14Kind>(); } },
-                { "missingColumns", n => { MissingColumns = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "missingScope", n => { MissingScope = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14MissingScope>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "overwriteChanges", n => { OverwriteChanges = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "sourceId", n => { SourceId = n.GetStringValue(); } },
-                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType>(); } },
-                { "typeMismatches", n => { TypeMismatches = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14TypeMismatchesItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14TypeMismatchesItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "usedBy", n => { UsedBy = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "sourceFolderId", n => { SourceFolderId = n.GetStringValue(); } },
+                { "type", n => { Type = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType>(); } },
             };
         }
         /// <summary>
@@ -148,19 +100,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteStringValue("conflictingTableId", ConflictingTableId);
-            writer.WriteStringValue("currentName", CurrentName);
+            writer.WriteStringValue("existingParentFolderId", ExistingParentFolderId);
             writer.WriteStringValue("existingProjectId", ExistingProjectId);
-            writer.WriteCollectionOfPrimitiveValues<string>("extraColumns", ExtraColumns);
+            writer.WriteStringValue("expectedParentFolderId", ExpectedParentFolderId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14Kind>("kind", Kind);
-            writer.WriteCollectionOfPrimitiveValues<string>("missingColumns", MissingColumns);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14MissingScope>("missingScope", MissingScope);
             writer.WriteStringValue("name", Name);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14OverwriteChangesItem>("overwriteChanges", OverwriteChanges);
-            writer.WriteStringValue("sourceId", SourceId);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType>("type", Type);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf14TypeMismatchesItem>("typeMismatches", TypeMismatches);
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            writer.WriteStringValue("sourceFolderId", SourceFolderId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FolderConflictType>("type", Type);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

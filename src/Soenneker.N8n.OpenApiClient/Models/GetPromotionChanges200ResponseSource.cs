@@ -22,13 +22,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string BranchName { get; set; }
 #endif
-        /// <summary>The configId property</summary>
+        /// <summary>The environmentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConfigId { get; set; }
+        public string? EnvironmentId { get; set; }
 #nullable restore
 #else
-        public string ConfigId { get; set; }
+        public string EnvironmentId { get; set; }
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource"/> and sets the default values.
@@ -56,7 +56,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "branchName", n => { BranchName = n.GetStringValue(); } },
-                { "configId", n => { ConfigId = n.GetStringValue(); } },
+                { "environmentId", n => { EnvironmentId = n.GetStringValue(); } },
             };
         }
         /// <summary>
@@ -67,7 +67,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("branchName", BranchName);
-            writer.WriteStringValue("configId", ConfigId);
+            writer.WriteStringValue("environmentId", EnvironmentId);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

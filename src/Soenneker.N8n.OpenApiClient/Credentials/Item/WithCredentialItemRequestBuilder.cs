@@ -3,6 +3,7 @@
 using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
+using Soenneker.N8n.OpenApiClient.Credentials.Item.Dependencies;
 using Soenneker.N8n.OpenApiClient.Credentials.Item.Test;
 using Soenneker.N8n.OpenApiClient.Credentials.Item.Transfer;
 using Soenneker.N8n.OpenApiClient.Models;
@@ -19,6 +20,11 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithCredentialItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The dependencies property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Credentials.Item.Dependencies.DependenciesRequestBuilder Dependencies
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Credentials.Item.Dependencies.DependenciesRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The test property</summary>
         public global::Soenneker.N8n.OpenApiClient.Credentials.Item.Test.TestRequestBuilder Test
         {
