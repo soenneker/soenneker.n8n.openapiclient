@@ -85,6 +85,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string LdapIdAttribute { get; set; }
 #endif
+        /// <summary>Whether an LDAP user may be linked to an existing n8n account that has the same email. When false, login and synchronization skip such users. Optional on PUT; the stored value is kept when omitted.</summary>
+        public bool? LinkExistingAccountsByEmail { get; set; }
         /// <summary>Whether LDAP login is enabled. Setting this to false is destructive — it deletes all stored LDAP user identities and disables synchronization.</summary>
         public bool? LoginEnabled { get; set; }
         /// <summary>LDAP attribute used for login (usually the same as emailAttribute).</summary>
@@ -149,6 +151,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "firstNameAttribute", n => { FirstNameAttribute = n.GetStringValue(); } },
                 { "lastNameAttribute", n => { LastNameAttribute = n.GetStringValue(); } },
                 { "ldapIdAttribute", n => { LdapIdAttribute = n.GetStringValue(); } },
+                { "linkExistingAccountsByEmail", n => { LinkExistingAccountsByEmail = n.GetBoolValue(); } },
                 { "loginEnabled", n => { LoginEnabled = n.GetBoolValue(); } },
                 { "loginIdAttribute", n => { LoginIdAttribute = n.GetStringValue(); } },
                 { "loginLabel", n => { LoginLabel = n.GetStringValue(); } },
@@ -178,6 +181,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("firstNameAttribute", FirstNameAttribute);
             writer.WriteStringValue("lastNameAttribute", LastNameAttribute);
             writer.WriteStringValue("ldapIdAttribute", LdapIdAttribute);
+            writer.WriteBoolValue("linkExistingAccountsByEmail", LinkExistingAccountsByEmail);
             writer.WriteBoolValue("loginEnabled", LoginEnabled);
             writer.WriteStringValue("loginIdAttribute", LoginIdAttribute);
             writer.WriteStringValue("loginLabel", LoginLabel);
