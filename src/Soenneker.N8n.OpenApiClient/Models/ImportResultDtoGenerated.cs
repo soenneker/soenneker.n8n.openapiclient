@@ -11,96 +11,136 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ImportResultDtoGenerated : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("bindings") is { } nullNodeBindings && nullNodeBindings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Bindings = null;
+            if (parseNode.GetChildNode("credentials") is { } nullNodeCredentials && nullNodeCredentials.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Credentials = null;
+            if (parseNode.GetChildNode("dataTables") is { } nullNodeDataTables && nullNodeDataTables.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataTables = null;
+            if (parseNode.GetChildNode("folders") is { } nullNodeFolders && nullNodeFolders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Folders = null;
+            if (parseNode.GetChildNode("package") is { } nullNodePackage && nullNodePackage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Package = null;
+            if (parseNode.GetChildNode("projects") is { } nullNodeProjects && nullNodeProjects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Projects = null;
+            if (parseNode.GetChildNode("removedFolders") is { } nullNodeRemovedFolders && nullNodeRemovedFolders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RemovedFolders = null;
+            if (parseNode.GetChildNode("removedWorkflows") is { } nullNodeRemovedWorkflows && nullNodeRemovedWorkflows.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RemovedWorkflows = null;
+            if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("variables") is { } nullNodeVariables && nullNodeVariables.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Variables = null;
+            if (parseNode.GetChildNode("workflows") is { } nullNodeWorkflows && nullNodeWorkflows.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Workflows = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Source id → target id mappings produced during import, one map per entity type. Each value maps an id as it appeared in the package to the id on the target instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings? Bindings { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings? Bindings { get => _explicitNullValueBindings; set { _explicitNullValueBindings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bindings"); else _explicitNullProperties?.Remove("bindings"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings? _explicitNullValueBindings = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings Bindings { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings Bindings { get => _explicitNullValueBindings; set { _explicitNullValueBindings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bindings"); else _explicitNullProperties?.Remove("bindings"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings _explicitNullValueBindings = default!;
 #endif
         /// <summary>Source credential ids grouped by whether they matched an existing credential, were created as empty stubs, seeded credentials, or incomplete credentials, or matched a credential that this import updated. Full source→target id mapping is in `bindings.credentials`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials? Credentials { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials? Credentials { get => _explicitNullValueCredentials; set { _explicitNullValueCredentials = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentials"); else _explicitNullProperties?.Remove("credentials"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials? _explicitNullValueCredentials = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials Credentials { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials Credentials { get => _explicitNullValueCredentials; set { _explicitNullValueCredentials = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentials"); else _explicitNullProperties?.Remove("credentials"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials _explicitNullValueCredentials = default!;
 #endif
         /// <summary>The dataTables property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables? DataTables { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables? DataTables { get => _explicitNullValueDataTables; set { _explicitNullValueDataTables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataTables"); else _explicitNullProperties?.Remove("dataTables"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables? _explicitNullValueDataTables = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables DataTables { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables DataTables { get => _explicitNullValueDataTables; set { _explicitNullValueDataTables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataTables"); else _explicitNullProperties?.Remove("dataTables"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables _explicitNullValueDataTables = default!;
 #endif
         /// <summary>Folder shells created or skipped in the target project.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem>? Folders { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem>? Folders { get => _explicitNullValueFolders; set { _explicitNullValueFolders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folders"); else _explicitNullProperties?.Remove("folders"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem>? _explicitNullValueFolders = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem> Folders { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem> Folders { get => _explicitNullValueFolders; set { _explicitNullValueFolders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folders"); else _explicitNullProperties?.Remove("folders"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem> _explicitNullValueFolders = default!;
 #endif
         /// <summary>The package property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage? Package { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage? Package { get => _explicitNullValuePackage; set { _explicitNullValuePackage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("package"); else _explicitNullProperties?.Remove("package"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage? _explicitNullValuePackage = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage Package { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage Package { get => _explicitNullValuePackage; set { _explicitNullValuePackage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("package"); else _explicitNullProperties?.Remove("package"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage _explicitNullValuePackage = default!;
 #endif
         /// <summary>Project shells created, or matched and then updated or left as-is (see `projectConflictPolicy`). Present for project packages; empty when importing loose workflows/folders.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem>? Projects { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem>? Projects { get => _explicitNullValueProjects; set { _explicitNullValueProjects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("projects"); else _explicitNullProperties?.Remove("projects"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem>? _explicitNullValueProjects = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem> Projects { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem> Projects { get => _explicitNullValueProjects; set { _explicitNullValueProjects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("projects"); else _explicitNullProperties?.Remove("projects"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem> _explicitNullValueProjects = default!;
 #endif
         /// <summary>Folders the package does not define that reconciliation left empty, removed by `folderConflictPolicy=overwrite`. A folder still holding anything survives, so target-only content is never swept up. Empty under every other policy.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedFoldersItem>? RemovedFolders { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedFoldersItem>? RemovedFolders { get => _explicitNullValueRemovedFolders; set { _explicitNullValueRemovedFolders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("removedFolders"); else _explicitNullProperties?.Remove("removedFolders"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedFoldersItem>? _explicitNullValueRemovedFolders = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedFoldersItem> RemovedFolders { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedFoldersItem> RemovedFolders { get => _explicitNullValueRemovedFolders; set { _explicitNullValueRemovedFolders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("removedFolders"); else _explicitNullProperties?.Remove("removedFolders"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedFoldersItem> _explicitNullValueRemovedFolders = default!;
 #endif
         /// <summary>Workflows removed from the target during this import.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedWorkflowsItem>? RemovedWorkflows { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedWorkflowsItem>? RemovedWorkflows { get => _explicitNullValueRemovedWorkflows; set { _explicitNullValueRemovedWorkflows = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("removedWorkflows"); else _explicitNullProperties?.Remove("removedWorkflows"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedWorkflowsItem>? _explicitNullValueRemovedWorkflows = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedWorkflowsItem> RemovedWorkflows { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedWorkflowsItem> RemovedWorkflows { get => _explicitNullValueRemovedWorkflows; set { _explicitNullValueRemovedWorkflows = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("removedWorkflows"); else _explicitNullProperties?.Remove("removedWorkflows"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedWorkflowsItem> _explicitNullValueRemovedWorkflows = default!;
 #endif
         /// <summary>Resolution of the tags referenced by the imported workflows, matched by source id. Tag names only.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags? Tags { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags? _explicitNullValueTags = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags Tags { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags _explicitNullValueTags = default!;
 #endif
         /// <summary>Resolution of the package&apos;s variable requirements. Names only — values never travel in the response. For project packages these arrays are package-level unions of per-destination outcomes and may overlap (for example, a name may be created with a value in one project and stubbed in another); classification under concurrent external writes is best-effort.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedVariables? Variables { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedVariables? Variables { get => _explicitNullValueVariables; set { _explicitNullValueVariables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("variables"); else _explicitNullProperties?.Remove("variables"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedVariables? _explicitNullValueVariables = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedVariables Variables { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedVariables Variables { get => _explicitNullValueVariables; set { _explicitNullValueVariables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("variables"); else _explicitNullProperties?.Remove("variables"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedVariables _explicitNullValueVariables = default!;
 #endif
         /// <summary>The workflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem>? Workflows { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem>? Workflows { get => _explicitNullValueWorkflows; set { _explicitNullValueWorkflows = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflows"); else _explicitNullProperties?.Remove("workflows"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem>? _explicitNullValueWorkflows = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem> Workflows { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem> Workflows { get => _explicitNullValueWorkflows; set { _explicitNullValueWorkflows = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflows"); else _explicitNullProperties?.Remove("workflows"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem> _explicitNullValueWorkflows = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGenerated"/> and sets the default values.
@@ -117,7 +157,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGenerated();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -158,6 +198,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags>("tags", Tags);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedVariables>("variables", Variables);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem>("workflows", Workflows);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

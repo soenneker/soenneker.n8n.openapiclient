@@ -11,19 +11,36 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplyPackageResultDtoGeneratedOneOf1CountsWorkflowsPublishing : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("blocked") is { } nullNodeBlocked && nullNodeBlocked.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blocked = null;
+            if (parseNode.GetChildNode("failed") is { } nullNodeFailed && nullNodeFailed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Failed = null;
+            if (parseNode.GetChildNode("published") is { } nullNodePublished && nullNodePublished.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Published = null;
+            if (parseNode.GetChildNode("unchanged") is { } nullNodeUnchanged && nullNodeUnchanged.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Unchanged = null;
+            if (parseNode.GetChildNode("unpublished") is { } nullNodeUnpublished && nullNodeUnpublished.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Unpublished = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The blocked property</summary>
-        public int? Blocked { get; set; }
+        public int? Blocked { get => _explicitNullValueBlocked; set { _explicitNullValueBlocked = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blocked"); else _explicitNullProperties?.Remove("blocked"); } }
+        private int? _explicitNullValueBlocked = default!;
         /// <summary>The failed property</summary>
-        public int? Failed { get; set; }
+        public int? Failed { get => _explicitNullValueFailed; set { _explicitNullValueFailed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failed"); else _explicitNullProperties?.Remove("failed"); } }
+        private int? _explicitNullValueFailed = default!;
         /// <summary>The published property</summary>
-        public int? Published { get; set; }
+        public int? Published { get => _explicitNullValuePublished; set { _explicitNullValuePublished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("published"); else _explicitNullProperties?.Remove("published"); } }
+        private int? _explicitNullValuePublished = default!;
         /// <summary>The unchanged property</summary>
-        public int? Unchanged { get; set; }
+        public int? Unchanged { get => _explicitNullValueUnchanged; set { _explicitNullValueUnchanged = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unchanged"); else _explicitNullProperties?.Remove("unchanged"); } }
+        private int? _explicitNullValueUnchanged = default!;
         /// <summary>The unpublished property</summary>
-        public int? Unpublished { get; set; }
+        public int? Unpublished { get => _explicitNullValueUnpublished; set { _explicitNullValueUnpublished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("unpublished"); else _explicitNullProperties?.Remove("unpublished"); } }
+        private int? _explicitNullValueUnpublished = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsWorkflowsPublishing"/> and sets the default values.
         /// </summary>
@@ -39,7 +56,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsWorkflowsPublishing CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsWorkflowsPublishing();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsWorkflowsPublishing(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("published", Published);
             writer.WriteIntValue("unchanged", Unchanged);
             writer.WriteIntValue("unpublished", Unpublished);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

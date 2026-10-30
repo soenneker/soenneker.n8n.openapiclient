@@ -12,32 +12,53 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf22 : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("limit") is { } nullNodeLimit && nullNodeLimit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Limit = null;
+            if (parseNode.GetChildNode("names") is { } nullNodeNames && nullNodeNames.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Names = null;
+            if (parseNode.GetChildNode("remaining") is { } nullNodeRemaining && nullNodeRemaining.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Remaining = null;
+            if (parseNode.GetChildNode("requested") is { } nullNodeRequested && nullNodeRequested.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Requested = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("usedBy") is { } nullNodeUsedBy && nullNodeUsedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsedBy = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The instance variable quota.</summary>
-        public int? Limit { get; set; }
+        public int? Limit { get => _explicitNullValueLimit; set { _explicitNullValueLimit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("limit"); else _explicitNullProperties?.Remove("limit"); } }
+        private int? _explicitNullValueLimit = default!;
         /// <summary>The unique variable names the import would create.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Names { get; set; }
+        public List<string>? Names { get => _explicitNullValueNames; set { _explicitNullValueNames = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("names"); else _explicitNullProperties?.Remove("names"); } }
+        private List<string>? _explicitNullValueNames = default!;
 #nullable restore
 #else
-        public List<string> Names { get; set; }
+        public List<string> Names { get => _explicitNullValueNames; set { _explicitNullValueNames = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("names"); else _explicitNullProperties?.Remove("names"); } }
+        private List<string> _explicitNullValueNames = default!;
 #endif
         /// <summary>Variable rows still available under the quota. The import is blocked because `requested` exceeds this, not because it exceeds `limit`.</summary>
-        public int? Remaining { get; set; }
+        public int? Remaining { get => _explicitNullValueRemaining; set { _explicitNullValueRemaining = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remaining"); else _explicitNullProperties?.Remove("remaining"); } }
+        private int? _explicitNullValueRemaining = default!;
         /// <summary>Number of new variable rows the import would create (destination-deduplicated).</summary>
-        public int? Requested { get; set; }
+        public int? Requested { get => _explicitNullValueRequested; set { _explicitNullValueRequested = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("requested"); else _explicitNullProperties?.Remove("requested"); } }
+        private int? _explicitNullValueRequested = default!;
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType? _explicitNullValueType = default!;
         /// <summary>Package consumers that reference any of the listed variables.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get => _explicitNullValueUsedBy; set { _explicitNullValueUsedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedBy"); else _explicitNullProperties?.Remove("usedBy"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? _explicitNullValueUsedBy = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get => _explicitNullValueUsedBy; set { _explicitNullValueUsedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedBy"); else _explicitNullProperties?.Remove("usedBy"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> _explicitNullValueUsedBy = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22"/> and sets the default values.
@@ -54,7 +75,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf22(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -85,6 +106,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("requested", Requested);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.VariableLimitExceededType>("type", Type);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,40 +11,59 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetDiscover200ResponseData : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("filters") is { } nullNodeFilters && nullNodeFilters.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Filters = null;
+            if (parseNode.GetChildNode("resources") is { } nullNodeResources && nullNodeResources.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resources = null;
+            if (parseNode.GetChildNode("scopes") is { } nullNodeScopes && nullNodeScopes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scopes = null;
+            if (parseNode.GetChildNode("specUrl") is { } nullNodeSpecUrl && nullNodeSpecUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SpecUrl = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Available query parameter filters. The values arrays reflect what the caller&apos;s scopes permit.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataFilters? Filters { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataFilters? Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataFilters? _explicitNullValueFilters = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataFilters Filters { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataFilters Filters { get => _explicitNullValueFilters; set { _explicitNullValueFilters = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filters"); else _explicitNullProperties?.Remove("filters"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataFilters _explicitNullValueFilters = default!;
 #endif
         /// <summary>The resources property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataResources? Resources { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataResources? Resources { get => _explicitNullValueResources; set { _explicitNullValueResources = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources"); else _explicitNullProperties?.Remove("resources"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataResources? _explicitNullValueResources = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataResources Resources { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataResources Resources { get => _explicitNullValueResources; set { _explicitNullValueResources = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources"); else _explicitNullProperties?.Remove("resources"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataResources _explicitNullValueResources = default!;
 #endif
         /// <summary>The API key&apos;s active scopes</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Scopes { get; set; }
+        public List<string>? Scopes { get => _explicitNullValueScopes; set { _explicitNullValueScopes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scopes"); else _explicitNullProperties?.Remove("scopes"); } }
+        private List<string>? _explicitNullValueScopes = default!;
 #nullable restore
 #else
-        public List<string> Scopes { get; set; }
+        public List<string> Scopes { get => _explicitNullValueScopes; set { _explicitNullValueScopes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scopes"); else _explicitNullProperties?.Remove("scopes"); } }
+        private List<string> _explicitNullValueScopes = default!;
 #endif
         /// <summary>URL to the full OpenAPI specification</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SpecUrl { get; set; }
+        public string? SpecUrl { get => _explicitNullValueSpecUrl; set { _explicitNullValueSpecUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("specUrl"); else _explicitNullProperties?.Remove("specUrl"); } }
+        private string? _explicitNullValueSpecUrl = default!;
 #nullable restore
 #else
-        public string SpecUrl { get; set; }
+        public string SpecUrl { get => _explicitNullValueSpecUrl; set { _explicitNullValueSpecUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("specUrl"); else _explicitNullProperties?.Remove("specUrl"); } }
+        private string _explicitNullValueSpecUrl = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseData"/> and sets the default values.
@@ -61,7 +80,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseData();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -88,6 +107,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetDiscover200ResponseDataResources>("resources", Resources);
             writer.WriteCollectionOfPrimitiveValues<string>("scopes", Scopes);
             writer.WriteStringValue("specUrl", SpecUrl);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

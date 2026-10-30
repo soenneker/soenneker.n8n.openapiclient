@@ -12,62 +12,90 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SamlConfigurationPublicDtoGeneratedMapping : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("email") is { } nullNodeEmail && nullNodeEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Email = null;
+            if (parseNode.GetChildNode("emailVerified") is { } nullNodeEmailVerified && nullNodeEmailVerified.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EmailVerified = null;
+            if (parseNode.GetChildNode("firstName") is { } nullNodeFirstName && nullNodeFirstName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FirstName = null;
+            if (parseNode.GetChildNode("lastName") is { } nullNodeLastName && nullNodeLastName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastName = null;
+            if (parseNode.GetChildNode("n8nInstanceRole") is { } nullNodeN8nInstanceRole && nullNodeN8nInstanceRole.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) N8nInstanceRole = null;
+            if (parseNode.GetChildNode("n8nProjectRoles") is { } nullNodeN8nProjectRoles && nullNodeN8nProjectRoles.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) N8nProjectRoles = null;
+            if (parseNode.GetChildNode("userPrincipalName") is { } nullNodeUserPrincipalName && nullNodeUserPrincipalName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserPrincipalName = null;
+        }
+
         /// <summary>SAML attribute mapped to the user&apos;s email.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Email { get; set; }
+        public string? Email { get => _explicitNullValueEmail; set { _explicitNullValueEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("email"); else _explicitNullProperties?.Remove("email"); } }
+        private string? _explicitNullValueEmail = default!;
 #nullable restore
 #else
-        public string Email { get; set; }
+        public string Email { get => _explicitNullValueEmail; set { _explicitNullValueEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("email"); else _explicitNullProperties?.Remove("email"); } }
+        private string _explicitNullValueEmail = default!;
 #endif
         /// <summary>SAML attribute that states whether the identity provider verified the user&apos;s email. An empty string when unused.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EmailVerified { get; set; }
+        public string? EmailVerified { get => _explicitNullValueEmailVerified; set { _explicitNullValueEmailVerified = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emailVerified"); else _explicitNullProperties?.Remove("emailVerified"); } }
+        private string? _explicitNullValueEmailVerified = default!;
 #nullable restore
 #else
-        public string EmailVerified { get; set; }
+        public string EmailVerified { get => _explicitNullValueEmailVerified; set { _explicitNullValueEmailVerified = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emailVerified"); else _explicitNullProperties?.Remove("emailVerified"); } }
+        private string _explicitNullValueEmailVerified = default!;
 #endif
         /// <summary>SAML attribute mapped to the user&apos;s first name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FirstName { get; set; }
+        public string? FirstName { get => _explicitNullValueFirstName; set { _explicitNullValueFirstName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("firstName"); else _explicitNullProperties?.Remove("firstName"); } }
+        private string? _explicitNullValueFirstName = default!;
 #nullable restore
 #else
-        public string FirstName { get; set; }
+        public string FirstName { get => _explicitNullValueFirstName; set { _explicitNullValueFirstName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("firstName"); else _explicitNullProperties?.Remove("firstName"); } }
+        private string _explicitNullValueFirstName = default!;
 #endif
         /// <summary>SAML attribute mapped to the user&apos;s last name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LastName { get; set; }
+        public string? LastName { get => _explicitNullValueLastName; set { _explicitNullValueLastName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastName"); else _explicitNullProperties?.Remove("lastName"); } }
+        private string? _explicitNullValueLastName = default!;
 #nullable restore
 #else
-        public string LastName { get; set; }
+        public string LastName { get => _explicitNullValueLastName; set { _explicitNullValueLastName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastName"); else _explicitNullProperties?.Remove("lastName"); } }
+        private string _explicitNullValueLastName = default!;
 #endif
         /// <summary>SAML attribute mapped to the n8n instance role.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? N8nInstanceRole { get; set; }
+        public string? N8nInstanceRole { get => _explicitNullValueN8nInstanceRole; set { _explicitNullValueN8nInstanceRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("n8nInstanceRole"); else _explicitNullProperties?.Remove("n8nInstanceRole"); } }
+        private string? _explicitNullValueN8nInstanceRole = default!;
 #nullable restore
 #else
-        public string N8nInstanceRole { get; set; }
+        public string N8nInstanceRole { get => _explicitNullValueN8nInstanceRole; set { _explicitNullValueN8nInstanceRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("n8nInstanceRole"); else _explicitNullProperties?.Remove("n8nInstanceRole"); } }
+        private string _explicitNullValueN8nInstanceRole = default!;
 #endif
         /// <summary>SAML attributes mapped to n8n project roles, formatted as `&lt;projectId&gt;:&lt;role&gt;`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? N8nProjectRoles { get; set; }
+        public List<string>? N8nProjectRoles { get => _explicitNullValueN8nProjectRoles; set { _explicitNullValueN8nProjectRoles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("n8nProjectRoles"); else _explicitNullProperties?.Remove("n8nProjectRoles"); } }
+        private List<string>? _explicitNullValueN8nProjectRoles = default!;
 #nullable restore
 #else
-        public List<string> N8nProjectRoles { get; set; }
+        public List<string> N8nProjectRoles { get => _explicitNullValueN8nProjectRoles; set { _explicitNullValueN8nProjectRoles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("n8nProjectRoles"); else _explicitNullProperties?.Remove("n8nProjectRoles"); } }
+        private List<string> _explicitNullValueN8nProjectRoles = default!;
 #endif
         /// <summary>SAML attribute mapped to the user&apos;s principal name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UserPrincipalName { get; set; }
+        public string? UserPrincipalName { get => _explicitNullValueUserPrincipalName; set { _explicitNullValueUserPrincipalName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userPrincipalName"); else _explicitNullProperties?.Remove("userPrincipalName"); } }
+        private string? _explicitNullValueUserPrincipalName = default!;
 #nullable restore
 #else
-        public string UserPrincipalName { get; set; }
+        public string UserPrincipalName { get => _explicitNullValueUserPrincipalName; set { _explicitNullValueUserPrincipalName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userPrincipalName"); else _explicitNullProperties?.Remove("userPrincipalName"); } }
+        private string _explicitNullValueUserPrincipalName = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -77,7 +105,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -109,7 +137,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("lastName", LastName);
             writer.WriteStringValue("n8nInstanceRole", N8nInstanceRole);
             writer.WriteCollectionOfPrimitiveValues<string>("n8nProjectRoles", N8nProjectRoles);
-            writer.WriteStringValue("userPrincipalName", UserPrincipalName);
+            writer.WriteStringValue("userPrincipalName", UserPrincipalName);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

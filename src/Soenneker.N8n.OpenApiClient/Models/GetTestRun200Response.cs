@@ -11,55 +11,88 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetTestRun200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("completedAt") is { } nullNodeCompletedAt && nullNodeCompletedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompletedAt = null;
+            if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
+            if (parseNode.GetChildNode("errorCode") is { } nullNodeErrorCode && nullNodeErrorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorCode = null;
+            if (parseNode.GetChildNode("errorDetails") is { } nullNodeErrorDetails && nullNodeErrorDetails.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorDetails = null;
+            if (parseNode.GetChildNode("finalResult") is { } nullNodeFinalResult && nullNodeFinalResult.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FinalResult = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("metrics") is { } nullNodeMetrics && nullNodeMetrics.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metrics = null;
+            if (parseNode.GetChildNode("runAt") is { } nullNodeRunAt && nullNodeRunAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RunAt = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("testCaseCount") is { } nullNodeTestCaseCount && nullNodeTestCaseCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TestCaseCount = null;
+            if (parseNode.GetChildNode("updatedAt") is { } nullNodeUpdatedAt && nullNodeUpdatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedAt = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The completedAt property</summary>
-        public DateTimeOffset? CompletedAt { get; set; }
+        public DateTimeOffset? CompletedAt { get => _explicitNullValueCompletedAt; set { _explicitNullValueCompletedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("completedAt"); else _explicitNullProperties?.Remove("completedAt"); } }
+        private DateTimeOffset? _explicitNullValueCompletedAt = default!;
         /// <summary>The createdAt property</summary>
-        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
+        private DateTimeOffset? _explicitNullValueCreatedAt = default!;
         /// <summary>The errorCode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ErrorCode { get; set; }
+        public string? ErrorCode { get => _explicitNullValueErrorCode; set { _explicitNullValueErrorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorCode"); else _explicitNullProperties?.Remove("errorCode"); } }
+        private string? _explicitNullValueErrorCode = default!;
 #nullable restore
 #else
-        public string ErrorCode { get; set; }
+        public string ErrorCode { get => _explicitNullValueErrorCode; set { _explicitNullValueErrorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorCode"); else _explicitNullProperties?.Remove("errorCode"); } }
+        private string _explicitNullValueErrorCode = default!;
 #endif
         /// <summary>The errorDetails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseErrorDetails? ErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseErrorDetails? ErrorDetails { get => _explicitNullValueErrorDetails; set { _explicitNullValueErrorDetails = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorDetails"); else _explicitNullProperties?.Remove("errorDetails"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseErrorDetails? _explicitNullValueErrorDetails = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseErrorDetails ErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseErrorDetails ErrorDetails { get => _explicitNullValueErrorDetails; set { _explicitNullValueErrorDetails = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorDetails"); else _explicitNullProperties?.Remove("errorDetails"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseErrorDetails _explicitNullValueErrorDetails = default!;
 #endif
         /// <summary>Overall result of the run, derived from its test cases once completed.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseFinalResult? FinalResult { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseFinalResult? FinalResult { get => _explicitNullValueFinalResult; set { _explicitNullValueFinalResult = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finalResult"); else _explicitNullProperties?.Remove("finalResult"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseFinalResult? _explicitNullValueFinalResult = default!;
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string _explicitNullValueId = default!;
 #endif
         /// <summary>Aggregated metrics collected across the run&apos;s test cases.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseMetrics? Metrics { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseMetrics? Metrics { get => _explicitNullValueMetrics; set { _explicitNullValueMetrics = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metrics"); else _explicitNullProperties?.Remove("metrics"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseMetrics? _explicitNullValueMetrics = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseMetrics Metrics { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseMetrics Metrics { get => _explicitNullValueMetrics; set { _explicitNullValueMetrics = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metrics"); else _explicitNullProperties?.Remove("metrics"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseMetrics _explicitNullValueMetrics = default!;
 #endif
         /// <summary>The runAt property</summary>
-        public DateTimeOffset? RunAt { get; set; }
+        public DateTimeOffset? RunAt { get => _explicitNullValueRunAt; set { _explicitNullValueRunAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("runAt"); else _explicitNullProperties?.Remove("runAt"); } }
+        private DateTimeOffset? _explicitNullValueRunAt = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseStatus? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseStatus? _explicitNullValueStatus = default!;
         /// <summary>The testCaseCount property</summary>
-        public int? TestCaseCount { get; set; }
+        public int? TestCaseCount { get => _explicitNullValueTestCaseCount; set { _explicitNullValueTestCaseCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("testCaseCount"); else _explicitNullProperties?.Remove("testCaseCount"); } }
+        private int? _explicitNullValueTestCaseCount = default!;
         /// <summary>The updatedAt property</summary>
-        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get => _explicitNullValueUpdatedAt; set { _explicitNullValueUpdatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedAt"); else _explicitNullProperties?.Remove("updatedAt"); } }
+        private DateTimeOffset? _explicitNullValueUpdatedAt = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200Response"/> and sets the default values.
         /// </summary>
@@ -75,7 +108,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -116,6 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200ResponseStatus>("status", Status);
             writer.WriteIntValue("testCaseCount", TestCaseCount);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

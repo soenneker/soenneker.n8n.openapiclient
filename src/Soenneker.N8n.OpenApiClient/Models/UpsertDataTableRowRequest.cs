@@ -11,29 +11,46 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class UpsertDataTableRowRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
+            if (parseNode.GetChildNode("dryRun") is { } nullNodeDryRun && nullNodeDryRun.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DryRun = null;
+            if (parseNode.GetChildNode("filter") is { } nullNodeFilter && nullNodeFilter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Filter = null;
+            if (parseNode.GetChildNode("returnData") is { } nullNodeReturnData && nullNodeReturnData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReturnData = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Column values for the row</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestData? Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestData? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestData? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestData Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestData Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestData _explicitNullValueData = default!;
 #endif
         /// <summary>Set to true to preview the change without saving it.</summary>
-        public bool? DryRun { get; set; }
+        public bool? DryRun { get => _explicitNullValueDryRun; set { _explicitNullValueDryRun = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dryRun"); else _explicitNullProperties?.Remove("dryRun"); } }
+        private bool? _explicitNullValueDryRun = default!;
         /// <summary>Filter conditions to match an existing row. If no row matches, n8n inserts a new row.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilter? Filter { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilter? Filter { get => _explicitNullValueFilter; set { _explicitNullValueFilter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filter"); else _explicitNullProperties?.Remove("filter"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilter? _explicitNullValueFilter = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilter Filter { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilter Filter { get => _explicitNullValueFilter; set { _explicitNullValueFilter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filter"); else _explicitNullProperties?.Remove("filter"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilter _explicitNullValueFilter = default!;
 #endif
         /// <summary>Set to true to return the upserted row(s): the matching rows if updated, or the new row if one was inserted. Set to false to return true on success.</summary>
-        public bool? ReturnData { get; set; }
+        public bool? ReturnData { get => _explicitNullValueReturnData; set { _explicitNullValueReturnData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("returnData"); else _explicitNullProperties?.Remove("returnData"); } }
+        private bool? _explicitNullValueReturnData = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequest"/> and sets the default values.
         /// </summary>
@@ -51,7 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,6 +95,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("dryRun", DryRun);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRowRequestFilter>("filter", Filter);
             writer.WriteBoolValue("returnData", ReturnData);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

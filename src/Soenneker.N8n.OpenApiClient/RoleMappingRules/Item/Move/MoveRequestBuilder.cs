@@ -51,7 +51,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules.Item.Move
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Changes a rule&apos;s position in the evaluation order for its type. `targetIndex` is the desired 0-based position within the rule&apos;s own `type` sequence; a value beyond the last position moves the rule to the end.

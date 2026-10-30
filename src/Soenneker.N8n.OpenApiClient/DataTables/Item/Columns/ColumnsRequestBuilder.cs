@@ -62,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.N8n.OpenApiClient.Models.ListDataTableColumns200ResponseSchemaItem>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListDataTableColumns200ResponseSchemaItem.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            var collectionResult = await RequestAdapter.SendCollectionAsync<global::Soenneker.N8n.OpenApiClient.Models.ListDataTableColumns200ResponseSchemaItem>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListDataTableColumns200ResponseSchemaItem.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
             return collectionResult?.AsList();
         }
         /// <summary>
@@ -83,7 +83,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve all columns for a specific data table.

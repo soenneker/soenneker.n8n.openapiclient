@@ -11,26 +11,41 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ImportResultDtoGeneratedPackage : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("exportedAt") is { } nullNodeExportedAt && nullNodeExportedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExportedAt = null;
+            if (parseNode.GetChildNode("sourceId") is { } nullNodeSourceId && nullNodeSourceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceId = null;
+            if (parseNode.GetChildNode("sourceN8nVersion") is { } nullNodeSourceN8nVersion && nullNodeSourceN8nVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceN8nVersion = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The exportedAt property</summary>
-        public DateTimeOffset? ExportedAt { get; set; }
+        public DateTimeOffset? ExportedAt { get => _explicitNullValueExportedAt; set { _explicitNullValueExportedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exportedAt"); else _explicitNullProperties?.Remove("exportedAt"); } }
+        private DateTimeOffset? _explicitNullValueExportedAt = default!;
         /// <summary>The sourceId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string? _explicitNullValueSourceId = default!;
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string _explicitNullValueSourceId = default!;
 #endif
         /// <summary>The sourceN8nVersion property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceN8nVersion { get; set; }
+        public string? SourceN8nVersion { get => _explicitNullValueSourceN8nVersion; set { _explicitNullValueSourceN8nVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceN8nVersion"); else _explicitNullProperties?.Remove("sourceN8nVersion"); } }
+        private string? _explicitNullValueSourceN8nVersion = default!;
 #nullable restore
 #else
-        public string SourceN8nVersion { get; set; }
+        public string SourceN8nVersion { get => _explicitNullValueSourceN8nVersion; set { _explicitNullValueSourceN8nVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceN8nVersion"); else _explicitNullProperties?.Remove("sourceN8nVersion"); } }
+        private string _explicitNullValueSourceN8nVersion = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage"/> and sets the default values.
@@ -47,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedPackage(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("exportedAt", ExportedAt);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteStringValue("sourceN8nVersion", SourceN8nVersion);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

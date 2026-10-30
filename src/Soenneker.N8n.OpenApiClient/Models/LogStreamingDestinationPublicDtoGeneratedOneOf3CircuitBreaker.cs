@@ -12,13 +12,24 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class LogStreamingDestinationPublicDtoGeneratedOneOf3CircuitBreaker : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("failureWindow") is { } nullNodeFailureWindow && nullNodeFailureWindow.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FailureWindow = null;
+            if (parseNode.GetChildNode("maxFailures") is { } nullNodeMaxFailures && nullNodeMaxFailures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxFailures = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Sliding window, in milliseconds, over which failures are counted.</summary>
-        public int? FailureWindow { get; set; }
+        public int? FailureWindow { get => _explicitNullValueFailureWindow; set { _explicitNullValueFailureWindow = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failureWindow"); else _explicitNullProperties?.Remove("failureWindow"); } }
+        private int? _explicitNullValueFailureWindow = default!;
         /// <summary>Maximum failures within the sliding window before the breaker opens.</summary>
-        public int? MaxFailures { get; set; }
+        public int? MaxFailures { get => _explicitNullValueMaxFailures; set { _explicitNullValueMaxFailures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxFailures"); else _explicitNullProperties?.Remove("maxFailures"); } }
+        private int? _explicitNullValueMaxFailures = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf3CircuitBreaker"/> and sets the default values.
         /// </summary>
@@ -34,7 +45,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf3CircuitBreaker CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf3CircuitBreaker();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf3CircuitBreaker(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -57,6 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteIntValue("failureWindow", FailureWindow);
             writer.WriteIntValue("maxFailures", MaxFailures);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

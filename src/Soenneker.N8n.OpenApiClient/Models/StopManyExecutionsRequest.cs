@@ -11,28 +11,45 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class StopManyExecutionsRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("startedAfter") is { } nullNodeStartedAfter && nullNodeStartedAfter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartedAfter = null;
+            if (parseNode.GetChildNode("startedBefore") is { } nullNodeStartedBefore && nullNodeStartedBefore.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartedBefore = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("workflowId") is { } nullNodeWorkflowId && nullNodeWorkflowId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Only stop executions that started after this time.</summary>
-        public DateTimeOffset? StartedAfter { get; set; }
+        public DateTimeOffset? StartedAfter { get => _explicitNullValueStartedAfter; set { _explicitNullValueStartedAfter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startedAfter"); else _explicitNullProperties?.Remove("startedAfter"); } }
+        private DateTimeOffset? _explicitNullValueStartedAfter = default!;
         /// <summary>Only stop executions that started before this time.</summary>
-        public DateTimeOffset? StartedBefore { get; set; }
+        public DateTimeOffset? StartedBefore { get => _explicitNullValueStartedBefore; set { _explicitNullValueStartedBefore = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startedBefore"); else _explicitNullProperties?.Remove("startedBefore"); } }
+        private DateTimeOffset? _explicitNullValueStartedBefore = default!;
         /// <summary>Array of execution statuses to stop. Must include at least one status.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequestStatusItem?>? Status { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequestStatusItem?>? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequestStatusItem?>? _explicitNullValueStatus = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequestStatusItem?> Status { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequestStatusItem?> Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequestStatusItem?> _explicitNullValueStatus = default!;
 #endif
         /// <summary>Optional workflow ID to filter executions. If not provided, will stop executions across all accessible workflows. The literal value `all` has the same effect as omitting it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WorkflowId { get; set; }
+        public string? WorkflowId { get => _explicitNullValueWorkflowId; set { _explicitNullValueWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowId"); else _explicitNullProperties?.Remove("workflowId"); } }
+        private string? _explicitNullValueWorkflowId = default!;
 #nullable restore
 #else
-        public string WorkflowId { get; set; }
+        public string WorkflowId { get => _explicitNullValueWorkflowId; set { _explicitNullValueWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowId"); else _explicitNullProperties?.Remove("workflowId"); } }
+        private string _explicitNullValueWorkflowId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequest"/> and sets the default values.
@@ -49,7 +66,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,6 +93,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("startedBefore", StartedBefore);
             writer.WriteCollectionOfEnumValues<global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutionsRequestStatusItem>("status", Status);
             writer.WriteStringValue("workflowId", WorkflowId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

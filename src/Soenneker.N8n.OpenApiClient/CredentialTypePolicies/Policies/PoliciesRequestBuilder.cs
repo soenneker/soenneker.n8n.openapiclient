@@ -62,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.
@@ -82,7 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPostRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.

@@ -11,24 +11,39 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ContinueApplyProjectSelectionRequest : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("confirmDestructiveChanges") is { } nullNodeConfirmDestructiveChanges && nullNodeConfirmDestructiveChanges.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConfirmDestructiveChanges = null;
+            if (parseNode.GetChildNode("expectedSource") is { } nullNodeExpectedSource && nullNodeExpectedSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedSource = null;
+            if (parseNode.GetChildNode("workflowIds") is { } nullNodeWorkflowIds && nullNodeWorkflowIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowIds = null;
+        }
+
         /// <summary>Also applies destructive data table changes, which a `destructive-change` conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a `project-deletion` conflict reports, with everything in them. The confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result.</summary>
-        public bool? ConfirmDestructiveChanges { get; set; }
+        public bool? ConfirmDestructiveChanges { get => _explicitNullValueConfirmDestructiveChanges; set { _explicitNullValueConfirmDestructiveChanges = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("confirmDestructiveChanges"); else _explicitNullProperties?.Remove("confirmDestructiveChanges"); } }
+        private bool? _explicitNullValueConfirmDestructiveChanges = default!;
         /// <summary>The expectedSource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource? ExpectedSource { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource? ExpectedSource { get => _explicitNullValueExpectedSource; set { _explicitNullValueExpectedSource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedSource"); else _explicitNullProperties?.Remove("expectedSource"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource? _explicitNullValueExpectedSource = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource ExpectedSource { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource ExpectedSource { get => _explicitNullValueExpectedSource; set { _explicitNullValueExpectedSource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedSource"); else _explicitNullProperties?.Remove("expectedSource"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource _explicitNullValueExpectedSource = default!;
 #endif
         /// <summary>The workflowIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? WorkflowIds { get; set; }
+        public List<string>? WorkflowIds { get => _explicitNullValueWorkflowIds; set { _explicitNullValueWorkflowIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowIds"); else _explicitNullProperties?.Remove("workflowIds"); } }
+        private List<string>? _explicitNullValueWorkflowIds = default!;
 #nullable restore
 #else
-        public List<string> WorkflowIds { get; set; }
+        public List<string> WorkflowIds { get => _explicitNullValueWorkflowIds; set { _explicitNullValueWorkflowIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowIds"); else _explicitNullProperties?.Remove("workflowIds"); } }
+        private List<string> _explicitNullValueWorkflowIds = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -38,7 +53,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,7 +77,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("confirmDestructiveChanges", ConfirmDestructiveChanges);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource>("expectedSource", ExpectedSource);
-            writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);
+            writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

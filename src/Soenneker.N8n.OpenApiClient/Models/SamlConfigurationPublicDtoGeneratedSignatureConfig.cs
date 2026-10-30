@@ -12,22 +12,35 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class SamlConfigurationPublicDtoGeneratedSignatureConfig : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("location") is { } nullNodeLocation && nullNodeLocation.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Location = null;
+            if (parseNode.GetChildNode("prefix") is { } nullNodePrefix && nullNodePrefix.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Prefix = null;
+        }
+
         /// <summary>The location property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfigLocation? Location { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfigLocation? Location { get => _explicitNullValueLocation; set { _explicitNullValueLocation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("location"); else _explicitNullProperties?.Remove("location"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfigLocation? _explicitNullValueLocation = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfigLocation Location { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfigLocation Location { get => _explicitNullValueLocation; set { _explicitNullValueLocation = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("location"); else _explicitNullProperties?.Remove("location"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfigLocation _explicitNullValueLocation = default!;
 #endif
         /// <summary>The prefix property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Prefix { get; set; }
+        public string? Prefix { get => _explicitNullValuePrefix; set { _explicitNullValuePrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prefix"); else _explicitNullProperties?.Remove("prefix"); } }
+        private string? _explicitNullValuePrefix = default!;
 #nullable restore
 #else
-        public string Prefix { get; set; }
+        public string Prefix { get => _explicitNullValuePrefix; set { _explicitNullValuePrefix = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prefix"); else _explicitNullProperties?.Remove("prefix"); } }
+        private string _explicitNullValuePrefix = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -37,7 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,7 +72,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfigLocation>("location", Location);
-            writer.WriteStringValue("prefix", Prefix);
+            writer.WriteStringValue("prefix", Prefix);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

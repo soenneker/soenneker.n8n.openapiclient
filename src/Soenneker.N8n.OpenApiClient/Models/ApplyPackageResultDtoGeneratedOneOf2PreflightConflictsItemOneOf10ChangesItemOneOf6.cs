@@ -11,28 +11,45 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("destructive") is { } nullNodeDestructive && nullNodeDestructive.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Destructive = null;
+            if (parseNode.GetChildNode("from") is { } nullNodeFrom && nullNodeFrom.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) From = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("to") is { } nullNodeTo && nullNodeTo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) To = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The destructive property</summary>
-        public bool? Destructive { get; set; }
+        public bool? Destructive { get => _explicitNullValueDestructive; set { _explicitNullValueDestructive = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destructive"); else _explicitNullProperties?.Remove("destructive"); } }
+        private bool? _explicitNullValueDestructive = default!;
         /// <summary>The from property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? From { get; set; }
+        public string? From { get => _explicitNullValueFrom; set { _explicitNullValueFrom = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("from"); else _explicitNullProperties?.Remove("from"); } }
+        private string? _explicitNullValueFrom = default!;
 #nullable restore
 #else
-        public string From { get; set; }
+        public string From { get => _explicitNullValueFrom; set { _explicitNullValueFrom = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("from"); else _explicitNullProperties?.Remove("from"); } }
+        private string _explicitNullValueFrom = default!;
 #endif
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.RenameTableKind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.RenameTableKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.RenameTableKind? _explicitNullValueKind = default!;
         /// <summary>The to property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? To { get; set; }
+        public string? To { get => _explicitNullValueTo; set { _explicitNullValueTo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to"); else _explicitNullProperties?.Remove("to"); } }
+        private string? _explicitNullValueTo = default!;
 #nullable restore
 #else
-        public string To { get; set; }
+        public string To { get => _explicitNullValueTo; set { _explicitNullValueTo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to"); else _explicitNullProperties?.Remove("to"); } }
+        private string _explicitNullValueTo = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6"/> and sets the default values.
@@ -49,7 +66,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,6 +93,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("from", From);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.RenameTableKind>("kind", Kind);
             writer.WriteStringValue("to", To);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

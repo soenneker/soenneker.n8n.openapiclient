@@ -11,65 +11,98 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetTestCases200ResponseDataItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("completedAt") is { } nullNodeCompletedAt && nullNodeCompletedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CompletedAt = null;
+            if (parseNode.GetChildNode("errorCode") is { } nullNodeErrorCode && nullNodeErrorCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorCode = null;
+            if (parseNode.GetChildNode("errorDetails") is { } nullNodeErrorDetails && nullNodeErrorDetails.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ErrorDetails = null;
+            if (parseNode.GetChildNode("executionId") is { } nullNodeExecutionId && nullNodeExecutionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExecutionId = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("inputs") is { } nullNodeInputs && nullNodeInputs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Inputs = null;
+            if (parseNode.GetChildNode("metrics") is { } nullNodeMetrics && nullNodeMetrics.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metrics = null;
+            if (parseNode.GetChildNode("outputs") is { } nullNodeOutputs && nullNodeOutputs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Outputs = null;
+            if (parseNode.GetChildNode("runAt") is { } nullNodeRunAt && nullNodeRunAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RunAt = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The completedAt property</summary>
-        public DateTimeOffset? CompletedAt { get; set; }
+        public DateTimeOffset? CompletedAt { get => _explicitNullValueCompletedAt; set { _explicitNullValueCompletedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("completedAt"); else _explicitNullProperties?.Remove("completedAt"); } }
+        private DateTimeOffset? _explicitNullValueCompletedAt = default!;
         /// <summary>The errorCode property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ErrorCode { get; set; }
+        public string? ErrorCode { get => _explicitNullValueErrorCode; set { _explicitNullValueErrorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorCode"); else _explicitNullProperties?.Remove("errorCode"); } }
+        private string? _explicitNullValueErrorCode = default!;
 #nullable restore
 #else
-        public string ErrorCode { get; set; }
+        public string ErrorCode { get => _explicitNullValueErrorCode; set { _explicitNullValueErrorCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorCode"); else _explicitNullProperties?.Remove("errorCode"); } }
+        private string _explicitNullValueErrorCode = default!;
 #endif
         /// <summary>The errorDetails property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemErrorDetails? ErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemErrorDetails? ErrorDetails { get => _explicitNullValueErrorDetails; set { _explicitNullValueErrorDetails = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorDetails"); else _explicitNullProperties?.Remove("errorDetails"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemErrorDetails? _explicitNullValueErrorDetails = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemErrorDetails ErrorDetails { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemErrorDetails ErrorDetails { get => _explicitNullValueErrorDetails; set { _explicitNullValueErrorDetails = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("errorDetails"); else _explicitNullProperties?.Remove("errorDetails"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemErrorDetails _explicitNullValueErrorDetails = default!;
 #endif
         /// <summary>ID of the underlying workflow execution, if still retained.</summary>
-        public int? ExecutionId { get; set; }
+        public int? ExecutionId { get => _explicitNullValueExecutionId; set { _explicitNullValueExecutionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("executionId"); else _explicitNullProperties?.Remove("executionId"); } }
+        private int? _explicitNullValueExecutionId = default!;
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string _explicitNullValueId = default!;
 #endif
         /// <summary>Input data for this test case.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemInputs? Inputs { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemInputs? Inputs { get => _explicitNullValueInputs; set { _explicitNullValueInputs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inputs"); else _explicitNullProperties?.Remove("inputs"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemInputs? _explicitNullValueInputs = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemInputs Inputs { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemInputs Inputs { get => _explicitNullValueInputs; set { _explicitNullValueInputs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("inputs"); else _explicitNullProperties?.Remove("inputs"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemInputs _explicitNullValueInputs = default!;
 #endif
         /// <summary>Metrics produced by this test case.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemMetrics? Metrics { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemMetrics? Metrics { get => _explicitNullValueMetrics; set { _explicitNullValueMetrics = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metrics"); else _explicitNullProperties?.Remove("metrics"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemMetrics? _explicitNullValueMetrics = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemMetrics Metrics { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemMetrics Metrics { get => _explicitNullValueMetrics; set { _explicitNullValueMetrics = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metrics"); else _explicitNullProperties?.Remove("metrics"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemMetrics _explicitNullValueMetrics = default!;
 #endif
         /// <summary>Output data produced by this test case.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemOutputs? Outputs { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemOutputs? Outputs { get => _explicitNullValueOutputs; set { _explicitNullValueOutputs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputs"); else _explicitNullProperties?.Remove("outputs"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemOutputs? _explicitNullValueOutputs = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemOutputs Outputs { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemOutputs Outputs { get => _explicitNullValueOutputs; set { _explicitNullValueOutputs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("outputs"); else _explicitNullProperties?.Remove("outputs"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemOutputs _explicitNullValueOutputs = default!;
 #endif
         /// <summary>The runAt property</summary>
-        public DateTimeOffset? RunAt { get; set; }
+        public DateTimeOffset? RunAt { get => _explicitNullValueRunAt; set { _explicitNullValueRunAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("runAt"); else _explicitNullProperties?.Remove("runAt"); } }
+        private DateTimeOffset? _explicitNullValueRunAt = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemStatus? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItem"/> and sets the default values.
         /// </summary>
@@ -85,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -124,6 +157,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemOutputs>("outputs", Outputs);
             writer.WriteDateTimeOffsetValue("runAt", RunAt);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.GetTestCases200ResponseDataItemStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,42 +11,61 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class UpdateWorkflowRequestSharedItem : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("project") is { } nullNodeProject && nullNodeProject.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Project = null;
+            if (parseNode.GetChildNode("projectId") is { } nullNodeProjectId && nullNodeProjectId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProjectId = null;
+            if (parseNode.GetChildNode("role") is { } nullNodeRole && nullNodeRole.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Role = null;
+            if (parseNode.GetChildNode("workflowId") is { } nullNodeWorkflowId && nullNodeWorkflowId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowId = null;
+        }
+
         /// <summary>The createdAt property</summary>
         public DateTimeOffset? CreatedAt { get; private set; }
         /// <summary>The project property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItemProject? Project { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItemProject? Project { get => _explicitNullValueProject; set { _explicitNullValueProject = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("project"); else _explicitNullProperties?.Remove("project"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItemProject? _explicitNullValueProject = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItemProject Project { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItemProject Project { get => _explicitNullValueProject; set { _explicitNullValueProject = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("project"); else _explicitNullProperties?.Remove("project"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItemProject _explicitNullValueProject = default!;
 #endif
         /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProjectId { get; set; }
+        public string? ProjectId { get => _explicitNullValueProjectId; set { _explicitNullValueProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("projectId"); else _explicitNullProperties?.Remove("projectId"); } }
+        private string? _explicitNullValueProjectId = default!;
 #nullable restore
 #else
-        public string ProjectId { get; set; }
+        public string ProjectId { get => _explicitNullValueProjectId; set { _explicitNullValueProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("projectId"); else _explicitNullProperties?.Remove("projectId"); } }
+        private string _explicitNullValueProjectId = default!;
 #endif
         /// <summary>The role property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Role { get; set; }
+        public string? Role { get => _explicitNullValueRole; set { _explicitNullValueRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("role"); else _explicitNullProperties?.Remove("role"); } }
+        private string? _explicitNullValueRole = default!;
 #nullable restore
 #else
-        public string Role { get; set; }
+        public string Role { get => _explicitNullValueRole; set { _explicitNullValueRole = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("role"); else _explicitNullProperties?.Remove("role"); } }
+        private string _explicitNullValueRole = default!;
 #endif
         /// <summary>The updatedAt property</summary>
         public DateTimeOffset? UpdatedAt { get; private set; }
         /// <summary>The workflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WorkflowId { get; set; }
+        public string? WorkflowId { get => _explicitNullValueWorkflowId; set { _explicitNullValueWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowId"); else _explicitNullProperties?.Remove("workflowId"); } }
+        private string? _explicitNullValueWorkflowId = default!;
 #nullable restore
 #else
-        public string WorkflowId { get; set; }
+        public string WorkflowId { get => _explicitNullValueWorkflowId; set { _explicitNullValueWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowId"); else _explicitNullProperties?.Remove("workflowId"); } }
+        private string _explicitNullValueWorkflowId = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -56,7 +75,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -84,7 +103,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflowRequestSharedItemProject>("project", Project);
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteStringValue("role", Role);
-            writer.WriteStringValue("workflowId", WorkflowId);
+            writer.WriteStringValue("workflowId", WorkflowId);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

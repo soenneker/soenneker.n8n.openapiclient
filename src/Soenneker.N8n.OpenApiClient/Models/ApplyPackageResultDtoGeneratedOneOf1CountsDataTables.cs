@@ -11,15 +11,28 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplyPackageResultDtoGeneratedOneOf1CountsDataTables : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("created") is { } nullNodeCreated && nullNodeCreated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Created = null;
+            if (parseNode.GetChildNode("matched") is { } nullNodeMatched && nullNodeMatched.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Matched = null;
+            if (parseNode.GetChildNode("updated") is { } nullNodeUpdated && nullNodeUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Updated = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The created property</summary>
-        public int? Created { get; set; }
+        public int? Created { get => _explicitNullValueCreated; set { _explicitNullValueCreated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created"); else _explicitNullProperties?.Remove("created"); } }
+        private int? _explicitNullValueCreated = default!;
         /// <summary>The matched property</summary>
-        public int? Matched { get; set; }
+        public int? Matched { get => _explicitNullValueMatched; set { _explicitNullValueMatched = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched"); else _explicitNullProperties?.Remove("matched"); } }
+        private int? _explicitNullValueMatched = default!;
         /// <summary>The updated property</summary>
-        public int? Updated { get; set; }
+        public int? Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
+        private int? _explicitNullValueUpdated = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsDataTables"/> and sets the default values.
         /// </summary>
@@ -35,7 +48,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsDataTables CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsDataTables();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsDataTables(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -60,6 +73,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("created", Created);
             writer.WriteIntValue("matched", Matched);
             writer.WriteIntValue("updated", Updated);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

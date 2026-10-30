@@ -12,52 +12,78 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf10 : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("actualType") is { } nullNodeActualType && nullNodeActualType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActualType = null;
+            if (parseNode.GetChildNode("expectedType") is { } nullNodeExpectedType && nullNodeExpectedType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedType = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("sourceId") is { } nullNodeSourceId && nullNodeSourceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceId = null;
+            if (parseNode.GetChildNode("targetId") is { } nullNodeTargetId && nullNodeTargetId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetId = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("usedBy") is { } nullNodeUsedBy && nullNodeUsedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsedBy = null;
+        }
+
         /// <summary>For `type_mismatch`: the actual type of the resolved target credential.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ActualType { get; set; }
+        public string? ActualType { get => _explicitNullValueActualType; set { _explicitNullValueActualType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("actualType"); else _explicitNullProperties?.Remove("actualType"); } }
+        private string? _explicitNullValueActualType = default!;
 #nullable restore
 #else
-        public string ActualType { get; set; }
+        public string ActualType { get => _explicitNullValueActualType; set { _explicitNullValueActualType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("actualType"); else _explicitNullProperties?.Remove("actualType"); } }
+        private string _explicitNullValueActualType = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>For `type_mismatch`: the credential type the package&apos;s workflow node requires.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExpectedType { get; set; }
+        public string? ExpectedType { get => _explicitNullValueExpectedType; set { _explicitNullValueExpectedType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedType"); else _explicitNullProperties?.Remove("expectedType"); } }
+        private string? _explicitNullValueExpectedType = default!;
 #nullable restore
 #else
-        public string ExpectedType { get; set; }
+        public string ExpectedType { get => _explicitNullValueExpectedType; set { _explicitNullValueExpectedType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedType"); else _explicitNullProperties?.Remove("expectedType"); } }
+        private string _explicitNullValueExpectedType = default!;
 #endif
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10Kind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10Kind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10Kind? _explicitNullValueKind = default!;
         /// <summary>The sourceId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string? _explicitNullValueSourceId = default!;
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string _explicitNullValueSourceId = default!;
 #endif
         /// <summary>Target credential id: for `not_found`, the explicit binding that could not be resolved; for `type_mismatch`, the credential id that was resolved — via an explicit binding or automatic matching — but has the wrong type.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TargetId { get; set; }
+        public string? TargetId { get => _explicitNullValueTargetId; set { _explicitNullValueTargetId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetId"); else _explicitNullProperties?.Remove("targetId"); } }
+        private string? _explicitNullValueTargetId = default!;
 #nullable restore
 #else
-        public string TargetId { get; set; }
+        public string TargetId { get => _explicitNullValueTargetId; set { _explicitNullValueTargetId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetId"); else _explicitNullProperties?.Remove("targetId"); } }
+        private string _explicitNullValueTargetId = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType? _explicitNullValueType = default!;
         /// <summary>The usedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get => _explicitNullValueUsedBy; set { _explicitNullValueUsedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedBy"); else _explicitNullProperties?.Remove("usedBy"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? _explicitNullValueUsedBy = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get => _explicitNullValueUsedBy; set { _explicitNullValueUsedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedBy"); else _explicitNullProperties?.Remove("usedBy"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> _explicitNullValueUsedBy = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10"/> and sets the default values.
@@ -74,7 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf10(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -107,6 +133,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("targetId", TargetId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialUnresolvedType>("type", Type);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

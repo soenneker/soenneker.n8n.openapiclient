@@ -11,25 +11,43 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("column") is { } nullNodeColumn && nullNodeColumn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Column = null;
+            if (parseNode.GetChildNode("destructive") is { } nullNodeDestructive && nullNodeDestructive.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Destructive = null;
+            if (parseNode.GetChildNode("from") is { } nullNodeFrom && nullNodeFrom.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) From = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("to") is { } nullNodeTo && nullNodeTo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) To = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The column property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Column { get; set; }
+        public string? Column { get => _explicitNullValueColumn; set { _explicitNullValueColumn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("column"); else _explicitNullProperties?.Remove("column"); } }
+        private string? _explicitNullValueColumn = default!;
 #nullable restore
 #else
-        public string Column { get; set; }
+        public string Column { get => _explicitNullValueColumn; set { _explicitNullValueColumn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("column"); else _explicitNullProperties?.Remove("column"); } }
+        private string _explicitNullValueColumn = default!;
 #endif
         /// <summary>The destructive property</summary>
-        public bool? Destructive { get; set; }
+        public bool? Destructive { get => _explicitNullValueDestructive; set { _explicitNullValueDestructive = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destructive"); else _explicitNullProperties?.Remove("destructive"); } }
+        private bool? _explicitNullValueDestructive = default!;
         /// <summary>The from property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3From? From { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3From? From { get => _explicitNullValueFrom; set { _explicitNullValueFrom = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("from"); else _explicitNullProperties?.Remove("from"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3From? _explicitNullValueFrom = default!;
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ChangeColumnTypeKind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ChangeColumnTypeKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ChangeColumnTypeKind? _explicitNullValueKind = default!;
         /// <summary>The to property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3To? To { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3To? To { get => _explicitNullValueTo; set { _explicitNullValueTo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("to"); else _explicitNullProperties?.Remove("to"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3To? _explicitNullValueTo = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3"/> and sets the default values.
         /// </summary>
@@ -45,7 +63,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -74,6 +92,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3From>("from", From);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ChangeColumnTypeKind>("kind", Kind);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3To>("to", To);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

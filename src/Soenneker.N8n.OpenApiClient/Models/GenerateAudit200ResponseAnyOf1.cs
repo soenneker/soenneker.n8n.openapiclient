@@ -11,48 +11,70 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GenerateAudit200ResponseAnyOf1 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("Credentials Risk Report") is { } nullNodeCredentialsRiskReport && nullNodeCredentialsRiskReport.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CredentialsRiskReport = null;
+            if (parseNode.GetChildNode("Database Risk Report") is { } nullNodeDatabaseRiskReport && nullNodeDatabaseRiskReport.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DatabaseRiskReport = null;
+            if (parseNode.GetChildNode("Filesystem Risk Report") is { } nullNodeFilesystemRiskReport && nullNodeFilesystemRiskReport.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilesystemRiskReport = null;
+            if (parseNode.GetChildNode("Instance Risk Report") is { } nullNodeInstanceRiskReport && nullNodeInstanceRiskReport.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstanceRiskReport = null;
+            if (parseNode.GetChildNode("Nodes Risk Report") is { } nullNodeNodesRiskReport && nullNodeNodesRiskReport.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NodesRiskReport = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The CredentialsRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1CredentialsRiskReport? CredentialsRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1CredentialsRiskReport? CredentialsRiskReport { get => _explicitNullValueCredentialsRiskReport; set { _explicitNullValueCredentialsRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Credentials Risk Report"); else _explicitNullProperties?.Remove("Credentials Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1CredentialsRiskReport? _explicitNullValueCredentialsRiskReport = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1CredentialsRiskReport CredentialsRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1CredentialsRiskReport CredentialsRiskReport { get => _explicitNullValueCredentialsRiskReport; set { _explicitNullValueCredentialsRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Credentials Risk Report"); else _explicitNullProperties?.Remove("Credentials Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1CredentialsRiskReport _explicitNullValueCredentialsRiskReport = default!;
 #endif
         /// <summary>The DatabaseRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReport? DatabaseRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReport? DatabaseRiskReport { get => _explicitNullValueDatabaseRiskReport; set { _explicitNullValueDatabaseRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Database Risk Report"); else _explicitNullProperties?.Remove("Database Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReport? _explicitNullValueDatabaseRiskReport = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReport DatabaseRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReport DatabaseRiskReport { get => _explicitNullValueDatabaseRiskReport; set { _explicitNullValueDatabaseRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Database Risk Report"); else _explicitNullProperties?.Remove("Database Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReport _explicitNullValueDatabaseRiskReport = default!;
 #endif
         /// <summary>The FilesystemRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1FilesystemRiskReport? FilesystemRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1FilesystemRiskReport? FilesystemRiskReport { get => _explicitNullValueFilesystemRiskReport; set { _explicitNullValueFilesystemRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Filesystem Risk Report"); else _explicitNullProperties?.Remove("Filesystem Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1FilesystemRiskReport? _explicitNullValueFilesystemRiskReport = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1FilesystemRiskReport FilesystemRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1FilesystemRiskReport FilesystemRiskReport { get => _explicitNullValueFilesystemRiskReport; set { _explicitNullValueFilesystemRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Filesystem Risk Report"); else _explicitNullProperties?.Remove("Filesystem Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1FilesystemRiskReport _explicitNullValueFilesystemRiskReport = default!;
 #endif
         /// <summary>The InstanceRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReport? InstanceRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReport? InstanceRiskReport { get => _explicitNullValueInstanceRiskReport; set { _explicitNullValueInstanceRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Instance Risk Report"); else _explicitNullProperties?.Remove("Instance Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReport? _explicitNullValueInstanceRiskReport = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReport InstanceRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReport InstanceRiskReport { get => _explicitNullValueInstanceRiskReport; set { _explicitNullValueInstanceRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Instance Risk Report"); else _explicitNullProperties?.Remove("Instance Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReport _explicitNullValueInstanceRiskReport = default!;
 #endif
         /// <summary>The NodesRiskReport property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReport? NodesRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReport? NodesRiskReport { get => _explicitNullValueNodesRiskReport; set { _explicitNullValueNodesRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Nodes Risk Report"); else _explicitNullProperties?.Remove("Nodes Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReport? _explicitNullValueNodesRiskReport = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReport NodesRiskReport { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReport NodesRiskReport { get => _explicitNullValueNodesRiskReport; set { _explicitNullValueNodesRiskReport = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("Nodes Risk Report"); else _explicitNullProperties?.Remove("Nodes Risk Report"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReport _explicitNullValueNodesRiskReport = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1"/> and sets the default values.
@@ -69,7 +91,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -98,6 +120,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1FilesystemRiskReport>("Filesystem Risk Report", FilesystemRiskReport);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReport>("Instance Risk Report", InstanceRiskReport);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1NodesRiskReport>("Nodes Risk Report", NodesRiskReport);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

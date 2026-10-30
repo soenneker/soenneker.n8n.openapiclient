@@ -12,43 +12,66 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class TestOtelTraceRequest : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("exporterEndpoint") is { } nullNodeExporterEndpoint && nullNodeExporterEndpoint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterEndpoint = null;
+            if (parseNode.GetChildNode("exporterHeaders") is { } nullNodeExporterHeaders && nullNodeExporterHeaders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterHeaders = null;
+            if (parseNode.GetChildNode("exporterProtocol") is { } nullNodeExporterProtocol && nullNodeExporterProtocol.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterProtocol = null;
+            if (parseNode.GetChildNode("exporterServiceName") is { } nullNodeExporterServiceName && nullNodeExporterServiceName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterServiceName = null;
+            if (parseNode.GetChildNode("exporterTracingPath") is { } nullNodeExporterTracingPath && nullNodeExporterTracingPath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterTracingPath = null;
+            if (parseNode.GetChildNode("startupConnectivityTimeoutMs") is { } nullNodeStartupConnectivityTimeoutMs && nullNodeStartupConnectivityTimeoutMs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartupConnectivityTimeoutMs = null;
+        }
+
         /// <summary>The base URL of the OTLP collector to export traces to. The value must be an `http://` or `https://` URL, because the scheme selects TLS — for gRPC, `https://` uses SSL and `http://` is plaintext.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExporterEndpoint { get; set; }
+        public string? ExporterEndpoint { get => _explicitNullValueExporterEndpoint; set { _explicitNullValueExporterEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterEndpoint"); else _explicitNullProperties?.Remove("exporterEndpoint"); } }
+        private string? _explicitNullValueExporterEndpoint = default!;
 #nullable restore
 #else
-        public string ExporterEndpoint { get; set; }
+        public string ExporterEndpoint { get => _explicitNullValueExporterEndpoint; set { _explicitNullValueExporterEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterEndpoint"); else _explicitNullProperties?.Remove("exporterEndpoint"); } }
+        private string _explicitNullValueExporterEndpoint = default!;
 #endif
         /// <summary>Additional headers sent to the OTLP collector, as a single string of comma-separated `key=value` pairs (e.g. `authorization=Bearer my-token,x-tenant-id=acme`). Whitespace around each key and value is trimmed; a value may contain spaces but not commas. Use an empty string when unused.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExporterHeaders { get; set; }
+        public string? ExporterHeaders { get => _explicitNullValueExporterHeaders; set { _explicitNullValueExporterHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterHeaders"); else _explicitNullProperties?.Remove("exporterHeaders"); } }
+        private string? _explicitNullValueExporterHeaders = default!;
 #nullable restore
 #else
-        public string ExporterHeaders { get; set; }
+        public string ExporterHeaders { get => _explicitNullValueExporterHeaders; set { _explicitNullValueExporterHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterHeaders"); else _explicitNullProperties?.Remove("exporterHeaders"); } }
+        private string _explicitNullValueExporterHeaders = default!;
 #endif
         /// <summary>The wire protocol used to send the test span. Collectors conventionally serve OTLP/HTTP on port 4318 and OTLP/gRPC on port 4317. The endpoint scheme (`http://` or `https://`) controls TLS for both protocols. Optional: omitting it selects `http/protobuf`, unless an environment variable manages this field, which then supplies the value.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.TestOtelTraceRequestExporterProtocol? ExporterProtocol { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TestOtelTraceRequestExporterProtocol? ExporterProtocol { get => _explicitNullValueExporterProtocol; set { _explicitNullValueExporterProtocol = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterProtocol"); else _explicitNullProperties?.Remove("exporterProtocol"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.TestOtelTraceRequestExporterProtocol? _explicitNullValueExporterProtocol = default!;
         /// <summary>The `service.name` resource attribute reported on the test span.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExporterServiceName { get; set; }
+        public string? ExporterServiceName { get => _explicitNullValueExporterServiceName; set { _explicitNullValueExporterServiceName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterServiceName"); else _explicitNullProperties?.Remove("exporterServiceName"); } }
+        private string? _explicitNullValueExporterServiceName = default!;
 #nullable restore
 #else
-        public string ExporterServiceName { get; set; }
+        public string ExporterServiceName { get => _explicitNullValueExporterServiceName; set { _explicitNullValueExporterServiceName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterServiceName"); else _explicitNullProperties?.Remove("exporterServiceName"); } }
+        private string _explicitNullValueExporterServiceName = default!;
 #endif
         /// <summary>The path appended to the endpoint for the OTLP traces signal. Ignored when `exporterProtocol` is `grpc`, which takes no URL path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExporterTracingPath { get; set; }
+        public string? ExporterTracingPath { get => _explicitNullValueExporterTracingPath; set { _explicitNullValueExporterTracingPath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterTracingPath"); else _explicitNullProperties?.Remove("exporterTracingPath"); } }
+        private string? _explicitNullValueExporterTracingPath = default!;
 #nullable restore
 #else
-        public string ExporterTracingPath { get; set; }
+        public string ExporterTracingPath { get => _explicitNullValueExporterTracingPath; set { _explicitNullValueExporterTracingPath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterTracingPath"); else _explicitNullProperties?.Remove("exporterTracingPath"); } }
+        private string _explicitNullValueExporterTracingPath = default!;
 #endif
         /// <summary>How long, in milliseconds, to wait for the collector to respond.</summary>
-        public int? StartupConnectivityTimeoutMs { get; set; }
+        public int? StartupConnectivityTimeoutMs { get => _explicitNullValueStartupConnectivityTimeoutMs; set { _explicitNullValueStartupConnectivityTimeoutMs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startupConnectivityTimeoutMs"); else _explicitNullProperties?.Remove("startupConnectivityTimeoutMs"); } }
+        private int? _explicitNullValueStartupConnectivityTimeoutMs = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -57,7 +80,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.TestOtelTraceRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.TestOtelTraceRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.TestOtelTraceRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -87,7 +110,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TestOtelTraceRequestExporterProtocol>("exporterProtocol", ExporterProtocol);
             writer.WriteStringValue("exporterServiceName", ExporterServiceName);
             writer.WriteStringValue("exporterTracingPath", ExporterTracingPath);
-            writer.WriteIntValue("startupConnectivityTimeoutMs", StartupConnectivityTimeoutMs);
+            writer.WriteIntValue("startupConnectivityTimeoutMs", StartupConnectivityTimeoutMs);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

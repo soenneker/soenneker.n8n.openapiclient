@@ -50,7 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deprecated: use POST /workflows/{id}/unpublish instead. Deactivate a workflow.

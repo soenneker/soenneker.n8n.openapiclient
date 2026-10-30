@@ -50,7 +50,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetDeprecatedWorkflowVersion200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetDeprecatedWorkflowVersion200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetDeprecatedWorkflowVersion200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetDeprecatedWorkflowVersion200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Deprecated: use GET /workflows/{workflowId}/versions/{workflowVersionId} instead. Retrieves a specific version of a workflow from workflow history.

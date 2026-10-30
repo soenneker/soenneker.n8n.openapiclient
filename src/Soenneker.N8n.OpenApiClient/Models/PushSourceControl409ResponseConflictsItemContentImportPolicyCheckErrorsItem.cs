@@ -11,24 +11,37 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PushSourceControl409ResponseConflictsItemContentImportPolicyCheckErrorsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("checkId") is { } nullNodeCheckId && nullNodeCheckId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CheckId = null;
+            if (parseNode.GetChildNode("correlationId") is { } nullNodeCorrelationId && nullNodeCorrelationId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CorrelationId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The checkId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CheckId { get; set; }
+        public string? CheckId { get => _explicitNullValueCheckId; set { _explicitNullValueCheckId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("checkId"); else _explicitNullProperties?.Remove("checkId"); } }
+        private string? _explicitNullValueCheckId = default!;
 #nullable restore
 #else
-        public string CheckId { get; set; }
+        public string CheckId { get => _explicitNullValueCheckId; set { _explicitNullValueCheckId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("checkId"); else _explicitNullProperties?.Remove("checkId"); } }
+        private string _explicitNullValueCheckId = default!;
 #endif
         /// <summary>The correlationId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CorrelationId { get; set; }
+        public string? CorrelationId { get => _explicitNullValueCorrelationId; set { _explicitNullValueCorrelationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("correlationId"); else _explicitNullProperties?.Remove("correlationId"); } }
+        private string? _explicitNullValueCorrelationId = default!;
 #nullable restore
 #else
-        public string CorrelationId { get; set; }
+        public string CorrelationId { get => _explicitNullValueCorrelationId; set { _explicitNullValueCorrelationId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("correlationId"); else _explicitNullProperties?.Remove("correlationId"); } }
+        private string _explicitNullValueCorrelationId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl409ResponseConflictsItemContentImportPolicyCheckErrorsItem"/> and sets the default values.
@@ -45,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl409ResponseConflictsItemContentImportPolicyCheckErrorsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl409ResponseConflictsItemContentImportPolicyCheckErrorsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl409ResponseConflictsItemContentImportPolicyCheckErrorsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +81,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("checkId", CheckId);
             writer.WriteStringValue("correlationId", CorrelationId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

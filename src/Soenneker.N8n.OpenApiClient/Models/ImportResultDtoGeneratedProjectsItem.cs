@@ -11,35 +11,53 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ImportResultDtoGeneratedProjectsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("localId") is { } nullNodeLocalId && nullNodeLocalId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocalId = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("sourceProjectId") is { } nullNodeSourceProjectId && nullNodeSourceProjectId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceProjectId = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Project id on the target instance (equal to `sourceProjectId`; project ids are reused).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LocalId { get; set; }
+        public string? LocalId { get => _explicitNullValueLocalId; set { _explicitNullValueLocalId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localId"); else _explicitNullProperties?.Remove("localId"); } }
+        private string? _explicitNullValueLocalId = default!;
 #nullable restore
 #else
-        public string LocalId { get; set; }
+        public string LocalId { get => _explicitNullValueLocalId; set { _explicitNullValueLocalId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localId"); else _explicitNullProperties?.Remove("localId"); } }
+        private string _explicitNullValueLocalId = default!;
 #endif
         /// <summary>The project&apos;s name on the target: the package&apos;s under `overwrite`, the pre-existing one under `merge`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>Project id as it appeared in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceProjectId { get; set; }
+        public string? SourceProjectId { get => _explicitNullValueSourceProjectId; set { _explicitNullValueSourceProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceProjectId"); else _explicitNullProperties?.Remove("sourceProjectId"); } }
+        private string? _explicitNullValueSourceProjectId = default!;
 #nullable restore
 #else
-        public string SourceProjectId { get; set; }
+        public string SourceProjectId { get => _explicitNullValueSourceProjectId; set { _explicitNullValueSourceProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceProjectId"); else _explicitNullProperties?.Remove("sourceProjectId"); } }
+        private string _explicitNullValueSourceProjectId = default!;
 #endif
         /// <summary>Import outcome for this package project. `skipped` means the project already existed and `projectConflictPolicy=merge` left its details untouched — its contents were still imported.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItemStatus? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItemStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem"/> and sets the default values.
         /// </summary>
@@ -55,7 +73,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -82,6 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceProjectId", SourceProjectId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItemStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -12,7 +12,17 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PublishWorkflow409Response : ApiException, IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("message") is { } nullNodeMessageEscaped && nullNodeMessageEscaped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MessageEscaped = null;
+            if (parseNode.GetChildNode("reason") is { } nullNodeReason && nullNodeReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reason = null;
+            if (parseNode.GetChildNode("workflowReviewRequestId") is { } nullNodeWorkflowReviewRequestId && nullNodeWorkflowReviewRequestId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowReviewRequestId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The primary error message.</summary>
@@ -20,20 +30,25 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The message property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MessageEscaped { get; set; }
+        public string? MessageEscaped { get => _explicitNullValueMessageEscaped; set { _explicitNullValueMessageEscaped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
+        private string? _explicitNullValueMessageEscaped = default!;
 #nullable restore
 #else
-        public string MessageEscaped { get; set; }
+        public string MessageEscaped { get => _explicitNullValueMessageEscaped; set { _explicitNullValueMessageEscaped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("message"); else _explicitNullProperties?.Remove("message"); } }
+        private string _explicitNullValueMessageEscaped = default!;
 #endif
         /// <summary>The reason property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409ResponseReason? Reason { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409ResponseReason? Reason { get => _explicitNullValueReason; set { _explicitNullValueReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reason"); else _explicitNullProperties?.Remove("reason"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409ResponseReason? _explicitNullValueReason = default!;
         /// <summary>The workflowReviewRequestId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WorkflowReviewRequestId { get; set; }
+        public string? WorkflowReviewRequestId { get => _explicitNullValueWorkflowReviewRequestId; set { _explicitNullValueWorkflowReviewRequestId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowReviewRequestId"); else _explicitNullProperties?.Remove("workflowReviewRequestId"); } }
+        private string? _explicitNullValueWorkflowReviewRequestId = default!;
 #nullable restore
 #else
-        public string WorkflowReviewRequestId { get; set; }
+        public string WorkflowReviewRequestId { get => _explicitNullValueWorkflowReviewRequestId; set { _explicitNullValueWorkflowReviewRequestId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowReviewRequestId"); else _explicitNullProperties?.Remove("workflowReviewRequestId"); } }
+        private string _explicitNullValueWorkflowReviewRequestId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409Response"/> and sets the default values.
@@ -50,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -75,6 +90,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("message", MessageEscaped);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409ResponseReason>("reason", Reason);
             writer.WriteStringValue("workflowReviewRequestId", WorkflowReviewRequestId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

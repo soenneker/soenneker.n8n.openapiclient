@@ -11,13 +11,39 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SamlConfigurationPublicDtoGenerated : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("acsBinding") is { } nullNodeAcsBinding && nullNodeAcsBinding.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AcsBinding = null;
+            if (parseNode.GetChildNode("authnRequestsSigned") is { } nullNodeAuthnRequestsSigned && nullNodeAuthnRequestsSigned.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthnRequestsSigned = null;
+            if (parseNode.GetChildNode("emailVerifiedRequired") is { } nullNodeEmailVerifiedRequired && nullNodeEmailVerifiedRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EmailVerifiedRequired = null;
+            if (parseNode.GetChildNode("ignoreSSL") is { } nullNodeIgnoreSSL && nullNodeIgnoreSSL.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IgnoreSSL = null;
+            if (parseNode.GetChildNode("loginBinding") is { } nullNodeLoginBinding && nullNodeLoginBinding.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoginBinding = null;
+            if (parseNode.GetChildNode("loginEnabled") is { } nullNodeLoginEnabled && nullNodeLoginEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoginEnabled = null;
+            if (parseNode.GetChildNode("loginLabel") is { } nullNodeLoginLabel && nullNodeLoginLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoginLabel = null;
+            if (parseNode.GetChildNode("mapping") is { } nullNodeMapping && nullNodeMapping.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mapping = null;
+            if (parseNode.GetChildNode("metadata") is { } nullNodeMetadata && nullNodeMetadata.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Metadata = null;
+            if (parseNode.GetChildNode("metadataUrl") is { } nullNodeMetadataUrl && nullNodeMetadataUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MetadataUrl = null;
+            if (parseNode.GetChildNode("relayState") is { } nullNodeRelayState && nullNodeRelayState.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RelayState = null;
+            if (parseNode.GetChildNode("signatureConfig") is { } nullNodeSignatureConfig && nullNodeSignatureConfig.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SignatureConfig = null;
+            if (parseNode.GetChildNode("signingCertificate") is { } nullNodeSigningCertificate && nullNodeSigningCertificate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SigningCertificate = null;
+            if (parseNode.GetChildNode("signingPrivateKey") is { } nullNodeSigningPrivateKey && nullNodeSigningPrivateKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SigningPrivateKey = null;
+            if (parseNode.GetChildNode("wantAssertionsSigned") is { } nullNodeWantAssertionsSigned && nullNodeWantAssertionsSigned.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WantAssertionsSigned = null;
+            if (parseNode.GetChildNode("wantMessageSigned") is { } nullNodeWantMessageSigned && nullNodeWantMessageSigned.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WantMessageSigned = null;
+        }
+
         /// <summary>Assertion Consumer Service binding.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedAcsBinding? AcsBinding { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedAcsBinding? AcsBinding { get => _explicitNullValueAcsBinding; set { _explicitNullValueAcsBinding = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("acsBinding"); else _explicitNullProperties?.Remove("acsBinding"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedAcsBinding? _explicitNullValueAcsBinding = default!;
         /// <summary>Whether authentication requests are signed.</summary>
-        public bool? AuthnRequestsSigned { get; set; }
+        public bool? AuthnRequestsSigned { get => _explicitNullValueAuthnRequestsSigned; set { _explicitNullValueAuthnRequestsSigned = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authnRequestsSigned"); else _explicitNullProperties?.Remove("authnRequestsSigned"); } }
+        private bool? _explicitNullValueAuthnRequestsSigned = default!;
         /// <summary>Whether the identity provider must assert that the user&apos;s email address is verified before a login is linked to an existing user by email. When disabled, only an explicit negative assertion is rejected.</summary>
-        public bool? EmailVerifiedRequired { get; set; }
+        public bool? EmailVerifiedRequired { get => _explicitNullValueEmailVerifiedRequired; set { _explicitNullValueEmailVerifiedRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emailVerifiedRequired"); else _explicitNullProperties?.Remove("emailVerifiedRequired"); } }
+        private bool? _explicitNullValueEmailVerifiedRequired = default!;
         /// <summary>Service provider entity ID (metadata URL).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -27,50 +53,63 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string EntityID { get; private set; }
 #endif
         /// <summary>Whether to ignore SSL certificate errors when fetching metadata from a URL.</summary>
-        public bool? IgnoreSSL { get; set; }
+        public bool? IgnoreSSL { get => _explicitNullValueIgnoreSSL; set { _explicitNullValueIgnoreSSL = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ignoreSSL"); else _explicitNullProperties?.Remove("ignoreSSL"); } }
+        private bool? _explicitNullValueIgnoreSSL = default!;
         /// <summary>SAML login request binding.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedLoginBinding? LoginBinding { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedLoginBinding? LoginBinding { get => _explicitNullValueLoginBinding; set { _explicitNullValueLoginBinding = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginBinding"); else _explicitNullProperties?.Remove("loginBinding"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedLoginBinding? _explicitNullValueLoginBinding = default!;
         /// <summary>Whether SAML login is enabled.</summary>
-        public bool? LoginEnabled { get; set; }
+        public bool? LoginEnabled { get => _explicitNullValueLoginEnabled; set { _explicitNullValueLoginEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginEnabled"); else _explicitNullProperties?.Remove("loginEnabled"); } }
+        private bool? _explicitNullValueLoginEnabled = default!;
         /// <summary>Label shown on the SAML login button.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LoginLabel { get; set; }
+        public string? LoginLabel { get => _explicitNullValueLoginLabel; set { _explicitNullValueLoginLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginLabel"); else _explicitNullProperties?.Remove("loginLabel"); } }
+        private string? _explicitNullValueLoginLabel = default!;
 #nullable restore
 #else
-        public string LoginLabel { get; set; }
+        public string LoginLabel { get => _explicitNullValueLoginLabel; set { _explicitNullValueLoginLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginLabel"); else _explicitNullProperties?.Remove("loginLabel"); } }
+        private string _explicitNullValueLoginLabel = default!;
 #endif
         /// <summary>Mapping of SAML attributes to n8n user fields.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping? Mapping { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping? Mapping { get => _explicitNullValueMapping; set { _explicitNullValueMapping = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mapping"); else _explicitNullProperties?.Remove("mapping"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping? _explicitNullValueMapping = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping Mapping { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping Mapping { get => _explicitNullValueMapping; set { _explicitNullValueMapping = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mapping"); else _explicitNullProperties?.Remove("mapping"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedMapping _explicitNullValueMapping = default!;
 #endif
         /// <summary>Identity provider metadata in XML format. Redacted on read when set because it contains IdP certificates; never echoed back in plaintext. Use an empty string when unset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Metadata { get; set; }
+        public string? Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        private string? _explicitNullValueMetadata = default!;
 #nullable restore
 #else
-        public string Metadata { get; set; }
+        public string Metadata { get => _explicitNullValueMetadata; set { _explicitNullValueMetadata = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadata"); else _explicitNullProperties?.Remove("metadata"); } }
+        private string _explicitNullValueMetadata = default!;
 #endif
         /// <summary>URL to fetch identity provider metadata from. Use an empty string when unset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? MetadataUrl { get; set; }
+        public string? MetadataUrl { get => _explicitNullValueMetadataUrl; set { _explicitNullValueMetadataUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadataUrl"); else _explicitNullProperties?.Remove("metadataUrl"); } }
+        private string? _explicitNullValueMetadataUrl = default!;
 #nullable restore
 #else
-        public string MetadataUrl { get; set; }
+        public string MetadataUrl { get => _explicitNullValueMetadataUrl; set { _explicitNullValueMetadataUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("metadataUrl"); else _explicitNullProperties?.Remove("metadataUrl"); } }
+        private string _explicitNullValueMetadataUrl = default!;
 #endif
         /// <summary>Default relay state value for SAML requests. Use an empty string when unset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RelayState { get; set; }
+        public string? RelayState { get => _explicitNullValueRelayState; set { _explicitNullValueRelayState = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("relayState"); else _explicitNullProperties?.Remove("relayState"); } }
+        private string? _explicitNullValueRelayState = default!;
 #nullable restore
 #else
-        public string RelayState { get; set; }
+        public string RelayState { get => _explicitNullValueRelayState; set { _explicitNullValueRelayState = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("relayState"); else _explicitNullProperties?.Remove("relayState"); } }
+        private string _explicitNullValueRelayState = default!;
 #endif
         /// <summary>Assertion Consumer Service (ACS) return URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -83,31 +122,39 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Configuration for the signature in SAML requests and responses.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig? SignatureConfig { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig? SignatureConfig { get => _explicitNullValueSignatureConfig; set { _explicitNullValueSignatureConfig = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signatureConfig"); else _explicitNullProperties?.Remove("signatureConfig"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig? _explicitNullValueSignatureConfig = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig SignatureConfig { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig SignatureConfig { get => _explicitNullValueSignatureConfig; set { _explicitNullValueSignatureConfig = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signatureConfig"); else _explicitNullProperties?.Remove("signatureConfig"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGeneratedSignatureConfig _explicitNullValueSignatureConfig = default!;
 #endif
         /// <summary>PEM-encoded certificate containing the public key matching the signing private key. Redacted on read when set; never echoed back in plaintext. Use an empty string when unset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SigningCertificate { get; set; }
+        public string? SigningCertificate { get => _explicitNullValueSigningCertificate; set { _explicitNullValueSigningCertificate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signingCertificate"); else _explicitNullProperties?.Remove("signingCertificate"); } }
+        private string? _explicitNullValueSigningCertificate = default!;
 #nullable restore
 #else
-        public string SigningCertificate { get; set; }
+        public string SigningCertificate { get => _explicitNullValueSigningCertificate; set { _explicitNullValueSigningCertificate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signingCertificate"); else _explicitNullProperties?.Remove("signingCertificate"); } }
+        private string _explicitNullValueSigningCertificate = default!;
 #endif
         /// <summary>PEM-encoded private key for signing SAML AuthnRequests. Redacted on read when set; never echoed back in plaintext. Use an empty string when unset.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SigningPrivateKey { get; set; }
+        public string? SigningPrivateKey { get => _explicitNullValueSigningPrivateKey; set { _explicitNullValueSigningPrivateKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signingPrivateKey"); else _explicitNullProperties?.Remove("signingPrivateKey"); } }
+        private string? _explicitNullValueSigningPrivateKey = default!;
 #nullable restore
 #else
-        public string SigningPrivateKey { get; set; }
+        public string SigningPrivateKey { get => _explicitNullValueSigningPrivateKey; set { _explicitNullValueSigningPrivateKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("signingPrivateKey"); else _explicitNullProperties?.Remove("signingPrivateKey"); } }
+        private string _explicitNullValueSigningPrivateKey = default!;
 #endif
         /// <summary>Whether signed assertions are required.</summary>
-        public bool? WantAssertionsSigned { get; set; }
+        public bool? WantAssertionsSigned { get => _explicitNullValueWantAssertionsSigned; set { _explicitNullValueWantAssertionsSigned = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("wantAssertionsSigned"); else _explicitNullProperties?.Remove("wantAssertionsSigned"); } }
+        private bool? _explicitNullValueWantAssertionsSigned = default!;
         /// <summary>Whether signed SAML messages are required.</summary>
-        public bool? WantMessageSigned { get; set; }
+        public bool? WantMessageSigned { get => _explicitNullValueWantMessageSigned; set { _explicitNullValueWantMessageSigned = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("wantMessageSigned"); else _explicitNullProperties?.Remove("wantMessageSigned"); } }
+        private bool? _explicitNullValueWantMessageSigned = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -116,7 +163,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.SamlConfigurationPublicDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -168,7 +215,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("signingCertificate", SigningCertificate);
             writer.WriteStringValue("signingPrivateKey", SigningPrivateKey);
             writer.WriteBoolValue("wantAssertionsSigned", WantAssertionsSigned);
-            writer.WriteBoolValue("wantMessageSigned", WantMessageSigned);
+            writer.WriteBoolValue("wantMessageSigned", WantMessageSigned);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

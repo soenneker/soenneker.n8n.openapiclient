@@ -11,29 +11,46 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PromotionCheckoutPublicDtoGenerated : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("branchName") is { } nullNodeBranchName && nullNodeBranchName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BranchName = null;
+            if (parseNode.GetChildNode("direction") is { } nullNodeDirection && nullNodeDirection.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Direction = null;
+            if (parseNode.GetChildNode("environmentId") is { } nullNodeEnvironmentId && nullNodeEnvironmentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnvironmentId = null;
+            if (parseNode.GetChildNode("hasCheckout") is { } nullNodeHasCheckout && nullNodeHasCheckout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasCheckout = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The branchName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BranchName { get; set; }
+        public string? BranchName { get => _explicitNullValueBranchName; set { _explicitNullValueBranchName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("branchName"); else _explicitNullProperties?.Remove("branchName"); } }
+        private string? _explicitNullValueBranchName = default!;
 #nullable restore
 #else
-        public string BranchName { get; set; }
+        public string BranchName { get => _explicitNullValueBranchName; set { _explicitNullValueBranchName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("branchName"); else _explicitNullProperties?.Remove("branchName"); } }
+        private string _explicitNullValueBranchName = default!;
 #endif
         /// <summary>The direction property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGeneratedDirection? Direction { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGeneratedDirection? Direction { get => _explicitNullValueDirection; set { _explicitNullValueDirection = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("direction"); else _explicitNullProperties?.Remove("direction"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGeneratedDirection? _explicitNullValueDirection = default!;
         /// <summary>The environmentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EnvironmentId { get; set; }
+        public string? EnvironmentId { get => _explicitNullValueEnvironmentId; set { _explicitNullValueEnvironmentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("environmentId"); else _explicitNullProperties?.Remove("environmentId"); } }
+        private string? _explicitNullValueEnvironmentId = default!;
 #nullable restore
 #else
-        public string EnvironmentId { get; set; }
+        public string EnvironmentId { get => _explicitNullValueEnvironmentId; set { _explicitNullValueEnvironmentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("environmentId"); else _explicitNullProperties?.Remove("environmentId"); } }
+        private string _explicitNullValueEnvironmentId = default!;
 #endif
         /// <summary>The hasCheckout property</summary>
-        public bool? HasCheckout { get; set; }
+        public bool? HasCheckout { get => _explicitNullValueHasCheckout; set { _explicitNullValueHasCheckout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasCheckout"); else _explicitNullProperties?.Remove("hasCheckout"); } }
+        private bool? _explicitNullValueHasCheckout = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated"/> and sets the default values.
         /// </summary>
@@ -49,7 +66,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,6 +93,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGeneratedDirection>("direction", Direction);
             writer.WriteStringValue("environmentId", EnvironmentId);
             writer.WriteBoolValue("hasCheckout", HasCheckout);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

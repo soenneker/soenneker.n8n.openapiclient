@@ -11,71 +11,105 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class InstallPackage200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("authorEmail") is { } nullNodeAuthorEmail && nullNodeAuthorEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthorEmail = null;
+            if (parseNode.GetChildNode("authorName") is { } nullNodeAuthorName && nullNodeAuthorName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthorName = null;
+            if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
+            if (parseNode.GetChildNode("failedLoading") is { } nullNodeFailedLoading && nullNodeFailedLoading.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FailedLoading = null;
+            if (parseNode.GetChildNode("installedNodes") is { } nullNodeInstalledNodes && nullNodeInstalledNodes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstalledNodes = null;
+            if (parseNode.GetChildNode("installedVersion") is { } nullNodeInstalledVersion && nullNodeInstalledVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstalledVersion = null;
+            if (parseNode.GetChildNode("packageName") is { } nullNodePackageName && nullNodePackageName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PackageName = null;
+            if (parseNode.GetChildNode("policyRestrictions") is { } nullNodePolicyRestrictions && nullNodePolicyRestrictions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PolicyRestrictions = null;
+            if (parseNode.GetChildNode("updateAvailable") is { } nullNodeUpdateAvailable && nullNodeUpdateAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdateAvailable = null;
+            if (parseNode.GetChildNode("updatedAt") is { } nullNodeUpdatedAt && nullNodeUpdatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UpdatedAt = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Package author email</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AuthorEmail { get; set; }
+        public string? AuthorEmail { get => _explicitNullValueAuthorEmail; set { _explicitNullValueAuthorEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorEmail"); else _explicitNullProperties?.Remove("authorEmail"); } }
+        private string? _explicitNullValueAuthorEmail = default!;
 #nullable restore
 #else
-        public string AuthorEmail { get; set; }
+        public string AuthorEmail { get => _explicitNullValueAuthorEmail; set { _explicitNullValueAuthorEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorEmail"); else _explicitNullProperties?.Remove("authorEmail"); } }
+        private string _explicitNullValueAuthorEmail = default!;
 #endif
         /// <summary>Package author name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AuthorName { get; set; }
+        public string? AuthorName { get => _explicitNullValueAuthorName; set { _explicitNullValueAuthorName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorName"); else _explicitNullProperties?.Remove("authorName"); } }
+        private string? _explicitNullValueAuthorName = default!;
 #nullable restore
 #else
-        public string AuthorName { get; set; }
+        public string AuthorName { get => _explicitNullValueAuthorName; set { _explicitNullValueAuthorName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authorName"); else _explicitNullProperties?.Remove("authorName"); } }
+        private string _explicitNullValueAuthorName = default!;
 #endif
         /// <summary>The createdAt property</summary>
-        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
+        private DateTimeOffset? _explicitNullValueCreatedAt = default!;
         /// <summary>Whether the package failed to load</summary>
-        public bool? FailedLoading { get; set; }
+        public bool? FailedLoading { get => _explicitNullValueFailedLoading; set { _explicitNullValueFailedLoading = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failedLoading"); else _explicitNullProperties?.Remove("failedLoading"); } }
+        private bool? _explicitNullValueFailedLoading = default!;
         /// <summary>Nodes included in this package</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponseInstalledNodesItem>? InstalledNodes { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponseInstalledNodesItem>? InstalledNodes { get => _explicitNullValueInstalledNodes; set { _explicitNullValueInstalledNodes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installedNodes"); else _explicitNullProperties?.Remove("installedNodes"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponseInstalledNodesItem>? _explicitNullValueInstalledNodes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponseInstalledNodesItem> InstalledNodes { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponseInstalledNodesItem> InstalledNodes { get => _explicitNullValueInstalledNodes; set { _explicitNullValueInstalledNodes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installedNodes"); else _explicitNullProperties?.Remove("installedNodes"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponseInstalledNodesItem> _explicitNullValueInstalledNodes = default!;
 #endif
         /// <summary>Currently installed version</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? InstalledVersion { get; set; }
+        public string? InstalledVersion { get => _explicitNullValueInstalledVersion; set { _explicitNullValueInstalledVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installedVersion"); else _explicitNullProperties?.Remove("installedVersion"); } }
+        private string? _explicitNullValueInstalledVersion = default!;
 #nullable restore
 #else
-        public string InstalledVersion { get; set; }
+        public string InstalledVersion { get => _explicitNullValueInstalledVersion; set { _explicitNullValueInstalledVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("installedVersion"); else _explicitNullProperties?.Remove("installedVersion"); } }
+        private string _explicitNullValueInstalledVersion = default!;
 #endif
         /// <summary>npm package name</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PackageName { get; set; }
+        public string? PackageName { get => _explicitNullValuePackageName; set { _explicitNullValuePackageName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packageName"); else _explicitNullProperties?.Remove("packageName"); } }
+        private string? _explicitNullValuePackageName = default!;
 #nullable restore
 #else
-        public string PackageName { get; set; }
+        public string PackageName { get => _explicitNullValuePackageName; set { _explicitNullValuePackageName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("packageName"); else _explicitNullProperties?.Remove("packageName"); } }
+        private string _explicitNullValuePackageName = default!;
 #endif
         /// <summary>Node types from this package that a node type policy blocks. The install does not fail because of a policy. Absent when no policy was evaluated, for example when node type policies are not licensed. An empty nodeTypes list means that no policy blocks a node type from this package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions? PolicyRestrictions { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions? PolicyRestrictions { get => _explicitNullValuePolicyRestrictions; set { _explicitNullValuePolicyRestrictions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("policyRestrictions"); else _explicitNullProperties?.Remove("policyRestrictions"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions? _explicitNullValuePolicyRestrictions = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions PolicyRestrictions { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions PolicyRestrictions { get => _explicitNullValuePolicyRestrictions; set { _explicitNullValuePolicyRestrictions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("policyRestrictions"); else _explicitNullProperties?.Remove("policyRestrictions"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions _explicitNullValuePolicyRestrictions = default!;
 #endif
         /// <summary>Version available for update, if any</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UpdateAvailable { get; set; }
+        public string? UpdateAvailable { get => _explicitNullValueUpdateAvailable; set { _explicitNullValueUpdateAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updateAvailable"); else _explicitNullProperties?.Remove("updateAvailable"); } }
+        private string? _explicitNullValueUpdateAvailable = default!;
 #nullable restore
 #else
-        public string UpdateAvailable { get; set; }
+        public string UpdateAvailable { get => _explicitNullValueUpdateAvailable; set { _explicitNullValueUpdateAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updateAvailable"); else _explicitNullProperties?.Remove("updateAvailable"); } }
+        private string _explicitNullValueUpdateAvailable = default!;
 #endif
         /// <summary>The updatedAt property</summary>
-        public DateTimeOffset? UpdatedAt { get; set; }
+        public DateTimeOffset? UpdatedAt { get => _explicitNullValueUpdatedAt; set { _explicitNullValueUpdatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updatedAt"); else _explicitNullProperties?.Remove("updatedAt"); } }
+        private DateTimeOffset? _explicitNullValueUpdatedAt = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200Response"/> and sets the default values.
         /// </summary>
@@ -91,7 +125,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -130,6 +164,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions>("policyRestrictions", PolicyRestrictions);
             writer.WriteStringValue("updateAvailable", UpdateAvailable);
             writer.WriteDateTimeOffsetValue("updatedAt", UpdatedAt);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

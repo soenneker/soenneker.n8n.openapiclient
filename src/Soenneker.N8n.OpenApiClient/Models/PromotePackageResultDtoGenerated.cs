@@ -11,48 +11,70 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PromotePackageResultDtoGenerated : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("counts") is { } nullNodeCounts && nullNodeCounts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Counts = null;
+            if (parseNode.GetChildNode("environmentId") is { } nullNodeEnvironmentId && nullNodeEnvironmentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnvironmentId = null;
+            if (parseNode.GetChildNode("git") is { } nullNodeGit && nullNodeGit.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Git = null;
+            if (parseNode.GetChildNode("review") is { } nullNodeReview && nullNodeReview.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Review = null;
+            if (parseNode.GetChildNode("warnings") is { } nullNodeWarnings && nullNodeWarnings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Warnings = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The counts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts? Counts { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts? Counts { get => _explicitNullValueCounts; set { _explicitNullValueCounts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("counts"); else _explicitNullProperties?.Remove("counts"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts? _explicitNullValueCounts = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts Counts { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts Counts { get => _explicitNullValueCounts; set { _explicitNullValueCounts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("counts"); else _explicitNullProperties?.Remove("counts"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts _explicitNullValueCounts = default!;
 #endif
         /// <summary>The environmentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EnvironmentId { get; set; }
+        public string? EnvironmentId { get => _explicitNullValueEnvironmentId; set { _explicitNullValueEnvironmentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("environmentId"); else _explicitNullProperties?.Remove("environmentId"); } }
+        private string? _explicitNullValueEnvironmentId = default!;
 #nullable restore
 #else
-        public string EnvironmentId { get; set; }
+        public string EnvironmentId { get => _explicitNullValueEnvironmentId; set { _explicitNullValueEnvironmentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("environmentId"); else _explicitNullProperties?.Remove("environmentId"); } }
+        private string _explicitNullValueEnvironmentId = default!;
 #endif
         /// <summary>The git property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit? Git { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit? Git { get => _explicitNullValueGit; set { _explicitNullValueGit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("git"); else _explicitNullProperties?.Remove("git"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit? _explicitNullValueGit = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit Git { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit Git { get => _explicitNullValueGit; set { _explicitNullValueGit = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("git"); else _explicitNullProperties?.Remove("git"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit _explicitNullValueGit = default!;
 #endif
         /// <summary>The review property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview? Review { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview? Review { get => _explicitNullValueReview; set { _explicitNullValueReview = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("review"); else _explicitNullProperties?.Remove("review"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview? _explicitNullValueReview = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview Review { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview Review { get => _explicitNullValueReview; set { _explicitNullValueReview = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("review"); else _explicitNullProperties?.Remove("review"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview _explicitNullValueReview = default!;
 #endif
         /// <summary>The warnings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem>? Warnings { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem>? Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem>? _explicitNullValueWarnings = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem> Warnings { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem> Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem> _explicitNullValueWarnings = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated"/> and sets the default values.
@@ -69,7 +91,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -98,6 +120,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedGit>("git", Git);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedReview>("review", Review);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedWarningsItem>("warnings", Warnings);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

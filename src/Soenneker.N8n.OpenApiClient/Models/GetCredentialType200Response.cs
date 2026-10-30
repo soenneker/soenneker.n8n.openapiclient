@@ -11,35 +11,55 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetCredentialType200Response : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("additionalProperties") is { } nullNodeAdditionalProperties && nullNodeAdditionalProperties.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AdditionalProperties = null;
+            if (parseNode.GetChildNode("allOf") is { } nullNodeAllOf && nullNodeAllOf.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllOf = null;
+            if (parseNode.GetChildNode("properties") is { } nullNodeProperties && nullNodeProperties.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Properties = null;
+            if (parseNode.GetChildNode("required") is { } nullNodeRequired && nullNodeRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Required = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>The additionalProperties property</summary>
-        public bool? AdditionalProperties { get; set; }
+        public bool? AdditionalProperties { get => _explicitNullValueAdditionalProperties; set { _explicitNullValueAdditionalProperties = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalProperties"); else _explicitNullProperties?.Remove("additionalProperties"); } }
+        private bool? _explicitNullValueAdditionalProperties = default!;
         /// <summary>The allOf property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public UntypedNode? AllOf { get; set; }
+        public UntypedNode? AllOf { get => _explicitNullValueAllOf; set { _explicitNullValueAllOf = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allOf"); else _explicitNullProperties?.Remove("allOf"); } }
+        private UntypedNode? _explicitNullValueAllOf = default!;
 #nullable restore
 #else
-        public UntypedNode AllOf { get; set; }
+        public UntypedNode AllOf { get => _explicitNullValueAllOf; set { _explicitNullValueAllOf = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allOf"); else _explicitNullProperties?.Remove("allOf"); } }
+        private UntypedNode _explicitNullValueAllOf = default!;
 #endif
         /// <summary>JSON Schema fragment for each of the credential type&apos;s fields, keyed by field name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties? Properties { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties? Properties { get => _explicitNullValueProperties; set { _explicitNullValueProperties = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("properties"); else _explicitNullProperties?.Remove("properties"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties? _explicitNullValueProperties = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties Properties { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties Properties { get => _explicitNullValueProperties; set { _explicitNullValueProperties = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("properties"); else _explicitNullProperties?.Remove("properties"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties _explicitNullValueProperties = default!;
 #endif
         /// <summary>Names of the fields that a request must include. A field with a default value is not listed.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Required { get; set; }
+        public List<string>? Required { get => _explicitNullValueRequired; set { _explicitNullValueRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("required"); else _explicitNullProperties?.Remove("required"); } }
+        private List<string>? _explicitNullValueRequired = default!;
 #nullable restore
 #else
-        public List<string> Required { get; set; }
+        public List<string> Required { get => _explicitNullValueRequired; set { _explicitNullValueRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("required"); else _explicitNullProperties?.Remove("required"); } }
+        private List<string> _explicitNullValueRequired = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ObjectValueType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ObjectValueType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ObjectValueType? _explicitNullValueType = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -48,7 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -76,7 +96,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<UntypedNode>("allOf", AllOf);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialType200ResponseProperties>("properties", Properties);
             writer.WriteCollectionOfPrimitiveValues<string>("required", Required);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ObjectValueType>("type", Type);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ObjectValueType>("type", Type);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

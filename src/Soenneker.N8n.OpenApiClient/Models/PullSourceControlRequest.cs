@@ -11,13 +11,24 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PullSourceControlRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("autoPublish") is { } nullNodeAutoPublish && nullNodeAutoPublish.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoPublish = null;
+            if (parseNode.GetChildNode("force") is { } nullNodeForce && nullNodeForce.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Force = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish? AutoPublish { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish? AutoPublish { get => _explicitNullValueAutoPublish; set { _explicitNullValueAutoPublish = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoPublish"); else _explicitNullProperties?.Remove("autoPublish"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish? _explicitNullValueAutoPublish = default!;
         /// <summary>Discard local changes and force the pull to complete.</summary>
-        public bool? Force { get; set; }
+        public bool? Force { get => _explicitNullValueForce; set { _explicitNullValueForce = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("force"); else _explicitNullProperties?.Remove("force"); } }
+        private bool? _explicitNullValueForce = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequest"/> and sets the default values.
         /// </summary>
@@ -33,7 +44,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,6 +67,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish>("autoPublish", AutoPublish);
             writer.WriteBoolValue("force", Force);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

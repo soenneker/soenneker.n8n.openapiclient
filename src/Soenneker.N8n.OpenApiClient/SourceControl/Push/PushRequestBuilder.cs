@@ -55,6 +55,8 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Push
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "409", global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl409Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

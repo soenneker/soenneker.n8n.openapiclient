@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteDataTableRows200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Delete rows matching filter conditions from a data table. Filter is required to prevent accidental deletion of all data.

@@ -11,21 +11,40 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PromotePackageResultDtoGeneratedCounts : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("credentials") is { } nullNodeCredentials && nullNodeCredentials.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Credentials = null;
+            if (parseNode.GetChildNode("dataTables") is { } nullNodeDataTables && nullNodeDataTables.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataTables = null;
+            if (parseNode.GetChildNode("folders") is { } nullNodeFolders && nullNodeFolders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Folders = null;
+            if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("variables") is { } nullNodeVariables && nullNodeVariables.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Variables = null;
+            if (parseNode.GetChildNode("workflows") is { } nullNodeWorkflows && nullNodeWorkflows.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Workflows = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The credentials property</summary>
-        public int? Credentials { get; set; }
+        public int? Credentials { get => _explicitNullValueCredentials; set { _explicitNullValueCredentials = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentials"); else _explicitNullProperties?.Remove("credentials"); } }
+        private int? _explicitNullValueCredentials = default!;
         /// <summary>The dataTables property</summary>
-        public int? DataTables { get; set; }
+        public int? DataTables { get => _explicitNullValueDataTables; set { _explicitNullValueDataTables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataTables"); else _explicitNullProperties?.Remove("dataTables"); } }
+        private int? _explicitNullValueDataTables = default!;
         /// <summary>The folders property</summary>
-        public int? Folders { get; set; }
+        public int? Folders { get => _explicitNullValueFolders; set { _explicitNullValueFolders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folders"); else _explicitNullProperties?.Remove("folders"); } }
+        private int? _explicitNullValueFolders = default!;
         /// <summary>The tags property</summary>
-        public int? Tags { get; set; }
+        public int? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        private int? _explicitNullValueTags = default!;
         /// <summary>The variables property</summary>
-        public int? Variables { get; set; }
+        public int? Variables { get => _explicitNullValueVariables; set { _explicitNullValueVariables = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("variables"); else _explicitNullProperties?.Remove("variables"); } }
+        private int? _explicitNullValueVariables = default!;
         /// <summary>The workflows property</summary>
-        public int? Workflows { get; set; }
+        public int? Workflows { get => _explicitNullValueWorkflows; set { _explicitNullValueWorkflows = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflows"); else _explicitNullProperties?.Remove("workflows"); } }
+        private int? _explicitNullValueWorkflows = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts"/> and sets the default values.
         /// </summary>
@@ -41,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGeneratedCounts(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +91,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("tags", Tags);
             writer.WriteIntValue("variables", Variables);
             writer.WriteIntValue("workflows", Workflows);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

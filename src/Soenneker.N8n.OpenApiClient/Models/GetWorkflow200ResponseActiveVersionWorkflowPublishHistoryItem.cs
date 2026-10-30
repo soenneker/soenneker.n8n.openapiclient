@@ -11,38 +11,60 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
+            if (parseNode.GetChildNode("event") is { } nullNodeEvent && nullNodeEvent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Event = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("userId") is { } nullNodeUserId && nullNodeUserId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserId = null;
+            if (parseNode.GetChildNode("versionId") is { } nullNodeVersionId && nullNodeVersionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VersionId = null;
+            if (parseNode.GetChildNode("workflowId") is { } nullNodeWorkflowId && nullNodeWorkflowId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The createdAt property</summary>
-        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
+        private DateTimeOffset? _explicitNullValueCreatedAt = default!;
         /// <summary>The event property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItemEvent? Event { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItemEvent? Event { get => _explicitNullValueEvent; set { _explicitNullValueEvent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("event"); else _explicitNullProperties?.Remove("event"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItemEvent? _explicitNullValueEvent = default!;
         /// <summary>The id property</summary>
-        public double? Id { get; set; }
+        public double? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private double? _explicitNullValueId = default!;
         /// <summary>The userId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UserId { get; set; }
+        public string? UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
+        private string? _explicitNullValueUserId = default!;
 #nullable restore
 #else
-        public string UserId { get; set; }
+        public string UserId { get => _explicitNullValueUserId; set { _explicitNullValueUserId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userId"); else _explicitNullProperties?.Remove("userId"); } }
+        private string _explicitNullValueUserId = default!;
 #endif
         /// <summary>The versionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? VersionId { get; set; }
+        public string? VersionId { get => _explicitNullValueVersionId; set { _explicitNullValueVersionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("versionId"); else _explicitNullProperties?.Remove("versionId"); } }
+        private string? _explicitNullValueVersionId = default!;
 #nullable restore
 #else
-        public string VersionId { get; set; }
+        public string VersionId { get => _explicitNullValueVersionId; set { _explicitNullValueVersionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("versionId"); else _explicitNullProperties?.Remove("versionId"); } }
+        private string _explicitNullValueVersionId = default!;
 #endif
         /// <summary>The workflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WorkflowId { get; set; }
+        public string? WorkflowId { get => _explicitNullValueWorkflowId; set { _explicitNullValueWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowId"); else _explicitNullProperties?.Remove("workflowId"); } }
+        private string? _explicitNullValueWorkflowId = default!;
 #nullable restore
 #else
-        public string WorkflowId { get; set; }
+        public string WorkflowId { get => _explicitNullValueWorkflowId; set { _explicitNullValueWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowId"); else _explicitNullProperties?.Remove("workflowId"); } }
+        private string _explicitNullValueWorkflowId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItem"/> and sets the default values.
@@ -59,7 +81,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200ResponseActiveVersionWorkflowPublishHistoryItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -90,6 +112,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("userId", UserId);
             writer.WriteStringValue("versionId", VersionId);
             writer.WriteStringValue("workflowId", WorkflowId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

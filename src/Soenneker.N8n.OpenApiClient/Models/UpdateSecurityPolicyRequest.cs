@@ -12,25 +12,45 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdateSecurityPolicyRequest : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("personalSpacePublishing") is { } nullNodePersonalSpacePublishing && nullNodePersonalSpacePublishing.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PersonalSpacePublishing = null;
+            if (parseNode.GetChildNode("personalSpaceSharing") is { } nullNodePersonalSpaceSharing && nullNodePersonalSpaceSharing.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PersonalSpaceSharing = null;
+            if (parseNode.GetChildNode("publishedPersonalWorkflowsCount") is { } nullNodePublishedPersonalWorkflowsCount && nullNodePublishedPersonalWorkflowsCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublishedPersonalWorkflowsCount = null;
+            if (parseNode.GetChildNode("redactionEnforcement") is { } nullNodeRedactionEnforcement && nullNodeRedactionEnforcement.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RedactionEnforcement = null;
+            if (parseNode.GetChildNode("sharedPersonalCredentialsCount") is { } nullNodeSharedPersonalCredentialsCount && nullNodeSharedPersonalCredentialsCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedPersonalCredentialsCount = null;
+            if (parseNode.GetChildNode("sharedPersonalWorkflowsCount") is { } nullNodeSharedPersonalWorkflowsCount && nullNodeSharedPersonalWorkflowsCount.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SharedPersonalWorkflowsCount = null;
+        }
+
         /// <summary>Whether members may publish workflows and agents from their personal space.</summary>
-        public bool? PersonalSpacePublishing { get; set; }
+        public bool? PersonalSpacePublishing { get => _explicitNullValuePersonalSpacePublishing; set { _explicitNullValuePersonalSpacePublishing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("personalSpacePublishing"); else _explicitNullProperties?.Remove("personalSpacePublishing"); } }
+        private bool? _explicitNullValuePersonalSpacePublishing = default!;
         /// <summary>Whether members may share workflows and credentials from their personal space.</summary>
-        public bool? PersonalSpaceSharing { get; set; }
+        public bool? PersonalSpaceSharing { get => _explicitNullValuePersonalSpaceSharing; set { _explicitNullValuePersonalSpaceSharing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("personalSpaceSharing"); else _explicitNullProperties?.Remove("personalSpaceSharing"); } }
+        private bool? _explicitNullValuePersonalSpaceSharing = default!;
         /// <summary>Read-only usage count returned by GET. Ignored on write so a GET response can be sent back as a PUT body.</summary>
-        public int? PublishedPersonalWorkflowsCount { get; set; }
+        public int? PublishedPersonalWorkflowsCount { get => _explicitNullValuePublishedPersonalWorkflowsCount; set { _explicitNullValuePublishedPersonalWorkflowsCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publishedPersonalWorkflowsCount"); else _explicitNullProperties?.Remove("publishedPersonalWorkflowsCount"); } }
+        private int? _explicitNullValuePublishedPersonalWorkflowsCount = default!;
         /// <summary>The redactionEnforcement property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequestRedactionEnforcement? RedactionEnforcement { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequestRedactionEnforcement? RedactionEnforcement { get => _explicitNullValueRedactionEnforcement; set { _explicitNullValueRedactionEnforcement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redactionEnforcement"); else _explicitNullProperties?.Remove("redactionEnforcement"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequestRedactionEnforcement? _explicitNullValueRedactionEnforcement = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequestRedactionEnforcement RedactionEnforcement { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequestRedactionEnforcement RedactionEnforcement { get => _explicitNullValueRedactionEnforcement; set { _explicitNullValueRedactionEnforcement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redactionEnforcement"); else _explicitNullProperties?.Remove("redactionEnforcement"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequestRedactionEnforcement _explicitNullValueRedactionEnforcement = default!;
 #endif
         /// <summary>Read-only usage count returned by GET. Ignored on write so a GET response can be sent back as a PUT body.</summary>
-        public int? SharedPersonalCredentialsCount { get; set; }
+        public int? SharedPersonalCredentialsCount { get => _explicitNullValueSharedPersonalCredentialsCount; set { _explicitNullValueSharedPersonalCredentialsCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedPersonalCredentialsCount"); else _explicitNullProperties?.Remove("sharedPersonalCredentialsCount"); } }
+        private int? _explicitNullValueSharedPersonalCredentialsCount = default!;
         /// <summary>Read-only usage count returned by GET. Ignored on write so a GET response can be sent back as a PUT body.</summary>
-        public int? SharedPersonalWorkflowsCount { get; set; }
+        public int? SharedPersonalWorkflowsCount { get => _explicitNullValueSharedPersonalWorkflowsCount; set { _explicitNullValueSharedPersonalWorkflowsCount = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sharedPersonalWorkflowsCount"); else _explicitNullProperties?.Remove("sharedPersonalWorkflowsCount"); } }
+        private int? _explicitNullValueSharedPersonalWorkflowsCount = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -39,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,7 +89,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("publishedPersonalWorkflowsCount", PublishedPersonalWorkflowsCount);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdateSecurityPolicyRequestRedactionEnforcement>("redactionEnforcement", RedactionEnforcement);
             writer.WriteIntValue("sharedPersonalCredentialsCount", SharedPersonalCredentialsCount);
-            writer.WriteIntValue("sharedPersonalWorkflowsCount", SharedPersonalWorkflowsCount);
+            writer.WriteIntValue("sharedPersonalWorkflowsCount", SharedPersonalWorkflowsCount);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

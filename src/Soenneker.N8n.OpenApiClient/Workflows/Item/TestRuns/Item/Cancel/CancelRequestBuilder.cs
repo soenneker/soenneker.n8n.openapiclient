@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.Cancel
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CancelTestRun202Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CancelTestRun202Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CancelTestRun202Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CancelTestRun202Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Cancel a running evaluation test run of a workflow. Requires the `workflow:execute` project scope in addition to the `testRun:cancel` API key scope.

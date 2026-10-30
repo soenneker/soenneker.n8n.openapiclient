@@ -11,69 +11,101 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ImportResultDtoGeneratedWorkflowsItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("activeVersionId") is { } nullNodeActiveVersionId && nullNodeActiveVersionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ActiveVersionId = null;
+            if (parseNode.GetChildNode("isArchived") is { } nullNodeIsArchived && nullNodeIsArchived.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsArchived = null;
+            if (parseNode.GetChildNode("localId") is { } nullNodeLocalId && nullNodeLocalId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocalId = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("parentFolderId") is { } nullNodeParentFolderId && nullNodeParentFolderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ParentFolderId = null;
+            if (parseNode.GetChildNode("projectId") is { } nullNodeProjectId && nullNodeProjectId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProjectId = null;
+            if (parseNode.GetChildNode("publishing") is { } nullNodePublishing && nullNodePublishing.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Publishing = null;
+            if (parseNode.GetChildNode("sourceWorkflowId") is { } nullNodeSourceWorkflowId && nullNodeSourceWorkflowId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceWorkflowId = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Published version on the target instance, if any. `null` when the workflow is not published after import.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ActiveVersionId { get; set; }
+        public string? ActiveVersionId { get => _explicitNullValueActiveVersionId; set { _explicitNullValueActiveVersionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activeVersionId"); else _explicitNullProperties?.Remove("activeVersionId"); } }
+        private string? _explicitNullValueActiveVersionId = default!;
 #nullable restore
 #else
-        public string ActiveVersionId { get; set; }
+        public string ActiveVersionId { get => _explicitNullValueActiveVersionId; set { _explicitNullValueActiveVersionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activeVersionId"); else _explicitNullProperties?.Remove("activeVersionId"); } }
+        private string _explicitNullValueActiveVersionId = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the workflow is archived on the target after import. Under `new-version` this follows the package&apos;s `isArchived` flag. A skipped workflow keeps its own state.</summary>
-        public bool? IsArchived { get; set; }
+        public bool? IsArchived { get => _explicitNullValueIsArchived; set { _explicitNullValueIsArchived = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isArchived"); else _explicitNullProperties?.Remove("isArchived"); } }
+        private bool? _explicitNullValueIsArchived = default!;
         /// <summary>Workflow id on the target instance: newly assigned for `created` (fresh under `workflowIdPolicy=new`, the package id under `source`), the existing workflow&apos;s id for `updated`/`skipped`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LocalId { get; set; }
+        public string? LocalId { get => _explicitNullValueLocalId; set { _explicitNullValueLocalId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localId"); else _explicitNullProperties?.Remove("localId"); } }
+        private string? _explicitNullValueLocalId = default!;
 #nullable restore
 #else
-        public string LocalId { get; set; }
+        public string LocalId { get => _explicitNullValueLocalId; set { _explicitNullValueLocalId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localId"); else _explicitNullProperties?.Remove("localId"); } }
+        private string _explicitNullValueLocalId = default!;
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>The parentFolderId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ParentFolderId { get; set; }
+        public string? ParentFolderId { get => _explicitNullValueParentFolderId; set { _explicitNullValueParentFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolderId"); else _explicitNullProperties?.Remove("parentFolderId"); } }
+        private string? _explicitNullValueParentFolderId = default!;
 #nullable restore
 #else
-        public string ParentFolderId { get; set; }
+        public string ParentFolderId { get => _explicitNullValueParentFolderId; set { _explicitNullValueParentFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolderId"); else _explicitNullProperties?.Remove("parentFolderId"); } }
+        private string _explicitNullValueParentFolderId = default!;
 #endif
         /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProjectId { get; set; }
+        public string? ProjectId { get => _explicitNullValueProjectId; set { _explicitNullValueProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("projectId"); else _explicitNullProperties?.Remove("projectId"); } }
+        private string? _explicitNullValueProjectId = default!;
 #nullable restore
 #else
-        public string ProjectId { get; set; }
+        public string ProjectId { get => _explicitNullValueProjectId; set { _explicitNullValueProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("projectId"); else _explicitNullProperties?.Remove("projectId"); } }
+        private string _explicitNullValueProjectId = default!;
 #endif
         /// <summary>Outcome of applying the selected publishing policy to this workflow.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing? Publishing { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing? Publishing { get => _explicitNullValuePublishing; set { _explicitNullValuePublishing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publishing"); else _explicitNullProperties?.Remove("publishing"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing? _explicitNullValuePublishing = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing Publishing { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing Publishing { get => _explicitNullValuePublishing; set { _explicitNullValuePublishing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publishing"); else _explicitNullProperties?.Remove("publishing"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing _explicitNullValuePublishing = default!;
 #endif
         /// <summary>Workflow id as it appeared in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceWorkflowId { get; set; }
+        public string? SourceWorkflowId { get => _explicitNullValueSourceWorkflowId; set { _explicitNullValueSourceWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceWorkflowId"); else _explicitNullProperties?.Remove("sourceWorkflowId"); } }
+        private string? _explicitNullValueSourceWorkflowId = default!;
 #nullable restore
 #else
-        public string SourceWorkflowId { get; set; }
+        public string SourceWorkflowId { get => _explicitNullValueSourceWorkflowId; set { _explicitNullValueSourceWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceWorkflowId"); else _explicitNullProperties?.Remove("sourceWorkflowId"); } }
+        private string _explicitNullValueSourceWorkflowId = default!;
 #endif
         /// <summary>Import outcome for this package workflow.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemStatus? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem"/> and sets the default values.
         /// </summary>
@@ -89,7 +121,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -126,6 +158,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing>("publishing", Publishing);
             writer.WriteStringValue("sourceWorkflowId", SourceWorkflowId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

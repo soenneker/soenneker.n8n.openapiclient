@@ -12,15 +12,28 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdateLogStreamingDestinationRequestOneOf1OptionsSocket : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("keepAlive") is { } nullNodeKeepAlive && nullNodeKeepAlive.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KeepAlive = null;
+            if (parseNode.GetChildNode("maxFreeSockets") is { } nullNodeMaxFreeSockets && nullNodeMaxFreeSockets.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxFreeSockets = null;
+            if (parseNode.GetChildNode("maxSockets") is { } nullNodeMaxSockets && nullNodeMaxSockets.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxSockets = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to keep sockets open for reuse.</summary>
-        public bool? KeepAlive { get; set; }
+        public bool? KeepAlive { get => _explicitNullValueKeepAlive; set { _explicitNullValueKeepAlive = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keepAlive"); else _explicitNullProperties?.Remove("keepAlive"); } }
+        private bool? _explicitNullValueKeepAlive = default!;
         /// <summary>Maximum idle sockets per host kept open.</summary>
-        public int? MaxFreeSockets { get; set; }
+        public int? MaxFreeSockets { get => _explicitNullValueMaxFreeSockets; set { _explicitNullValueMaxFreeSockets = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxFreeSockets"); else _explicitNullProperties?.Remove("maxFreeSockets"); } }
+        private int? _explicitNullValueMaxFreeSockets = default!;
         /// <summary>Maximum sockets per host kept open at once.</summary>
-        public int? MaxSockets { get; set; }
+        public int? MaxSockets { get => _explicitNullValueMaxSockets; set { _explicitNullValueMaxSockets = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxSockets"); else _explicitNullProperties?.Remove("maxSockets"); } }
+        private int? _explicitNullValueMaxSockets = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1OptionsSocket"/> and sets the default values.
         /// </summary>
@@ -36,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1OptionsSocket CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1OptionsSocket();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1OptionsSocket(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -61,6 +74,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("keepAlive", KeepAlive);
             writer.WriteIntValue("maxFreeSockets", MaxFreeSockets);
             writer.WriteIntValue("maxSockets", MaxSockets);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

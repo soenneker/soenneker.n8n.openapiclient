@@ -12,54 +12,82 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf19 : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("existingName") is { } nullNodeExistingName && nullNodeExistingName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExistingName = null;
+            if (parseNode.GetChildNode("existingTagId") is { } nullNodeExistingTagId && nullNodeExistingTagId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExistingTagId = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("missingScope") is { } nullNodeMissingScope && nullNodeMissingScope.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MissingScope = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("sourceId") is { } nullNodeSourceId && nullNodeSourceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceId = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("usedBy") is { } nullNodeUsedBy && nullNodeUsedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsedBy = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>For `rename-drift`: the current name of the same-id target tag.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExistingName { get; set; }
+        public string? ExistingName { get => _explicitNullValueExistingName; set { _explicitNullValueExistingName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("existingName"); else _explicitNullProperties?.Remove("existingName"); } }
+        private string? _explicitNullValueExistingName = default!;
 #nullable restore
 #else
-        public string ExistingName { get; set; }
+        public string ExistingName { get => _explicitNullValueExistingName; set { _explicitNullValueExistingName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("existingName"); else _explicitNullProperties?.Remove("existingName"); } }
+        private string _explicitNullValueExistingName = default!;
 #endif
         /// <summary>Id of the contested target tag — the different tag currently holding the wanted name, or the target tag a blocked reconcile would re-key. Absent when two package tags collide with each other rather than over a target tag.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExistingTagId { get; set; }
+        public string? ExistingTagId { get => _explicitNullValueExistingTagId; set { _explicitNullValueExistingTagId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("existingTagId"); else _explicitNullProperties?.Remove("existingTagId"); } }
+        private string? _explicitNullValueExistingTagId = default!;
 #nullable restore
 #else
-        public string ExistingTagId { get; set; }
+        public string ExistingTagId { get => _explicitNullValueExistingTagId; set { _explicitNullValueExistingTagId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("existingTagId"); else _explicitNullProperties?.Remove("existingTagId"); } }
+        private string _explicitNullValueExistingTagId = default!;
 #endif
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19Kind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19Kind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19Kind? _explicitNullValueKind = default!;
         /// <summary>For `permission-denied`: the global scope the importing user lacks.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19MissingScope? MissingScope { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19MissingScope? MissingScope { get => _explicitNullValueMissingScope; set { _explicitNullValueMissingScope = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missingScope"); else _explicitNullProperties?.Remove("missingScope"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19MissingScope? _explicitNullValueMissingScope = default!;
         /// <summary>The (trimmed) package tag name. Absent for `permission-denied`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>Tag id as it appears in the package. Absent for `permission-denied`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string? _explicitNullValueSourceId = default!;
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string _explicitNullValueSourceId = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType? _explicitNullValueType = default!;
         /// <summary>Package consumers that reference the source tag. This excludes skipped consumers and workflows attached to the contested target tag.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get => _explicitNullValueUsedBy; set { _explicitNullValueUsedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedBy"); else _explicitNullProperties?.Remove("usedBy"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? _explicitNullValueUsedBy = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get => _explicitNullValueUsedBy; set { _explicitNullValueUsedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedBy"); else _explicitNullProperties?.Remove("usedBy"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> _explicitNullValueUsedBy = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19"/> and sets the default values.
@@ -76,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf19(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -111,6 +139,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.TagUnresolvedType>("type", Type);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

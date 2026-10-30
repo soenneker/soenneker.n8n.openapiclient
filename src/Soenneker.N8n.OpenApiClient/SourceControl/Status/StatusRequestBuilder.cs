@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Status
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetSourceControlStatus200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetSourceControlStatus200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetSourceControlStatus200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetSourceControlStatus200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Previews the pending changes between the instance and the connected Git branch in either the `push` or `pull` direction.

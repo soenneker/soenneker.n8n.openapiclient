@@ -12,39 +12,68 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class RunLdapSync200Response : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("created") is { } nullNodeCreated && nullNodeCreated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Created = null;
+            if (parseNode.GetChildNode("disabled") is { } nullNodeDisabled && nullNodeDisabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Disabled = null;
+            if (parseNode.GetChildNode("endedAt") is { } nullNodeEndedAt && nullNodeEndedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EndedAt = null;
+            if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("runMode") is { } nullNodeRunMode && nullNodeRunMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RunMode = null;
+            if (parseNode.GetChildNode("scanned") is { } nullNodeScanned && nullNodeScanned.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scanned = null;
+            if (parseNode.GetChildNode("startedAt") is { } nullNodeStartedAt && nullNodeStartedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartedAt = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("updated") is { } nullNodeUpdated && nullNodeUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Updated = null;
+        }
+
         /// <summary>Number of new users created during synchronization.</summary>
-        public int? Created { get; set; }
+        public int? Created { get => _explicitNullValueCreated; set { _explicitNullValueCreated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created"); else _explicitNullProperties?.Remove("created"); } }
+        private int? _explicitNullValueCreated = default!;
         /// <summary>Number of users disabled during synchronization.</summary>
-        public int? Disabled { get; set; }
+        public int? Disabled { get => _explicitNullValueDisabled; set { _explicitNullValueDisabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("disabled"); else _explicitNullProperties?.Remove("disabled"); } }
+        private int? _explicitNullValueDisabled = default!;
         /// <summary>Timestamp when the synchronization completed.</summary>
-        public DateTimeOffset? EndedAt { get; set; }
+        public DateTimeOffset? EndedAt { get => _explicitNullValueEndedAt; set { _explicitNullValueEndedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("endedAt"); else _explicitNullProperties?.Remove("endedAt"); } }
+        private DateTimeOffset? _explicitNullValueEndedAt = default!;
         /// <summary>Error message if the synchronization failed. Empty string if successful.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Error { get; set; }
+        public string? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private string? _explicitNullValueError = default!;
 #nullable restore
 #else
-        public string Error { get; set; }
+        public string Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private string _explicitNullValueError = default!;
 #endif
         /// <summary>Unique identifier for this sync run.</summary>
-        public int? Id { get; set; }
+        public int? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private int? _explicitNullValueId = default!;
         /// <summary>Whether the sync was a dry run or applied live.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200ResponseRunMode? RunMode { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200ResponseRunMode? RunMode { get => _explicitNullValueRunMode; set { _explicitNullValueRunMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("runMode"); else _explicitNullProperties?.Remove("runMode"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200ResponseRunMode? _explicitNullValueRunMode = default!;
         /// <summary>Number of LDAP entries scanned during synchronization.</summary>
-        public int? Scanned { get; set; }
+        public int? Scanned { get => _explicitNullValueScanned; set { _explicitNullValueScanned = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scanned"); else _explicitNullProperties?.Remove("scanned"); } }
+        private int? _explicitNullValueScanned = default!;
         /// <summary>Timestamp when the synchronization started.</summary>
-        public DateTimeOffset? StartedAt { get; set; }
+        public DateTimeOffset? StartedAt { get => _explicitNullValueStartedAt; set { _explicitNullValueStartedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startedAt"); else _explicitNullProperties?.Remove("startedAt"); } }
+        private DateTimeOffset? _explicitNullValueStartedAt = default!;
         /// <summary>Status of the synchronization (for example, success or error).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Status { get; set; }
+        public string? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private string? _explicitNullValueStatus = default!;
 #nullable restore
 #else
-        public string Status { get; set; }
+        public string Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private string _explicitNullValueStatus = default!;
 #endif
         /// <summary>Number of existing users updated during synchronization.</summary>
-        public int? Updated { get; set; }
+        public int? Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
+        private int? _explicitNullValueUpdated = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -53,7 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -91,7 +120,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("scanned", Scanned);
             writer.WriteDateTimeOffsetValue("startedAt", StartedAt);
             writer.WriteStringValue("status", Status);
-            writer.WriteIntValue("updated", Updated);
+            writer.WriteIntValue("updated", Updated);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

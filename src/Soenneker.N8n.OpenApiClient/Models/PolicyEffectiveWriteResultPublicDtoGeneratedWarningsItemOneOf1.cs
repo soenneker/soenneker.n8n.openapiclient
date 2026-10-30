@@ -11,26 +11,41 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("ruleId") is { } nullNodeRuleId && nullNodeRuleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RuleId = null;
+            if (parseNode.GetChildNode("shadowedByRuleId") is { } nullNodeShadowedByRuleId && nullNodeShadowedByRuleId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ShadowedByRuleId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ShadowedKind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ShadowedKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ShadowedKind? _explicitNullValueKind = default!;
         /// <summary>The ruleId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RuleId { get; set; }
+        public string? RuleId { get => _explicitNullValueRuleId; set { _explicitNullValueRuleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ruleId"); else _explicitNullProperties?.Remove("ruleId"); } }
+        private string? _explicitNullValueRuleId = default!;
 #nullable restore
 #else
-        public string RuleId { get; set; }
+        public string RuleId { get => _explicitNullValueRuleId; set { _explicitNullValueRuleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ruleId"); else _explicitNullProperties?.Remove("ruleId"); } }
+        private string _explicitNullValueRuleId = default!;
 #endif
         /// <summary>The shadowedByRuleId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ShadowedByRuleId { get; set; }
+        public string? ShadowedByRuleId { get => _explicitNullValueShadowedByRuleId; set { _explicitNullValueShadowedByRuleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shadowedByRuleId"); else _explicitNullProperties?.Remove("shadowedByRuleId"); } }
+        private string? _explicitNullValueShadowedByRuleId = default!;
 #nullable restore
 #else
-        public string ShadowedByRuleId { get; set; }
+        public string ShadowedByRuleId { get => _explicitNullValueShadowedByRuleId; set { _explicitNullValueShadowedByRuleId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("shadowedByRuleId"); else _explicitNullProperties?.Remove("shadowedByRuleId"); } }
+        private string _explicitNullValueShadowedByRuleId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1"/> and sets the default values.
@@ -47,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ShadowedKind>("kind", Kind);
             writer.WriteStringValue("ruleId", RuleId);
             writer.WriteStringValue("shadowedByRuleId", ShadowedByRuleId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

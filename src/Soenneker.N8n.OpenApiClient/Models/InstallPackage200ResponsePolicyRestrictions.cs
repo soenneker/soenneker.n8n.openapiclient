@@ -12,16 +12,26 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class InstallPackage200ResponsePolicyRestrictions : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("nodeTypes") is { } nullNodeNodeTypes && nullNodeNodeTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NodeTypes = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Blocked node types from this package. Lists only the node types that are blocked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem>? NodeTypes { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem>? NodeTypes { get => _explicitNullValueNodeTypes; set { _explicitNullValueNodeTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nodeTypes"); else _explicitNullProperties?.Remove("nodeTypes"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem>? _explicitNullValueNodeTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem> NodeTypes { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem> NodeTypes { get => _explicitNullValueNodeTypes; set { _explicitNullValueNodeTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nodeTypes"); else _explicitNullProperties?.Remove("nodeTypes"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem> _explicitNullValueNodeTypes = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions"/> and sets the default values.
@@ -38,7 +48,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictions(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -59,6 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem>("nodeTypes", NodeTypes);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

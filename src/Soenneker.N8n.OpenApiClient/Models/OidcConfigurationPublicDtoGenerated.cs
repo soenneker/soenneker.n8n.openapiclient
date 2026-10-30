@@ -11,55 +11,85 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class OidcConfigurationPublicDtoGenerated : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("additionalScopes") is { } nullNodeAdditionalScopes && nullNodeAdditionalScopes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AdditionalScopes = null;
+            if (parseNode.GetChildNode("authenticationContextClassReference") is { } nullNodeAuthenticationContextClassReference && nullNodeAuthenticationContextClassReference.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AuthenticationContextClassReference = null;
+            if (parseNode.GetChildNode("clientId") is { } nullNodeClientId && nullNodeClientId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ClientId = null;
+            if (parseNode.GetChildNode("clientSecret") is { } nullNodeClientSecret && nullNodeClientSecret.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ClientSecret = null;
+            if (parseNode.GetChildNode("discoveryEndpoint") is { } nullNodeDiscoveryEndpoint && nullNodeDiscoveryEndpoint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DiscoveryEndpoint = null;
+            if (parseNode.GetChildNode("emailVerifiedRequired") is { } nullNodeEmailVerifiedRequired && nullNodeEmailVerifiedRequired.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EmailVerifiedRequired = null;
+            if (parseNode.GetChildNode("loginEnabled") is { } nullNodeLoginEnabled && nullNodeLoginEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoginEnabled = null;
+            if (parseNode.GetChildNode("prompt") is { } nullNodePrompt && nullNodePrompt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Prompt = null;
+            if (parseNode.GetChildNode("rpInitiatedLogoutEnabled") is { } nullNodeRpInitiatedLogoutEnabled && nullNodeRpInitiatedLogoutEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RpInitiatedLogoutEnabled = null;
+        }
+
         /// <summary>Additional scopes to request, space separated. n8n always requests `openid`, `profile` and `email`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? AdditionalScopes { get; set; }
+        public string? AdditionalScopes { get => _explicitNullValueAdditionalScopes; set { _explicitNullValueAdditionalScopes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalScopes"); else _explicitNullProperties?.Remove("additionalScopes"); } }
+        private string? _explicitNullValueAdditionalScopes = default!;
 #nullable restore
 #else
-        public string AdditionalScopes { get; set; }
+        public string AdditionalScopes { get => _explicitNullValueAdditionalScopes; set { _explicitNullValueAdditionalScopes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalScopes"); else _explicitNullProperties?.Remove("additionalScopes"); } }
+        private string _explicitNullValueAdditionalScopes = default!;
 #endif
         /// <summary>ACR values to include in the authorization request (acr_values parameter), in order of preference.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? AuthenticationContextClassReference { get; set; }
+        public List<string>? AuthenticationContextClassReference { get => _explicitNullValueAuthenticationContextClassReference; set { _explicitNullValueAuthenticationContextClassReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authenticationContextClassReference"); else _explicitNullProperties?.Remove("authenticationContextClassReference"); } }
+        private List<string>? _explicitNullValueAuthenticationContextClassReference = default!;
 #nullable restore
 #else
-        public List<string> AuthenticationContextClassReference { get; set; }
+        public List<string> AuthenticationContextClassReference { get => _explicitNullValueAuthenticationContextClassReference; set { _explicitNullValueAuthenticationContextClassReference = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("authenticationContextClassReference"); else _explicitNullProperties?.Remove("authenticationContextClassReference"); } }
+        private List<string> _explicitNullValueAuthenticationContextClassReference = default!;
 #endif
         /// <summary>The client ID issued when registering n8n with the OIDC provider.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ClientId { get; set; }
+        public string? ClientId { get => _explicitNullValueClientId; set { _explicitNullValueClientId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clientId"); else _explicitNullProperties?.Remove("clientId"); } }
+        private string? _explicitNullValueClientId = default!;
 #nullable restore
 #else
-        public string ClientId { get; set; }
+        public string ClientId { get => _explicitNullValueClientId; set { _explicitNullValueClientId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clientId"); else _explicitNullProperties?.Remove("clientId"); } }
+        private string _explicitNullValueClientId = default!;
 #endif
         /// <summary>The client secret issued when registering n8n with the OIDC provider. Redacted on read when set; never echoed back in plaintext.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ClientSecret { get; set; }
+        public string? ClientSecret { get => _explicitNullValueClientSecret; set { _explicitNullValueClientSecret = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clientSecret"); else _explicitNullProperties?.Remove("clientSecret"); } }
+        private string? _explicitNullValueClientSecret = default!;
 #nullable restore
 #else
-        public string ClientSecret { get; set; }
+        public string ClientSecret { get => _explicitNullValueClientSecret; set { _explicitNullValueClientSecret = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("clientSecret"); else _explicitNullProperties?.Remove("clientSecret"); } }
+        private string _explicitNullValueClientSecret = default!;
 #endif
         /// <summary>The OIDC provider&apos;s well-known discovery endpoint.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DiscoveryEndpoint { get; set; }
+        public string? DiscoveryEndpoint { get => _explicitNullValueDiscoveryEndpoint; set { _explicitNullValueDiscoveryEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("discoveryEndpoint"); else _explicitNullProperties?.Remove("discoveryEndpoint"); } }
+        private string? _explicitNullValueDiscoveryEndpoint = default!;
 #nullable restore
 #else
-        public string DiscoveryEndpoint { get; set; }
+        public string DiscoveryEndpoint { get => _explicitNullValueDiscoveryEndpoint; set { _explicitNullValueDiscoveryEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("discoveryEndpoint"); else _explicitNullProperties?.Remove("discoveryEndpoint"); } }
+        private string _explicitNullValueDiscoveryEndpoint = default!;
 #endif
         /// <summary>Whether the identity provider must assert that the user&apos;s email address is verified before the login is accepted. When disabled, only an explicit negative assertion is rejected.</summary>
-        public bool? EmailVerifiedRequired { get; set; }
+        public bool? EmailVerifiedRequired { get => _explicitNullValueEmailVerifiedRequired; set { _explicitNullValueEmailVerifiedRequired = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emailVerifiedRequired"); else _explicitNullProperties?.Remove("emailVerifiedRequired"); } }
+        private bool? _explicitNullValueEmailVerifiedRequired = default!;
         /// <summary>Whether OIDC single sign-on is enabled.</summary>
-        public bool? LoginEnabled { get; set; }
+        public bool? LoginEnabled { get => _explicitNullValueLoginEnabled; set { _explicitNullValueLoginEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginEnabled"); else _explicitNullProperties?.Remove("loginEnabled"); } }
+        private bool? _explicitNullValueLoginEnabled = default!;
         /// <summary>The prompt parameter to use when authenticating with the OIDC provider.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPublicDtoGeneratedPrompt? Prompt { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPublicDtoGeneratedPrompt? Prompt { get => _explicitNullValuePrompt; set { _explicitNullValuePrompt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("prompt"); else _explicitNullProperties?.Remove("prompt"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPublicDtoGeneratedPrompt? _explicitNullValuePrompt = default!;
         /// <summary>Whether signing out of n8n also ends the session at the OIDC provider via RP-Initiated Logout. When disabled, sign-out is local to n8n only.</summary>
-        public bool? RpInitiatedLogoutEnabled { get; set; }
+        public bool? RpInitiatedLogoutEnabled { get => _explicitNullValueRpInitiatedLogoutEnabled; set { _explicitNullValueRpInitiatedLogoutEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rpInitiatedLogoutEnabled"); else _explicitNullProperties?.Remove("rpInitiatedLogoutEnabled"); } }
+        private bool? _explicitNullValueRpInitiatedLogoutEnabled = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -68,7 +98,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPublicDtoGenerated();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPublicDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -104,7 +134,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("emailVerifiedRequired", EmailVerifiedRequired);
             writer.WriteBoolValue("loginEnabled", LoginEnabled);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.OidcConfigurationPublicDtoGeneratedPrompt>("prompt", Prompt);
-            writer.WriteBoolValue("rpInitiatedLogoutEnabled", RpInitiatedLogoutEnabled);
+            writer.WriteBoolValue("rpInitiatedLogoutEnabled", RpInitiatedLogoutEnabled);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

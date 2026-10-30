@@ -11,68 +11,100 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("code") is { } nullNodeCode && nullNodeCode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Code = null;
+            if (parseNode.GetChildNode("consumers") is { } nullNodeConsumers && nullNodeConsumers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Consumers = null;
+            if (parseNode.GetChildNode("expectedTypes") is { } nullNodeExpectedTypes && nullNodeExpectedTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedTypes = null;
+            if (parseNode.GetChildNode("filePath") is { } nullNodeFilePath && nullNodeFilePath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilePath = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("referenceFiles") is { } nullNodeReferenceFiles && nullNodeReferenceFiles.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReferenceFiles = null;
+            if (parseNode.GetChildNode("sourceId") is { } nullNodeSourceId && nullNodeSourceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceId = null;
+            if (parseNode.GetChildNode("usageScope") is { } nullNodeUsageScope && nullNodeUsageScope.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsageScope = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The code property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.IncompatibleUsageScopeCode? Code { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.IncompatibleUsageScopeCode? Code { get => _explicitNullValueCode; set { _explicitNullValueCode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("code"); else _explicitNullProperties?.Remove("code"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.IncompatibleUsageScopeCode? _explicitNullValueCode = default!;
         /// <summary>The consumers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6ConsumersItem>? Consumers { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6ConsumersItem>? Consumers { get => _explicitNullValueConsumers; set { _explicitNullValueConsumers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumers"); else _explicitNullProperties?.Remove("consumers"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6ConsumersItem>? _explicitNullValueConsumers = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6ConsumersItem> Consumers { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6ConsumersItem> Consumers { get => _explicitNullValueConsumers; set { _explicitNullValueConsumers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumers"); else _explicitNullProperties?.Remove("consumers"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6ConsumersItem> _explicitNullValueConsumers = default!;
 #endif
         /// <summary>The expectedTypes property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ExpectedTypes { get; set; }
+        public List<string>? ExpectedTypes { get => _explicitNullValueExpectedTypes; set { _explicitNullValueExpectedTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedTypes"); else _explicitNullProperties?.Remove("expectedTypes"); } }
+        private List<string>? _explicitNullValueExpectedTypes = default!;
 #nullable restore
 #else
-        public List<string> ExpectedTypes { get; set; }
+        public List<string> ExpectedTypes { get => _explicitNullValueExpectedTypes; set { _explicitNullValueExpectedTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedTypes"); else _explicitNullProperties?.Remove("expectedTypes"); } }
+        private List<string> _explicitNullValueExpectedTypes = default!;
 #endif
         /// <summary>The filePath property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FilePath { get; set; }
+        public string? FilePath { get => _explicitNullValueFilePath; set { _explicitNullValueFilePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filePath"); else _explicitNullProperties?.Remove("filePath"); } }
+        private string? _explicitNullValueFilePath = default!;
 #nullable restore
 #else
-        public string FilePath { get; set; }
+        public string FilePath { get => _explicitNullValueFilePath; set { _explicitNullValueFilePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filePath"); else _explicitNullProperties?.Remove("filePath"); } }
+        private string _explicitNullValueFilePath = default!;
 #endif
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CredentialKind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CredentialKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.CredentialKind? _explicitNullValueKind = default!;
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>The referenceFiles property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ReferenceFiles { get; set; }
+        public List<string>? ReferenceFiles { get => _explicitNullValueReferenceFiles; set { _explicitNullValueReferenceFiles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("referenceFiles"); else _explicitNullProperties?.Remove("referenceFiles"); } }
+        private List<string>? _explicitNullValueReferenceFiles = default!;
 #nullable restore
 #else
-        public List<string> ReferenceFiles { get; set; }
+        public List<string> ReferenceFiles { get => _explicitNullValueReferenceFiles; set { _explicitNullValueReferenceFiles = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("referenceFiles"); else _explicitNullProperties?.Remove("referenceFiles"); } }
+        private List<string> _explicitNullValueReferenceFiles = default!;
 #endif
         /// <summary>The sourceId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string? _explicitNullValueSourceId = default!;
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string _explicitNullValueSourceId = default!;
 #endif
         /// <summary>The usageScope property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UsageScope { get; set; }
+        public string? UsageScope { get => _explicitNullValueUsageScope; set { _explicitNullValueUsageScope = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usageScope"); else _explicitNullProperties?.Remove("usageScope"); } }
+        private string? _explicitNullValueUsageScope = default!;
 #nullable restore
 #else
-        public string UsageScope { get; set; }
+        public string UsageScope { get => _explicitNullValueUsageScope; set { _explicitNullValueUsageScope = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usageScope"); else _explicitNullProperties?.Remove("usageScope"); } }
+        private string _explicitNullValueUsageScope = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6"/> and sets the default values.
@@ -89,7 +121,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -126,6 +158,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("referenceFiles", ReferenceFiles);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteStringValue("usageScope", UsageScope);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

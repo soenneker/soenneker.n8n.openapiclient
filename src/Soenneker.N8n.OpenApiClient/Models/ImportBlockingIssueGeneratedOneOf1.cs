@@ -11,45 +11,68 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ImportBlockingIssueGeneratedOneOf1 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("projectId") is { } nullNodeProjectId && nullNodeProjectId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProjectId = null;
+            if (parseNode.GetChildNode("sourceAgentId") is { } nullNodeSourceAgentId && nullNodeSourceAgentId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceAgentId = null;
+            if (parseNode.GetChildNode("sourceTaskId") is { } nullNodeSourceTaskId && nullNodeSourceTaskId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceTaskId = null;
+            if (parseNode.GetChildNode("targetIds") is { } nullNodeTargetIds && nullNodeTargetIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TargetIds = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1Kind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1Kind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1Kind? _explicitNullValueKind = default!;
         /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProjectId { get; set; }
+        public string? ProjectId { get => _explicitNullValueProjectId; set { _explicitNullValueProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("projectId"); else _explicitNullProperties?.Remove("projectId"); } }
+        private string? _explicitNullValueProjectId = default!;
 #nullable restore
 #else
-        public string ProjectId { get; set; }
+        public string ProjectId { get => _explicitNullValueProjectId; set { _explicitNullValueProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("projectId"); else _explicitNullProperties?.Remove("projectId"); } }
+        private string _explicitNullValueProjectId = default!;
 #endif
         /// <summary>The sourceAgentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceAgentId { get; set; }
+        public string? SourceAgentId { get => _explicitNullValueSourceAgentId; set { _explicitNullValueSourceAgentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceAgentId"); else _explicitNullProperties?.Remove("sourceAgentId"); } }
+        private string? _explicitNullValueSourceAgentId = default!;
 #nullable restore
 #else
-        public string SourceAgentId { get; set; }
+        public string SourceAgentId { get => _explicitNullValueSourceAgentId; set { _explicitNullValueSourceAgentId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceAgentId"); else _explicitNullProperties?.Remove("sourceAgentId"); } }
+        private string _explicitNullValueSourceAgentId = default!;
 #endif
         /// <summary>The sourceTaskId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceTaskId { get; set; }
+        public string? SourceTaskId { get => _explicitNullValueSourceTaskId; set { _explicitNullValueSourceTaskId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceTaskId"); else _explicitNullProperties?.Remove("sourceTaskId"); } }
+        private string? _explicitNullValueSourceTaskId = default!;
 #nullable restore
 #else
-        public string SourceTaskId { get; set; }
+        public string SourceTaskId { get => _explicitNullValueSourceTaskId; set { _explicitNullValueSourceTaskId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceTaskId"); else _explicitNullProperties?.Remove("sourceTaskId"); } }
+        private string _explicitNullValueSourceTaskId = default!;
 #endif
         /// <summary>The targetIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? TargetIds { get; set; }
+        public List<string>? TargetIds { get => _explicitNullValueTargetIds; set { _explicitNullValueTargetIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetIds"); else _explicitNullProperties?.Remove("targetIds"); } }
+        private List<string>? _explicitNullValueTargetIds = default!;
 #nullable restore
 #else
-        public List<string> TargetIds { get; set; }
+        public List<string> TargetIds { get => _explicitNullValueTargetIds; set { _explicitNullValueTargetIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("targetIds"); else _explicitNullProperties?.Remove("targetIds"); } }
+        private List<string> _explicitNullValueTargetIds = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.AgentConflictType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentConflictType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentConflictType? _explicitNullValueType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1"/> and sets the default values.
         /// </summary>
@@ -65,7 +88,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf1(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,6 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("sourceTaskId", SourceTaskId);
             writer.WriteCollectionOfPrimitiveValues<string>("targetIds", TargetIds);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.AgentConflictType>("type", Type);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,13 +11,24 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class LogStreamingDestinationPublicDtoGeneratedOneOf1OptionsRedirectRedirect : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("followRedirects") is { } nullNodeFollowRedirects && nullNodeFollowRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FollowRedirects = null;
+            if (parseNode.GetChildNode("maxRedirects") is { } nullNodeMaxRedirects && nullNodeMaxRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxRedirects = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to follow HTTP redirects.</summary>
-        public bool? FollowRedirects { get; set; }
+        public bool? FollowRedirects { get => _explicitNullValueFollowRedirects; set { _explicitNullValueFollowRedirects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("followRedirects"); else _explicitNullProperties?.Remove("followRedirects"); } }
+        private bool? _explicitNullValueFollowRedirects = default!;
         /// <summary>Maximum number of redirects to follow.</summary>
-        public int? MaxRedirects { get; set; }
+        public int? MaxRedirects { get => _explicitNullValueMaxRedirects; set { _explicitNullValueMaxRedirects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxRedirects"); else _explicitNullProperties?.Remove("maxRedirects"); } }
+        private int? _explicitNullValueMaxRedirects = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1OptionsRedirectRedirect"/> and sets the default values.
         /// </summary>
@@ -33,7 +44,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1OptionsRedirectRedirect CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1OptionsRedirectRedirect();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGeneratedOneOf1OptionsRedirectRedirect(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,6 +67,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("followRedirects", FollowRedirects);
             writer.WriteIntValue("maxRedirects", MaxRedirects);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

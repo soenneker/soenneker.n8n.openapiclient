@@ -31,6 +31,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
     public partial class WithWorkflowItemRequestBuilder : BaseRequestBuilder
     {
         /// <summary>The activate property</summary>
+        [Obsolete("")]
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Activate.ActivateRequestBuilder Activate
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Activate.ActivateRequestBuilder(PathParameters, RequestAdapter);
@@ -41,6 +42,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Archive.ArchiveRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The deactivate property</summary>
+        [Obsolete("")]
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder Deactivate
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate.DeactivateRequestBuilder(PathParameters, RequestAdapter);
@@ -135,7 +137,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Retrieve a workflow.
@@ -153,7 +155,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.
@@ -179,6 +181,8 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             {
                 { "403", global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow403Response.CreateFromDiscriminatorValue },
                 { "409", global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow409Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

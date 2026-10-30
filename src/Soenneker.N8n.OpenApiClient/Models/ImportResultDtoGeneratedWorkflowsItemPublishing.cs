@@ -12,23 +12,39 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportResultDtoGeneratedWorkflowsItemPublishing : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("blockedReason") is { } nullNodeBlockedReason && nullNodeBlockedReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockedReason = null;
+            if (parseNode.GetChildNode("error") is { } nullNodeError && nullNodeError.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Error = null;
+            if (parseNode.GetChildNode("skippedPublishReason") is { } nullNodeSkippedPublishReason && nullNodeSkippedPublishReason.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SkippedPublishReason = null;
+            if (parseNode.GetChildNode("state") is { } nullNodeState && nullNodeState.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) State = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Present when `state` is `blocked`: the imported version could not be published and no version is active.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingBlockedReason? BlockedReason { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingBlockedReason? BlockedReason { get => _explicitNullValueBlockedReason; set { _explicitNullValueBlockedReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockedReason"); else _explicitNullProperties?.Remove("blockedReason"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingBlockedReason? _explicitNullValueBlockedReason = default!;
         /// <summary>Present when `state` is `failed`. Explains why publish or unpublish could not be applied.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Error { get; set; }
+        public string? Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private string? _explicitNullValueError = default!;
 #nullable restore
 #else
-        public string Error { get; set; }
+        public string Error { get => _explicitNullValueError; set { _explicitNullValueError = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("error"); else _explicitNullProperties?.Remove("error"); } }
+        private string _explicitNullValueError = default!;
 #endif
         /// <summary>Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with empty or incomplete credentials).</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingSkippedPublishReason? SkippedPublishReason { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingSkippedPublishReason? SkippedPublishReason { get => _explicitNullValueSkippedPublishReason; set { _explicitNullValueSkippedPublishReason = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("skippedPublishReason"); else _explicitNullProperties?.Remove("skippedPublishReason"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingSkippedPublishReason? _explicitNullValueSkippedPublishReason = default!;
         /// <summary>`blocked` means the imported version could not be published and no version is active (for example because the workflow uses an empty or incomplete credential, or uses a node type this instance does not have). When a prior published version remains active, `state` is `unchanged` with `skippedPublishReason` instead. `failed` means publish or unpublish was attempted but did not succeed.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingState? State { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingState? State { get => _explicitNullValueState; set { _explicitNullValueState = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("state"); else _explicitNullProperties?.Remove("state"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingState? _explicitNullValueState = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing"/> and sets the default values.
         /// </summary>
@@ -44,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishing(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,6 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("error", Error);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingSkippedPublishReason>("skippedPublishReason", SkippedPublishReason);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingState>("state", State);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

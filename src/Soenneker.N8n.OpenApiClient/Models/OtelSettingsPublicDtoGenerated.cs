@@ -12,57 +12,94 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class OtelSettingsPublicDtoGenerated : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("emitNodeStartSpan") is { } nullNodeEmitNodeStartSpan && nullNodeEmitNodeStartSpan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EmitNodeStartSpan = null;
+            if (parseNode.GetChildNode("emitWorkflowStartSpan") is { } nullNodeEmitWorkflowStartSpan && nullNodeEmitWorkflowStartSpan.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EmitWorkflowStartSpan = null;
+            if (parseNode.GetChildNode("enabled") is { } nullNodeEnabled && nullNodeEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Enabled = null;
+            if (parseNode.GetChildNode("exporterEndpoint") is { } nullNodeExporterEndpoint && nullNodeExporterEndpoint.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterEndpoint = null;
+            if (parseNode.GetChildNode("exporterHeaders") is { } nullNodeExporterHeaders && nullNodeExporterHeaders.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterHeaders = null;
+            if (parseNode.GetChildNode("exporterProtocol") is { } nullNodeExporterProtocol && nullNodeExporterProtocol.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterProtocol = null;
+            if (parseNode.GetChildNode("exporterServiceName") is { } nullNodeExporterServiceName && nullNodeExporterServiceName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterServiceName = null;
+            if (parseNode.GetChildNode("exporterTracingPath") is { } nullNodeExporterTracingPath && nullNodeExporterTracingPath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExporterTracingPath = null;
+            if (parseNode.GetChildNode("includeNodeSpans") is { } nullNodeIncludeNodeSpans && nullNodeIncludeNodeSpans.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncludeNodeSpans = null;
+            if (parseNode.GetChildNode("injectOutbound") is { } nullNodeInjectOutbound && nullNodeInjectOutbound.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InjectOutbound = null;
+            if (parseNode.GetChildNode("productionExecutionsOnly") is { } nullNodeProductionExecutionsOnly && nullNodeProductionExecutionsOnly.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProductionExecutionsOnly = null;
+            if (parseNode.GetChildNode("startupConnectivityTimeoutMs") is { } nullNodeStartupConnectivityTimeoutMs && nullNodeStartupConnectivityTimeoutMs.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartupConnectivityTimeoutMs = null;
+            if (parseNode.GetChildNode("tracesSampleRate") is { } nullNodeTracesSampleRate && nullNodeTracesSampleRate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TracesSampleRate = null;
+        }
+
         /// <summary>Whether to emit a `node.execute.started` span with a duration of 0 ms when each node span starts. This doubles the number of node spans. Has no effect when `includeNodeSpans` is false. Optional: a write that omits it selects `false`, but an instance that sets this field to `true` with an environment variable rejects that write with 409.</summary>
-        public bool? EmitNodeStartSpan { get; set; }
+        public bool? EmitNodeStartSpan { get => _explicitNullValueEmitNodeStartSpan; set { _explicitNullValueEmitNodeStartSpan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emitNodeStartSpan"); else _explicitNullProperties?.Remove("emitNodeStartSpan"); } }
+        private bool? _explicitNullValueEmitNodeStartSpan = default!;
         /// <summary>Whether to emit a `workflow.execute.started` span with a duration of 0 ms when each execution or resumed segment starts. Optional: a write that omits it selects `false`, but an instance that sets this field to `true` with an environment variable rejects that write with 409.</summary>
-        public bool? EmitWorkflowStartSpan { get; set; }
+        public bool? EmitWorkflowStartSpan { get => _explicitNullValueEmitWorkflowStartSpan; set { _explicitNullValueEmitWorkflowStartSpan = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emitWorkflowStartSpan"); else _explicitNullProperties?.Remove("emitWorkflowStartSpan"); } }
+        private bool? _explicitNullValueEmitWorkflowStartSpan = default!;
         /// <summary>Whether OpenTelemetry tracing is enabled.</summary>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get => _explicitNullValueEnabled; set { _explicitNullValueEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enabled"); else _explicitNullProperties?.Remove("enabled"); } }
+        private bool? _explicitNullValueEnabled = default!;
         /// <summary>The base URL of the OTLP collector to export traces to. The value must be an `http://` or `https://` URL, because the scheme selects TLS — for gRPC, `https://` uses SSL and `http://` is plaintext.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExporterEndpoint { get; set; }
+        public string? ExporterEndpoint { get => _explicitNullValueExporterEndpoint; set { _explicitNullValueExporterEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterEndpoint"); else _explicitNullProperties?.Remove("exporterEndpoint"); } }
+        private string? _explicitNullValueExporterEndpoint = default!;
 #nullable restore
 #else
-        public string ExporterEndpoint { get; set; }
+        public string ExporterEndpoint { get => _explicitNullValueExporterEndpoint; set { _explicitNullValueExporterEndpoint = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterEndpoint"); else _explicitNullProperties?.Remove("exporterEndpoint"); } }
+        private string _explicitNullValueExporterEndpoint = default!;
 #endif
         /// <summary>Additional headers sent to the OTLP collector, as a single string of comma-separated `key=value` pairs (e.g. `authorization=Bearer my-token,x-tenant-id=acme`). Whitespace around each key and value is trimmed; a value may contain spaces but not commas. Use an empty string when unused.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExporterHeaders { get; set; }
+        public string? ExporterHeaders { get => _explicitNullValueExporterHeaders; set { _explicitNullValueExporterHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterHeaders"); else _explicitNullProperties?.Remove("exporterHeaders"); } }
+        private string? _explicitNullValueExporterHeaders = default!;
 #nullable restore
 #else
-        public string ExporterHeaders { get; set; }
+        public string ExporterHeaders { get => _explicitNullValueExporterHeaders; set { _explicitNullValueExporterHeaders = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterHeaders"); else _explicitNullProperties?.Remove("exporterHeaders"); } }
+        private string _explicitNullValueExporterHeaders = default!;
 #endif
         /// <summary>The wire protocol used to export spans. Collectors conventionally serve OTLP/HTTP on port 4318 and OTLP/gRPC on port 4317. The endpoint scheme (`http://` or `https://`) controls TLS for both protocols. Optional: a write that omits it selects `http/protobuf`, but an instance that sets this field to another value with an environment variable rejects that write with 409.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGeneratedExporterProtocol? ExporterProtocol { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGeneratedExporterProtocol? ExporterProtocol { get => _explicitNullValueExporterProtocol; set { _explicitNullValueExporterProtocol = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterProtocol"); else _explicitNullProperties?.Remove("exporterProtocol"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGeneratedExporterProtocol? _explicitNullValueExporterProtocol = default!;
         /// <summary>The `service.name` resource attribute reported on every span.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExporterServiceName { get; set; }
+        public string? ExporterServiceName { get => _explicitNullValueExporterServiceName; set { _explicitNullValueExporterServiceName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterServiceName"); else _explicitNullProperties?.Remove("exporterServiceName"); } }
+        private string? _explicitNullValueExporterServiceName = default!;
 #nullable restore
 #else
-        public string ExporterServiceName { get; set; }
+        public string ExporterServiceName { get => _explicitNullValueExporterServiceName; set { _explicitNullValueExporterServiceName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterServiceName"); else _explicitNullProperties?.Remove("exporterServiceName"); } }
+        private string _explicitNullValueExporterServiceName = default!;
 #endif
         /// <summary>The path appended to the endpoint for the OTLP traces signal. Ignored when `exporterProtocol` is `grpc`, which takes no URL path.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExporterTracingPath { get; set; }
+        public string? ExporterTracingPath { get => _explicitNullValueExporterTracingPath; set { _explicitNullValueExporterTracingPath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterTracingPath"); else _explicitNullProperties?.Remove("exporterTracingPath"); } }
+        private string? _explicitNullValueExporterTracingPath = default!;
 #nullable restore
 #else
-        public string ExporterTracingPath { get; set; }
+        public string ExporterTracingPath { get => _explicitNullValueExporterTracingPath; set { _explicitNullValueExporterTracingPath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exporterTracingPath"); else _explicitNullProperties?.Remove("exporterTracingPath"); } }
+        private string _explicitNullValueExporterTracingPath = default!;
 #endif
         /// <summary>Whether to emit a span for each node execution in addition to the workflow span.</summary>
-        public bool? IncludeNodeSpans { get; set; }
+        public bool? IncludeNodeSpans { get => _explicitNullValueIncludeNodeSpans; set { _explicitNullValueIncludeNodeSpans = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("includeNodeSpans"); else _explicitNullProperties?.Remove("includeNodeSpans"); } }
+        private bool? _explicitNullValueIncludeNodeSpans = default!;
         /// <summary>Whether to inject trace context headers into outbound HTTP requests made by nodes.</summary>
-        public bool? InjectOutbound { get; set; }
+        public bool? InjectOutbound { get => _explicitNullValueInjectOutbound; set { _explicitNullValueInjectOutbound = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("injectOutbound"); else _explicitNullProperties?.Remove("injectOutbound"); } }
+        private bool? _explicitNullValueInjectOutbound = default!;
         /// <summary>When true, only production executions of published (active) workflows are traced, not manual/test runs.</summary>
-        public bool? ProductionExecutionsOnly { get; set; }
+        public bool? ProductionExecutionsOnly { get => _explicitNullValueProductionExecutionsOnly; set { _explicitNullValueProductionExecutionsOnly = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("productionExecutionsOnly"); else _explicitNullProperties?.Remove("productionExecutionsOnly"); } }
+        private bool? _explicitNullValueProductionExecutionsOnly = default!;
         /// <summary>How long, in milliseconds, to wait when checking the collector is reachable. Also used as the timeout for the test-trace endpoint.</summary>
-        public int? StartupConnectivityTimeoutMs { get; set; }
+        public int? StartupConnectivityTimeoutMs { get => _explicitNullValueStartupConnectivityTimeoutMs; set { _explicitNullValueStartupConnectivityTimeoutMs = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startupConnectivityTimeoutMs"); else _explicitNullProperties?.Remove("startupConnectivityTimeoutMs"); } }
+        private int? _explicitNullValueStartupConnectivityTimeoutMs = default!;
         /// <summary>The ratio of traces to sample, between 0 (none) and 1 (all).</summary>
-        public double? TracesSampleRate { get; set; }
+        public double? TracesSampleRate { get => _explicitNullValueTracesSampleRate; set { _explicitNullValueTracesSampleRate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tracesSampleRate"); else _explicitNullProperties?.Remove("tracesSampleRate"); } }
+        private double? _explicitNullValueTracesSampleRate = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -71,7 +108,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -115,7 +152,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteBoolValue("injectOutbound", InjectOutbound);
             writer.WriteBoolValue("productionExecutionsOnly", ProductionExecutionsOnly);
             writer.WriteIntValue("startupConnectivityTimeoutMs", StartupConnectivityTimeoutMs);
-            writer.WriteDoubleValue("tracesSampleRate", TracesSampleRate);
+            writer.WriteDoubleValue("tracesSampleRate", TracesSampleRate);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

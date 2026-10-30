@@ -12,114 +12,174 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class UpdateLdapConfigurationRequest : IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("allowUnauthorizedCerts") is { } nullNodeAllowUnauthorizedCerts && nullNodeAllowUnauthorizedCerts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowUnauthorizedCerts = null;
+            if (parseNode.GetChildNode("baseDn") is { } nullNodeBaseDn && nullNodeBaseDn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BaseDn = null;
+            if (parseNode.GetChildNode("bindingAdminDn") is { } nullNodeBindingAdminDn && nullNodeBindingAdminDn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BindingAdminDn = null;
+            if (parseNode.GetChildNode("bindingAdminPassword") is { } nullNodeBindingAdminPassword && nullNodeBindingAdminPassword.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BindingAdminPassword = null;
+            if (parseNode.GetChildNode("connectionPort") is { } nullNodeConnectionPort && nullNodeConnectionPort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectionPort = null;
+            if (parseNode.GetChildNode("connectionSecurity") is { } nullNodeConnectionSecurity && nullNodeConnectionSecurity.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectionSecurity = null;
+            if (parseNode.GetChildNode("connectionUrl") is { } nullNodeConnectionUrl && nullNodeConnectionUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConnectionUrl = null;
+            if (parseNode.GetChildNode("emailAttribute") is { } nullNodeEmailAttribute && nullNodeEmailAttribute.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EmailAttribute = null;
+            if (parseNode.GetChildNode("enforceEmailUniqueness") is { } nullNodeEnforceEmailUniqueness && nullNodeEnforceEmailUniqueness.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) EnforceEmailUniqueness = null;
+            if (parseNode.GetChildNode("firstNameAttribute") is { } nullNodeFirstNameAttribute && nullNodeFirstNameAttribute.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FirstNameAttribute = null;
+            if (parseNode.GetChildNode("lastNameAttribute") is { } nullNodeLastNameAttribute && nullNodeLastNameAttribute.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LastNameAttribute = null;
+            if (parseNode.GetChildNode("ldapIdAttribute") is { } nullNodeLdapIdAttribute && nullNodeLdapIdAttribute.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LdapIdAttribute = null;
+            if (parseNode.GetChildNode("linkExistingAccountsByEmail") is { } nullNodeLinkExistingAccountsByEmail && nullNodeLinkExistingAccountsByEmail.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LinkExistingAccountsByEmail = null;
+            if (parseNode.GetChildNode("loginEnabled") is { } nullNodeLoginEnabled && nullNodeLoginEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoginEnabled = null;
+            if (parseNode.GetChildNode("loginIdAttribute") is { } nullNodeLoginIdAttribute && nullNodeLoginIdAttribute.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoginIdAttribute = null;
+            if (parseNode.GetChildNode("loginLabel") is { } nullNodeLoginLabel && nullNodeLoginLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoginLabel = null;
+            if (parseNode.GetChildNode("searchPageSize") is { } nullNodeSearchPageSize && nullNodeSearchPageSize.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SearchPageSize = null;
+            if (parseNode.GetChildNode("searchTimeout") is { } nullNodeSearchTimeout && nullNodeSearchTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SearchTimeout = null;
+            if (parseNode.GetChildNode("synchronizationEnabled") is { } nullNodeSynchronizationEnabled && nullNodeSynchronizationEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SynchronizationEnabled = null;
+            if (parseNode.GetChildNode("synchronizationInterval") is { } nullNodeSynchronizationInterval && nullNodeSynchronizationInterval.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SynchronizationInterval = null;
+            if (parseNode.GetChildNode("userFilter") is { } nullNodeUserFilter && nullNodeUserFilter.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UserFilter = null;
+        }
+
         /// <summary>Whether to allow unauthorized (self-signed) certificates.</summary>
-        public bool? AllowUnauthorizedCerts { get; set; }
+        public bool? AllowUnauthorizedCerts { get => _explicitNullValueAllowUnauthorizedCerts; set { _explicitNullValueAllowUnauthorizedCerts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowUnauthorizedCerts"); else _explicitNullProperties?.Remove("allowUnauthorizedCerts"); } }
+        private bool? _explicitNullValueAllowUnauthorizedCerts = default!;
         /// <summary>Base DN for LDAP search queries.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BaseDn { get; set; }
+        public string? BaseDn { get => _explicitNullValueBaseDn; set { _explicitNullValueBaseDn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("baseDn"); else _explicitNullProperties?.Remove("baseDn"); } }
+        private string? _explicitNullValueBaseDn = default!;
 #nullable restore
 #else
-        public string BaseDn { get; set; }
+        public string BaseDn { get => _explicitNullValueBaseDn; set { _explicitNullValueBaseDn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("baseDn"); else _explicitNullProperties?.Remove("baseDn"); } }
+        private string _explicitNullValueBaseDn = default!;
 #endif
         /// <summary>DN of the LDAP admin user for binding.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BindingAdminDn { get; set; }
+        public string? BindingAdminDn { get => _explicitNullValueBindingAdminDn; set { _explicitNullValueBindingAdminDn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bindingAdminDn"); else _explicitNullProperties?.Remove("bindingAdminDn"); } }
+        private string? _explicitNullValueBindingAdminDn = default!;
 #nullable restore
 #else
-        public string BindingAdminDn { get; set; }
+        public string BindingAdminDn { get => _explicitNullValueBindingAdminDn; set { _explicitNullValueBindingAdminDn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bindingAdminDn"); else _explicitNullProperties?.Remove("bindingAdminDn"); } }
+        private string _explicitNullValueBindingAdminDn = default!;
 #endif
         /// <summary>Password for the LDAP admin user. To keep an existing password unchanged, submit the blanking placeholder from a prior GET response. Use an empty string to clear the password.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BindingAdminPassword { get; set; }
+        public string? BindingAdminPassword { get => _explicitNullValueBindingAdminPassword; set { _explicitNullValueBindingAdminPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bindingAdminPassword"); else _explicitNullProperties?.Remove("bindingAdminPassword"); } }
+        private string? _explicitNullValueBindingAdminPassword = default!;
 #nullable restore
 #else
-        public string BindingAdminPassword { get; set; }
+        public string BindingAdminPassword { get => _explicitNullValueBindingAdminPassword; set { _explicitNullValueBindingAdminPassword = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bindingAdminPassword"); else _explicitNullProperties?.Remove("bindingAdminPassword"); } }
+        private string _explicitNullValueBindingAdminPassword = default!;
 #endif
         /// <summary>LDAP server port.</summary>
-        public int? ConnectionPort { get; set; }
+        public int? ConnectionPort { get => _explicitNullValueConnectionPort; set { _explicitNullValueConnectionPort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionPort"); else _explicitNullProperties?.Remove("connectionPort"); } }
+        private int? _explicitNullValueConnectionPort = default!;
         /// <summary>TLS/SSL security mode for the LDAP connection.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequestConnectionSecurity? ConnectionSecurity { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequestConnectionSecurity? ConnectionSecurity { get => _explicitNullValueConnectionSecurity; set { _explicitNullValueConnectionSecurity = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionSecurity"); else _explicitNullProperties?.Remove("connectionSecurity"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequestConnectionSecurity? _explicitNullValueConnectionSecurity = default!;
         /// <summary>LDAP server URL.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConnectionUrl { get; set; }
+        public string? ConnectionUrl { get => _explicitNullValueConnectionUrl; set { _explicitNullValueConnectionUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionUrl"); else _explicitNullProperties?.Remove("connectionUrl"); } }
+        private string? _explicitNullValueConnectionUrl = default!;
 #nullable restore
 #else
-        public string ConnectionUrl { get; set; }
+        public string ConnectionUrl { get => _explicitNullValueConnectionUrl; set { _explicitNullValueConnectionUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("connectionUrl"); else _explicitNullProperties?.Remove("connectionUrl"); } }
+        private string _explicitNullValueConnectionUrl = default!;
 #endif
         /// <summary>LDAP attribute mapped to the user&apos;s email.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? EmailAttribute { get; set; }
+        public string? EmailAttribute { get => _explicitNullValueEmailAttribute; set { _explicitNullValueEmailAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emailAttribute"); else _explicitNullProperties?.Remove("emailAttribute"); } }
+        private string? _explicitNullValueEmailAttribute = default!;
 #nullable restore
 #else
-        public string EmailAttribute { get; set; }
+        public string EmailAttribute { get => _explicitNullValueEmailAttribute; set { _explicitNullValueEmailAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("emailAttribute"); else _explicitNullProperties?.Remove("emailAttribute"); } }
+        private string _explicitNullValueEmailAttribute = default!;
 #endif
         /// <summary>Whether to enforce that email addresses are unique across LDAP users. When true, if two users have the same email, only the first will be imported.</summary>
-        public bool? EnforceEmailUniqueness { get; set; }
+        public bool? EnforceEmailUniqueness { get => _explicitNullValueEnforceEmailUniqueness; set { _explicitNullValueEnforceEmailUniqueness = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enforceEmailUniqueness"); else _explicitNullProperties?.Remove("enforceEmailUniqueness"); } }
+        private bool? _explicitNullValueEnforceEmailUniqueness = default!;
         /// <summary>LDAP attribute mapped to the user&apos;s first name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FirstNameAttribute { get; set; }
+        public string? FirstNameAttribute { get => _explicitNullValueFirstNameAttribute; set { _explicitNullValueFirstNameAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("firstNameAttribute"); else _explicitNullProperties?.Remove("firstNameAttribute"); } }
+        private string? _explicitNullValueFirstNameAttribute = default!;
 #nullable restore
 #else
-        public string FirstNameAttribute { get; set; }
+        public string FirstNameAttribute { get => _explicitNullValueFirstNameAttribute; set { _explicitNullValueFirstNameAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("firstNameAttribute"); else _explicitNullProperties?.Remove("firstNameAttribute"); } }
+        private string _explicitNullValueFirstNameAttribute = default!;
 #endif
         /// <summary>LDAP attribute mapped to the user&apos;s last name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LastNameAttribute { get; set; }
+        public string? LastNameAttribute { get => _explicitNullValueLastNameAttribute; set { _explicitNullValueLastNameAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastNameAttribute"); else _explicitNullProperties?.Remove("lastNameAttribute"); } }
+        private string? _explicitNullValueLastNameAttribute = default!;
 #nullable restore
 #else
-        public string LastNameAttribute { get; set; }
+        public string LastNameAttribute { get => _explicitNullValueLastNameAttribute; set { _explicitNullValueLastNameAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("lastNameAttribute"); else _explicitNullProperties?.Remove("lastNameAttribute"); } }
+        private string _explicitNullValueLastNameAttribute = default!;
 #endif
         /// <summary>LDAP attribute that uniquely identifies a user.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LdapIdAttribute { get; set; }
+        public string? LdapIdAttribute { get => _explicitNullValueLdapIdAttribute; set { _explicitNullValueLdapIdAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ldapIdAttribute"); else _explicitNullProperties?.Remove("ldapIdAttribute"); } }
+        private string? _explicitNullValueLdapIdAttribute = default!;
 #nullable restore
 #else
-        public string LdapIdAttribute { get; set; }
+        public string LdapIdAttribute { get => _explicitNullValueLdapIdAttribute; set { _explicitNullValueLdapIdAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("ldapIdAttribute"); else _explicitNullProperties?.Remove("ldapIdAttribute"); } }
+        private string _explicitNullValueLdapIdAttribute = default!;
 #endif
         /// <summary>Whether an LDAP user may be linked to an existing n8n account that has the same email. When false, login and synchronization skip such users. Optional on PUT; the stored value is kept when omitted.</summary>
-        public bool? LinkExistingAccountsByEmail { get; set; }
+        public bool? LinkExistingAccountsByEmail { get => _explicitNullValueLinkExistingAccountsByEmail; set { _explicitNullValueLinkExistingAccountsByEmail = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("linkExistingAccountsByEmail"); else _explicitNullProperties?.Remove("linkExistingAccountsByEmail"); } }
+        private bool? _explicitNullValueLinkExistingAccountsByEmail = default!;
         /// <summary>Whether LDAP login is enabled. Setting this to false is destructive — it deletes all stored LDAP user identities and disables synchronization.</summary>
-        public bool? LoginEnabled { get; set; }
+        public bool? LoginEnabled { get => _explicitNullValueLoginEnabled; set { _explicitNullValueLoginEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginEnabled"); else _explicitNullProperties?.Remove("loginEnabled"); } }
+        private bool? _explicitNullValueLoginEnabled = default!;
         /// <summary>LDAP attribute used for login (usually the same as emailAttribute).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LoginIdAttribute { get; set; }
+        public string? LoginIdAttribute { get => _explicitNullValueLoginIdAttribute; set { _explicitNullValueLoginIdAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginIdAttribute"); else _explicitNullProperties?.Remove("loginIdAttribute"); } }
+        private string? _explicitNullValueLoginIdAttribute = default!;
 #nullable restore
 #else
-        public string LoginIdAttribute { get; set; }
+        public string LoginIdAttribute { get => _explicitNullValueLoginIdAttribute; set { _explicitNullValueLoginIdAttribute = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginIdAttribute"); else _explicitNullProperties?.Remove("loginIdAttribute"); } }
+        private string _explicitNullValueLoginIdAttribute = default!;
 #endif
         /// <summary>Label shown on the LDAP login button.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LoginLabel { get; set; }
+        public string? LoginLabel { get => _explicitNullValueLoginLabel; set { _explicitNullValueLoginLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginLabel"); else _explicitNullProperties?.Remove("loginLabel"); } }
+        private string? _explicitNullValueLoginLabel = default!;
 #nullable restore
 #else
-        public string LoginLabel { get; set; }
+        public string LoginLabel { get => _explicitNullValueLoginLabel; set { _explicitNullValueLoginLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loginLabel"); else _explicitNullProperties?.Remove("loginLabel"); } }
+        private string _explicitNullValueLoginLabel = default!;
 #endif
         /// <summary>Number of LDAP entries to fetch per search page.</summary>
-        public int? SearchPageSize { get; set; }
+        public int? SearchPageSize { get => _explicitNullValueSearchPageSize; set { _explicitNullValueSearchPageSize = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("searchPageSize"); else _explicitNullProperties?.Remove("searchPageSize"); } }
+        private int? _explicitNullValueSearchPageSize = default!;
         /// <summary>LDAP search timeout in seconds.</summary>
-        public int? SearchTimeout { get; set; }
+        public int? SearchTimeout { get => _explicitNullValueSearchTimeout; set { _explicitNullValueSearchTimeout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("searchTimeout"); else _explicitNullProperties?.Remove("searchTimeout"); } }
+        private int? _explicitNullValueSearchTimeout = default!;
         /// <summary>Whether automatic LDAP synchronization is enabled.</summary>
-        public bool? SynchronizationEnabled { get; set; }
+        public bool? SynchronizationEnabled { get => _explicitNullValueSynchronizationEnabled; set { _explicitNullValueSynchronizationEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("synchronizationEnabled"); else _explicitNullProperties?.Remove("synchronizationEnabled"); } }
+        private bool? _explicitNullValueSynchronizationEnabled = default!;
         /// <summary>Interval in minutes between automatic synchronizations. Ignored if synchronizationEnabled is false.</summary>
-        public int? SynchronizationInterval { get; set; }
+        public int? SynchronizationInterval { get => _explicitNullValueSynchronizationInterval; set { _explicitNullValueSynchronizationInterval = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("synchronizationInterval"); else _explicitNullProperties?.Remove("synchronizationInterval"); } }
+        private int? _explicitNullValueSynchronizationInterval = default!;
         /// <summary>Additional LDAP filter to apply when searching for users. Use an empty string for no additional filter.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? UserFilter { get; set; }
+        public string? UserFilter { get => _explicitNullValueUserFilter; set { _explicitNullValueUserFilter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userFilter"); else _explicitNullProperties?.Remove("userFilter"); } }
+        private string? _explicitNullValueUserFilter = default!;
 #nullable restore
 #else
-        public string UserFilter { get; set; }
+        public string UserFilter { get => _explicitNullValueUserFilter; set { _explicitNullValueUserFilter = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("userFilter"); else _explicitNullProperties?.Remove("userFilter"); } }
+        private string _explicitNullValueUserFilter = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -129,7 +189,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.UpdateLdapConfigurationRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -189,7 +249,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("searchTimeout", SearchTimeout);
             writer.WriteBoolValue("synchronizationEnabled", SynchronizationEnabled);
             writer.WriteIntValue("synchronizationInterval", SynchronizationInterval);
-            writer.WriteStringValue("userFilter", UserFilter);
+            writer.WriteStringValue("userFilter", UserFilter);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

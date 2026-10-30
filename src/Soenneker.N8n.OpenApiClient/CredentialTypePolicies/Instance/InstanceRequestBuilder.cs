@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Instance
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.Sets the instance default action and replaces the rules of its single policy document, creating both on first write. `version` must equal the version last read; a stale value is rejected with 409. Rule ids must be unique within the list.
@@ -69,7 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Instance
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.Returns the composed instance-scope policy: its default action and the rules of every attached policy document in evaluation order. An instance that was never configured reports `scopeId: null`, no rules, `defaultAction: allow`, and `version: 0`.

@@ -11,17 +11,29 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PromotePackageRequest : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("commitMessage") is { } nullNodeCommitMessage && nullNodeCommitMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CommitMessage = null;
+            if (parseNode.GetChildNode("force") is { } nullNodeForce && nullNodeForce.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Force = null;
+        }
+
         /// <summary>Message for the promotion commit. If you omit it, the commit uses a generated message.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CommitMessage { get; set; }
+        public string? CommitMessage { get => _explicitNullValueCommitMessage; set { _explicitNullValueCommitMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commitMessage"); else _explicitNullProperties?.Remove("commitMessage"); } }
+        private string? _explicitNullValueCommitMessage = default!;
 #nullable restore
 #else
-        public string CommitMessage { get; set; }
+        public string CommitMessage { get => _explicitNullValueCommitMessage; set { _explicitNullValueCommitMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commitMessage"); else _explicitNullProperties?.Remove("commitMessage"); } }
+        private string _explicitNullValueCommitMessage = default!;
 #endif
         /// <summary>The force property</summary>
-        public bool? Force { get; set; }
+        public bool? Force { get => _explicitNullValueForce; set { _explicitNullValueForce = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("force"); else _explicitNullProperties?.Remove("force"); } }
+        private bool? _explicitNullValueForce = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -30,7 +42,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PromotePackageRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PromotePackageRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PromotePackageRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,7 +64,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("commitMessage", CommitMessage);
-            writer.WriteBoolValue("force", Force);
+            writer.WriteBoolValue("force", Force);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

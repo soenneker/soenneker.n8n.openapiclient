@@ -11,36 +11,56 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class PolicyEffectiveWriteResultPublicDtoGenerated : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("defaultAction") is { } nullNodeDefaultAction && nullNodeDefaultAction.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DefaultAction = null;
+            if (parseNode.GetChildNode("rules") is { } nullNodeRules && nullNodeRules.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Rules = null;
+            if (parseNode.GetChildNode("scopeId") is { } nullNodeScopeId && nullNodeScopeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ScopeId = null;
+            if (parseNode.GetChildNode("version") is { } nullNodeVersion && nullNodeVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Version = null;
+            if (parseNode.GetChildNode("warnings") is { } nullNodeWarnings && nullNodeWarnings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Warnings = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The defaultAction property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedDefaultAction? DefaultAction { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedDefaultAction? DefaultAction { get => _explicitNullValueDefaultAction; set { _explicitNullValueDefaultAction = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("defaultAction"); else _explicitNullProperties?.Remove("defaultAction"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedDefaultAction? _explicitNullValueDefaultAction = default!;
         /// <summary>The rules property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedRulesItem>? Rules { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedRulesItem>? Rules { get => _explicitNullValueRules; set { _explicitNullValueRules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rules"); else _explicitNullProperties?.Remove("rules"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedRulesItem>? _explicitNullValueRules = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedRulesItem> Rules { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedRulesItem> Rules { get => _explicitNullValueRules; set { _explicitNullValueRules = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("rules"); else _explicitNullProperties?.Remove("rules"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedRulesItem> _explicitNullValueRules = default!;
 #endif
         /// <summary>The scopeId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ScopeId { get; set; }
+        public string? ScopeId { get => _explicitNullValueScopeId; set { _explicitNullValueScopeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scopeId"); else _explicitNullProperties?.Remove("scopeId"); } }
+        private string? _explicitNullValueScopeId = default!;
 #nullable restore
 #else
-        public string ScopeId { get; set; }
+        public string ScopeId { get => _explicitNullValueScopeId; set { _explicitNullValueScopeId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scopeId"); else _explicitNullProperties?.Remove("scopeId"); } }
+        private string _explicitNullValueScopeId = default!;
 #endif
         /// <summary>The version property</summary>
-        public int? Version { get; set; }
+        public int? Version { get => _explicitNullValueVersion; set { _explicitNullValueVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("version"); else _explicitNullProperties?.Remove("version"); } }
+        private int? _explicitNullValueVersion = default!;
         /// <summary>The warnings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem>? Warnings { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem>? Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem>? _explicitNullValueWarnings = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem> Warnings { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem> Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem> _explicitNullValueWarnings = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGenerated"/> and sets the default values.
@@ -57,7 +77,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGenerated();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -86,6 +106,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("scopeId", ScopeId);
             writer.WriteIntValue("version", Version);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem>("warnings", Warnings);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

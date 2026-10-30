@@ -11,20 +11,37 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class StopExecution200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("finished") is { } nullNodeFinished && nullNodeFinished.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Finished = null;
+            if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
+            if (parseNode.GetChildNode("startedAt") is { } nullNodeStartedAt && nullNodeStartedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartedAt = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("stoppedAt") is { } nullNodeStoppedAt && nullNodeStoppedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StoppedAt = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether the execution ran to completion. Use `status` instead.</summary>
         [Obsolete("")]
-        public bool? Finished { get; set; }
+        public bool? Finished { get => _explicitNullValueFinished; set { _explicitNullValueFinished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finished"); else _explicitNullProperties?.Remove("finished"); } }
+        private bool? _explicitNullValueFinished = default!;
         /// <summary>The mode property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.StopExecution200ResponseMode? Mode { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.StopExecution200ResponseMode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.StopExecution200ResponseMode? _explicitNullValueMode = default!;
         /// <summary>The time at which the execution started.</summary>
-        public DateTimeOffset? StartedAt { get; set; }
+        public DateTimeOffset? StartedAt { get => _explicitNullValueStartedAt; set { _explicitNullValueStartedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startedAt"); else _explicitNullProperties?.Remove("startedAt"); } }
+        private DateTimeOffset? _explicitNullValueStartedAt = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.StopExecution200ResponseStatus? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.StopExecution200ResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.StopExecution200ResponseStatus? _explicitNullValueStatus = default!;
         /// <summary>The time at which the execution stopped. Absent when no stop time was recorded.</summary>
-        public DateTimeOffset? StoppedAt { get; set; }
+        public DateTimeOffset? StoppedAt { get => _explicitNullValueStoppedAt; set { _explicitNullValueStoppedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stoppedAt"); else _explicitNullProperties?.Remove("stoppedAt"); } }
+        private DateTimeOffset? _explicitNullValueStoppedAt = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.StopExecution200Response"/> and sets the default values.
         /// </summary>
@@ -40,7 +57,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.StopExecution200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.StopExecution200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.StopExecution200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,6 +86,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteDateTimeOffsetValue("startedAt", StartedAt);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.StopExecution200ResponseStatus>("status", Status);
             writer.WriteDateTimeOffsetValue("stoppedAt", StoppedAt);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

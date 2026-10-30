@@ -48,7 +48,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies.Item
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            await RequestAdapter.SendNoContentAsync(requestInfo, default, cancellationToken).ConfigureAwait(false);
+            await RequestAdapter.SendNoContentAsync(requestInfo, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.
@@ -66,7 +66,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialTypePolicyDocument200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetCredentialTypePolicyDocument200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetCredentialTypePolicyDocument200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetCredentialTypePolicyDocument200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.Replaces the document&apos;s whole rule list. `version` must equal the version last read; a stale value is rejected with 409. Every scope the document is attached to has its version bumped. A `delegate` rule is rejected when the document is attached to a project scope.
@@ -86,7 +86,7 @@ namespace Soenneker.N8n.OpenApiClient.CredentialTypePolicies.Policies.Item
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyDocumentWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.Deletes a policy document. A document that is still attached to a scope is rejected with 409; detach it first.

@@ -11,30 +11,46 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class UpdatePromotionProviderRequest : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("auth") is { } nullNodeAuth && nullNodeAuth.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Auth = null;
+            if (parseNode.GetChildNode("config") is { } nullNodeConfig && nullNodeConfig.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Config = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+        }
+
         /// <summary>The auth property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuth? Auth { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuth? Auth { get => _explicitNullValueAuth; set { _explicitNullValueAuth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auth"); else _explicitNullProperties?.Remove("auth"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuth? _explicitNullValueAuth = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuth Auth { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuth Auth { get => _explicitNullValueAuth; set { _explicitNullValueAuth = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("auth"); else _explicitNullProperties?.Remove("auth"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuth _explicitNullValueAuth = default!;
 #endif
         /// <summary>The config property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestConfig? Config { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestConfig? Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestConfig? _explicitNullValueConfig = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestConfig Config { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestConfig Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestConfig _explicitNullValueConfig = default!;
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -44,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,7 +84,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuth>("auth", Auth);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestConfig>("config", Config);
-            writer.WriteStringValue("name", Name);
+            writer.WriteStringValue("name", Name);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

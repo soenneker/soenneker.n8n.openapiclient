@@ -11,115 +11,178 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GetExecution200Response : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("binaryDataSizeBytes") is { } nullNodeBinaryDataSizeBytes && nullNodeBinaryDataSizeBytes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BinaryDataSizeBytes = null;
+            if (parseNode.GetChildNode("createdAt") is { } nullNodeCreatedAt && nullNodeCreatedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreatedAt = null;
+            if (parseNode.GetChildNode("customData") is { } nullNodeCustomData && nullNodeCustomData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CustomData = null;
+            if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
+            if (parseNode.GetChildNode("dataTooLargeToDisplay") is { } nullNodeDataTooLargeToDisplay && nullNodeDataTooLargeToDisplay.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DataTooLargeToDisplay = null;
+            if (parseNode.GetChildNode("deduplicationKey") is { } nullNodeDeduplicationKey && nullNodeDeduplicationKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeduplicationKey = null;
+            if (parseNode.GetChildNode("deletedAt") is { } nullNodeDeletedAt && nullNodeDeletedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DeletedAt = null;
+            if (parseNode.GetChildNode("finished") is { } nullNodeFinished && nullNodeFinished.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Finished = null;
+            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("jsonSizeBytes") is { } nullNodeJsonSizeBytes && nullNodeJsonSizeBytes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) JsonSizeBytes = null;
+            if (parseNode.GetChildNode("mode") is { } nullNodeMode && nullNodeMode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Mode = null;
+            if (parseNode.GetChildNode("retryOf") is { } nullNodeRetryOf && nullNodeRetryOf.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RetryOf = null;
+            if (parseNode.GetChildNode("retrySuccessId") is { } nullNodeRetrySuccessId && nullNodeRetrySuccessId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RetrySuccessId = null;
+            if (parseNode.GetChildNode("startedAt") is { } nullNodeStartedAt && nullNodeStartedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StartedAt = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+            if (parseNode.GetChildNode("stoppedAt") is { } nullNodeStoppedAt && nullNodeStoppedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StoppedAt = null;
+            if (parseNode.GetChildNode("storedAt") is { } nullNodeStoredAt && nullNodeStoredAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) StoredAt = null;
+            if (parseNode.GetChildNode("tracingContext") is { } nullNodeTracingContext && nullNodeTracingContext.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TracingContext = null;
+            if (parseNode.GetChildNode("usedPrivateCredentials") is { } nullNodeUsedPrivateCredentials && nullNodeUsedPrivateCredentials.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsedPrivateCredentials = null;
+            if (parseNode.GetChildNode("waitTill") is { } nullNodeWaitTill && nullNodeWaitTill.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WaitTill = null;
+            if (parseNode.GetChildNode("workflowData") is { } nullNodeWorkflowData && nullNodeWorkflowData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowData = null;
+            if (parseNode.GetChildNode("workflowId") is { } nullNodeWorkflowId && nullNodeWorkflowId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowId = null;
+            if (parseNode.GetChildNode("workflowVersionId") is { } nullNodeWorkflowVersionId && nullNodeWorkflowVersionId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowVersionId = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Size of the stored binary data in bytes. 0 means unknown.</summary>
-        public double? BinaryDataSizeBytes { get; set; }
+        public double? BinaryDataSizeBytes { get => _explicitNullValueBinaryDataSizeBytes; set { _explicitNullValueBinaryDataSizeBytes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("binaryDataSizeBytes"); else _explicitNullProperties?.Remove("binaryDataSizeBytes"); } }
+        private double? _explicitNullValueBinaryDataSizeBytes = default!;
         /// <summary>The createdAt property</summary>
-        public DateTimeOffset? CreatedAt { get; set; }
+        public DateTimeOffset? CreatedAt { get => _explicitNullValueCreatedAt; set { _explicitNullValueCreatedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("createdAt"); else _explicitNullProperties?.Remove("createdAt"); } }
+        private DateTimeOffset? _explicitNullValueCreatedAt = default!;
         /// <summary>Execution metadata set by the workflow. Only included when `includeData` is `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseCustomData? CustomData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseCustomData? CustomData { get => _explicitNullValueCustomData; set { _explicitNullValueCustomData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customData"); else _explicitNullProperties?.Remove("customData"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseCustomData? _explicitNullValueCustomData = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseCustomData CustomData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseCustomData CustomData { get => _explicitNullValueCustomData; set { _explicitNullValueCustomData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customData"); else _explicitNullProperties?.Remove("customData"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseCustomData _explicitNullValueCustomData = default!;
 #endif
         /// <summary>Detailed execution data. Only included when `includeData` is `true`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseData? Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseData? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseData? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseData Data { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseData Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseData _explicitNullValueData = default!;
 #endif
         /// <summary>Present and true when the execution data was larger than `EXECUTIONS_DATA_MAX_DISPLAY_SIZE`. `data` is then empty and `jsonSizeBytes` holds the real size. Use `ignoreDataSizeLimit` to read it anyway.</summary>
-        public bool? DataTooLargeToDisplay { get; set; }
+        public bool? DataTooLargeToDisplay { get => _explicitNullValueDataTooLargeToDisplay; set { _explicitNullValueDataTooLargeToDisplay = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dataTooLargeToDisplay"); else _explicitNullProperties?.Remove("dataTooLargeToDisplay"); } }
+        private bool? _explicitNullValueDataTooLargeToDisplay = default!;
         /// <summary>Key used to stop a duplicate execution from being created.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DeduplicationKey { get; set; }
+        public string? DeduplicationKey { get => _explicitNullValueDeduplicationKey; set { _explicitNullValueDeduplicationKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deduplicationKey"); else _explicitNullProperties?.Remove("deduplicationKey"); } }
+        private string? _explicitNullValueDeduplicationKey = default!;
 #nullable restore
 #else
-        public string DeduplicationKey { get; set; }
+        public string DeduplicationKey { get => _explicitNullValueDeduplicationKey; set { _explicitNullValueDeduplicationKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deduplicationKey"); else _explicitNullProperties?.Remove("deduplicationKey"); } }
+        private string _explicitNullValueDeduplicationKey = default!;
 #endif
         /// <summary>Always null. Soft-deleted executions are not returned.</summary>
-        public DateTimeOffset? DeletedAt { get; set; }
+        public DateTimeOffset? DeletedAt { get => _explicitNullValueDeletedAt; set { _explicitNullValueDeletedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("deletedAt"); else _explicitNullProperties?.Remove("deletedAt"); } }
+        private DateTimeOffset? _explicitNullValueDeletedAt = default!;
         /// <summary>Whether the execution ran to completion. Use `status` instead.</summary>
         [Obsolete("")]
-        public bool? Finished { get; set; }
+        public bool? Finished { get => _explicitNullValueFinished; set { _explicitNullValueFinished = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("finished"); else _explicitNullProperties?.Remove("finished"); } }
+        private bool? _explicitNullValueFinished = default!;
         /// <summary>The id property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Id { get; set; }
+        public string? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string? _explicitNullValueId = default!;
 #nullable restore
 #else
-        public string Id { get; set; }
+        public string Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        private string _explicitNullValueId = default!;
 #endif
         /// <summary>Size of the stored execution data in bytes. 0 means unknown.</summary>
-        public double? JsonSizeBytes { get; set; }
+        public double? JsonSizeBytes { get => _explicitNullValueJsonSizeBytes; set { _explicitNullValueJsonSizeBytes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("jsonSizeBytes"); else _explicitNullProperties?.Remove("jsonSizeBytes"); } }
+        private double? _explicitNullValueJsonSizeBytes = default!;
         /// <summary>The mode property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseMode? Mode { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseMode? Mode { get => _explicitNullValueMode; set { _explicitNullValueMode = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("mode"); else _explicitNullProperties?.Remove("mode"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseMode? _explicitNullValueMode = default!;
         /// <summary>ID of the execution this one is a retry of.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RetryOf { get; set; }
+        public string? RetryOf { get => _explicitNullValueRetryOf; set { _explicitNullValueRetryOf = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("retryOf"); else _explicitNullProperties?.Remove("retryOf"); } }
+        private string? _explicitNullValueRetryOf = default!;
 #nullable restore
 #else
-        public string RetryOf { get; set; }
+        public string RetryOf { get => _explicitNullValueRetryOf; set { _explicitNullValueRetryOf = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("retryOf"); else _explicitNullProperties?.Remove("retryOf"); } }
+        private string _explicitNullValueRetryOf = default!;
 #endif
         /// <summary>ID of the retry that succeeded, if this execution failed and a retry did not.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? RetrySuccessId { get; set; }
+        public string? RetrySuccessId { get => _explicitNullValueRetrySuccessId; set { _explicitNullValueRetrySuccessId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("retrySuccessId"); else _explicitNullProperties?.Remove("retrySuccessId"); } }
+        private string? _explicitNullValueRetrySuccessId = default!;
 #nullable restore
 #else
-        public string RetrySuccessId { get; set; }
+        public string RetrySuccessId { get => _explicitNullValueRetrySuccessId; set { _explicitNullValueRetrySuccessId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("retrySuccessId"); else _explicitNullProperties?.Remove("retrySuccessId"); } }
+        private string _explicitNullValueRetrySuccessId = default!;
 #endif
         /// <summary>Null until the execution leaves the queue and starts running.</summary>
-        public DateTimeOffset? StartedAt { get; set; }
+        public DateTimeOffset? StartedAt { get => _explicitNullValueStartedAt; set { _explicitNullValueStartedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("startedAt"); else _explicitNullProperties?.Remove("startedAt"); } }
+        private DateTimeOffset? _explicitNullValueStartedAt = default!;
         /// <summary>The status property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseStatus? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseStatus? _explicitNullValueStatus = default!;
         /// <summary>When the execution stopped. Null for the `new`, `running` and `unknown` statuses; a `waiting` execution has stopped its current run, so it has a value.</summary>
-        public DateTimeOffset? StoppedAt { get; set; }
+        public DateTimeOffset? StoppedAt { get => _explicitNullValueStoppedAt; set { _explicitNullValueStoppedAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stoppedAt"); else _explicitNullProperties?.Remove("stoppedAt"); } }
+        private DateTimeOffset? _explicitNullValueStoppedAt = default!;
         /// <summary>Where the execution data is stored.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseStoredAt? StoredAt { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseStoredAt? StoredAt { get => _explicitNullValueStoredAt; set { _explicitNullValueStoredAt = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("storedAt"); else _explicitNullProperties?.Remove("storedAt"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseStoredAt? _explicitNullValueStoredAt = default!;
         /// <summary>W3C trace context propagated with the execution.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseTracingContext? TracingContext { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseTracingContext? TracingContext { get => _explicitNullValueTracingContext; set { _explicitNullValueTracingContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tracingContext"); else _explicitNullProperties?.Remove("tracingContext"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseTracingContext? _explicitNullValueTracingContext = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseTracingContext TracingContext { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseTracingContext TracingContext { get => _explicitNullValueTracingContext; set { _explicitNullValueTracingContext = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tracingContext"); else _explicitNullProperties?.Remove("tracingContext"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseTracingContext _explicitNullValueTracingContext = default!;
 #endif
         /// <summary>Whether the execution used credentials that are not shared with the project.</summary>
-        public bool? UsedPrivateCredentials { get; set; }
+        public bool? UsedPrivateCredentials { get => _explicitNullValueUsedPrivateCredentials; set { _explicitNullValueUsedPrivateCredentials = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedPrivateCredentials"); else _explicitNullProperties?.Remove("usedPrivateCredentials"); } }
+        private bool? _explicitNullValueUsedPrivateCredentials = default!;
         /// <summary>The time at which a waiting execution resumes.</summary>
-        public DateTimeOffset? WaitTill { get; set; }
+        public DateTimeOffset? WaitTill { get => _explicitNullValueWaitTill; set { _explicitNullValueWaitTill = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("waitTill"); else _explicitNullProperties?.Remove("waitTill"); } }
+        private DateTimeOffset? _explicitNullValueWaitTill = default!;
         /// <summary>The workflow as it was saved when the execution ran. Only included when `includeData` is `true`. Older executions carry more fields than newer ones.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseWorkflowData? WorkflowData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseWorkflowData? WorkflowData { get => _explicitNullValueWorkflowData; set { _explicitNullValueWorkflowData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowData"); else _explicitNullProperties?.Remove("workflowData"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseWorkflowData? _explicitNullValueWorkflowData = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseWorkflowData WorkflowData { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseWorkflowData WorkflowData { get => _explicitNullValueWorkflowData; set { _explicitNullValueWorkflowData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowData"); else _explicitNullProperties?.Remove("workflowData"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseWorkflowData _explicitNullValueWorkflowData = default!;
 #endif
         /// <summary>The workflowId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WorkflowId { get; set; }
+        public string? WorkflowId { get => _explicitNullValueWorkflowId; set { _explicitNullValueWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowId"); else _explicitNullProperties?.Remove("workflowId"); } }
+        private string? _explicitNullValueWorkflowId = default!;
 #nullable restore
 #else
-        public string WorkflowId { get; set; }
+        public string WorkflowId { get => _explicitNullValueWorkflowId; set { _explicitNullValueWorkflowId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowId"); else _explicitNullProperties?.Remove("workflowId"); } }
+        private string _explicitNullValueWorkflowId = default!;
 #endif
         /// <summary>ID of the workflow version this execution ran.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? WorkflowVersionId { get; set; }
+        public string? WorkflowVersionId { get => _explicitNullValueWorkflowVersionId; set { _explicitNullValueWorkflowVersionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowVersionId"); else _explicitNullProperties?.Remove("workflowVersionId"); } }
+        private string? _explicitNullValueWorkflowVersionId = default!;
 #nullable restore
 #else
-        public string WorkflowVersionId { get; set; }
+        public string WorkflowVersionId { get => _explicitNullValueWorkflowVersionId; set { _explicitNullValueWorkflowVersionId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflowVersionId"); else _explicitNullProperties?.Remove("workflowVersionId"); } }
+        private string _explicitNullValueWorkflowVersionId = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetExecution200Response"/> and sets the default values.
@@ -136,7 +199,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GetExecution200Response CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GetExecution200Response();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetExecution200Response(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -201,6 +264,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetExecution200ResponseWorkflowData>("workflowData", WorkflowData);
             writer.WriteStringValue("workflowId", WorkflowId);
             writer.WriteStringValue("workflowVersionId", WorkflowVersionId);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

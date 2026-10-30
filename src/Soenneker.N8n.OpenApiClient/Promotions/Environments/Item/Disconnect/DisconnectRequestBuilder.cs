@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Disconnect
         {
 #endif
             var requestInfo = ToPostRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Removes the local checkout and keeps the environment, its credentials, and the trusted SSH host keys.

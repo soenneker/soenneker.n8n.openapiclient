@@ -11,21 +11,35 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxy : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("host") is { } nullNodeHost && nullNodeHost.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Host = null;
+            if (parseNode.GetChildNode("port") is { } nullNodePort && nullNodePort.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Port = null;
+            if (parseNode.GetChildNode("protocol") is { } nullNodeProtocol && nullNodeProtocol.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Protocol = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Proxy host, without protocol or port.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Host { get; set; }
+        public string? Host { get => _explicitNullValueHost; set { _explicitNullValueHost = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("host"); else _explicitNullProperties?.Remove("host"); } }
+        private string? _explicitNullValueHost = default!;
 #nullable restore
 #else
-        public string Host { get; set; }
+        public string Host { get => _explicitNullValueHost; set { _explicitNullValueHost = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("host"); else _explicitNullProperties?.Remove("host"); } }
+        private string _explicitNullValueHost = default!;
 #endif
         /// <summary>Proxy port.</summary>
-        public int? Port { get; set; }
+        public int? Port { get => _explicitNullValuePort; set { _explicitNullValuePort = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("port"); else _explicitNullProperties?.Remove("port"); } }
+        private int? _explicitNullValuePort = default!;
         /// <summary>Proxy protocol.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxyProtocol? Protocol { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxyProtocol? Protocol { get => _explicitNullValueProtocol; set { _explicitNullValueProtocol = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("protocol"); else _explicitNullProperties?.Remove("protocol"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxyProtocol? _explicitNullValueProtocol = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxy"/> and sets the default values.
         /// </summary>
@@ -41,7 +55,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxy CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxy();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxy(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,6 +80,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("host", Host);
             writer.WriteIntValue("port", Port);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxyProxyProtocol>("protocol", Protocol);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

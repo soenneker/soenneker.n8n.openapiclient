@@ -12,94 +12,137 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportBlockingIssueGeneratedOneOf18 : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("conflictingTableId") is { } nullNodeConflictingTableId && nullNodeConflictingTableId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConflictingTableId = null;
+            if (parseNode.GetChildNode("currentName") is { } nullNodeCurrentName && nullNodeCurrentName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CurrentName = null;
+            if (parseNode.GetChildNode("existingProjectId") is { } nullNodeExistingProjectId && nullNodeExistingProjectId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExistingProjectId = null;
+            if (parseNode.GetChildNode("extraColumns") is { } nullNodeExtraColumns && nullNodeExtraColumns.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExtraColumns = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("missingColumns") is { } nullNodeMissingColumns && nullNodeMissingColumns.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MissingColumns = null;
+            if (parseNode.GetChildNode("missingScope") is { } nullNodeMissingScope && nullNodeMissingScope.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MissingScope = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("overwriteChanges") is { } nullNodeOverwriteChanges && nullNodeOverwriteChanges.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OverwriteChanges = null;
+            if (parseNode.GetChildNode("sourceId") is { } nullNodeSourceId && nullNodeSourceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceId = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("typeMismatches") is { } nullNodeTypeMismatches && nullNodeTypeMismatches.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TypeMismatches = null;
+            if (parseNode.GetChildNode("usedBy") is { } nullNodeUsedBy && nullNodeUsedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsedBy = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>For `name-conflict`: the other table that holds or claims the name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ConflictingTableId { get; set; }
+        public string? ConflictingTableId { get => _explicitNullValueConflictingTableId; set { _explicitNullValueConflictingTableId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conflictingTableId"); else _explicitNullProperties?.Remove("conflictingTableId"); } }
+        private string? _explicitNullValueConflictingTableId = default!;
 #nullable restore
 #else
-        public string ConflictingTableId { get; set; }
+        public string ConflictingTableId { get => _explicitNullValueConflictingTableId; set { _explicitNullValueConflictingTableId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conflictingTableId"); else _explicitNullProperties?.Remove("conflictingTableId"); } }
+        private string _explicitNullValueConflictingTableId = default!;
 #endif
         /// <summary>For a rename `name-conflict`: the matched table&apos;s current name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? CurrentName { get; set; }
+        public string? CurrentName { get => _explicitNullValueCurrentName; set { _explicitNullValueCurrentName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentName"); else _explicitNullProperties?.Remove("currentName"); } }
+        private string? _explicitNullValueCurrentName = default!;
 #nullable restore
 #else
-        public string CurrentName { get; set; }
+        public string CurrentName { get => _explicitNullValueCurrentName; set { _explicitNullValueCurrentName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("currentName"); else _explicitNullProperties?.Remove("currentName"); } }
+        private string _explicitNullValueCurrentName = default!;
 #endif
         /// <summary>For `id-conflict`: the project owning the conflicting target table.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ExistingProjectId { get; set; }
+        public string? ExistingProjectId { get => _explicitNullValueExistingProjectId; set { _explicitNullValueExistingProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("existingProjectId"); else _explicitNullProperties?.Remove("existingProjectId"); } }
+        private string? _explicitNullValueExistingProjectId = default!;
 #nullable restore
 #else
-        public string ExistingProjectId { get; set; }
+        public string ExistingProjectId { get => _explicitNullValueExistingProjectId; set { _explicitNullValueExistingProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("existingProjectId"); else _explicitNullProperties?.Remove("existingProjectId"); } }
+        private string _explicitNullValueExistingProjectId = default!;
 #endif
         /// <summary>For `schema-incompatible` under the `fail` policy: target columns not in the package schema.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? ExtraColumns { get; set; }
+        public List<string>? ExtraColumns { get => _explicitNullValueExtraColumns; set { _explicitNullValueExtraColumns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("extraColumns"); else _explicitNullProperties?.Remove("extraColumns"); } }
+        private List<string>? _explicitNullValueExtraColumns = default!;
 #nullable restore
 #else
-        public List<string> ExtraColumns { get; set; }
+        public List<string> ExtraColumns { get => _explicitNullValueExtraColumns; set { _explicitNullValueExtraColumns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("extraColumns"); else _explicitNullProperties?.Remove("extraColumns"); } }
+        private List<string> _explicitNullValueExtraColumns = default!;
 #endif
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Kind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Kind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Kind? _explicitNullValueKind = default!;
         /// <summary>For `schema-incompatible`: package columns absent from the target table.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? MissingColumns { get; set; }
+        public List<string>? MissingColumns { get => _explicitNullValueMissingColumns; set { _explicitNullValueMissingColumns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missingColumns"); else _explicitNullProperties?.Remove("missingColumns"); } }
+        private List<string>? _explicitNullValueMissingColumns = default!;
 #nullable restore
 #else
-        public List<string> MissingColumns { get; set; }
+        public List<string> MissingColumns { get => _explicitNullValueMissingColumns; set { _explicitNullValueMissingColumns = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missingColumns"); else _explicitNullProperties?.Remove("missingColumns"); } }
+        private List<string> _explicitNullValueMissingColumns = default!;
 #endif
         /// <summary>For `permission-denied`: the project scope the user lacks.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18MissingScope? MissingScope { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18MissingScope? MissingScope { get => _explicitNullValueMissingScope; set { _explicitNullValueMissingScope = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missingScope"); else _explicitNullProperties?.Remove("missingScope"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18MissingScope? _explicitNullValueMissingScope = default!;
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>For `schema-incompatible`: the changes `overwrite` would make to the target table.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem>? OverwriteChanges { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem>? OverwriteChanges { get => _explicitNullValueOverwriteChanges; set { _explicitNullValueOverwriteChanges = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("overwriteChanges"); else _explicitNullProperties?.Remove("overwriteChanges"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem>? _explicitNullValueOverwriteChanges = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem> OverwriteChanges { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem> OverwriteChanges { get => _explicitNullValueOverwriteChanges; set { _explicitNullValueOverwriteChanges = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("overwriteChanges"); else _explicitNullProperties?.Remove("overwriteChanges"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem> _explicitNullValueOverwriteChanges = default!;
 #endif
         /// <summary>Absent for import-wide failures (`module-disabled`, `permission-denied`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceId { get; set; }
+        public string? SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string? _explicitNullValueSourceId = default!;
 #nullable restore
 #else
-        public string SourceId { get; set; }
+        public string SourceId { get => _explicitNullValueSourceId; set { _explicitNullValueSourceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceId"); else _explicitNullProperties?.Remove("sourceId"); } }
+        private string _explicitNullValueSourceId = default!;
 #endif
         /// <summary>The type property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType? _explicitNullValueType = default!;
         /// <summary>For `schema-incompatible`: package columns whose target type differs.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem>? TypeMismatches { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem>? TypeMismatches { get => _explicitNullValueTypeMismatches; set { _explicitNullValueTypeMismatches = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeMismatches"); else _explicitNullProperties?.Remove("typeMismatches"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem>? _explicitNullValueTypeMismatches = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem> TypeMismatches { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem> TypeMismatches { get => _explicitNullValueTypeMismatches; set { _explicitNullValueTypeMismatches = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("typeMismatches"); else _explicitNullProperties?.Remove("typeMismatches"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem> _explicitNullValueTypeMismatches = default!;
 #endif
         /// <summary>The usedBy property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? UsedBy { get => _explicitNullValueUsedBy; set { _explicitNullValueUsedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedBy"); else _explicitNullProperties?.Remove("usedBy"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>? _explicitNullValueUsedBy = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> UsedBy { get => _explicitNullValueUsedBy; set { _explicitNullValueUsedBy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("usedBy"); else _explicitNullProperties?.Remove("usedBy"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated> _explicitNullValueUsedBy = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18"/> and sets the default values.
@@ -116,7 +159,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -161,6 +204,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.DataTableUnresolvedType>("type", Type);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18TypeMismatchesItem>("typeMismatches", TypeMismatches);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PackageRequirementConsumerGenerated>("usedBy", UsedBy);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

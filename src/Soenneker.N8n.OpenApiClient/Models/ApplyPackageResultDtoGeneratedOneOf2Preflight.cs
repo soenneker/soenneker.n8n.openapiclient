@@ -11,48 +11,70 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplyPackageResultDtoGeneratedOneOf2Preflight : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("accessRequirements") is { } nullNodeAccessRequirements && nullNodeAccessRequirements.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AccessRequirements = null;
+            if (parseNode.GetChildNode("conflicts") is { } nullNodeConflicts && nullNodeConflicts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Conflicts = null;
+            if (parseNode.GetChildNode("missingBindings") is { } nullNodeMissingBindings && nullNodeMissingBindings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MissingBindings = null;
+            if (parseNode.GetChildNode("missingProjects") is { } nullNodeMissingProjects && nullNodeMissingProjects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MissingProjects = null;
+            if (parseNode.GetChildNode("warnings") is { } nullNodeWarnings && nullNodeWarnings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Warnings = null;
+        }
+
         /// <summary>The accessRequirements property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem>? AccessRequirements { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem>? AccessRequirements { get => _explicitNullValueAccessRequirements; set { _explicitNullValueAccessRequirements = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessRequirements"); else _explicitNullProperties?.Remove("accessRequirements"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem>? _explicitNullValueAccessRequirements = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem> AccessRequirements { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem> AccessRequirements { get => _explicitNullValueAccessRequirements; set { _explicitNullValueAccessRequirements = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("accessRequirements"); else _explicitNullProperties?.Remove("accessRequirements"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightAccessRequirementsItem> _explicitNullValueAccessRequirements = default!;
 #endif
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The conflicts property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem>? Conflicts { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem>? Conflicts { get => _explicitNullValueConflicts; set { _explicitNullValueConflicts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conflicts"); else _explicitNullProperties?.Remove("conflicts"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem>? _explicitNullValueConflicts = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem> Conflicts { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem> Conflicts { get => _explicitNullValueConflicts; set { _explicitNullValueConflicts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("conflicts"); else _explicitNullProperties?.Remove("conflicts"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem> _explicitNullValueConflicts = default!;
 #endif
         /// <summary>The missingBindings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem>? MissingBindings { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem>? MissingBindings { get => _explicitNullValueMissingBindings; set { _explicitNullValueMissingBindings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missingBindings"); else _explicitNullProperties?.Remove("missingBindings"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem>? _explicitNullValueMissingBindings = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem> MissingBindings { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem> MissingBindings { get => _explicitNullValueMissingBindings; set { _explicitNullValueMissingBindings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missingBindings"); else _explicitNullProperties?.Remove("missingBindings"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem> _explicitNullValueMissingBindings = default!;
 #endif
         /// <summary>Projects in the package that do not exist on this instance. Preflight preserves their metadata without checking project creation rules. The project creation API can reject invalid values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem>? MissingProjects { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem>? MissingProjects { get => _explicitNullValueMissingProjects; set { _explicitNullValueMissingProjects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missingProjects"); else _explicitNullProperties?.Remove("missingProjects"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem>? _explicitNullValueMissingProjects = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem> MissingProjects { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem> MissingProjects { get => _explicitNullValueMissingProjects; set { _explicitNullValueMissingProjects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missingProjects"); else _explicitNullProperties?.Remove("missingProjects"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem> _explicitNullValueMissingProjects = default!;
 #endif
         /// <summary>The warnings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem>? Warnings { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem>? Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem>? _explicitNullValueWarnings = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem> Warnings { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem> Warnings { get => _explicitNullValueWarnings; set { _explicitNullValueWarnings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("warnings"); else _explicitNullProperties?.Remove("warnings"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem> _explicitNullValueWarnings = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Preflight"/> and sets the default values.
@@ -69,7 +91,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Preflight CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Preflight();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Preflight(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -98,6 +120,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem>("missingBindings", MissingBindings);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingProjectsItem>("missingProjects", MissingProjects);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightWarningsItem>("warnings", Warnings);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

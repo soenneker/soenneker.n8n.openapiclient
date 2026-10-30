@@ -11,17 +11,29 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreatePromotionProviderRequestConfig : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("baseUrl") is { } nullNodeBaseUrl && nullNodeBaseUrl.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BaseUrl = null;
+            if (parseNode.GetChildNode("schemaVersion") is { } nullNodeSchemaVersion && nullNodeSchemaVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SchemaVersion = null;
+        }
+
         /// <summary>The baseUrl property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? BaseUrl { get; set; }
+        public string? BaseUrl { get => _explicitNullValueBaseUrl; set { _explicitNullValueBaseUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("baseUrl"); else _explicitNullProperties?.Remove("baseUrl"); } }
+        private string? _explicitNullValueBaseUrl = default!;
 #nullable restore
 #else
-        public string BaseUrl { get; set; }
+        public string BaseUrl { get => _explicitNullValueBaseUrl; set { _explicitNullValueBaseUrl = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("baseUrl"); else _explicitNullProperties?.Remove("baseUrl"); } }
+        private string _explicitNullValueBaseUrl = default!;
 #endif
         /// <summary>The schemaVersion property</summary>
-        public double? SchemaVersion { get; set; }
+        public double? SchemaVersion { get => _explicitNullValueSchemaVersion; set { _explicitNullValueSchemaVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("schemaVersion"); else _explicitNullProperties?.Remove("schemaVersion"); } }
+        private double? _explicitNullValueSchemaVersion = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -30,7 +42,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -52,7 +64,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("baseUrl", BaseUrl);
-            writer.WriteDoubleValue("schemaVersion", SchemaVersion);
+            writer.WriteDoubleValue("schemaVersion", SchemaVersion);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

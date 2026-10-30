@@ -12,24 +12,37 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportResultDtoGeneratedBindings : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("credentials") is { } nullNodeCredentials && nullNodeCredentials.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Credentials = null;
+            if (parseNode.GetChildNode("workflows") is { } nullNodeWorkflows && nullNodeWorkflows.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Workflows = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Credential id from `requirements.credentials` in the package manifest → resolved target credential id on the target instance. Covers both a matched existing credential and a credential that the import created under `credentialMissingMode=create-stub` or `create-with-values`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty? Credentials { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty? Credentials { get => _explicitNullValueCredentials; set { _explicitNullValueCredentials = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentials"); else _explicitNullProperties?.Remove("credentials"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty? _explicitNullValueCredentials = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty Credentials { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty Credentials { get => _explicitNullValueCredentials; set { _explicitNullValueCredentials = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentials"); else _explicitNullProperties?.Remove("credentials"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty _explicitNullValueCredentials = default!;
 #endif
         /// <summary>The workflows property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty? Workflows { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty? Workflows { get => _explicitNullValueWorkflows; set { _explicitNullValueWorkflows = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflows"); else _explicitNullProperties?.Remove("workflows"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty? _explicitNullValueWorkflows = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty Workflows { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty Workflows { get => _explicitNullValueWorkflows; set { _explicitNullValueWorkflows = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("workflows"); else _explicitNullProperties?.Remove("workflows"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty _explicitNullValueWorkflows = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings"/> and sets the default values.
@@ -46,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -69,6 +82,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty>("credentials", Credentials);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty>("workflows", Workflows);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

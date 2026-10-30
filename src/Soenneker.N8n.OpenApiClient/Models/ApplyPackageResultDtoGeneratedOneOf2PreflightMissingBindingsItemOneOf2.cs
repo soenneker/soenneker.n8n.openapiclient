@@ -11,45 +11,68 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("consumers") is { } nullNodeConsumers && nullNodeConsumers.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Consumers = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("scope") is { } nullNodeScope && nullNodeScope.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Scope = null;
+            if (parseNode.GetChildNode("sourceValue") is { } nullNodeSourceValue && nullNodeSourceValue.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceValue = null;
+            if (parseNode.GetChildNode("variableType") is { } nullNodeVariableType && nullNodeVariableType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) VariableType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The consumers property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ConsumersItem>? Consumers { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ConsumersItem>? Consumers { get => _explicitNullValueConsumers; set { _explicitNullValueConsumers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumers"); else _explicitNullProperties?.Remove("consumers"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ConsumersItem>? _explicitNullValueConsumers = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ConsumersItem> Consumers { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ConsumersItem> Consumers { get => _explicitNullValueConsumers; set { _explicitNullValueConsumers = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("consumers"); else _explicitNullProperties?.Remove("consumers"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ConsumersItem> _explicitNullValueConsumers = default!;
 #endif
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.VariableKind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.VariableKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.VariableKind? _explicitNullValueKind = default!;
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>The scope property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope? Scope { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope? Scope { get => _explicitNullValueScope; set { _explicitNullValueScope = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scope"); else _explicitNullProperties?.Remove("scope"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope? _explicitNullValueScope = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope Scope { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope Scope { get => _explicitNullValueScope; set { _explicitNullValueScope = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("scope"); else _explicitNullProperties?.Remove("scope"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope _explicitNullValueScope = default!;
 #endif
         /// <summary>The sourceValue property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceValue { get; set; }
+        public string? SourceValue { get => _explicitNullValueSourceValue; set { _explicitNullValueSourceValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceValue"); else _explicitNullProperties?.Remove("sourceValue"); } }
+        private string? _explicitNullValueSourceValue = default!;
 #nullable restore
 #else
-        public string SourceValue { get; set; }
+        public string SourceValue { get => _explicitNullValueSourceValue; set { _explicitNullValueSourceValue = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceValue"); else _explicitNullProperties?.Remove("sourceValue"); } }
+        private string _explicitNullValueSourceValue = default!;
 #endif
         /// <summary>The variableType property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.StringValueVariableType? VariableType { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.StringValueVariableType? VariableType { get => _explicitNullValueVariableType; set { _explicitNullValueVariableType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("variableType"); else _explicitNullProperties?.Remove("variableType"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.StringValueVariableType? _explicitNullValueVariableType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2"/> and sets the default values.
         /// </summary>
@@ -65,7 +88,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -96,6 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope>("scope", Scope);
             writer.WriteStringValue("sourceValue", SourceValue);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.StringValueVariableType>("variableType", VariableType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

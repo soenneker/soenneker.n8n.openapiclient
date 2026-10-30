@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Clear
         {
 #endif
             var requestInfo = ToDeleteRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Permanently delete all rows from a data table. The table structure is retained. This action cannot be undone.

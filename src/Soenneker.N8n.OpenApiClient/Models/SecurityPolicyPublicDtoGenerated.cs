@@ -11,20 +11,34 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class SecurityPolicyPublicDtoGenerated : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("personalSpacePublishing") is { } nullNodePersonalSpacePublishing && nullNodePersonalSpacePublishing.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PersonalSpacePublishing = null;
+            if (parseNode.GetChildNode("personalSpaceSharing") is { } nullNodePersonalSpaceSharing && nullNodePersonalSpaceSharing.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PersonalSpaceSharing = null;
+            if (parseNode.GetChildNode("redactionEnforcement") is { } nullNodeRedactionEnforcement && nullNodeRedactionEnforcement.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RedactionEnforcement = null;
+        }
+
         /// <summary>Whether members may publish workflows and agents from their personal space.</summary>
-        public bool? PersonalSpacePublishing { get; set; }
+        public bool? PersonalSpacePublishing { get => _explicitNullValuePersonalSpacePublishing; set { _explicitNullValuePersonalSpacePublishing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("personalSpacePublishing"); else _explicitNullProperties?.Remove("personalSpacePublishing"); } }
+        private bool? _explicitNullValuePersonalSpacePublishing = default!;
         /// <summary>Whether members may share workflows and credentials from their personal space.</summary>
-        public bool? PersonalSpaceSharing { get; set; }
+        public bool? PersonalSpaceSharing { get => _explicitNullValuePersonalSpaceSharing; set { _explicitNullValuePersonalSpaceSharing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("personalSpaceSharing"); else _explicitNullProperties?.Remove("personalSpaceSharing"); } }
+        private bool? _explicitNullValuePersonalSpaceSharing = default!;
         /// <summary>Number of currently published personal workflows, shown for awareness before tightening the policy.</summary>
         public int? PublishedPersonalWorkflowsCount { get; private set; }
         /// <summary>The redactionEnforcement property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGeneratedRedactionEnforcement? RedactionEnforcement { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGeneratedRedactionEnforcement? RedactionEnforcement { get => _explicitNullValueRedactionEnforcement; set { _explicitNullValueRedactionEnforcement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redactionEnforcement"); else _explicitNullProperties?.Remove("redactionEnforcement"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGeneratedRedactionEnforcement? _explicitNullValueRedactionEnforcement = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGeneratedRedactionEnforcement RedactionEnforcement { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGeneratedRedactionEnforcement RedactionEnforcement { get => _explicitNullValueRedactionEnforcement; set { _explicitNullValueRedactionEnforcement = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redactionEnforcement"); else _explicitNullProperties?.Remove("redactionEnforcement"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGeneratedRedactionEnforcement _explicitNullValueRedactionEnforcement = default!;
 #endif
         /// <summary>Number of personal credentials currently shared with other users.</summary>
         public int? SharedPersonalCredentialsCount { get; private set; }
@@ -38,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGenerated();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -65,7 +79,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("personalSpacePublishing", PersonalSpacePublishing);
             writer.WriteBoolValue("personalSpaceSharing", PersonalSpaceSharing);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGeneratedRedactionEnforcement>("redactionEnforcement", RedactionEnforcement);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.SecurityPolicyPublicDtoGeneratedRedactionEnforcement>("redactionEnforcement", RedactionEnforcement);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

@@ -11,20 +11,34 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class InstallPackage200ResponsePolicyRestrictionsNodeTypesItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("blockedOn") is { } nullNodeBlockedOn && nullNodeBlockedOn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockedOn = null;
+            if (parseNode.GetChildNode("optInAvailable") is { } nullNodeOptInAvailable && nullNodeOptInAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OptInAvailable = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>instance: blocked on the instance by default. projects: allowed on the instance, but blocked in one or more projects.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn? BlockedOn { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn? BlockedOn { get => _explicitNullValueBlockedOn; set { _explicitNullValueBlockedOn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockedOn"); else _explicitNullProperties?.Remove("blockedOn"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn? _explicitNullValueBlockedOn = default!;
         /// <summary>Whether a project can allow this node type. True when an instance policy blocks the node type unless a project allows it.</summary>
-        public bool? OptInAvailable { get; set; }
+        public bool? OptInAvailable { get => _explicitNullValueOptInAvailable; set { _explicitNullValueOptInAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("optInAvailable"); else _explicitNullProperties?.Remove("optInAvailable"); } }
+        private bool? _explicitNullValueOptInAvailable = default!;
         /// <summary>Full node type name, such as n8n-nodes-example.exampleNode.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Type { get; set; }
+        public string? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private string? _explicitNullValueType = default!;
 #nullable restore
 #else
-        public string Type { get; set; }
+        public string Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private string _explicitNullValueType = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem"/> and sets the default values.
@@ -41,7 +55,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -66,6 +80,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn>("blockedOn", BlockedOn);
             writer.WriteBoolValue("optInAvailable", OptInAvailable);
             writer.WriteStringValue("type", Type);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

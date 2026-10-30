@@ -12,7 +12,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreatePromotionProviderRequestAuth : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,13 +46,20 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var result = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth();
             if("ssh-key".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.CreatePromotionProviderRequestAuthOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1();
+                
             }
             else if("token".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.CreatePromotionProviderRequestAuthOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("authType") != null && (parseNode.GetChildNode("authType")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("ssh-key".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal))) && (parseNode.GetChildNode("keyType") == null || (parseNode.GetChildNode("keyType")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString optionalTag2 && ("ed25519".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal) || "rsa".Equals(optionalTag2.GetValue(), global::System.StringComparison.Ordinal))))))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("authType") != null && (parseNode.GetChildNode("authType")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag1 && ("token".Equals(tag1.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("password") != null))();
+            if (result.CreatePromotionProviderRequestAuthOneOf1 == null && result.CreatePromotionProviderRequestAuthOneOf2 == null && matchesUnionBranch0 && !matchesUnionBranch1) result.CreatePromotionProviderRequestAuthOneOf1 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1(), parseNode);
+            if (result.CreatePromotionProviderRequestAuthOneOf1 == null && result.CreatePromotionProviderRequestAuthOneOf2 == null && matchesUnionBranch1 && !matchesUnionBranch0) result.CreatePromotionProviderRequestAuthOneOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2(), parseNode);
+            if (result.CreatePromotionProviderRequestAuthOneOf1 == null && result.CreatePromotionProviderRequestAuthOneOf2 == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,13 +83,20 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (CreatePromotionProviderRequestAuthOneOf1 == null && CreatePromotionProviderRequestAuthOneOf2 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (CreatePromotionProviderRequestAuthOneOf1 != null && CreatePromotionProviderRequestAuthOneOf2 == null) { if (CreatePromotionProviderRequestAuthOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, CreatePromotionProviderRequestAuthOneOf1); return; }
+            if (CreatePromotionProviderRequestAuthOneOf2 != null && CreatePromotionProviderRequestAuthOneOf1 == null) { if (CreatePromotionProviderRequestAuthOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, CreatePromotionProviderRequestAuthOneOf2); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(CreatePromotionProviderRequestAuthOneOf1 != null)
             {
+                if (CreatePromotionProviderRequestAuthOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf1>(null, CreatePromotionProviderRequestAuthOneOf1);
             }
             else if(CreatePromotionProviderRequestAuthOneOf2 != null)
             {
+                if (CreatePromotionProviderRequestAuthOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuthOneOf2>(null, CreatePromotionProviderRequestAuthOneOf2);
             }
         }

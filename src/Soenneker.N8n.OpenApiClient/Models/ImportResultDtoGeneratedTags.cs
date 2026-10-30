@@ -12,48 +12,70 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class ImportResultDtoGeneratedTags : IAdditionalDataHolder, IParsable
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("created") is { } nullNodeCreated && nullNodeCreated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Created = null;
+            if (parseNode.GetChildNode("matched") is { } nullNodeMatched && nullNodeMatched.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Matched = null;
+            if (parseNode.GetChildNode("reconciled") is { } nullNodeReconciled && nullNodeReconciled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Reconciled = null;
+            if (parseNode.GetChildNode("renamed") is { } nullNodeRenamed && nullNodeRenamed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Renamed = null;
+            if (parseNode.GetChildNode("skipped") is { } nullNodeSkipped && nullNodeSkipped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Skipped = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Tags created by this import, by name, under `tagMissingMode=create`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Created { get; set; }
+        public List<string>? Created { get => _explicitNullValueCreated; set { _explicitNullValueCreated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created"); else _explicitNullProperties?.Remove("created"); } }
+        private List<string>? _explicitNullValueCreated = default!;
 #nullable restore
 #else
-        public List<string> Created { get; set; }
+        public List<string> Created { get => _explicitNullValueCreated; set { _explicitNullValueCreated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created"); else _explicitNullProperties?.Remove("created"); } }
+        private List<string> _explicitNullValueCreated = default!;
 #endif
         /// <summary>Tags that resolved to an existing tag with the same id and name; attached as-is.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Matched { get; set; }
+        public List<string>? Matched { get => _explicitNullValueMatched; set { _explicitNullValueMatched = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched"); else _explicitNullProperties?.Remove("matched"); } }
+        private List<string>? _explicitNullValueMatched = default!;
 #nullable restore
 #else
-        public List<string> Matched { get; set; }
+        public List<string> Matched { get => _explicitNullValueMatched; set { _explicitNullValueMatched = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched"); else _explicitNullProperties?.Remove("matched"); } }
+        private List<string> _explicitNullValueMatched = default!;
 #endif
         /// <summary>Existing target tags re-keyed to the package (source) id on a name collision under `tagConflictPolicy=rename`; their name, workflow and folder taggings are kept.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Reconciled { get; set; }
+        public List<string>? Reconciled { get => _explicitNullValueReconciled; set { _explicitNullValueReconciled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reconciled"); else _explicitNullProperties?.Remove("reconciled"); } }
+        private List<string>? _explicitNullValueReconciled = default!;
 #nullable restore
 #else
-        public List<string> Reconciled { get; set; }
+        public List<string> Reconciled { get => _explicitNullValueReconciled; set { _explicitNullValueReconciled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("reconciled"); else _explicitNullProperties?.Remove("reconciled"); } }
+        private List<string> _explicitNullValueReconciled = default!;
 #endif
         /// <summary>Target tags renamed to the package name under `tagConflictPolicy=rename`; listed by their new name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Renamed { get; set; }
+        public List<string>? Renamed { get => _explicitNullValueRenamed; set { _explicitNullValueRenamed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("renamed"); else _explicitNullProperties?.Remove("renamed"); } }
+        private List<string>? _explicitNullValueRenamed = default!;
 #nullable restore
 #else
-        public List<string> Renamed { get; set; }
+        public List<string> Renamed { get => _explicitNullValueRenamed; set { _explicitNullValueRenamed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("renamed"); else _explicitNullProperties?.Remove("renamed"); } }
+        private List<string> _explicitNullValueRenamed = default!;
 #endif
         /// <summary>Tags dropped from the import — not created, not renamed, and not attached to any imported workflow — under `tagMissingMode=do-nothing` or `tagConflictPolicy=skip`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Skipped { get; set; }
+        public List<string>? Skipped { get => _explicitNullValueSkipped; set { _explicitNullValueSkipped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("skipped"); else _explicitNullProperties?.Remove("skipped"); } }
+        private List<string>? _explicitNullValueSkipped = default!;
 #nullable restore
 #else
-        public List<string> Skipped { get; set; }
+        public List<string> Skipped { get => _explicitNullValueSkipped; set { _explicitNullValueSkipped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("skipped"); else _explicitNullProperties?.Remove("skipped"); } }
+        private List<string> _explicitNullValueSkipped = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags"/> and sets the default values.
@@ -70,7 +92,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedTags(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -99,6 +121,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteCollectionOfPrimitiveValues<string>("reconciled", Reconciled);
             writer.WriteCollectionOfPrimitiveValues<string>("renamed", Renamed);
             writer.WriteCollectionOfPrimitiveValues<string>("skipped", Skipped);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

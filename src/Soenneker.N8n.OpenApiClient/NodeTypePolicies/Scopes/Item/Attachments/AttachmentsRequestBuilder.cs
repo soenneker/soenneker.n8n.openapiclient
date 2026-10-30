@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.Item.Attachments
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.Replaces every attachment on a scope. `scopeId` comes from the scope&apos;s `GET` response once it has been written. Each `policyId` and each `(isFloor, priority)` pair must be unique within the list. `version` must match the current scope version. A stale version returns 409 without changes. A successful write bumps the scope&apos;s version.
@@ -69,7 +69,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.Item.Attachments
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
             var requestInfo = ToPutRequestInformation(body, requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Preview** — breaking changes may still occur without major version bump.Returns every attached policy document and the scope version. Attachments use evaluation order: floor first, then priority ascending within each group. Use this version when replacing the attachments. `scopeId` comes from `GET /instance` or `GET /projects/{projectId}`, and is null until the scope is first written. This route needs instance-level access, also for a project scope.

@@ -55,6 +55,8 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Publish
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "409", global::Soenneker.N8n.OpenApiClient.Models.PublishWorkflow409Response.CreateFromDiscriminatorValue },
+                { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
+                { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }

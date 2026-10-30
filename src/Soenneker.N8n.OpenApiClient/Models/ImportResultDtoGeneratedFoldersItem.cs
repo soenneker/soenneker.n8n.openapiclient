@@ -11,43 +11,64 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ImportResultDtoGeneratedFoldersItem : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("localId") is { } nullNodeLocalId && nullNodeLocalId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LocalId = null;
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("parentFolderId") is { } nullNodeParentFolderId && nullNodeParentFolderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ParentFolderId = null;
+            if (parseNode.GetChildNode("sourceFolderId") is { } nullNodeSourceFolderId && nullNodeSourceFolderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceFolderId = null;
+            if (parseNode.GetChildNode("status") is { } nullNodeStatus && nullNodeStatus.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Status = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Folder id on the target instance (equal to `sourceFolderId`; folder ids are reused).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? LocalId { get; set; }
+        public string? LocalId { get => _explicitNullValueLocalId; set { _explicitNullValueLocalId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localId"); else _explicitNullProperties?.Remove("localId"); } }
+        private string? _explicitNullValueLocalId = default!;
 #nullable restore
 #else
-        public string LocalId { get; set; }
+        public string LocalId { get => _explicitNullValueLocalId; set { _explicitNullValueLocalId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localId"); else _explicitNullProperties?.Remove("localId"); } }
+        private string _explicitNullValueLocalId = default!;
 #endif
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>Resolved parent folder on the target, or `null` at the project root.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ParentFolderId { get; set; }
+        public string? ParentFolderId { get => _explicitNullValueParentFolderId; set { _explicitNullValueParentFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolderId"); else _explicitNullProperties?.Remove("parentFolderId"); } }
+        private string? _explicitNullValueParentFolderId = default!;
 #nullable restore
 #else
-        public string ParentFolderId { get; set; }
+        public string ParentFolderId { get => _explicitNullValueParentFolderId; set { _explicitNullValueParentFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolderId"); else _explicitNullProperties?.Remove("parentFolderId"); } }
+        private string _explicitNullValueParentFolderId = default!;
 #endif
         /// <summary>Folder id as it appeared in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? SourceFolderId { get; set; }
+        public string? SourceFolderId { get => _explicitNullValueSourceFolderId; set { _explicitNullValueSourceFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceFolderId"); else _explicitNullProperties?.Remove("sourceFolderId"); } }
+        private string? _explicitNullValueSourceFolderId = default!;
 #nullable restore
 #else
-        public string SourceFolderId { get; set; }
+        public string SourceFolderId { get => _explicitNullValueSourceFolderId; set { _explicitNullValueSourceFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceFolderId"); else _explicitNullProperties?.Remove("sourceFolderId"); } }
+        private string _explicitNullValueSourceFolderId = default!;
 #endif
         /// <summary>Import outcome for this package folder.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItemStatus? Status { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItemStatus? _explicitNullValueStatus = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem"/> and sets the default values.
         /// </summary>
@@ -63,7 +84,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -92,6 +113,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("parentFolderId", ParentFolderId);
             writer.WriteStringValue("sourceFolderId", SourceFolderId);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItemStatus>("status", Status);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

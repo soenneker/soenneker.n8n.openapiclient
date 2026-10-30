@@ -11,47 +11,72 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class UpdateLogStreamingDestinationRequestOneOf3 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("anonymizeAuditMessages") is { } nullNodeAnonymizeAuditMessages && nullNodeAnonymizeAuditMessages.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AnonymizeAuditMessages = null;
+            if (parseNode.GetChildNode("circuitBreaker") is { } nullNodeCircuitBreaker && nullNodeCircuitBreaker.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CircuitBreaker = null;
+            if (parseNode.GetChildNode("dsn") is { } nullNodeDsn && nullNodeDsn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dsn = null;
+            if (parseNode.GetChildNode("enabled") is { } nullNodeEnabled && nullNodeEnabled.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Enabled = null;
+            if (parseNode.GetChildNode("label") is { } nullNodeLabel && nullNodeLabel.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Label = null;
+            if (parseNode.GetChildNode("subscribedEvents") is { } nullNodeSubscribedEvents && nullNodeSubscribedEvents.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SubscribedEvents = null;
+            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether audit message payloads are anonymized before being sent.</summary>
-        public bool? AnonymizeAuditMessages { get; set; }
+        public bool? AnonymizeAuditMessages { get => _explicitNullValueAnonymizeAuditMessages; set { _explicitNullValueAnonymizeAuditMessages = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("anonymizeAuditMessages"); else _explicitNullProperties?.Remove("anonymizeAuditMessages"); } }
+        private bool? _explicitNullValueAnonymizeAuditMessages = default!;
         /// <summary>Circuit-breaker tuning for delivery. After repeated failures the destination stops sending for a cool-down window instead of hammering an unhealthy target. All fields are optional; sensible defaults apply when omitted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3CircuitBreaker? CircuitBreaker { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3CircuitBreaker? CircuitBreaker { get => _explicitNullValueCircuitBreaker; set { _explicitNullValueCircuitBreaker = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("circuitBreaker"); else _explicitNullProperties?.Remove("circuitBreaker"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3CircuitBreaker? _explicitNullValueCircuitBreaker = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3CircuitBreaker CircuitBreaker { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3CircuitBreaker CircuitBreaker { get => _explicitNullValueCircuitBreaker; set { _explicitNullValueCircuitBreaker = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("circuitBreaker"); else _explicitNullProperties?.Remove("circuitBreaker"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3CircuitBreaker _explicitNullValueCircuitBreaker = default!;
 #endif
         /// <summary>Sentry DSN the events are sent to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Dsn { get; set; }
+        public string? Dsn { get => _explicitNullValueDsn; set { _explicitNullValueDsn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dsn"); else _explicitNullProperties?.Remove("dsn"); } }
+        private string? _explicitNullValueDsn = default!;
 #nullable restore
 #else
-        public string Dsn { get; set; }
+        public string Dsn { get => _explicitNullValueDsn; set { _explicitNullValueDsn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dsn"); else _explicitNullProperties?.Remove("dsn"); } }
+        private string _explicitNullValueDsn = default!;
 #endif
         /// <summary>Whether the destination currently receives events.</summary>
-        public bool? Enabled { get; set; }
+        public bool? Enabled { get => _explicitNullValueEnabled; set { _explicitNullValueEnabled = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("enabled"); else _explicitNullProperties?.Remove("enabled"); } }
+        private bool? _explicitNullValueEnabled = default!;
         /// <summary>Human-readable name shown in the UI.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Label { get; set; }
+        public string? Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private string? _explicitNullValueLabel = default!;
 #nullable restore
 #else
-        public string Label { get; set; }
+        public string Label { get => _explicitNullValueLabel; set { _explicitNullValueLabel = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("label"); else _explicitNullProperties?.Remove("label"); } }
+        private string _explicitNullValueLabel = default!;
 #endif
         /// <summary>Event names (or group prefixes, e.g. `n8n.workflow`, which matches all `n8n.workflow.*` events) this destination receives. Retrieve the full list of streamable event names from `GET /settings/log-streaming/event-types`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? SubscribedEvents { get; set; }
+        public List<string>? SubscribedEvents { get => _explicitNullValueSubscribedEvents; set { _explicitNullValueSubscribedEvents = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscribedEvents"); else _explicitNullProperties?.Remove("subscribedEvents"); } }
+        private List<string>? _explicitNullValueSubscribedEvents = default!;
 #nullable restore
 #else
-        public List<string> SubscribedEvents { get; set; }
+        public List<string> SubscribedEvents { get => _explicitNullValueSubscribedEvents; set { _explicitNullValueSubscribedEvents = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("subscribedEvents"); else _explicitNullProperties?.Remove("subscribedEvents"); } }
+        private List<string> _explicitNullValueSubscribedEvents = default!;
 #endif
         /// <summary>Sends each event to a Sentry project.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.SentryType? Type { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.SentryType? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.SentryType? _explicitNullValueType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3"/> and sets the default values.
         /// </summary>
@@ -67,7 +92,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf3(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -100,6 +125,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("label", Label);
             writer.WriteCollectionOfPrimitiveValues<string>("subscribedEvents", SubscribedEvents);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.SentryType>("type", Type);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

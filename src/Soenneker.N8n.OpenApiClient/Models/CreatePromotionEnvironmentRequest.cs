@@ -12,7 +12,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class CreatePromotionEnvironmentRequest : IComposedTypeWrapper, IParsable
-    {
+    , global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder {
+        // Preserve ambiguous union payloads without inventing a discriminator.
+        /// <summary>The complete payload when no unique typed union branch can be selected.</summary>
+        public global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode UnrecognizedValue { get; set; } = null!;
+        public global::System.Collections.Generic.IDictionary<string, object> AdditionalData { get; set; } = new global::System.Collections.Generic.Dictionary<string, object>();
+
         /// <summary>Composed type representation for type <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf1"/></summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -41,13 +46,20 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var result = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequest();
             if("apply".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.CreatePromotionEnvironmentRequestOneOf1 = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf1();
+                
             }
             else if("promote".Equals(mappingValue, StringComparison.OrdinalIgnoreCase))
             {
-                result.CreatePromotionEnvironmentRequestOneOf2 = new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf2();
+                
             }
-            return result;
+            
+            var unionPayload = parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue);
+            bool matchesUnionBranch0 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("scope") != null && (parseNode.GetChildNode("scope")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("instance".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "projects".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("providerId") != null && parseNode.GetChildNode("remote") != null && parseNode.GetChildNode("direction") != null && (parseNode.GetChildNode("direction")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag6 && ("apply".Equals(tag6.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("settings") != null))();
+            bool matchesUnionBranch1 = unionPayload is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject && ((global::System.Func<bool>)(() => parseNode.GetChildNode("name") != null && parseNode.GetChildNode("scope") != null && (parseNode.GetChildNode("scope")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag2 && ("instance".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal) || "projects".Equals(tag2.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("providerId") != null && parseNode.GetChildNode("remote") != null && parseNode.GetChildNode("direction") != null && (parseNode.GetChildNode("direction")?.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is global::Microsoft.Kiota.Abstractions.Serialization.UntypedString tag6 && ("promote".Equals(tag6.GetValue(), global::System.StringComparison.Ordinal))) && parseNode.GetChildNode("settings") != null))();
+            if (result.CreatePromotionEnvironmentRequestOneOf1 == null && result.CreatePromotionEnvironmentRequestOneOf2 == null && matchesUnionBranch0 && !matchesUnionBranch1) result.CreatePromotionEnvironmentRequestOneOf1 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf1(), parseNode);
+            if (result.CreatePromotionEnvironmentRequestOneOf1 == null && result.CreatePromotionEnvironmentRequestOneOf2 == null && matchesUnionBranch1 && !matchesUnionBranch0) result.CreatePromotionEnvironmentRequestOneOf2 = global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf2(), parseNode);
+            if (result.CreatePromotionEnvironmentRequestOneOf1 == null && result.CreatePromotionEnvironmentRequestOneOf2 == null) result.UnrecognizedValue = unionPayload;
+return result;
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -71,13 +83,20 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <param name="writer">Serialization writer to use to serialize this model</param>
         public virtual void Serialize(ISerializationWriter writer)
         {
+            if (global::System.Object.ReferenceEquals(writer, null)) throw new global::System.ArgumentNullException(nameof(writer));
+            if (CreatePromotionEnvironmentRequestOneOf1 == null && CreatePromotionEnvironmentRequestOneOf2 == null) { if (UnrecognizedValue is global::Microsoft.Kiota.Abstractions.Serialization.UntypedObject rawObject) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData, rawObject)); else if (UnrecognizedValue != null) writer.WriteObjectValue(null, UnrecognizedValue); else if (AdditionalData.Count > 0) writer.WriteObjectValue(null, new global::Soenneker.OpenApi.Generated.OpenApiUnionAdditionalData(AdditionalData)); else writer.WriteNullValue(null); return; }
+            if (CreatePromotionEnvironmentRequestOneOf1 != null && CreatePromotionEnvironmentRequestOneOf2 == null) { if (CreatePromotionEnvironmentRequestOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, CreatePromotionEnvironmentRequestOneOf1); return; }
+            if (CreatePromotionEnvironmentRequestOneOf2 != null && CreatePromotionEnvironmentRequestOneOf1 == null) { if (CreatePromotionEnvironmentRequestOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder selectedData) foreach (var entry in AdditionalData) selectedData.AdditionalData[entry.Key] = entry.Value; writer.WriteObjectValue(null, CreatePromotionEnvironmentRequestOneOf2); return; }
+
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             if(CreatePromotionEnvironmentRequestOneOf1 != null)
             {
+                if (CreatePromotionEnvironmentRequestOneOf1 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf1>(null, CreatePromotionEnvironmentRequestOneOf1);
             }
             else if(CreatePromotionEnvironmentRequestOneOf2 != null)
             {
+                if (CreatePromotionEnvironmentRequestOneOf2 is global::Microsoft.Kiota.Abstractions.Serialization.IAdditionalDataHolder unionData) foreach (var entry in AdditionalData) unionData.AdditionalData[entry.Key] = entry.Value;
                 writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf2>(null, CreatePromotionEnvironmentRequestOneOf2);
             }
         }

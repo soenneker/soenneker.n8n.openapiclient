@@ -11,19 +11,31 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreateDataTableRowsRequest : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("data") is { } nullNodeData && nullNodeData.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Data = null;
+            if (parseNode.GetChildNode("returnType") is { } nullNodeReturnType && nullNodeReturnType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ReturnType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Array of rows to insert. Each row is an object with column names as keys.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem>? Data { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem>? Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem>? _explicitNullValueData = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem> Data { get; set; }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem> Data { get => _explicitNullValueData; set { _explicitNullValueData = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("data"); else _explicitNullProperties?.Remove("data"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem> _explicitNullValueData = default!;
 #endif
         /// <summary>count: return only the number of rows inserted. id: return an array of objects with the id of each inserted row. all: return the full row data for all inserted rows.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType? ReturnType { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType? ReturnType { get => _explicitNullValueReturnType; set { _explicitNullValueReturnType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("returnType"); else _explicitNullProperties?.Remove("returnType"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType? _explicitNullValueReturnType = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest"/> and sets the default values.
         /// </summary>
@@ -39,7 +51,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -62,6 +74,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestDataItem>("data", Data);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRowsRequestReturnType>("returnType", ReturnType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

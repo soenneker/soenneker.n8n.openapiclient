@@ -11,26 +11,41 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4 : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("filePath") is { } nullNodeFilePath && nullNodeFilePath.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FilePath = null;
+            if (parseNode.GetChildNode("kind") is { } nullNodeKind && nullNodeKind.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Kind = null;
+            if (parseNode.GetChildNode("nodeType") is { } nullNodeNodeType && nullNodeNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NodeType = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The filePath property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? FilePath { get; set; }
+        public string? FilePath { get => _explicitNullValueFilePath; set { _explicitNullValueFilePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filePath"); else _explicitNullProperties?.Remove("filePath"); } }
+        private string? _explicitNullValueFilePath = default!;
 #nullable restore
 #else
-        public string FilePath { get; set; }
+        public string FilePath { get => _explicitNullValueFilePath; set { _explicitNullValueFilePath = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("filePath"); else _explicitNullProperties?.Remove("filePath"); } }
+        private string _explicitNullValueFilePath = default!;
 #endif
         /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CustomKind? Kind { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CustomKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.CustomKind? _explicitNullValueKind = default!;
         /// <summary>The nodeType property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? NodeType { get; set; }
+        public string? NodeType { get => _explicitNullValueNodeType; set { _explicitNullValueNodeType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nodeType"); else _explicitNullProperties?.Remove("nodeType"); } }
+        private string? _explicitNullValueNodeType = default!;
 #nullable restore
 #else
-        public string NodeType { get; set; }
+        public string NodeType { get => _explicitNullValueNodeType; set { _explicitNullValueNodeType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nodeType"); else _explicitNullProperties?.Remove("nodeType"); } }
+        private string _explicitNullValueNodeType = default!;
 #endif
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4"/> and sets the default values.
@@ -47,7 +62,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,6 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("filePath", FilePath);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CustomKind>("kind", Kind);
             writer.WriteStringValue("nodeType", NodeType);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

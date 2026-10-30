@@ -11,19 +11,36 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class ApplyPackageResultDtoGeneratedOneOf1CountsVariables : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("created") is { } nullNodeCreated && nullNodeCreated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Created = null;
+            if (parseNode.GetChildNode("matched") is { } nullNodeMatched && nullNodeMatched.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Matched = null;
+            if (parseNode.GetChildNode("missing") is { } nullNodeMissing && nullNodeMissing.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Missing = null;
+            if (parseNode.GetChildNode("stubbed") is { } nullNodeStubbed && nullNodeStubbed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Stubbed = null;
+            if (parseNode.GetChildNode("updated") is { } nullNodeUpdated && nullNodeUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Updated = null;
+        }
+
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The created property</summary>
-        public int? Created { get; set; }
+        public int? Created { get => _explicitNullValueCreated; set { _explicitNullValueCreated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("created"); else _explicitNullProperties?.Remove("created"); } }
+        private int? _explicitNullValueCreated = default!;
         /// <summary>The matched property</summary>
-        public int? Matched { get; set; }
+        public int? Matched { get => _explicitNullValueMatched; set { _explicitNullValueMatched = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched"); else _explicitNullProperties?.Remove("matched"); } }
+        private int? _explicitNullValueMatched = default!;
         /// <summary>The missing property</summary>
-        public int? Missing { get; set; }
+        public int? Missing { get => _explicitNullValueMissing; set { _explicitNullValueMissing = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("missing"); else _explicitNullProperties?.Remove("missing"); } }
+        private int? _explicitNullValueMissing = default!;
         /// <summary>The stubbed property</summary>
-        public int? Stubbed { get; set; }
+        public int? Stubbed { get => _explicitNullValueStubbed; set { _explicitNullValueStubbed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stubbed"); else _explicitNullProperties?.Remove("stubbed"); } }
+        private int? _explicitNullValueStubbed = default!;
         /// <summary>The updated property</summary>
-        public int? Updated { get; set; }
+        public int? Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
+        private int? _explicitNullValueUpdated = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsVariables"/> and sets the default values.
         /// </summary>
@@ -39,7 +56,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsVariables CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsVariables();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf1CountsVariables(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -68,6 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteIntValue("missing", Missing);
             writer.WriteIntValue("stubbed", Stubbed);
             writer.WriteIntValue("updated", Updated);
+            if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
         }
     }

@@ -11,38 +11,57 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class UpdatePromotionEnvironmentRequest : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("providerId") is { } nullNodeProviderId && nullNodeProviderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ProviderId = null;
+            if (parseNode.GetChildNode("remote") is { } nullNodeRemote && nullNodeRemote.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Remote = null;
+            if (parseNode.GetChildNode("settings") is { } nullNodeSettings && nullNodeSettings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Settings = null;
+        }
+
         /// <summary>The name property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Name { get; set; }
+        public string? Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string? _explicitNullValueName = default!;
 #nullable restore
 #else
-        public string Name { get; set; }
+        public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
+        private string _explicitNullValueName = default!;
 #endif
         /// <summary>The providerId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? ProviderId { get; set; }
+        public string? ProviderId { get => _explicitNullValueProviderId; set { _explicitNullValueProviderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("providerId"); else _explicitNullProperties?.Remove("providerId"); } }
+        private string? _explicitNullValueProviderId = default!;
 #nullable restore
 #else
-        public string ProviderId { get; set; }
+        public string ProviderId { get => _explicitNullValueProviderId; set { _explicitNullValueProviderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("providerId"); else _explicitNullProperties?.Remove("providerId"); } }
+        private string _explicitNullValueProviderId = default!;
 #endif
         /// <summary>The remote property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestRemote? Remote { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestRemote? Remote { get => _explicitNullValueRemote; set { _explicitNullValueRemote = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remote"); else _explicitNullProperties?.Remove("remote"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestRemote? _explicitNullValueRemote = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestRemote Remote { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestRemote Remote { get => _explicitNullValueRemote; set { _explicitNullValueRemote = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("remote"); else _explicitNullProperties?.Remove("remote"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestRemote _explicitNullValueRemote = default!;
 #endif
         /// <summary>The settings property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestSettings? Settings { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestSettings? Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestSettings? _explicitNullValueSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestSettings Settings { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestSettings Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestSettings _explicitNullValueSettings = default!;
 #endif
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
@@ -52,7 +71,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequest CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequest();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequest(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -78,7 +97,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("providerId", ProviderId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestRemote>("remote", Remote);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestSettings>("settings", Settings);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionEnvironmentRequestSettings>("settings", Settings);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

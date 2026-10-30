@@ -11,19 +11,33 @@ namespace Soenneker.N8n.OpenApiClient.Models
     #pragma warning disable CS1591
     public partial class CreatePromotionProvider201ResponseProviderConfigAnyOf1 : IParsable
     #pragma warning restore CS1591
-    {
+    , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
+        // Track explicitly assigned nulls separately from absent properties.
+        private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
+
+        public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
+        {
+            if (parseNode.GetChildNode("keyType") is { } nullNodeKeyType && nullNodeKeyType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KeyType = null;
+            if (parseNode.GetChildNode("publicKey") is { } nullNodePublicKey && nullNodePublicKey.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) PublicKey = null;
+            if (parseNode.GetChildNode("schemaVersion") is { } nullNodeSchemaVersion && nullNodeSchemaVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SchemaVersion = null;
+        }
+
         /// <summary>The keyType property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201ResponseProviderConfigAnyOf1KeyType? KeyType { get; set; }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201ResponseProviderConfigAnyOf1KeyType? KeyType { get => _explicitNullValueKeyType; set { _explicitNullValueKeyType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keyType"); else _explicitNullProperties?.Remove("keyType"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201ResponseProviderConfigAnyOf1KeyType? _explicitNullValueKeyType = default!;
         /// <summary>The publicKey property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? PublicKey { get; set; }
+        public string? PublicKey { get => _explicitNullValuePublicKey; set { _explicitNullValuePublicKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publicKey"); else _explicitNullProperties?.Remove("publicKey"); } }
+        private string? _explicitNullValuePublicKey = default!;
 #nullable restore
 #else
-        public string PublicKey { get; set; }
+        public string PublicKey { get => _explicitNullValuePublicKey; set { _explicitNullValuePublicKey = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("publicKey"); else _explicitNullProperties?.Remove("publicKey"); } }
+        private string _explicitNullValuePublicKey = default!;
 #endif
         /// <summary>The schemaVersion property</summary>
-        public double? SchemaVersion { get; set; }
+        public double? SchemaVersion { get => _explicitNullValueSchemaVersion; set { _explicitNullValueSchemaVersion = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("schemaVersion"); else _explicitNullProperties?.Remove("schemaVersion"); } }
+        private double? _explicitNullValueSchemaVersion = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -32,7 +46,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public static global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201ResponseProviderConfigAnyOf1 CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201ResponseProviderConfigAnyOf1();
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201ResponseProviderConfigAnyOf1(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -56,7 +70,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201ResponseProviderConfigAnyOf1KeyType>("keyType", KeyType);
             writer.WriteStringValue("publicKey", PublicKey);
-            writer.WriteDoubleValue("schemaVersion", SchemaVersion);
+            writer.WriteDoubleValue("schemaVersion", SchemaVersion);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            
         }
     }
 }

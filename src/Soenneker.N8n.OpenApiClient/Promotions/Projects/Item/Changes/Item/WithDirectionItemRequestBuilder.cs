@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response.CreateFromDiscriminatorValue, default, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response.CreateFromDiscriminatorValue, new global::System.Collections.Generic.Dictionary<string, global::Microsoft.Kiota.Abstractions.Serialization.ParsableFactory<global::Microsoft.Kiota.Abstractions.Serialization.IParsable>> { { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue }, { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue } }, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
