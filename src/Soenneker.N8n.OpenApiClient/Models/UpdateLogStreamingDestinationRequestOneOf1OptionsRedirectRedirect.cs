@@ -17,17 +17,19 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("followRedirects") is { } nullNodeFollowRedirects && nullNodeFollowRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FollowRedirects = null;
-            if (parseNode.GetChildNode("maxRedirects") is { } nullNodeMaxRedirects && nullNodeMaxRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxRedirects = null;
+            if (parseNode.GetChildNode("followRedirects") is null) { _explicitNullValueFollowRedirects = default!; _explicitNullProperties?.Remove("followRedirects"); }
+            else if (parseNode.GetChildNode("followRedirects") is { } nullNodeFollowRedirects && nullNodeFollowRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FollowRedirects = null;
+            if (parseNode.GetChildNode("maxRedirects") is null) { _explicitNullValueMaxRedirects = default!; _explicitNullProperties?.Remove("maxRedirects"); }
+            else if (parseNode.GetChildNode("maxRedirects") is { } nullNodeMaxRedirects && nullNodeMaxRedirects.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxRedirects = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to follow HTTP redirects.</summary>
-        public bool? FollowRedirects { get => _explicitNullValueFollowRedirects; set { _explicitNullValueFollowRedirects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("followRedirects"); else _explicitNullProperties?.Remove("followRedirects"); } }
+        public bool? FollowRedirects { get => _explicitNullValueFollowRedirects; set { _explicitNullValueFollowRedirects = value; AdditionalData?.Remove("followRedirects"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("followRedirects"); else _explicitNullProperties?.Remove("followRedirects"); } }
         private bool? _explicitNullValueFollowRedirects = default!;
         /// <summary>Maximum number of redirects to follow.</summary>
-        public int? MaxRedirects { get => _explicitNullValueMaxRedirects; set { _explicitNullValueMaxRedirects = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxRedirects"); else _explicitNullProperties?.Remove("maxRedirects"); } }
+        public int? MaxRedirects { get => _explicitNullValueMaxRedirects; set { _explicitNullValueMaxRedirects = value; AdditionalData?.Remove("maxRedirects"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxRedirects"); else _explicitNullProperties?.Remove("maxRedirects"); } }
         private int? _explicitNullValueMaxRedirects = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateLogStreamingDestinationRequestOneOf1OptionsRedirectRedirect"/> and sets the default values.

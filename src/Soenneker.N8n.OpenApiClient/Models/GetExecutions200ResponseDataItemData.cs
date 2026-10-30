@@ -18,7 +18,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("redactionInfo") is { } nullNodeRedactionInfo && nullNodeRedactionInfo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RedactionInfo = null;
+            if (parseNode.GetChildNode("redactionInfo") is null) { _explicitNullValueRedactionInfo = default!; _explicitNullProperties?.Remove("redactionInfo"); }
+            else if (parseNode.GetChildNode("redactionInfo") is { } nullNodeRedactionInfo && nullNodeRedactionInfo.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) RedactionInfo = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Present when execution data has been redacted.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200ResponseDataItemDataRedactionInfo? RedactionInfo { get => _explicitNullValueRedactionInfo; set { _explicitNullValueRedactionInfo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redactionInfo"); else _explicitNullProperties?.Remove("redactionInfo"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200ResponseDataItemDataRedactionInfo? RedactionInfo { get => _explicitNullValueRedactionInfo; set { _explicitNullValueRedactionInfo = value; AdditionalData?.Remove("redactionInfo"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redactionInfo"); else _explicitNullProperties?.Remove("redactionInfo"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200ResponseDataItemDataRedactionInfo? _explicitNullValueRedactionInfo = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200ResponseDataItemDataRedactionInfo RedactionInfo { get => _explicitNullValueRedactionInfo; set { _explicitNullValueRedactionInfo = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redactionInfo"); else _explicitNullProperties?.Remove("redactionInfo"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200ResponseDataItemDataRedactionInfo RedactionInfo { get => _explicitNullValueRedactionInfo; set { _explicitNullValueRedactionInfo = value; AdditionalData?.Remove("redactionInfo"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redactionInfo"); else _explicitNullProperties?.Remove("redactionInfo"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetExecutions200ResponseDataItemDataRedactionInfo _explicitNullValueRedactionInfo = default!;
 #endif
         /// <summary>

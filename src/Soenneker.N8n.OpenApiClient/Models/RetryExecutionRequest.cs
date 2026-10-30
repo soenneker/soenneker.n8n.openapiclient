@@ -17,13 +17,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("loadWorkflow") is { } nullNodeLoadWorkflow && nullNodeLoadWorkflow.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoadWorkflow = null;
+            if (parseNode.GetChildNode("loadWorkflow") is null) { _explicitNullValueLoadWorkflow = default!; _explicitNullProperties?.Remove("loadWorkflow"); }
+            else if (parseNode.GetChildNode("loadWorkflow") is { } nullNodeLoadWorkflow && nullNodeLoadWorkflow.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) LoadWorkflow = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to load the currently saved workflow to execute instead of the one saved at the time of the execution. If set to true, it will retry with the latest version of the workflow.</summary>
-        public bool? LoadWorkflow { get => _explicitNullValueLoadWorkflow; set { _explicitNullValueLoadWorkflow = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loadWorkflow"); else _explicitNullProperties?.Remove("loadWorkflow"); } }
+        public bool? LoadWorkflow { get => _explicitNullValueLoadWorkflow; set { _explicitNullValueLoadWorkflow = value; AdditionalData?.Remove("loadWorkflow"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("loadWorkflow"); else _explicitNullProperties?.Remove("loadWorkflow"); } }
         private bool? _explicitNullValueLoadWorkflow = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.RetryExecutionRequest"/> and sets the default values.

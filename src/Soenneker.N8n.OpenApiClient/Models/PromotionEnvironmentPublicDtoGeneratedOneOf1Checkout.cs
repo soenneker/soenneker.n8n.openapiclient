@@ -17,17 +17,19 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("hasCheckout") is { } nullNodeHasCheckout && nullNodeHasCheckout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasCheckout = null;
-            if (parseNode.GetChildNode("matchesEnvironment") is { } nullNodeMatchesEnvironment && nullNodeMatchesEnvironment.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MatchesEnvironment = null;
+            if (parseNode.GetChildNode("hasCheckout") is null) { _explicitNullValueHasCheckout = default!; _explicitNullProperties?.Remove("hasCheckout"); }
+            else if (parseNode.GetChildNode("hasCheckout") is { } nullNodeHasCheckout && nullNodeHasCheckout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) HasCheckout = null;
+            if (parseNode.GetChildNode("matchesEnvironment") is null) { _explicitNullValueMatchesEnvironment = default!; _explicitNullProperties?.Remove("matchesEnvironment"); }
+            else if (parseNode.GetChildNode("matchesEnvironment") is { } nullNodeMatchesEnvironment && nullNodeMatchesEnvironment.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MatchesEnvironment = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The hasCheckout property</summary>
-        public bool? HasCheckout { get => _explicitNullValueHasCheckout; set { _explicitNullValueHasCheckout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasCheckout"); else _explicitNullProperties?.Remove("hasCheckout"); } }
+        public bool? HasCheckout { get => _explicitNullValueHasCheckout; set { _explicitNullValueHasCheckout = value; AdditionalData?.Remove("hasCheckout"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("hasCheckout"); else _explicitNullProperties?.Remove("hasCheckout"); } }
         private bool? _explicitNullValueHasCheckout = default!;
         /// <summary>The matchesEnvironment property</summary>
-        public bool? MatchesEnvironment { get => _explicitNullValueMatchesEnvironment; set { _explicitNullValueMatchesEnvironment = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matchesEnvironment"); else _explicitNullProperties?.Remove("matchesEnvironment"); } }
+        public bool? MatchesEnvironment { get => _explicitNullValueMatchesEnvironment; set { _explicitNullValueMatchesEnvironment = value; AdditionalData?.Remove("matchesEnvironment"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matchesEnvironment"); else _explicitNullProperties?.Remove("matchesEnvironment"); } }
         private bool? _explicitNullValueMatchesEnvironment = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionEnvironmentPublicDtoGeneratedOneOf1Checkout"/> and sets the default values.

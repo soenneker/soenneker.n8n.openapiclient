@@ -18,54 +18,60 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("allowUnauthorizedCerts") is { } nullNodeAllowUnauthorizedCerts && nullNodeAllowUnauthorizedCerts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowUnauthorizedCerts = null;
-            if (parseNode.GetChildNode("proxy") is { } nullNodeProxy && nullNodeProxy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Proxy = null;
-            if (parseNode.GetChildNode("queryParameterArrays") is { } nullNodeQueryParameterArrays && nullNodeQueryParameterArrays.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryParameterArrays = null;
-            if (parseNode.GetChildNode("redirect") is { } nullNodeRedirect && nullNodeRedirect.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Redirect = null;
-            if (parseNode.GetChildNode("socket") is { } nullNodeSocket && nullNodeSocket.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Socket = null;
-            if (parseNode.GetChildNode("timeout") is { } nullNodeTimeout && nullNodeTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Timeout = null;
+            if (parseNode.GetChildNode("allowUnauthorizedCerts") is null) { _explicitNullValueAllowUnauthorizedCerts = default!; _explicitNullProperties?.Remove("allowUnauthorizedCerts"); }
+            else if (parseNode.GetChildNode("allowUnauthorizedCerts") is { } nullNodeAllowUnauthorizedCerts && nullNodeAllowUnauthorizedCerts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AllowUnauthorizedCerts = null;
+            if (parseNode.GetChildNode("proxy") is null) { _explicitNullValueProxy = default!; _explicitNullProperties?.Remove("proxy"); }
+            else if (parseNode.GetChildNode("proxy") is { } nullNodeProxy && nullNodeProxy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Proxy = null;
+            if (parseNode.GetChildNode("queryParameterArrays") is null) { _explicitNullValueQueryParameterArrays = default!; _explicitNullProperties?.Remove("queryParameterArrays"); }
+            else if (parseNode.GetChildNode("queryParameterArrays") is { } nullNodeQueryParameterArrays && nullNodeQueryParameterArrays.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) QueryParameterArrays = null;
+            if (parseNode.GetChildNode("redirect") is null) { _explicitNullValueRedirect = default!; _explicitNullProperties?.Remove("redirect"); }
+            else if (parseNode.GetChildNode("redirect") is { } nullNodeRedirect && nullNodeRedirect.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Redirect = null;
+            if (parseNode.GetChildNode("socket") is null) { _explicitNullValueSocket = default!; _explicitNullProperties?.Remove("socket"); }
+            else if (parseNode.GetChildNode("socket") is { } nullNodeSocket && nullNodeSocket.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Socket = null;
+            if (parseNode.GetChildNode("timeout") is null) { _explicitNullValueTimeout = default!; _explicitNullProperties?.Remove("timeout"); }
+            else if (parseNode.GetChildNode("timeout") is { } nullNodeTimeout && nullNodeTimeout.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Timeout = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Accept self-signed or otherwise invalid TLS certificates.</summary>
-        public bool? AllowUnauthorizedCerts { get => _explicitNullValueAllowUnauthorizedCerts; set { _explicitNullValueAllowUnauthorizedCerts = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowUnauthorizedCerts"); else _explicitNullProperties?.Remove("allowUnauthorizedCerts"); } }
+        public bool? AllowUnauthorizedCerts { get => _explicitNullValueAllowUnauthorizedCerts; set { _explicitNullValueAllowUnauthorizedCerts = value; AdditionalData?.Remove("allowUnauthorizedCerts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("allowUnauthorizedCerts"); else _explicitNullProperties?.Remove("allowUnauthorizedCerts"); } }
         private bool? _explicitNullValueAllowUnauthorizedCerts = default!;
         /// <summary>Outbound proxy configuration.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxy? Proxy { get => _explicitNullValueProxy; set { _explicitNullValueProxy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proxy"); else _explicitNullProperties?.Remove("proxy"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxy? Proxy { get => _explicitNullValueProxy; set { _explicitNullValueProxy = value; AdditionalData?.Remove("proxy"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proxy"); else _explicitNullProperties?.Remove("proxy"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxy? _explicitNullValueProxy = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxy Proxy { get => _explicitNullValueProxy; set { _explicitNullValueProxy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proxy"); else _explicitNullProperties?.Remove("proxy"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxy Proxy { get => _explicitNullValueProxy; set { _explicitNullValueProxy = value; AdditionalData?.Remove("proxy"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("proxy"); else _explicitNullProperties?.Remove("proxy"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxy _explicitNullValueProxy = default!;
 #endif
         /// <summary>How array-valued query parameters are serialized into the query string.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsQueryParameterArrays? QueryParameterArrays { get => _explicitNullValueQueryParameterArrays; set { _explicitNullValueQueryParameterArrays = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryParameterArrays"); else _explicitNullProperties?.Remove("queryParameterArrays"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsQueryParameterArrays? QueryParameterArrays { get => _explicitNullValueQueryParameterArrays; set { _explicitNullValueQueryParameterArrays = value; AdditionalData?.Remove("queryParameterArrays"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("queryParameterArrays"); else _explicitNullProperties?.Remove("queryParameterArrays"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsQueryParameterArrays? _explicitNullValueQueryParameterArrays = default!;
         /// <summary>Redirect-following behaviour.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsRedirect? Redirect { get => _explicitNullValueRedirect; set { _explicitNullValueRedirect = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redirect"); else _explicitNullProperties?.Remove("redirect"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsRedirect? Redirect { get => _explicitNullValueRedirect; set { _explicitNullValueRedirect = value; AdditionalData?.Remove("redirect"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redirect"); else _explicitNullProperties?.Remove("redirect"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsRedirect? _explicitNullValueRedirect = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsRedirect Redirect { get => _explicitNullValueRedirect; set { _explicitNullValueRedirect = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redirect"); else _explicitNullProperties?.Remove("redirect"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsRedirect Redirect { get => _explicitNullValueRedirect; set { _explicitNullValueRedirect = value; AdditionalData?.Remove("redirect"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("redirect"); else _explicitNullProperties?.Remove("redirect"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsRedirect _explicitNullValueRedirect = default!;
 #endif
         /// <summary>Connection socket options.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsSocket? Socket { get => _explicitNullValueSocket; set { _explicitNullValueSocket = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("socket"); else _explicitNullProperties?.Remove("socket"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsSocket? Socket { get => _explicitNullValueSocket; set { _explicitNullValueSocket = value; AdditionalData?.Remove("socket"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("socket"); else _explicitNullProperties?.Remove("socket"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsSocket? _explicitNullValueSocket = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsSocket Socket { get => _explicitNullValueSocket; set { _explicitNullValueSocket = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("socket"); else _explicitNullProperties?.Remove("socket"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsSocket Socket { get => _explicitNullValueSocket; set { _explicitNullValueSocket = value; AdditionalData?.Remove("socket"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("socket"); else _explicitNullProperties?.Remove("socket"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsSocket _explicitNullValueSocket = default!;
 #endif
         /// <summary>Request timeout in milliseconds.</summary>
-        public int? Timeout { get => _explicitNullValueTimeout; set { _explicitNullValueTimeout = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timeout"); else _explicitNullProperties?.Remove("timeout"); } }
+        public int? Timeout { get => _explicitNullValueTimeout; set { _explicitNullValueTimeout = value; AdditionalData?.Remove("timeout"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timeout"); else _explicitNullProperties?.Remove("timeout"); } }
         private int? _explicitNullValueTimeout = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1Options"/> and sets the default values.
@@ -94,7 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "allowUnauthorizedCerts", n => { AllowUnauthorizedCerts = n.GetBoolValue(); } },
                 { "proxy", n => { Proxy = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxy>(global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsProxy.CreateFromDiscriminatorValue); } },
-                { "queryParameterArrays", n => { QueryParameterArrays = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsQueryParameterArrays>(); } },
+                { "queryParameterArrays", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsQueryParameterArrays>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueQueryParameterArrays = default; _explicitNullProperties?.Remove("queryParameterArrays"); AdditionalData["queryParameterArrays"] = unknown; } else { QueryParameterArrays = parsed; AdditionalData.Remove("queryParameterArrays"); } } },
                 { "redirect", n => { Redirect = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsRedirect>(global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsRedirect.CreateFromDiscriminatorValue); } },
                 { "socket", n => { Socket = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsSocket>(global::Soenneker.N8n.OpenApiClient.Models.CreateLogStreamingDestinationRequestOneOf1OptionsSocket.CreateFromDiscriminatorValue); } },
                 { "timeout", n => { Timeout = n.GetIntValue(); } },

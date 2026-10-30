@@ -18,7 +18,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("nodeTypes") is { } nullNodeNodeTypes && nullNodeNodeTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NodeTypes = null;
+            if (parseNode.GetChildNode("nodeTypes") is null) { _explicitNullValueNodeTypes = default!; _explicitNullProperties?.Remove("nodeTypes"); }
+            else if (parseNode.GetChildNode("nodeTypes") is { } nullNodeNodeTypes && nullNodeNodeTypes.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NodeTypes = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,11 +27,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Blocked node types from this package. Lists only the node types that are blocked.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem>? NodeTypes { get => _explicitNullValueNodeTypes; set { _explicitNullValueNodeTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nodeTypes"); else _explicitNullProperties?.Remove("nodeTypes"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem>? NodeTypes { get => _explicitNullValueNodeTypes; set { _explicitNullValueNodeTypes = value; AdditionalData?.Remove("nodeTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nodeTypes"); else _explicitNullProperties?.Remove("nodeTypes"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem>? _explicitNullValueNodeTypes = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem> NodeTypes { get => _explicitNullValueNodeTypes; set { _explicitNullValueNodeTypes = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nodeTypes"); else _explicitNullProperties?.Remove("nodeTypes"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem> NodeTypes { get => _explicitNullValueNodeTypes; set { _explicitNullValueNodeTypes = value; AdditionalData?.Remove("nodeTypes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("nodeTypes"); else _explicitNullProperties?.Remove("nodeTypes"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItem> _explicitNullValueNodeTypes = default!;
 #endif
         /// <summary>

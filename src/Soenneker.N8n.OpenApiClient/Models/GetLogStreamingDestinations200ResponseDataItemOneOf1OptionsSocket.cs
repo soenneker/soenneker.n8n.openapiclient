@@ -18,21 +18,24 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("keepAlive") is { } nullNodeKeepAlive && nullNodeKeepAlive.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KeepAlive = null;
-            if (parseNode.GetChildNode("maxFreeSockets") is { } nullNodeMaxFreeSockets && nullNodeMaxFreeSockets.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxFreeSockets = null;
-            if (parseNode.GetChildNode("maxSockets") is { } nullNodeMaxSockets && nullNodeMaxSockets.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxSockets = null;
+            if (parseNode.GetChildNode("keepAlive") is null) { _explicitNullValueKeepAlive = default!; _explicitNullProperties?.Remove("keepAlive"); }
+            else if (parseNode.GetChildNode("keepAlive") is { } nullNodeKeepAlive && nullNodeKeepAlive.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) KeepAlive = null;
+            if (parseNode.GetChildNode("maxFreeSockets") is null) { _explicitNullValueMaxFreeSockets = default!; _explicitNullProperties?.Remove("maxFreeSockets"); }
+            else if (parseNode.GetChildNode("maxFreeSockets") is { } nullNodeMaxFreeSockets && nullNodeMaxFreeSockets.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxFreeSockets = null;
+            if (parseNode.GetChildNode("maxSockets") is null) { _explicitNullValueMaxSockets = default!; _explicitNullProperties?.Remove("maxSockets"); }
+            else if (parseNode.GetChildNode("maxSockets") is { } nullNodeMaxSockets && nullNodeMaxSockets.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxSockets = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Whether to keep sockets open for reuse.</summary>
-        public bool? KeepAlive { get => _explicitNullValueKeepAlive; set { _explicitNullValueKeepAlive = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keepAlive"); else _explicitNullProperties?.Remove("keepAlive"); } }
+        public bool? KeepAlive { get => _explicitNullValueKeepAlive; set { _explicitNullValueKeepAlive = value; AdditionalData?.Remove("keepAlive"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("keepAlive"); else _explicitNullProperties?.Remove("keepAlive"); } }
         private bool? _explicitNullValueKeepAlive = default!;
         /// <summary>Maximum idle sockets per host kept open.</summary>
-        public int? MaxFreeSockets { get => _explicitNullValueMaxFreeSockets; set { _explicitNullValueMaxFreeSockets = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxFreeSockets"); else _explicitNullProperties?.Remove("maxFreeSockets"); } }
+        public int? MaxFreeSockets { get => _explicitNullValueMaxFreeSockets; set { _explicitNullValueMaxFreeSockets = value; AdditionalData?.Remove("maxFreeSockets"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxFreeSockets"); else _explicitNullProperties?.Remove("maxFreeSockets"); } }
         private int? _explicitNullValueMaxFreeSockets = default!;
         /// <summary>Maximum sockets per host kept open at once.</summary>
-        public int? MaxSockets { get => _explicitNullValueMaxSockets; set { _explicitNullValueMaxSockets = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxSockets"); else _explicitNullProperties?.Remove("maxSockets"); } }
+        public int? MaxSockets { get => _explicitNullValueMaxSockets; set { _explicitNullValueMaxSockets = value; AdditionalData?.Remove("maxSockets"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxSockets"); else _explicitNullProperties?.Remove("maxSockets"); } }
         private int? _explicitNullValueMaxSockets = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItemOneOf1OptionsSocket"/> and sets the default values.

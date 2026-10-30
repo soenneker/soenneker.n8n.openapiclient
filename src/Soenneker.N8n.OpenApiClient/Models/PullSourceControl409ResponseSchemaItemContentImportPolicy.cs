@@ -17,8 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("checkErrors") is { } nullNodeCheckErrors && nullNodeCheckErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CheckErrors = null;
-            if (parseNode.GetChildNode("violations") is { } nullNodeViolations && nullNodeViolations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Violations = null;
+            if (parseNode.GetChildNode("checkErrors") is null) { _explicitNullValueCheckErrors = default!; _explicitNullProperties?.Remove("checkErrors"); }
+            else if (parseNode.GetChildNode("checkErrors") is { } nullNodeCheckErrors && nullNodeCheckErrors.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CheckErrors = null;
+            if (parseNode.GetChildNode("violations") is null) { _explicitNullValueViolations = default!; _explicitNullProperties?.Remove("violations"); }
+            else if (parseNode.GetChildNode("violations") is { } nullNodeViolations && nullNodeViolations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Violations = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,21 +28,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The checkErrors property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyCheckErrorsItem>? CheckErrors { get => _explicitNullValueCheckErrors; set { _explicitNullValueCheckErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("checkErrors"); else _explicitNullProperties?.Remove("checkErrors"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyCheckErrorsItem>? CheckErrors { get => _explicitNullValueCheckErrors; set { _explicitNullValueCheckErrors = value; AdditionalData?.Remove("checkErrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("checkErrors"); else _explicitNullProperties?.Remove("checkErrors"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyCheckErrorsItem>? _explicitNullValueCheckErrors = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyCheckErrorsItem> CheckErrors { get => _explicitNullValueCheckErrors; set { _explicitNullValueCheckErrors = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("checkErrors"); else _explicitNullProperties?.Remove("checkErrors"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyCheckErrorsItem> CheckErrors { get => _explicitNullValueCheckErrors; set { _explicitNullValueCheckErrors = value; AdditionalData?.Remove("checkErrors"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("checkErrors"); else _explicitNullProperties?.Remove("checkErrors"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyCheckErrorsItem> _explicitNullValueCheckErrors = default!;
 #endif
         /// <summary>The violations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyViolationsItem>? Violations { get => _explicitNullValueViolations; set { _explicitNullValueViolations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("violations"); else _explicitNullProperties?.Remove("violations"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyViolationsItem>? Violations { get => _explicitNullValueViolations; set { _explicitNullValueViolations = value; AdditionalData?.Remove("violations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("violations"); else _explicitNullProperties?.Remove("violations"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyViolationsItem>? _explicitNullValueViolations = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyViolationsItem> Violations { get => _explicitNullValueViolations; set { _explicitNullValueViolations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("violations"); else _explicitNullProperties?.Remove("violations"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyViolationsItem> Violations { get => _explicitNullValueViolations; set { _explicitNullValueViolations = value; AdditionalData?.Remove("violations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("violations"); else _explicitNullProperties?.Remove("violations"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseItemContentImportPolicyViolationsItem> _explicitNullValueViolations = default!;
 #endif
         /// <summary>

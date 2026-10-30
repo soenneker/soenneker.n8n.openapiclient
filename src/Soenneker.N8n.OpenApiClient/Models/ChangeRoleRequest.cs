@@ -17,7 +17,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("newRoleName") is { } nullNodeNewRoleName && nullNodeNewRoleName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewRoleName = null;
+            if (parseNode.GetChildNode("newRoleName") is null) { _explicitNullValueNewRoleName = default!; _explicitNullProperties?.Remove("newRoleName"); }
+            else if (parseNode.GetChildNode("newRoleName") is { } nullNodeNewRoleName && nullNodeNewRoleName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) NewRoleName = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The newRoleName property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ChangeRoleRequestNewRoleName? NewRoleName { get => _explicitNullValueNewRoleName; set { _explicitNullValueNewRoleName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newRoleName"); else _explicitNullProperties?.Remove("newRoleName"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.ChangeRoleRequestNewRoleName? NewRoleName { get => _explicitNullValueNewRoleName; set { _explicitNullValueNewRoleName = value; AdditionalData?.Remove("newRoleName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newRoleName"); else _explicitNullProperties?.Remove("newRoleName"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.ChangeRoleRequestNewRoleName? _explicitNullValueNewRoleName = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ChangeRoleRequestNewRoleName NewRoleName { get => _explicitNullValueNewRoleName; set { _explicitNullValueNewRoleName = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newRoleName"); else _explicitNullProperties?.Remove("newRoleName"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.ChangeRoleRequestNewRoleName NewRoleName { get => _explicitNullValueNewRoleName; set { _explicitNullValueNewRoleName = value; AdditionalData?.Remove("newRoleName"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("newRoleName"); else _explicitNullProperties?.Remove("newRoleName"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.ChangeRoleRequestNewRoleName _explicitNullValueNewRoleName = default!;
 #endif
         /// <summary>

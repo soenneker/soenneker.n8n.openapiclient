@@ -18,11 +18,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("incomplete") is { } nullNodeIncomplete && nullNodeIncomplete.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Incomplete = null;
-            if (parseNode.GetChildNode("matched") is { } nullNodeMatched && nullNodeMatched.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Matched = null;
-            if (parseNode.GetChildNode("seeded") is { } nullNodeSeeded && nullNodeSeeded.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Seeded = null;
-            if (parseNode.GetChildNode("stubbed") is { } nullNodeStubbed && nullNodeStubbed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Stubbed = null;
-            if (parseNode.GetChildNode("updated") is { } nullNodeUpdated && nullNodeUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Updated = null;
+            if (parseNode.GetChildNode("incomplete") is null) { _explicitNullValueIncomplete = default!; _explicitNullProperties?.Remove("incomplete"); }
+            else if (parseNode.GetChildNode("incomplete") is { } nullNodeIncomplete && nullNodeIncomplete.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Incomplete = null;
+            if (parseNode.GetChildNode("matched") is null) { _explicitNullValueMatched = default!; _explicitNullProperties?.Remove("matched"); }
+            else if (parseNode.GetChildNode("matched") is { } nullNodeMatched && nullNodeMatched.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Matched = null;
+            if (parseNode.GetChildNode("seeded") is null) { _explicitNullValueSeeded = default!; _explicitNullProperties?.Remove("seeded"); }
+            else if (parseNode.GetChildNode("seeded") is { } nullNodeSeeded && nullNodeSeeded.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Seeded = null;
+            if (parseNode.GetChildNode("stubbed") is null) { _explicitNullValueStubbed = default!; _explicitNullProperties?.Remove("stubbed"); }
+            else if (parseNode.GetChildNode("stubbed") is { } nullNodeStubbed && nullNodeStubbed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Stubbed = null;
+            if (parseNode.GetChildNode("updated") is null) { _explicitNullValueUpdated = default!; _explicitNullProperties?.Remove("updated"); }
+            else if (parseNode.GetChildNode("updated") is { } nullNodeUpdated && nullNodeUpdated.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Updated = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -30,51 +35,51 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Source credential ids for which credentials were created in the target project with bundled expression values, but the package does not confirm that it carries all source data. These credentials need input. The import does not publish the imported version of workflows that use them (`incomplete-credential`).</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Incomplete { get => _explicitNullValueIncomplete; set { _explicitNullValueIncomplete = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomplete"); else _explicitNullProperties?.Remove("incomplete"); } }
+        public List<string>? Incomplete { get => _explicitNullValueIncomplete; set { _explicitNullValueIncomplete = value; AdditionalData?.Remove("incomplete"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomplete"); else _explicitNullProperties?.Remove("incomplete"); } }
         private List<string>? _explicitNullValueIncomplete = default!;
 #nullable restore
 #else
-        public List<string> Incomplete { get => _explicitNullValueIncomplete; set { _explicitNullValueIncomplete = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomplete"); else _explicitNullProperties?.Remove("incomplete"); } }
+        public List<string> Incomplete { get => _explicitNullValueIncomplete; set { _explicitNullValueIncomplete = value; AdditionalData?.Remove("incomplete"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("incomplete"); else _explicitNullProperties?.Remove("incomplete"); } }
         private List<string> _explicitNullValueIncomplete = default!;
 #endif
         /// <summary>Source credential ids from the package that matched existing credentials on the target instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Matched { get => _explicitNullValueMatched; set { _explicitNullValueMatched = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched"); else _explicitNullProperties?.Remove("matched"); } }
+        public List<string>? Matched { get => _explicitNullValueMatched; set { _explicitNullValueMatched = value; AdditionalData?.Remove("matched"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched"); else _explicitNullProperties?.Remove("matched"); } }
         private List<string>? _explicitNullValueMatched = default!;
 #nullable restore
 #else
-        public List<string> Matched { get => _explicitNullValueMatched; set { _explicitNullValueMatched = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched"); else _explicitNullProperties?.Remove("matched"); } }
+        public List<string> Matched { get => _explicitNullValueMatched; set { _explicitNullValueMatched = value; AdditionalData?.Remove("matched"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("matched"); else _explicitNullProperties?.Remove("matched"); } }
         private List<string> _explicitNullValueMatched = default!;
 #endif
         /// <summary>Source credential ids for which credentials were created in the target project with all their source data from the bundled expression values.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Seeded { get => _explicitNullValueSeeded; set { _explicitNullValueSeeded = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("seeded"); else _explicitNullProperties?.Remove("seeded"); } }
+        public List<string>? Seeded { get => _explicitNullValueSeeded; set { _explicitNullValueSeeded = value; AdditionalData?.Remove("seeded"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("seeded"); else _explicitNullProperties?.Remove("seeded"); } }
         private List<string>? _explicitNullValueSeeded = default!;
 #nullable restore
 #else
-        public List<string> Seeded { get => _explicitNullValueSeeded; set { _explicitNullValueSeeded = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("seeded"); else _explicitNullProperties?.Remove("seeded"); } }
+        public List<string> Seeded { get => _explicitNullValueSeeded; set { _explicitNullValueSeeded = value; AdditionalData?.Remove("seeded"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("seeded"); else _explicitNullProperties?.Remove("seeded"); } }
         private List<string> _explicitNullValueSeeded = default!;
 #endif
         /// <summary>Source credential ids for which empty placeholder credentials were created in the target project.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Stubbed { get => _explicitNullValueStubbed; set { _explicitNullValueStubbed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stubbed"); else _explicitNullProperties?.Remove("stubbed"); } }
+        public List<string>? Stubbed { get => _explicitNullValueStubbed; set { _explicitNullValueStubbed = value; AdditionalData?.Remove("stubbed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stubbed"); else _explicitNullProperties?.Remove("stubbed"); } }
         private List<string>? _explicitNullValueStubbed = default!;
 #nullable restore
 #else
-        public List<string> Stubbed { get => _explicitNullValueStubbed; set { _explicitNullValueStubbed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stubbed"); else _explicitNullProperties?.Remove("stubbed"); } }
+        public List<string> Stubbed { get => _explicitNullValueStubbed; set { _explicitNullValueStubbed = value; AdditionalData?.Remove("stubbed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stubbed"); else _explicitNullProperties?.Remove("stubbed"); } }
         private List<string> _explicitNullValueStubbed = default!;
 #endif
         /// <summary>Source credential ids whose matched credential this import changed under `credentialConflictPolicy=overwrite`. These ids are not listed under `matched`. Empty for other policies.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<string>? Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
+        public List<string>? Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; AdditionalData?.Remove("updated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
         private List<string>? _explicitNullValueUpdated = default!;
 #nullable restore
 #else
-        public List<string> Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
+        public List<string> Updated { get => _explicitNullValueUpdated; set { _explicitNullValueUpdated = value; AdditionalData?.Remove("updated"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("updated"); else _explicitNullProperties?.Remove("updated"); } }
         private List<string> _explicitNullValueUpdated = default!;
 #endif
         /// <summary>

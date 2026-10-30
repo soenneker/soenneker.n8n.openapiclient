@@ -17,7 +17,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("expectedSource") is { } nullNodeExpectedSource && nullNodeExpectedSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedSource = null;
+            if (parseNode.GetChildNode("expectedSource") is null) { _explicitNullValueExpectedSource = default!; _explicitNullProperties?.Remove("expectedSource"); }
+            else if (parseNode.GetChildNode("expectedSource") is { } nullNodeExpectedSource && nullNodeExpectedSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedSource = null;
         }
 
         /// <summary>The expectedSource property</summary>

@@ -17,7 +17,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("additionalOptions") is { } nullNodeAdditionalOptions && nullNodeAdditionalOptions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AdditionalOptions = null;
+            if (parseNode.GetChildNode("additionalOptions") is null) { _explicitNullValueAdditionalOptions = default!; _explicitNullProperties?.Remove("additionalOptions"); }
+            else if (parseNode.GetChildNode("additionalOptions") is { } nullNodeAdditionalOptions && nullNodeAdditionalOptions.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AdditionalOptions = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The additionalOptions property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptions? AdditionalOptions { get => _explicitNullValueAdditionalOptions; set { _explicitNullValueAdditionalOptions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalOptions"); else _explicitNullProperties?.Remove("additionalOptions"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptions? AdditionalOptions { get => _explicitNullValueAdditionalOptions; set { _explicitNullValueAdditionalOptions = value; AdditionalData?.Remove("additionalOptions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalOptions"); else _explicitNullProperties?.Remove("additionalOptions"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptions? _explicitNullValueAdditionalOptions = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptions AdditionalOptions { get => _explicitNullValueAdditionalOptions; set { _explicitNullValueAdditionalOptions = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalOptions"); else _explicitNullProperties?.Remove("additionalOptions"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptions AdditionalOptions { get => _explicitNullValueAdditionalOptions; set { _explicitNullValueAdditionalOptions = value; AdditionalData?.Remove("additionalOptions"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("additionalOptions"); else _explicitNullProperties?.Remove("additionalOptions"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptions _explicitNullValueAdditionalOptions = default!;
 #endif
         /// <summary>

@@ -17,17 +17,19 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("autoPublish") is { } nullNodeAutoPublish && nullNodeAutoPublish.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoPublish = null;
-            if (parseNode.GetChildNode("force") is { } nullNodeForce && nullNodeForce.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Force = null;
+            if (parseNode.GetChildNode("autoPublish") is null) { _explicitNullValueAutoPublish = default!; _explicitNullProperties?.Remove("autoPublish"); }
+            else if (parseNode.GetChildNode("autoPublish") is { } nullNodeAutoPublish && nullNodeAutoPublish.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AutoPublish = null;
+            if (parseNode.GetChildNode("force") is null) { _explicitNullValueForce = default!; _explicitNullProperties?.Remove("force"); }
+            else if (parseNode.GetChildNode("force") is { } nullNodeForce && nullNodeForce.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Force = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Controls automatic workflow publishing after import:- `none`: Keep workflows in their local published state (default)- `all`: Publish all imported workflows- `published`: Publish only workflows that were published locally before import</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish? AutoPublish { get => _explicitNullValueAutoPublish; set { _explicitNullValueAutoPublish = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoPublish"); else _explicitNullProperties?.Remove("autoPublish"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish? AutoPublish { get => _explicitNullValueAutoPublish; set { _explicitNullValueAutoPublish = value; AdditionalData?.Remove("autoPublish"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("autoPublish"); else _explicitNullProperties?.Remove("autoPublish"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish? _explicitNullValueAutoPublish = default!;
         /// <summary>Discard local changes and force the pull to complete.</summary>
-        public bool? Force { get => _explicitNullValueForce; set { _explicitNullValueForce = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("force"); else _explicitNullProperties?.Remove("force"); } }
+        public bool? Force { get => _explicitNullValueForce; set { _explicitNullValueForce = value; AdditionalData?.Remove("force"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("force"); else _explicitNullProperties?.Remove("force"); } }
         private bool? _explicitNullValueForce = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequest"/> and sets the default values.
@@ -54,7 +56,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "autoPublish", n => { AutoPublish = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish>(); } },
+                { "autoPublish", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequestAutoPublish>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAutoPublish = default; _explicitNullProperties?.Remove("autoPublish"); AdditionalData["autoPublish"] = unknown; } else { AutoPublish = parsed; AdditionalData.Remove("autoPublish"); } } },
                 { "force", n => { Force = n.GetBoolValue(); } },
             };
         }

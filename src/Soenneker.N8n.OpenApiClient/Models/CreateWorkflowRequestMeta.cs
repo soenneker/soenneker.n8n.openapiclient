@@ -18,10 +18,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("instanceId") is { } nullNodeInstanceId && nullNodeInstanceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstanceId = null;
-            if (parseNode.GetChildNode("onboardingId") is { } nullNodeOnboardingId && nullNodeOnboardingId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OnboardingId = null;
-            if (parseNode.GetChildNode("templateCredsSetupCompleted") is { } nullNodeTemplateCredsSetupCompleted && nullNodeTemplateCredsSetupCompleted.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplateCredsSetupCompleted = null;
-            if (parseNode.GetChildNode("templateId") is { } nullNodeTemplateId && nullNodeTemplateId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplateId = null;
+            if (parseNode.GetChildNode("instanceId") is null) { _explicitNullValueInstanceId = default!; _explicitNullProperties?.Remove("instanceId"); }
+            else if (parseNode.GetChildNode("instanceId") is { } nullNodeInstanceId && nullNodeInstanceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) InstanceId = null;
+            if (parseNode.GetChildNode("onboardingId") is null) { _explicitNullValueOnboardingId = default!; _explicitNullProperties?.Remove("onboardingId"); }
+            else if (parseNode.GetChildNode("onboardingId") is { } nullNodeOnboardingId && nullNodeOnboardingId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OnboardingId = null;
+            if (parseNode.GetChildNode("templateCredsSetupCompleted") is null) { _explicitNullValueTemplateCredsSetupCompleted = default!; _explicitNullProperties?.Remove("templateCredsSetupCompleted"); }
+            else if (parseNode.GetChildNode("templateCredsSetupCompleted") is { } nullNodeTemplateCredsSetupCompleted && nullNodeTemplateCredsSetupCompleted.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplateCredsSetupCompleted = null;
+            if (parseNode.GetChildNode("templateId") is null) { _explicitNullValueTemplateId = default!; _explicitNullProperties?.Remove("templateId"); }
+            else if (parseNode.GetChildNode("templateId") is { } nullNodeTemplateId && nullNodeTemplateId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TemplateId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -29,34 +33,34 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The instanceId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? InstanceId { get => _explicitNullValueInstanceId; set { _explicitNullValueInstanceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("instanceId"); else _explicitNullProperties?.Remove("instanceId"); } }
+        public string? InstanceId { get => _explicitNullValueInstanceId; set { _explicitNullValueInstanceId = value; AdditionalData?.Remove("instanceId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("instanceId"); else _explicitNullProperties?.Remove("instanceId"); } }
         private string? _explicitNullValueInstanceId = default!;
 #nullable restore
 #else
-        public string InstanceId { get => _explicitNullValueInstanceId; set { _explicitNullValueInstanceId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("instanceId"); else _explicitNullProperties?.Remove("instanceId"); } }
+        public string InstanceId { get => _explicitNullValueInstanceId; set { _explicitNullValueInstanceId = value; AdditionalData?.Remove("instanceId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("instanceId"); else _explicitNullProperties?.Remove("instanceId"); } }
         private string _explicitNullValueInstanceId = default!;
 #endif
         /// <summary>The onboardingId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? OnboardingId { get => _explicitNullValueOnboardingId; set { _explicitNullValueOnboardingId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("onboardingId"); else _explicitNullProperties?.Remove("onboardingId"); } }
+        public string? OnboardingId { get => _explicitNullValueOnboardingId; set { _explicitNullValueOnboardingId = value; AdditionalData?.Remove("onboardingId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("onboardingId"); else _explicitNullProperties?.Remove("onboardingId"); } }
         private string? _explicitNullValueOnboardingId = default!;
 #nullable restore
 #else
-        public string OnboardingId { get => _explicitNullValueOnboardingId; set { _explicitNullValueOnboardingId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("onboardingId"); else _explicitNullProperties?.Remove("onboardingId"); } }
+        public string OnboardingId { get => _explicitNullValueOnboardingId; set { _explicitNullValueOnboardingId = value; AdditionalData?.Remove("onboardingId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("onboardingId"); else _explicitNullProperties?.Remove("onboardingId"); } }
         private string _explicitNullValueOnboardingId = default!;
 #endif
         /// <summary>The templateCredsSetupCompleted property</summary>
-        public bool? TemplateCredsSetupCompleted { get => _explicitNullValueTemplateCredsSetupCompleted; set { _explicitNullValueTemplateCredsSetupCompleted = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templateCredsSetupCompleted"); else _explicitNullProperties?.Remove("templateCredsSetupCompleted"); } }
+        public bool? TemplateCredsSetupCompleted { get => _explicitNullValueTemplateCredsSetupCompleted; set { _explicitNullValueTemplateCredsSetupCompleted = value; AdditionalData?.Remove("templateCredsSetupCompleted"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templateCredsSetupCompleted"); else _explicitNullProperties?.Remove("templateCredsSetupCompleted"); } }
         private bool? _explicitNullValueTemplateCredsSetupCompleted = default!;
         /// <summary>The templateId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? TemplateId { get => _explicitNullValueTemplateId; set { _explicitNullValueTemplateId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templateId"); else _explicitNullProperties?.Remove("templateId"); } }
+        public string? TemplateId { get => _explicitNullValueTemplateId; set { _explicitNullValueTemplateId = value; AdditionalData?.Remove("templateId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templateId"); else _explicitNullProperties?.Remove("templateId"); } }
         private string? _explicitNullValueTemplateId = default!;
 #nullable restore
 #else
-        public string TemplateId { get => _explicitNullValueTemplateId; set { _explicitNullValueTemplateId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templateId"); else _explicitNullProperties?.Remove("templateId"); } }
+        public string TemplateId { get => _explicitNullValueTemplateId; set { _explicitNullValueTemplateId = value; AdditionalData?.Remove("templateId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("templateId"); else _explicitNullProperties?.Remove("templateId"); } }
         private string _explicitNullValueTemplateId = default!;
 #endif
         /// <summary>

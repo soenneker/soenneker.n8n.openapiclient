@@ -18,28 +18,31 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
-            if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
-            if (parseNode.GetChildNode("vote") is { } nullNodeVote && nullNodeVote.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Vote = null;
+            if (parseNode.GetChildNode("id") is null) { _explicitNullValueId = default!; _explicitNullProperties?.Remove("id"); }
+            else if (parseNode.GetChildNode("id") is { } nullNodeId && nullNodeId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Id = null;
+            if (parseNode.GetChildNode("tags") is null) { _explicitNullValueTags = default!; _explicitNullProperties?.Remove("tags"); }
+            else if (parseNode.GetChildNode("tags") is { } nullNodeTags && nullNodeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tags = null;
+            if (parseNode.GetChildNode("vote") is null) { _explicitNullValueVote = default!; _explicitNullProperties?.Remove("vote"); }
+            else if (parseNode.GetChildNode("vote") is { } nullNodeVote && nullNodeVote.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Vote = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The id property</summary>
-        public double? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
+        public double? Id { get => _explicitNullValueId; set { _explicitNullValueId = value; AdditionalData?.Remove("id"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("id"); else _explicitNullProperties?.Remove("id"); } }
         private double? _explicitNullValueId = default!;
         /// <summary>The tags property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationTagsItem>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationTagsItem>? Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationTagsItem>? _explicitNullValueTags = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationTagsItem> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationTagsItem> Tags { get => _explicitNullValueTags; set { _explicitNullValueTags = value; AdditionalData?.Remove("tags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tags"); else _explicitNullProperties?.Remove("tags"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationTagsItem> _explicitNullValueTags = default!;
 #endif
         /// <summary>Vote left on the original execution.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationVote? Vote { get => _explicitNullValueVote; set { _explicitNullValueVote = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vote"); else _explicitNullProperties?.Remove("vote"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationVote? Vote { get => _explicitNullValueVote; set { _explicitNullValueVote = value; AdditionalData?.Remove("vote"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("vote"); else _explicitNullProperties?.Remove("vote"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationVote? _explicitNullValueVote = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotation"/> and sets the default values.
@@ -68,7 +71,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "id", n => { Id = n.GetDoubleValue(); } },
                 { "tags", n => { Tags = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationTagsItem>(global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationTagsItem.CreateFromDiscriminatorValue)?.AsList(); } },
-                { "vote", n => { Vote = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationVote>(); } },
+                { "vote", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotationVote>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueVote = default; _explicitNullProperties?.Remove("vote"); AdditionalData["vote"] = unknown; } else { Vote = parsed; AdditionalData.Remove("vote"); } } },
             };
         }
         /// <summary>

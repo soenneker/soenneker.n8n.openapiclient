@@ -17,13 +17,14 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("stopped") is { } nullNodeStopped && nullNodeStopped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Stopped = null;
+            if (parseNode.GetChildNode("stopped") is null) { _explicitNullValueStopped = default!; _explicitNullProperties?.Remove("stopped"); }
+            else if (parseNode.GetChildNode("stopped") is { } nullNodeStopped && nullNodeStopped.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Stopped = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>The number of executions that were successfully stopped.</summary>
-        public int? Stopped { get => _explicitNullValueStopped; set { _explicitNullValueStopped = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stopped"); else _explicitNullProperties?.Remove("stopped"); } }
+        public int? Stopped { get => _explicitNullValueStopped; set { _explicitNullValueStopped = value; AdditionalData?.Remove("stopped"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("stopped"); else _explicitNullProperties?.Remove("stopped"); } }
         private int? _explicitNullValueStopped = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutions200Response"/> and sets the default values.

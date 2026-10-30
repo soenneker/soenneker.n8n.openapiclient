@@ -17,9 +17,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("baseBranchName") is { } nullNodeBaseBranchName && nullNodeBaseBranchName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BaseBranchName = null;
-            if (parseNode.GetChildNode("createBranchOnPromotion") is { } nullNodeCreateBranchOnPromotion && nullNodeCreateBranchOnPromotion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateBranchOnPromotion = null;
-            if (parseNode.GetChildNode("schemaVersion") is { } nullNodeSchemaVersion && nullNodeSchemaVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SchemaVersion = null;
+            if (parseNode.GetChildNode("baseBranchName") is null) { _explicitNullValueBaseBranchName = default!; _explicitNullProperties?.Remove("baseBranchName"); }
+            else if (parseNode.GetChildNode("baseBranchName") is { } nullNodeBaseBranchName && nullNodeBaseBranchName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BaseBranchName = null;
+            if (parseNode.GetChildNode("createBranchOnPromotion") is null) { _explicitNullValueCreateBranchOnPromotion = default!; _explicitNullProperties?.Remove("createBranchOnPromotion"); }
+            else if (parseNode.GetChildNode("createBranchOnPromotion") is { } nullNodeCreateBranchOnPromotion && nullNodeCreateBranchOnPromotion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CreateBranchOnPromotion = null;
+            if (parseNode.GetChildNode("schemaVersion") is null) { _explicitNullValueSchemaVersion = default!; _explicitNullProperties?.Remove("schemaVersion"); }
+            else if (parseNode.GetChildNode("schemaVersion") is { } nullNodeSchemaVersion && nullNodeSchemaVersion.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SchemaVersion = null;
         }
 
         /// <summary>The baseBranchName property</summary>

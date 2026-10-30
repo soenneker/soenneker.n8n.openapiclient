@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete
         public RequestInformation ToDeleteRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Delete.DeleteRequestBuilder.DeleteRequestBuilderDeleteQueryParameters>> requestConfiguration = default)
         {
 #endif
-            var requestInfo = new RequestInformation(Method.DELETE, UrlTemplate, PathParameters);
+            var requestInfo = new RequestInformation(Method.DELETE, global::Soenneker.OpenApi.Generated.OpenApiServiceRoutes.Resolve(UrlTemplate, RequestAdapter.BaseUrl, "https://example.com/api/v1", "/data-tables/{dataTableId}/rows/delete", PathParameters.ContainsKey("request-raw-url")), PathParameters);
             requestInfo.Configure(requestConfiguration);
             requestInfo.Headers.TryAdd("Accept", "application/json");
             return requestInfo;

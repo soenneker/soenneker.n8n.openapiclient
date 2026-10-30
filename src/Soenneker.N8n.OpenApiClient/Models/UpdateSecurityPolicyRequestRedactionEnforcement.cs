@@ -17,7 +17,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("floor") is { } nullNodeFloor && nullNodeFloor.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Floor = null;
+            if (parseNode.GetChildNode("floor") is null) { _explicitNullValueFloor = default!; _explicitNullProperties?.Remove("floor"); }
+            else if (parseNode.GetChildNode("floor") is { } nullNodeFloor && nullNodeFloor.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Floor = null;
         }
 
         /// <summary>Minimum execution-data redaction level enforced across the instance.</summary>

@@ -18,8 +18,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("traceparent") is { } nullNodeTraceparent && nullNodeTraceparent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Traceparent = null;
-            if (parseNode.GetChildNode("tracestate") is { } nullNodeTracestate && nullNodeTracestate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tracestate = null;
+            if (parseNode.GetChildNode("traceparent") is null) { _explicitNullValueTraceparent = default!; _explicitNullProperties?.Remove("traceparent"); }
+            else if (parseNode.GetChildNode("traceparent") is { } nullNodeTraceparent && nullNodeTraceparent.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Traceparent = null;
+            if (parseNode.GetChildNode("tracestate") is null) { _explicitNullValueTracestate = default!; _explicitNullProperties?.Remove("tracestate"); }
+            else if (parseNode.GetChildNode("tracestate") is { } nullNodeTracestate && nullNodeTracestate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Tracestate = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -27,21 +29,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The traceparent property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Traceparent { get => _explicitNullValueTraceparent; set { _explicitNullValueTraceparent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("traceparent"); else _explicitNullProperties?.Remove("traceparent"); } }
+        public string? Traceparent { get => _explicitNullValueTraceparent; set { _explicitNullValueTraceparent = value; AdditionalData?.Remove("traceparent"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("traceparent"); else _explicitNullProperties?.Remove("traceparent"); } }
         private string? _explicitNullValueTraceparent = default!;
 #nullable restore
 #else
-        public string Traceparent { get => _explicitNullValueTraceparent; set { _explicitNullValueTraceparent = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("traceparent"); else _explicitNullProperties?.Remove("traceparent"); } }
+        public string Traceparent { get => _explicitNullValueTraceparent; set { _explicitNullValueTraceparent = value; AdditionalData?.Remove("traceparent"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("traceparent"); else _explicitNullProperties?.Remove("traceparent"); } }
         private string _explicitNullValueTraceparent = default!;
 #endif
         /// <summary>The tracestate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Tracestate { get => _explicitNullValueTracestate; set { _explicitNullValueTracestate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tracestate"); else _explicitNullProperties?.Remove("tracestate"); } }
+        public string? Tracestate { get => _explicitNullValueTracestate; set { _explicitNullValueTracestate = value; AdditionalData?.Remove("tracestate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tracestate"); else _explicitNullProperties?.Remove("tracestate"); } }
         private string? _explicitNullValueTracestate = default!;
 #nullable restore
 #else
-        public string Tracestate { get => _explicitNullValueTracestate; set { _explicitNullValueTracestate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tracestate"); else _explicitNullProperties?.Remove("tracestate"); } }
+        public string Tracestate { get => _explicitNullValueTracestate; set { _explicitNullValueTracestate = value; AdditionalData?.Remove("tracestate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tracestate"); else _explicitNullProperties?.Remove("tracestate"); } }
         private string _explicitNullValueTracestate = default!;
 #endif
         /// <summary>

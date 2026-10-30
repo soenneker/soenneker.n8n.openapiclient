@@ -17,27 +17,30 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("blockedOn") is { } nullNodeBlockedOn && nullNodeBlockedOn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockedOn = null;
-            if (parseNode.GetChildNode("optInAvailable") is { } nullNodeOptInAvailable && nullNodeOptInAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OptInAvailable = null;
-            if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
+            if (parseNode.GetChildNode("blockedOn") is null) { _explicitNullValueBlockedOn = default!; _explicitNullProperties?.Remove("blockedOn"); }
+            else if (parseNode.GetChildNode("blockedOn") is { } nullNodeBlockedOn && nullNodeBlockedOn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) BlockedOn = null;
+            if (parseNode.GetChildNode("optInAvailable") is null) { _explicitNullValueOptInAvailable = default!; _explicitNullProperties?.Remove("optInAvailable"); }
+            else if (parseNode.GetChildNode("optInAvailable") is { } nullNodeOptInAvailable && nullNodeOptInAvailable.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) OptInAvailable = null;
+            if (parseNode.GetChildNode("type") is null) { _explicitNullValueType = default!; _explicitNullProperties?.Remove("type"); }
+            else if (parseNode.GetChildNode("type") is { } nullNodeType && nullNodeType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Type = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>instance: blocked on the instance by default. projects: allowed on the instance, but blocked in one or more projects.</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn? BlockedOn { get => _explicitNullValueBlockedOn; set { _explicitNullValueBlockedOn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockedOn"); else _explicitNullProperties?.Remove("blockedOn"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn? BlockedOn { get => _explicitNullValueBlockedOn; set { _explicitNullValueBlockedOn = value; AdditionalData?.Remove("blockedOn"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blockedOn"); else _explicitNullProperties?.Remove("blockedOn"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn? _explicitNullValueBlockedOn = default!;
         /// <summary>Whether a project can allow this node type. True when an instance policy blocks the node type unless a project allows it.</summary>
-        public bool? OptInAvailable { get => _explicitNullValueOptInAvailable; set { _explicitNullValueOptInAvailable = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("optInAvailable"); else _explicitNullProperties?.Remove("optInAvailable"); } }
+        public bool? OptInAvailable { get => _explicitNullValueOptInAvailable; set { _explicitNullValueOptInAvailable = value; AdditionalData?.Remove("optInAvailable"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("optInAvailable"); else _explicitNullProperties?.Remove("optInAvailable"); } }
         private bool? _explicitNullValueOptInAvailable = default!;
         /// <summary>Full node type name, such as n8n-nodes-example.exampleNode.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        public string? Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
         private string? _explicitNullValueType = default!;
 #nullable restore
 #else
-        public string Type { get => _explicitNullValueType; set { _explicitNullValueType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
+        public string Type { get => _explicitNullValueType; set { _explicitNullValueType = value; AdditionalData?.Remove("type"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("type"); else _explicitNullProperties?.Remove("type"); } }
         private string _explicitNullValueType = default!;
 #endif
         /// <summary>
@@ -65,7 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "blockedOn", n => { BlockedOn = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn>(); } },
+                { "blockedOn", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200ResponsePolicyRestrictionsNodeTypesItemBlockedOn>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueBlockedOn = default; _explicitNullProperties?.Remove("blockedOn"); AdditionalData["blockedOn"] = unknown; } else { BlockedOn = parsed; AdditionalData.Remove("blockedOn"); } } },
                 { "optInAvailable", n => { OptInAvailable = n.GetBoolValue(); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };

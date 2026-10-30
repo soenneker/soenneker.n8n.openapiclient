@@ -17,11 +17,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("averageRunTime") is { } nullNodeAverageRunTime && nullNodeAverageRunTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AverageRunTime = null;
-            if (parseNode.GetChildNode("failed") is { } nullNodeFailed && nullNodeFailed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Failed = null;
-            if (parseNode.GetChildNode("failureRate") is { } nullNodeFailureRate && nullNodeFailureRate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FailureRate = null;
-            if (parseNode.GetChildNode("timeSaved") is { } nullNodeTimeSaved && nullNodeTimeSaved.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TimeSaved = null;
-            if (parseNode.GetChildNode("total") is { } nullNodeTotal && nullNodeTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Total = null;
+            if (parseNode.GetChildNode("averageRunTime") is null) { _explicitNullValueAverageRunTime = default!; _explicitNullProperties?.Remove("averageRunTime"); }
+            else if (parseNode.GetChildNode("averageRunTime") is { } nullNodeAverageRunTime && nullNodeAverageRunTime.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) AverageRunTime = null;
+            if (parseNode.GetChildNode("failed") is null) { _explicitNullValueFailed = default!; _explicitNullProperties?.Remove("failed"); }
+            else if (parseNode.GetChildNode("failed") is { } nullNodeFailed && nullNodeFailed.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Failed = null;
+            if (parseNode.GetChildNode("failureRate") is null) { _explicitNullValueFailureRate = default!; _explicitNullProperties?.Remove("failureRate"); }
+            else if (parseNode.GetChildNode("failureRate") is { } nullNodeFailureRate && nullNodeFailureRate.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FailureRate = null;
+            if (parseNode.GetChildNode("timeSaved") is null) { _explicitNullValueTimeSaved = default!; _explicitNullProperties?.Remove("timeSaved"); }
+            else if (parseNode.GetChildNode("timeSaved") is { } nullNodeTimeSaved && nullNodeTimeSaved.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) TimeSaved = null;
+            if (parseNode.GetChildNode("total") is null) { _explicitNullValueTotal = default!; _explicitNullProperties?.Remove("total"); }
+            else if (parseNode.GetChildNode("total") is { } nullNodeTotal && nullNodeTotal.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Total = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -29,51 +34,51 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The averageRunTime property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseAverageRunTime? AverageRunTime { get => _explicitNullValueAverageRunTime; set { _explicitNullValueAverageRunTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("averageRunTime"); else _explicitNullProperties?.Remove("averageRunTime"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseAverageRunTime? AverageRunTime { get => _explicitNullValueAverageRunTime; set { _explicitNullValueAverageRunTime = value; AdditionalData?.Remove("averageRunTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("averageRunTime"); else _explicitNullProperties?.Remove("averageRunTime"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseAverageRunTime? _explicitNullValueAverageRunTime = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseAverageRunTime AverageRunTime { get => _explicitNullValueAverageRunTime; set { _explicitNullValueAverageRunTime = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("averageRunTime"); else _explicitNullProperties?.Remove("averageRunTime"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseAverageRunTime AverageRunTime { get => _explicitNullValueAverageRunTime; set { _explicitNullValueAverageRunTime = value; AdditionalData?.Remove("averageRunTime"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("averageRunTime"); else _explicitNullProperties?.Remove("averageRunTime"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseAverageRunTime _explicitNullValueAverageRunTime = default!;
 #endif
         /// <summary>The failed property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailed? Failed { get => _explicitNullValueFailed; set { _explicitNullValueFailed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failed"); else _explicitNullProperties?.Remove("failed"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailed? Failed { get => _explicitNullValueFailed; set { _explicitNullValueFailed = value; AdditionalData?.Remove("failed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failed"); else _explicitNullProperties?.Remove("failed"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailed? _explicitNullValueFailed = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailed Failed { get => _explicitNullValueFailed; set { _explicitNullValueFailed = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failed"); else _explicitNullProperties?.Remove("failed"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailed Failed { get => _explicitNullValueFailed; set { _explicitNullValueFailed = value; AdditionalData?.Remove("failed"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failed"); else _explicitNullProperties?.Remove("failed"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailed _explicitNullValueFailed = default!;
 #endif
         /// <summary>The failureRate property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailureRate? FailureRate { get => _explicitNullValueFailureRate; set { _explicitNullValueFailureRate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failureRate"); else _explicitNullProperties?.Remove("failureRate"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailureRate? FailureRate { get => _explicitNullValueFailureRate; set { _explicitNullValueFailureRate = value; AdditionalData?.Remove("failureRate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failureRate"); else _explicitNullProperties?.Remove("failureRate"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailureRate? _explicitNullValueFailureRate = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailureRate FailureRate { get => _explicitNullValueFailureRate; set { _explicitNullValueFailureRate = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failureRate"); else _explicitNullProperties?.Remove("failureRate"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailureRate FailureRate { get => _explicitNullValueFailureRate; set { _explicitNullValueFailureRate = value; AdditionalData?.Remove("failureRate"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failureRate"); else _explicitNullProperties?.Remove("failureRate"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailureRate _explicitNullValueFailureRate = default!;
 #endif
         /// <summary>The timeSaved property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTimeSaved? TimeSaved { get => _explicitNullValueTimeSaved; set { _explicitNullValueTimeSaved = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timeSaved"); else _explicitNullProperties?.Remove("timeSaved"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTimeSaved? TimeSaved { get => _explicitNullValueTimeSaved; set { _explicitNullValueTimeSaved = value; AdditionalData?.Remove("timeSaved"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timeSaved"); else _explicitNullProperties?.Remove("timeSaved"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTimeSaved? _explicitNullValueTimeSaved = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTimeSaved TimeSaved { get => _explicitNullValueTimeSaved; set { _explicitNullValueTimeSaved = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timeSaved"); else _explicitNullProperties?.Remove("timeSaved"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTimeSaved TimeSaved { get => _explicitNullValueTimeSaved; set { _explicitNullValueTimeSaved = value; AdditionalData?.Remove("timeSaved"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("timeSaved"); else _explicitNullProperties?.Remove("timeSaved"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTimeSaved _explicitNullValueTimeSaved = default!;
 #endif
         /// <summary>The total property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTotal? Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTotal? Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; AdditionalData?.Remove("total"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTotal? _explicitNullValueTotal = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTotal Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
+        public global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTotal Total { get => _explicitNullValueTotal; set { _explicitNullValueTotal = value; AdditionalData?.Remove("total"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("total"); else _explicitNullProperties?.Remove("total"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseTotal _explicitNullValueTotal = default!;
 #endif
         /// <summary>

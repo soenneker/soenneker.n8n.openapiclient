@@ -12661,36 +12661,10 @@
         "description": "Matches the named credential type and every type that extends it"
       },
       "LogStreamingDestinationPublicDtoGeneratedOneOf1HeaderParametersParametersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {}
-        ],
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
       "LogStreamingDestinationPublicDtoGeneratedOneOf1QueryParametersParametersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {}
-        ],
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
@@ -23123,24 +23097,7 @@
           }
         }
       },
-      "CreateDataTableRowsRequestDataItemAdditionalProperties": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {
-            "type": "string"
-          },
-          {}
-        ]
-      },
+      "CreateDataTableRowsRequestDataItemAdditionalProperties": {},
       "CreateDataTableRowsRequestReturnType": {
         "description": "count: return only the number of rows inserted. id: return an array of objects with the id of each inserted row. all: return the full row data for all inserted rows.",
         "enum": [
@@ -23270,42 +23227,8 @@
           ]
         }
       },
-      "UpsertDataTableRowRequestFilterFiltersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          },
-          {},
-          {}
-        ]
-      },
-      "UpsertDataTableRowRequestDataAdditionalProperties": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {
-            "type": "string"
-          },
-          {}
-        ]
-      },
+      "UpsertDataTableRowRequestFilterFiltersItemValue": {},
+      "UpsertDataTableRowRequestDataAdditionalProperties": {},
       "UpsertDataTableRow200ResponseAnyOf2": {
         "type": "array",
         "items": {
@@ -23392,42 +23315,8 @@
           ]
         }
       },
-      "UpdateDataTableRowsRequestFilterFiltersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {
-            "type": "string"
-          },
-          {},
-          {}
-        ]
-      },
-      "UpdateDataTableRowsRequestDataAdditionalProperties": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {
-            "type": "string"
-          },
-          {}
-        ]
-      },
+      "UpdateDataTableRowsRequestFilterFiltersItemValue": {},
+      "UpdateDataTableRowsRequestDataAdditionalProperties": {},
       "UpdateDataTableRows200ResponseAnyOf2": {
         "type": "array",
         "items": {
@@ -24209,16 +24098,6 @@
         ]
       },
       "CreateWorkflowRequestStaticData": {
-        "anyOf": [
-          {
-            "type": "string",
-            "format": "jsonString"
-          },
-          {
-            "$ref": "#/components/schemas/CreateWorkflowRequestStaticDataAnyOf2"
-          },
-          {}
-        ],
         "description": "Data the workflow keeps between executions",
         "example": {
           "lastId": 1
@@ -24265,16 +24144,6 @@
         ]
       },
       "UpdateWorkflowRequestStaticData": {
-        "anyOf": [
-          {
-            "type": "string",
-            "format": "jsonString"
-          },
-          {
-            "$ref": "#/components/schemas/UpdateWorkflowRequestStaticDataAnyOf2"
-          },
-          {}
-        ],
         "description": "Data the workflow keeps between executions",
         "example": {
           "lastId": 1
@@ -24969,70 +24838,18 @@
         }
       },
       "CreateLogStreamingDestinationRequestOneOf1HeaderParametersParametersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {}
-        ],
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
       "CreateLogStreamingDestinationRequestOneOf1QueryParametersParametersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {}
-        ],
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
       "UpdateLogStreamingDestinationRequestOneOf1HeaderParametersParametersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {}
-        ],
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
       "UpdateLogStreamingDestinationRequestOneOf1QueryParametersParametersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {}
-        ],
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
@@ -25926,36 +25743,10 @@
         }
       },
       "GetLogStreamingDestinations200ResponseDataItemOneOf1HeaderParametersParametersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {}
-        ],
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
       "GetLogStreamingDestinations200ResponseDataItemOneOf1QueryParametersParametersItemValue": {
-        "anyOf": [
-          {
-            "type": "string"
-          },
-          {
-            "type": "number"
-          },
-          {
-            "type": "boolean"
-          },
-          {},
-          {}
-        ],
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
@@ -48123,14 +47914,6 @@
         "additionalProperties": {
           "$ref": "#/components/schemas/PromotionCredentialExpressionValueGenerated"
         }
-      },
-      "CreateWorkflowRequestStaticDataAnyOf2": {
-        "type": "object",
-        "additionalProperties": {}
-      },
-      "UpdateWorkflowRequestStaticDataAnyOf2": {
-        "type": "object",
-        "additionalProperties": {}
       }
     },
     "responses": {

@@ -17,7 +17,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("destinationProjectId") is { } nullNodeDestinationProjectId && nullNodeDestinationProjectId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DestinationProjectId = null;
+            if (parseNode.GetChildNode("destinationProjectId") is null) { _explicitNullValueDestinationProjectId = default!; _explicitNullProperties?.Remove("destinationProjectId"); }
+            else if (parseNode.GetChildNode("destinationProjectId") is { } nullNodeDestinationProjectId && nullNodeDestinationProjectId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DestinationProjectId = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The ID of the project to transfer the credential to.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public string? DestinationProjectId { get => _explicitNullValueDestinationProjectId; set { _explicitNullValueDestinationProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destinationProjectId"); else _explicitNullProperties?.Remove("destinationProjectId"); } }
+        public string? DestinationProjectId { get => _explicitNullValueDestinationProjectId; set { _explicitNullValueDestinationProjectId = value; AdditionalData?.Remove("destinationProjectId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destinationProjectId"); else _explicitNullProperties?.Remove("destinationProjectId"); } }
         private string? _explicitNullValueDestinationProjectId = default!;
 #nullable restore
 #else
-        public string DestinationProjectId { get => _explicitNullValueDestinationProjectId; set { _explicitNullValueDestinationProjectId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destinationProjectId"); else _explicitNullProperties?.Remove("destinationProjectId"); } }
+        public string DestinationProjectId { get => _explicitNullValueDestinationProjectId; set { _explicitNullValueDestinationProjectId = value; AdditionalData?.Remove("destinationProjectId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("destinationProjectId"); else _explicitNullProperties?.Remove("destinationProjectId"); } }
         private string _explicitNullValueDestinationProjectId = default!;
 #endif
         /// <summary>

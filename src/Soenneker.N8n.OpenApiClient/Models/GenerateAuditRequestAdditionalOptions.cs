@@ -17,8 +17,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("categories") is { } nullNodeCategories && nullNodeCategories.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Categories = null;
-            if (parseNode.GetChildNode("daysAbandonedWorkflow") is { } nullNodeDaysAbandonedWorkflow && nullNodeDaysAbandonedWorkflow.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DaysAbandonedWorkflow = null;
+            if (parseNode.GetChildNode("categories") is null) { _explicitNullValueCategories = default!; _explicitNullProperties?.Remove("categories"); }
+            else if (parseNode.GetChildNode("categories") is { } nullNodeCategories && nullNodeCategories.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Categories = null;
+            if (parseNode.GetChildNode("daysAbandonedWorkflow") is null) { _explicitNullValueDaysAbandonedWorkflow = default!; _explicitNullProperties?.Remove("daysAbandonedWorkflow"); }
+            else if (parseNode.GetChildNode("daysAbandonedWorkflow") is { } nullNodeDaysAbandonedWorkflow && nullNodeDaysAbandonedWorkflow.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DaysAbandonedWorkflow = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -26,15 +28,15 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The categories property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptionsCategoriesItem?>? Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptionsCategoriesItem?>? Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; AdditionalData?.Remove("categories"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptionsCategoriesItem?>? _explicitNullValueCategories = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptionsCategoriesItem?> Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptionsCategoriesItem?> Categories { get => _explicitNullValueCategories; set { _explicitNullValueCategories = value; AdditionalData?.Remove("categories"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("categories"); else _explicitNullProperties?.Remove("categories"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptionsCategoriesItem?> _explicitNullValueCategories = default!;
 #endif
         /// <summary>Days for a workflow to be considered abandoned if not executed</summary>
-        public int? DaysAbandonedWorkflow { get => _explicitNullValueDaysAbandonedWorkflow; set { _explicitNullValueDaysAbandonedWorkflow = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("daysAbandonedWorkflow"); else _explicitNullProperties?.Remove("daysAbandonedWorkflow"); } }
+        public int? DaysAbandonedWorkflow { get => _explicitNullValueDaysAbandonedWorkflow; set { _explicitNullValueDaysAbandonedWorkflow = value; AdditionalData?.Remove("daysAbandonedWorkflow"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("daysAbandonedWorkflow"); else _explicitNullProperties?.Remove("daysAbandonedWorkflow"); } }
         private int? _explicitNullValueDaysAbandonedWorkflow = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAuditRequestAdditionalOptions"/> and sets the default values.

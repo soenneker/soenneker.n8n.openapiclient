@@ -18,17 +18,19 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("failureWindow") is { } nullNodeFailureWindow && nullNodeFailureWindow.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FailureWindow = null;
-            if (parseNode.GetChildNode("maxFailures") is { } nullNodeMaxFailures && nullNodeMaxFailures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxFailures = null;
+            if (parseNode.GetChildNode("failureWindow") is null) { _explicitNullValueFailureWindow = default!; _explicitNullProperties?.Remove("failureWindow"); }
+            else if (parseNode.GetChildNode("failureWindow") is { } nullNodeFailureWindow && nullNodeFailureWindow.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FailureWindow = null;
+            if (parseNode.GetChildNode("maxFailures") is null) { _explicitNullValueMaxFailures = default!; _explicitNullProperties?.Remove("maxFailures"); }
+            else if (parseNode.GetChildNode("maxFailures") is { } nullNodeMaxFailures && nullNodeMaxFailures.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) MaxFailures = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>Sliding window, in milliseconds, over which failures are counted.</summary>
-        public int? FailureWindow { get => _explicitNullValueFailureWindow; set { _explicitNullValueFailureWindow = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failureWindow"); else _explicitNullProperties?.Remove("failureWindow"); } }
+        public int? FailureWindow { get => _explicitNullValueFailureWindow; set { _explicitNullValueFailureWindow = value; AdditionalData?.Remove("failureWindow"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("failureWindow"); else _explicitNullProperties?.Remove("failureWindow"); } }
         private int? _explicitNullValueFailureWindow = default!;
         /// <summary>Maximum failures within the sliding window before the breaker opens.</summary>
-        public int? MaxFailures { get => _explicitNullValueMaxFailures; set { _explicitNullValueMaxFailures = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxFailures"); else _explicitNullProperties?.Remove("maxFailures"); } }
+        public int? MaxFailures { get => _explicitNullValueMaxFailures; set { _explicitNullValueMaxFailures = value; AdditionalData?.Remove("maxFailures"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("maxFailures"); else _explicitNullProperties?.Remove("maxFailures"); } }
         private int? _explicitNullValueMaxFailures = default!;
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItemOneOf2CircuitBreaker"/> and sets the default values.

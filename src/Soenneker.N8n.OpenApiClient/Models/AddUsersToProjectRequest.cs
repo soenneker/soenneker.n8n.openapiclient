@@ -17,7 +17,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("relations") is { } nullNodeRelations && nullNodeRelations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Relations = null;
+            if (parseNode.GetChildNode("relations") is null) { _explicitNullValueRelations = default!; _explicitNullProperties?.Remove("relations"); }
+            else if (parseNode.GetChildNode("relations") is { } nullNodeRelations && nullNodeRelations.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Relations = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
@@ -25,11 +26,11 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>A list of userIds and roles to add to the project.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.AddUsersToProjectRequestRelationsItem>? Relations { get => _explicitNullValueRelations; set { _explicitNullValueRelations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("relations"); else _explicitNullProperties?.Remove("relations"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.AddUsersToProjectRequestRelationsItem>? Relations { get => _explicitNullValueRelations; set { _explicitNullValueRelations = value; AdditionalData?.Remove("relations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("relations"); else _explicitNullProperties?.Remove("relations"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.AddUsersToProjectRequestRelationsItem>? _explicitNullValueRelations = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.AddUsersToProjectRequestRelationsItem> Relations { get => _explicitNullValueRelations; set { _explicitNullValueRelations = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("relations"); else _explicitNullProperties?.Remove("relations"); } }
+        public List<global::Soenneker.N8n.OpenApiClient.Models.AddUsersToProjectRequestRelationsItem> Relations { get => _explicitNullValueRelations; set { _explicitNullValueRelations = value; AdditionalData?.Remove("relations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("relations"); else _explicitNullProperties?.Remove("relations"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.AddUsersToProjectRequestRelationsItem> _explicitNullValueRelations = default!;
 #endif
         /// <summary>
