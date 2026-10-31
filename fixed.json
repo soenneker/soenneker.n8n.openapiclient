@@ -547,6 +547,17 @@
           },
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "credentialTypePolicy:manage"
@@ -1341,6 +1352,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataTablePublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "dataTable:create"
@@ -1651,6 +1673,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/DataTableColumnPublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "dataTableColumn:create"
@@ -2341,6 +2374,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateTestRun201Response"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "testRun:create"
@@ -2518,6 +2562,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CancelTestRun202Response"
+                }
+              }
+            },
+            "x-client-success-response-status": "202"
           }
         },
         "x-required-scope": "testRun:cancel"
@@ -3180,6 +3235,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateFolder201Response"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "folder:create"
@@ -4393,6 +4459,17 @@
           },
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "nodeTypePolicy:manage"
@@ -4868,6 +4945,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateProject201Response"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "project:create"
@@ -5231,6 +5319,17 @@
           },
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreatePromotionProvider201Response"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "gitConnection:create"
@@ -5620,6 +5719,17 @@
           },
           "503": {
             "$ref": "#/components/responses/serviceUnavailable"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PromotionEnvironmentPublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "gitConnection:create"
@@ -6712,6 +6822,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RoleMappingRulePublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "roleMappingRule:create"
@@ -6974,6 +7095,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RolePublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "role:manage,role:manageProject"
@@ -7630,6 +7762,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/TagPublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "tag:create"
@@ -7885,6 +8028,17 @@
           },
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/CreateUser201ResponseSchema"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
           }
         },
         "x-required-scope": "user:create"
