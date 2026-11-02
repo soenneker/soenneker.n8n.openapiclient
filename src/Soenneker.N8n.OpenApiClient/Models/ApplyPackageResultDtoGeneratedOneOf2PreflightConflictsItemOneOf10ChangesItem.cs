@@ -51,12 +51,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             return mappingValue switch
             {
-                "add-column" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1(),
-                "change-column-type" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3(),
-                "remove-column" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2(),
-                "rename-column" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4(),
-                "rename-table" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6(),
-                "reorder-columns" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5(),
+                "add-column" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1Variant(),
+                "change-column-type" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3Variant(),
+                "remove-column" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2Variant(),
+                "rename-column" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4Variant(),
+                "rename-table" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6Variant(),
+                "reorder-columns" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem(),
             };
         }

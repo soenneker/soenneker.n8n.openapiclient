@@ -51,9 +51,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             return mappingValue switch
             {
-                "extends" => new global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf3(),
-                "name" => new global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1(),
-                "package" => new global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2(),
+                "extends" => new global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf3Variant(),
+                "name" => new global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1Variant(),
+                "package" => new global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelector(),
             };
         }

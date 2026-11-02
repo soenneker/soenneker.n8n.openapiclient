@@ -51,8 +51,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("authType")?.GetStringValue();
             return mappingValue switch
             {
-                "ssh-key" => new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuthUpdatePromotionProviderRequestAuthOneOf1(),
-                "token" => new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuthUpdatePromotionProviderRequestAuthOneOf2(),
+                "ssh-key" => new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuthOneOf1Variant(),
+                "token" => new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuthOneOf2Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.UpdatePromotionProviderRequestAuth(),
             };
         }

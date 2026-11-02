@@ -51,8 +51,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             return mappingValue switch
             {
-                "notLoaded" => new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemPolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2(),
-                "shadowed" => new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemPolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1(),
+                "notLoaded" => new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant(),
+                "shadowed" => new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGeneratedWarningsItem(),
             };
         }

@@ -51,10 +51,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             return mappingValue switch
             {
-                "community" => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf3(),
-                "credential" => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf2(),
-                "custom" => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf4(),
-                "node" => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf1(),
+                "community" => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf3Variant(),
+                "credential" => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf2Variant(),
+                "custom" => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf4Variant(),
+                "node" => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf1Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItem(),
             };
         }

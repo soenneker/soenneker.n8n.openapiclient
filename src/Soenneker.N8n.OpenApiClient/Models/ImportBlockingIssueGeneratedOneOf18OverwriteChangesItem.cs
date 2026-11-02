@@ -52,12 +52,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             return mappingValue switch
             {
-                "add-column" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf1(),
-                "change-column-type" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf3(),
-                "remove-column" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf2(),
-                "rename-column" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf4(),
-                "rename-table" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf6(),
-                "reorder-columns" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf5(),
+                "add-column" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf1Variant(),
+                "change-column-type" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf3Variant(),
+                "remove-column" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf2Variant(),
+                "rename-column" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf4Variant(),
+                "rename-table" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf6Variant(),
+                "reorder-columns" => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf5Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem(),
             };
         }

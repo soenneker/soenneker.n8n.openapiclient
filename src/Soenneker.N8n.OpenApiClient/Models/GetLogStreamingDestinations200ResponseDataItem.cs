@@ -52,9 +52,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("type")?.GetStringValue();
             return mappingValue switch
             {
-                "sentry" => new global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf3(),
-                "syslog" => new global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf2(),
-                "webhook" => new global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf1(),
+                "sentry" => new global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItemOneOf3Variant(),
+                "syslog" => new global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItemOneOf2Variant(),
+                "webhook" => new global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItemOneOf1Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingDestinations200ResponseDataItem(),
             };
         }

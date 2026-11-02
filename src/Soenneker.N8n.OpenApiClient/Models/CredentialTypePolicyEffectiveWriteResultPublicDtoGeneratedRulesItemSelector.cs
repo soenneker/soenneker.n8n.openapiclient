@@ -51,9 +51,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             return mappingValue switch
             {
-                "extends" => new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf3(),
-                "name" => new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1(),
-                "package" => new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2(),
+                "extends" => new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf3Variant(),
+                "name" => new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1Variant(),
+                "package" => new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelector(),
             };
         }

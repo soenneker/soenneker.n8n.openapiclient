@@ -51,8 +51,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("kind")?.GetStringValue();
             return mappingValue switch
             {
-                "global" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1(),
-                "project" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2(),
+                "global" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1Variant(),
+                "project" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope(),
             };
         }

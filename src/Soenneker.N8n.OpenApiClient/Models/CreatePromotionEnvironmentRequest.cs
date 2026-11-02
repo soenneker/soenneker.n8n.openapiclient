@@ -51,8 +51,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("direction")?.GetStringValue();
             return mappingValue switch
             {
-                "apply" => new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestCreatePromotionEnvironmentRequestOneOf1(),
-                "promote" => new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestCreatePromotionEnvironmentRequestOneOf2(),
+                "apply" => new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf1Variant(),
+                "promote" => new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequestOneOf2Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionEnvironmentRequest(),
             };
         }

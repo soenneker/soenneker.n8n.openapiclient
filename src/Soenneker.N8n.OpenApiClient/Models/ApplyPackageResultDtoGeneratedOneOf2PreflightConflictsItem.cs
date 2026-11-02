@@ -51,16 +51,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
             var mappingValue = parseNode.GetChildNode("code")?.GetStringValue();
             return mappingValue switch
             {
-                "conflicting-types" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2(),
-                "destructive-change" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10(),
-                "incompatible-usage-scope" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6(),
-                "missing-definition" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7(),
-                "missing-id" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1(),
-                "project-deletion" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9(),
-                "project-not-team" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8(),
-                "type-mismatch" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5(),
-                "unknown-owner" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4(),
-                "unknown-type" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3(),
+                "conflicting-types" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2Variant(),
+                "destructive-change" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10Variant(),
+                "incompatible-usage-scope" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6Variant(),
+                "missing-definition" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7Variant(),
+                "missing-id" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1Variant(),
+                "project-deletion" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9Variant(),
+                "project-not-team" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8Variant(),
+                "type-mismatch" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5Variant(),
+                "unknown-owner" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4Variant(),
+                "unknown-type" => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3Variant(),
                 _ => new global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem(),
             };
         }

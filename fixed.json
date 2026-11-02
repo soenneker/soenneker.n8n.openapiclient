@@ -9832,9 +9832,9 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "webhook": "#/components/schemas/LogStreamingDestinationPublicDtoGeneratedLogStreamingDestinationPublicDtoGeneratedOneOf1",
-            "syslog": "#/components/schemas/LogStreamingDestinationPublicDtoGeneratedLogStreamingDestinationPublicDtoGeneratedOneOf2",
-            "sentry": "#/components/schemas/LogStreamingDestinationPublicDtoGeneratedLogStreamingDestinationPublicDtoGeneratedOneOf3"
+            "webhook": "#/components/schemas/LogStreamingDestinationPublicDtoGeneratedOneOf1Variant",
+            "syslog": "#/components/schemas/LogStreamingDestinationPublicDtoGeneratedOneOf2Variant",
+            "sentry": "#/components/schemas/LogStreamingDestinationPublicDtoGeneratedOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -9959,31 +9959,31 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "agent-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf1",
-            "agent-invalid": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf2",
-            "agent-dependency-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf3",
-            "agent-policy-violation": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf4",
-            "workflow-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf5",
-            "workflow-lineage-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf6",
-            "workflow-id-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf7",
-            "workflow-folder-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf8",
-            "workflow-archive-forbidden": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf9",
-            "credential-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf10",
-            "credential-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf11",
-            "credential-update-forbidden": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf12",
-            "project-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf13",
-            "folder-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf14",
-            "workflow-removal-forbidden": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf15",
-            "workflow-removal-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf16",
-            "folder-removal-forbidden": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf17",
-            "data-table-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf18",
-            "tag-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf19",
-            "variable-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf20",
-            "variable-conflict": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf21",
-            "variable-limit-exceeded": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf22",
-            "missing-node-type": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf23",
-            "policy-violation": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf24",
-            "credential-policy-violation": "#/components/schemas/ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf25"
+            "agent-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf1Variant",
+            "agent-invalid": "#/components/schemas/ImportBlockingIssueGeneratedOneOf2Variant",
+            "agent-dependency-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedOneOf3Variant",
+            "agent-policy-violation": "#/components/schemas/ImportBlockingIssueGeneratedOneOf4Variant",
+            "workflow-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf5Variant",
+            "workflow-lineage-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf6Variant",
+            "workflow-id-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf7Variant",
+            "workflow-folder-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf8Variant",
+            "workflow-archive-forbidden": "#/components/schemas/ImportBlockingIssueGeneratedOneOf9Variant",
+            "credential-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedOneOf10Variant",
+            "credential-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf11Variant",
+            "credential-update-forbidden": "#/components/schemas/ImportBlockingIssueGeneratedOneOf12Variant",
+            "project-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf13Variant",
+            "folder-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf14Variant",
+            "workflow-removal-forbidden": "#/components/schemas/ImportBlockingIssueGeneratedOneOf15Variant",
+            "workflow-removal-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf16Variant",
+            "folder-removal-forbidden": "#/components/schemas/ImportBlockingIssueGeneratedOneOf17Variant",
+            "data-table-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18Variant",
+            "tag-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedOneOf19Variant",
+            "variable-unresolved": "#/components/schemas/ImportBlockingIssueGeneratedOneOf20Variant",
+            "variable-conflict": "#/components/schemas/ImportBlockingIssueGeneratedOneOf21Variant",
+            "variable-limit-exceeded": "#/components/schemas/ImportBlockingIssueGeneratedOneOf22Variant",
+            "missing-node-type": "#/components/schemas/ImportBlockingIssueGeneratedOneOf23Variant",
+            "policy-violation": "#/components/schemas/ImportBlockingIssueGeneratedOneOf24Variant",
+            "credential-policy-violation": "#/components/schemas/ImportBlockingIssueGeneratedOneOf25Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -10339,8 +10339,8 @@
         "discriminator": {
           "propertyName": "direction",
           "mapping": {
-            "apply": "#/components/schemas/PromotionEnvironmentPublicDtoGeneratedPromotionEnvironmentPublicDtoGeneratedOneOf1",
-            "promote": "#/components/schemas/PromotionEnvironmentPublicDtoGeneratedPromotionEnvironmentPublicDtoGeneratedOneOf2"
+            "apply": "#/components/schemas/PromotionEnvironmentPublicDtoGeneratedOneOf1Variant",
+            "promote": "#/components/schemas/PromotionEnvironmentPublicDtoGeneratedOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -10446,9 +10446,9 @@
         "discriminator": {
           "propertyName": "status",
           "mapping": {
-            "applied": "#/components/schemas/ApplyPackageResultDtoGeneratedApplyPackageResultDtoGeneratedOneOf1",
-            "blocked": "#/components/schemas/ApplyPackageResultDtoGeneratedApplyPackageResultDtoGeneratedOneOf2",
-            "source-changed": "#/components/schemas/ApplyPackageResultDtoGeneratedApplyPackageResultDtoGeneratedOneOf3"
+            "applied": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf1Variant",
+            "blocked": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2Variant",
+            "source-changed": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11107,9 +11107,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11147,9 +11147,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11187,8 +11187,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "shadowed": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1",
-            "notLoaded": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2"
+            "shadowed": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant",
+            "notLoaded": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11222,9 +11222,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11262,8 +11262,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "shadowed": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1",
-            "notLoaded": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2"
+            "shadowed": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant",
+            "notLoaded": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11297,9 +11297,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorCredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorCredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorCredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11337,8 +11337,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/PolicyEffectivePublicDtoGeneratedRulesItemSelectorPolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/PolicyEffectivePublicDtoGeneratedRulesItemSelectorPolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/PolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/PolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11372,8 +11372,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorPolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorPolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11407,8 +11407,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "shadowed": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemPolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1",
-            "notLoaded": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemPolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2"
+            "shadowed": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant",
+            "notLoaded": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11442,8 +11442,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorPolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorPolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11477,8 +11477,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "shadowed": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemPolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1",
-            "notLoaded": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemPolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2"
+            "shadowed": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant",
+            "notLoaded": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11512,8 +11512,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorPolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorPolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11609,12 +11609,12 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "add-column": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf1",
-            "remove-column": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf2",
-            "change-column-type": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf3",
-            "rename-column": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf4",
-            "reorder-columns": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf5",
-            "rename-table": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf6"
+            "add-column": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf1Variant",
+            "remove-column": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf2Variant",
+            "change-column-type": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf3Variant",
+            "rename-column": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf4Variant",
+            "reorder-columns": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf5Variant",
+            "rename-table": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf6Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11714,8 +11714,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "credential": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf1",
-            "variable": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2"
+            "credential": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf1Variant",
+            "variable": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11749,16 +11749,16 @@
         "discriminator": {
           "propertyName": "code",
           "mapping": {
-            "missing-id": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1",
-            "conflicting-types": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2",
-            "unknown-type": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3",
-            "unknown-owner": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4",
-            "type-mismatch": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5",
-            "incompatible-usage-scope": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6",
-            "missing-definition": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7",
-            "project-not-team": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8",
-            "project-deletion": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9",
-            "destructive-change": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10"
+            "missing-id": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1Variant",
+            "conflicting-types": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2Variant",
+            "unknown-type": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3Variant",
+            "unknown-owner": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4Variant",
+            "type-mismatch": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5Variant",
+            "incompatible-usage-scope": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6Variant",
+            "missing-definition": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7Variant",
+            "project-not-team": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8Variant",
+            "project-deletion": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9Variant",
+            "destructive-change": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11824,8 +11824,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "global": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1",
-            "project": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2"
+            "global": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1Variant",
+            "project": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -11859,12 +11859,12 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "add-column": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1",
-            "remove-column": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2",
-            "change-column-type": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3",
-            "rename-column": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4",
-            "reorder-columns": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5",
-            "rename-table": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6"
+            "add-column": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1Variant",
+            "remove-column": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2Variant",
+            "change-column-type": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3Variant",
+            "rename-column": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4Variant",
+            "reorder-columns": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5Variant",
+            "rename-table": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -17756,9 +17756,9 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "webhook": "#/components/schemas/CreateLogStreamingDestinationRequestCreateLogStreamingDestinationRequestOneOf1",
-            "syslog": "#/components/schemas/CreateLogStreamingDestinationRequestCreateLogStreamingDestinationRequestOneOf2",
-            "sentry": "#/components/schemas/CreateLogStreamingDestinationRequestCreateLogStreamingDestinationRequestOneOf3"
+            "webhook": "#/components/schemas/CreateLogStreamingDestinationRequestOneOf1Variant",
+            "syslog": "#/components/schemas/CreateLogStreamingDestinationRequestOneOf2Variant",
+            "sentry": "#/components/schemas/CreateLogStreamingDestinationRequestOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -17798,9 +17798,9 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "webhook": "#/components/schemas/UpdateLogStreamingDestinationRequestUpdateLogStreamingDestinationRequestOneOf1",
-            "syslog": "#/components/schemas/UpdateLogStreamingDestinationRequestUpdateLogStreamingDestinationRequestOneOf2",
-            "sentry": "#/components/schemas/UpdateLogStreamingDestinationRequestUpdateLogStreamingDestinationRequestOneOf3"
+            "webhook": "#/components/schemas/UpdateLogStreamingDestinationRequestOneOf1Variant",
+            "syslog": "#/components/schemas/UpdateLogStreamingDestinationRequestOneOf2Variant",
+            "sentry": "#/components/schemas/UpdateLogStreamingDestinationRequestOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -18694,8 +18694,8 @@
         "discriminator": {
           "propertyName": "direction",
           "mapping": {
-            "apply": "#/components/schemas/CreatePromotionEnvironmentRequestCreatePromotionEnvironmentRequestOneOf1",
-            "promote": "#/components/schemas/CreatePromotionEnvironmentRequestCreatePromotionEnvironmentRequestOneOf2"
+            "apply": "#/components/schemas/CreatePromotionEnvironmentRequestOneOf1Variant",
+            "promote": "#/components/schemas/CreatePromotionEnvironmentRequestOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -20852,9 +20852,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelectorPutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelectorPutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelectorPutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -20892,9 +20892,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelectorPutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelectorPutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelectorPutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -20932,9 +20932,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -20972,9 +20972,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelectorCreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelectorCreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelectorCreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21012,9 +21012,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelectorGetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelectorGetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelectorGetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21052,9 +21052,9 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorUpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorUpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2",
-            "extends": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorUpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3"
+            "name": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2Variant",
+            "extends": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21341,9 +21341,9 @@
         "discriminator": {
           "propertyName": "type",
           "mapping": {
-            "webhook": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf1",
-            "syslog": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf2",
-            "sentry": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf3"
+            "webhook": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItemOneOf1Variant",
+            "syslog": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItemOneOf2Variant",
+            "sentry": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItemOneOf3Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21382,8 +21382,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/PutNodeTypeInstancePolicyRequestRulesItemSelectorPutNodeTypeInstancePolicyRequestRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/PutNodeTypeInstancePolicyRequestRulesItemSelectorPutNodeTypeInstancePolicyRequestRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/PutNodeTypeInstancePolicyRequestRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/PutNodeTypeInstancePolicyRequestRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21417,8 +21417,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/PutNodeTypeProjectPolicyRequestRulesItemSelectorPutNodeTypeProjectPolicyRequestRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/PutNodeTypeProjectPolicyRequestRulesItemSelectorPutNodeTypeProjectPolicyRequestRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/PutNodeTypeProjectPolicyRequestRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/PutNodeTypeProjectPolicyRequestRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21452,8 +21452,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21487,8 +21487,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/CreateNodeTypePolicyDocumentRequestRulesItemSelectorCreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/CreateNodeTypePolicyDocumentRequestRulesItemSelectorCreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21522,8 +21522,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/GetNodeTypePolicyDocument200ResponseRulesItemSelectorGetNodeTypePolicyDocument200ResponseRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/GetNodeTypePolicyDocument200ResponseRulesItemSelectorGetNodeTypePolicyDocument200ResponseRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/GetNodeTypePolicyDocument200ResponseRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/GetNodeTypePolicyDocument200ResponseRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21557,8 +21557,8 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "name": "#/components/schemas/UpdateNodeTypePolicyDocumentRequestRulesItemSelectorUpdateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1",
-            "package": "#/components/schemas/UpdateNodeTypePolicyDocumentRequestRulesItemSelectorUpdateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2"
+            "name": "#/components/schemas/UpdateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1Variant",
+            "package": "#/components/schemas/UpdateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21592,8 +21592,8 @@
         "discriminator": {
           "propertyName": "authType",
           "mapping": {
-            "ssh-key": "#/components/schemas/CreatePromotionProviderRequestAuthCreatePromotionProviderRequestAuthOneOf1",
-            "token": "#/components/schemas/CreatePromotionProviderRequestAuthCreatePromotionProviderRequestAuthOneOf2"
+            "ssh-key": "#/components/schemas/CreatePromotionProviderRequestAuthOneOf1Variant",
+            "token": "#/components/schemas/CreatePromotionProviderRequestAuthOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21640,8 +21640,8 @@
         "discriminator": {
           "propertyName": "authType",
           "mapping": {
-            "ssh-key": "#/components/schemas/UpdatePromotionProviderRequestAuthUpdatePromotionProviderRequestAuthOneOf1",
-            "token": "#/components/schemas/UpdatePromotionProviderRequestAuthUpdatePromotionProviderRequestAuthOneOf2"
+            "ssh-key": "#/components/schemas/UpdatePromotionProviderRequestAuthOneOf1Variant",
+            "token": "#/components/schemas/UpdatePromotionProviderRequestAuthOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21675,8 +21675,8 @@
         "discriminator": {
           "propertyName": "direction",
           "mapping": {
-            "apply": "#/components/schemas/GetPromotionEnvironments200ResponseDataItemGetPromotionEnvironments200ResponseDataItemOneOf1",
-            "promote": "#/components/schemas/GetPromotionEnvironments200ResponseDataItemGetPromotionEnvironments200ResponseDataItemOneOf2"
+            "apply": "#/components/schemas/GetPromotionEnvironments200ResponseDataItemOneOf1Variant",
+            "promote": "#/components/schemas/GetPromotionEnvironments200ResponseDataItemOneOf2Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21854,10 +21854,10 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf1",
-            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf2",
-            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf3",
-            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf4"
+            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf1Variant",
+            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf2Variant",
+            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf3Variant",
+            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf4Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21899,10 +21899,10 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf1",
-            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf2",
-            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf3",
-            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4"
+            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf1Variant",
+            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf2Variant",
+            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf3Variant",
+            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21944,10 +21944,10 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf1",
-            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf2",
-            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf3",
-            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf4"
+            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf1Variant",
+            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf2Variant",
+            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf3Variant",
+            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf4Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -21989,10 +21989,10 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1",
-            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2",
-            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3",
-            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4"
+            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1Variant",
+            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2Variant",
+            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3Variant",
+            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -22034,10 +22034,10 @@
         "discriminator": {
           "propertyName": "kind",
           "mapping": {
-            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf1",
-            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf2",
-            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf3",
-            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf4"
+            "node": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf1Variant",
+            "credential": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf2Variant",
+            "community": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf3Variant",
+            "custom": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf4Variant"
           }
         },
         "x-client-original-tagged-union": {
@@ -43541,7 +43541,7 @@
           "$ref": "#/components/schemas/PullSourceControl409ResponseSchema"
         }
       },
-      "LogStreamingDestinationPublicDtoGeneratedLogStreamingDestinationPublicDtoGeneratedOneOf1": {
+      "LogStreamingDestinationPublicDtoGeneratedOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/LogStreamingDestinationPublicDtoGenerated"
@@ -43643,7 +43643,7 @@
           }
         ]
       },
-      "LogStreamingDestinationPublicDtoGeneratedLogStreamingDestinationPublicDtoGeneratedOneOf2": {
+      "LogStreamingDestinationPublicDtoGeneratedOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/LogStreamingDestinationPublicDtoGenerated"
@@ -43730,7 +43730,7 @@
           }
         ]
       },
-      "LogStreamingDestinationPublicDtoGeneratedLogStreamingDestinationPublicDtoGeneratedOneOf3": {
+      "LogStreamingDestinationPublicDtoGeneratedOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/LogStreamingDestinationPublicDtoGenerated"
@@ -43791,7 +43791,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf1": {
+      "ImportBlockingIssueGeneratedOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -43831,7 +43831,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf2": {
+      "ImportBlockingIssueGeneratedOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -43861,7 +43861,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf3": {
+      "ImportBlockingIssueGeneratedOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -43903,7 +43903,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf4": {
+      "ImportBlockingIssueGeneratedOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -43936,7 +43936,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf5": {
+      "ImportBlockingIssueGeneratedOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -43967,7 +43967,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf6": {
+      "ImportBlockingIssueGeneratedOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44001,7 +44001,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf7": {
+      "ImportBlockingIssueGeneratedOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44043,7 +44043,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf8": {
+      "ImportBlockingIssueGeneratedOneOf8Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44086,7 +44086,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf9": {
+      "ImportBlockingIssueGeneratedOneOf9Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44126,7 +44126,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf10": {
+      "ImportBlockingIssueGeneratedOneOf10Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44172,7 +44172,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf11": {
+      "ImportBlockingIssueGeneratedOneOf11Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44221,7 +44221,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf12": {
+      "ImportBlockingIssueGeneratedOneOf12Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44266,7 +44266,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf13": {
+      "ImportBlockingIssueGeneratedOneOf13Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44298,7 +44298,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf14": {
+      "ImportBlockingIssueGeneratedOneOf14Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44344,7 +44344,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf15": {
+      "ImportBlockingIssueGeneratedOneOf15Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44376,7 +44376,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf16": {
+      "ImportBlockingIssueGeneratedOneOf16Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44408,7 +44408,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf17": {
+      "ImportBlockingIssueGeneratedOneOf17Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44440,7 +44440,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf18": {
+      "ImportBlockingIssueGeneratedOneOf18Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44520,7 +44520,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf19": {
+      "ImportBlockingIssueGeneratedOneOf19Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44570,7 +44570,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf20": {
+      "ImportBlockingIssueGeneratedOneOf20Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44601,7 +44601,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf21": {
+      "ImportBlockingIssueGeneratedOneOf21Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44636,7 +44636,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf22": {
+      "ImportBlockingIssueGeneratedOneOf22Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44686,7 +44686,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf23": {
+      "ImportBlockingIssueGeneratedOneOf23Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44723,7 +44723,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf24": {
+      "ImportBlockingIssueGeneratedOneOf24Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44758,7 +44758,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedImportBlockingIssueGeneratedOneOf25": {
+      "ImportBlockingIssueGeneratedOneOf25Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGenerated"
@@ -44808,7 +44808,7 @@
           }
         ]
       },
-      "PromotionEnvironmentPublicDtoGeneratedPromotionEnvironmentPublicDtoGeneratedOneOf1": {
+      "PromotionEnvironmentPublicDtoGeneratedOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PromotionEnvironmentPublicDtoGenerated"
@@ -44866,7 +44866,7 @@
           }
         ]
       },
-      "PromotionEnvironmentPublicDtoGeneratedPromotionEnvironmentPublicDtoGeneratedOneOf2": {
+      "PromotionEnvironmentPublicDtoGeneratedOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PromotionEnvironmentPublicDtoGenerated"
@@ -44924,7 +44924,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedApplyPackageResultDtoGeneratedOneOf1": {
+      "ApplyPackageResultDtoGeneratedOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGenerated"
@@ -44963,7 +44963,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedApplyPackageResultDtoGeneratedOneOf2": {
+      "ApplyPackageResultDtoGeneratedOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGenerated"
@@ -44995,7 +44995,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedApplyPackageResultDtoGeneratedOneOf3": {
+      "ApplyPackageResultDtoGeneratedOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGenerated"
@@ -45023,7 +45023,7 @@
           }
         ]
       },
-      "CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1": {
+      "CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelector"
@@ -45046,7 +45046,7 @@
           }
         ]
       },
-      "CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2": {
+      "CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelector"
@@ -45069,7 +45069,7 @@
           }
         ]
       },
-      "CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf3": {
+      "CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyEffectivePublicDtoGeneratedRulesItemSelector"
@@ -45093,7 +45093,7 @@
           }
         ]
       },
-      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1": {
+      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelector"
@@ -45116,7 +45116,7 @@
           }
         ]
       },
-      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2": {
+      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelector"
@@ -45139,7 +45139,7 @@
           }
         ]
       },
-      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf3": {
+      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelector"
@@ -45163,7 +45163,7 @@
           }
         ]
       },
-      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1": {
+      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem"
@@ -45189,7 +45189,7 @@
           }
         ]
       },
-      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemCredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2": {
+      "CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem"
@@ -45211,7 +45211,7 @@
           }
         ]
       },
-      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1": {
+      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector"
@@ -45234,7 +45234,7 @@
           }
         ]
       },
-      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2": {
+      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector"
@@ -45257,7 +45257,7 @@
           }
         ]
       },
-      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf3": {
+      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector"
@@ -45281,7 +45281,7 @@
           }
         ]
       },
-      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1": {
+      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItem"
@@ -45307,7 +45307,7 @@
           }
         ]
       },
-      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemCredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2": {
+      "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedWarningsItem"
@@ -45329,7 +45329,7 @@
           }
         ]
       },
-      "CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorCredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf1": {
+      "CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelector"
@@ -45352,7 +45352,7 @@
           }
         ]
       },
-      "CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorCredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf2": {
+      "CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelector"
@@ -45375,7 +45375,7 @@
           }
         ]
       },
-      "CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorCredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf3": {
+      "CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CredentialTypePolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelector"
@@ -45399,7 +45399,7 @@
           }
         ]
       },
-      "PolicyEffectivePublicDtoGeneratedRulesItemSelectorPolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1": {
+      "PolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyEffectivePublicDtoGeneratedRulesItemSelector"
@@ -45422,7 +45422,7 @@
           }
         ]
       },
-      "PolicyEffectivePublicDtoGeneratedRulesItemSelectorPolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2": {
+      "PolicyEffectivePublicDtoGeneratedRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyEffectivePublicDtoGeneratedRulesItemSelector"
@@ -45445,7 +45445,7 @@
           }
         ]
       },
-      "PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorPolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1": {
+      "PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelector"
@@ -45468,7 +45468,7 @@
           }
         ]
       },
-      "PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorPolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2": {
+      "PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedRulesItemSelector"
@@ -45491,7 +45491,7 @@
           }
         ]
       },
-      "PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemPolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1": {
+      "PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem"
@@ -45517,7 +45517,7 @@
           }
         ]
       },
-      "PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemPolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2": {
+      "PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyEffectiveWriteResultPublicDtoGeneratedWarningsItem"
@@ -45539,7 +45539,7 @@
           }
         ]
       },
-      "PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorPolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1": {
+      "PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector"
@@ -45562,7 +45562,7 @@
           }
         ]
       },
-      "PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorPolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2": {
+      "PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItemSelector"
@@ -45585,7 +45585,7 @@
           }
         ]
       },
-      "PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemPolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1": {
+      "PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedWarningsItem"
@@ -45611,7 +45611,7 @@
           }
         ]
       },
-      "PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemPolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2": {
+      "PolicyDocumentWriteResultPublicDtoGeneratedWarningsItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyDocumentWriteResultPublicDtoGeneratedWarningsItem"
@@ -45633,7 +45633,7 @@
           }
         ]
       },
-      "PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorPolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf1": {
+      "PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelector"
@@ -45656,7 +45656,7 @@
           }
         ]
       },
-      "PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorPolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf2": {
+      "PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PolicyAttachmentsPublicDtoGeneratedAttachmentsItemRulesItemSelector"
@@ -45679,7 +45679,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf1": {
+      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem"
@@ -45709,7 +45709,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf2": {
+      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem"
@@ -45739,7 +45739,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf3": {
+      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem"
@@ -45773,7 +45773,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf4": {
+      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem"
@@ -45803,7 +45803,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf5": {
+      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem"
@@ -45825,7 +45825,7 @@
           }
         ]
       },
-      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf6": {
+      "ImportBlockingIssueGeneratedOneOf18OverwriteChangesItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ImportBlockingIssueGeneratedOneOf18OverwriteChangesItem"
@@ -45855,7 +45855,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf1": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem"
@@ -45902,7 +45902,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItem"
@@ -45944,7 +45944,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46003,7 +46003,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46062,7 +46062,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46121,7 +46121,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46180,7 +46180,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46243,7 +46243,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46306,7 +46306,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf7Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46349,7 +46349,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf8Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46386,7 +46386,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf9Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46412,7 +46412,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItem"
@@ -46459,7 +46459,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope"
@@ -46477,7 +46477,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2ScopeOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightMissingBindingsItemOneOf2Scope"
@@ -46499,7 +46499,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem"
@@ -46529,7 +46529,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem"
@@ -46559,7 +46559,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem"
@@ -46593,7 +46593,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem"
@@ -46623,7 +46623,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf5Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem"
@@ -46645,7 +46645,7 @@
           }
         ]
       },
-      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6": {
+      "ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItemOneOf6Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ApplyPackageResultDtoGeneratedOneOf2PreflightConflictsItemOneOf10ChangesItem"
@@ -46675,7 +46675,7 @@
           }
         ]
       },
-      "CreateLogStreamingDestinationRequestCreateLogStreamingDestinationRequestOneOf1": {
+      "CreateLogStreamingDestinationRequestOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateLogStreamingDestinationRequest"
@@ -46777,7 +46777,7 @@
           }
         ]
       },
-      "CreateLogStreamingDestinationRequestCreateLogStreamingDestinationRequestOneOf2": {
+      "CreateLogStreamingDestinationRequestOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateLogStreamingDestinationRequest"
@@ -46864,7 +46864,7 @@
           }
         ]
       },
-      "CreateLogStreamingDestinationRequestCreateLogStreamingDestinationRequestOneOf3": {
+      "CreateLogStreamingDestinationRequestOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateLogStreamingDestinationRequest"
@@ -46925,7 +46925,7 @@
           }
         ]
       },
-      "UpdateLogStreamingDestinationRequestUpdateLogStreamingDestinationRequestOneOf1": {
+      "UpdateLogStreamingDestinationRequestOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateLogStreamingDestinationRequest"
@@ -47021,7 +47021,7 @@
           }
         ]
       },
-      "UpdateLogStreamingDestinationRequestUpdateLogStreamingDestinationRequestOneOf2": {
+      "UpdateLogStreamingDestinationRequestOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateLogStreamingDestinationRequest"
@@ -47102,7 +47102,7 @@
           }
         ]
       },
-      "UpdateLogStreamingDestinationRequestUpdateLogStreamingDestinationRequestOneOf3": {
+      "UpdateLogStreamingDestinationRequestOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateLogStreamingDestinationRequest"
@@ -47157,7 +47157,7 @@
           }
         ]
       },
-      "CreatePromotionEnvironmentRequestCreatePromotionEnvironmentRequestOneOf1": {
+      "CreatePromotionEnvironmentRequestOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreatePromotionEnvironmentRequest"
@@ -47200,7 +47200,7 @@
           }
         ]
       },
-      "CreatePromotionEnvironmentRequestCreatePromotionEnvironmentRequestOneOf2": {
+      "CreatePromotionEnvironmentRequestOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreatePromotionEnvironmentRequest"
@@ -47243,7 +47243,7 @@
           }
         ]
       },
-      "PutCredentialTypeInstancePolicyRequestRulesItemSelectorPutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf1": {
+      "PutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelector"
@@ -47266,7 +47266,7 @@
           }
         ]
       },
-      "PutCredentialTypeInstancePolicyRequestRulesItemSelectorPutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf2": {
+      "PutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelector"
@@ -47289,7 +47289,7 @@
           }
         ]
       },
-      "PutCredentialTypeInstancePolicyRequestRulesItemSelectorPutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf3": {
+      "PutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutCredentialTypeInstancePolicyRequestRulesItemSelector"
@@ -47313,7 +47313,7 @@
           }
         ]
       },
-      "PutCredentialTypeProjectPolicyRequestRulesItemSelectorPutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf1": {
+      "PutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelector"
@@ -47336,7 +47336,7 @@
           }
         ]
       },
-      "PutCredentialTypeProjectPolicyRequestRulesItemSelectorPutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf2": {
+      "PutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelector"
@@ -47359,7 +47359,7 @@
           }
         ]
       },
-      "PutCredentialTypeProjectPolicyRequestRulesItemSelectorPutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf3": {
+      "PutCredentialTypeProjectPolicyRequestRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutCredentialTypeProjectPolicyRequestRulesItemSelector"
@@ -47383,7 +47383,7 @@
           }
         ]
       },
-      "ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1": {
+      "ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelector"
@@ -47406,7 +47406,7 @@
           }
         ]
       },
-      "ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2": {
+      "ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelector"
@@ -47429,7 +47429,7 @@
           }
         ]
       },
-      "ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf3": {
+      "ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ListCredentialTypePolicyDocuments200ResponseDataItemRulesItemSelector"
@@ -47453,7 +47453,7 @@
           }
         ]
       },
-      "CreateCredentialTypePolicyDocumentRequestRulesItemSelectorCreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1": {
+      "CreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelector"
@@ -47476,7 +47476,7 @@
           }
         ]
       },
-      "CreateCredentialTypePolicyDocumentRequestRulesItemSelectorCreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2": {
+      "CreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelector"
@@ -47499,7 +47499,7 @@
           }
         ]
       },
-      "CreateCredentialTypePolicyDocumentRequestRulesItemSelectorCreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3": {
+      "CreateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateCredentialTypePolicyDocumentRequestRulesItemSelector"
@@ -47523,7 +47523,7 @@
           }
         ]
       },
-      "GetCredentialTypePolicyDocument200ResponseRulesItemSelectorGetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf1": {
+      "GetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelector"
@@ -47546,7 +47546,7 @@
           }
         ]
       },
-      "GetCredentialTypePolicyDocument200ResponseRulesItemSelectorGetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf2": {
+      "GetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelector"
@@ -47569,7 +47569,7 @@
           }
         ]
       },
-      "GetCredentialTypePolicyDocument200ResponseRulesItemSelectorGetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf3": {
+      "GetCredentialTypePolicyDocument200ResponseRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetCredentialTypePolicyDocument200ResponseRulesItemSelector"
@@ -47593,7 +47593,7 @@
           }
         ]
       },
-      "UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorUpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1": {
+      "UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelector"
@@ -47616,7 +47616,7 @@
           }
         ]
       },
-      "UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorUpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2": {
+      "UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelector"
@@ -47639,7 +47639,7 @@
           }
         ]
       },
-      "UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorUpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3": {
+      "UpdateCredentialTypePolicyDocumentRequestRulesItemSelectorOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateCredentialTypePolicyDocumentRequestRulesItemSelector"
@@ -47663,7 +47663,7 @@
           }
         ]
       },
-      "GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf1": {
+      "GetLogStreamingDestinations200ResponseDataItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItem"
@@ -47765,7 +47765,7 @@
           }
         ]
       },
-      "GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf2": {
+      "GetLogStreamingDestinations200ResponseDataItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItem"
@@ -47852,7 +47852,7 @@
           }
         ]
       },
-      "GetLogStreamingDestinations200ResponseDataItemGetLogStreamingDestinations200ResponseDataItemOneOf3": {
+      "GetLogStreamingDestinations200ResponseDataItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetLogStreamingDestinations200ResponseDataItem"
@@ -47913,7 +47913,7 @@
           }
         ]
       },
-      "PutNodeTypeInstancePolicyRequestRulesItemSelectorPutNodeTypeInstancePolicyRequestRulesItemSelectorOneOf1": {
+      "PutNodeTypeInstancePolicyRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutNodeTypeInstancePolicyRequestRulesItemSelector"
@@ -47936,7 +47936,7 @@
           }
         ]
       },
-      "PutNodeTypeInstancePolicyRequestRulesItemSelectorPutNodeTypeInstancePolicyRequestRulesItemSelectorOneOf2": {
+      "PutNodeTypeInstancePolicyRequestRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutNodeTypeInstancePolicyRequestRulesItemSelector"
@@ -47959,7 +47959,7 @@
           }
         ]
       },
-      "PutNodeTypeProjectPolicyRequestRulesItemSelectorPutNodeTypeProjectPolicyRequestRulesItemSelectorOneOf1": {
+      "PutNodeTypeProjectPolicyRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutNodeTypeProjectPolicyRequestRulesItemSelector"
@@ -47982,7 +47982,7 @@
           }
         ]
       },
-      "PutNodeTypeProjectPolicyRequestRulesItemSelectorPutNodeTypeProjectPolicyRequestRulesItemSelectorOneOf2": {
+      "PutNodeTypeProjectPolicyRequestRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/PutNodeTypeProjectPolicyRequestRulesItemSelector"
@@ -48005,7 +48005,7 @@
           }
         ]
       },
-      "ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1": {
+      "ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelector"
@@ -48028,7 +48028,7 @@
           }
         ]
       },
-      "ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2": {
+      "ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/ListNodeTypePolicyDocuments200ResponseDataItemRulesItemSelector"
@@ -48051,7 +48051,7 @@
           }
         ]
       },
-      "CreateNodeTypePolicyDocumentRequestRulesItemSelectorCreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1": {
+      "CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateNodeTypePolicyDocumentRequestRulesItemSelector"
@@ -48074,7 +48074,7 @@
           }
         ]
       },
-      "CreateNodeTypePolicyDocumentRequestRulesItemSelectorCreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2": {
+      "CreateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreateNodeTypePolicyDocumentRequestRulesItemSelector"
@@ -48097,7 +48097,7 @@
           }
         ]
       },
-      "GetNodeTypePolicyDocument200ResponseRulesItemSelectorGetNodeTypePolicyDocument200ResponseRulesItemSelectorOneOf1": {
+      "GetNodeTypePolicyDocument200ResponseRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetNodeTypePolicyDocument200ResponseRulesItemSelector"
@@ -48120,7 +48120,7 @@
           }
         ]
       },
-      "GetNodeTypePolicyDocument200ResponseRulesItemSelectorGetNodeTypePolicyDocument200ResponseRulesItemSelectorOneOf2": {
+      "GetNodeTypePolicyDocument200ResponseRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetNodeTypePolicyDocument200ResponseRulesItemSelector"
@@ -48143,7 +48143,7 @@
           }
         ]
       },
-      "UpdateNodeTypePolicyDocumentRequestRulesItemSelectorUpdateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1": {
+      "UpdateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateNodeTypePolicyDocumentRequestRulesItemSelector"
@@ -48166,7 +48166,7 @@
           }
         ]
       },
-      "UpdateNodeTypePolicyDocumentRequestRulesItemSelectorUpdateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2": {
+      "UpdateNodeTypePolicyDocumentRequestRulesItemSelectorOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdateNodeTypePolicyDocumentRequestRulesItemSelector"
@@ -48189,7 +48189,7 @@
           }
         ]
       },
-      "CreatePromotionProviderRequestAuthCreatePromotionProviderRequestAuthOneOf1": {
+      "CreatePromotionProviderRequestAuthOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreatePromotionProviderRequestAuth"
@@ -48211,7 +48211,7 @@
           }
         ]
       },
-      "CreatePromotionProviderRequestAuthCreatePromotionProviderRequestAuthOneOf2": {
+      "CreatePromotionProviderRequestAuthOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/CreatePromotionProviderRequestAuth"
@@ -48240,7 +48240,7 @@
           }
         ]
       },
-      "UpdatePromotionProviderRequestAuthUpdatePromotionProviderRequestAuthOneOf1": {
+      "UpdatePromotionProviderRequestAuthOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdatePromotionProviderRequestAuth"
@@ -48262,7 +48262,7 @@
           }
         ]
       },
-      "UpdatePromotionProviderRequestAuthUpdatePromotionProviderRequestAuthOneOf2": {
+      "UpdatePromotionProviderRequestAuthOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/UpdatePromotionProviderRequestAuth"
@@ -48291,7 +48291,7 @@
           }
         ]
       },
-      "GetPromotionEnvironments200ResponseDataItemGetPromotionEnvironments200ResponseDataItemOneOf1": {
+      "GetPromotionEnvironments200ResponseDataItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetPromotionEnvironments200ResponseDataItem"
@@ -48345,7 +48345,7 @@
           }
         ]
       },
-      "GetPromotionEnvironments200ResponseDataItemGetPromotionEnvironments200ResponseDataItemOneOf2": {
+      "GetPromotionEnvironments200ResponseDataItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GetPromotionEnvironments200ResponseDataItem"
@@ -48399,7 +48399,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf1": {
+      "GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItem"
@@ -48437,7 +48437,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf2": {
+      "GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItem"
@@ -48463,7 +48463,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf3": {
+      "GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItem"
@@ -48489,7 +48489,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf4": {
+      "GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1CredentialsRiskReportSectionsItemLocationItem"
@@ -48515,7 +48515,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf1": {
+      "GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItem"
@@ -48553,7 +48553,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf2": {
+      "GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItem"
@@ -48579,7 +48579,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf3": {
+      "GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItem"
@@ -48605,7 +48605,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4": {
+      "GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1DatabaseRiskReportSectionsItemLocationItem"
@@ -48631,7 +48631,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf1": {
+      "GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItem"
@@ -48669,7 +48669,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf2": {
+      "GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItem"
@@ -48695,7 +48695,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf3": {
+      "GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItem"
@@ -48721,7 +48721,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf4": {
+      "GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1FilesystemRiskReportSectionsItemLocationItem"
@@ -48747,7 +48747,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1": {
+      "GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem"
@@ -48785,7 +48785,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2": {
+      "GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem"
@@ -48811,7 +48811,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3": {
+      "GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem"
@@ -48837,7 +48837,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4": {
+      "GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1NodesRiskReportSectionsItemLocationItem"
@@ -48863,7 +48863,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf1": {
+      "GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf1Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItem"
@@ -48901,7 +48901,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf2": {
+      "GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf2Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItem"
@@ -48927,7 +48927,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf3": {
+      "GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf3Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItem"
@@ -48953,7 +48953,7 @@
           }
         ]
       },
-      "GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemGenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf4": {
+      "GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItemOneOf4Variant": {
         "allOf": [
           {
             "$ref": "#/components/schemas/GenerateAudit200ResponseAnyOf1InstanceRiskReportSectionsItemLocationItem"
