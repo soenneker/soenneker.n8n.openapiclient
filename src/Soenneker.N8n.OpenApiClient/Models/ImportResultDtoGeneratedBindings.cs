@@ -18,6 +18,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("agents") is null) { _explicitNullValueAgents = default!; _explicitNullProperties?.Remove("agents"); }
+            else if (parseNode.GetChildNode("agents") is { } nullNodeAgents && nullNodeAgents.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Agents = null;
             if (parseNode.GetChildNode("credentials") is null) { _explicitNullValueCredentials = default!; _explicitNullProperties?.Remove("credentials"); }
             else if (parseNode.GetChildNode("credentials") is { } nullNodeCredentials && nullNodeCredentials.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Credentials = null;
             if (parseNode.GetChildNode("workflows") is null) { _explicitNullValueWorkflows = default!; _explicitNullProperties?.Remove("workflows"); }
@@ -26,6 +28,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>Source-to-target IDs for created, updated, and skipped package Agents.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsAgentsProperty? Agents { get => _explicitNullValueAgents; set { _explicitNullValueAgents = value; AdditionalData?.Remove("agents"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agents"); else _explicitNullProperties?.Remove("agents"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsAgentsProperty? _explicitNullValueAgents = default!;
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsAgentsProperty Agents { get => _explicitNullValueAgents; set { _explicitNullValueAgents = value; AdditionalData?.Remove("agents"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agents"); else _explicitNullProperties?.Remove("agents"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsAgentsProperty _explicitNullValueAgents = default!;
+#endif
         /// <summary>Credential id from `requirements.credentials` in the package manifest → resolved target credential id on the target instance. Covers both a matched existing credential and a credential that the import created under `credentialMissingMode=create-stub` or `create-with-values`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -71,6 +83,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "agents", n => { Agents = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsAgentsProperty>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsAgentsProperty.CreateFromDiscriminatorValue); } },
                 { "credentials", n => { Credentials = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty.CreateFromDiscriminatorValue); } },
                 { "workflows", n => { Workflows = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty.CreateFromDiscriminatorValue); } },
             };
@@ -82,6 +95,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsAgentsProperty>("agents", Agents);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsCredentialsProperty>("credentials", Credentials);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindingsWorkflowsProperty>("workflows", Workflows);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

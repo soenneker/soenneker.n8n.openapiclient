@@ -19,6 +19,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public override void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
             base.CaptureExplicitNulls(parseNode);
+            if (parseNode.GetChildNode("column") is null) { _explicitNullValueColumn = default!; _explicitNullProperties?.Remove("column"); }
+            else if (parseNode.GetChildNode("column") is { } nullNodeColumn && nullNodeColumn.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Column = null;
             if (parseNode.GetChildNode("conflictingTableId") is null) { _explicitNullValueConflictingTableId = default!; _explicitNullProperties?.Remove("conflictingTableId"); }
             else if (parseNode.GetChildNode("conflictingTableId") is { } nullNodeConflictingTableId && nullNodeConflictingTableId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConflictingTableId = null;
             if (parseNode.GetChildNode("currentName") is null) { _explicitNullValueCurrentName = default!; _explicitNullProperties?.Remove("currentName"); }
@@ -45,6 +47,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("usedBy") is { } nullNodeUsedBy && nullNodeUsedBy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) UsedBy = null;
         }
 
+        /// <summary>For `column-id-conflict`: the package column whose id a column of another table already uses. The import endpoints do not return this. They fail with an error.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Column? Column { get => _explicitNullValueColumn; set { _explicitNullValueColumn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("column"); else _explicitNullProperties?.Remove("column"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Column? _explicitNullValueColumn = default!;
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Column Column { get => _explicitNullValueColumn; set { _explicitNullValueColumn = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("column"); else _explicitNullProperties?.Remove("column"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Column _explicitNullValueColumn = default!;
+#endif
         /// <summary>For `name-conflict`: the other table that holds or claims the name.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -169,6 +181,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
+                { "column", n => { Column = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Column>(global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Column.CreateFromDiscriminatorValue); } },
                 { "conflictingTableId", n => { ConflictingTableId = n.GetStringValue(); } },
                 { "currentName", n => { CurrentName = n.GetStringValue(); } },
                 { "existingProjectId", n => { ExistingProjectId = n.GetStringValue(); } },
@@ -191,6 +204,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf18Column>("column", Column);
             writer.WriteStringValue("conflictingTableId", ConflictingTableId);
             writer.WriteStringValue("currentName", CurrentName);
             writer.WriteStringValue("existingProjectId", ExistingProjectId);

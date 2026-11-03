@@ -27,9 +27,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("sourceProjectId") is { } nullNodeSourceProjectId && nullNodeSourceProjectId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceProjectId = null;
         }
 
-        /// <summary>The kind property</summary>
-        public global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind? _explicitNullValueKind = default!;
+        /// <summary>`fail-policy`: the project exists and `projectConflictPolicy` is `fail`. The import endpoints return only this kind. They report the other kinds as a 403 error: `not-team` (the id belongs to a personal project), `update-forbidden`, `create-forbidden`, and `license` (the license does not allow team projects).</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13Kind? Kind { get => _explicitNullValueKind; set { _explicitNullValueKind = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("kind"); else _explicitNullProperties?.Remove("kind"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13Kind? _explicitNullValueKind = default!;
         /// <summary>The project&apos;s name as it appears in the package.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -68,7 +68,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind>(); } },
+                { "kind", n => { Kind = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13Kind>(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "sourceProjectId", n => { SourceProjectId = n.GetStringValue(); } },
             };
@@ -81,7 +81,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.FailPolicyKind>("kind", Kind);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportBlockingIssueGeneratedOneOf13Kind>("kind", Kind);
             writer.WriteStringValue("name", Name);
             writer.WriteStringValue("sourceProjectId", SourceProjectId);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             

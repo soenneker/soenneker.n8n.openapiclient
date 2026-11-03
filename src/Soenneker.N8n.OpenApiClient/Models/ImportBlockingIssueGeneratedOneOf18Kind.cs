@@ -32,5 +32,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         #pragma warning disable CS1591
         PermissionDenied,
         #pragma warning restore CS1591
+        [EnumMember(Value = "column-id-conflict")]
+        #pragma warning disable CS1591
+        ColumnIdConflict,
+        #pragma warning restore CS1591
     }
 }

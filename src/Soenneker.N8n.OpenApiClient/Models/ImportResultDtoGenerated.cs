@@ -17,8 +17,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("agents") is null) { _explicitNullValueAgents = default!; _explicitNullProperties?.Remove("agents"); }
+            else if (parseNode.GetChildNode("agents") is { } nullNodeAgents && nullNodeAgents.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Agents = null;
             if (parseNode.GetChildNode("bindings") is null) { _explicitNullValueBindings = default!; _explicitNullProperties?.Remove("bindings"); }
             else if (parseNode.GetChildNode("bindings") is { } nullNodeBindings && nullNodeBindings.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Bindings = null;
+            if (parseNode.GetChildNode("counts") is null) { _explicitNullValueCounts = default!; _explicitNullProperties?.Remove("counts"); }
+            else if (parseNode.GetChildNode("counts") is { } nullNodeCounts && nullNodeCounts.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Counts = null;
             if (parseNode.GetChildNode("credentials") is null) { _explicitNullValueCredentials = default!; _explicitNullProperties?.Remove("credentials"); }
             else if (parseNode.GetChildNode("credentials") is { } nullNodeCredentials && nullNodeCredentials.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Credentials = null;
             if (parseNode.GetChildNode("dataTables") is null) { _explicitNullValueDataTables = default!; _explicitNullProperties?.Remove("dataTables"); }
@@ -43,6 +47,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
+        /// <summary>The agents property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem>? Agents { get => _explicitNullValueAgents; set { _explicitNullValueAgents = value; AdditionalData?.Remove("agents"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agents"); else _explicitNullProperties?.Remove("agents"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem>? _explicitNullValueAgents = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem> Agents { get => _explicitNullValueAgents; set { _explicitNullValueAgents = value; AdditionalData?.Remove("agents"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agents"); else _explicitNullProperties?.Remove("agents"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem> _explicitNullValueAgents = default!;
+#endif
         /// <summary>Source id → target id mappings produced during import, one map per entity type. Each value maps an id as it appeared in the package to the id on the target instance.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -52,6 +66,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings Bindings { get => _explicitNullValueBindings; set { _explicitNullValueBindings = value; AdditionalData?.Remove("bindings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("bindings"); else _explicitNullProperties?.Remove("bindings"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings _explicitNullValueBindings = default!;
+#endif
+        /// <summary>The counts property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCounts? Counts { get => _explicitNullValueCounts; set { _explicitNullValueCounts = value; AdditionalData?.Remove("counts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("counts"); else _explicitNullProperties?.Remove("counts"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCounts? _explicitNullValueCounts = default!;
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCounts Counts { get => _explicitNullValueCounts; set { _explicitNullValueCounts = value; AdditionalData?.Remove("counts"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("counts"); else _explicitNullProperties?.Remove("counts"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCounts _explicitNullValueCounts = default!;
 #endif
         /// <summary>Source credential ids grouped by whether they matched an existing credential, were created as empty stubs, seeded credentials, or incomplete credentials, or matched a credential that this import updated. Full source→target id mapping is in `bindings.credentials`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -178,7 +202,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "agents", n => { Agents = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "bindings", n => { Bindings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings.CreateFromDiscriminatorValue); } },
+                { "counts", n => { Counts = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCounts>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCounts.CreateFromDiscriminatorValue); } },
                 { "credentials", n => { Credentials = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials.CreateFromDiscriminatorValue); } },
                 { "dataTables", n => { DataTables = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables.CreateFromDiscriminatorValue); } },
                 { "folders", n => { Folders = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem.CreateFromDiscriminatorValue)?.AsList(); } },
@@ -198,7 +224,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem>("agents", Agents);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings>("bindings", Bindings);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCounts>("counts", Counts);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedCredentials>("credentials", Credentials);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedDataTables>("dataTables", DataTables);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedFoldersItem>("folders", Folders);

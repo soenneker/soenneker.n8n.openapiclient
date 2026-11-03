@@ -52,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Whether the workflow is archived on the target after import. Under `new-version` this follows the package&apos;s `isArchived` flag. A skipped workflow keeps its own state.</summary>
         public bool? IsArchived { get => _explicitNullValueIsArchived; set { _explicitNullValueIsArchived = value; AdditionalData?.Remove("isArchived"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("isArchived"); else _explicitNullProperties?.Remove("isArchived"); } }
         private bool? _explicitNullValueIsArchived = default!;
-        /// <summary>Workflow id on the target instance: newly assigned for `created` (fresh under `workflowIdPolicy=new`, the package id under `source`), the existing workflow&apos;s id for `updated`/`skipped`.</summary>
+        /// <summary>Workflow ID on the target instance. New workflows use the package ID. Updated and skipped workflows keep their destination ID.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? LocalId { get => _explicitNullValueLocalId; set { _explicitNullValueLocalId = value; AdditionalData?.Remove("localId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("localId"); else _explicitNullProperties?.Remove("localId"); } }

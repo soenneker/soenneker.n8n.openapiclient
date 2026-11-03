@@ -19,5 +19,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         #pragma warning disable CS1591
         MissingNodeType,
         #pragma warning restore CS1591
+        [EnumMember(Value = "channel-setup-required")]
+        #pragma warning disable CS1591
+        ChannelSetupRequired,
+        #pragma warning restore CS1591
     }
 }

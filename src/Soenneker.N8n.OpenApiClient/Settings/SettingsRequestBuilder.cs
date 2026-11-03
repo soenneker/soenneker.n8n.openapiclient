@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Settings.Ldap;
 using Soenneker.N8n.OpenApiClient.Settings.LogStreaming;
 using Soenneker.N8n.OpenApiClient.Settings.Otel;
+using Soenneker.N8n.OpenApiClient.Settings.RateLimits;
 using Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy;
 using Soenneker.N8n.OpenApiClient.Settings.Sso;
 using System.Collections.Generic;
@@ -33,6 +34,11 @@ namespace Soenneker.N8n.OpenApiClient.Settings
         public global::Soenneker.N8n.OpenApiClient.Settings.Otel.OtelRequestBuilder Otel
         {
             get => new global::Soenneker.N8n.OpenApiClient.Settings.Otel.OtelRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The rateLimits property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Settings.RateLimits.RateLimitsRequestBuilder RateLimits
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Settings.RateLimits.RateLimitsRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The securityPolicy property</summary>
         public global::Soenneker.N8n.OpenApiClient.Settings.SecurityPolicy.SecurityPolicyRequestBuilder SecurityPolicy

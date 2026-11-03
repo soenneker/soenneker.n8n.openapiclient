@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>What to do when a workflow in the package uses a node type — or a version of a node type — this instance does not have. `fail` (default) rejects the import before anything is written, listing every missing `(nodeType, typeVersion)` pair and the workflows that use it. `import-anyway` imports the package; workflows containing missing node types are never published by this import, regardless of `workflowPublishingPolicy`.</summary>
+    /// <summary>Controls missing node types and versions in workflow nodes and Agent node tools. `fail` (default) rejects the import before writes. The issues identify the affected consumers. `import-anyway` saves the definitions but blocks their publication. This applies to both Agents and workflows.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ImportPackageFormDataRequestMissingNodeTypeMode
     {

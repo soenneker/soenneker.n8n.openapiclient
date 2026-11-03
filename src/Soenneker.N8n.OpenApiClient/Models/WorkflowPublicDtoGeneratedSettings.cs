@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGeneratedSettingsCustomTelemetryTagsItem> CustomTelemetryTags { get => _explicitNullValueCustomTelemetryTags; set { _explicitNullValueCustomTelemetryTags = value; AdditionalData?.Remove("customTelemetryTags"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("customTelemetryTags"); else _explicitNullProperties?.Remove("customTelemetryTags"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGeneratedSettingsCustomTelemetryTagsItem> _explicitNullValueCustomTelemetryTags = default!;
 #endif
-        /// <summary>The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.</summary>
+        /// <summary>The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? EngineType { get => _explicitNullValueEngineType; set { _explicitNullValueEngineType = value; AdditionalData?.Remove("engineType"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("engineType"); else _explicitNullProperties?.Remove("engineType"); } }

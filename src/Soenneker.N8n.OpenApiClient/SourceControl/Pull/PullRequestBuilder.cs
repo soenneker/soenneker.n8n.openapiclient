@@ -41,6 +41,7 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Pull
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaError">When receiving a 409 status code</exception>
+        /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.TooManyRequestsResponse">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public async Task<List<global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl200ResponseSchemaItem>?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.PullSourceControlRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
@@ -55,6 +56,7 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Pull
             var errorMapping = new Dictionary<string, ParsableFactory<IParsable>>
             {
                 { "409", global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl409ResponseSchemaError.CreateFromDiscriminatorValue },
+                { "429", global::Soenneker.N8n.OpenApiClient.Models.TooManyRequestsResponse.CreateFromDiscriminatorValue },
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };

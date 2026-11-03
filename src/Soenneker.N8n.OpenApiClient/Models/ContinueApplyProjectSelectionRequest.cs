@@ -19,6 +19,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if (parseNode.GetChildNode("confirmDestructiveChanges") is null) { _explicitNullValueConfirmDestructiveChanges = default!; _explicitNullProperties?.Remove("confirmDestructiveChanges"); }
             else if (parseNode.GetChildNode("confirmDestructiveChanges") is { } nullNodeConfirmDestructiveChanges && nullNodeConfirmDestructiveChanges.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ConfirmDestructiveChanges = null;
+            if (parseNode.GetChildNode("expectedPreviewRevision") is null) { _explicitNullValueExpectedPreviewRevision = default!; _explicitNullProperties?.Remove("expectedPreviewRevision"); }
+            else if (parseNode.GetChildNode("expectedPreviewRevision") is { } nullNodeExpectedPreviewRevision && nullNodeExpectedPreviewRevision.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedPreviewRevision = null;
             if (parseNode.GetChildNode("expectedSource") is null) { _explicitNullValueExpectedSource = default!; _explicitNullProperties?.Remove("expectedSource"); }
             else if (parseNode.GetChildNode("expectedSource") is { } nullNodeExpectedSource && nullNodeExpectedSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedSource = null;
             if (parseNode.GetChildNode("workflowIds") is null) { _explicitNullValueWorkflowIds = default!; _explicitNullProperties?.Remove("workflowIds"); }
@@ -28,6 +30,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Also applies destructive data table changes, which a `destructive-change` conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a `project-deletion` conflict reports, with everything in them. The confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result.</summary>
         public bool? ConfirmDestructiveChanges { get => _explicitNullValueConfirmDestructiveChanges; set { _explicitNullValueConfirmDestructiveChanges = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("confirmDestructiveChanges"); else _explicitNullProperties?.Remove("confirmDestructiveChanges"); } }
         private bool? _explicitNullValueConfirmDestructiveChanges = default!;
+        /// <summary>The `revision` of the reviewed Apply preview. Apply builds the preview again and returns status `preview-changed` without writing when it differs, for example after a local edit.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExpectedPreviewRevision { get => _explicitNullValueExpectedPreviewRevision; set { _explicitNullValueExpectedPreviewRevision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedPreviewRevision"); else _explicitNullProperties?.Remove("expectedPreviewRevision"); } }
+        private string? _explicitNullValueExpectedPreviewRevision = default!;
+#nullable restore
+#else
+        public string ExpectedPreviewRevision { get => _explicitNullValueExpectedPreviewRevision; set { _explicitNullValueExpectedPreviewRevision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedPreviewRevision"); else _explicitNullProperties?.Remove("expectedPreviewRevision"); } }
+        private string _explicitNullValueExpectedPreviewRevision = default!;
+#endif
         /// <summary>The expectedSource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -67,6 +79,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "confirmDestructiveChanges", n => { ConfirmDestructiveChanges = n.GetBoolValue(); } },
+                { "expectedPreviewRevision", n => { ExpectedPreviewRevision = n.GetStringValue(); } },
                 { "expectedSource", n => { ExpectedSource = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource>(global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource.CreateFromDiscriminatorValue); } },
                 { "workflowIds", n => { WorkflowIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -79,6 +92,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteBoolValue("confirmDestructiveChanges", ConfirmDestructiveChanges);
+            writer.WriteStringValue("expectedPreviewRevision", ExpectedPreviewRevision);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ContinueApplyProjectSelectionRequestExpectedSource>("expectedSource", ExpectedSource);
             writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             

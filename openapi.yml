@@ -24,85 +24,128 @@ servers:
 tags:
   - name: Audit
     x-displayName: Audit
+    x-parent: InstanceOperations
     description: Operations about security audit
   - name: CommunityPackage
-    x-displayName: Community Package
+    x-displayName: Community Packages
+    x-parent: InstanceOperations
     description: Operations about community packages
   - name: Credential
-    x-displayName: Credential
+    x-displayName: Credentials
+    x-parent: BuildAndRun
     description: Operations about credentials
   - name: CredentialTypePolicy
     x-displayName: Credential Type Policy
+    x-parent: InstanceSettings
     description: Preview — breaking changes may still occur without major version bump.
   - name: DataTable
-    x-displayName: Data Table
+    x-displayName: Data Tables
+    x-parent: BuildAndRun
     description: Operations about data tables and their rows
   - name: Discover
     x-displayName: Discover
+    x-parent: InstanceOperations
     description: API capability discovery
   - name: Evaluation
-    x-displayName: Evaluation
+    x-displayName: Evaluations
+    x-parent: BuildAndRun
     description: Operations about evaluation test runs
   - name: Executions
     x-displayName: Executions
+    x-parent: BuildAndRun
     description: Operations about executions
   - name: Folders
     x-displayName: Folders
+    x-parent: BuildAndRun
     description: Operations about folders
   - name: Insights
     x-displayName: Insights
+    x-parent: InstanceOperations
     description: Operations about insights
   - name: LogStreaming
     x-displayName: Log Streaming
+    x-parent: InstanceSettings
     description: Operations about log streaming destinations
   - name: N8nPackage
-    x-displayName: n8n Package
+    x-displayName: n8n Packages
+    x-parent: InstanceOperations
     description: Beta — breaking changes may still occur without major version bump.
   - name: NodeTypePolicy
     x-displayName: Node Type Policy
+    x-parent: InstanceSettings
     description: Preview — breaking changes may still occur without major version bump.
   - name: Projects
     x-displayName: Projects
+    x-parent: AccessAndOrganization
     description: Operations about projects
   - name: Promotions
     x-displayName: Promotions
+    x-parent: InstanceOperations
     description: Operations about promotion providers, environments, and package operations
   - name: Role
-    x-displayName: Role
+    x-displayName: Roles
+    x-parent: AccessAndOrganization
     description: Operations about roles
   - name: RoleMappingRule
-    x-displayName: Role Mapping Rule
+    x-displayName: Role Mapping Rules
+    x-parent: AccessAndOrganization
     description: Operations about identity-provider role-mapping rules
   - name: SecurityPolicy
     x-displayName: Security Policy
+    x-parent: InstanceSettings
     description: Operations about the instance security policy settings
   - name: SettingsLdap
     x-displayName: Settings LDAP
+    x-parent: InstanceSettings
     description: Operations about LDAP settings
   - name: SettingsOtel
     x-displayName: Settings OTel
+    x-parent: InstanceSettings
     description: Operations about OpenTelemetry settings
+  - name: SettingsRateLimits
+    x-displayName: Settings Rate Limits
+    x-parent: InstanceSettings
+    description: Operations about Public API rate-limit settings
   - name: SettingsSsoOidc
     x-displayName: Settings SSO OIDC
+    x-parent: InstanceSettings
     description: Operations about OIDC SSO settings
   - name: SettingsSsoSaml
     x-displayName: Settings SSO SAML
+    x-parent: InstanceSettings
     description: Operations about SAML SSO settings
   - name: SourceControl
     x-displayName: Source Control
+    x-parent: InstanceOperations
     description: Operations about source control
   - name: Tags
     x-displayName: Tags
+    x-parent: BuildAndRun
     description: Operations about tags
   - name: User
-    x-displayName: User
+    x-displayName: Users
+    x-parent: AccessAndOrganization
     description: Operations about users
   - name: Variables
     x-displayName: Variables
+    x-parent: BuildAndRun
     description: Operations about variables
   - name: Workflow
-    x-displayName: Workflow
+    x-displayName: Workflows
+    x-parent: BuildAndRun
     description: Operations about workflows
+  - name: AccessAndOrganization
+    x-displayName: Access and organization
+    description: Manage projects, users, roles, and role-mapping rules
+  - name: BuildAndRun
+    x-displayName: Build and run
+    description: Build, run, and test workflows, and manage the resources that they use
+  - name: InstanceOperations
+    x-displayName: Instance operations
+    description: Audit, extend, version, promote, and monitor the instance
+  - name: InstanceSettings
+    x-displayName: Instance settings
+    description: Configure sign-in, security, type policies, log streaming, and telemetry for the instance
 paths:
   /audit:
     post:
@@ -749,6 +792,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '500':
           $ref: '#/components/responses/internalServerError'
   /community-packages:
@@ -817,6 +862,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: installPackage
       tags:
@@ -931,6 +978,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /community-packages/{name}:
     patch:
       operationId: updatePackage
@@ -1015,6 +1064,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: uninstallPackage
       tags:
@@ -1040,6 +1091,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /credential-type-policies/instance:
     get:
       operationId: getCredentialTypeInstancePolicy
@@ -1062,6 +1115,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -1169,6 +1224,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /credential-type-policies/projects/{projectId}:
@@ -1200,6 +1257,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -1312,6 +1371,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /credential-type-policies/policies:
@@ -1435,6 +1496,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     post:
@@ -1535,6 +1598,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /credential-type-policies/policies/{policyId}:
@@ -1648,6 +1713,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -1757,6 +1824,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     delete:
@@ -1787,6 +1856,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /credential-type-policies/scopes/{scopeId}/attachments:
@@ -1820,6 +1891,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -1887,6 +1960,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /credentials:
@@ -1967,6 +2042,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createCredential
       tags:
@@ -2052,6 +2129,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /credentials/{credentialId}:
     get:
       operationId: getCredential
@@ -2080,6 +2159,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     patch:
       operationId: updateCredential
       tags:
@@ -2152,6 +2233,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteCredential
       tags:
@@ -2225,6 +2308,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /credentials/{credentialId}/transfer:
     put:
       operationId: transferCredential
@@ -2266,6 +2351,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /credentials/{credentialId}/test:
     post:
       operationId: testCredential
@@ -2307,6 +2394,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /credentials/schema/{credentialTypeName}:
     get:
       operationId: getCredentialType
@@ -2366,6 +2455,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /credentials/{credentialId}/dependencies:
     get:
       operationId: getCredentialDependencies
@@ -2398,6 +2489,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables:
     get:
       operationId: listDataTables
@@ -2526,6 +2619,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createDataTable
       tags:
@@ -2607,6 +2702,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}:
     get:
       operationId: getDataTable
@@ -2637,6 +2734,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     patch:
       operationId: updateDataTable
       tags:
@@ -2687,6 +2786,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteDataTable
       tags:
@@ -2712,6 +2813,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}/dependencies:
     get:
       operationId: getDataTableDependencies
@@ -2746,6 +2849,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}/columns:
     get:
       operationId: listDataTableColumns
@@ -2815,6 +2920,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createDataTableColumn
       tags:
@@ -2881,6 +2988,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}/columns/{columnId}:
     patch:
       operationId: updateDataTableColumn
@@ -2944,6 +3053,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteDataTableColumn
       tags:
@@ -2977,6 +3088,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}/rows:
     get:
       operationId: listDataTableRows
@@ -3062,6 +3175,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createDataTableRows
       tags:
@@ -3179,6 +3294,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}/rows/upsert:
     post:
       operationId: upsertDataTableRow
@@ -3364,6 +3481,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}/rows/update:
     patch:
       operationId: updateDataTableRows
@@ -3544,6 +3663,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}/rows/clear:
     delete:
       operationId: clearDataTableRows
@@ -3580,6 +3701,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /data-tables/{dataTableId}/rows/delete:
     delete:
       operationId: deleteDataTableRows
@@ -3693,6 +3816,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /discover:
     get:
       operationId: getDiscover
@@ -3796,6 +3921,8 @@ paths:
           $ref: '#/components/responses/badRequest'
         '401':
           $ref: '#/components/responses/unauthorized'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/test-runs:
     get:
       operationId: getTestRuns
@@ -3914,6 +4041,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createTestRun
       tags:
@@ -3969,6 +4098,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/test-runs/{runId}:
     get:
       operationId: getTestRun
@@ -4064,6 +4195,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/test-runs/{runId}/test-cases:
     get:
       operationId: getTestCases
@@ -4174,6 +4307,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/test-runs/{runId}/cancel:
     post:
       operationId: cancelTestRun
@@ -4226,6 +4361,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /executions:
     get:
       operationId: getExecutions
@@ -4458,6 +4595,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /executions/{executionId}:
     get:
       operationId: getExecution
@@ -4678,6 +4817,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteExecution
       tags:
@@ -4838,6 +4979,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /executions/{executionId}/tags:
     get:
       operationId: getExecutionTags
@@ -4869,6 +5012,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateExecutionTags
       tags:
@@ -4916,6 +5061,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /executions/stop:
     post:
       operationId: stopManyExecutions
@@ -4991,6 +5138,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /executions/{executionId}/stop:
     post:
       operationId: stopExecution
@@ -5073,6 +5222,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /executions/{executionId}/retry:
     post:
       operationId: retryExecution
@@ -5247,6 +5398,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /projects/{projectId}/folders:
     get:
       operationId: listFolders
@@ -5435,6 +5588,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createFolder
       tags:
@@ -5516,6 +5671,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /projects/{projectId}/folders/{folderId}:
     get:
       operationId: getFolder
@@ -5584,6 +5741,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     patch:
       operationId: updateFolder
       tags:
@@ -5665,6 +5824,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteFolder
       tags:
@@ -5704,6 +5865,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /insights/summary:
     get:
       operationId: getInsightsSummary
@@ -5834,6 +5997,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/ldap:
     get:
       operationId: getLdapConfiguration
@@ -5853,6 +6018,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateLdapConfiguration
       tags:
@@ -5992,6 +6159,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/ldap/sync:
     get:
       operationId: getLdapSync
@@ -6088,6 +6257,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: runLdapSync
       tags:
@@ -6193,6 +6364,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/log-streaming/event-types:
     get:
       operationId: getLogStreamingEventTypes
@@ -6225,6 +6398,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/log-streaming/destinations:
     get:
       operationId: getLogStreamingDestinations
@@ -6607,6 +6782,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createLogStreamingDestination
       tags:
@@ -6995,6 +7172,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/log-streaming/destinations/{destinationId}:
     get:
       operationId: getLogStreamingDestination
@@ -7023,6 +7202,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateLogStreamingDestination
       tags:
@@ -7401,6 +7582,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteLogStreamingDestination
       tags:
@@ -7430,6 +7613,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/log-streaming/destinations/{destinationId}/test:
     post:
       operationId: testLogStreamingDestination
@@ -7466,6 +7651,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /n8n-packages/import:
     post:
       operationId: importPackage
@@ -7475,12 +7662,20 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Imports a gzip-compressed tar package (`.n8np`) into the target project. Send the archive as the multipart field `package`. Optional routing uses form fields `projectId` and `folderId` (omit or send empty for defaults). Every optional mode/policy field (credential, workflow, project, folder, data table, variable, and tag) takes its default when omitted; the one non-fixed default is `folderConflictPolicy`, which follows `projectConflictPolicy` on a project package. The required `workflowConflictPolicy` field controls what happens when a package workflow matches an existing workflow by source id in the target project. Maximum upload size is `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).
+        Imports Agent-only, workflow-only, mixed, and whole-project packages. The Agents module must be active for packages that contain Agents. Send the gzip-compressed tar archive (`.n8np`) as the multipart field `package`. Optional routing uses form fields `projectId` and `folderId` (omit or send empty for defaults). Every optional mode/policy field (credential, Agent, workflow, project, folder, data table, variable, and tag) takes its default when omitted; the one non-fixed default is `folderConflictPolicy`, which follows `projectConflictPolicy` on a project package. The required `conflictPolicy` field controls matches for both Agents and workflows. It replaces `workflowConflictPolicy`; the old field is rejected. `idPolicy` and `publishingPolicy` also apply to both kinds. They replace the workflow-specific and Agent-specific fields, which are rejected. Maximum upload size is `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16).
 
         The package must declare its manifest at `manifest.json` and include every file the manifest references.
 
-        Credential references are resolved before any workflow is written.
-      x-required-scope: workflow:import
+        Credential and dependency references are resolved before writes. Request bindings support credential overrides only. Agent and workflow identities are matched automatically.
+
+        Agent packages require `agent:import` and `agent:read`. Workflow packages require `workflow:import`. Mixed packages require both import grants. Planned Agent actions also require `agent:create`, `agent:update`, `agent:publish`, or `agent:unpublish`. Skipped Agents do not require write grants. Creating a project or instance skill requires `skill:create`, and saving a new version of one requires `skill:update`. When the import publishes a workflow, including a republish under `preserve-published-state`, the API key needs `workflow:activate`. When it unpublishes one, the key needs `workflow:deactivate`. Skipped workflows and workflows marked as archived in the package need neither publication scope. Archiving or restoring a matched workflow needs `workflow:delete`. Restoring and publishing a workflow requires both `workflow:delete` and `workflow:activate`. Destination-project permissions and dependency scopes still apply.
+
+        The response contains Agent summaries in `agents`, source IDs in `bindings.agents`, and totals in `counts.agents`. Definition import and publication have separate outcomes. Check `agents[].publishing.state` and `workflows[].publishing.state` for publication results, including `failed`. A publication failure retains the imported definition and returns HTTP 200.
+
+        Selected-Agent exports use this endpoint. Agent content is rejected by `/import-selection`, directory imports, and Promotions before writes.
+
+        Example multipart fields: `conflictPolicy=new-version`, `idPolicy=source`, `publishingPolicy=match-source`, and `bindings={"credentials":{"source-credential":"target-credential"}}`.
+      x-required-scope: workflow:import,agent:import
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
@@ -7528,14 +7723,14 @@ paths:
                   type: string
                   description: 'Optional JSON object of explicit source→target id bindings, keyed by entity type. Only `credentials` is supported today: send `{"credentials":{"<packageCredentialId>":"<targetCredentialId>"}}` to map credential ids from the package to credential ids on the target instance. These explicit bindings are validated on type and applied before `credentialMatchingMode` resolution runs.'
                   default: '{}'
-                workflowConflictPolicy:
+                conflictPolicy:
                   type: string
                   enum:
                     - new-version
                     - fail
                     - skip
-                  description: '`new-version` updates matching workflows and creates a new version; the archived state follows the package, so a matching workflow is archived or unarchived to match it. `fail` rejects the import when any matching workflow exists, and `skip` leaves matching workflows unchanged. Archived workflows in the target project match like any other. An archive state change also needs the `workflow:delete` scope.'
-                workflowPublishingPolicy:
+                  description: Applies to Agents, workflows and the skills of imported Agents. `new-version` replaces matched definitions and saves a changed skill as a new version. `fail` rejects the import when an Agent or workflow matches, or when a matched skill has other content. A matched skill with the same content is kept. `skip` leaves matched definitions and skills unchanged. All policies create entities and skills that have no match. A new version of a project or instance skill applies to all Agents on the instance that follow the skill, also Agents that are not in the package. A skill conflict under `fail` is an `agent-invalid` issue, so it returns 422. Matched workflows also follow the package archive state under `new-version`; this change needs `workflow:delete`. This required field replaces `workflowConflictPolicy`. The old field is rejected.
+                publishingPolicy:
                   type: string
                   enum:
                     - preserve-published-state
@@ -7543,21 +7738,20 @@ paths:
                     - publish-all
                     - unpublish-all
                   default: preserve-published-state
-                  description: Controls whether imported workflows are published after content is written. `preserve-published-state` (default) keeps new workflows inactive, and republishes an updated workflow only when it was already published and the package carries the version the source publishes — so drafts are never published. `match-source` publishes the version the package carries when the source publishes it, and unpublishes when the source publishes nothing; when the source publishes a version the package does not carry, the target keeps its published version. `publish-all` publishes every imported workflow. `unpublish-all` leaves new workflows inactive and unpublishes updated workflows that were published.
-                workflowIdPolicy:
+                  description: Controls publication of imported Agents and workflows after definitions are saved. `preserve-published-state` (default) keeps new entities unpublished. It republishes an updated entity only if it was published and the package contains the version published at the source. `match-source` publishes the imported definition when the source publishes it. It unpublishes the destination when the source has no published version. Both policies leave publication unchanged when the source publishes a version absent from the package. `publish-all` requests publication of imported entities. `unpublish-all` leaves new entities unpublished and unpublishes updated entities. Skipped entities remain unchanged. Archived workflows remain unpublished. Publication failures do not undo saved definitions. Only the Agent revision saved by the import can be published or unpublished. This field replaces `workflowPublishingPolicy` and `agentPublishingPolicy`. The old fields are rejected.
+                idPolicy:
                   type: string
                   enum:
-                    - new
                     - source
                   default: source
-                  description: Controls the id each newly created workflow receives. `source` (default) reuses the package's own workflow id on the target instance, which best fits promotion use cases where the same workflow moves between environments. `new` mints a fresh id and records the package id as `sourceWorkflowId`, so the same package can be imported repeatedly without id collisions — best suited to marketplace imports. Workflows matched to an existing workflow in the target project (status `updated` or `skipped`) always keep that workflow's current id, regardless of policy.
+                  description: Controls IDs for newly created Agents and workflows. Only `source` is supported. It uses the package ID. An ID already used by an unmatched Agent or workflow, in any project, blocks the import. Matched entities keep their destination ID. Agent and workflow identity maps remain separate. This field replaces `workflowIdPolicy` and `agentIdPolicy`. The old fields are rejected.
                 missingNodeTypeMode:
                   type: string
                   enum:
                     - fail
                     - import-anyway
                   default: fail
-                  description: What to do when a workflow in the package uses a node type — or a version of a node type — this instance does not have. `fail` (default) rejects the import before anything is written, listing every missing `(nodeType, typeVersion)` pair and the workflows that use it. `import-anyway` imports the package; workflows containing missing node types are never published by this import, regardless of `workflowPublishingPolicy`.
+                  description: Controls missing node types and versions in workflow nodes and Agent node tools. `fail` (default) rejects the import before writes. The issues identify the affected consumers. `import-anyway` saves the definitions but blocks their publication. This applies to both Agents and workflows.
                 projectConflictPolicy:
                   type: string
                   enum:
@@ -7648,7 +7842,7 @@ paths:
                   description: What to do when a referenced tag conflicts on the target instance — either the same-id target tag carries a different name (rename drift), or the tag's name is already held by a different tag (name collision). `skip` (default) drops the conflicted tags from the import (not created, not renamed, not attached anywhere; the import proceeds and lists them under `tags.skipped`). `fail` rejects the import with a 409. `rename` renames a drifted target tag to the package name, and reconciles a name collision by re-keying the existing tag to the package (source) id — its name, workflow and folder taggings follow; both need an API key carrying the `tag:update` scope when the import would rename or reconcile a tag. A drifted tag whose package name is held by another tag still rejects the import (rename degrades to fail).
               required:
                 - package
-                - workflowConflictPolicy
+                - conflictPolicy
               additionalProperties: false
       responses:
         '200':
@@ -7666,7 +7860,7 @@ paths:
         '404':
           $ref: '#/components/responses/notFound'
         '409':
-          description: Import blocked by at least one conflict among the issues — a workflow source-id conflict, a folder conflict, a tag conflict (rename drift or name collision), a data table conflict (id owned by another project, or a name that another table in the project has), a variable whose bundled value differs from the resolved target, or a selected destination also named for deletion.
+          description: Import blocked by at least one conflict among the issues — an Agent or workflow identity conflict, a folder conflict, a tag conflict (rename drift or name collision), a data table conflict (id owned by another project, or a name that another table in the project has), a variable whose bundled value differs from the resolved target, or a selected destination also named for deletion.
           content:
             application/json:
               schema:
@@ -7686,7 +7880,7 @@ paths:
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
-          description: Import blocked by non-conflict issues only — for example unresolved credentials or variables, node types this instance does not have, a delete the caller may not perform, or variable stubs whose creation would exceed the instance variable quota.
+          description: 'Import blocked by non-conflict issues only — for example unresolved credentials or variables, invalid Agent definitions or dependencies, node types this instance does not have, a delete the caller may not perform, or variable stubs whose creation would exceed the instance variable quota. Exception: a skill conflict returns 422, also under `conflictPolicy=fail`. The import plans a skill as part of each Agent that uses it, so it reports every skill problem as an `agent-invalid` issue on that Agent, with the path `skills.<skillId>`.'
           content:
             application/json:
               schema:
@@ -7701,6 +7895,8 @@ paths:
                 required:
                   - message
                   - issues
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '500':
           $ref: '#/components/responses/internalServerError'
   /n8n-packages/import-selection:
@@ -7714,9 +7910,9 @@ paths:
 
         Imports a chosen subset of workflows from one source project of a gzip-compressed tar package (`.n8np`), instead of the whole package. Send the archive as the multipart field `package`. The import is **additive** (cherry-pick): it never removes a workflow the selection omits. It creates or updates only the workflows named in `selectedWorkflowIds`, and deletes only the destination workflows named in `deletedWorkflowIds`.
 
-        `selectedProjectId` names the single source project the selection is scoped to (its id as it appears in the package). The selected workflows are written into the instance project whose id matches that source project, which is created if it does not yet exist; there is no separate target-project field. `selectedWorkflowIds` are source ids within that project; ids that belong to another project are dropped. `deletedWorkflowIds` are destination ids in the same project; an absent id is a tolerated no-op, and a delete needs the `workflow:delete` scope. A delete id must not match the destination id of a selected workflow, including when `workflowConflictPolicy=skip`. This overlap returns a 409 before any writes.
+        `selectedProjectId` names the single source project the selection is scoped to (its id as it appears in the package). The selected workflows are written into the instance project whose id matches that source project, which is created if it does not yet exist; there is no separate target-project field. `selectedWorkflowIds` are source ids within that project; ids that belong to another project are dropped. `deletedWorkflowIds` are destination ids in the same project; an absent id is a tolerated no-op, and a delete needs the `workflow:delete` scope. A delete id must not match the destination id of a selected workflow, including when `conflictPolicy=skip`. This overlap returns a 409 before any writes.
 
-        The package must be a project package (a workflow package is rejected with a 400). The cherry-pick conflict policies (folder, tag, and project) are fixed and are not accepted here; only `workflowConflictPolicy`, `workflowIdPolicy`, and `overwriteDeletionPolicy` are configurable. Maximum upload size is `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16). The caller is authorised through the `workflow:import` scope.
+        The package must be a project package (a workflow package is rejected with a 400). The cherry-pick conflict policies (folder, tag, and project) are fixed and are not accepted here; only `conflictPolicy`, `idPolicy`, and `overwriteDeletionPolicy` are configurable. Maximum upload size is `N8N_ENDPOINTS_PAYLOAD_SIZE_MAX` MB (default 16). The caller is authorised through the `workflow:import` scope. Packages that contain Agents are rejected before writes. Use the ordinary import endpoint for selected-Agent exports. `conflictPolicy` replaces `workflowConflictPolicy`, and `idPolicy` replaces `workflowIdPolicy`. The old fields are rejected. Publication remains fixed to `match-source`. When `match-source` publishes a selected workflow, the API key also needs `workflow:activate`. When it unpublishes one, the key needs `workflow:deactivate`. Archiving or restoring a matched workflow also needs `workflow:delete`. Restoring and publishing a workflow requires both `workflow:delete` and `workflow:activate`.
       x-required-scope: workflow:import
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
@@ -7741,7 +7937,7 @@ paths:
                 deletedWorkflowIds:
                   type: string
                   description: Optional JSON-encoded array of destination workflow ids to remove from the scoped project, e.g. `["wf-3"]`. Removal happens even under the additive profile, and the manner of removal follows `overwriteDeletionPolicy` (archive by default). An absent id is a no-op unless it is also a selected destination. Must not contain a selected workflow's destination id. Needs the `workflow:delete` scope.
-                workflowConflictPolicy:
+                conflictPolicy:
                   type: string
                   enum:
                     - new-version
@@ -7749,13 +7945,12 @@ paths:
                     - skip
                   default: new-version
                   description: What happens when a selected workflow matches an existing workflow by source id in the target project. `new-version` (default) updates it and creates a new version; `fail` rejects the import when any matching workflow exists; `skip` leaves matching workflows unchanged. An archive state change also needs the `workflow:delete` scope.
-                workflowIdPolicy:
+                idPolicy:
                   type: string
                   enum:
-                    - new
                     - source
                   default: source
-                  description: Controls the id each newly created workflow receives. `source` (default) reuses the package's own workflow id on the target instance; `new` mints a fresh id and records the package id as `sourceWorkflowId`. Workflows matched to an existing workflow keep that workflow's current id, regardless of policy.
+                  description: Controls IDs for newly created workflows. Only `source` is supported. It uses the package ID. An ID already used by an unmatched workflow, in any project, blocks the import. Matched workflows keep their destination ID.
                 overwriteDeletionPolicy:
                   type: string
                   enum:
@@ -7784,7 +7979,7 @@ paths:
         '404':
           $ref: '#/components/responses/notFound'
         '409':
-          description: Import blocked by at least one conflict among the issues — for example a workflow source-id conflict under `workflowConflictPolicy=fail`, or a selected destination also named for deletion (`workflow-removal-conflict`).
+          description: Import blocked by at least one conflict among the issues — for example a workflow source-id conflict under `conflictPolicy=fail`, or a selected destination also named for deletion (`workflow-removal-conflict`).
           content:
             application/json:
               schema:
@@ -7819,6 +8014,8 @@ paths:
                 required:
                   - message
                   - issues
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '500':
           $ref: '#/components/responses/internalServerError'
   /n8n-packages/export:
@@ -7851,8 +8048,7 @@ paths:
         do not need it.
 
         Agent definitions include referenced skills, custom tools, and schedules.
-        Knowledge base files and runtime data are excluded. Agent package imports
-        remain unavailable.
+        Knowledge base files and runtime data are excluded.
       x-required-scope: project:export,workflow:export,agent:export
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
@@ -7928,7 +8124,7 @@ paths:
                     - ignore-unpublished
                     - latest
                   default: latest
-                  description: Which version of each workflow and agent travels in the package. `latest` exports the current draft. `published-strict` requires a published version. `prefer-published` uses the published version when available and the draft otherwise. `ignore-unpublished` skips unpublished selections. Dependencies that cannot be included cause the export to fail only when `dependencyPolicy` is `fail` or `include-in-package`. With `reference-only`, the export records them as external requirements. The selected version supplies the definition and its references. Workflow names, settings, and tags always use their current values. Agent IDs, names, and MCP availability always use their current values.
+                  description: Which version of each workflow and agent travels in the package. `latest` exports the current draft. `published-strict` requires a published version. `prefer-published` uses the published version when available and the draft otherwise. `ignore-unpublished` skips unpublished selections. Dependencies that cannot be included cause the export to fail only when `dependencyPolicy` is `fail` or `include-in-package`. With `reference-only`, the export records them as external requirements. The selected version supplies the definition and its references. Workflow names, settings, and tags always use their current values. Agent IDs, names, and MCP availability always use their current values. Skills have no published versions. The package always contains the latest saved version of each skill, also under `published-strict`. The package does not pin skill versions.
                   example: latest
                 credentialExportPolicy:
                   type: string
@@ -7975,6 +8171,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /node-type-policies/instance:
     get:
       operationId: getNodeTypeInstancePolicy
@@ -7997,6 +8195,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -8091,6 +8291,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /node-type-policies/projects/{projectId}:
@@ -8122,6 +8324,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -8221,6 +8425,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /node-type-policies/policies:
@@ -8331,6 +8537,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     post:
@@ -8418,6 +8626,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /node-type-policies/policies/{policyId}:
@@ -8518,6 +8728,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -8614,6 +8826,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     delete:
@@ -8644,6 +8858,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /node-type-policies/scopes/{scopeId}/attachments:
@@ -8677,6 +8893,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -8744,6 +8962,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /settings/otel:
@@ -8767,6 +8987,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateOtelSettings
       tags:
@@ -8875,6 +9097,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/otel/test-trace:
     post:
       operationId: testOtelTrace
@@ -8958,6 +9182,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /projects:
     get:
       operationId: getProjects
@@ -9065,6 +9291,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createProject
       tags:
@@ -9232,6 +9460,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /projects/{projectId}:
     put:
       operationId: updateProject
@@ -9281,6 +9511,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteProject
       tags:
@@ -9306,6 +9538,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /projects/{projectId}/users:
     get:
       operationId: getProjectUsers
@@ -9402,6 +9636,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: addUsersToProject
       tags:
@@ -9463,6 +9699,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /projects/{projectId}/users/{userId}:
     patch:
       operationId: changeUserRoleInProject
@@ -9511,6 +9749,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteUserFromProject
       tags:
@@ -9540,6 +9780,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /promotions/providers:
     post:
       operationId: createPromotionProvider
@@ -9547,7 +9789,7 @@ paths:
         - Promotions
       summary: Create a promotion provider
       description: Creates a provider and its authentication material. A Git host provider validates authenticated API access before it saves. For GitLab, the service uses n8n as the Git transport username. Its auth.username is optional. The service ignores any supplied username. Plain Git token authentication requires auth.username. An SSH provider returns the generated public key; add it to the remote as a deploy key.
-      x-required-scope: gitConnection:create
+      x-required-scope: promotions:create
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
@@ -9720,6 +9962,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     get:
@@ -9728,7 +9972,7 @@ paths:
         - Promotions
       summary: List promotion providers
       description: Returns a cursor-paginated list of providers, without their public configuration.
-      x-required-scope: gitConnection:list
+      x-required-scope: promotions:list
       parameters:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/cursor'
@@ -9786,6 +10030,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/providers/{promotionProviderId}:
@@ -9795,7 +10041,7 @@ paths:
         - Promotions
       summary: Retrieve a promotion provider
       description: Returns the provider with its public configuration. Secrets are never returned.
-      x-required-scope: gitConnection:read
+      x-required-scope: promotions:read
       parameters:
         - schema:
             type: string
@@ -9816,6 +10062,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -9824,7 +10072,7 @@ paths:
         - Promotions
       summary: Update a promotion provider
       description: Renames the provider, and replaces its credentials when `auth` is sent. A Git host provider can also update its base URL. A different API destination requires `auth` in the same request. Changed credentials and host settings are validated before they save. If another request changes the credentials or configuration before this update saves, the update returns 409. Reload the provider and try again. For GitLab, the service uses n8n as the Git transport username. Its auth.username is optional. The service ignores any supplied username. Plain Git token authentication requires auth.username. New credentials apply to every environment that uses this provider. The authentication method cannot change.
-      x-required-scope: gitConnection:update
+      x-required-scope: promotions:update
       parameters:
         - schema:
             type: string
@@ -9911,6 +10159,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     delete:
@@ -9919,7 +10169,7 @@ paths:
         - Promotions
       summary: Delete a promotion provider
       description: A provider used by an environment cannot be deleted.
-      x-required-scope: gitConnection:delete
+      x-required-scope: promotions:delete
       parameters:
         - schema:
             type: string
@@ -9938,6 +10188,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/providers/{promotionProviderId}/repositories:
@@ -9947,7 +10199,7 @@ paths:
         - Promotions
       summary: List repositories of a promotion provider
       description: Lists repositories where the GitLab token identity has at least the Developer role. The token also needs Git write scope for promotions. Protected branches can restrict pushes. Use remoteUrl as an environment remote. Search matches names and namespaces in similarity order. Unfiltered results use ascending repository ID order. The limit is an upper bound. GitLab returns at most 100 items per page. Follow nextCursor even when a page has fewer items than the requested limit. A saved environment is not required. Invalid credentials return an error, not an empty list. If a response is too large, restart the list with a smaller limit and no cursor.
-      x-required-scope: gitConnection:discover
+      x-required-scope: promotions:discover
       parameters:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/cursor'
@@ -10007,6 +10259,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/providers/{promotionProviderId}/repositories/{repositoryId}/branches:
@@ -10016,7 +10270,7 @@ paths:
         - Promotions
       summary: List branches of a promotion repository
       description: Lists branches of the selected GitLab repository and identifies its default branch. Pass the URL-encoded fullPath from repository discovery, or the repositoryPath of a saved GitLab environment, as repositoryId. GitLab project IDs are also accepted, but environments do not store them. Supports branch search and cursor pagination. The limit is an upper bound. GitLab returns at most 100 items per page. Follow nextCursor even when a page has fewer items than the requested limit. A saved environment is not required. Invalid credentials and inaccessible repositories return errors, not empty lists. If a response is too large, restart the list with a smaller limit and no cursor.
-      x-required-scope: gitConnection:discover
+      x-required-scope: promotions:discover
       parameters:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/cursor'
@@ -10074,6 +10328,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments:
@@ -10083,7 +10339,7 @@ paths:
         - Promotions
       summary: Create a promotion environment
       description: Creates an environment for one direction on an existing provider. The settings must match the direction. A GitLab remote URL must belong to the saved provider. The environment stores only the repository path and derives remoteUrl from the current provider base URL. Plain Git environments keep the full remote URL. The instance can have one environment for each direction.
-      x-required-scope: gitConnection:create
+      x-required-scope: promotions:create
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
       requestBody:
@@ -10229,6 +10485,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     get:
@@ -10237,7 +10495,7 @@ paths:
         - Promotions
       summary: List promotion environments
       description: Returns a cursor-paginated list of environments. Filter by `scope` and `direction` for the instance environments, or by `providerId` to see which environments a provider edit affects.
-      x-required-scope: gitConnection:list
+      x-required-scope: promotions:list
       parameters:
         - $ref: '#/components/parameters/limit'
         - $ref: '#/components/parameters/cursor'
@@ -10486,6 +10744,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments/{promotionEnvironmentId}:
@@ -10495,7 +10755,7 @@ paths:
         - Promotions
       summary: Retrieve a promotion environment
       description: Returns the environment with its provider summary and the state of its local checkout.
-      x-required-scope: gitConnection:read
+      x-required-scope: promotions:read
       parameters:
         - schema:
             type: string
@@ -10517,6 +10777,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     put:
@@ -10524,8 +10786,8 @@ paths:
       tags:
         - Promotions
       summary: Update a promotion environment
-      description: Updates the name, provider, remote, or settings. A remote replaces the whole saved remote, and settings replace the whole saved settings. The settings must match the direction of the environment, so `createBranchOnPromotion` is always required for Promote. GitLab environments store a repository path and derive remoteUrl from the provider. Plain Git environments keep the full remote URL. If the provider changes during the update, the update returns 409. Reload the environment and try again. Direction and scope cannot change.
-      x-required-scope: gitConnection:update
+      description: Updates the name, provider, remote, or settings. A remote replaces the whole saved remote, and settings replace the whole saved settings. The settings must match the direction of the environment, so `createBranchOnPromotion` is always required for Promote. GitLab environments store a repository path and derive remoteUrl from the provider. Plain Git environments keep the full remote URL. A new provider type or repository closes the open promotion reviews of the environment in n8n. Their merge requests stay open on the Git host. If the provider changes during the update, the update returns 409. Reload the environment and try again. Direction and scope cannot change.
+      x-required-scope: promotions:update
       parameters:
         - schema:
             type: string
@@ -10617,6 +10879,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     delete:
@@ -10624,8 +10888,8 @@ paths:
       tags:
         - Promotions
       summary: Delete a promotion environment
-      description: Deletes the environment with its project links and local checkout. Its provider is kept. Nothing in Git changes.
-      x-required-scope: gitConnection:delete
+      description: Deletes the environment with its project links and local checkout. Its provider is kept. Nothing in the Git repository changes. The open promotion reviews of the environment close in n8n. Their merge requests stay open on the Git host.
+      x-required-scope: promotions:delete
       parameters:
         - schema:
             type: string
@@ -10643,6 +10907,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments/{promotionEnvironmentId}/connect:
@@ -10652,7 +10918,7 @@ paths:
         - Promotions
       summary: Connect an environment
       description: Prepares the environment on the instance that handles the request. For a Git provider, this clones the configured branch into local storage. Safe to call repeatedly. Connecting one environment does not make another ready.
-      x-required-scope: gitConnection:clone
+      x-required-scope: promotions:connect
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
@@ -10681,6 +10947,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments/{promotionEnvironmentId}/disconnect:
@@ -10690,7 +10958,7 @@ paths:
         - Promotions
       summary: Remove an environment's local checkout
       description: Removes the local checkout and keeps the environment, its credentials, and the trusted SSH host keys.
-      x-required-scope: gitConnection:clone
+      x-required-scope: promotions:connect
       parameters:
         - schema:
             type: string
@@ -10712,6 +10980,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments/{promotionEnvironmentId}/projects:
@@ -10720,7 +10990,7 @@ paths:
       tags:
         - Promotions
       summary: List projects linked to a promotion environment
-      x-required-scope: gitConnection:read
+      x-required-scope: promotions:read
       parameters:
         - schema:
             type: string
@@ -10751,6 +11021,103 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/environments/{promotionEnvironmentId}/missing-projects:
+    get:
+      operationId: getPromotionEnvironmentMissingProjects
+      tags:
+        - Promotions
+      summary: List package projects that are missing on this instance
+      description: Reads the package at the Apply branch tip and returns its team projects whose IDs do not exist on this instance. Projects are matched by ID, not by name. An ID that a personal project uses counts as existing. Create each project with `POST /projects`, using the returned id, name, icon, description, and customTelemetryTags. The new project is empty, and the caller becomes its project admin. Then use the project Apply flow to apply its resources. An empty `data` means that no setup is needed. `git` is null when the branch has no package yet. Requires a connected Apply environment with instance scope.
+      x-required-scope: promotions:read
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          required: true
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  environmentId:
+                    type: string
+                    minLength: 1
+                    maxLength: 36
+                  git:
+                    type: object
+                    nullable: true
+                    properties:
+                      commitSha:
+                        type: string
+                      branchName:
+                        type: string
+                    required:
+                      - commitSha
+                      - branchName
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                          minLength: 1
+                        name:
+                          type: string
+                        icon:
+                          type: object
+                          properties:
+                            type:
+                              type: string
+                              enum:
+                                - emoji
+                                - icon
+                            value:
+                              type: string
+                          required:
+                            - type
+                            - value
+                        description:
+                          type: string
+                        customTelemetryTags:
+                          type: array
+                          items:
+                            type: object
+                            properties:
+                              key:
+                                type: string
+                              value:
+                                type: string
+                            required:
+                              - key
+                              - value
+                      required:
+                        - id
+                        - name
+                required:
+                  - environmentId
+                  - git
+                  - data
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments/{promotionEnvironmentId}/projects/{projectId}:
@@ -10760,7 +11127,7 @@ paths:
         - Promotions
       summary: Link a project to a promotion environment
       description: Links a team project to a project-scoped environment. A project can have one environment for each direction. A direction without a project environment uses the instance environment.
-      x-required-scope: gitConnection:manageProjects
+      x-required-scope: promotions:manageProjects
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
@@ -10807,6 +11174,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
     delete:
@@ -10814,7 +11183,7 @@ paths:
       tags:
         - Promotions
       summary: Unlink a project from a promotion environment
-      x-required-scope: gitConnection:manageProjects
+      x-required-scope: promotions:manageProjects
       parameters:
         - schema:
             type: string
@@ -10840,6 +11209,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments/{promotionEnvironmentId}/promote:
@@ -10849,7 +11220,7 @@ paths:
         - Promotions
       summary: Promote all team projects
       description: Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can't move it between projects. Requires a connected Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables.
-      x-required-scope: gitConnection:push
+      x-required-scope: promotions:promote
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
@@ -10894,6 +11265,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments/{promotionEnvironmentId}/apply:
@@ -10902,8 +11275,8 @@ paths:
       tags:
         - Promotions
       summary: Apply a package to the instance
-      description: Checks the full package at the configured branch tip. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup or if the apply would delete team projects that the package does not hold. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Workflows and folders move within their project to match the branch, and folders take the name on the branch; a workflow or folder that the branch and the instance hold in different projects is refused with 409 before any write. Requires a connected Apply environment with instance scope. The API key needs the gitConnection:pull scope. The importer checks user write permissions; granular API-key write scopes are not passed to it.
-      x-required-scope: gitConnection:pull
+      description: Checks the full package at the configured branch tip. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup, if the import conflicts with this instance, or if the apply would delete team projects that the package does not hold. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Workflows and folders move within their project to match the branch, and folders take the name on the branch. Apply cannot move a workflow or folder between projects. It returns a `moved` conflict in `blocked` with both projects. For a personal project, the conflict gives only the ID. Requires a connected Apply environment with instance scope. The API key needs the promotions:apply scope. The importer checks user write permissions; granular API-key write scopes are not passed to it.
+      x-required-scope: promotions:apply
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
@@ -10959,6 +11332,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/environments/{promotionEnvironmentId}/apply/continue:
@@ -10967,8 +11342,8 @@ paths:
       tags:
         - Promotions
       summary: Continue Apply after binding setup
-      description: 'Rechecks the configured source and current target bindings. Send expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes and delete the reported team projects. Status `source-changed` requires a new Apply review. Status `blocked` returns fresh binding details without import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same connected instance environment and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided.'
-      x-required-scope: gitConnection:pull
+      description: 'Rechecks the configured source and current target bindings. Send expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes and delete the reported team projects. Status `source-changed` requires a new Apply review. Status `blocked` returns every blocker again, without import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same connected instance environment and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided.'
+      x-required-scope: promotions:apply
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
@@ -11030,6 +11405,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/projects/{projectId}/changes/{direction}:
@@ -11038,8 +11415,8 @@ paths:
       tags:
         - Promotions
       summary: List the changes of a project in one direction
-      description: Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the gitConnection:push scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the gitConnection:pull scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
-      x-required-scope: gitConnection:push,gitConnection:pull
+      description: Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the promotions:promote scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the promotions:apply scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
+      x-required-scope: promotions:promote,promotions:apply
       parameters:
         - schema:
             type: string
@@ -11161,6 +11538,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/projects/{projectId}/promote:
@@ -11170,7 +11549,7 @@ paths:
         - Promotions
       summary: Promote a selection of a project's workflows
       description: Promotes a chosen set of a team project's workflows to the branch of the project's Promote environment. Send workflow ids only; the server reads each one now, so the push carries the current state. Live and archived workflows the project owns are exported, so an archived id stays on the branch as archived; an id whose workflow is gone from the instance leaves the branch, matching the project's change list. A workflow that moved into or out of the project since the branch was written is refused with 400; move it back first. A deletion the branch does not hold under this project rejects the whole request before any write. Requires a Promote environment to resolve for the project (its own Promote environment, otherwise the instance Promote environment), and requires it to be connected first. The API key also needs variable:list when the workflows reference variables.
-      x-required-scope: gitConnection:push
+      x-required-scope: promotions:promote
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
@@ -11222,6 +11601,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/projects/{projectId}/apply:
@@ -11230,8 +11611,8 @@ paths:
       tags:
         - Promotions
       summary: Apply a selection of a project's workflows
-      description: "Applies selected workflow changes from the project's Apply branch. Send the selected change-list IDs in workflowIds. The server imports IDs present on the branch for this project. It removes instance workflows owned by this project when their IDs are absent from the branch. Duplicate or invalid IDs reject the whole request. Unselected content stays unchanged. A selected workflow moves within the project to match the branch, together with the folders that hold it, and those folders take the name on the branch; other folders stay as they are. A selected workflow, or a folder the branch holds in this project, that the branch and the instance hold in different projects is refused with 409 before any write. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview. Status `source-changed` means the source changed since that review and nothing was imported. Status `blocked` returns binding details before import writes when the selection needs binding setup. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Requires a connected Apply environment for the project: its own Apply environment, otherwise the instance Apply environment. The API key needs the gitConnection:pull scope. The importer checks user write permissions."
-      x-required-scope: gitConnection:pull
+      description: "Applies selected workflow changes from the project's Apply branch. Send the selected change-list IDs in workflowIds. The server imports IDs present on the branch for this project. It removes instance workflows owned by this project when their IDs are absent from the branch. Duplicate or invalid IDs reject the whole request. Unselected content stays unchanged. A selected workflow moves within the project to match the branch, together with the folders that hold it, and those folders take the name on the branch; other folders stay as they are. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview. Status `source-changed` means the source changed since that review and nothing was imported. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Status `preview-changed` means this instance changed since that review and nothing was imported. Status `blocked` returns the blockers before import writes: bindings that need setup and conflicts with this instance. Apply cannot move a selected workflow or a folder of this project between projects. It returns a `moved` conflict in `blocked` with both projects. For a personal project, the conflict gives only the ID. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Requires a connected Apply environment for the project: its own Apply environment, otherwise the instance Apply environment. The API key needs the promotions:apply scope. The importer checks user write permissions."
+      x-required-scope: promotions:apply
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
@@ -11272,6 +11653,10 @@ paths:
                     - branchName
                     - commitSha
                   additionalProperties: false
+                expectedPreviewRevision:
+                  type: string
+                  pattern: ^[0-9a-f]{64}$
+                  description: The `revision` of the reviewed Apply preview. Apply builds the preview again and returns status `preview-changed` without writing when it differs, for example after a local edit.
               required:
                 - workflowIds
               additionalProperties: false
@@ -11296,6 +11681,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
   /promotions/projects/{projectId}/apply/continue:
@@ -11304,8 +11691,8 @@ paths:
       tags:
         - Promotions
       summary: Continue applying a selection after binding setup
-      description: "Rechecks the project's Apply source and the current bindings for the selection. Resend the full selection in workflowIds. Send the required expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes. The server does not keep a session. Status `source-changed` requires a new Apply review. Status `blocked` returns fresh binding details before import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Unselected content stays unchanged. Requires the same connected Apply environment and permissions as the initial selection apply. The API key needs the gitConnection:pull scope. The importer checks user write permissions."
-      x-required-scope: gitConnection:pull
+      description: "Rechecks the project's Apply source and the current bindings for the selection. Resend the full selection in workflowIds. Send the required expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Send `confirmDestructiveChanges: true` to also apply destructive data table changes. The server does not keep a session. Status `source-changed` or `preview-changed` requires a new Apply review. Status `blocked` returns every blocker again, before import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Unselected content stays unchanged. Requires the same connected Apply environment and permissions as the initial selection apply. The API key needs the promotions:apply scope. The importer checks user write permissions."
+      x-required-scope: promotions:apply
       parameters:
         - $ref: '#/components/parameters/idempotencyKey'
         - schema:
@@ -11346,6 +11733,10 @@ paths:
                     - branchName
                     - commitSha
                   additionalProperties: false
+                expectedPreviewRevision:
+                  type: string
+                  pattern: ^[0-9a-f]{64}$
+                  description: The `revision` of the reviewed Apply preview. Apply builds the preview again and returns status `preview-changed` without writing when it differs, for example after a local edit.
                 confirmDestructiveChanges:
                   type: boolean
                   description: 'Also applies destructive data table changes, which a `destructive-change` conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a `project-deletion` conflict reports, with everything in them. The confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result.'
@@ -11374,8 +11765,132 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
+  /settings/rate-limits:
+    get:
+      operationId: getRateLimitSettings
+      tags:
+        - SettingsRateLimits
+      summary: Retrieve the Public API rate-limit settings
+      description: Retrieve the Public API rate-limit settings. `envManagedFields` lists the fields that are set by environment variables and can't be changed through the API. Requires the `securitySettings:manage` scope. Requests to this route count against the rate limits.
+      x-required-scope: securitySettings:manage
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitSettingsPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+    put:
+      operationId: updateRateLimitSettings
+      tags:
+        - SettingsRateLimits
+      summary: Set the Public API rate-limit settings
+      description: "Set the Public API rate-limit settings. You can send a GET response back as the body, and `envManagedFields` is ignored. When rate limiting is enabled, at least one limit must be greater than `0`. Fields set by environment variables can't be changed: a different value is rejected with 409, but sending the current value is accepted. Requires the `securitySettings:manage` scope. Requests to this route count against the rate limits."
+      x-required-scope: securitySettings:manage
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                enabled:
+                  type: boolean
+                  description: Whether Public API rate limiting is enabled.
+                globalReadLimit:
+                  type: integer
+                  minimum: 0
+                  description: Read requests allowed for one API key across all endpoints. Set 0 for no limit.
+                globalReadWindowSeconds:
+                  type: integer
+                  minimum: 0
+                  exclusiveMinimum: true
+                  description: The window for the global read limit, in seconds.
+                globalWriteLimit:
+                  type: integer
+                  minimum: 0
+                  description: Write requests allowed for one API key across all endpoints. Set 0 for no limit.
+                globalWriteWindowSeconds:
+                  type: integer
+                  minimum: 0
+                  exclusiveMinimum: true
+                  description: The window for the global write limit, in seconds.
+                endpointReadLimit:
+                  type: integer
+                  minimum: 0
+                  description: Read requests allowed for one API key on one endpoint. Set 0 for no limit.
+                endpointReadWindowSeconds:
+                  type: integer
+                  minimum: 0
+                  exclusiveMinimum: true
+                  description: The window for the endpoint read limit, in seconds.
+                endpointWriteLimit:
+                  type: integer
+                  minimum: 0
+                  description: Write requests allowed for one API key on one endpoint. Set 0 for no limit.
+                endpointWriteWindowSeconds:
+                  type: integer
+                  minimum: 0
+                  exclusiveMinimum: true
+                  description: The window for the endpoint write limit, in seconds.
+                envManagedFields:
+                  type: array
+                  items:
+                    type: string
+                    enum:
+                      - enabled
+                      - globalReadLimit
+                      - globalReadWindowSeconds
+                      - globalWriteLimit
+                      - globalWriteWindowSeconds
+                      - endpointReadLimit
+                      - endpointReadWindowSeconds
+                      - endpointWriteLimit
+                      - endpointWriteWindowSeconds
+                  description: Fields controlled by environment variables, including _FILE variables. These fields return their effective values. A PUT can repeat these values but cannot change them.
+                  readOnly: true
+              required:
+                - enabled
+                - globalReadLimit
+                - globalReadWindowSeconds
+                - globalWriteLimit
+                - globalWriteWindowSeconds
+                - endpointReadLimit
+                - endpointReadWindowSeconds
+                - endpointWriteLimit
+                - endpointWriteWindowSeconds
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/rateLimitSettingsPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /role-mapping-rules:
     get:
       operationId: getRoleMappingRules
@@ -11452,6 +11967,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createRoleMappingRule
       tags:
@@ -11512,6 +12029,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /role-mapping-rules/{roleMappingRuleId}/move:
     post:
       operationId: moveRoleMappingRule
@@ -11561,6 +12080,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /role-mapping-rules/{roleMappingRuleId}:
     patch:
       operationId: updateRoleMappingRule
@@ -11610,6 +12131,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteRoleMappingRule
       tags:
@@ -11637,6 +12160,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /roles:
     get:
       operationId: getAllRoles
@@ -11760,6 +12285,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createRole
       tags:
@@ -11815,6 +12342,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /roles/{roleSlug}:
     get:
       operationId: getRole
@@ -11895,6 +12424,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateRole
       tags:
@@ -11949,6 +12480,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteRole
       tags:
@@ -11990,6 +12523,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/security-policy:
     get:
       operationId: getSecurityPolicy
@@ -12009,6 +12544,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateSecurityPolicy
       tags:
@@ -12077,6 +12614,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/sso/oidc:
     get:
       operationId: getOidcConfiguration
@@ -12096,6 +12635,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: setOidcConfiguration
       tags:
@@ -12188,6 +12729,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /source-control/status:
     get:
       operationId: getSourceControlStatus
@@ -12372,6 +12915,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /source-control/push:
     post:
       operationId: pushSourceControl
@@ -12755,6 +13300,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /source-control/pull:
     post:
       operationId: pullSourceControl
@@ -13108,6 +13655,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /settings/sso/saml:
     get:
       operationId: getSamlConfiguration
@@ -13127,6 +13676,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateSamlConfiguration
       tags:
@@ -13308,6 +13859,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /tags:
     get:
       operationId: getTags
@@ -13364,6 +13917,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createTag
       tags:
@@ -13417,6 +13972,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /tags/{tagId}:
     get:
       operationId: getTag
@@ -13445,6 +14002,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateTag
       tags:
@@ -13522,6 +14081,8 @@ paths:
           $ref: '#/components/responses/conflict'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteTag
       tags:
@@ -13549,6 +14110,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /users:
     get:
       operationId: getUsers
@@ -13652,6 +14215,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           description: The given `projectId` does not exist.
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createUser
       tags:
@@ -13741,6 +14306,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /users/{userId}:
     get:
       operationId: getUser
@@ -13830,6 +14397,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           description: No user with that ID or email.
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteUser
       tags:
@@ -13861,6 +14430,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /users/{userId}/role:
     patch:
       operationId: changeRole
@@ -13907,6 +14478,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /variables:
     get:
       operationId: getVariables
@@ -14046,6 +14619,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createVariable
       tags:
@@ -14100,6 +14675,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /variables/{id}:
     put:
       operationId: updateVariable
@@ -14159,6 +14736,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteVariable
       tags:
@@ -14182,6 +14761,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows:
     get:
       operationId: getWorkflows
@@ -14437,7 +15018,7 @@ paths:
                               type: string
                               nullable: true
                               example: v1
-                              description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                              description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                             callerPolicy:
                               type: string
                               enum:
@@ -14772,6 +15353,8 @@ paths:
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     post:
       operationId: createWorkflow
       tags:
@@ -14962,7 +15545,7 @@ paths:
                     engineType:
                       type: string
                       nullable: true
-                      description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       example: v1
                     callerPolicy:
                       type: string
@@ -15552,7 +16135,7 @@ paths:
                         type: string
                         nullable: true
                         example: v1
-                        description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                        description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       callerPolicy:
                         type: string
                         enum:
@@ -16012,6 +16595,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}:
     get:
       operationId: getWorkflow
@@ -16240,7 +16825,7 @@ paths:
                         type: string
                         nullable: true
                         example: v1
-                        description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                        description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       callerPolicy:
                         type: string
                         enum:
@@ -16694,6 +17279,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateWorkflow
       tags:
@@ -16899,7 +17486,7 @@ paths:
                     engineType:
                       type: string
                       nullable: true
-                      description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                      description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       example: v1
                     callerPolicy:
                       type: string
@@ -17486,7 +18073,7 @@ paths:
                         type: string
                         nullable: true
                         example: v1
-                        description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                        description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       callerPolicy:
                         type: string
                         enum:
@@ -17855,6 +18442,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     delete:
       operationId: deleteWorkflow
       tags:
@@ -18073,7 +18662,7 @@ paths:
                         type: string
                         nullable: true
                         example: v1
-                        description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+                        description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
                       callerPolicy:
                         type: string
                         enum:
@@ -18501,6 +19090,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '409':
           $ref: '#/components/responses/conflict'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/archive:
     post:
       operationId: archiveWorkflow
@@ -18529,6 +19120,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/unarchive:
     post:
       operationId: unarchiveWorkflow
@@ -18559,6 +19152,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/transfer:
     put:
       operationId: transferWorkflow
@@ -18598,6 +19193,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/publish:
     post:
       operationId: publishWorkflow
@@ -18663,6 +19260,8 @@ paths:
                   - message
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/unpublish:
     post:
       operationId: unpublishWorkflow
@@ -18691,6 +19290,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/activate:
     post:
       operationId: activateWorkflow
@@ -18757,6 +19358,8 @@ paths:
                   - message
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/deactivate:
     post:
       operationId: deactivateWorkflow
@@ -18786,6 +19389,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/history:
     get:
       operationId: getWorkflowHistory
@@ -18856,6 +19461,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/versions/{workflowVersionId}:
     get:
       operationId: getWorkflowVersion
@@ -19034,6 +19641,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/tags:
     get:
       operationId: getWorkflowTags
@@ -19064,6 +19673,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
     put:
       operationId: updateWorkflowTags
       tags:
@@ -19110,6 +19721,8 @@ paths:
           $ref: '#/components/responses/notFound'
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/dependencies:
     get:
       operationId: getWorkflowDependencies
@@ -19142,6 +19755,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/{workflowVersionId}:
     get:
       operationId: getDeprecatedWorkflowVersion
@@ -19316,6 +19931,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
 components:
   parameters:
     idempotencyKey:
@@ -20482,13 +21099,141 @@ components:
               type: string
             sourceId:
               type: string
-            exportedAt:
-              type: string
-              format: date-time
           required:
             - sourceN8nVersion
             - sourceId
-            - exportedAt
+        agents:
+          type: array
+          items:
+            type: object
+            properties:
+              sourceAgentId:
+                type: string
+                description: Agent ID in the package.
+              localId:
+                type: string
+                description: Agent ID on the target instance. New Agents use the package ID. Updated and skipped Agents keep their destination ID.
+              name:
+                type: string
+              projectId:
+                type: string
+              activeVersionId:
+                type: string
+                nullable: true
+                description: Published version on the target after import. Null when no version is published.
+              status:
+                type: string
+                enum:
+                  - created
+                  - updated
+                  - skipped
+              publishing:
+                type: object
+                properties:
+                  state:
+                    type: string
+                    enum:
+                      - published
+                      - unpublished
+                      - unchanged
+                      - blocked
+                      - failed
+                    description: '`blocked` means the imported version could not be published and no version is active (for example because the Agent or workflow uses an empty or incomplete credential, or a node type this instance does not have, or an Agent channel needs setup while publication is requested). When a prior published version remains active, `state` is `unchanged` with `skippedPublishReason` instead. `failed` means publish or unpublish was attempted but did not succeed.'
+                  error:
+                    type: string
+                    description: Present when `state` is `failed`. Explains why publish or unpublish could not be applied.
+                  blockedReason:
+                    type: string
+                    enum:
+                      - stub-credential
+                      - incomplete-credential
+                      - missing-node-type
+                      - channel-setup-required
+                    description: 'Present when `state` is `blocked`: the imported version could not be published and no version is active.'
+                  skippedPublishReason:
+                    type: string
+                    enum:
+                      - stub-credential
+                      - incomplete-credential
+                      - missing-node-type
+                      - channel-setup-required
+                    description: 'Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with empty or incomplete credentials).'
+                required:
+                  - state
+                description: Publication outcome. A failed publication does not undo the definition import.
+              channels:
+                type: array
+                items:
+                  oneOf:
+                    - type: object
+                      properties:
+                        type:
+                          type: string
+                          description: Channel type, for example `slack`.
+                        status:
+                          type: string
+                          enum:
+                            - reused
+                          description: The import kept the channel connection that the destination Agent already had.
+                      required:
+                        - type
+                        - status
+                    - type: object
+                      properties:
+                        type:
+                          type: string
+                          description: Channel type, for example `slack`.
+                        status:
+                          type: string
+                          enum:
+                            - setup-required
+                          description: The import saved the channel settings without a connection. Set up the channel in the destination before the Agent can be published.
+                        reason:
+                          type: string
+                          enum:
+                            - new-channel
+                            - destination-draft
+                          description: '`new-channel`: the destination Agent had no connection for this channel. `destination-draft`: the destination Agent has this channel, but its setup is not complete.'
+                        setupUrl:
+                          type: string
+                          description: Link to the destination Agent, where you can set up the channel.
+                      required:
+                        - type
+                        - status
+                        - reason
+                        - setupUrl
+                  type: object
+                description: Channel outcome for each external channel in the imported definition. A credential from the package never connects a channel. Empty for skipped Agents.
+            required:
+              - sourceAgentId
+              - localId
+              - name
+              - projectId
+              - activeVersionId
+              - status
+              - publishing
+              - channels
+        counts:
+          type: object
+          properties:
+            agents:
+              type: object
+              properties:
+                created:
+                  type: integer
+                  minimum: 0
+                updated:
+                  type: integer
+                  minimum: 0
+                skipped:
+                  type: integer
+                  minimum: 0
+              required:
+                - created
+                - updated
+                - skipped
+          required:
+            - agents
         workflows:
           type: array
           items:
@@ -20499,7 +21244,7 @@ components:
                 description: Workflow id as it appeared in the package.
               localId:
                 type: string
-                description: "Workflow id on the target instance: newly assigned for `created` (fresh under `workflowIdPolicy=new`, the package id under `source`), the existing workflow's id for `updated`/`skipped`."
+                description: Workflow ID on the target instance. New workflows use the package ID. Updated and skipped workflows keep their destination ID.
               name:
                 type: string
               projectId:
@@ -20525,7 +21270,7 @@ components:
                       - unchanged
                       - blocked
                       - failed
-                    description: '`blocked` means the imported version could not be published and no version is active (for example because the workflow uses an empty or incomplete credential, or uses a node type this instance does not have). When a prior published version remains active, `state` is `unchanged` with `skippedPublishReason` instead. `failed` means publish or unpublish was attempted but did not succeed.'
+                    description: '`blocked` means the imported version could not be published and no version is active (for example because the Agent or workflow uses an empty or incomplete credential, or a node type this instance does not have, or an Agent channel needs setup while publication is requested). When a prior published version remains active, `state` is `unchanged` with `skippedPublishReason` instead. `failed` means publish or unpublish was attempted but did not succeed.'
                   error:
                     type: string
                     description: Present when `state` is `failed`. Explains why publish or unpublish could not be applied.
@@ -20535,6 +21280,7 @@ components:
                       - stub-credential
                       - incomplete-credential
                       - missing-node-type
+                      - channel-setup-required
                     description: 'Present when `state` is `blocked`: the imported version could not be published and no version is active.'
                   skippedPublishReason:
                     type: string
@@ -20542,6 +21288,7 @@ components:
                       - stub-credential
                       - incomplete-credential
                       - missing-node-type
+                      - channel-setup-required
                     description: 'Present when `state` is `unchanged` but the policy wanted to publish the imported version: a prior published version is still active (for example after an update with empty or incomplete credentials).'
                 required:
                   - state
@@ -20674,6 +21421,11 @@ components:
         bindings:
           type: object
           properties:
+            agents:
+              type: object
+              additionalProperties:
+                type: string
+              description: Source-to-target IDs for created, updated, and skipped package Agents.
             workflows:
               type: object
               additionalProperties:
@@ -20684,6 +21436,7 @@ components:
                 type: string
               description: Credential id from `requirements.credentials` in the package manifest → resolved target credential id on the target instance. Covers both a matched existing credential and a credential that the import created under `credentialMissingMode=create-stub` or `create-with-values`.
           required:
+            - agents
             - workflows
             - credentials
           description: Source id → target id mappings produced during import, one map per entity type. Each value maps an id as it appeared in the package to the id on the target instance.
@@ -20810,6 +21563,8 @@ components:
           description: Resolution of the tags referenced by the imported workflows, matched by source id. Tag names only.
       required:
         - package
+        - agents
+        - counts
         - workflows
         - removedWorkflows
         - removedFolders
@@ -21104,6 +21859,13 @@ components:
                 - unknown_type
                 - source_not_found
                 - type_mismatch
+            reason:
+              type: string
+              enum:
+                - not-on-instance
+                - access-required
+                - incompatible-usage-scope
+              description: 'For `not_found` of a credential named by id, when the caller can read all credentials: `not-on-instance` (no credential has the id), `access-required` (the credential exists, but it is not shared with the target project), or `incompatible-usage-scope` (the credential is not a project credential).'
             sourceId:
               type: string
             targetId:
@@ -21200,6 +21962,11 @@ components:
               type: string
               enum:
                 - fail-policy
+                - not-team
+                - update-forbidden
+                - create-forbidden
+                - license
+              description: '`fail-policy`: the project exists and `projectConflictPolicy` is `fail`. The import endpoints return only this kind. They report the other kinds as a 403 error: `not-team` (the id belongs to a personal project), `update-forbidden`, `create-forbidden`, and `license` (the license does not allow team projects).'
             sourceProjectId:
               type: string
             name:
@@ -21317,6 +22084,7 @@ components:
                 - schema-incompatible
                 - module-disabled
                 - permission-denied
+                - column-id-conflict
             sourceId:
               type: string
               description: Absent for import-wide failures (`module-disabled`, `permission-denied`).
@@ -21501,6 +22269,17 @@ components:
             currentName:
               type: string
               description: "For a rename `name-conflict`: the matched table's current name."
+            column:
+              type: object
+              properties:
+                id:
+                  type: string
+                name:
+                  type: string
+              required:
+                - id
+                - name
+              description: 'For `column-id-conflict`: the package column whose id a column of another table already uses. The import endpoints do not return this. They fail with an error.'
             usedBy:
               type: array
               items:
@@ -21691,6 +22470,21 @@ components:
             - name
             - violations
           description: 'A workflow the content-import policy refused. Takes down the whole package rather than skipping the workflow: the import rewrites cross-workflow references to the ids each workflow would get, so dropping one leaves the workflows that call it pointing at a row nothing ever wrote.'
+        - type: object
+          properties:
+            type:
+              type: string
+              enum:
+                - policy-check-failed
+            point:
+              type: string
+              enum:
+                - contentImport
+                - credentialSave
+          required:
+            - type
+            - point
+          description: A policy check that could not run. The import endpoints do not return this. They fail with an error.
         - type: object
           properties:
             type:
@@ -22879,7 +23673,7 @@ components:
               type: string
               enum:
                 - blocked
-            preflight:
+            check:
               type: object
               properties:
                 missingProjects:
@@ -22922,7 +23716,7 @@ components:
                     required:
                       - id
                       - name
-                  description: Projects in the package that do not exist on this instance. Preflight preserves their metadata without checking project creation rules. The project creation API can reject invalid values.
+                  description: Projects in the package that do not exist on this instance. The check keeps their metadata without checking project creation rules. The project creation API can reject invalid values.
                 missingBindings:
                   type: array
                   items:
@@ -23896,6 +24690,248 @@ components:
                           - name
                           - consumers
                           - changes
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - workflow
+                          code:
+                            type: string
+                            enum:
+                              - workflow-id-conflict
+                              - lineage-conflict
+                              - policy-violation
+                              - missing-node-type
+                              - workflow-forbidden
+                          reason:
+                            type: string
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                        required:
+                          - kind
+                          - code
+                          - consumers
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - data-table
+                          code:
+                            type: string
+                            enum:
+                              - data-table-conflict
+                          id:
+                            type: string
+                            minLength: 1
+                          name:
+                            type: string
+                          reason:
+                            type: string
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                        required:
+                          - kind
+                          - code
+                          - reason
+                          - consumers
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - tag
+                          code:
+                            type: string
+                            enum:
+                              - tag-conflict
+                          id:
+                            type: string
+                            minLength: 1
+                          name:
+                            type: string
+                          reason:
+                            type: string
+                          consumers:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                workflows:
+                                  type: array
+                                  items:
+                                    type: object
+                                    properties:
+                                      id:
+                                        type: string
+                                        minLength: 1
+                                      name:
+                                        type: string
+                                    required:
+                                      - id
+                                      - name
+                                  minItems: 1
+                              required:
+                                - project
+                                - workflows
+                            minItems: 1
+                        required:
+                          - kind
+                          - code
+                          - reason
+                          - consumers
+                      - type: object
+                        properties:
+                          kind:
+                            type: string
+                            enum:
+                              - project
+                          code:
+                            type: string
+                            enum:
+                              - project-conflict
+                              - check-not-run
+                              - import-blocked
+                              - project-not-on-branch
+                          project:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              name:
+                                type: string
+                            required:
+                              - id
+                              - name
+                          reason:
+                            type: string
+                        required:
+                          - kind
+                          - code
+                          - project
+                      - type: object
+                        properties:
+                          id:
+                            type: string
+                          name:
+                            type: string
+                          project:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              name:
+                                type: string
+                            required:
+                              - id
+                              - name
+                          projectExists:
+                            type: boolean
+                          instanceProject:
+                            type: object
+                            properties:
+                              id:
+                                type: string
+                                minLength: 1
+                              name:
+                                type: string
+                            required:
+                              - id
+                          kind:
+                            type: string
+                            enum:
+                              - workflow
+                              - folder
+                          code:
+                            type: string
+                            enum:
+                              - moved
+                        required:
+                          - id
+                          - name
+                          - project
+                          - projectExists
+                          - instanceProject
+                          - kind
+                          - code
                     type: object
                 warnings:
                   type: array
@@ -23972,7 +25008,7 @@ components:
             - environmentId
             - git
             - status
-            - preflight
+            - check
         - type: object
           properties:
             environmentId:
@@ -23997,7 +25033,100 @@ components:
             - environmentId
             - git
             - status
+        - type: object
+          properties:
+            environmentId:
+              type: string
+              minLength: 1
+              maxLength: 36
+            git:
+              type: object
+              properties:
+                commitSha:
+                  type: string
+                branchName:
+                  type: string
+              required:
+                - commitSha
+                - branchName
+            status:
+              type: string
+              enum:
+                - preview-changed
+          required:
+            - environmentId
+            - git
+            - status
       type: object
+    rateLimitSettingsPublicDto.generated:
+      type: object
+      properties:
+        enabled:
+          type: boolean
+          description: Whether Public API rate limiting is enabled.
+        globalReadLimit:
+          type: integer
+          minimum: 0
+          description: Read requests allowed for one API key across all endpoints. Set 0 for no limit.
+        globalReadWindowSeconds:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          description: The window for the global read limit, in seconds.
+        globalWriteLimit:
+          type: integer
+          minimum: 0
+          description: Write requests allowed for one API key across all endpoints. Set 0 for no limit.
+        globalWriteWindowSeconds:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          description: The window for the global write limit, in seconds.
+        endpointReadLimit:
+          type: integer
+          minimum: 0
+          description: Read requests allowed for one API key on one endpoint. Set 0 for no limit.
+        endpointReadWindowSeconds:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          description: The window for the endpoint read limit, in seconds.
+        endpointWriteLimit:
+          type: integer
+          minimum: 0
+          description: Write requests allowed for one API key on one endpoint. Set 0 for no limit.
+        endpointWriteWindowSeconds:
+          type: integer
+          minimum: 0
+          exclusiveMinimum: true
+          description: The window for the endpoint write limit, in seconds.
+        envManagedFields:
+          type: array
+          items:
+            type: string
+            enum:
+              - enabled
+              - globalReadLimit
+              - globalReadWindowSeconds
+              - globalWriteLimit
+              - globalWriteWindowSeconds
+              - endpointReadLimit
+              - endpointReadWindowSeconds
+              - endpointWriteLimit
+              - endpointWriteWindowSeconds
+          description: Fields controlled by environment variables, including _FILE variables. These fields return their effective values. A PUT can repeat these values but cannot change them.
+          readOnly: true
+      required:
+        - enabled
+        - globalReadLimit
+        - globalReadWindowSeconds
+        - globalWriteLimit
+        - globalWriteWindowSeconds
+        - endpointReadLimit
+        - endpointReadWindowSeconds
+        - endpointWriteLimit
+        - endpointWriteWindowSeconds
+        - envManagedFields
     roleMappingRulePublicDto.generated:
       type: object
       properties:
@@ -24559,7 +25688,7 @@ components:
               type: string
               nullable: true
               example: v1
-              description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+              description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
             callerPolicy:
               type: string
               enum:
@@ -25179,7 +26308,7 @@ components:
               type: string
               nullable: true
               example: v1
-              description: The execution engine that runs this workflow. It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
+              description: The execution engine that runs this workflow. n8n sets it on new workflows when the instance runs new workflows on engine v2 (`N8N_ENGINE_DEFAULT_TYPE=v2` with the `engine-v2` module enabled). It is included in workflow responses for reference, but any value sent when creating or updating a workflow is ignored.
             callerPolicy:
               type: string
               enum:
@@ -25541,6 +26670,40 @@ components:
       description: Unsupported media type.
     unprocessableEntity:
       description: Unprocessable Entity
+    tooManyRequests:
+      description: Too many requests.
+      headers:
+        Retry-After:
+          description: The number of seconds to wait before you retry the request.
+          schema:
+            type: integer
+            minimum: 0
+        X-RateLimit-Limit:
+          description: The maximum number of requests allowed in the rate-limit window.
+          schema:
+            type: integer
+            minimum: 0
+        X-RateLimit-Remaining:
+          description: The number of requests remaining in the rate-limit window.
+          schema:
+            type: integer
+            minimum: 0
+        X-RateLimit-Reset:
+          description: The time when the rate-limit window resets, as a Unix timestamp in seconds.
+          schema:
+            type: integer
+            format: int64
+            minimum: 0
+      content:
+        application/json:
+          schema:
+            type: object
+            required:
+              - message
+            properties:
+              message:
+                type: string
+                example: Too many requests
     internalServerError:
       description: Internal server error.
     notFound:

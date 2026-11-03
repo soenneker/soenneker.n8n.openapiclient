@@ -17,8 +17,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("exportedAt") is null) { _explicitNullValueExportedAt = default!; _explicitNullProperties?.Remove("exportedAt"); }
-            else if (parseNode.GetChildNode("exportedAt") is { } nullNodeExportedAt && nullNodeExportedAt.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExportedAt = null;
             if (parseNode.GetChildNode("sourceId") is null) { _explicitNullValueSourceId = default!; _explicitNullProperties?.Remove("sourceId"); }
             else if (parseNode.GetChildNode("sourceId") is { } nullNodeSourceId && nullNodeSourceId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) SourceId = null;
             if (parseNode.GetChildNode("sourceN8nVersion") is null) { _explicitNullValueSourceN8nVersion = default!; _explicitNullProperties?.Remove("sourceN8nVersion"); }
@@ -27,9 +25,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The exportedAt property</summary>
-        public DateTimeOffset? ExportedAt { get => _explicitNullValueExportedAt; set { _explicitNullValueExportedAt = value; AdditionalData?.Remove("exportedAt"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("exportedAt"); else _explicitNullProperties?.Remove("exportedAt"); } }
-        private DateTimeOffset? _explicitNullValueExportedAt = default!;
         /// <summary>The sourceId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -75,7 +70,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "exportedAt", n => { ExportedAt = n.GetDateTimeOffsetValue(); } },
                 { "sourceId", n => { SourceId = n.GetStringValue(); } },
                 { "sourceN8nVersion", n => { SourceN8nVersion = n.GetStringValue(); } },
             };
@@ -87,7 +81,6 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteDateTimeOffsetValue("exportedAt", ExportedAt);
             writer.WriteStringValue("sourceId", SourceId);
             writer.WriteStringValue("sourceN8nVersion", SourceN8nVersion);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

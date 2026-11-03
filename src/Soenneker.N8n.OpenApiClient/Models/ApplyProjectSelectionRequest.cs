@@ -17,12 +17,24 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
+            if (parseNode.GetChildNode("expectedPreviewRevision") is null) { _explicitNullValueExpectedPreviewRevision = default!; _explicitNullProperties?.Remove("expectedPreviewRevision"); }
+            else if (parseNode.GetChildNode("expectedPreviewRevision") is { } nullNodeExpectedPreviewRevision && nullNodeExpectedPreviewRevision.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedPreviewRevision = null;
             if (parseNode.GetChildNode("expectedSource") is null) { _explicitNullValueExpectedSource = default!; _explicitNullProperties?.Remove("expectedSource"); }
             else if (parseNode.GetChildNode("expectedSource") is { } nullNodeExpectedSource && nullNodeExpectedSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedSource = null;
             if (parseNode.GetChildNode("workflowIds") is null) { _explicitNullValueWorkflowIds = default!; _explicitNullProperties?.Remove("workflowIds"); }
             else if (parseNode.GetChildNode("workflowIds") is { } nullNodeWorkflowIds && nullNodeWorkflowIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowIds = null;
         }
 
+        /// <summary>The `revision` of the reviewed Apply preview. Apply builds the preview again and returns status `preview-changed` without writing when it differs, for example after a local edit.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExpectedPreviewRevision { get => _explicitNullValueExpectedPreviewRevision; set { _explicitNullValueExpectedPreviewRevision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedPreviewRevision"); else _explicitNullProperties?.Remove("expectedPreviewRevision"); } }
+        private string? _explicitNullValueExpectedPreviewRevision = default!;
+#nullable restore
+#else
+        public string ExpectedPreviewRevision { get => _explicitNullValueExpectedPreviewRevision; set { _explicitNullValueExpectedPreviewRevision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedPreviewRevision"); else _explicitNullProperties?.Remove("expectedPreviewRevision"); } }
+        private string _explicitNullValueExpectedPreviewRevision = default!;
+#endif
         /// <summary>The expectedSource property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -61,6 +73,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
+                { "expectedPreviewRevision", n => { ExpectedPreviewRevision = n.GetStringValue(); } },
                 { "expectedSource", n => { ExpectedSource = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyProjectSelectionRequestExpectedSource>(global::Soenneker.N8n.OpenApiClient.Models.ApplyProjectSelectionRequestExpectedSource.CreateFromDiscriminatorValue); } },
                 { "workflowIds", n => { WorkflowIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -72,6 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
+            writer.WriteStringValue("expectedPreviewRevision", ExpectedPreviewRevision);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyProjectSelectionRequestExpectedSource>("expectedSource", ExpectedSource);
             writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
