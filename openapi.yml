@@ -18397,7 +18397,7 @@ paths:
                   - meta
                   - activeVersion
         '400':
-          $ref: '#/components/responses/badRequest'
+          description: The request body is invalid, or the update changes a node that uses a credential the caller cannot access.
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
