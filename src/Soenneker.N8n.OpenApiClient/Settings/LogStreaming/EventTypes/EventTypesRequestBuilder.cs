@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.EventTypes
         {
         }
         /// <summary>
-        /// List the event types that can be streamed to a log streaming destination. Requires the `eventBusDestination:list` scope and the Log Streaming feature to be licensed.
+        /// List the event types that can be streamed to a log streaming destination. Requires the Log Streaming feature to be licensed.Requires the `eventBusDestination:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingEventTypes200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.EventTypes
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingEventTypes200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetLogStreamingEventTypes200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List the event types that can be streamed to a log streaming destination. Requires the `eventBusDestination:list` scope and the Log Streaming feature to be licensed.
+        /// List the event types that can be streamed to a log streaming destination. Requires the Log Streaming feature to be licensed.Requires the `eventBusDestination:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

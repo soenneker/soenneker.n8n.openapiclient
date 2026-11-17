@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns.Item
         {
         }
         /// <summary>
-        /// Remove a column from a data table. This will also delete all data in the column.
+        /// Remove a column from a data table. This will also delete all data in the column.Requires the `dataTableColumn:delete` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Rename and/or reorder a column in a data table.
+        /// Rename and/or reorder a column in a data table.Requires the `dataTableColumn:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -85,7 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Remove a column from a data table. This will also delete all data in the column.
+        /// Remove a column from a data table. This will also delete all data in the column.Requires the `dataTableColumn:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns.Item
             return requestInfo;
         }
         /// <summary>
-        /// Rename and/or reorder a column in a data table.
+        /// Rename and/or reorder a column in a data table.Requires the `dataTableColumn:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

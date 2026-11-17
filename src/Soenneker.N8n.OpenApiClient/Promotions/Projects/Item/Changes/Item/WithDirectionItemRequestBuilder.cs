@@ -4,6 +4,7 @@ using Microsoft.Kiota.Abstractions.Extensions;
 using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
+using Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.Details;
 using System.Collections.Generic;
 using System.IO;
 using System.Threading.Tasks;
@@ -17,12 +18,17 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class WithDirectionItemRequestBuilder : BaseRequestBuilder
     {
+        /// <summary>The details property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.Details.DetailsRequestBuilder Details
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.Details.DetailsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>
         /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.WithDirectionItemRequestBuilder"/> and sets the default values.
         /// </summary>
         /// <param name="pathParameters">Path parameters for the request</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithDirectionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/promotions/projects/{projectId}/changes/{direction}{?order*,search*,sort*}", pathParameters)
+        public WithDirectionItemRequestBuilder(Dictionary<string, object> pathParameters, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/promotions/projects/{projectId}/changes/{direction}", pathParameters)
         {
         }
         /// <summary>
@@ -30,11 +36,11 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
         /// </summary>
         /// <param name="rawUrl">The raw URL to use for the request builder.</param>
         /// <param name="requestAdapter">The request adapter to use to execute the requests.</param>
-        public WithDirectionItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/promotions/projects/{projectId}/changes/{direction}{?order*,search*,sort*}", rawUrl)
+        public WithDirectionItemRequestBuilder(string rawUrl, IRequestAdapter requestAdapter) : base(requestAdapter, "{+baseurl}/promotions/projects/{projectId}/changes/{direction}", rawUrl)
         {
         }
         /// <summary>
-        /// Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the promotions:promote scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the promotions:apply scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
+        /// **Beta** — breaking changes may still occur without major version bump.Compares a team project on this instance with the branch of its promotion environment for that direction. For `promote` the preview is what a promotion sends to the branch, and the key needs the promotions:promote scope. For `apply` the preview is what applying the branch changes on this instance, and the key needs the promotions:apply scope. `resources` lists the changed projects, folders, workflows, credentials, data tables, variables and tags, each with its `key`, `type`, `id`, `change` and the `parentKey` of the project or folder that holds it. It also lists unchanged resources that give context, such as parent folders. Select the workflows and folders where `selectable` is true by `workflowIds` and `folderIds`; the project itself is always included. `dependencies` links each workflow to the resources it uses; selecting the workflow sends a dependency when `included` is true. A deleted promote workflow with `movedToProject`, or an added one with `movedFromProject`, moved between projects; promoting it is refused until it moves back. `blocker` is set when an open review holds the changes of a Promote. For `apply`, `check` lists what blocks the Apply, and `revision` identifies this preview: send it as expectedPreviewRevision. `commitSha` is the commit the preview was read from. Requires the environment to be connected first.Requires one of these API key scopes: `promotions:promote`, `promotions:apply`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -42,11 +48,11 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
         /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.TooManyRequestsResponse">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response?> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.WithDirectionItemRequestBuilder.WithDirectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response?> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response> GetAsync(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.WithDirectionItemRequestBuilder.WithDirectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response> GetAsync(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             var requestInfo = ToGetRequestInformation(requestConfiguration);
@@ -59,17 +65,17 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the promotions:promote scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the promotions:apply scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
+        /// **Beta** — breaking changes may still occur without major version bump.Compares a team project on this instance with the branch of its promotion environment for that direction. For `promote` the preview is what a promotion sends to the branch, and the key needs the promotions:promote scope. For `apply` the preview is what applying the branch changes on this instance, and the key needs the promotions:apply scope. `resources` lists the changed projects, folders, workflows, credentials, data tables, variables and tags, each with its `key`, `type`, `id`, `change` and the `parentKey` of the project or folder that holds it. It also lists unchanged resources that give context, such as parent folders. Select the workflows and folders where `selectable` is true by `workflowIds` and `folderIds`; the project itself is always included. `dependencies` links each workflow to the resources it uses; selecting the workflow sends a dependency when `included` is true. A deleted promote workflow with `movedToProject`, or an added one with `movedFromProject`, moved between projects; promoting it is refused until it moves back. `blocker` is set when an open review holds the changes of a Promote. For `apply`, `check` lists what blocks the Apply, and `revision` identifies this preview: send it as expectedPreviewRevision. `commitSha` is the commit the preview was read from. Requires the environment to be connected first.Requires one of these API key scopes: `promotions:promote`, `promotions:apply`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.WithDirectionItemRequestBuilder.WithDirectionItemRequestBuilderGetQueryParameters>>? requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default)
         {
 #nullable restore
 #else
-        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.WithDirectionItemRequestBuilder.WithDirectionItemRequestBuilderGetQueryParameters>> requestConfiguration = default)
+        public RequestInformation ToGetRequestInformation(Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default)
         {
 #endif
             var requestInfo = new RequestInformation(Method.GET, UrlTemplate, PathParameters);
@@ -85,34 +91,6 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item
         public global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.WithDirectionItemRequestBuilder WithUrl(string rawUrl)
         {
             return new global::Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.WithDirectionItemRequestBuilder(rawUrl, RequestAdapter);
-        }
-        /// <summary>
-        /// Compares a team project on this instance with the branch of its promotion environment for that direction and lists the workflows that differ. For `promote` the rows are what a promotion sends to the branch, and the key needs the promotions:promote scope. A `deleted` or `new` promote row can be a workflow that moved between projects; promoting it is refused until it moves back. For `apply` the rows are what applying the branch changes on this instance, and the key needs the promotions:apply scope. `commitSha` is the commit the rows were read from. Requires the environment to be connected first.
-        /// </summary>
-        [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-        public partial class WithDirectionItemRequestBuilderGetQueryParameters 
-        {
-            #pragma warning disable CS1591
-            [QueryParameter("order")]
-            public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangesOrderParameter? Order { get; set; }
-            #pragma warning restore CS1591
-#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
-#nullable enable
-            #pragma warning disable CS1591
-            [QueryParameter("search")]
-            public string? Search { get; set; }
-            #pragma warning restore CS1591
-#nullable restore
-#else
-            #pragma warning disable CS1591
-            [QueryParameter("search")]
-            public string Search { get; set; }
-            #pragma warning restore CS1591
-#endif
-            #pragma warning disable CS1591
-            [QueryParameter("sort")]
-            public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangesSortParameter? Sort { get; set; }
-            #pragma warning restore CS1591
         }
     }
 }

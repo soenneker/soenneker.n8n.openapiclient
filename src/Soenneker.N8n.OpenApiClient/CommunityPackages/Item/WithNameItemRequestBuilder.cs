@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.CommunityPackages.Item
         {
         }
         /// <summary>
-        /// Uninstall a community package by name.
+        /// Uninstall a community package by name.Requires the `communityPackage:uninstall` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.CommunityPackages.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update an installed community package to a new version.
+        /// Update an installed community package to a new version.Requires the `communityPackage:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdatePackage200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -85,7 +85,7 @@ namespace Soenneker.N8n.OpenApiClient.CommunityPackages.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpdatePackage200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpdatePackage200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Uninstall a community package by name.
+        /// Uninstall a community package by name.Requires the `communityPackage:uninstall` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.CommunityPackages.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update an installed community package to a new version.
+        /// Update an installed community package to a new version.Requires the `communityPackage:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

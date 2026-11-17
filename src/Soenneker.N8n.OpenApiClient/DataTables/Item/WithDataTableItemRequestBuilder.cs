@@ -52,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item
         {
         }
         /// <summary>
-        /// Delete a data table. This will also delete all rows in the table.
+        /// Delete a data table. This will also delete all rows in the table.Requires the `dataTable:delete` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -76,7 +76,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a specific data table by ID.
+        /// Retrieve a specific data table by ID.Requires the `dataTable:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -101,7 +101,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a data table&apos;s name.
+        /// Update a data table&apos;s name.Requires the `dataTable:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -128,7 +128,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Delete a data table. This will also delete all rows in the table.
+        /// Delete a data table. This will also delete all rows in the table.Requires the `dataTable:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -147,7 +147,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a specific data table by ID.
+        /// Retrieve a specific data table by ID.Requires the `dataTable:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -166,7 +166,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a data table&apos;s name.
+        /// Update a data table&apos;s name.Requires the `dataTable:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

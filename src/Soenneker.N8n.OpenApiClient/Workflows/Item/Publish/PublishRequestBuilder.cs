@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Publish
         {
         }
         /// <summary>
-        /// Publish a workflow. In n8n v1, this action was termed activating a workflow.
+        /// Publish a workflow. In n8n v1, this action was termed activating a workflow.Requires the `workflow:activate` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -63,7 +63,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Publish
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublishPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Publish a workflow. In n8n v1, this action was termed activating a workflow.
+        /// Publish a workflow. In n8n v1, this action was termed activating a workflow.Requires the `workflow:activate` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

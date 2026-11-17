@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables
         {
         }
         /// <summary>
-        /// Retrieve a list of all data tables with optional filtering, sorting, and pagination. Each table includes `sizeBytes`, the value the `size` sort option orders by.
+        /// Retrieve a list of all data tables with optional filtering, sorting, and pagination. Each table includes `sizeBytes`, the value the `size` sort option orders by.Requires the `dataTable:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ListDataTables200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ListDataTables200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListDataTables200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a new data table in your personal project or a team project you have access to.
+        /// Create a new data table in your personal project or a team project you have access to.Requires the `dataTable:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTablePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a list of all data tables with optional filtering, sorting, and pagination. Each table includes `sizeBytes`, the value the `size` sort option orders by.
+        /// Retrieve a list of all data tables with optional filtering, sorting, and pagination. Each table includes `sizeBytes`, the value the `size` sort option orders by.Requires the `dataTable:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -118,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables
             return requestInfo;
         }
         /// <summary>
-        /// Create a new data table in your personal project or a team project you have access to.
+        /// Create a new data table in your personal project or a team project you have access to.Requires the `dataTable:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables
             return new global::Soenneker.N8n.OpenApiClient.DataTables.DataTablesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve a list of all data tables with optional filtering, sorting, and pagination. Each table includes `sizeBytes`, the value the `size` sort option orders by.
+        /// Retrieve a list of all data tables with optional filtering, sorting, and pagination. Each table includes `sizeBytes`, the value the `size` sort option orders by.Requires the `dataTable:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class DataTablesRequestBuilderGetQueryParameters 

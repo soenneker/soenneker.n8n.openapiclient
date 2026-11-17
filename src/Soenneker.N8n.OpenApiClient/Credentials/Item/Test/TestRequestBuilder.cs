@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item.Test
         {
         }
         /// <summary>
-        /// Tests a credential by ID using the stored credential data.
+        /// Tests a credential by ID using the stored credential data.Requires the `credential:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestCredential200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item.Test
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TestCredential200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TestCredential200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Tests a credential by ID using the stored credential data.
+        /// Tests a credential by ID using the stored credential data.Requires the `credential:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

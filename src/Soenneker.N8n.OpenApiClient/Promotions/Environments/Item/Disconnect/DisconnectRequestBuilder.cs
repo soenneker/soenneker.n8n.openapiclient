@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Disconnect
         {
         }
         /// <summary>
-        /// Removes the local checkout and keeps the environment, its credentials, and the trusted SSH host keys.
+        /// **Beta** — breaking changes may still occur without major version bump.Removes the local checkout on this instance, asks the other main instances to remove theirs, and keeps the environment, its credentials, and the trusted SSH host keys. Another operation on the same environment returns 423.Requires the `promotions:connect` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Disconnect
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotionCheckoutPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Removes the local checkout and keeps the environment, its credentials, and the trusted SSH host keys.
+        /// **Beta** — breaking changes may still occur without major version bump.Removes the local checkout on this instance, asks the other main instances to remove theirs, and keeps the environment, its credentials, and the trusted SSH host keys. Another operation on the same environment returns 423.Requires the `promotions:connect` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

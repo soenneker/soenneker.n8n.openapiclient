@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Clear
         {
         }
         /// <summary>
-        /// Permanently delete all rows from a data table. The table structure is retained. This action cannot be undone.
+        /// Permanently delete all rows from a data table. The table structure is retained. This action cannot be undone.Requires the `dataTableRow:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Clear
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ClearDataTableRows200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Permanently delete all rows from a data table. The table structure is retained. This action cannot be undone.
+        /// Permanently delete all rows from a data table. The table structure is retained. This action cannot be undone.Requires the `dataTableRow:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

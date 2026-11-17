@@ -3,7 +3,7 @@ using System.Runtime.Serialization;
 using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
-    /// <summary>Import outcome for this package project. `skipped` means the project already existed and `projectConflictPolicy=merge` left its details untouched — its contents were still imported.</summary>
+    /// <summary>Import outcome for this package project. `skipped` means the project already existed and its details stay as they are: `projectConflictPolicy=merge` left them untouched, or the package changes none of them. Its contents were still imported.</summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public enum ImportResultDtoGeneratedProjectsItemStatus
     {

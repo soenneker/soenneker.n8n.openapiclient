@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string SourceProjectId { get => _explicitNullValueSourceProjectId; set { _explicitNullValueSourceProjectId = value; AdditionalData?.Remove("sourceProjectId"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("sourceProjectId"); else _explicitNullProperties?.Remove("sourceProjectId"); } }
         private string _explicitNullValueSourceProjectId = default!;
 #endif
-        /// <summary>Import outcome for this package project. `skipped` means the project already existed and `projectConflictPolicy=merge` left its details untouched — its contents were still imported.</summary>
+        /// <summary>Import outcome for this package project. `skipped` means the project already existed and its details stay as they are: `projectConflictPolicy=merge` left them untouched, or the package changes none of them. Its contents were still imported.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItemStatus? Status { get => _explicitNullValueStatus; set { _explicitNullValueStatus = value; AdditionalData?.Remove("status"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("status"); else _explicitNullProperties?.Remove("status"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedProjectsItemStatus? _explicitNullValueStatus = default!;
         /// <summary>

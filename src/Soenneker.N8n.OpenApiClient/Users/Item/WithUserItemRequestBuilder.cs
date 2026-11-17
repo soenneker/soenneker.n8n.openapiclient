@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Users.Item
         {
         }
         /// <summary>
-        /// Delete a user from your instance.
+        /// Delete a user from your instance.Requires the `user:delete` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -64,7 +64,7 @@ namespace Soenneker.N8n.OpenApiClient.Users.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a user from your instance. Only available for the instance owner.
+        /// Retrieve a user from your instance. Only available for the instance owner.Requires the `user:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetUser200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -89,7 +89,7 @@ namespace Soenneker.N8n.OpenApiClient.Users.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetUser200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetUser200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Delete a user from your instance.
+        /// Delete a user from your instance.Requires the `user:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -108,7 +108,7 @@ namespace Soenneker.N8n.OpenApiClient.Users.Item
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a user from your instance. Only available for the instance owner.
+        /// Retrieve a user from your instance. Only available for the instance owner.Requires the `user:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -136,7 +136,7 @@ namespace Soenneker.N8n.OpenApiClient.Users.Item
             return new global::Soenneker.N8n.OpenApiClient.Users.Item.WithUserItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Delete a user from your instance.
+        /// Delete a user from your instance.Requires the `user:delete` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithUserItemRequestBuilderDeleteQueryParameters 
@@ -156,7 +156,7 @@ namespace Soenneker.N8n.OpenApiClient.Users.Item
 #endif
         }
         /// <summary>
-        /// Retrieve a user from your instance. Only available for the instance owner.
+        /// Retrieve a user from your instance. Only available for the instance owner.Requires the `user:read` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithUserItemRequestBuilderGetQueryParameters 

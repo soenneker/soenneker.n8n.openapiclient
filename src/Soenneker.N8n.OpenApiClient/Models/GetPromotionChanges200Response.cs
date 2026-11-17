@@ -17,25 +17,43 @@ namespace Soenneker.N8n.OpenApiClient.Models
 
         public virtual void CaptureExplicitNulls(global::Microsoft.Kiota.Abstractions.Serialization.IParseNode parseNode)
         {
-            if (parseNode.GetChildNode("changes") is null) { _explicitNullValueChanges = default!; _explicitNullProperties?.Remove("changes"); }
-            else if (parseNode.GetChildNode("changes") is { } nullNodeChanges && nullNodeChanges.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Changes = null;
+            if (parseNode.GetChildNode("blocker") is null) { _explicitNullValueBlocker = default!; _explicitNullProperties?.Remove("blocker"); }
+            else if (parseNode.GetChildNode("blocker") is { } nullNodeBlocker && nullNodeBlocker.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Blocker = null;
+            if (parseNode.GetChildNode("check") is null) { _explicitNullValueCheck = default!; _explicitNullProperties?.Remove("check"); }
+            else if (parseNode.GetChildNode("check") is { } nullNodeCheck && nullNodeCheck.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Check = null;
             if (parseNode.GetChildNode("commitSha") is null) { _explicitNullValueCommitSha = default!; _explicitNullProperties?.Remove("commitSha"); }
             else if (parseNode.GetChildNode("commitSha") is { } nullNodeCommitSha && nullNodeCommitSha.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CommitSha = null;
+            if (parseNode.GetChildNode("dependencies") is null) { _explicitNullValueDependencies = default!; _explicitNullProperties?.Remove("dependencies"); }
+            else if (parseNode.GetChildNode("dependencies") is { } nullNodeDependencies && nullNodeDependencies.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dependencies = null;
+            if (parseNode.GetChildNode("resources") is null) { _explicitNullValueResources = default!; _explicitNullProperties?.Remove("resources"); }
+            else if (parseNode.GetChildNode("resources") is { } nullNodeResources && nullNodeResources.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resources = null;
+            if (parseNode.GetChildNode("revision") is null) { _explicitNullValueRevision = default!; _explicitNullProperties?.Remove("revision"); }
+            else if (parseNode.GetChildNode("revision") is { } nullNodeRevision && nullNodeRevision.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Revision = null;
             if (parseNode.GetChildNode("source") is null) { _explicitNullValueSource = default!; _explicitNullProperties?.Remove("source"); }
             else if (parseNode.GetChildNode("source") is { } nullNodeSource && nullNodeSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Source = null;
         }
 
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
-        /// <summary>The changes property</summary>
+        /// <summary>Set when an open review already holds the changes of this project. The preview then lists no resources. Only a Promote that opens a review on a new branch sets it.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem>? Changes { get => _explicitNullValueChanges; set { _explicitNullValueChanges = value; AdditionalData?.Remove("changes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changes"); else _explicitNullProperties?.Remove("changes"); } }
-        private List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem>? _explicitNullValueChanges = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker? Blocker { get => _explicitNullValueBlocker; set { _explicitNullValueBlocker = value; AdditionalData?.Remove("blocker"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blocker"); else _explicitNullProperties?.Remove("blocker"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker? _explicitNullValueBlocker = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem> Changes { get => _explicitNullValueChanges; set { _explicitNullValueChanges = value; AdditionalData?.Remove("changes"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("changes"); else _explicitNullProperties?.Remove("changes"); } }
-        private List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem> _explicitNullValueChanges = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker Blocker { get => _explicitNullValueBlocker; set { _explicitNullValueBlocker = value; AdditionalData?.Remove("blocker"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("blocker"); else _explicitNullProperties?.Remove("blocker"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker _explicitNullValueBlocker = default!;
+#endif
+        /// <summary>The check property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck? Check { get => _explicitNullValueCheck; set { _explicitNullValueCheck = value; AdditionalData?.Remove("check"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("check"); else _explicitNullProperties?.Remove("check"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck? _explicitNullValueCheck = default!;
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck Check { get => _explicitNullValueCheck; set { _explicitNullValueCheck = value; AdditionalData?.Remove("check"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("check"); else _explicitNullProperties?.Remove("check"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck _explicitNullValueCheck = default!;
 #endif
         /// <summary>The commitSha property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,6 +64,36 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string CommitSha { get => _explicitNullValueCommitSha; set { _explicitNullValueCommitSha = value; AdditionalData?.Remove("commitSha"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commitSha"); else _explicitNullProperties?.Remove("commitSha"); } }
         private string _explicitNullValueCommitSha = default!;
+#endif
+        /// <summary>The dependencies property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem>? Dependencies { get => _explicitNullValueDependencies; set { _explicitNullValueDependencies = value; AdditionalData?.Remove("dependencies"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dependencies"); else _explicitNullProperties?.Remove("dependencies"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem>? _explicitNullValueDependencies = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem> Dependencies { get => _explicitNullValueDependencies; set { _explicitNullValueDependencies = value; AdditionalData?.Remove("dependencies"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dependencies"); else _explicitNullProperties?.Remove("dependencies"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem> _explicitNullValueDependencies = default!;
+#endif
+        /// <summary>The resources property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated>? Resources { get => _explicitNullValueResources; set { _explicitNullValueResources = value; AdditionalData?.Remove("resources"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources"); else _explicitNullProperties?.Remove("resources"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated>? _explicitNullValueResources = default!;
+#nullable restore
+#else
+        public List<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated> Resources { get => _explicitNullValueResources; set { _explicitNullValueResources = value; AdditionalData?.Remove("resources"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources"); else _explicitNullProperties?.Remove("resources"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated> _explicitNullValueResources = default!;
+#endif
+        /// <summary>Apply only. Send it as `expectedPreviewRevision` to apply only when this instance still matches the preview.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? Revision { get => _explicitNullValueRevision; set { _explicitNullValueRevision = value; AdditionalData?.Remove("revision"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("revision"); else _explicitNullProperties?.Remove("revision"); } }
+        private string? _explicitNullValueRevision = default!;
+#nullable restore
+#else
+        public string Revision { get => _explicitNullValueRevision; set { _explicitNullValueRevision = value; AdditionalData?.Remove("revision"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("revision"); else _explicitNullProperties?.Remove("revision"); } }
+        private string _explicitNullValueRevision = default!;
 #endif
         /// <summary>The source property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -82,8 +130,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "changes", n => { Changes = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "blocker", n => { Blocker = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker.CreateFromDiscriminatorValue); } },
+                { "check", n => { Check = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck.CreateFromDiscriminatorValue); } },
                 { "commitSha", n => { CommitSha = n.GetStringValue(); } },
+                { "dependencies", n => { Dependencies = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "resources", n => { Resources = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "revision", n => { Revision = n.GetStringValue(); } },
                 { "source", n => { Source = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource.CreateFromDiscriminatorValue); } },
             };
         }
@@ -94,8 +146,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseChangesItem>("changes", Changes);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker>("blocker", Blocker);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck>("check", Check);
             writer.WriteStringValue("commitSha", CommitSha);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem>("dependencies", Dependencies);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated>("resources", Resources);
+            writer.WriteStringValue("revision", Revision);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource>("source", Source);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Projects.Item
         {
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Returns the project&apos;s own composed policy, not the result of combining it with the instance policy. A project that was never configured reports `scopeId: null`, no rules, `defaultAction: allow`, and `version: 0`.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns the project&apos;s own composed policy, not the result of combining it with the instance policy. A project that was never configured reports `scopeId: null`, no rules, `defaultAction: allow`, and `version: 0`.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectivePublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Projects.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectivePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectivePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Sets the project&apos;s default action and replaces the rules of its single policy document, creating both on first write. The `delegate` action is not accepted at project scope. `version` must equal the version last read; a stale value is rejected with 409, as is a project document that is shared with another scope.
+        /// **Preview** — breaking changes may still occur without major version bump.Sets the project&apos;s default action and replaces the rules of its single policy document, creating both on first write. The `delegate` action is not accepted at project scope. `version` must equal the version last read; a stale value is rejected with 409, as is a project document that is shared with another scope.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -86,7 +86,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Projects.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyEffectiveWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Returns the project&apos;s own composed policy, not the result of combining it with the instance policy. A project that was never configured reports `scopeId: null`, no rules, `defaultAction: allow`, and `version: 0`.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns the project&apos;s own composed policy, not the result of combining it with the instance policy. A project that was never configured reports `scopeId: null`, no rules, `defaultAction: allow`, and `version: 0`.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -105,7 +105,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Projects.Item
             return requestInfo;
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Sets the project&apos;s default action and replaces the rules of its single policy document, creating both on first write. The `delegate` action is not accepted at project scope. `version` must equal the version last read; a stale value is rejected with 409, as is a project document that is shared with another scope.
+        /// **Preview** — breaking changes may still occur without major version bump.Sets the project&apos;s default action and replaces the rules of its single policy document, creating both on first write. The `delegate` action is not accepted at project scope. `version` must equal the version last read; a stale value is rejected with 409, as is a project document that is shared with another scope.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

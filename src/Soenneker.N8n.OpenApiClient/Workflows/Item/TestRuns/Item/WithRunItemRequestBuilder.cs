@@ -46,7 +46,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item
         {
         }
         /// <summary>
-        /// Retrieve a single evaluation test run of a workflow, including its aggregated metrics and final result.
+        /// Retrieve a single evaluation test run of a workflow, including its aggregated metrics and final result.Requires the `testRun:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -71,7 +71,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetTestRun200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a single evaluation test run of a workflow, including its aggregated metrics and final result.
+        /// Retrieve a single evaluation test run of a workflow, including its aggregated metrics and final result.Requires the `testRun:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap
         {
         }
         /// <summary>
-        /// Retrieve the current LDAP configuration, including every field exposed in the UI. The binding admin password is redacted on read. Requires the `ldap:manage` scope and the LDAP feature to be licensed.
+        /// Retrieve the current LDAP configuration, including every field exposed in the UI. The binding admin password is redacted on read. Requires the LDAP feature to be licensed.Requires the `ldap:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the `ldap:manage` scope and the LDAP feature to be licensed. Setting loginEnabled to false is destructive and it deletes all stored LDAP user identities and disables synchronization.
+        /// Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the LDAP feature to be licensed. Setting loginEnabled to false is destructive and it deletes all stored LDAP user identities and disables synchronization.Requires the `ldap:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated"/></returns>
         /// <param name="body">Full LDAP configuration. Use empty strings for unset fields.</param>
@@ -92,7 +92,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LdapConfigurationPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve the current LDAP configuration, including every field exposed in the UI. The binding admin password is redacted on read. Requires the `ldap:manage` scope and the LDAP feature to be licensed.
+        /// Retrieve the current LDAP configuration, including every field exposed in the UI. The binding admin password is redacted on read. Requires the LDAP feature to be licensed.Requires the `ldap:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -111,7 +111,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap
             return requestInfo;
         }
         /// <summary>
-        /// Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the `ldap:manage` scope and the LDAP feature to be licensed. Setting loginEnabled to false is destructive and it deletes all stored LDAP user identities and disables synchronization.
+        /// Replace the LDAP configuration with the provided full object (partial updates are not supported). For bindingAdminPassword, submit the blanking placeholder from a prior GET to keep the stored password unchanged. Requires the LDAP feature to be licensed. Setting loginEnabled to false is destructive and it deletes all stored LDAP user identities and disables synchronization.Requires the `ldap:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Full LDAP configuration. Use empty strings for unset fields.</param>

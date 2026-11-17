@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item
         {
         }
         /// <summary>
-        /// Delete a folder within a project. When `transferToFolderId` is provided, workflows and sub-folders are moved to the target folder before deletion. When omitted, workflows are moved to the project root and archived, and child folders are deleted.
+        /// Delete a folder within a project. When `transferToFolderId` is provided, workflows and sub-folders are moved to the target folder before deletion. When omitted, workflows are moved to the project root and archived, and child folders are deleted.Requires the `folder:delete` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Get folder details including sub-folder and workflow counts.
+        /// Get folder details including sub-folder and workflow counts.Requires the `folder:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetFolder200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -83,7 +83,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetFolder200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetFolder200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update folder name or parent folder.
+        /// Update folder name or parent folder.Requires the `folder:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateFolder200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -110,7 +110,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpdateFolder200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpdateFolder200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Delete a folder within a project. When `transferToFolderId` is provided, workflows and sub-folders are moved to the target folder before deletion. When omitted, workflows are moved to the project root and archived, and child folders are deleted.
+        /// Delete a folder within a project. When `transferToFolderId` is provided, workflows and sub-folders are moved to the target folder before deletion. When omitted, workflows are moved to the project root and archived, and child folders are deleted.Requires the `folder:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -129,7 +129,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item
             return requestInfo;
         }
         /// <summary>
-        /// Get folder details including sub-folder and workflow counts.
+        /// Get folder details including sub-folder and workflow counts.Requires the `folder:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -148,7 +148,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update folder name or parent folder.
+        /// Update folder name or parent folder.Requires the `folder:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -179,7 +179,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item
             return new global::Soenneker.N8n.OpenApiClient.Projects.Item.Folders.Item.WithFolderItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Delete a folder within a project. When `transferToFolderId` is provided, workflows and sub-folders are moved to the target folder before deletion. When omitted, workflows are moved to the project root and archived, and child folders are deleted.
+        /// Delete a folder within a project. When `transferToFolderId` is provided, workflows and sub-folders are moved to the target folder before deletion. When omitted, workflows are moved to the project root and archived, and child folders are deleted.Requires the `folder:delete` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithFolderItemRequestBuilderDeleteQueryParameters 

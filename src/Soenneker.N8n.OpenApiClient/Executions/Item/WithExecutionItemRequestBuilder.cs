@@ -52,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item
         {
         }
         /// <summary>
-        /// Deletes an execution from your instance.
+        /// Deletes an execution from your instance.Requires the `execution:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DeleteExecution200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -77,7 +77,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteExecution200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteExecution200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve an execution from your instance.
+        /// Retrieve an execution from your instance.Requires the `execution:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetExecution200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -102,7 +102,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetExecution200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetExecution200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes an execution from your instance.
+        /// Deletes an execution from your instance.Requires the `execution:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -121,7 +121,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve an execution from your instance.
+        /// Retrieve an execution from your instance.Requires the `execution:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item
             return new global::Soenneker.N8n.OpenApiClient.Executions.Item.WithExecutionItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve an execution from your instance.
+        /// Retrieve an execution from your instance.Requires the `execution:read` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithExecutionItemRequestBuilderGetQueryParameters 

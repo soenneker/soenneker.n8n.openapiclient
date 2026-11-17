@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.Item.Attachments
         {
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Returns every attached policy document and the scope version. Attachments use evaluation order: floor first, then priority ascending within each group. Use this version when replacing the attachments. `scopeId` comes from `GET /instance` or `GET /projects/{projectId}`, and is null until the scope is first written. This route needs instance-level access, also for a project scope.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns every attached policy document and the scope version. Attachments use evaluation order: floor first, then priority ascending within each group. Use this version when replacing the attachments. `scopeId` comes from `GET /instance` or `GET /projects/{projectId}`, and is null until the scope is first written. This route needs instance-level access, also for a project scope.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.Item.Attachments
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Replaces every attachment on a scope. `scopeId` comes from the scope&apos;s `GET` response once it has been written. Each `policyId` and each `(isFloor, priority)` pair must be unique within the list. `version` must match the current scope version. A stale version returns 409 without changes. A successful write bumps the scope&apos;s version.
+        /// **Preview** — breaking changes may still occur without major version bump.Replaces every attachment on a scope. `scopeId` comes from the scope&apos;s `GET` response once it has been written. Each `policyId` and each `(isFloor, priority)` pair must be unique within the list. `version` must match the current scope version. A stale version returns 409 without changes. A successful write bumps the scope&apos;s version.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -86,7 +86,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.Item.Attachments
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyAttachmentsPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Returns every attached policy document and the scope version. Attachments use evaluation order: floor first, then priority ascending within each group. Use this version when replacing the attachments. `scopeId` comes from `GET /instance` or `GET /projects/{projectId}`, and is null until the scope is first written. This route needs instance-level access, also for a project scope.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns every attached policy document and the scope version. Attachments use evaluation order: floor first, then priority ascending within each group. Use this version when replacing the attachments. `scopeId` comes from `GET /instance` or `GET /projects/{projectId}`, and is null until the scope is first written. This route needs instance-level access, also for a project scope.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -105,7 +105,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Scopes.Item.Attachments
             return requestInfo;
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Replaces every attachment on a scope. `scopeId` comes from the scope&apos;s `GET` response once it has been written. Each `policyId` and each `(isFloor, priority)` pair must be unique within the list. `version` must match the current scope version. A stale version returns 409 without changes. A successful write bumps the scope&apos;s version.
+        /// **Preview** — breaking changes may still occur without major version bump.Replaces every attachment on a scope. `scopeId` comes from the scope&apos;s `GET` response once it has been written. Each `policyId` and each `(isFloor, priority)` pair must be unique within the list. `version` must match the current scope version. A stale version returns 409 without changes. A successful write bumps the scope&apos;s version.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

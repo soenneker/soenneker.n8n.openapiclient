@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags.Item
         {
         }
         /// <summary>
-        /// Deletes a tag.
+        /// Deletes a tag.Requires the `tag:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves a tag.
+        /// Retrieves a tag.Requires the `tag:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -84,7 +84,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a tag.
+        /// Update a tag.Requires the `tag:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateTag200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -111,7 +111,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpdateTag200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpdateTag200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes a tag.
+        /// Deletes a tag.Requires the `tag:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -130,7 +130,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags.Item
             return requestInfo;
         }
         /// <summary>
-        /// Retrieves a tag.
+        /// Retrieves a tag.Requires the `tag:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a tag.
+        /// Update a tag.Requires the `tag:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Projects.Item
         {
         }
         /// <summary>
-        /// Unlink a project from a promotion environment
+        /// **Beta** — breaking changes may still occur without major version bump.Requires the `promotions:manageProjects` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Projects.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Links a team project to a project-scoped environment. A project can have one environment for each direction. A direction without a project environment uses the instance environment.
+        /// **Beta** — breaking changes may still occur without major version bump.Links a team project to a project-scoped environment. A project can have one environment for each direction. A direction without a project environment uses the instance environment.Requires the `promotions:manageProjects` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.AddProjectToPromotionEnvironment200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -83,7 +83,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Projects.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.AddProjectToPromotionEnvironment200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.AddProjectToPromotionEnvironment200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Unlink a project from a promotion environment
+        /// **Beta** — breaking changes may still occur without major version bump.Requires the `promotions:manageProjects` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -102,7 +102,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Projects.Item
             return requestInfo;
         }
         /// <summary>
-        /// Links a team project to a project-scoped environment. A project can have one environment for each direction. A direction without a project environment uses the instance environment.
+        /// **Beta** — breaking changes may still occur without major version bump.Links a team project to a project-scoped environment. A project can have one environment for each direction. A direction without a project environment uses the instance environment.Requires the `promotions:manageProjects` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

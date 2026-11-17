@@ -122,7 +122,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         {
         }
         /// <summary>
-        /// Delete a workflow.
+        /// Delete a workflow.Requires the `workflow:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -147,7 +147,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteWorkflow200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a workflow.
+        /// Retrieve a workflow.Requires the `workflow:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -172,7 +172,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetWorkflow200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.Requires the `workflow:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -203,7 +203,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpdateWorkflow200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Delete a workflow.
+        /// Delete a workflow.Requires the `workflow:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -222,7 +222,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a workflow.
+        /// Retrieve a workflow.Requires the `workflow:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -241,7 +241,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.Requires the `workflow:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -272,7 +272,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.WithWorkflowItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve a workflow.
+        /// Retrieve a workflow.Requires the `workflow:read` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithWorkflowItemRequestBuilderGetQueryParameters 
@@ -283,7 +283,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
             #pragma warning restore CS1591
         }
         /// <summary>
-        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.
+        /// Update a workflow. If the workflow is published, the updated version will be automatically re-published unless `publishIfActive` is set to `false`. Because that re-publication puts a new version live, it additionally requires the `workflow:activate` API key scope and the `workflow:publish` project permission. A caller without either can still save: the new version is stored as a draft and the response is a `403` naming the missing permission, leaving the published version live. Saving an unpublished workflow, or saving with `publishIfActive=false`, only needs `workflow:update`.Requires the `workflow:update` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithWorkflowItemRequestBuilderPutQueryParameters 

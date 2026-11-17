@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies
         {
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ListNodeTypePolicyDocuments200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ListNodeTypePolicyDocuments200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListNodeTypePolicyDocuments200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.
+        /// **Preview** — breaking changes may still occur without major version bump.Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PolicyDocumentWriteResultPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -118,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies
             return requestInfo;
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.
+        /// **Preview** — breaking changes may still occur without major version bump.Creates a reusable policy document that is not yet attached to any scope. Rule ids must be unique within the list. `warnings` lists rules that an earlier rule already shadows.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies
             return new global::Soenneker.N8n.OpenApiClient.NodeTypePolicies.Policies.PoliciesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.
+        /// **Preview** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of reusable policy documents.Requires the `nodeTypePolicy:manage` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class PoliciesRequestBuilderGetQueryParameters 

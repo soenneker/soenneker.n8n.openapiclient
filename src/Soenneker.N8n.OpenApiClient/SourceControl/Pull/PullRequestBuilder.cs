@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Pull
         {
         }
         /// <summary>
-        /// Fetches changes from the connected Git branch into the instance.
+        /// Fetches changes from the connected Git branch into the instance.Requires the `sourceControl:pull` API key scope.
         /// </summary>
         /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.PullSourceControl200ResponseSchemaItem&gt;</returns>
         /// <param name="body">The request body</param>
@@ -64,7 +64,7 @@ namespace Soenneker.N8n.OpenApiClient.SourceControl.Pull
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Fetches changes from the connected Git branch into the instance.
+        /// Fetches changes from the connected Git branch into the instance.Requires the `sourceControl:pull` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

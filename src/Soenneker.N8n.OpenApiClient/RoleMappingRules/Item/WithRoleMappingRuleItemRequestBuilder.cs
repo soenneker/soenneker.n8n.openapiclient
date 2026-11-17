@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules.Item
         {
         }
         /// <summary>
-        /// Deletes a role-mapping rule. The remaining rules of the same type close the gap, so their `order` values stay a contiguous sequence starting at 0.
+        /// Deletes a role-mapping rule. The remaining rules of the same type close the gap, so their `order` values stay a contiguous sequence starting at 0.Requires the `roleMappingRule:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates a rule&apos;s claim expression, role, and/or project assignments. A rule&apos;s type cannot be changed once created, so `type` isn&apos;t accepted here, and reordering is handled by the move endpoint.
+        /// Updates a rule&apos;s claim expression, role, and/or project assignments. A rule&apos;s type cannot be changed once created, so `type` isn&apos;t accepted here, and reordering is handled by the move endpoint.Requires the `roleMappingRule:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -92,7 +92,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes a role-mapping rule. The remaining rules of the same type close the gap, so their `order` values stay a contiguous sequence starting at 0.
+        /// Deletes a role-mapping rule. The remaining rules of the same type close the gap, so their `order` values stay a contiguous sequence starting at 0.Requires the `roleMappingRule:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -111,7 +111,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates a rule&apos;s claim expression, role, and/or project assignments. A rule&apos;s type cannot be changed once created, so `type` isn&apos;t accepted here, and reordering is handled by the move endpoint.
+        /// Updates a rule&apos;s claim expression, role, and/or project assignments. A rule&apos;s type cannot be changed once created, so `type` isn&apos;t accepted here, and reordering is handled by the move endpoint.Requires the `roleMappingRule:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

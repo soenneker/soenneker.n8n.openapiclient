@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item.Transfer
         {
         }
         /// <summary>
-        /// Transfer a credential to another project.
+        /// Transfer a credential to another project.Requires the `credential:move` API key scope.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -60,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item.Transfer
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Transfer a credential to another project.
+        /// Transfer a credential to another project.Requires the `credential:move` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

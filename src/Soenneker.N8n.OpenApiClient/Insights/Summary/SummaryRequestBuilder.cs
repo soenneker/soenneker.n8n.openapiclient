@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Insights.Summary
         {
         }
         /// <summary>
-        /// Retrieve the insights summary for the selected date range.
+        /// Retrieve the insights summary for the selected date range.Requires the `insights:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Insights.Summary
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve the insights summary for the selected date range.
+        /// Retrieve the insights summary for the selected date range.Requires the `insights:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -87,7 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Insights.Summary
             return new global::Soenneker.N8n.OpenApiClient.Insights.Summary.SummaryRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve the insights summary for the selected date range.
+        /// Retrieve the insights summary for the selected date range.Requires the `insights:read` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class SummaryRequestBuilderGetQueryParameters 

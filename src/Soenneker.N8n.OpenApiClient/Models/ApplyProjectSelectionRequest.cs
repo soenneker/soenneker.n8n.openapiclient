@@ -21,6 +21,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("expectedPreviewRevision") is { } nullNodeExpectedPreviewRevision && nullNodeExpectedPreviewRevision.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedPreviewRevision = null;
             if (parseNode.GetChildNode("expectedSource") is null) { _explicitNullValueExpectedSource = default!; _explicitNullProperties?.Remove("expectedSource"); }
             else if (parseNode.GetChildNode("expectedSource") is { } nullNodeExpectedSource && nullNodeExpectedSource.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedSource = null;
+            if (parseNode.GetChildNode("folderIds") is null) { _explicitNullValueFolderIds = default!; _explicitNullProperties?.Remove("folderIds"); }
+            else if (parseNode.GetChildNode("folderIds") is { } nullNodeFolderIds && nullNodeFolderIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FolderIds = null;
             if (parseNode.GetChildNode("workflowIds") is null) { _explicitNullValueWorkflowIds = default!; _explicitNullProperties?.Remove("workflowIds"); }
             else if (parseNode.GetChildNode("workflowIds") is { } nullNodeWorkflowIds && nullNodeWorkflowIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowIds = null;
         }
@@ -44,6 +46,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public global::Soenneker.N8n.OpenApiClient.Models.ApplyProjectSelectionRequestExpectedSource ExpectedSource { get => _explicitNullValueExpectedSource; set { _explicitNullValueExpectedSource = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedSource"); else _explicitNullProperties?.Remove("expectedSource"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.ApplyProjectSelectionRequestExpectedSource _explicitNullValueExpectedSource = default!;
+#endif
+        /// <summary>Folders of the project on the branch. Apply creates a selected folder, or moves and renames it to match the branch.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? FolderIds { get => _explicitNullValueFolderIds; set { _explicitNullValueFolderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folderIds"); else _explicitNullProperties?.Remove("folderIds"); } }
+        private List<string>? _explicitNullValueFolderIds = default!;
+#nullable restore
+#else
+        public List<string> FolderIds { get => _explicitNullValueFolderIds; set { _explicitNullValueFolderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folderIds"); else _explicitNullProperties?.Remove("folderIds"); } }
+        private List<string> _explicitNullValueFolderIds = default!;
 #endif
         /// <summary>The workflowIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,6 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             {
                 { "expectedPreviewRevision", n => { ExpectedPreviewRevision = n.GetStringValue(); } },
                 { "expectedSource", n => { ExpectedSource = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyProjectSelectionRequestExpectedSource>(global::Soenneker.N8n.OpenApiClient.Models.ApplyProjectSelectionRequestExpectedSource.CreateFromDiscriminatorValue); } },
+                { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "workflowIds", n => { WorkflowIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -87,6 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("expectedPreviewRevision", ExpectedPreviewRevision);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyProjectSelectionRequestExpectedSource>("expectedSource", ExpectedSource);
+            writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
             writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }

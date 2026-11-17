@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Update
         {
         }
         /// <summary>
-        /// Update rows matching filter conditions in a data table.
+        /// Update rows matching filter conditions in a data table.Requires the `dataTableRow:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRows200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Update
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpdateDataTableRows200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update rows matching filter conditions in a data table.
+        /// Update rows matching filter conditions in a data table.Requires the `dataTableRow:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

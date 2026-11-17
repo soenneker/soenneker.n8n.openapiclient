@@ -29,12 +29,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The check property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Check? Check { get => _explicitNullValueCheck; set { _explicitNullValueCheck = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("check"); else _explicitNullProperties?.Remove("check"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Check? _explicitNullValueCheck = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotionApplyCheckGenerated? Check { get => _explicitNullValueCheck; set { _explicitNullValueCheck = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("check"); else _explicitNullProperties?.Remove("check"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotionApplyCheckGenerated? _explicitNullValueCheck = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Check Check { get => _explicitNullValueCheck; set { _explicitNullValueCheck = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("check"); else _explicitNullProperties?.Remove("check"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Check _explicitNullValueCheck = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotionApplyCheckGenerated Check { get => _explicitNullValueCheck; set { _explicitNullValueCheck = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("check"); else _explicitNullProperties?.Remove("check"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotionApplyCheckGenerated _explicitNullValueCheck = default!;
 #endif
         /// <summary>The environmentId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -74,7 +74,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>(base.GetFieldDeserializers())
             {
-                { "check", n => { Check = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Check>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Check.CreateFromDiscriminatorValue); } },
+                { "check", n => { Check = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionApplyCheckGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PromotionApplyCheckGenerated.CreateFromDiscriminatorValue); } },
                 { "environmentId", n => { EnvironmentId = n.GetStringValue(); } },
                 { "git", n => { Git = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Git>(global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Git.CreateFromDiscriminatorValue); } },
             };
@@ -87,7 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             base.Serialize(writer);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Check>("check", Check);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionApplyCheckGenerated>("check", Check);
             writer.WriteStringValue("environmentId", EnvironmentId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ApplyPackageResultDtoGeneratedOneOf2Git>("git", Git);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             

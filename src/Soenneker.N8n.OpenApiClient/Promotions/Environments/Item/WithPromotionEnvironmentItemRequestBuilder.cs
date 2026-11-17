@@ -70,7 +70,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item
         {
         }
         /// <summary>
-        /// Deletes the environment with its project links and local checkout. Its provider is kept. Nothing in the Git repository changes. The open promotion reviews of the environment close in n8n. Their merge requests stay open on the Git host.
+        /// **Beta** — breaking changes may still occur without major version bump.Deletes the environment with its project links and local checkout. Its provider is kept. Nothing in the Git repository changes. The open promotion reviews of the environment close in n8n. Their merge requests stay open on the Git host. Another operation on the same environment returns 423.Requires the `promotions:delete` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -94,7 +94,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the environment with its provider summary and the state of its local checkout.
+        /// **Beta** — breaking changes may still occur without major version bump.Returns the environment with its provider summary and the state of its local checkout.Requires the `promotions:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionEnvironmentPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -119,7 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotionEnvironmentPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotionEnvironmentPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates the name, provider, remote, or settings. A remote replaces the whole saved remote, and settings replace the whole saved settings. The settings must match the direction of the environment, so `createBranchOnPromotion` is always required for Promote. GitLab environments store a repository path and derive remoteUrl from the provider. Plain Git environments keep the full remote URL. A new provider type or repository closes the open promotion reviews of the environment in n8n. Their merge requests stay open on the Git host. If the provider changes during the update, the update returns 409. Reload the environment and try again. Direction and scope cannot change.
+        /// **Beta** — breaking changes may still occur without major version bump.Updates the name, provider, remote, or settings. A remote replaces the whole saved remote, and settings replace the whole saved settings. The settings must match the direction of the environment, so `createBranchOnPromotion` is always required for Promote. GitLab environments store a repository path and derive remoteUrl from the provider. Plain Git environments keep the full remote URL. A new provider type or repository closes the open promotion reviews of the environment in n8n. Their merge requests stay open on the Git host. If the provider changes during the update, the update returns 409. Reload the environment and try again. Direction and scope cannot change. A change of the remote, provider, or branch returns 423 while another operation runs on the environment.Requires the `promotions:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionEnvironmentPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -146,7 +146,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotionEnvironmentPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotionEnvironmentPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes the environment with its project links and local checkout. Its provider is kept. Nothing in the Git repository changes. The open promotion reviews of the environment close in n8n. Their merge requests stay open on the Git host.
+        /// **Beta** — breaking changes may still occur without major version bump.Deletes the environment with its project links and local checkout. Its provider is kept. Nothing in the Git repository changes. The open promotion reviews of the environment close in n8n. Their merge requests stay open on the Git host. Another operation on the same environment returns 423.Requires the `promotions:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -165,7 +165,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item
             return requestInfo;
         }
         /// <summary>
-        /// Returns the environment with its provider summary and the state of its local checkout.
+        /// **Beta** — breaking changes may still occur without major version bump.Returns the environment with its provider summary and the state of its local checkout.Requires the `promotions:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -184,7 +184,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates the name, provider, remote, or settings. A remote replaces the whole saved remote, and settings replace the whole saved settings. The settings must match the direction of the environment, so `createBranchOnPromotion` is always required for Promote. GitLab environments store a repository path and derive remoteUrl from the provider. Plain Git environments keep the full remote URL. A new provider type or repository closes the open promotion reviews of the environment in n8n. Their merge requests stay open on the Git host. If the provider changes during the update, the update returns 409. Reload the environment and try again. Direction and scope cannot change.
+        /// **Beta** — breaking changes may still occur without major version bump.Updates the name, provider, remote, or settings. A remote replaces the whole saved remote, and settings replace the whole saved settings. The settings must match the direction of the environment, so `createBranchOnPromotion` is always required for Promote. GitLab environments store a repository path and derive remoteUrl from the provider. Plain Git environments keep the full remote URL. A new provider type or repository closes the open promotion reviews of the environment in n8n. Their merge requests stay open on the Git host. If the provider changes during the update, the update returns 409. Reload the environment and try again. Direction and scope cannot change. A change of the remote, provider, or branch returns 423 while another operation runs on the environment.Requires the `promotions:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

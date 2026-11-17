@@ -25,8 +25,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("dependencyPolicy") is { } nullNodeDependencyPolicy && nullNodeDependencyPolicy.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) DependencyPolicy = null;
             if (parseNode.GetChildNode("folderIds") is null) { _explicitNullValueFolderIds = default!; _explicitNullProperties?.Remove("folderIds"); }
             else if (parseNode.GetChildNode("folderIds") is { } nullNodeFolderIds && nullNodeFolderIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FolderIds = null;
-            if (parseNode.GetChildNode("includeArchivedWorkflows") is null) { _explicitNullValueIncludeArchivedWorkflows = default!; _explicitNullProperties?.Remove("includeArchivedWorkflows"); }
-            else if (parseNode.GetChildNode("includeArchivedWorkflows") is { } nullNodeIncludeArchivedWorkflows && nullNodeIncludeArchivedWorkflows.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncludeArchivedWorkflows = null;
+            if (parseNode.GetChildNode("includeArchived") is null) { _explicitNullValueIncludeArchived = default!; _explicitNullProperties?.Remove("includeArchived"); }
+            else if (parseNode.GetChildNode("includeArchived") is { } nullNodeIncludeArchived && nullNodeIncludeArchived.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncludeArchived = null;
             if (parseNode.GetChildNode("includeTags") is null) { _explicitNullValueIncludeTags = default!; _explicitNullProperties?.Remove("includeTags"); }
             else if (parseNode.GetChildNode("includeTags") is { } nullNodeIncludeTags && nullNodeIncludeTags.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IncludeTags = null;
             if (parseNode.GetChildNode("includeVariableValues") is null) { _explicitNullValueIncludeVariableValues = default!; _explicitNullProperties?.Remove("includeVariableValues"); }
@@ -49,7 +49,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<string> AgentIds { get => _explicitNullValueAgentIds; set { _explicitNullValueAgentIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("agentIds"); else _explicitNullProperties?.Remove("agentIds"); } }
         private List<string> _explicitNullValueAgentIds = default!;
 #endif
-        /// <summary>Whether expression values from credential data are bundled into the package. `expression-values-only` includes credential fields whose value is an n8n expression (for example `={{ $secrets.apiKey }}`); literal values never travel either way. `no-values` keeps credential data out of the package entirely, so each credential file carries only its id, name and type.</summary>
+        /// <summary>Whether expression values from credential data are bundled into the package. `expression-values-only` includes credential fields whose value is an n8n expression (for example `={{ $secrets.apiKey }}`). A literal value travels only when it decides whether another credential field shows (a toggle or an auth type, for example) and an exported expression sits in that field. No other literal value travels. `no-values` keeps credential data out of the package entirely, so each credential file carries only its id, name and type.</summary>
         public global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy? CredentialExportPolicy { get => _explicitNullValueCredentialExportPolicy; set { _explicitNullValueCredentialExportPolicy = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("credentialExportPolicy"); else _explicitNullProperties?.Remove("credentialExportPolicy"); } }
         private global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy? _explicitNullValueCredentialExportPolicy = default!;
         /// <summary>Policy for workflow and agent dependencies outside the selected package contents. Includes static workflow references and disabled agent references. `fail` aborts when a required workflow or agent is absent from the package. `include-in-package` adds accessible dependencies recursively. `reference-only` records external requirements without including those definitions. The same policy applies to workflows and agents.</summary>
@@ -65,9 +65,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<string> FolderIds { get => _explicitNullValueFolderIds; set { _explicitNullValueFolderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folderIds"); else _explicitNullProperties?.Remove("folderIds"); } }
         private List<string> _explicitNullValueFolderIds = default!;
 #endif
-        /// <summary>Whether folder and project exports include their archived workflows. When `false` (default) they are left out. When `true` they travel with `isArchived: true` and are archived on import. Workflows listed in `workflowIds` always export, also when archived.</summary>
-        public bool? IncludeArchivedWorkflows { get => _explicitNullValueIncludeArchivedWorkflows; set { _explicitNullValueIncludeArchivedWorkflows = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("includeArchivedWorkflows"); else _explicitNullProperties?.Remove("includeArchivedWorkflows"); } }
-        private bool? _explicitNullValueIncludeArchivedWorkflows = default!;
+        /// <summary>Whether folder exports include archived workflows and project exports include archived workflows and agents. When `false` (default) they are left out. When `true` they travel with `isArchived: true` and are archived on import. Workflows listed in `workflowIds` and agents listed in `agentIds` always export, also when archived.</summary>
+        public bool? IncludeArchived { get => _explicitNullValueIncludeArchived; set { _explicitNullValueIncludeArchived = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("includeArchived"); else _explicitNullProperties?.Remove("includeArchived"); } }
+        private bool? _explicitNullValueIncludeArchived = default!;
         /// <summary>Whether tags assigned to the exported workflows are bundled into the package. When `false`, no tag files, tag references, or tag requirements travel with the package.</summary>
         public bool? IncludeTags { get => _explicitNullValueIncludeTags; set { _explicitNullValueIncludeTags = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("includeTags"); else _explicitNullProperties?.Remove("includeTags"); } }
         private bool? _explicitNullValueIncludeTags = default!;
@@ -102,7 +102,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// </summary>
         public ExportPackageRequest()
         {
-            IncludeArchivedWorkflows = false;
+            IncludeArchived = false;
             IncludeTags = true;
             IncludeVariableValues = true;
         }
@@ -128,7 +128,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "credentialExportPolicy", n => { CredentialExportPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy>(); } },
                 { "dependencyPolicy", n => { DependencyPolicy = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestDependencyPolicy>(); } },
                 { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
-                { "includeArchivedWorkflows", n => { IncludeArchivedWorkflows = n.GetBoolValue(); } },
+                { "includeArchived", n => { IncludeArchived = n.GetBoolValue(); } },
                 { "includeTags", n => { IncludeTags = n.GetBoolValue(); } },
                 { "includeVariableValues", n => { IncludeVariableValues = n.GetBoolValue(); } },
                 { "projectIds", n => { ProjectIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
@@ -147,7 +147,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestCredentialExportPolicy>("credentialExportPolicy", CredentialExportPolicy);
             writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ExportPackageRequestDependencyPolicy>("dependencyPolicy", DependencyPolicy);
             writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
-            writer.WriteBoolValue("includeArchivedWorkflows", IncludeArchivedWorkflows);
+            writer.WriteBoolValue("includeArchived", IncludeArchived);
             writer.WriteBoolValue("includeTags", IncludeTags);
             writer.WriteBoolValue("includeVariableValues", IncludeVariableValues);
             writer.WriteCollectionOfPrimitiveValues<string>("projectIds", ProjectIds);

@@ -19,6 +19,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if (parseNode.GetChildNode("commitMessage") is null) { _explicitNullValueCommitMessage = default!; _explicitNullProperties?.Remove("commitMessage"); }
             else if (parseNode.GetChildNode("commitMessage") is { } nullNodeCommitMessage && nullNodeCommitMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CommitMessage = null;
+            if (parseNode.GetChildNode("folderIds") is null) { _explicitNullValueFolderIds = default!; _explicitNullProperties?.Remove("folderIds"); }
+            else if (parseNode.GetChildNode("folderIds") is { } nullNodeFolderIds && nullNodeFolderIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FolderIds = null;
             if (parseNode.GetChildNode("workflowIds") is null) { _explicitNullValueWorkflowIds = default!; _explicitNullProperties?.Remove("workflowIds"); }
             else if (parseNode.GetChildNode("workflowIds") is { } nullNodeWorkflowIds && nullNodeWorkflowIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowIds = null;
         }
@@ -32,6 +34,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string CommitMessage { get => _explicitNullValueCommitMessage; set { _explicitNullValueCommitMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commitMessage"); else _explicitNullProperties?.Remove("commitMessage"); } }
         private string _explicitNullValueCommitMessage = default!;
+#endif
+        /// <summary>Folders of the project to promote. Promote writes a selected folder with its current name and place, even when it is empty.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public List<string>? FolderIds { get => _explicitNullValueFolderIds; set { _explicitNullValueFolderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folderIds"); else _explicitNullProperties?.Remove("folderIds"); } }
+        private List<string>? _explicitNullValueFolderIds = default!;
+#nullable restore
+#else
+        public List<string> FolderIds { get => _explicitNullValueFolderIds; set { _explicitNullValueFolderIds = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("folderIds"); else _explicitNullProperties?.Remove("folderIds"); } }
+        private List<string> _explicitNullValueFolderIds = default!;
 #endif
         /// <summary>The workflowIds property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -62,6 +74,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             return new Dictionary<string, Action<IParseNode>>
             {
                 { "commitMessage", n => { CommitMessage = n.GetStringValue(); } },
+                { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "workflowIds", n => { WorkflowIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
         }
@@ -73,6 +86,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("commitMessage", CommitMessage);
+            writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
             writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }

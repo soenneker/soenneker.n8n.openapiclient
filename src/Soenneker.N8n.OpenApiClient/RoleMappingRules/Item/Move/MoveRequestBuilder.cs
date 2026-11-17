@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules.Item.Move
         {
         }
         /// <summary>
-        /// Changes a rule&apos;s position in the evaluation order for its type. `targetIndex` is the desired 0-based position within the rule&apos;s own `type` sequence; a value beyond the last position moves the rule to the end.
+        /// Changes a rule&apos;s position in the evaluation order for its type. `targetIndex` is the desired 0-based position within the rule&apos;s own `type` sequence; a value beyond the last position moves the rule to the end.Requires the `roleMappingRule:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules.Item.Move
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Changes a rule&apos;s position in the evaluation order for its type. `targetIndex` is the desired 0-based position within the rule&apos;s own `type` sequence; a value beyond the last position moves the rule to the end.
+        /// Changes a rule&apos;s position in the evaluation order for its type. `targetIndex` is the desired 0-based position within the rule&apos;s own `type` sequence; a value beyond the last position moves the rule to the end.Requires the `roleMappingRule:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.CommunityPackages
         {
         }
         /// <summary>
-        /// Retrieve all installed community packages with pending update info.
+        /// Retrieve all installed community packages with pending update info.Requires the `communityPackage:list` API key scope.
         /// </summary>
         /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.GetInstalledPackages200ResponseSchemaItem&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -73,7 +73,7 @@ namespace Soenneker.N8n.OpenApiClient.CommunityPackages
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Install a community package by npm name and optional version.
+        /// Install a community package by npm name and optional version.Requires the `communityPackage:install` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -100,7 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.CommunityPackages
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.InstallPackage200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve all installed community packages with pending update info.
+        /// Retrieve all installed community packages with pending update info.Requires the `communityPackage:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -119,7 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.CommunityPackages
             return requestInfo;
         }
         /// <summary>
-        /// Install a community package by npm name and optional version.
+        /// Install a community package by npm name and optional version.Requires the `communityPackage:install` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

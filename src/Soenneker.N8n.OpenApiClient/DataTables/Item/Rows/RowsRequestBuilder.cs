@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
         {
         }
         /// <summary>
-        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.
+        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.Requires the `dataTableRow:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.ListDataTableRows200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -83,7 +83,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.ListDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.ListDataTableRows200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Insert one or more rows into a data table.
+        /// Insert one or more rows into a data table.Requires the `dataTableRow:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -110,7 +110,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateDataTableRows200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.
+        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.Requires the `dataTableRow:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -129,7 +129,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
             return requestInfo;
         }
         /// <summary>
-        /// Insert one or more rows into a data table.
+        /// Insert one or more rows into a data table.Requires the `dataTableRow:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -160,7 +160,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows
             return new global::Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.RowsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.
+        /// Retrieve rows from a data table with optional filtering, sorting, and pagination.Requires the `dataTableRow:read` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RowsRequestBuilderGetQueryParameters 

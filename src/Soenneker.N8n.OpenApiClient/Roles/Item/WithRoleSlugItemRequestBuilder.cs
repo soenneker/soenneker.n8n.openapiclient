@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
         {
         }
         /// <summary>
-        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.
+        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.Requires one of these API key scopes: `role:manage`, `role:manageProject`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.
+        /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.Requires the `role:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetRole200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -84,7 +84,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetRole200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetRole200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Replaces a custom role&apos;s display name, description, and scopes. System roles cannot be updated.
+        /// Replaces a custom role&apos;s display name, description, and scopes. System roles cannot be updated.Requires one of these API key scopes: `role:manage`, `role:manageProject`.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -111,7 +111,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RolePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.
+        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.Requires one of these API key scopes: `role:manage`, `role:manageProject`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -130,7 +130,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             return requestInfo;
         }
         /// <summary>
-        /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.
+        /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.Requires the `role:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             return requestInfo;
         }
         /// <summary>
-        /// Replaces a custom role&apos;s display name, description, and scopes. System roles cannot be updated.
+        /// Replaces a custom role&apos;s display name, description, and scopes. System roles cannot be updated.Requires one of these API key scopes: `role:manage`, `role:manageProject`.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -180,7 +180,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
             return new global::Soenneker.N8n.OpenApiClient.Roles.Item.WithRoleSlugItemRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.
+        /// Deletes a custom role. System roles cannot be deleted. A role with users assigned cannot be deleted unless `reassignRoleSlug` is set to move those users to another role first.Requires one of these API key scopes: `role:manage`, `role:manageProject`.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithRoleSlugItemRequestBuilderDeleteQueryParameters 
@@ -200,7 +200,7 @@ namespace Soenneker.N8n.OpenApiClient.Roles.Item
 #endif
         }
         /// <summary>
-        /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.
+        /// Returns a single role with its scopes. Set `withUsageCount` to include how many users and projects use the role.Requires the `role:read` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WithRoleSlugItemRequestBuilderGetQueryParameters 

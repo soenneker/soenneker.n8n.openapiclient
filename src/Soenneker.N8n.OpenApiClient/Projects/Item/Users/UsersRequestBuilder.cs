@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Users
         {
         }
         /// <summary>
-        /// Returns a list of all members of a project including their role. Requires user:list scope.
+        /// Returns a list of all members of a project including their role.Requires the `user:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetProjectUsers200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Users
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetProjectUsers200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetProjectUsers200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Add one or more users to a project on your instance.
+        /// Add one or more users to a project on your instance.Requires the `project:manageMembers` API key scope.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -98,7 +98,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Users
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns a list of all members of a project including their role. Requires user:list scope.
+        /// Returns a list of all members of a project including their role.Requires the `user:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -117,7 +117,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Users
             return requestInfo;
         }
         /// <summary>
-        /// Add one or more users to a project on your instance.
+        /// Add one or more users to a project on your instance.Requires the `project:manageMembers` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -148,7 +148,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item.Users
             return new global::Soenneker.N8n.OpenApiClient.Projects.Item.Users.UsersRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns a list of all members of a project including their role. Requires user:list scope.
+        /// Returns a list of all members of a project including their role.Requires the `user:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class UsersRequestBuilderGetQueryParameters 

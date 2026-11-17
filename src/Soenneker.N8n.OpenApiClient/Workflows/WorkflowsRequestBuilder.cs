@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
         {
         }
         /// <summary>
-        /// Retrieve all workflows from your instance.
+        /// Retrieve all workflows from your instance.Requires the `workflow:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetWorkflows200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a workflow in your instance.
+        /// Create a workflow in your instance.Requires the `workflow:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateWorkflow200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateWorkflow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateWorkflow200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve all workflows from your instance.
+        /// Retrieve all workflows from your instance.Requires the `workflow:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -118,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
             return requestInfo;
         }
         /// <summary>
-        /// Create a workflow in your instance.
+        /// Create a workflow in your instance.Requires the `workflow:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows
             return new global::Soenneker.N8n.OpenApiClient.Workflows.WorkflowsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve all workflows from your instance.
+        /// Retrieve all workflows from your instance.Requires the `workflow:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class WorkflowsRequestBuilderGetQueryParameters 

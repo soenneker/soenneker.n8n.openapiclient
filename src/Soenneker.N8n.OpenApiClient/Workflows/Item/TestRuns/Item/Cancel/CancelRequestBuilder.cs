@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.Cancel
         {
         }
         /// <summary>
-        /// Cancel a running evaluation test run of a workflow. Requires the `workflow:execute` project scope in addition to the `testRun:cancel` API key scope.
+        /// Cancel a running evaluation test run of a workflow. The user must also have the `workflow:execute` project scope.Requires the `testRun:cancel` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CancelTestRun202Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.Item.Cancel
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CancelTestRun202Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CancelTestRun202Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Cancel a running evaluation test run of a workflow. Requires the `workflow:execute` project scope in addition to the `testRun:cancel` API key scope.
+        /// Cancel a running evaluation test run of a workflow. The user must also have the `workflow:execute` project scope.Requires the `testRun:cancel` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

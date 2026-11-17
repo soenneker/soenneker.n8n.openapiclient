@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Otel.TestTrace
         {
         }
         /// <summary>
-        /// Send a single test span to the given OTLP collector and report whether it was accepted. This tests the supplied connection details without changing the stored configuration. Fields managed declaratively via environment variables are overridden with their effective value before the test is sent. Requires the `otel:manage` scope.
+        /// Send a single test span to the given OTLP collector and report whether it was accepted. This tests the supplied connection details without changing the stored configuration. Fields managed declaratively via environment variables are overridden with their effective value before the test is sent.Requires the `otel:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestOtelTrace200Response"/></returns>
         /// <param name="body">The connection details to test against an OTLP collector. Fields managed declaratively via environment variables are overridden with their effective value before the test is sent.</param>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Otel.TestTrace
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TestOtelTrace200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TestOtelTrace200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Send a single test span to the given OTLP collector and report whether it was accepted. This tests the supplied connection details without changing the stored configuration. Fields managed declaratively via environment variables are overridden with their effective value before the test is sent. Requires the `otel:manage` scope.
+        /// Send a single test span to the given OTLP collector and report whether it was accepted. This tests the supplied connection details without changing the stored configuration. Fields managed declaratively via environment variables are overridden with their effective value before the test is sent.Requires the `otel:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The connection details to test against an OTLP collector. Fields managed declaratively via environment variables are overridden with their effective value before the test is sent.</param>

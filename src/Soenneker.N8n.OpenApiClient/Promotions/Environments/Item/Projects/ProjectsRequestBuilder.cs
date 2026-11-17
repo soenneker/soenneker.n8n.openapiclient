@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Projects
         {
         }
         /// <summary>
-        /// List projects linked to a promotion environment
+        /// **Beta** — breaking changes may still occur without major version bump.Requires the `promotions:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetPromotionEnvironmentProjects200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Projects
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionEnvironmentProjects200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetPromotionEnvironmentProjects200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// List projects linked to a promotion environment
+        /// **Beta** — breaking changes may still occur without major version bump.Requires the `promotions:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

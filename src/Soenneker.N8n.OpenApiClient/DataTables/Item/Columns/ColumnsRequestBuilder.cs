@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns
         {
         }
         /// <summary>
-        /// Retrieve all columns for a specific data table.
+        /// Retrieve all columns for a specific data table.Requires the `dataTableColumn:read` API key scope.
         /// </summary>
         /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.ListDataTableColumns200ResponseSchemaItem&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -73,7 +73,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Add a new column to an existing data table.
+        /// Add a new column to an existing data table.Requires the `dataTableColumn:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -100,7 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DataTableColumnPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve all columns for a specific data table.
+        /// Retrieve all columns for a specific data table.Requires the `dataTableColumn:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -119,7 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Columns
             return requestInfo;
         }
         /// <summary>
-        /// Add a new column to an existing data table.
+        /// Add a new column to an existing data table.Requires the `dataTableColumn:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.RateLimits
         {
         }
         /// <summary>
-        /// Retrieve the Public API rate-limit settings. `envManagedFields` lists the fields that are set by environment variables and can&apos;t be changed through the API. Requires the `securitySettings:manage` scope. Requests to this route count against the rate limits.
+        /// Retrieve the Public API rate-limit settings. `envManagedFields` lists the fields that are set by environment variables and can&apos;t be changed through the API. Requests to this route count against the rate limits.Requires the `securitySettings:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RateLimitSettingsPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.RateLimits
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RateLimitSettingsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RateLimitSettingsPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Set the Public API rate-limit settings. You can send a GET response back as the body, and `envManagedFields` is ignored. When rate limiting is enabled, at least one limit must be greater than `0`. Fields set by environment variables can&apos;t be changed: a different value is rejected with 409, but sending the current value is accepted. Requires the `securitySettings:manage` scope. Requests to this route count against the rate limits.
+        /// Set the Public API rate-limit settings. You can send a GET response back as the body, and `envManagedFields` is ignored. When rate limiting is enabled, at least one limit must be greater than `0`. Fields set by environment variables can&apos;t be changed: a different value is rejected with 409, but sending the current value is accepted. Requests to this route count against the rate limits.Requires the `securitySettings:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RateLimitSettingsPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -86,7 +86,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.RateLimits
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RateLimitSettingsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RateLimitSettingsPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve the Public API rate-limit settings. `envManagedFields` lists the fields that are set by environment variables and can&apos;t be changed through the API. Requires the `securitySettings:manage` scope. Requests to this route count against the rate limits.
+        /// Retrieve the Public API rate-limit settings. `envManagedFields` lists the fields that are set by environment variables and can&apos;t be changed through the API. Requests to this route count against the rate limits.Requires the `securitySettings:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -105,7 +105,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.RateLimits
             return requestInfo;
         }
         /// <summary>
-        /// Set the Public API rate-limit settings. You can send a GET response back as the body, and `envManagedFields` is ignored. When rate limiting is enabled, at least one limit must be greater than `0`. Fields set by environment variables can&apos;t be changed: a different value is rejected with 409, but sending the current value is accepted. Requires the `securitySettings:manage` scope. Requests to this route count against the rate limits.
+        /// Set the Public API rate-limit settings. You can send a GET response back as the body, and `envManagedFields` is ignored. When rate limiting is enabled, at least one limit must be greater than `0`. Fields set by environment variables can&apos;t be changed: a different value is rejected with 409, but sending the current value is accepted. Requests to this route count against the rate limits.Requires the `securitySettings:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

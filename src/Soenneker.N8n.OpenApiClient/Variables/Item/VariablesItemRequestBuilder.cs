@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Variables.Item
         {
         }
         /// <summary>
-        /// Delete a variable from your instance.
+        /// Delete a variable from your instance.Requires the `variable:delete` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Variables.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a variable from your instance.
+        /// Update a variable from your instance.Requires the `variable:update` API key scope.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -84,7 +84,7 @@ namespace Soenneker.N8n.OpenApiClient.Variables.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Delete a variable from your instance.
+        /// Delete a variable from your instance.Requires the `variable:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -103,7 +103,7 @@ namespace Soenneker.N8n.OpenApiClient.Variables.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a variable from your instance.
+        /// Update a variable from your instance.Requires the `variable:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

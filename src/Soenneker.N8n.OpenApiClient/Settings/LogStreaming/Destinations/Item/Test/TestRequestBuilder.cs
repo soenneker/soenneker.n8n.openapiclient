@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item.Te
         {
         }
         /// <summary>
-        /// Send a test message to the destination to verify it is reachable and configured correctly. Requires the `eventBusDestination:test` scope and the Log Streaming feature to be licensed.
+        /// Send a test message to the destination to verify it is reachable and configured correctly. Requires the Log Streaming feature to be licensed.Requires the `eventBusDestination:test` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TestLogStreamingDestination200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item.Te
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TestLogStreamingDestination200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TestLogStreamingDestination200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Send a test message to the destination to verify it is reachable and configured correctly. Requires the `eventBusDestination:test` scope and the Log Streaming feature to be licensed.
+        /// Send a test message to the destination to verify it is reachable and configured correctly. Requires the Log Streaming feature to be licensed.Requires the `eventBusDestination:test` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

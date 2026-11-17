@@ -52,7 +52,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
         {
         }
         /// <summary>
-        /// Deletes a credential from your instance. You must be the owner of the credential.
+        /// Deletes a credential from your instance. You must be the owner of the credential.Requires the `credential:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.DeleteCredential200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -77,7 +77,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.DeleteCredential200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.DeleteCredential200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieves a credential by ID. Credential data (secrets) is not included.
+        /// Retrieves a credential by ID. Credential data (secrets) is not included.Requires the `credential:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -102,7 +102,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Updates an existing credential. You must be the owner of the credential.
+        /// Updates an existing credential. You must be the owner of the credential.Requires the `credential:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -129,7 +129,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deletes a credential from your instance. You must be the owner of the credential.
+        /// Deletes a credential from your instance. You must be the owner of the credential.Requires the `credential:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -148,7 +148,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
             return requestInfo;
         }
         /// <summary>
-        /// Retrieves a credential by ID. Credential data (secrets) is not included.
+        /// Retrieves a credential by ID. Credential data (secrets) is not included.Requires the `credential:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -167,7 +167,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials.Item
             return requestInfo;
         }
         /// <summary>
-        /// Updates an existing credential. You must be the owner of the credential.
+        /// Updates an existing credential. You must be the owner of the credential.Requires the `credential:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

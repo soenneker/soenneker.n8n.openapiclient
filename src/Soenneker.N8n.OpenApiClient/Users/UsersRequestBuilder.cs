@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Users
         {
         }
         /// <summary>
-        /// Retrieve all users from your instance. Only available for the instance owner.
+        /// Retrieve all users from your instance. Only available for the instance owner.Requires the `user:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetUsers200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Users
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetUsers200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetUsers200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create one or more users.
+        /// Create one or more users.Requires the `user:create` API key scope.
         /// </summary>
         /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.CreateUser201ResponseSchemaItem&gt;</returns>
         /// <param name="body">The request body</param>
@@ -100,7 +100,7 @@ namespace Soenneker.N8n.OpenApiClient.Users
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Retrieve all users from your instance. Only available for the instance owner.
+        /// Retrieve all users from your instance. Only available for the instance owner.Requires the `user:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -119,7 +119,7 @@ namespace Soenneker.N8n.OpenApiClient.Users
             return requestInfo;
         }
         /// <summary>
-        /// Create one or more users.
+        /// Create one or more users.Requires the `user:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -150,7 +150,7 @@ namespace Soenneker.N8n.OpenApiClient.Users
             return new global::Soenneker.N8n.OpenApiClient.Users.UsersRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve all users from your instance. Only available for the instance owner.
+        /// Retrieve all users from your instance. Only available for the instance owner.Requires the `user:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class UsersRequestBuilderGetQueryParameters 

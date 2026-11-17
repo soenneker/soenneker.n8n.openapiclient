@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item
         {
         }
         /// <summary>
-        /// Remove a log streaming destination. Requires the `eventBusDestination:delete` scope and the Log Streaming feature to be licensed. When destinations are managed via environment variables, the delete is rejected with 409 and nothing is removed; reads still return the current values.
+        /// Remove a log streaming destination. Requires the Log Streaming feature to be licensed. When destinations are managed via environment variables, the delete is rejected with 409 and nothing is removed; reads still return the current values.Requires the `eventBusDestination:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve a single log streaming destination by id. Requires the `eventBusDestination:read` scope and the Log Streaming feature to be licensed.
+        /// Retrieve a single log streaming destination by id. Requires the Log Streaming feature to be licensed.Requires the `eventBusDestination:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -90,7 +90,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Replace an existing log streaming destination. The update takes effect exactly as it would from the UI, using the same validation. Requires the `eventBusDestination:update` scope and the Log Streaming feature to be licensed. When destinations are managed via environment variables, the write is rejected with 409 and nothing is changed; reads still return the current values.
+        /// Replace an existing log streaming destination. The update takes effect exactly as it would from the UI, using the same validation. Requires the Log Streaming feature to be licensed. When destinations are managed via environment variables, the write is rejected with 409 and nothing is changed; reads still return the current values.Requires the `eventBusDestination:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated"/></returns>
         /// <param name="body">A log streaming destination. The `type` field selects the variant and its type-specific fields: `webhook`, `syslog`, or `sentry`.</param>
@@ -117,7 +117,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.LogStreamingDestinationPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Remove a log streaming destination. Requires the `eventBusDestination:delete` scope and the Log Streaming feature to be licensed. When destinations are managed via environment variables, the delete is rejected with 409 and nothing is removed; reads still return the current values.
+        /// Remove a log streaming destination. Requires the Log Streaming feature to be licensed. When destinations are managed via environment variables, the delete is rejected with 409 and nothing is removed; reads still return the current values.Requires the `eventBusDestination:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -136,7 +136,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item
             return requestInfo;
         }
         /// <summary>
-        /// Retrieve a single log streaming destination by id. Requires the `eventBusDestination:read` scope and the Log Streaming feature to be licensed.
+        /// Retrieve a single log streaming destination by id. Requires the Log Streaming feature to be licensed.Requires the `eventBusDestination:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -155,7 +155,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.LogStreaming.Destinations.Item
             return requestInfo;
         }
         /// <summary>
-        /// Replace an existing log streaming destination. The update takes effect exactly as it would from the UI, using the same validation. Requires the `eventBusDestination:update` scope and the Log Streaming feature to be licensed. When destinations are managed via environment variables, the write is rejected with 409 and nothing is changed; reads still return the current values.
+        /// Replace an existing log streaming destination. The update takes effect exactly as it would from the UI, using the same validation. Requires the Log Streaming feature to be licensed. When destinations are managed via environment variables, the write is rejected with 409 and nothing is changed; reads still return the current values.Requires the `eventBusDestination:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">A log streaming destination. The `type` field selects the variant and its type-specific fields: `webhook`, `syslog`, or `sentry`.</param>

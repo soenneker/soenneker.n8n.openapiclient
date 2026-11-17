@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Audit
         {
         }
         /// <summary>
-        /// Generate a security audit for your n8n instance.
+        /// Generate a security audit for your n8n instance.Requires the `securityAudit:generate` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Audit
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Generate a security audit for your n8n instance.
+        /// Generate a security audit for your n8n instance.Requires the `securityAudit:generate` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

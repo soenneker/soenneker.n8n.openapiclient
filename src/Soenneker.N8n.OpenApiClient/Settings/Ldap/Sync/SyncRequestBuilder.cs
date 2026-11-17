@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync
         {
         }
         /// <summary>
-        /// Retrieve the history of LDAP synchronizations, most recent first. Requires the `ldap:sync` scope and the LDAP feature to be licensed.
+        /// Retrieve the history of LDAP synchronizations, most recent first. Requires the LDAP feature to be licensed.Requires the `ldap:sync` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetLdapSync200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetLdapSync200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetLdapSync200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Manually trigger an LDAP synchronization. The response returns the new sync history record. Requires the `ldap:sync` scope and the LDAP feature to be licensed.
+        /// Manually trigger an LDAP synchronization. The response returns the new sync history record. Requires the LDAP feature to be licensed.Requires the `ldap:sync` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response"/></returns>
         /// <param name="body">Request body for triggering an LDAP synchronization.</param>
@@ -86,7 +86,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RunLdapSync200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve the history of LDAP synchronizations, most recent first. Requires the `ldap:sync` scope and the LDAP feature to be licensed.
+        /// Retrieve the history of LDAP synchronizations, most recent first. Requires the LDAP feature to be licensed.Requires the `ldap:sync` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -105,7 +105,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync
             return requestInfo;
         }
         /// <summary>
-        /// Manually trigger an LDAP synchronization. The response returns the new sync history record. Requires the `ldap:sync` scope and the LDAP feature to be licensed.
+        /// Manually trigger an LDAP synchronization. The response returns the new sync history record. Requires the LDAP feature to be licensed.Requires the `ldap:sync` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">Request body for triggering an LDAP synchronization.</param>
@@ -136,7 +136,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync
             return new global::Soenneker.N8n.OpenApiClient.Settings.Ldap.Sync.SyncRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve the history of LDAP synchronizations, most recent first. Requires the `ldap:sync` scope and the LDAP feature to be licensed.
+        /// Retrieve the history of LDAP synchronizations, most recent first. Requires the LDAP feature to be licensed.Requires the `ldap:sync` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class SyncRequestBuilderGetQueryParameters 

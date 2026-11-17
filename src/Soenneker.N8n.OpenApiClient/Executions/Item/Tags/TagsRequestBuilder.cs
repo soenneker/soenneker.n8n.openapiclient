@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item.Tags
         {
         }
         /// <summary>
-        /// Get annotation tags for an execution.
+        /// Get annotation tags for an execution.Requires the `executionTags:list` API key scope.
         /// </summary>
         /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.ExecutionTagsPublicDtoGeneratedItem&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -60,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item.Tags
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Update annotation tags of an execution.
+        /// Update annotation tags of an execution.Requires the `executionTags:update` API key scope.
         /// </summary>
         /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.ExecutionTagsPublicDtoGeneratedItem&gt;</returns>
         /// <param name="body">The request body</param>
@@ -88,7 +88,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item.Tags
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Get annotation tags for an execution.
+        /// Get annotation tags for an execution.Requires the `executionTags:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -107,7 +107,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item.Tags
             return requestInfo;
         }
         /// <summary>
-        /// Update annotation tags of an execution.
+        /// Update annotation tags of an execution.Requires the `executionTags:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

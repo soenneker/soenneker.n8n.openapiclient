@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules
         {
         }
         /// <summary>
-        /// Returns the configured role-mapping rules. `order` is the rule&apos;s evaluation position within its own `type`, so instance and project rules each have their own sequence starting at 0 — filter by `type` to retrieve a single evaluation order.
+        /// Returns the configured role-mapping rules. `order` is the rule&apos;s evaluation position within its own `type`, so instance and project rules each have their own sequence starting at 0 — filter by `type` to retrieve a single evaluation order.Requires the `roleMappingRule:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetRoleMappingRules200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetRoleMappingRules200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetRoleMappingRules200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a rule that maps an identity-provider claim expression to a role. Set `type` to `instance` for a rule granting a global role, or `project` for a rule granting a project role on the projects named in `projectIds`. Omitting `order` appends the rule to the end of the evaluation order for its type.
+        /// Creates a rule that maps an identity-provider claim expression to a role. Set `type` to `instance` for a rule granting a global role, or `project` for a rule granting a project role on the projects named in `projectIds`. Omitting `order` appends the rule to the end of the evaluation order for its type.Requires the `roleMappingRule:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RoleMappingRulePublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns the configured role-mapping rules. `order` is the rule&apos;s evaluation position within its own `type`, so instance and project rules each have their own sequence starting at 0 — filter by `type` to retrieve a single evaluation order.
+        /// Returns the configured role-mapping rules. `order` is the rule&apos;s evaluation position within its own `type`, so instance and project rules each have their own sequence starting at 0 — filter by `type` to retrieve a single evaluation order.Requires the `roleMappingRule:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -118,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules
             return requestInfo;
         }
         /// <summary>
-        /// Creates a rule that maps an identity-provider claim expression to a role. Set `type` to `instance` for a rule granting a global role, or `project` for a rule granting a project role on the projects named in `projectIds`. Omitting `order` appends the rule to the end of the evaluation order for its type.
+        /// Creates a rule that maps an identity-provider claim expression to a role. Set `type` to `instance` for a rule granting a global role, or `project` for a rule granting a project role on the projects named in `projectIds`. Omitting `order` appends the rule to the end of the evaluation order for its type.Requires the `roleMappingRule:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.RoleMappingRules
             return new global::Soenneker.N8n.OpenApiClient.RoleMappingRules.RoleMappingRulesRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns the configured role-mapping rules. `order` is the rule&apos;s evaluation position within its own `type`, so instance and project rules each have their own sequence starting at 0 — filter by `type` to retrieve a single evaluation order.
+        /// Returns the configured role-mapping rules. `order` is the rule&apos;s evaluation position within its own `type`, so instance and project rules each have their own sequence starting at 0 — filter by `type` to retrieve a single evaluation order.Requires the `roleMappingRule:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class RoleMappingRulesRequestBuilderGetQueryParameters 

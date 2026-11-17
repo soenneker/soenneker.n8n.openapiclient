@@ -46,7 +46,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item
         {
         }
         /// <summary>
-        /// Delete a project from your instance.
+        /// Delete a project from your instance.Requires the `project:delete` API key scope.
         /// </summary>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -70,7 +70,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update a project on your instance.
+        /// Update a project on your instance.Requires the `project:update` API key scope.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -96,7 +96,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Delete a project from your instance.
+        /// Delete a project from your instance.Requires the `project:delete` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -115,7 +115,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects.Item
             return requestInfo;
         }
         /// <summary>
-        /// Update a project on your instance.
+        /// Update a project on your instance.Requires the `project:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

@@ -40,7 +40,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Otel
         {
         }
         /// <summary>
-        /// Retrieve the current OpenTelemetry configuration, including every field exposed in the UI. Requires the `otel:manage` scope.
+        /// Retrieve the current OpenTelemetry configuration, including every field exposed in the UI.Requires the `otel:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -65,7 +65,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Otel
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Set the OpenTelemetry configuration. This is a full replacement: every field must be provided, and a partial body is rejected. The exceptions are `exporterProtocol`, which defaults to `http/protobuf` when omitted, and `emitWorkflowStartSpan` and `emitNodeStartSpan`, which default to `false` when omitted. The update takes effect exactly as it would from the UI, using the same validation, and is applied to the running instance immediately. Fields managed declaratively via environment variables are read-only: attempting to change one is rejected with 409, while re-submitting its current value (as returned by GET) is accepted. Requires the `otel:manage` scope.
+        /// Set the OpenTelemetry configuration. This is a full replacement: every field must be provided, and a partial body is rejected. The exceptions are `exporterProtocol`, which defaults to `http/protobuf` when omitted, and `emitWorkflowStartSpan` and `emitNodeStartSpan`, which default to `false` when omitted. The update takes effect exactly as it would from the UI, using the same validation, and is applied to the running instance immediately. Fields managed declaratively via environment variables are read-only: attempting to change one is rejected with 409, while re-submitting its current value (as returned by GET) is accepted.Requires the `otel:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated"/></returns>
         /// <param name="body">The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided, except `exporterProtocol`, which defaults to `http/protobuf` when omitted, and `emitWorkflowStartSpan` and `emitNodeStartSpan`, which default to `false` when omitted. Fields managed declaratively via environment variables are returned with their effective value. A write can repeat these values, but changing them returns 409.</param>
@@ -92,7 +92,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Otel
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.OtelSettingsPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve the current OpenTelemetry configuration, including every field exposed in the UI. Requires the `otel:manage` scope.
+        /// Retrieve the current OpenTelemetry configuration, including every field exposed in the UI.Requires the `otel:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -111,7 +111,7 @@ namespace Soenneker.N8n.OpenApiClient.Settings.Otel
             return requestInfo;
         }
         /// <summary>
-        /// Set the OpenTelemetry configuration. This is a full replacement: every field must be provided, and a partial body is rejected. The exceptions are `exporterProtocol`, which defaults to `http/protobuf` when omitted, and `emitWorkflowStartSpan` and `emitNodeStartSpan`, which default to `false` when omitted. The update takes effect exactly as it would from the UI, using the same validation, and is applied to the running instance immediately. Fields managed declaratively via environment variables are read-only: attempting to change one is rejected with 409, while re-submitting its current value (as returned by GET) is accepted. Requires the `otel:manage` scope.
+        /// Set the OpenTelemetry configuration. This is a full replacement: every field must be provided, and a partial body is rejected. The exceptions are `exporterProtocol`, which defaults to `http/protobuf` when omitted, and `emitWorkflowStartSpan` and `emitNodeStartSpan`, which default to `false` when omitted. The update takes effect exactly as it would from the UI, using the same validation, and is applied to the running instance immediately. Fields managed declaratively via environment variables are read-only: attempting to change one is rejected with 409, while re-submitting its current value (as returned by GET) is accepted.Requires the `otel:manage` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The OpenTelemetry configuration, matching the fields exposed in the UI. On a write this is a full replacement: every field must be provided, except `exporterProtocol`, which defaults to `http/protobuf` when omitted, and `emitWorkflowStartSpan` and `emitNodeStartSpan`, which default to `false` when omitted. Fields managed declaratively via environment variables are returned with their effective value. A write can repeat these values, but changing them returns 409.</param>

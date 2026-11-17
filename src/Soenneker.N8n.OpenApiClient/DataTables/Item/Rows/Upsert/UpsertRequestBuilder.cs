@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Upsert
         {
         }
         /// <summary>
-        /// Update an existing row, or insert a new one if no row matches the filter conditions.
+        /// Update an existing row, or insert a new one if no row matches the filter conditions.Requires the `dataTableRow:upsert` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.DataTables.Item.Rows.Upsert
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Update an existing row, or insert a new one if no row matches the filter conditions.
+        /// Update an existing row, or insert a new one if no row matches the filter conditions.Requires the `dataTableRow:upsert` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

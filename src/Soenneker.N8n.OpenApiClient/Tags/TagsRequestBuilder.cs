@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags
         {
         }
         /// <summary>
-        /// Retrieve all tags from your instance.
+        /// Retrieve all tags from your instance.Requires the `tag:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetTags200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetTags200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetTags200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a tag in your instance.
+        /// Create a tag in your instance.Requires the `tag:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.TagPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve all tags from your instance.
+        /// Retrieve all tags from your instance.Requires the `tag:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -118,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags
             return requestInfo;
         }
         /// <summary>
-        /// Create a tag in your instance.
+        /// Create a tag in your instance.Requires the `tag:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Tags
             return new global::Soenneker.N8n.OpenApiClient.Tags.TagsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve all tags from your instance.
+        /// Retrieve all tags from your instance.Requires the `tag:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class TagsRequestBuilderGetQueryParameters 

@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.History
         {
         }
         /// <summary>
-        /// Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.
+        /// Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.Requires the `workflow:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowHistory200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.History
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowHistory200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetWorkflowHistory200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.
+        /// Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.Requires the `workflow:read` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -87,7 +87,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.History
             return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.History.HistoryRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.
+        /// Returns a paginated list of workflow versions (version IDs and metadata) for a workflow.Requires the `workflow:read` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class HistoryRequestBuilderGetQueryParameters 

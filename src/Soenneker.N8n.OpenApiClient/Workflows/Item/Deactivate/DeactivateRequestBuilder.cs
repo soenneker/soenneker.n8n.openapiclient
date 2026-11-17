@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate
         {
         }
         /// <summary>
-        /// Deprecated: use POST /workflows/{id}/unpublish instead. Deactivate a workflow.
+        /// Deprecated: use POST /workflows/{id}/unpublish instead. Deactivate a workflow.Requires the `workflow:deactivate` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -60,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Deactivate
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Deprecated: use POST /workflows/{id}/unpublish instead. Deactivate a workflow.
+        /// Deprecated: use POST /workflows/{id}/unpublish instead. Deactivate a workflow.Requires the `workflow:deactivate` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

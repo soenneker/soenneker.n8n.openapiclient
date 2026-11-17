@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects
         {
         }
         /// <summary>
-        /// Retrieve projects from your instance.
+        /// Retrieve projects from your instance.Requires the `project:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetProjects200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetProjects200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetProjects200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Create a team project on your instance.
+        /// Create a team project on your instance.Requires the `project:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateProject201Response"/></returns>
         /// <param name="body">The request body</param>
@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateProject201Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateProject201Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve projects from your instance.
+        /// Retrieve projects from your instance.Requires the `project:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -118,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects
             return requestInfo;
         }
         /// <summary>
-        /// Create a team project on your instance.
+        /// Create a team project on your instance.Requires the `project:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Projects
             return new global::Soenneker.N8n.OpenApiClient.Projects.ProjectsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve projects from your instance.
+        /// Retrieve projects from your instance.Requires the `project:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ProjectsRequestBuilderGetQueryParameters 

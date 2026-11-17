@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Stop
         {
         }
         /// <summary>
-        /// Stop multiple executions from your instance based on filter criteria.
+        /// Stop multiple executions from your instance based on filter criteria.Requires the `execution:stop` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutions200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Stop
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutions200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.StopManyExecutions200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Stop multiple executions from your instance based on filter criteria.
+        /// Stop multiple executions from your instance based on filter criteria.Requires the `execution:stop` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

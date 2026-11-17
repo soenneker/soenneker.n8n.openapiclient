@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Tags
         {
         }
         /// <summary>
-        /// Get workflow tags.
+        /// Get workflow tags.Requires the `workflowTags:list` API key scope.
         /// </summary>
         /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.WorkflowTagsPublicDtoGeneratedItem&gt;</returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -60,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Tags
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Update tags of a workflow.
+        /// Update tags of a workflow.Requires the `workflowTags:update` API key scope.
         /// </summary>
         /// <returns>A List&lt;global::Soenneker.N8n.OpenApiClient.Models.WorkflowTagsPublicDtoGeneratedItem&gt;</returns>
         /// <param name="body">The request body</param>
@@ -88,7 +88,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Tags
             return collectionResult?.AsList();
         }
         /// <summary>
-        /// Get workflow tags.
+        /// Get workflow tags.Requires the `workflowTags:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -107,7 +107,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Tags
             return requestInfo;
         }
         /// <summary>
-        /// Update tags of a workflow.
+        /// Update tags of a workflow.Requires the `workflowTags:update` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

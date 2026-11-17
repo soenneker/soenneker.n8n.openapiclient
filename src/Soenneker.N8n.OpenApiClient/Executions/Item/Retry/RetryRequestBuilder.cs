@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item.Retry
         {
         }
         /// <summary>
-        /// Retry an execution from your instance.
+        /// Retry an execution from your instance.Requires the `execution:retry` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200Response"/></returns>
         /// <param name="body">The request body</param>
@@ -61,7 +61,7 @@ namespace Soenneker.N8n.OpenApiClient.Executions.Item.Retry
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retry an execution from your instance.
+        /// Retry an execution from your instance.Requires the `execution:retry` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

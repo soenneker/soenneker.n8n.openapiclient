@@ -53,7 +53,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
         {
         }
         /// <summary>
-        /// Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.
+        /// Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.Requires the `credential:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetCredentials200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -78,7 +78,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetCredentials200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetCredentials200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a credential that can be used by nodes of the specified type.
+        /// Creates a credential that can be used by nodes of the specified type.Requires the `credential:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
@@ -105,7 +105,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CredentialPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.
+        /// Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.Requires the `credential:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -124,7 +124,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
             return requestInfo;
         }
         /// <summary>
-        /// Creates a credential that can be used by nodes of the specified type.
+        /// Creates a credential that can be used by nodes of the specified type.Requires the `credential:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -155,7 +155,7 @@ namespace Soenneker.N8n.OpenApiClient.Credentials
             return new global::Soenneker.N8n.OpenApiClient.Credentials.CredentialsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.
+        /// Retrieve all credentials from your instance. Only available for the instance owner and admin. Credential data (secrets) is not included.Requires the `credential:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class CredentialsRequestBuilderGetQueryParameters 

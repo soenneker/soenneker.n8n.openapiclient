@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish
         {
         }
         /// <summary>
-        /// Unpublish a workflow. In n8n v1, this action was termed deactivating a workflow.
+        /// Unpublish a workflow. In n8n v1, this action was termed deactivating a workflow.Requires the `workflow:deactivate` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -59,7 +59,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Unpublish
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.WorkflowPublicDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Unpublish a workflow. In n8n v1, this action was termed deactivating a workflow.
+        /// Unpublish a workflow. In n8n v1, this action was termed deactivating a workflow.Requires the `workflow:deactivate` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>

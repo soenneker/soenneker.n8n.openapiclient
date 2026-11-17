@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
         {
         }
         /// <summary>
-        /// Retrieve the evaluation test runs of a workflow.
+        /// Retrieve the evaluation test runs of a workflow.Requires the `testRun:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetTestRuns200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetTestRuns200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetTestRuns200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Start a new evaluation test run for a workflow. The workflow must contain a configured evaluation trigger. Requires the `workflow:execute` project scope in addition to the `testRun:create` API key scope.
+        /// Start a new evaluation test run for a workflow. The workflow must contain a configured evaluation trigger. The user must also have the `workflow:execute` project scope.Requires the `testRun:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreateTestRun201Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -97,7 +97,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreateTestRun201Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreateTestRun201Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Retrieve the evaluation test runs of a workflow.
+        /// Retrieve the evaluation test runs of a workflow.Requires the `testRun:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -116,7 +116,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
             return requestInfo;
         }
         /// <summary>
-        /// Start a new evaluation test run for a workflow. The workflow must contain a configured evaluation trigger. Requires the `workflow:execute` project scope in addition to the `testRun:create` API key scope.
+        /// Start a new evaluation test run for a workflow. The workflow must contain a configured evaluation trigger. The user must also have the `workflow:execute` project scope.Requires the `testRun:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -144,7 +144,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns
             return new global::Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns.TestRunsRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Retrieve the evaluation test runs of a workflow.
+        /// Retrieve the evaluation test runs of a workflow.Requires the `testRun:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class TestRunsRequestBuilderGetQueryParameters 

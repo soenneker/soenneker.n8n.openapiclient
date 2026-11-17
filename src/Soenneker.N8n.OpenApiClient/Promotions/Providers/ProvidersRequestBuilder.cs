@@ -47,7 +47,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Providers
         {
         }
         /// <summary>
-        /// Returns a cursor-paginated list of providers, without their public configuration.
+        /// **Beta** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of providers, without their public configuration.Requires the `promotions:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetPromotionProviders200Response"/></returns>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Providers
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionProviders200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetPromotionProviders200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Creates a provider and its authentication material. A Git host provider validates authenticated API access before it saves. For GitLab, the service uses n8n as the Git transport username. Its auth.username is optional. The service ignores any supplied username. Plain Git token authentication requires auth.username. An SSH provider returns the generated public key; add it to the remote as a deploy key.
+        /// **Beta** — breaking changes may still occur without major version bump.Creates a provider and its authentication material. A Git host provider validates authenticated API access before it saves. For GitLab, the service uses n8n as the Git transport username. Its auth.username is optional. The service ignores any supplied username. Plain Git token authentication requires auth.username. An SSH provider returns the generated public key; add it to the remote as a deploy key.Requires the `promotions:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201Response"/></returns>
         /// <param name="body">The request body</param>
@@ -99,7 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Providers
             return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProvider201Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Returns a cursor-paginated list of providers, without their public configuration.
+        /// **Beta** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of providers, without their public configuration.Requires the `promotions:list` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
@@ -118,7 +118,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Providers
             return requestInfo;
         }
         /// <summary>
-        /// Creates a provider and its authentication material. A Git host provider validates authenticated API access before it saves. For GitLab, the service uses n8n as the Git transport username. Its auth.username is optional. The service ignores any supplied username. Plain Git token authentication requires auth.username. An SSH provider returns the generated public key; add it to the remote as a deploy key.
+        /// **Beta** — breaking changes may still occur without major version bump.Creates a provider and its authentication material. A Git host provider validates authenticated API access before it saves. For GitLab, the service uses n8n as the Git transport username. Its auth.username is optional. The service ignores any supplied username. Plain Git token authentication requires auth.username. An SSH provider returns the generated public key; add it to the remote as a deploy key.Requires the `promotions:create` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
@@ -149,7 +149,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Providers
             return new global::Soenneker.N8n.OpenApiClient.Promotions.Providers.ProvidersRequestBuilder(rawUrl, RequestAdapter);
         }
         /// <summary>
-        /// Returns a cursor-paginated list of providers, without their public configuration.
+        /// **Beta** — breaking changes may still occur without major version bump.Returns a cursor-paginated list of providers, without their public configuration.Requires the `promotions:list` API key scope.
         /// </summary>
         [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
         public partial class ProvidersRequestBuilderGetQueryParameters 

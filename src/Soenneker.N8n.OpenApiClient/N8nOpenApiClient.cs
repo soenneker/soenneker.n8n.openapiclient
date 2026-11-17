@@ -6,6 +6,7 @@ using Microsoft.Kiota.Serialization.Form;
 using Microsoft.Kiota.Serialization.Json;
 using Microsoft.Kiota.Serialization.Multipart;
 using Microsoft.Kiota.Serialization.Text;
+using Soenneker.N8n.OpenApiClient.Agents;
 using Soenneker.N8n.OpenApiClient.Audit;
 using Soenneker.N8n.OpenApiClient.CommunityPackages;
 using Soenneker.N8n.OpenApiClient.CredentialTypePolicies;
@@ -38,6 +39,11 @@ namespace Soenneker.N8n.OpenApiClient
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     public partial class N8nOpenApiClient : BaseRequestBuilder
     {
+        /// <summary>The agents property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Agents.AgentsRequestBuilder Agents
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Agents.AgentsRequestBuilder(PathParameters, RequestAdapter);
+        }
         /// <summary>The audit property</summary>
         public global::Soenneker.N8n.OpenApiClient.Audit.AuditRequestBuilder Audit
         {

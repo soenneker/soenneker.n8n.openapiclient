@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer
         {
         }
         /// <summary>
-        /// Transfer a workflow to another project.
+        /// Transfer a workflow to another project.Requires the `workflow:move` API key scope.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -60,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Transfer a workflow to another project.
+        /// Transfer a workflow to another project.Requires the `workflow:move` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

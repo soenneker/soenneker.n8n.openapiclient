@@ -34,7 +34,7 @@ namespace Soenneker.N8n.OpenApiClient.Users.Item.Role
         {
         }
         /// <summary>
-        /// Change a user&apos;s global role
+        /// Change a user&apos;s global roleRequires the `user:changeRole` API key scope.
         /// </summary>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
@@ -60,7 +60,7 @@ namespace Soenneker.N8n.OpenApiClient.Users.Item.Role
             await RequestAdapter.SendNoContentAsync(requestInfo, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// Change a user&apos;s global role
+        /// Change a user&apos;s global roleRequires the `user:changeRole` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>
