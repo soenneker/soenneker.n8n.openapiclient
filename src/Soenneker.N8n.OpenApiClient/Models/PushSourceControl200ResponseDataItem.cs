@@ -211,7 +211,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(18)
             {
                 { "conflict", n => { Conflict = n.GetBoolValue(); } },
                 { "contentImportPolicy", n => { ContentImportPolicy = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl200ResponseDataItemContentImportPolicy>(global::Soenneker.N8n.OpenApiClient.Models.PushSourceControl200ResponseDataItemContentImportPolicy.CreateFromDiscriminatorValue); } },

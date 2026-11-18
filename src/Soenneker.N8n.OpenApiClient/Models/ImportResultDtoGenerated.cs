@@ -200,7 +200,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(13)
             {
                 { "agents", n => { Agents = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedAgentsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "bindings", n => { Bindings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings>(global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedBindings.CreateFromDiscriminatorValue); } },

@@ -78,7 +78,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "defaultAction", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGeneratedDefaultAction>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDefaultAction = default; _explicitNullProperties?.Remove("defaultAction"); AdditionalData["defaultAction"] = unknown; } else { DefaultAction = parsed; AdditionalData.Remove("defaultAction"); } } },
                 { "rules", n => { Rules = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItem>(global::Soenneker.N8n.OpenApiClient.Models.CredentialTypePolicyEffectivePublicDtoGeneratedRulesItem.CreateFromDiscriminatorValue)?.AsList(); } },

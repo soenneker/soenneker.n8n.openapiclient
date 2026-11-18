@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(5)
             {
                 { "averageRunTime", n => { AverageRunTime = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseAverageRunTime>(global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseAverageRunTime.CreateFromDiscriminatorValue); } },
                 { "failed", n => { Failed = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailed>(global::Soenneker.N8n.OpenApiClient.Models.GetInsightsSummary200ResponseFailed.CreateFromDiscriminatorValue); } },

@@ -104,7 +104,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(5)
             {
                 { "Credentials Risk Report", n => { CredentialsRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1CredentialsRiskReport>(global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1CredentialsRiskReport.CreateFromDiscriminatorValue); } },
                 { "Database Risk Report", n => { DatabaseRiskReport = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReport>(global::Soenneker.N8n.OpenApiClient.Models.GenerateAudit200ResponseAnyOf1DatabaseRiskReport.CreateFromDiscriminatorValue); } },

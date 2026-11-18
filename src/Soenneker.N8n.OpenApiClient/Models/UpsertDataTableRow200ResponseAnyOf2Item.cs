@@ -64,7 +64,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },
                 { "dryRunState", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.UpsertDataTableRow200ResponseAnyOf2ItemDryRunState>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDryRunState = default; _explicitNullProperties?.Remove("dryRunState"); AdditionalData["dryRunState"] = unknown; } else { DryRunState = parsed; AdditionalData.Remove("dryRunState"); } } },

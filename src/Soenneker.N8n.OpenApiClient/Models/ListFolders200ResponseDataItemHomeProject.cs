@@ -78,7 +78,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "icon", n => { Icon = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.ListFolders200ResponseDataItemHomeProjectIcon>(global::Soenneker.N8n.OpenApiClient.Models.ListFolders200ResponseDataItemHomeProjectIcon.CreateFromDiscriminatorValue); } },
                 { "id", n => { Id = n.GetStringValue(); } },

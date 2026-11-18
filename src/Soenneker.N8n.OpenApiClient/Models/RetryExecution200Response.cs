@@ -159,7 +159,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(13)
             {
                 { "annotation", n => { Annotation = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotation>(global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseAnnotation.CreateFromDiscriminatorValue); } },
                 { "customData", n => { CustomData = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseCustomData>(global::Soenneker.N8n.OpenApiClient.Models.RetryExecution200ResponseCustomData.CreateFromDiscriminatorValue); } },

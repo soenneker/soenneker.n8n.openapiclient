@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "blockedReason", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedWorkflowsItemPublishingBlockedReason>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueBlockedReason = default; _explicitNullProperties?.Remove("blockedReason"); AdditionalData["blockedReason"] = unknown; } else { BlockedReason = parsed; AdditionalData.Remove("blockedReason"); } } },
                 { "error", n => { Error = n.GetStringValue(); } },

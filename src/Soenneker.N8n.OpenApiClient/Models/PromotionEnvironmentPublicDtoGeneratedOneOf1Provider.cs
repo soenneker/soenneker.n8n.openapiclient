@@ -88,7 +88,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(6)
             {
                 { "authType", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionEnvironmentPublicDtoGeneratedOneOf1ProviderAuthType>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueAuthType = default; _explicitNullProperties?.Remove("authType"); AdditionalData["authType"] = unknown; } else { AuthType = parsed; AdditionalData.Remove("authType"); } } },
                 { "createdAt", n => { CreatedAt = n.GetDateTimeOffsetValue(); } },

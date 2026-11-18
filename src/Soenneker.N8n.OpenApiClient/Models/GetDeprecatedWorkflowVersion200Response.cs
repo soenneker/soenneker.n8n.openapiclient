@@ -150,7 +150,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(10)
             {
                 { "authors", n => { Authors = n.GetStringValue(); } },
                 { "connections", n => { Connections = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetDeprecatedWorkflowVersion200ResponseConnections>(global::Soenneker.N8n.OpenApiClient.Models.GetDeprecatedWorkflowVersion200ResponseConnections.CreateFromDiscriminatorValue); } },

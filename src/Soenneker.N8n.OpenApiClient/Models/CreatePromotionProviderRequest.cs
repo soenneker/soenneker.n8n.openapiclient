@@ -76,7 +76,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "auth", n => { Auth = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth>(global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestAuth.CreateFromDiscriminatorValue); } },
                 { "config", n => { Config = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig>(global::Soenneker.N8n.OpenApiClient.Models.CreatePromotionProviderRequestConfig.CreateFromDiscriminatorValue); } },

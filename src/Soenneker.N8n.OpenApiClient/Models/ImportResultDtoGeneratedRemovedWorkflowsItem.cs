@@ -97,7 +97,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(5)
             {
                 { "deletion", n => { var parsed = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.ImportResultDtoGeneratedRemovedWorkflowsItemDeletion>(); if (parsed == null && n.GetStringValue() is string unknown) { _explicitNullValueDeletion = default; _explicitNullProperties?.Remove("deletion"); AdditionalData["deletion"] = unknown; } else { Deletion = parsed; AdditionalData.Remove("deletion"); } } },
                 { "name", n => { Name = n.GetStringValue(); } },
