@@ -25,6 +25,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("commitSha") is { } nullNodeCommitSha && nullNodeCommitSha.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CommitSha = null;
             if (parseNode.GetChildNode("dependencies") is null) { _explicitNullValueDependencies = default!; _explicitNullProperties?.Remove("dependencies"); }
             else if (parseNode.GetChildNode("dependencies") is { } nullNodeDependencies && nullNodeDependencies.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Dependencies = null;
+            if (parseNode.GetChildNode("environment") is null) { _explicitNullValueEnvironment = default!; _explicitNullProperties?.Remove("environment"); }
+            else if (parseNode.GetChildNode("environment") is { } nullNodeEnvironment && nullNodeEnvironment.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Environment = null;
             if (parseNode.GetChildNode("resources") is null) { _explicitNullValueResources = default!; _explicitNullProperties?.Remove("resources"); }
             else if (parseNode.GetChildNode("resources") is { } nullNodeResources && nullNodeResources.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Resources = null;
             if (parseNode.GetChildNode("revision") is null) { _explicitNullValueRevision = default!; _explicitNullProperties?.Remove("revision"); }
@@ -75,6 +77,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem> Dependencies { get => _explicitNullValueDependencies; set { _explicitNullValueDependencies = value; AdditionalData?.Remove("dependencies"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("dependencies"); else _explicitNullProperties?.Remove("dependencies"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem> _explicitNullValueDependencies = default!;
 #endif
+        /// <summary>The environment property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseEnvironment? Environment { get => _explicitNullValueEnvironment; set { _explicitNullValueEnvironment = value; AdditionalData?.Remove("environment"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("environment"); else _explicitNullProperties?.Remove("environment"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseEnvironment? _explicitNullValueEnvironment = default!;
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseEnvironment Environment { get => _explicitNullValueEnvironment; set { _explicitNullValueEnvironment = value; AdditionalData?.Remove("environment"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("environment"); else _explicitNullProperties?.Remove("environment"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseEnvironment _explicitNullValueEnvironment = default!;
+#endif
         /// <summary>The resources property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -85,7 +97,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public List<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated> Resources { get => _explicitNullValueResources; set { _explicitNullValueResources = value; AdditionalData?.Remove("resources"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resources"); else _explicitNullProperties?.Remove("resources"); } }
         private List<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated> _explicitNullValueResources = default!;
 #endif
-        /// <summary>Apply only. Send it as `expectedPreviewRevision` to apply only when this instance still matches the preview.</summary>
+        /// <summary>A hash of what this preview shows. Send it as `expectedPreviewRevision` with Promote or Apply to run only when the preview did not change.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? Revision { get => _explicitNullValueRevision; set { _explicitNullValueRevision = value; AdditionalData?.Remove("revision"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("revision"); else _explicitNullProperties?.Remove("revision"); } }
@@ -128,12 +140,13 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(7)
+            return new Dictionary<string, Action<IParseNode>>(8)
             {
                 { "blocker", n => { Blocker = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseBlocker.CreateFromDiscriminatorValue); } },
                 { "check", n => { Check = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck.CreateFromDiscriminatorValue); } },
                 { "commitSha", n => { CommitSha = n.GetStringValue(); } },
                 { "dependencies", n => { Dependencies = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "environment", n => { Environment = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseEnvironment>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseEnvironment.CreateFromDiscriminatorValue); } },
                 { "resources", n => { Resources = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated>(global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "revision", n => { Revision = n.GetStringValue(); } },
                 { "source", n => { Source = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource>(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource.CreateFromDiscriminatorValue); } },
@@ -150,6 +163,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseCheck>("check", Check);
             writer.WriteStringValue("commitSha", CommitSha);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseDependenciesItem>("dependencies", Dependencies);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseEnvironment>("environment", Environment);
             writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceGenerated>("resources", Resources);
             writer.WriteStringValue("revision", Revision);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChanges200ResponseSource>("source", Source);

@@ -8,10 +8,10 @@ using System;
 namespace Soenneker.N8n.OpenApiClient.Models
 {
     /// <summary>
-    /// Channel actions that need approval before they run.
+    /// Run data to reuse, keyed by node name. Use `data.resultData.runData` from `GET /executions/{id}?includeData=true`. n8n reuses the output of these nodes and runs the other nodes up to the destination node. If the run data does not reach the destination node from a trigger, n8n runs the workflow from its trigger. If that trigger needs an external event to start, the API returns `409`.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class GetAgent200ResponseActiveVersionIntegrationsItemApproval : IAdditionalDataHolder, IParsable
+    public partial class RunWorkflowRequestRunData : IAdditionalDataHolder, IParsable
     , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
         // Track explicitly assigned nulls separately from absent properties.
         private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
@@ -23,21 +23,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Stores additional data not described in the OpenAPI description found when deserializing. Can be used for serialization as well.</summary>
         public IDictionary<string, object> AdditionalData { get; set; }
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.RunWorkflowRequestRunData"/> and sets the default values.
         /// </summary>
-        public GetAgent200ResponseActiveVersionIntegrationsItemApproval()
+        public RunWorkflowRequestRunData()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.RunWorkflowRequestRunData"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.RunWorkflowRequestRunData CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.RunWorkflowRequestRunData(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model

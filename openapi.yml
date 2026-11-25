@@ -10,7 +10,7 @@ info:
     name: Sustainable Use License
     url: https://github.com/n8n-io/n8n/blob/master/LICENSE.md
   version: 1.1.1
-  x-n8n-version: 2.49.5
+  x-n8n-version: 2.50.0
 externalDocs:
   description: n8n API documentation
   url: https://docs.n8n.io/api/
@@ -27,6 +27,10 @@ tags:
     x-displayName: Agents
     x-parent: BuildAndRun
     description: Operations about agents
+  - name: AiPreference
+    x-displayName: AI Preferences
+    x-parent: BuildAndRun
+    description: Operations about AI preferences
   - name: Audit
     x-displayName: Audit
     x-parent: InstanceOperations
@@ -956,6 +960,29 @@ paths:
                     required:
                       - versionId
                       - integrations
+                  parentFolder:
+                    type: object
+                    nullable: true
+                    properties:
+                      id:
+                        type: string
+                      name:
+                        type: string
+                      parentFolderId:
+                        type: string
+                        nullable: true
+                      createdAt:
+                        type: string
+                        format: date-time
+                      updatedAt:
+                        type: string
+                        format: date-time
+                    required:
+                      - id
+                      - name
+                      - parentFolderId
+                      - createdAt
+                      - updatedAt
                 required:
                   - id
                   - name
@@ -971,6 +998,7 @@ paths:
                   - configHash
                   - tools
                   - activeVersion
+                  - parentFolder
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -1087,118 +1115,92 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  projectId:
-                    type: string
-                  project:
-                    type: object
-                    nullable: true
-                    properties:
-                      id:
-                        type: string
-                      name:
-                        type: string
-                      type:
-                        type: string
-                    required:
-                      - id
-                      - name
-                      - type
-                  availableInMCP:
-                    type: boolean
-                  isArchived:
-                    type: boolean
-                  versionId:
-                    type: string
-                    nullable: true
-                  activeVersionId:
-                    type: string
-                    nullable: true
-                  createdAt:
-                    type: string
-                  updatedAt:
-                    type: string
-                  config:
-                    type: object
-                    nullable: true
-                  configHash:
-                    type: string
-                    nullable: true
-                  tools:
-                    type: object
-                    additionalProperties:
-                      type: object
-                      description: 'A custom tool: the code it runs and its descriptor.'
-                      properties:
-                        code:
-                          type: string
-                        descriptor:
-                          type: object
-                          description: The tool descriptor. `name` is required; other fields pass through.
-                          properties:
-                            name:
-                              type: string
-                          required:
-                            - name
-                          additionalProperties: true
-                      required:
-                        - code
-                        - descriptor
-                  activeVersion:
-                    type: object
-                    nullable: true
-                    properties:
-                      versionId:
-                        type: string
-                      integrations:
-                        type: array
-                        items:
-                          type: object
-                          description: A channel integration. `type` picks the platform.
-                          properties:
-                            type:
-                              type: string
-                              description: The integration type, for example `slack` or `webhook`.
-                            credentialId:
-                              type: string
-                            settings:
-                              type: object
-                              description: Platform-specific integration settings.
-                            approval:
-                              type: object
-                              description: Channel actions that need approval before they run.
-                          required:
-                            - type
-                            - credentialId
-                    required:
-                      - versionId
-                      - integrations
-                required:
-                  - id
-                  - name
-                  - projectId
-                  - project
-                  - availableInMCP
-                  - isArchived
-                  - versionId
-                  - activeVersionId
-                  - createdAt
-                  - updatedAt
-                  - config
-                  - configHash
-                  - tools
-                  - activeVersion
+                $ref: '#/components/schemas/agentPublicDto.generated'
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+    put:
+      operationId: updateAgent
+      tags:
+        - Agent
+      summary: Update an agent
+      description: |-
+        Replace the configuration of an agent. Send the configuration and the concurrency token you read from the retrieve endpoint: a stale token returns a conflict. Fields the server manages are ignored, not rejected. The retrieved body of an agent without a configuration carries a null configuration: sending it back changes nothing.
+
+        Requires the `agent:update` API key scope.
+      x-required-scope: agent:update
+      parameters:
+        - schema:
+            type: string
+          required: true
+          description: The ID of the agent.
+          name: agentId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                config:
+                  type: object
+                  nullable: true
+                baseConfigHash:
+                  type: string
+                  nullable: true
+                configHash:
+                  type: string
+                  nullable: true
+                id: {}
+                name: {}
+                projectId: {}
+                project: {}
+                availableInMCP: {}
+                isArchived: {}
+                versionId: {}
+                activeVersionId: {}
+                createdAt: {}
+                updatedAt: {}
+                tools: {}
+                activeVersion: {}
+                parentFolder: {}
+                parentFolderId: {}
+                isRunnable: {}
+                hasPublishHistory: {}
+                hasVersionHistory: {}
+                skills: {}
+                skillHashes: {}
+                outdatedSkillIds: {}
+                skillVersions: {}
+                adopted: {}
+              required:
+                - config
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/agentPublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
         '429':
           $ref: '#/components/responses/tooManyRequests'
     delete:
@@ -1253,6 +1255,298 @@ paths:
                   - activeVersionId
                   - createdAt
                   - updatedAt
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+  /ai-preferences:
+    get:
+      operationId: listAiPreferences
+      tags:
+        - AiPreference
+      summary: List AI preferences
+      description: |-
+        List the AI preferences you can read: the instance preferences, your own preferences, and the preferences of the projects where you hold the projectAiPreference:list permission. With the aiPreference:list permission, the list also has the preferences of other users. Filter with scope and projectId. The response is one cursor page: read the next page with the cursor query parameter.
+
+        Requires the `aiPreference:list` API key scope.
+      x-required-scope: aiPreference:list
+      parameters:
+        - $ref: '#/components/parameters/cursor'
+        - $ref: '#/components/parameters/limit'
+        - schema:
+            type: string
+            enum:
+              - user
+              - project
+              - instance
+          required: false
+          name: scope
+          in: query
+        - schema:
+            type: string
+            minLength: 1
+            maxLength: 36
+          required: false
+          name: projectId
+          in: query
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        id:
+                          type: string
+                        content:
+                          type: string
+                        scope:
+                          type: string
+                          enum:
+                            - user
+                            - project
+                            - instance
+                        userId:
+                          type: string
+                          nullable: true
+                        projectId:
+                          type: string
+                          nullable: true
+                        source:
+                          type: string
+                          enum:
+                            - ui
+                            - aia
+                            - mcp
+                            - api
+                        createdAt:
+                          type: string
+                        updatedAt:
+                          type: string
+                      required:
+                        - id
+                        - content
+                        - scope
+                        - userId
+                        - projectId
+                        - source
+                        - createdAt
+                        - updatedAt
+                  nextCursor:
+                    type: string
+                    nullable: true
+                required:
+                  - data
+                  - nextCursor
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+    post:
+      operationId: createAiPreference
+      tags:
+        - AiPreference
+      summary: Create an AI preference
+      description: |-
+        Create an AI preference for yourself (scope user), for a project (scope project, with projectId), or for the whole instance (scope instance). A preference for the instance or for another user needs the aiPreference:create permission. A preference for a project needs the projectAiPreference:create permission in that project. Each scope holds at most 50 preferences, and two preferences in one scope cannot have the same text.
+
+        Requires the `aiPreference:create` API key scope.
+      x-required-scope: aiPreference:create
+      parameters:
+        - $ref: '#/components/parameters/idempotencyKey'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  minLength: 1
+                  maxLength: 2000
+                  description: One instruction, written as the user would say it. At most 2000 characters. A scope that already holds 50 preferences refuses a new one, so edit or delete one first.
+                scope:
+                  type: string
+                  enum:
+                    - user
+                    - project
+                    - instance
+                projectId:
+                  type: string
+                  nullable: true
+                  maxLength: 36
+                userId:
+                  type: string
+                  nullable: true
+                  format: uuid
+              required:
+                - content
+                - scope
+              additionalProperties: false
+      responses:
+        '201':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/aiPreferencePublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '422':
+          $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+  /ai-preferences/{aiPreferenceId}:
+    get:
+      operationId: getAiPreference
+      tags:
+        - AiPreference
+      summary: Retrieve an AI preference
+      description: |-
+        Retrieve one AI preference by ID. The content, scope, userId and projectId fields form the body that the update endpoint takes.
+
+        Requires the `aiPreference:read` API key scope.
+      x-required-scope: aiPreference:read
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          required: true
+          description: The ID of the AI preference.
+          name: aiPreferenceId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/aiPreferencePublicDto.generated'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+    put:
+      operationId: updateAiPreference
+      tags:
+        - AiPreference
+      summary: Update an AI preference
+      description: |-
+        Replace an AI preference with the full body: content, scope, and the userId or projectId of the scope. A user preference names its user in userId, and a project preference names its project in projectId. A new scope moves the preference: a move needs the delete permission on the old scope and the create permission on the new one. A move also needs the aiPreference:create and aiPreference:delete API key scopes.
+
+        Requires the `aiPreference:update` API key scope.
+      x-required-scope: aiPreference:update
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          required: true
+          description: The ID of the AI preference.
+          name: aiPreferenceId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                content:
+                  type: string
+                  minLength: 1
+                  maxLength: 2000
+                  description: One instruction, written as the user would say it. At most 2000 characters. A scope that already holds 50 preferences refuses a new one, so edit or delete one first.
+                scope:
+                  type: string
+                  enum:
+                    - user
+                    - project
+                    - instance
+                projectId:
+                  type: string
+                  nullable: true
+                  maxLength: 36
+                userId:
+                  type: string
+                  nullable: true
+                  format: uuid
+              required:
+                - content
+                - scope
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/aiPreferencePublicDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+    delete:
+      operationId: deleteAiPreference
+      tags:
+        - AiPreference
+      summary: Delete an AI preference
+      description: |-
+        Delete an AI preference.
+
+        Requires the `aiPreference:delete` API key scope.
+      x-required-scope: aiPreference:delete
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          required: true
+          description: The ID of the AI preference.
+          name: aiPreferenceId
+          in: path
+      responses:
+        '204':
+          description: Operation successful.
         '401':
           $ref: '#/components/responses/unauthorized'
         '403':
@@ -8330,7 +8624,7 @@ paths:
 
         Credential and dependency references are resolved before writes. Request bindings support credential overrides only. Agent and workflow identities are matched automatically.
 
-        Agent packages require `agent:import` and `agent:read`. Workflow packages require `workflow:import`. Mixed packages require both import grants. A project package requires `project:create` when it creates a project, and `project:update` when `projectConflictPolicy=overwrite` changes the details of an existing project. It requires `folder:create` only when it creates a folder, and a license that supports folders only when it creates, changes or removes a folder. A workflow package with folders always requires `folder:create`, `folder:update` and that license. Planned Agent actions also require `agent:create`, `agent:update`, `agent:publish`, or `agent:unpublish`. Skipped Agents do not require write grants. Creating a project or instance skill requires `skill:create`, and saving a new version of one requires `skill:update`. When the import publishes a workflow, including a republish under `preserve-published-state`, the API key needs `workflow:activate`. When it unpublishes one, the key needs `workflow:deactivate`. Skipped workflows and workflows marked as archived in the package need neither publication scope. Archiving or restoring a matched workflow needs `workflow:delete`. Restoring and publishing a workflow requires both `workflow:delete` and `workflow:activate`. Archiving or restoring a matched Agent needs `agent:delete`. Creating a missing credential requires `credential:create`. Destination-project permissions and dependency scopes still apply.
+        Agent packages require `agent:import` and `agent:read`. Workflow packages require `workflow:import`. Mixed packages require both import grants. A project package requires `project:create` when it creates a project, and `project:update` when `projectConflictPolicy=overwrite` changes the details of an existing project. An import requires `folder:create` only when it creates a folder, and a license that supports folders only when it creates, changes or removes a folder. It requires `dataTable:create` only when it creates a data table. Planned Agent actions also require `agent:create`, `agent:update`, `agent:publish`, or `agent:unpublish`. Skipped Agents do not require write grants. Creating a project or instance skill requires `skill:create`, and saving a new version of one requires `skill:update`. When the import publishes a workflow, including a republish under `preserve-published-state`, the API key needs `workflow:activate`. When it unpublishes one, the key needs `workflow:deactivate`. Skipped workflows and workflows marked as archived in the package need neither publication scope. Archiving or restoring a matched workflow needs `workflow:delete`. Restoring and publishing a workflow requires both `workflow:delete` and `workflow:activate`. Archiving or restoring a matched Agent needs `agent:delete`. Creating a missing credential requires `credential:create`. Destination-project permissions and dependency scopes still apply.
 
         The response contains Agent summaries in `agents`, source IDs in `bindings.agents`, and totals in `counts.agents`. Definition import and publication have separate outcomes. Check `agents[].publishing.state` and `workflows[].publishing.state` for publication results, including `failed`. A publication failure retains the imported definition and returns HTTP 200.
 
@@ -8430,7 +8724,7 @@ paths:
                     - merge
                     - fail
                     - overwrite
-                  description: What to do when a package folder already exists at the same position in the target project. Defaults to whatever `projectConflictPolicy` is, so the intent is stated once; a workflow package defines no projects, so it defaults to `merge` there. `merge` reuses the existing folder and merges the package's children into it. `fail` rejects the import. `overwrite` reuses folders as `merge` does and additionally removes workflows the package does not contain — at a project's root and in folders the package defines, leaving target-only folders and their contents alone. Folders it does not define are then removed too, but only once nothing is left inside them. Removals are listed under `removedWorkflows` and `removedFolders`; see `overwriteDeletionPolicy`. A folder whose id sits under a different parent, or belongs to another project, always blocks the import. `overwrite` is project-packages-only. When it removes a workflow, it needs the `workflow:delete` scope. When it removes a folder, it needs `folder:delete`. It is rejected against a `projectConflictPolicy` other than `overwrite`, and blocks up front if the caller cannot delete something it would remove. A project package needs the `folder:create` scope only when the import creates a folder, and a folders-enabled license only when it creates, changes or removes a folder. A workflow package with folders always needs `folder:create`, `folder:update` and that license.
+                  description: What to do when a package folder already exists at the same position in the target project. Defaults to whatever `projectConflictPolicy` is, so the intent is stated once; a workflow package defines no projects, so it defaults to `merge` there. `merge` reuses the existing folder and merges the package's children into it. `fail` rejects the import. `overwrite` reuses folders as `merge` does and additionally removes workflows the package does not contain — at a project's root and in folders the package defines, leaving target-only folders and their contents alone. Folders it does not define are then removed too, but only once nothing is left inside them. Removals are listed under `removedWorkflows` and `removedFolders`; see `overwriteDeletionPolicy`. A folder whose id sits under a different parent, or belongs to another project, always blocks the import. `overwrite` is project-packages-only. When it removes a workflow, it needs the `workflow:delete` scope. When it removes a folder, it needs `folder:delete`. It is rejected against a `projectConflictPolicy` other than `overwrite`, and blocks up front if the caller cannot delete something it would remove. The import needs the `folder:create` scope only when it creates a folder, and a folders-enabled license only when it creates, changes or removes a folder.
                 overwriteDeletionPolicy:
                   type: string
                   enum:
@@ -8451,7 +8745,7 @@ paths:
                     - must-preexist
                     - do-nothing
                   default: create
-                  description: Controls what happens when a referenced data table has no match in the target project. `create` (default) creates it from the package schema, keeping the source id, with no rows; requires the `dataTable:create` scope. `must-preexist` rejects the import. `do-nothing` skips creation of missing tables. Under the `keep-existing`, `fail`, and `overwrite-non-destructive` schema conflict policies, matched tables are still validated for schema compatibility and can still block the import. The import never imports table rows. Matched tables change only under `dataTableSchemaConflictPolicy=overwrite` or `overwrite-non-destructive`, which keep their rows.
+                  description: Controls what happens when a referenced data table has no match in the target project. `create` (default) creates it from the package schema, keeping the source id, with no rows. It requires the `dataTable:create` scope only when it creates a table. A table that already exists needs no scope. `must-preexist` rejects the import. `do-nothing` skips creation of missing tables. Under the `keep-existing`, `fail`, and `overwrite-non-destructive` schema conflict policies, matched tables are still validated for schema compatibility and can still block the import. The import never imports table rows. Matched tables change only under `dataTableSchemaConflictPolicy=overwrite` or `overwrite-non-destructive`, which keep their rows.
                 dataTableSchemaConflictPolicy:
                   type: string
                   enum:
@@ -8838,7 +9132,7 @@ paths:
         '415':
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
-          $ref: '#/components/responses/unprocessableEntity'
+          description: A requested workflow cannot be exported because its stored data is invalid. The message names the workflow and the invalid fields.
         '429':
           $ref: '#/components/responses/tooManyRequests'
   /node-type-policies/instance:
@@ -11710,7 +12004,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Prepares the environment on the instance that handles the request. For a Git provider, this clones the configured branch into local storage. Safe to call repeatedly. Connecting one environment does not make another ready. Another operation on the same environment returns 423.
+        Prepares the environment on the instance that handles the request. For a Git provider, this clones the configured branch into local storage. Safe to call repeatedly. This call is optional: other operations prepare the environment when they need it. Another operation on the same environment returns 423.
 
         Requires the `promotions:connect` API key scope.
       x-required-scope: promotions:connect
@@ -11842,7 +12136,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Reads the package at the Apply branch tip and returns its team projects whose IDs do not exist on this instance. Projects are matched by ID, not by name. An ID that a personal project uses counts as existing. Create each project with `POST /projects`, using the returned id, name, icon, description, and customTelemetryTags. The new project is empty, and the caller becomes its project admin. Then use the project Apply flow to apply its resources. An empty `data` means that no setup is needed. `git` is null when the branch has no package yet. Requires a connected Apply environment with instance scope.
+        Reads the package at the Apply branch tip and returns its team projects whose IDs do not exist on this instance. Projects are matched by ID, not by name. An ID that a personal project uses counts as existing. Create each project with `POST /projects`, using the returned id, name, icon, description, and customTelemetryTags. The new project is empty, and the caller becomes its project admin. Then use the project Apply flow to apply its resources. An empty `data` means that no setup is needed. `git` is null when the branch has no package yet. Requires an Apply environment with instance scope.
 
         Requires the `promotions:read` API key scope.
       x-required-scope: promotions:read
@@ -11929,6 +12223,8 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '423':
+          $ref: '#/components/responses/locked'
         '429':
           $ref: '#/components/responses/tooManyRequests'
         '503':
@@ -12044,7 +12340,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can't move it between projects. Requires a connected Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.
+        Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can't move it between projects. Requires a Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.
 
         Requires the `promotions:promote` API key scope.
       x-required-scope: promotions:promote
@@ -12077,7 +12373,80 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/promotePackageResultDto.generated'
+                type: object
+                properties:
+                  environmentId:
+                    type: string
+                    minLength: 1
+                    maxLength: 36
+                  counts:
+                    type: object
+                    properties:
+                      workflows:
+                        type: integer
+                        minimum: 0
+                      folders:
+                        type: integer
+                        minimum: 0
+                      credentials:
+                        type: integer
+                        minimum: 0
+                      dataTables:
+                        type: integer
+                        minimum: 0
+                      variables:
+                        type: integer
+                        minimum: 0
+                      tags:
+                        type: integer
+                        minimum: 0
+                    required:
+                      - workflows
+                      - folders
+                      - credentials
+                      - dataTables
+                      - variables
+                      - tags
+                  git:
+                    type: object
+                    properties:
+                      commitSha:
+                        type: string
+                      branchName:
+                        type: string
+                    required:
+                      - commitSha
+                      - branchName
+                  review:
+                    type: object
+                    properties:
+                      reviewId:
+                        type: string
+                        minLength: 1
+                        maxLength: 36
+                      number:
+                        type: integer
+                      webUrl:
+                        type: string
+                    required:
+                      - reviewId
+                      - number
+                      - webUrl
+                  warnings:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        message:
+                          type: string
+                        linkUrl:
+                          type: string
+                      required:
+                        - message
+                required:
+                  - environmentId
+                  - counts
+                  - git
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -12107,7 +12476,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Checks the full package at the configured branch tip. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup, if the import conflicts with this instance, or if the apply would delete team projects that the package does not hold. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Workflows and folders move within their project to match the branch, and folders take the name on the branch. Apply cannot move a workflow or folder between projects. It returns a `moved` conflict in `blocked` with both projects. For a personal project, the conflict gives only the ID. Requires a connected Apply environment with instance scope. The importer checks user write permissions; granular API-key write scopes are not passed to it. Another operation on the same environment returns 423.
+        Checks the full package at the configured branch tip. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview; status `source-changed` means the branch moved since that review and nothing was imported. Optionally send expectedPreviewRevision with the `revision` of the reviewed preview; status `preview-changed` means this instance changed since that review and nothing was imported. Returns status `blocked` before import writes if bindings need setup, if the import conflicts with this instance, or if the apply would delete team projects that the package does not hold. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Workflows and folders move within their project to match the branch, and folders take the name on the branch. Apply cannot move a workflow or folder between projects. It returns a `moved` conflict in `blocked` with both projects. For a personal project, the conflict gives only the ID. Requires an Apply environment with instance scope. The importer checks user write permissions; granular API-key write scopes are not passed to it. Another operation on the same environment returns 423.
 
         Requires the `promotions:apply` API key scope.
       x-required-scope: promotions:apply
@@ -12144,6 +12513,10 @@ paths:
                     - branchName
                     - commitSha
                   additionalProperties: false
+                expectedPreviewRevision:
+                  type: string
+                  pattern: ^[0-9a-f]{64}$
+                  description: The `revision` of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status `preview-changed` and changes nothing.
               additionalProperties: false
       responses:
         '200':
@@ -12181,7 +12554,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Rechecks the configured source and current target bindings. Send expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes and delete the reported team projects. Status `source-changed` requires a new Apply review. Status `blocked` returns every blocker again, without import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same connected instance environment and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided. Another operation on the same environment returns 423.
+        Rechecks the configured source and current target bindings. Send expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send `confirmDestructiveChanges: true` to also apply destructive data table changes and delete the reported team projects. Send expectedPreviewRevision to confirm only what the reviewed preview showed. Status `source-changed` or `preview-changed` requires a new Apply review. Status `blocked` returns every blocker again, without import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same instance environment and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided. Another operation on the same environment returns 423.
 
         Requires the `promotions:apply` API key scope.
       x-required-scope: promotions:apply
@@ -12219,9 +12592,13 @@ paths:
                     - branchName
                     - commitSha
                   additionalProperties: false
+                expectedPreviewRevision:
+                  type: string
+                  pattern: ^[0-9a-f]{64}$
+                  description: The `revision` of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status `preview-changed` and changes nothing.
                 confirmDestructiveChanges:
                   type: boolean
-                  description: 'Also applies destructive data table changes, which a `destructive-change` conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a `project-deletion` conflict reports, with everything in them. The confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result.'
+                  description: 'Also applies destructive data table changes, which a `destructive-change` conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a `project-deletion` conflict reports, with everything in them. Without `expectedPreviewRevision`, the confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result.'
               required:
                 - expectedSource
               additionalProperties: false
@@ -12252,6 +12629,267 @@ paths:
           $ref: '#/components/responses/tooManyRequests'
         '503':
           $ref: '#/components/responses/serviceUnavailable'
+  /promotions/environments/{promotionEnvironmentId}/changes:
+    get:
+      operationId: getInstanceApplyChanges
+      tags:
+        - Promotions
+      summary: 'Beta: Preview the Apply of the whole instance'
+      description: |-
+        **Beta** — breaking changes may still occur without major version bump.
+
+        Shows what applying the branch tip of an instance Apply environment changes on this instance, for every project of the package. `resources` and `dependencies` have the same shape as the project change preview. Resources are not selectable: Apply applies the whole package. A team project that the package does not hold is listed as `deleted`, with the folders, workflows, credentials, data tables and variables that it owns. Workflows and folders that a kept project no longer holds are listed as `deleted` too. `check` lists what blocks the Apply. A `project-deletion` conflict needs `confirmDestructiveChanges` on Continue. Send `revision` as expectedPreviewRevision and `commitSha` in expectedSource to apply only what this preview shows. Requires an Apply environment with instance scope.
+
+        Requires the `promotions:apply` API key scope.
+      x-required-scope: promotions:apply
+      parameters:
+        - schema:
+            type: string
+            format: uuid
+          required: true
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
+          in: path
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  commitSha:
+                    type: string
+                  source:
+                    type: object
+                    properties:
+                      environmentId:
+                        type: string
+                        minLength: 1
+                        maxLength: 36
+                      branchName:
+                        type: string
+                    required:
+                      - environmentId
+                      - branchName
+                  environment:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      providerType:
+                        type: string
+                        enum:
+                          - git
+                          - gitlab
+                      createBranchOnPromotion:
+                        type: boolean
+                        description: Promote only. When true, Promote pushes to a new branch created from `source.branchName`. When false, it pushes to `source.branchName` directly.
+                    required:
+                      - name
+                      - providerType
+                  resources:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/promotionResource.generated'
+                  dependencies:
+                    type: array
+                    items:
+                      type: object
+                      properties:
+                        workflowKey:
+                          type: string
+                        resourceKey:
+                          type: string
+                        included:
+                          type: boolean
+                          description: Whether selecting the workflow also sends the resource. `false` for sub-workflows, which need their own selection.
+                      required:
+                        - workflowKey
+                        - resourceKey
+                        - included
+                  check:
+                    allOf:
+                      - $ref: '#/components/schemas/promotionApplyCheck.generated'
+                      - type: object
+                        properties:
+                          movedWorkflows:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                name:
+                                  type: string
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                projectExists:
+                                  type: boolean
+                                instanceProject:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                              required:
+                                - id
+                                - name
+                                - project
+                                - projectExists
+                                - instanceProject
+                          movedFolders:
+                            type: array
+                            items:
+                              type: object
+                              properties:
+                                id:
+                                  type: string
+                                name:
+                                  type: string
+                                project:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                                    - name
+                                projectExists:
+                                  type: boolean
+                                instanceProject:
+                                  type: object
+                                  properties:
+                                    id:
+                                      type: string
+                                      minLength: 1
+                                    name:
+                                      type: string
+                                  required:
+                                    - id
+                              required:
+                                - id
+                                - name
+                                - project
+                                - projectExists
+                                - instanceProject
+                        required:
+                          - movedWorkflows
+                          - movedFolders
+                  revision:
+                    type: string
+                    description: Send it as `expectedPreviewRevision` to apply only when this instance still matches the preview.
+                required:
+                  - commitSha
+                  - source
+                  - environment
+                  - resources
+                  - dependencies
+                  - check
+                  - revision
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '423':
+          $ref: '#/components/responses/locked'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
+  /promotions/environments/{promotionEnvironmentId}/changes/details:
+    post:
+      operationId: getInstanceApplyChangeDetails
+      tags:
+        - Promotions
+      summary: 'Beta: Read the content of resources in the whole-instance Apply preview'
+      description: |-
+        **Beta** — breaking changes may still occur without major version bump.
+
+        Returns the content before and after the change for up to 50 resources of the whole-instance Apply preview. Send the `commitSha` and the resource `key` values from the preview. The branch side is read at that commit. The instance side is read now, so a `revision` that differs from the preview means the resource changed after the preview. A data table that a deleted project owns but no workflow uses has its current content as `before`. `missingKeys` lists requested resources that neither side holds anymore, and such credentials and variables, which have no content to show. Credential content holds expressions only. Variable values are left out, and `valueHidden` is true, unless the API key and the user have the variable:list scope.
+
+        Requires the `promotions:apply` API key scope.
+      x-required-scope: promotions:apply
+      parameters:
+        - $ref: '#/components/parameters/idempotencyKey'
+        - schema:
+            type: string
+            format: uuid
+          required: true
+          description: The ID of the promotion environment.
+          name: promotionEnvironmentId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                commitSha:
+                  type: string
+                  nullable: true
+                  pattern: ^[0-9a-f]{40}([0-9a-f]{24})?$
+                  description: The `commitSha` of the preview. `null` when the preview had none.
+                keys:
+                  type: array
+                  items:
+                    type: string
+                    minLength: 1
+                  minItems: 1
+                  maxItems: 50
+                  description: The `key` of each resource to read, from the preview.
+              required:
+                - commitSha
+                - keys
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/promotionResourceDetailsDto.generated'
+        '400':
+          $ref: '#/components/responses/badRequest'
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          $ref: '#/components/responses/forbidden'
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '422':
+          $ref: '#/components/responses/unprocessableEntity'
+        '423':
+          $ref: '#/components/responses/locked'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
+        '503':
+          $ref: '#/components/responses/serviceUnavailable'
   /promotions/projects/{projectId}/changes/{direction}:
     get:
       operationId: getPromotionChanges
@@ -12261,7 +12899,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Compares a team project on this instance with the branch of its promotion environment for that direction. For `promote` the preview is what a promotion sends to the branch, and the key needs the promotions:promote scope. For `apply` the preview is what applying the branch changes on this instance, and the key needs the promotions:apply scope. `resources` lists the changed projects, folders, workflows, credentials, data tables, variables and tags, each with its `key`, `type`, `id`, `change` and the `parentKey` of the project or folder that holds it. It also lists unchanged resources that give context, such as parent folders. Select the workflows and folders where `selectable` is true by `workflowIds` and `folderIds`; the project itself is always included. `dependencies` links each workflow to the resources it uses; selecting the workflow sends a dependency when `included` is true. A deleted promote workflow with `movedToProject`, or an added one with `movedFromProject`, moved between projects; promoting it is refused until it moves back. `blocker` is set when an open review holds the changes of a Promote. For `apply`, `check` lists what blocks the Apply, and `revision` identifies this preview: send it as expectedPreviewRevision. `commitSha` is the commit the preview was read from. Requires the environment to be connected first.
+        Compares a team project on this instance with the branch of its promotion environment for that direction. For `promote` the preview is what a promotion sends to the branch, and the key needs the promotions:promote scope. For `apply` the preview is what applying the branch changes on this instance, and the key needs the promotions:apply scope. `resources` lists the changed projects, folders, workflows, credentials, data tables, variables and tags, each with its `key`, `type`, `id`, `change` and the `parentKey` of the project or folder that holds it. It also lists unchanged resources that give context, such as parent folders. Select the workflows and folders where `selectable` is true by `workflowIds` and `folderIds`; the project itself is always included. `dependencies` links each workflow to the resources it uses; selecting the workflow sends a dependency when `included` is true. A deleted promote workflow with `movedToProject`, or an added one with `movedFromProject`, moved between projects; promoting it is refused until it moves back. `blocker` is set when an open review holds the changes of a Promote. For `apply`, `check` lists what blocks the Apply. `revision` identifies this preview: send it as expectedPreviewRevision with Promote or Apply. `commitSha` is the commit the preview was read from.
 
         Requires one of these API key scopes: `promotions:promote`, `promotions:apply`.
       x-required-scope: promotions:promote,promotions:apply
@@ -12304,6 +12942,22 @@ paths:
                     required:
                       - environmentId
                       - branchName
+                  environment:
+                    type: object
+                    properties:
+                      name:
+                        type: string
+                      providerType:
+                        type: string
+                        enum:
+                          - git
+                          - gitlab
+                      createBranchOnPromotion:
+                        type: boolean
+                        description: Promote only. When true, Promote pushes to a new branch created from `source.branchName`. When false, it pushes to `source.branchName` directly.
+                    required:
+                      - name
+                      - providerType
                   resources:
                     type: array
                     items:
@@ -12423,12 +13077,14 @@ paths:
                           - movedFolders
                   revision:
                     type: string
-                    description: Apply only. Send it as `expectedPreviewRevision` to apply only when this instance still matches the preview.
+                    description: A hash of what this preview shows. Send it as `expectedPreviewRevision` with Promote or Apply to run only when the preview did not change.
                 required:
                   - commitSha
                   - source
+                  - environment
                   - resources
                   - dependencies
+                  - revision
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -12437,6 +13093,10 @@ paths:
           $ref: '#/components/responses/forbidden'
         '404':
           $ref: '#/components/responses/notFound'
+        '409':
+          $ref: '#/components/responses/conflict'
+        '423':
+          $ref: '#/components/responses/locked'
         '429':
           $ref: '#/components/responses/tooManyRequests'
         '503':
@@ -12501,19 +13161,7 @@ paths:
           content:
             application/json:
               schema:
-                type: object
-                properties:
-                  details:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/promotionResourceDetail.generated'
-                  missingKeys:
-                    type: array
-                    items:
-                      type: string
-                required:
-                  - details
-                  - missingKeys
+                $ref: '#/components/schemas/promotionResourceDetailsDto.generated'
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -12528,6 +13176,8 @@ paths:
           $ref: '#/components/responses/unsupportedMediaType'
         '422':
           $ref: '#/components/responses/unprocessableEntity'
+        '423':
+          $ref: '#/components/responses/locked'
         '429':
           $ref: '#/components/responses/tooManyRequests'
         '503':
@@ -12541,7 +13191,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Promotes a chosen set of a team project's workflows and folders to the branch of the project's Promote environment. The project's own details (name, icon, description and telemetry tags) are always written, so a request without workflowIds and folderIds promotes only the project. A selected folder is written with the folders above it; a renamed or moved folder moves the workflows inside it on the branch, without changing their content. Status 400 with 'Nothing to promote' means the branch already matches the selection. Send ids only; the server reads each one now, so the push carries the current state. Live and archived workflows the project owns are exported, so an archived id stays on the branch as archived; an id whose workflow is gone from the instance leaves the branch, matching the project's change list. A workflow that moved into or out of the project since the branch was written is refused with 400; move it back first. A deletion the branch does not hold under this project rejects the whole request before any write. Requires a Promote environment to resolve for the project (its own Promote environment, otherwise the instance Promote environment), and requires it to be connected first. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.
+        Promotes a chosen set of a team project's workflows and folders to the branch of the project's Promote environment. The project's own details (name, icon, description and telemetry tags) are always written, so a request without workflowIds and folderIds promotes only the project. A selected folder is written with the folders above it; a renamed or moved folder moves the workflows inside it on the branch, without changing their content. Status 400 with 'Nothing to promote' means the branch already matches the selection. Send ids only; the server reads each one now, so the push carries the current state. Live and archived workflows the project owns are exported, so an archived id stays on the branch as archived; an id whose workflow is gone from the instance leaves the branch, matching the project's change list. A workflow that moved into or out of the project since the branch was written is refused with 400; move it back first. A deletion the branch does not hold under this project rejects the whole request before any write. Requires a Promote environment to resolve for the project (its own Promote environment, otherwise the instance Promote environment). The API key also needs variable:list when the workflows reference variables. Optionally send expectedPreviewRevision with the revision of the reviewed Promote preview. Status `preview-changed` means the project on this instance or its branch changed since that review, and nothing was pushed. Status `promoted` includes counts and git. Inspect status before reading counts. Another operation on the same environment returns 423.
 
         Requires the `promotions:promote` API key scope.
       x-required-scope: promotions:promote
@@ -12577,6 +13227,10 @@ paths:
                   minLength: 1
                   maxLength: 1000
                   description: Message for the promotion commit. If you omit it, the commit uses a generated message.
+                expectedPreviewRevision:
+                  type: string
+                  pattern: ^[0-9a-f]{64}$
+                  description: The `revision` of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status `preview-changed` and changes nothing.
               additionalProperties: false
       responses:
         '200':
@@ -12584,7 +13238,100 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/promotePackageResultDto.generated'
+                oneOf:
+                  - type: object
+                    properties:
+                      environmentId:
+                        type: string
+                        minLength: 1
+                        maxLength: 36
+                      counts:
+                        type: object
+                        properties:
+                          workflows:
+                            type: integer
+                            minimum: 0
+                          folders:
+                            type: integer
+                            minimum: 0
+                          credentials:
+                            type: integer
+                            minimum: 0
+                          dataTables:
+                            type: integer
+                            minimum: 0
+                          variables:
+                            type: integer
+                            minimum: 0
+                          tags:
+                            type: integer
+                            minimum: 0
+                        required:
+                          - workflows
+                          - folders
+                          - credentials
+                          - dataTables
+                          - variables
+                          - tags
+                      git:
+                        type: object
+                        properties:
+                          commitSha:
+                            type: string
+                          branchName:
+                            type: string
+                        required:
+                          - commitSha
+                          - branchName
+                      review:
+                        type: object
+                        properties:
+                          reviewId:
+                            type: string
+                            minLength: 1
+                            maxLength: 36
+                          number:
+                            type: integer
+                          webUrl:
+                            type: string
+                        required:
+                          - reviewId
+                          - number
+                          - webUrl
+                      warnings:
+                        type: array
+                        items:
+                          type: object
+                          properties:
+                            message:
+                              type: string
+                            linkUrl:
+                              type: string
+                          required:
+                            - message
+                      status:
+                        type: string
+                        enum:
+                          - promoted
+                    required:
+                      - environmentId
+                      - counts
+                      - git
+                      - status
+                  - type: object
+                    properties:
+                      status:
+                        type: string
+                        enum:
+                          - preview-changed
+                      environmentId:
+                        type: string
+                        minLength: 1
+                        maxLength: 36
+                    required:
+                      - status
+                      - environmentId
+                type: object
         '400':
           $ref: '#/components/responses/badRequest'
         '401':
@@ -12614,7 +13361,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Applies selected changes from the project's Apply branch. The project's name, icon, description and telemetry tags always come from the branch, so a request without workflowIds and folderIds applies only the project. The server imports the selected workflow IDs present on the branch for this project. It removes a selected workflow owned by this project when the branch does not hold it. Duplicate or invalid IDs reject the whole request. Unselected content stays unchanged. A selected workflow or folder is created, or moved within the project to match the branch, together with the folders above it, and those folders take the name on the branch; other folders stay as they are. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview. Status `source-changed` means the source changed since that review and nothing was imported. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Status `preview-changed` means this instance changed since that review and nothing was imported. Status `blocked` returns the blockers before import writes: bindings that need setup and conflicts with this instance. Apply cannot move a selected workflow or a folder of this project between projects. It returns a `moved` conflict in `blocked` with both projects. For a personal project, the conflict gives only the ID. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Requires a connected Apply environment for the project: its own Apply environment, otherwise the instance Apply environment. The importer checks user write permissions. Another operation on the same environment returns 423.
+        Applies selected changes from the project's Apply branch. The project's name, icon, description and telemetry tags always come from the branch, so a request without workflowIds and folderIds applies only the project. The server imports the selected workflow IDs present on the branch for this project. It removes a selected workflow owned by this project when the branch does not hold it. Duplicate or invalid IDs reject the whole request. Unselected content stays unchanged. A selected workflow or folder is created, or moved within the project to match the branch, together with the folders above it, and those folders take the name on the branch; other folders stay as they are. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview. Status `source-changed` means the source changed since that review and nothing was imported. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Status `preview-changed` means this instance changed since that review and nothing was imported. Status `blocked` returns the blockers before import writes: bindings that need setup and conflicts with this instance. Apply cannot move a selected workflow or a folder of this project between projects. It returns a `moved` conflict in `blocked` with both projects. For a personal project, the conflict gives only the ID. Retain environmentId and git for Continue. Status `applied` includes counts and warnings. Inspect status before reading counts. Requires an Apply environment for the project: its own Apply environment, otherwise the instance Apply environment. The importer checks user write permissions. Another operation on the same environment returns 423.
 
         Requires the `promotions:apply` API key scope.
       x-required-scope: promotions:apply
@@ -12666,7 +13413,7 @@ paths:
                 expectedPreviewRevision:
                   type: string
                   pattern: ^[0-9a-f]{64}$
-                  description: The `revision` of the reviewed Apply preview. Apply builds the preview again and returns status `preview-changed` without writing when it differs, for example after a local edit.
+                  description: The `revision` of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status `preview-changed` and changes nothing.
               additionalProperties: false
       responses:
         '200':
@@ -12704,7 +13451,7 @@ paths:
       description: |-
         **Beta** — breaking changes may still occur without major version bump.
 
-        Rechecks the project's Apply source and the current bindings for the selection. Resend the full selection: workflowIds and folderIds. Send the required expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Send `confirmDestructiveChanges: true` to also apply destructive data table changes. The server does not keep a session. Status `source-changed` or `preview-changed` requires a new Apply review. Status `blocked` returns every blocker again, before import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Unselected content stays unchanged. Requires the same connected Apply environment and permissions as the initial selection apply. The importer checks user write permissions. Another operation on the same environment returns 423.
+        Rechecks the project's Apply source and the current bindings for the selection. Resend the full selection: workflowIds and folderIds. Send the required expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Send `confirmDestructiveChanges: true` to also apply destructive data table changes. The server does not keep a session. Status `source-changed` or `preview-changed` requires a new Apply review. Status `blocked` returns every blocker again, before import writes. Status `applied` includes counts and warnings. Inspect status before reading counts. Unselected content stays unchanged. Requires the same Apply environment and permissions as the initial selection apply. The importer checks user write permissions. Another operation on the same environment returns 423.
 
         Requires the `promotions:apply` API key scope.
       x-required-scope: promotions:apply
@@ -12757,10 +13504,10 @@ paths:
                 expectedPreviewRevision:
                   type: string
                   pattern: ^[0-9a-f]{64}$
-                  description: The `revision` of the reviewed Apply preview. Apply builds the preview again and returns status `preview-changed` without writing when it differs, for example after a local edit.
+                  description: The `revision` of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status `preview-changed` and changes nothing.
                 confirmDestructiveChanges:
                   type: boolean
-                  description: 'Also applies destructive data table changes, which a `destructive-change` conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a `project-deletion` conflict reports, with everything in them. The confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result.'
+                  description: 'Also applies destructive data table changes, which a `destructive-change` conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a `project-deletion` conflict reports, with everything in them. Without `expectedPreviewRevision`, the confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result.'
               required:
                 - expectedSource
               additionalProperties: false
@@ -13915,6 +14662,7 @@ paths:
                               enum:
                                 - review_pending
                                 - changes_requested
+                                - review_required
                                 - insufficient_api_key_scope
                                 - insufficient_permissions
                             workflowReviewRequestId:
@@ -14136,6 +14884,7 @@ paths:
                               enum:
                                 - review_pending
                                 - changes_requested
+                                - review_required
                                 - insufficient_api_key_scope
                                 - insufficient_permissions
                             workflowReviewRequestId:
@@ -14304,6 +15053,7 @@ paths:
                               enum:
                                 - review_pending
                                 - changes_requested
+                                - review_required
                                 - insufficient_api_key_scope
                                 - insufficient_permissions
                             workflowReviewRequestId:
@@ -14504,6 +15254,7 @@ paths:
                           enum:
                             - review_pending
                             - changes_requested
+                            - review_required
                             - insufficient_api_key_scope
                             - insufficient_permissions
                         workflowReviewRequestId:
@@ -14665,6 +15416,7 @@ paths:
                           enum:
                             - review_pending
                             - changes_requested
+                            - review_required
                             - insufficient_api_key_scope
                             - insufficient_permissions
                         workflowReviewRequestId:
@@ -19560,7 +20312,7 @@ paths:
         '404':
           $ref: '#/components/responses/notFound'
         '409':
-          description: Conflict, e.g. re-publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present; the update itself is still saved as a draft) or a webhook path conflict.
+          description: Conflict, e.g. re-publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present), re-publication of a version without an approved review when the instance requires one (then `reason` is `review_required` and `versionId` names the draft), or a webhook path conflict. A blocked re-publication still saves the update as a draft. To save without publishing, set `publishIfActive=false`.
           content:
             application/json:
               schema:
@@ -19573,7 +20325,10 @@ paths:
                     enum:
                       - review_pending
                       - changes_requested
+                      - review_required
                   workflowReviewRequestId:
+                    type: string
+                  versionId:
                     type: string
                 required:
                   - message
@@ -20395,7 +21150,7 @@ paths:
         '404':
           $ref: '#/components/responses/notFound'
         '409':
-          description: Conflict, e.g. publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present) or a webhook path conflict.
+          description: Conflict, e.g. publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present), publication of a version without an approved review when the instance requires one (then `reason` is `review_required` and `versionId` is present), or a webhook path conflict.
           content:
             application/json:
               schema:
@@ -20408,7 +21163,10 @@ paths:
                     enum:
                       - review_pending
                       - changes_requested
+                      - review_required
                   workflowReviewRequestId:
+                    type: string
+                  versionId:
                     type: string
                 required:
                   - message
@@ -20499,7 +21257,7 @@ paths:
         '404':
           $ref: '#/components/responses/notFound'
         '409':
-          description: Conflict, e.g. publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present) or a webhook path conflict.
+          description: Conflict, e.g. publication blocked by an open workflow review (then `reason` and `workflowReviewRequestId` are present), publication of a version without an approved review when the instance requires one (then `reason` is `review_required` and `versionId` is present), or a webhook path conflict.
           content:
             application/json:
               schema:
@@ -20512,7 +21270,10 @@ paths:
                     enum:
                       - review_pending
                       - changes_requested
+                      - review_required
                   workflowReviewRequestId:
+                    type: string
+                  versionId:
                     type: string
                 required:
                   - message
@@ -20935,6 +21696,92 @@ paths:
           $ref: '#/components/responses/notFound'
         '429':
           $ref: '#/components/responses/tooManyRequests'
+  /workflows/{workflowId}/run:
+    post:
+      operationId: runWorkflow
+      tags:
+        - Workflow
+      summary: Run a workflow with existing run data
+      description: |-
+        Start a manual execution of the latest saved version of a workflow. n8n reuses the given run data and runs the nodes up to the destination node. The call returns when the execution starts. It does not wait for the execution to finish. The user must also have the `workflow:execute` project scope.
+
+        Requires the `workflow:execute` API key scope.
+      x-required-scope: workflow:execute
+      parameters:
+        - $ref: '#/components/parameters/idempotencyKey'
+        - schema:
+            type: string
+          required: true
+          description: The ID of the workflow.
+          name: workflowId
+          in: path
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                runData:
+                  type: object
+                  description: Run data to reuse, keyed by node name. Use `data.resultData.runData` from `GET /executions/{id}?includeData=true`. n8n reuses the output of these nodes and runs the other nodes up to the destination node. If the run data does not reach the destination node from a trigger, n8n runs the workflow from its trigger. If that trigger needs an external event to start, the API returns `409`.
+                  additionalProperties: true
+                destinationNode:
+                  type: object
+                  properties:
+                    nodeName:
+                      type: string
+                      description: Name of the node to run to.
+                    mode:
+                      type: string
+                      enum:
+                        - inclusive
+                        - exclusive
+                      description: '`inclusive` runs the destination node. `exclusive` stops before the destination node.'
+                  required:
+                    - nodeName
+                    - mode
+                  additionalProperties: false
+                  description: The node where the run stops.
+                dirtyNodeNames:
+                  type: array
+                  items:
+                    type: string
+                  description: Names of nodes that changed since the run data was made. n8n runs these nodes again and does not reuse their run data.
+              required:
+                - runData
+                - destinationNode
+              additionalProperties: false
+      responses:
+        '200':
+          description: Operation successful.
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  executionId:
+                    type: string
+                    description: ID of the new execution. Use `GET /executions/{id}` to read its status.
+                    example: '1001'
+                required:
+                  - executionId
+        '400':
+          description: The request body is invalid, or `destinationNode.nodeName` is not a node in the workflow.
+        '401':
+          $ref: '#/components/responses/unauthorized'
+        '403':
+          description: The API key or the user does not have the required permission, or the instance is in read-only mode.
+        '404':
+          $ref: '#/components/responses/notFound'
+        '409':
+          description: The run data does not reach the destination node from a trigger, and the trigger needs an external event to start. Pin data on the trigger. Or add run data for a trigger node that comes before the destination node to `runData`.
+        '415':
+          $ref: '#/components/responses/unsupportedMediaType'
+        '422':
+          $ref: '#/components/responses/unprocessableEntity'
+        '429':
+          $ref: '#/components/responses/tooManyRequests'
   /workflows/{workflowId}/{workflowVersionId}:
     get:
       operationId: getDeprecatedWorkflowVersion
@@ -21190,6 +22037,176 @@ components:
         - hasSecurityFix
         - hasSecurityIssue
         - securityIssueFixVersion
+    agentPublicDto.generated:
+      type: object
+      properties:
+        id:
+          type: string
+        name:
+          type: string
+        projectId:
+          type: string
+        project:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            type:
+              type: string
+          required:
+            - id
+            - name
+            - type
+        availableInMCP:
+          type: boolean
+        isArchived:
+          type: boolean
+        versionId:
+          type: string
+          nullable: true
+        activeVersionId:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+        config:
+          type: object
+          nullable: true
+        configHash:
+          type: string
+          nullable: true
+        tools:
+          type: object
+          additionalProperties:
+            type: object
+            description: 'A custom tool: the code it runs and its descriptor.'
+            properties:
+              code:
+                type: string
+              descriptor:
+                type: object
+                description: The tool descriptor. `name` is required; other fields pass through.
+                properties:
+                  name:
+                    type: string
+                required:
+                  - name
+                additionalProperties: true
+            required:
+              - code
+              - descriptor
+        activeVersion:
+          type: object
+          nullable: true
+          properties:
+            versionId:
+              type: string
+            integrations:
+              type: array
+              items:
+                type: object
+                description: A channel integration. `type` picks the platform.
+                properties:
+                  type:
+                    type: string
+                    description: The integration type, for example `slack` or `webhook`.
+                  credentialId:
+                    type: string
+                  settings:
+                    type: object
+                    description: Platform-specific integration settings.
+                  approval:
+                    type: object
+                    description: Channel actions that need approval before they run.
+                required:
+                  - type
+                  - credentialId
+          required:
+            - versionId
+            - integrations
+        parentFolder:
+          type: object
+          nullable: true
+          properties:
+            id:
+              type: string
+            name:
+              type: string
+            parentFolderId:
+              type: string
+              nullable: true
+            createdAt:
+              type: string
+              format: date-time
+            updatedAt:
+              type: string
+              format: date-time
+          required:
+            - id
+            - name
+            - parentFolderId
+            - createdAt
+            - updatedAt
+      required:
+        - id
+        - name
+        - projectId
+        - project
+        - availableInMCP
+        - isArchived
+        - versionId
+        - activeVersionId
+        - createdAt
+        - updatedAt
+        - config
+        - configHash
+        - tools
+        - activeVersion
+        - parentFolder
+    aiPreferencePublicDto.generated:
+      type: object
+      properties:
+        id:
+          type: string
+        content:
+          type: string
+        scope:
+          type: string
+          enum:
+            - user
+            - project
+            - instance
+        userId:
+          type: string
+          nullable: true
+        projectId:
+          type: string
+          nullable: true
+        source:
+          type: string
+          enum:
+            - ui
+            - aia
+            - mcp
+            - api
+        createdAt:
+          type: string
+        updatedAt:
+          type: string
+      required:
+        - id
+        - content
+        - scope
+        - userId
+        - projectId
+        - source
+        - createdAt
+        - updatedAt
     credentialTypePolicyEffectivePublicDto.generated:
       type: object
       properties:
@@ -24460,81 +25477,6 @@ components:
         - direction
         - branchName
         - hasCheckout
-    promotePackageResultDto.generated:
-      type: object
-      properties:
-        environmentId:
-          type: string
-          minLength: 1
-          maxLength: 36
-        counts:
-          type: object
-          properties:
-            workflows:
-              type: integer
-              minimum: 0
-            folders:
-              type: integer
-              minimum: 0
-            credentials:
-              type: integer
-              minimum: 0
-            dataTables:
-              type: integer
-              minimum: 0
-            variables:
-              type: integer
-              minimum: 0
-            tags:
-              type: integer
-              minimum: 0
-          required:
-            - workflows
-            - folders
-            - credentials
-            - dataTables
-            - variables
-            - tags
-        git:
-          type: object
-          properties:
-            commitSha:
-              type: string
-            branchName:
-              type: string
-          required:
-            - commitSha
-            - branchName
-        review:
-          type: object
-          properties:
-            reviewId:
-              type: string
-              minLength: 1
-              maxLength: 36
-            number:
-              type: integer
-            webUrl:
-              type: string
-          required:
-            - reviewId
-            - number
-            - webUrl
-        warnings:
-          type: array
-          items:
-            type: object
-            properties:
-              message:
-                type: string
-              linkUrl:
-                type: string
-            required:
-              - message
-      required:
-        - environmentId
-        - counts
-        - git
     promotionCredentialExpressionValue.generated:
       anyOf:
         - type: string
@@ -26466,6 +27408,12 @@ components:
                 name:
                   type: string
                   minLength: 1
+                resourceType:
+                  type: string
+                  enum:
+                    - workflow
+                    - agent
+                  default: workflow
                 parentFolderId:
                   type: string
                   nullable: true
@@ -26484,6 +27432,12 @@ components:
                 name:
                   type: string
                   minLength: 1
+                resourceType:
+                  type: string
+                  enum:
+                    - workflow
+                    - agent
+                  default: workflow
                 parentFolderId:
                   type: string
                   nullable: true
@@ -27283,6 +28237,20 @@ components:
             - after
             - revision
       type: object
+    promotionResourceDetailsDto.generated:
+      type: object
+      properties:
+        details:
+          type: array
+          items:
+            $ref: '#/components/schemas/promotionResourceDetail.generated'
+        missingKeys:
+          type: array
+          items:
+            type: string
+      required:
+        - details
+        - missingKeys
     rateLimitSettingsPublicDto.generated:
       type: object
       properties:

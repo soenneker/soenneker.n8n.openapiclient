@@ -12,7 +12,7 @@
       "url": "https://github.com/n8n-io/n8n/blob/master/LICENSE.md"
     },
     "version": "1.1.1",
-    "x-n8n-version": "2.49.5"
+    "x-n8n-version": "2.50.0"
   },
   "servers": [
     {
@@ -229,7 +229,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetAgent200Response"
+                  "$ref": "#/components/schemas/AgentPublicDtoGenerated"
                 }
               }
             }
@@ -248,6 +248,69 @@
           }
         },
         "x-required-scope": "agent:read"
+      },
+      "put": {
+        "tags": [
+          "Agent"
+        ],
+        "summary": "Update an agent",
+        "description": "Replace the configuration of an agent. Send the configuration and the concurrency token you read from the retrieve endpoint: a stale token returns a conflict. Fields the server manages are ignored, not rejected. The retrieved body of an agent without a configuration carries a null configuration: sending it back changes nothing.\n\nRequires the \u0060agent:update\u0060 API key scope.",
+        "operationId": "UpdateAgent",
+        "parameters": [
+          {
+            "name": "agentId",
+            "in": "path",
+            "description": "The ID of the agent.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAgentRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AgentPublicDtoGenerated"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          }
+        },
+        "x-required-scope": "agent:update"
       },
       "delete": {
         "tags": [
@@ -292,6 +355,288 @@
           }
         },
         "x-required-scope": "agent:delete"
+      }
+    },
+    "/ai-preferences": {
+      "get": {
+        "tags": [
+          "AiPreference"
+        ],
+        "summary": "List AI preferences",
+        "description": "List the AI preferences you can read: the instance preferences, your own preferences, and the preferences of the projects where you hold the projectAiPreference:list permission. With the aiPreference:list permission, the list also has the preferences of other users. Filter with scope and projectId. The response is one cursor page: read the next page with the cursor query parameter.\n\nRequires the \u0060aiPreference:list\u0060 API key scope.",
+        "operationId": "ListAiPreferences",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/cursor"
+          },
+          {
+            "$ref": "#/components/parameters/limit"
+          },
+          {
+            "name": "scope",
+            "in": "query",
+            "schema": {
+              "$ref": "#/components/schemas/ListAiPreferencesScopeParameter"
+            }
+          },
+          {
+            "name": "projectId",
+            "in": "query",
+            "schema": {
+              "maxLength": 36,
+              "minLength": 1,
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/ListAiPreferences200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          }
+        },
+        "x-required-scope": "aiPreference:list"
+      },
+      "post": {
+        "tags": [
+          "AiPreference"
+        ],
+        "summary": "Create an AI preference",
+        "description": "Create an AI preference for yourself (scope user), for a project (scope project, with projectId), or for the whole instance (scope instance). A preference for the instance or for another user needs the aiPreference:create permission. A preference for a project needs the projectAiPreference:create permission in that project. Each scope holds at most 50 preferences, and two preferences in one scope cannot have the same text.\n\nRequires the \u0060aiPreference:create\u0060 API key scope.",
+        "operationId": "CreateAiPreference",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idempotencyKey"
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/CreateAiPreferenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "201": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AiPreferencePublicDtoGenerated"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          },
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AiPreferencePublicDtoGenerated"
+                }
+              }
+            },
+            "x-client-success-response-status": "201"
+          }
+        },
+        "x-required-scope": "aiPreference:create"
+      }
+    },
+    "/ai-preferences/{aiPreferenceId}": {
+      "get": {
+        "tags": [
+          "AiPreference"
+        ],
+        "summary": "Retrieve an AI preference",
+        "description": "Retrieve one AI preference by ID. The content, scope, userId and projectId fields form the body that the update endpoint takes.\n\nRequires the \u0060aiPreference:read\u0060 API key scope.",
+        "operationId": "GetAiPreference",
+        "parameters": [
+          {
+            "name": "aiPreferenceId",
+            "in": "path",
+            "description": "The ID of the AI preference.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AiPreferencePublicDtoGenerated"
+                }
+              }
+            }
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          }
+        },
+        "x-required-scope": "aiPreference:read"
+      },
+      "put": {
+        "tags": [
+          "AiPreference"
+        ],
+        "summary": "Update an AI preference",
+        "description": "Replace an AI preference with the full body: content, scope, and the userId or projectId of the scope. A user preference names its user in userId, and a project preference names its project in projectId. A new scope moves the preference: a move needs the delete permission on the old scope and the create permission on the new one. A move also needs the aiPreference:create and aiPreference:delete API key scopes.\n\nRequires the \u0060aiPreference:update\u0060 API key scope.",
+        "operationId": "UpdateAiPreference",
+        "parameters": [
+          {
+            "name": "aiPreferenceId",
+            "in": "path",
+            "description": "The ID of the AI preference.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/UpdateAiPreferenceRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/AiPreferencePublicDtoGenerated"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupportedMediaType"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          }
+        },
+        "x-required-scope": "aiPreference:update"
+      },
+      "delete": {
+        "tags": [
+          "AiPreference"
+        ],
+        "summary": "Delete an AI preference",
+        "description": "Delete an AI preference.\n\nRequires the \u0060aiPreference:delete\u0060 API key scope.",
+        "operationId": "DeleteAiPreference",
+        "parameters": [
+          {
+            "name": "aiPreferenceId",
+            "in": "path",
+            "description": "The ID of the AI preference.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Operation successful."
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          }
+        },
+        "x-required-scope": "aiPreference:delete"
       }
     },
     "/community-packages": {
@@ -4380,7 +4725,7 @@
           "N8nPackage"
         ],
         "summary": "Beta: Import an n8n package into a project",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports Agent-only, workflow-only, mixed, and whole-project packages. The Agents module must be active for packages that contain Agents. Send the gzip-compressed tar archive (\u0060.n8np\u0060) as the multipart field \u0060package\u0060. Optional routing uses form fields \u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). Every optional mode/policy field (credential, Agent, workflow, project, folder, data table, variable, and tag) takes its default when omitted; the one non-fixed default is \u0060folderConflictPolicy\u0060, which follows \u0060projectConflictPolicy\u0060 on a project package. The required \u0060conflictPolicy\u0060 field controls matches for both Agents and workflows. It replaces \u0060workflowConflictPolicy\u0060; the old field is rejected. \u0060idPolicy\u0060 and \u0060publishingPolicy\u0060 also apply to both kinds. They replace the workflow-specific and Agent-specific fields, which are rejected. Maximum upload size is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file the manifest references.\n\nCredential and dependency references are resolved before writes. Request bindings support credential overrides only. Agent and workflow identities are matched automatically.\n\nAgent packages require \u0060agent:import\u0060 and \u0060agent:read\u0060. Workflow packages require \u0060workflow:import\u0060. Mixed packages require both import grants. A project package requires \u0060project:create\u0060 when it creates a project, and \u0060project:update\u0060 when \u0060projectConflictPolicy=overwrite\u0060 changes the details of an existing project. It requires \u0060folder:create\u0060 only when it creates a folder, and a license that supports folders only when it creates, changes or removes a folder. A workflow package with folders always requires \u0060folder:create\u0060, \u0060folder:update\u0060 and that license. Planned Agent actions also require \u0060agent:create\u0060, \u0060agent:update\u0060, \u0060agent:publish\u0060, or \u0060agent:unpublish\u0060. Skipped Agents do not require write grants. Creating a project or instance skill requires \u0060skill:create\u0060, and saving a new version of one requires \u0060skill:update\u0060. When the import publishes a workflow, including a republish under \u0060preserve-published-state\u0060, the API key needs \u0060workflow:activate\u0060. When it unpublishes one, the key needs \u0060workflow:deactivate\u0060. Skipped workflows and workflows marked as archived in the package need neither publication scope. Archiving or restoring a matched workflow needs \u0060workflow:delete\u0060. Restoring and publishing a workflow requires both \u0060workflow:delete\u0060 and \u0060workflow:activate\u0060. Archiving or restoring a matched Agent needs \u0060agent:delete\u0060. Creating a missing credential requires \u0060credential:create\u0060. Destination-project permissions and dependency scopes still apply.\n\nThe response contains Agent summaries in \u0060agents\u0060, source IDs in \u0060bindings.agents\u0060, and totals in \u0060counts.agents\u0060. Definition import and publication have separate outcomes. Check \u0060agents[].publishing.state\u0060 and \u0060workflows[].publishing.state\u0060 for publication results, including \u0060failed\u0060. A publication failure retains the imported definition and returns HTTP 200.\n\nSelected-Agent exports use this endpoint. Agent content is rejected by \u0060/import-selection\u0060, directory imports, and Promotions before writes.\n\nExample multipart fields: \u0060conflictPolicy=new-version\u0060, \u0060idPolicy=source\u0060, \u0060publishingPolicy=match-source\u0060, and \u0060bindings={\u0022credentials\u0022:{\u0022source-credential\u0022:\u0022target-credential\u0022}}\u0060.\n\nRequires one of these API key scopes: \u0060workflow:import\u0060, \u0060agent:import\u0060.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nImports Agent-only, workflow-only, mixed, and whole-project packages. The Agents module must be active for packages that contain Agents. Send the gzip-compressed tar archive (\u0060.n8np\u0060) as the multipart field \u0060package\u0060. Optional routing uses form fields \u0060projectId\u0060 and \u0060folderId\u0060 (omit or send empty for defaults). Every optional mode/policy field (credential, Agent, workflow, project, folder, data table, variable, and tag) takes its default when omitted; the one non-fixed default is \u0060folderConflictPolicy\u0060, which follows \u0060projectConflictPolicy\u0060 on a project package. The required \u0060conflictPolicy\u0060 field controls matches for both Agents and workflows. It replaces \u0060workflowConflictPolicy\u0060; the old field is rejected. \u0060idPolicy\u0060 and \u0060publishingPolicy\u0060 also apply to both kinds. They replace the workflow-specific and Agent-specific fields, which are rejected. Maximum upload size is \u0060N8N_ENDPOINTS_PAYLOAD_SIZE_MAX\u0060 MB (default 16).\n\nThe package must declare its manifest at \u0060manifest.json\u0060 and include every file the manifest references.\n\nCredential and dependency references are resolved before writes. Request bindings support credential overrides only. Agent and workflow identities are matched automatically.\n\nAgent packages require \u0060agent:import\u0060 and \u0060agent:read\u0060. Workflow packages require \u0060workflow:import\u0060. Mixed packages require both import grants. A project package requires \u0060project:create\u0060 when it creates a project, and \u0060project:update\u0060 when \u0060projectConflictPolicy=overwrite\u0060 changes the details of an existing project. An import requires \u0060folder:create\u0060 only when it creates a folder, and a license that supports folders only when it creates, changes or removes a folder. It requires \u0060dataTable:create\u0060 only when it creates a data table. Planned Agent actions also require \u0060agent:create\u0060, \u0060agent:update\u0060, \u0060agent:publish\u0060, or \u0060agent:unpublish\u0060. Skipped Agents do not require write grants. Creating a project or instance skill requires \u0060skill:create\u0060, and saving a new version of one requires \u0060skill:update\u0060. When the import publishes a workflow, including a republish under \u0060preserve-published-state\u0060, the API key needs \u0060workflow:activate\u0060. When it unpublishes one, the key needs \u0060workflow:deactivate\u0060. Skipped workflows and workflows marked as archived in the package need neither publication scope. Archiving or restoring a matched workflow needs \u0060workflow:delete\u0060. Restoring and publishing a workflow requires both \u0060workflow:delete\u0060 and \u0060workflow:activate\u0060. Archiving or restoring a matched Agent needs \u0060agent:delete\u0060. Creating a missing credential requires \u0060credential:create\u0060. Destination-project permissions and dependency scopes still apply.\n\nThe response contains Agent summaries in \u0060agents\u0060, source IDs in \u0060bindings.agents\u0060, and totals in \u0060counts.agents\u0060. Definition import and publication have separate outcomes. Check \u0060agents[].publishing.state\u0060 and \u0060workflows[].publishing.state\u0060 for publication results, including \u0060failed\u0060. A publication failure retains the imported definition and returns HTTP 200.\n\nSelected-Agent exports use this endpoint. Agent content is rejected by \u0060/import-selection\u0060, directory imports, and Promotions before writes.\n\nExample multipart fields: \u0060conflictPolicy=new-version\u0060, \u0060idPolicy=source\u0060, \u0060publishingPolicy=match-source\u0060, and \u0060bindings={\u0022credentials\u0022:{\u0022source-credential\u0022:\u0022target-credential\u0022}}\u0060.\n\nRequires one of these API key scopes: \u0060workflow:import\u0060, \u0060agent:import\u0060.",
         "operationId": "ImportPackage",
         "parameters": [
           {
@@ -4600,7 +4945,7 @@
             "$ref": "#/components/responses/unsupportedMediaType"
           },
           "422": {
-            "$ref": "#/components/responses/unprocessableEntity"
+            "description": "A requested workflow cannot be exported because its stored data is invalid. The message names the workflow and the invalid fields."
           },
           "429": {
             "$ref": "#/components/responses/tooManyRequests"
@@ -6494,7 +6839,7 @@
           "Promotions"
         ],
         "summary": "Beta: Connect an environment",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nPrepares the environment on the instance that handles the request. For a Git provider, this clones the configured branch into local storage. Safe to call repeatedly. Connecting one environment does not make another ready. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:connect\u0060 API key scope.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nPrepares the environment on the instance that handles the request. For a Git provider, this clones the configured branch into local storage. Safe to call repeatedly. This call is optional: other operations prepare the environment when they need it. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:connect\u0060 API key scope.",
         "operationId": "ConnectPromotionCheckout",
         "parameters": [
           {
@@ -6662,7 +7007,7 @@
           "Promotions"
         ],
         "summary": "Beta: List package projects that are missing on this instance",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nReads the package at the Apply branch tip and returns its team projects whose IDs do not exist on this instance. Projects are matched by ID, not by name. An ID that a personal project uses counts as existing. Create each project with \u0060POST /projects\u0060, using the returned id, name, icon, description, and customTelemetryTags. The new project is empty, and the caller becomes its project admin. Then use the project Apply flow to apply its resources. An empty \u0060data\u0060 means that no setup is needed. \u0060git\u0060 is null when the branch has no package yet. Requires a connected Apply environment with instance scope.\n\nRequires the \u0060promotions:read\u0060 API key scope.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nReads the package at the Apply branch tip and returns its team projects whose IDs do not exist on this instance. Projects are matched by ID, not by name. An ID that a personal project uses counts as existing. Create each project with \u0060POST /projects\u0060, using the returned id, name, icon, description, and customTelemetryTags. The new project is empty, and the caller becomes its project admin. Then use the project Apply flow to apply its resources. An empty \u0060data\u0060 means that no setup is needed. \u0060git\u0060 is null when the branch has no package yet. Requires an Apply environment with instance scope.\n\nRequires the \u0060promotions:read\u0060 API key scope.",
         "operationId": "GetPromotionEnvironmentMissingProjects",
         "parameters": [
           {
@@ -6698,6 +7043,9 @@
           },
           "404": {
             "$ref": "#/components/responses/notFound"
+          },
+          "423": {
+            "$ref": "#/components/responses/locked"
           },
           "429": {
             "$ref": "#/components/responses/tooManyRequests"
@@ -6839,7 +7187,7 @@
           "Promotions"
         ],
         "summary": "Beta: Promote all team projects",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nExports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in \u0060git.branchName\u0060. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can\u0027t move it between projects. Requires a connected Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:promote\u0060 API key scope.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nExports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in \u0060git.branchName\u0060. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can\u0027t move it between projects. Requires a Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:promote\u0060 API key scope.",
         "operationId": "PromotePackage",
         "parameters": [
           {
@@ -6871,7 +7219,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PromotePackageResultDtoGenerated"
+                  "$ref": "#/components/schemas/PromotePackage200Response"
                 }
               }
             }
@@ -6916,7 +7264,7 @@
           "Promotions"
         ],
         "summary": "Beta: Apply a package to the instance",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nChecks the full package at the configured branch tip. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview; status \u0060source-changed\u0060 means the branch moved since that review and nothing was imported. Returns status \u0060blocked\u0060 before import writes if bindings need setup, if the import conflicts with this instance, or if the apply would delete team projects that the package does not hold. Retain environmentId and git for Continue. Status \u0060applied\u0060 includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Workflows and folders move within their project to match the branch, and folders take the name on the branch. Apply cannot move a workflow or folder between projects. It returns a \u0060moved\u0060 conflict in \u0060blocked\u0060 with both projects. For a personal project, the conflict gives only the ID. Requires a connected Apply environment with instance scope. The importer checks user write permissions; granular API-key write scopes are not passed to it. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nChecks the full package at the configured branch tip. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview; status \u0060source-changed\u0060 means the branch moved since that review and nothing was imported. Optionally send expectedPreviewRevision with the \u0060revision\u0060 of the reviewed preview; status \u0060preview-changed\u0060 means this instance changed since that review and nothing was imported. Returns status \u0060blocked\u0060 before import writes if bindings need setup, if the import conflicts with this instance, or if the apply would delete team projects that the package does not hold. Retain environmentId and git for Continue. Status \u0060applied\u0060 includes counts and warnings. Inspect status before reading counts. Existing target variable values, including empty strings, are preserved. Workflows and folders move within their project to match the branch, and folders take the name on the branch. Apply cannot move a workflow or folder between projects. It returns a \u0060moved\u0060 conflict in \u0060blocked\u0060 with both projects. For a personal project, the conflict gives only the ID. Requires an Apply environment with instance scope. The importer checks user write permissions; granular API-key write scopes are not passed to it. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
         "operationId": "ApplyPackage",
         "parameters": [
           {
@@ -6993,7 +7341,7 @@
           "Promotions"
         ],
         "summary": "Beta: Continue Apply after binding setup",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nRechecks the configured source and current target bindings. Send expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send \u0060confirmDestructiveChanges: true\u0060 to also apply destructive data table changes and delete the reported team projects. Status \u0060source-changed\u0060 requires a new Apply review. Status \u0060blocked\u0060 returns every blocker again, without import writes. Status \u0060applied\u0060 includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same connected instance environment and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nRechecks the configured source and current target bindings. Send expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Send \u0060confirmDestructiveChanges: true\u0060 to also apply destructive data table changes and delete the reported team projects. Send expectedPreviewRevision to confirm only what the reviewed preview showed. Status \u0060source-changed\u0060 or \u0060preview-changed\u0060 requires a new Apply review. Status \u0060blocked\u0060 returns every blocker again, without import writes. Status \u0060applied\u0060 includes counts and warnings. Inspect status before reading counts. Existing target variable values are preserved. Requires the same instance environment and permissions as Apply. The importer checks user write permissions; granular API-key write scopes are not passed to it. No server session or exactly-once guarantee is provided. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
         "operationId": "ContinueApplyPackage",
         "parameters": [
           {
@@ -7065,13 +7413,147 @@
         "x-required-scope": "promotions:apply"
       }
     },
+    "/promotions/environments/{promotionEnvironmentId}/changes": {
+      "get": {
+        "tags": [
+          "Promotions"
+        ],
+        "summary": "Beta: Preview the Apply of the whole instance",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nShows what applying the branch tip of an instance Apply environment changes on this instance, for every project of the package. \u0060resources\u0060 and \u0060dependencies\u0060 have the same shape as the project change preview. Resources are not selectable: Apply applies the whole package. A team project that the package does not hold is listed as \u0060deleted\u0060, with the folders, workflows, credentials, data tables and variables that it owns. Workflows and folders that a kept project no longer holds are listed as \u0060deleted\u0060 too. \u0060check\u0060 lists what blocks the Apply. A \u0060project-deletion\u0060 conflict needs \u0060confirmDestructiveChanges\u0060 on Continue. Send \u0060revision\u0060 as expectedPreviewRevision and \u0060commitSha\u0060 in expectedSource to apply only what this preview shows. Requires an Apply environment with instance scope.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
+        "operationId": "GetInstanceApplyChanges",
+        "parameters": [
+          {
+            "name": "promotionEnvironmentId",
+            "in": "path",
+            "description": "The ID of the promotion environment.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/GetInstanceApplyChanges200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "423": {
+            "$ref": "#/components/responses/locked"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          },
+          "503": {
+            "$ref": "#/components/responses/serviceUnavailable"
+          }
+        },
+        "x-required-scope": "promotions:apply"
+      }
+    },
+    "/promotions/environments/{promotionEnvironmentId}/changes/details": {
+      "post": {
+        "tags": [
+          "Promotions"
+        ],
+        "summary": "Beta: Read the content of resources in the whole-instance Apply preview",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nReturns the content before and after the change for up to 50 resources of the whole-instance Apply preview. Send the \u0060commitSha\u0060 and the resource \u0060key\u0060 values from the preview. The branch side is read at that commit. The instance side is read now, so a \u0060revision\u0060 that differs from the preview means the resource changed after the preview. A data table that a deleted project owns but no workflow uses has its current content as \u0060before\u0060. \u0060missingKeys\u0060 lists requested resources that neither side holds anymore, and such credentials and variables, which have no content to show. Credential content holds expressions only. Variable values are left out, and \u0060valueHidden\u0060 is true, unless the API key and the user have the variable:list scope.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
+        "operationId": "GetInstanceApplyChangeDetails",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idempotencyKey"
+          },
+          {
+            "name": "promotionEnvironmentId",
+            "in": "path",
+            "description": "The ID of the promotion environment.",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "format": "uuid"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/GetInstanceApplyChangeDetailsRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/PromotionResourceDetailsDtoGenerated"
+                }
+              }
+            }
+          },
+          "400": {
+            "$ref": "#/components/responses/badRequest"
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "$ref": "#/components/responses/forbidden"
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "423": {
+            "$ref": "#/components/responses/locked"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          },
+          "503": {
+            "$ref": "#/components/responses/serviceUnavailable"
+          }
+        },
+        "x-required-scope": "promotions:apply"
+      }
+    },
     "/promotions/projects/{projectId}/changes/{direction}": {
       "get": {
         "tags": [
           "Promotions"
         ],
         "summary": "Beta: Preview the changes of a project in one direction",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nCompares a team project on this instance with the branch of its promotion environment for that direction. For \u0060promote\u0060 the preview is what a promotion sends to the branch, and the key needs the promotions:promote scope. For \u0060apply\u0060 the preview is what applying the branch changes on this instance, and the key needs the promotions:apply scope. \u0060resources\u0060 lists the changed projects, folders, workflows, credentials, data tables, variables and tags, each with its \u0060key\u0060, \u0060type\u0060, \u0060id\u0060, \u0060change\u0060 and the \u0060parentKey\u0060 of the project or folder that holds it. It also lists unchanged resources that give context, such as parent folders. Select the workflows and folders where \u0060selectable\u0060 is true by \u0060workflowIds\u0060 and \u0060folderIds\u0060; the project itself is always included. \u0060dependencies\u0060 links each workflow to the resources it uses; selecting the workflow sends a dependency when \u0060included\u0060 is true. A deleted promote workflow with \u0060movedToProject\u0060, or an added one with \u0060movedFromProject\u0060, moved between projects; promoting it is refused until it moves back. \u0060blocker\u0060 is set when an open review holds the changes of a Promote. For \u0060apply\u0060, \u0060check\u0060 lists what blocks the Apply, and \u0060revision\u0060 identifies this preview: send it as expectedPreviewRevision. \u0060commitSha\u0060 is the commit the preview was read from. Requires the environment to be connected first.\n\nRequires one of these API key scopes: \u0060promotions:promote\u0060, \u0060promotions:apply\u0060.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nCompares a team project on this instance with the branch of its promotion environment for that direction. For \u0060promote\u0060 the preview is what a promotion sends to the branch, and the key needs the promotions:promote scope. For \u0060apply\u0060 the preview is what applying the branch changes on this instance, and the key needs the promotions:apply scope. \u0060resources\u0060 lists the changed projects, folders, workflows, credentials, data tables, variables and tags, each with its \u0060key\u0060, \u0060type\u0060, \u0060id\u0060, \u0060change\u0060 and the \u0060parentKey\u0060 of the project or folder that holds it. It also lists unchanged resources that give context, such as parent folders. Select the workflows and folders where \u0060selectable\u0060 is true by \u0060workflowIds\u0060 and \u0060folderIds\u0060; the project itself is always included. \u0060dependencies\u0060 links each workflow to the resources it uses; selecting the workflow sends a dependency when \u0060included\u0060 is true. A deleted promote workflow with \u0060movedToProject\u0060, or an added one with \u0060movedFromProject\u0060, moved between projects; promoting it is refused until it moves back. \u0060blocker\u0060 is set when an open review holds the changes of a Promote. For \u0060apply\u0060, \u0060check\u0060 lists what blocks the Apply. \u0060revision\u0060 identifies this preview: send it as expectedPreviewRevision with Promote or Apply. \u0060commitSha\u0060 is the commit the preview was read from.\n\nRequires one of these API key scopes: \u0060promotions:promote\u0060, \u0060promotions:apply\u0060.",
         "operationId": "GetPromotionChanges",
         "parameters": [
           {
@@ -7115,6 +7597,12 @@
           },
           "404": {
             "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "$ref": "#/components/responses/conflict"
+          },
+          "423": {
+            "$ref": "#/components/responses/locked"
           },
           "429": {
             "$ref": "#/components/responses/tooManyRequests"
@@ -7173,7 +7661,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/GetPromotionChangeDetails200Response"
+                  "$ref": "#/components/schemas/PromotionResourceDetailsDtoGenerated"
                 }
               }
             }
@@ -7199,6 +7687,9 @@
           "422": {
             "$ref": "#/components/responses/unprocessableEntity"
           },
+          "423": {
+            "$ref": "#/components/responses/locked"
+          },
           "429": {
             "$ref": "#/components/responses/tooManyRequests"
           },
@@ -7215,7 +7706,7 @@
           "Promotions"
         ],
         "summary": "Beta: Promote a selection of a project\u0027s workflows and folders",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nPromotes a chosen set of a team project\u0027s workflows and folders to the branch of the project\u0027s Promote environment. The project\u0027s own details (name, icon, description and telemetry tags) are always written, so a request without workflowIds and folderIds promotes only the project. A selected folder is written with the folders above it; a renamed or moved folder moves the workflows inside it on the branch, without changing their content. Status 400 with \u0027Nothing to promote\u0027 means the branch already matches the selection. Send ids only; the server reads each one now, so the push carries the current state. Live and archived workflows the project owns are exported, so an archived id stays on the branch as archived; an id whose workflow is gone from the instance leaves the branch, matching the project\u0027s change list. A workflow that moved into or out of the project since the branch was written is refused with 400; move it back first. A deletion the branch does not hold under this project rejects the whole request before any write. Requires a Promote environment to resolve for the project (its own Promote environment, otherwise the instance Promote environment), and requires it to be connected first. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:promote\u0060 API key scope.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nPromotes a chosen set of a team project\u0027s workflows and folders to the branch of the project\u0027s Promote environment. The project\u0027s own details (name, icon, description and telemetry tags) are always written, so a request without workflowIds and folderIds promotes only the project. A selected folder is written with the folders above it; a renamed or moved folder moves the workflows inside it on the branch, without changing their content. Status 400 with \u0027Nothing to promote\u0027 means the branch already matches the selection. Send ids only; the server reads each one now, so the push carries the current state. Live and archived workflows the project owns are exported, so an archived id stays on the branch as archived; an id whose workflow is gone from the instance leaves the branch, matching the project\u0027s change list. A workflow that moved into or out of the project since the branch was written is refused with 400; move it back first. A deletion the branch does not hold under this project rejects the whole request before any write. Requires a Promote environment to resolve for the project (its own Promote environment, otherwise the instance Promote environment). The API key also needs variable:list when the workflows reference variables. Optionally send expectedPreviewRevision with the revision of the reviewed Promote preview. Status \u0060preview-changed\u0060 means the project on this instance or its branch changed since that review, and nothing was pushed. Status \u0060promoted\u0060 includes counts and git. Inspect status before reading counts. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:promote\u0060 API key scope.",
         "operationId": "PromoteProjectSelection",
         "parameters": [
           {
@@ -7246,7 +7737,7 @@
             "content": {
               "application/json": {
                 "schema": {
-                  "$ref": "#/components/schemas/PromotePackageResultDtoGenerated"
+                  "$ref": "#/components/schemas/PromoteProjectSelection200Response"
                 }
               }
             }
@@ -7291,7 +7782,7 @@
           "Promotions"
         ],
         "summary": "Beta: Apply a selection of a project\u0027s workflows and folders",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nApplies selected changes from the project\u0027s Apply branch. The project\u0027s name, icon, description and telemetry tags always come from the branch, so a request without workflowIds and folderIds applies only the project. The server imports the selected workflow IDs present on the branch for this project. It removes a selected workflow owned by this project when the branch does not hold it. Duplicate or invalid IDs reject the whole request. Unselected content stays unchanged. A selected workflow or folder is created, or moved within the project to match the branch, together with the folders above it, and those folders take the name on the branch; other folders stay as they are. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview. Status \u0060source-changed\u0060 means the source changed since that review and nothing was imported. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Status \u0060preview-changed\u0060 means this instance changed since that review and nothing was imported. Status \u0060blocked\u0060 returns the blockers before import writes: bindings that need setup and conflicts with this instance. Apply cannot move a selected workflow or a folder of this project between projects. It returns a \u0060moved\u0060 conflict in \u0060blocked\u0060 with both projects. For a personal project, the conflict gives only the ID. Retain environmentId and git for Continue. Status \u0060applied\u0060 includes counts and warnings. Inspect status before reading counts. Requires a connected Apply environment for the project: its own Apply environment, otherwise the instance Apply environment. The importer checks user write permissions. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nApplies selected changes from the project\u0027s Apply branch. The project\u0027s name, icon, description and telemetry tags always come from the branch, so a request without workflowIds and folderIds applies only the project. The server imports the selected workflow IDs present on the branch for this project. It removes a selected workflow owned by this project when the branch does not hold it. Duplicate or invalid IDs reject the whole request. Unselected content stays unchanged. A selected workflow or folder is created, or moved within the project to match the branch, together with the folders above it, and those folders take the name on the branch; other folders stay as they are. Optionally send expectedSource with the environmentId, branchName, and full commitSha from the reviewed change preview. Status \u0060source-changed\u0060 means the source changed since that review and nothing was imported. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Status \u0060preview-changed\u0060 means this instance changed since that review and nothing was imported. Status \u0060blocked\u0060 returns the blockers before import writes: bindings that need setup and conflicts with this instance. Apply cannot move a selected workflow or a folder of this project between projects. It returns a \u0060moved\u0060 conflict in \u0060blocked\u0060 with both projects. For a personal project, the conflict gives only the ID. Retain environmentId and git for Continue. Status \u0060applied\u0060 includes counts and warnings. Inspect status before reading counts. Requires an Apply environment for the project: its own Apply environment, otherwise the instance Apply environment. The importer checks user write permissions. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
         "operationId": "ApplyProjectSelection",
         "parameters": [
           {
@@ -7367,7 +7858,7 @@
           "Promotions"
         ],
         "summary": "Beta: Continue applying a selection after binding setup",
-        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nRechecks the project\u0027s Apply source and the current bindings for the selection. Resend the full selection: workflowIds and folderIds. Send the required expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Send \u0060confirmDestructiveChanges: true\u0060 to also apply destructive data table changes. The server does not keep a session. Status \u0060source-changed\u0060 or \u0060preview-changed\u0060 requires a new Apply review. Status \u0060blocked\u0060 returns every blocker again, before import writes. Status \u0060applied\u0060 includes counts and warnings. Inspect status before reading counts. Unselected content stays unchanged. Requires the same connected Apply environment and permissions as the initial selection apply. The importer checks user write permissions. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
+        "description": "**Beta** \u2014 breaking changes may still occur without major version bump.\n\nRechecks the project\u0027s Apply source and the current bindings for the selection. Resend the full selection: workflowIds and folderIds. Send the required expectedSource with the environmentId, branchName, and full commitSha from the reviewed Apply result. Optionally send expectedPreviewRevision with the revision of the reviewed Apply preview. Send \u0060confirmDestructiveChanges: true\u0060 to also apply destructive data table changes. The server does not keep a session. Status \u0060source-changed\u0060 or \u0060preview-changed\u0060 requires a new Apply review. Status \u0060blocked\u0060 returns every blocker again, before import writes. Status \u0060applied\u0060 includes counts and warnings. Inspect status before reading counts. Unselected content stays unchanged. Requires the same Apply environment and permissions as the initial selection apply. The importer checks user write permissions. Another operation on the same environment returns 423.\n\nRequires the \u0060promotions:apply\u0060 API key scope.",
         "operationId": "ContinueApplyProjectSelection",
         "parameters": [
           {
@@ -9549,7 +10040,7 @@
             "$ref": "#/components/responses/notFound"
           },
           "409": {
-            "description": "Conflict, e.g. re-publication blocked by an open workflow review (then \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present; the update itself is still saved as a draft) or a webhook path conflict.",
+            "description": "Conflict, e.g. re-publication blocked by an open workflow review (then \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present), re-publication of a version without an approved review when the instance requires one (then \u0060reason\u0060 is \u0060review_required\u0060 and \u0060versionId\u0060 names the draft), or a webhook path conflict. A blocked re-publication still saves the update as a draft. To save without publishing, set \u0060publishIfActive=false\u0060.",
             "content": {
               "application/json": {
                 "schema": {
@@ -9820,7 +10311,7 @@
             "$ref": "#/components/responses/notFound"
           },
           "409": {
-            "description": "Conflict, e.g. publication blocked by an open workflow review (then \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present) or a webhook path conflict.",
+            "description": "Conflict, e.g. publication blocked by an open workflow review (then \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present), publication of a version without an approved review when the instance requires one (then \u0060reason\u0060 is \u0060review_required\u0060 and \u0060versionId\u0060 is present), or a webhook path conflict.",
             "content": {
               "application/json": {
                 "schema": {
@@ -9937,7 +10428,7 @@
             "$ref": "#/components/responses/notFound"
           },
           "409": {
-            "description": "Conflict, e.g. publication blocked by an open workflow review (then \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present) or a webhook path conflict.",
+            "description": "Conflict, e.g. publication blocked by an open workflow review (then \u0060reason\u0060 and \u0060workflowReviewRequestId\u0060 are present), publication of a version without an approved review when the instance requires one (then \u0060reason\u0060 is \u0060review_required\u0060 and \u0060versionId\u0060 is present), or a webhook path conflict.",
             "content": {
               "application/json": {
                 "schema": {
@@ -10278,6 +10769,77 @@
         "x-required-scope": "workflow:read"
       }
     },
+    "/workflows/{workflowId}/run": {
+      "post": {
+        "tags": [
+          "Workflow"
+        ],
+        "summary": "Run a workflow with existing run data",
+        "description": "Start a manual execution of the latest saved version of a workflow. n8n reuses the given run data and runs the nodes up to the destination node. The call returns when the execution starts. It does not wait for the execution to finish. The user must also have the \u0060workflow:execute\u0060 project scope.\n\nRequires the \u0060workflow:execute\u0060 API key scope.",
+        "operationId": "RunWorkflow",
+        "parameters": [
+          {
+            "$ref": "#/components/parameters/idempotencyKey"
+          },
+          {
+            "name": "workflowId",
+            "in": "path",
+            "description": "The ID of the workflow.",
+            "required": true,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/RunWorkflowRequest"
+              }
+            }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "Operation successful.",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/RunWorkflow200Response"
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "The request body is invalid, or \u0060destinationNode.nodeName\u0060 is not a node in the workflow."
+          },
+          "401": {
+            "$ref": "#/components/responses/unauthorized"
+          },
+          "403": {
+            "description": "The API key or the user does not have the required permission, or the instance is in read-only mode."
+          },
+          "404": {
+            "$ref": "#/components/responses/notFound"
+          },
+          "409": {
+            "description": "The run data does not reach the destination node from a trigger, and the trigger needs an external event to start. Pin data on the trigger. Or add run data for a trigger node that comes before the destination node to \u0060runData\u0060."
+          },
+          "415": {
+            "$ref": "#/components/responses/unsupportedMediaType"
+          },
+          "422": {
+            "$ref": "#/components/responses/unprocessableEntity"
+          },
+          "429": {
+            "$ref": "#/components/responses/tooManyRequests"
+          }
+        },
+        "x-required-scope": "workflow:execute"
+      }
+    },
     "/workflows/{workflowId}/{workflowVersionId}": {
       "get": {
         "tags": [
@@ -10381,6 +10943,117 @@
           "securityIssueFixVersion": {
             "type": "string",
             "nullable": true
+          }
+        }
+      },
+      "AgentPublicDtoGenerated": {
+        "required": [
+          "id",
+          "name",
+          "projectId",
+          "project",
+          "availableInMCP",
+          "isArchived",
+          "versionId",
+          "activeVersionId",
+          "createdAt",
+          "updatedAt",
+          "config",
+          "configHash",
+          "tools",
+          "activeVersion",
+          "parentFolder"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "projectId": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/AgentPublicDtoGeneratedProject"
+          },
+          "availableInMCP": {
+            "type": "boolean"
+          },
+          "isArchived": {
+            "type": "boolean"
+          },
+          "versionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "activeVersionId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
+          },
+          "config": {
+            "$ref": "#/components/schemas/AgentPublicDtoGeneratedConfigProperty"
+          },
+          "configHash": {
+            "type": "string",
+            "nullable": true
+          },
+          "tools": {
+            "$ref": "#/components/schemas/AgentPublicDtoGeneratedToolsProperty"
+          },
+          "activeVersion": {
+            "$ref": "#/components/schemas/AgentPublicDtoGeneratedActiveVersion"
+          },
+          "parentFolder": {
+            "$ref": "#/components/schemas/AgentPublicDtoGeneratedParentFolder"
+          }
+        }
+      },
+      "AiPreferencePublicDtoGenerated": {
+        "required": [
+          "id",
+          "content",
+          "scope",
+          "userId",
+          "projectId",
+          "source",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "content": {
+            "type": "string"
+          },
+          "scope": {
+            "$ref": "#/components/schemas/AiPreferencePublicDtoGeneratedScope"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "$ref": "#/components/schemas/AiPreferencePublicDtoGeneratedSource"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
+            "type": "string"
           }
         }
       },
@@ -11372,36 +12045,6 @@
           }
         }
       },
-      "PromotePackageResultDtoGenerated": {
-        "required": [
-          "environmentId",
-          "counts",
-          "git"
-        ],
-        "type": "object",
-        "properties": {
-          "environmentId": {
-            "maxLength": 36,
-            "minLength": 1,
-            "type": "string"
-          },
-          "counts": {
-            "$ref": "#/components/schemas/PromotePackageResultDtoGeneratedCounts"
-          },
-          "git": {
-            "$ref": "#/components/schemas/PromotePackageResultDtoGeneratedGit"
-          },
-          "review": {
-            "$ref": "#/components/schemas/PromotePackageResultDtoGeneratedReview"
-          },
-          "warnings": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PromotePackageResultDtoGeneratedWarningsItem"
-            }
-          }
-        }
-      },
       "PromotionCredentialExpressionValueGenerated": {
         "anyOf": [
           {
@@ -11627,6 +12270,27 @@
         "required": [
           "type"
         ]
+      },
+      "PromotionResourceDetailsDtoGenerated": {
+        "required": [
+          "details",
+          "missingKeys"
+        ],
+        "type": "object",
+        "properties": {
+          "details": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromotionResourceDetailGenerated"
+            }
+          },
+          "missingKeys": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        }
       },
       "RateLimitSettingsPublicDtoGenerated": {
         "required": [
@@ -13270,6 +13934,76 @@
           "kind"
         ]
       },
+      "AgentPublicDtoGeneratedProject": {
+        "required": [
+          "id",
+          "name",
+          "type"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "type": "string"
+          }
+        },
+        "nullable": true
+      },
+      "AgentPublicDtoGeneratedActiveVersion": {
+        "required": [
+          "versionId",
+          "integrations"
+        ],
+        "type": "object",
+        "properties": {
+          "versionId": {
+            "type": "string"
+          },
+          "integrations": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/AgentPublicDtoGeneratedActiveVersionIntegrationsItem"
+            }
+          }
+        },
+        "nullable": true
+      },
+      "AgentPublicDtoGeneratedParentFolder": {
+        "required": [
+          "id",
+          "name",
+          "parentFolderId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parentFolderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "nullable": true
+      },
       "CredentialTypePolicyEffectivePublicDtoGeneratedRulesItem": {
         "required": [
           "id",
@@ -13967,93 +14701,6 @@
           },
           "isFloor": {
             "type": "boolean"
-          }
-        }
-      },
-      "PromotePackageResultDtoGeneratedCounts": {
-        "required": [
-          "workflows",
-          "folders",
-          "credentials",
-          "dataTables",
-          "variables",
-          "tags"
-        ],
-        "type": "object",
-        "properties": {
-          "workflows": {
-            "minimum": 0,
-            "type": "integer"
-          },
-          "folders": {
-            "minimum": 0,
-            "type": "integer"
-          },
-          "credentials": {
-            "minimum": 0,
-            "type": "integer"
-          },
-          "dataTables": {
-            "minimum": 0,
-            "type": "integer"
-          },
-          "variables": {
-            "minimum": 0,
-            "type": "integer"
-          },
-          "tags": {
-            "minimum": 0,
-            "type": "integer"
-          }
-        }
-      },
-      "PromotePackageResultDtoGeneratedGit": {
-        "required": [
-          "commitSha",
-          "branchName"
-        ],
-        "type": "object",
-        "properties": {
-          "commitSha": {
-            "type": "string"
-          },
-          "branchName": {
-            "type": "string"
-          }
-        }
-      },
-      "PromotePackageResultDtoGeneratedReview": {
-        "required": [
-          "reviewId",
-          "number",
-          "webUrl"
-        ],
-        "type": "object",
-        "properties": {
-          "reviewId": {
-            "maxLength": 36,
-            "minLength": 1,
-            "type": "string"
-          },
-          "number": {
-            "type": "integer"
-          },
-          "webUrl": {
-            "type": "string"
-          }
-        }
-      },
-      "PromotePackageResultDtoGeneratedWarningsItem": {
-        "required": [
-          "message"
-        ],
-        "type": "object",
-        "properties": {
-          "message": {
-            "type": "string"
-          },
-          "linkUrl": {
-            "type": "string"
           }
         }
       },
@@ -15623,6 +16270,9 @@
             "minLength": 1,
             "type": "string"
           },
+          "resourceType": {
+            "$ref": "#/components/schemas/PromotionResourceDetailGeneratedOneOf2BeforeResourceType"
+          },
           "parentFolderId": {
             "type": "string",
             "nullable": true
@@ -15646,6 +16296,9 @@
           "name": {
             "minLength": 1,
             "type": "string"
+          },
+          "resourceType": {
+            "$ref": "#/components/schemas/PromotionResourceDetailGeneratedOneOf2AfterResourceType"
           },
           "parentFolderId": {
             "type": "string",
@@ -16454,6 +17107,45 @@
             "type": "string"
           }
         }
+      },
+      "AgentPublicDtoGeneratedToolsAdditionalProperties": {
+        "required": [
+          "code",
+          "descriptor"
+        ],
+        "type": "object",
+        "properties": {
+          "code": {
+            "type": "string"
+          },
+          "descriptor": {
+            "$ref": "#/components/schemas/AgentPublicDtoGeneratedToolsAdditionalPropertiesDescriptor"
+          }
+        },
+        "description": "A custom tool: the code it runs and its descriptor."
+      },
+      "AgentPublicDtoGeneratedActiveVersionIntegrationsItem": {
+        "required": [
+          "type",
+          "credentialId"
+        ],
+        "type": "object",
+        "properties": {
+          "type": {
+            "type": "string",
+            "description": "The integration type, for example \u0060slack\u0060 or \u0060webhook\u0060."
+          },
+          "credentialId": {
+            "type": "string"
+          },
+          "settings": {
+            "$ref": "#/components/schemas/AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty"
+          },
+          "approval": {
+            "$ref": "#/components/schemas/AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty"
+          }
+        },
+        "description": "A channel integration. \u0060type\u0060 picks the platform."
       },
       "CredentialTypePolicyDocumentWriteResultPublicDtoGeneratedPolicyRulesItem": {
         "required": [
@@ -18165,6 +18857,18 @@
           }
         }
       },
+      "AgentPublicDtoGeneratedToolsAdditionalPropertiesDescriptor": {
+        "required": [
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          }
+        },
+        "description": "The tool descriptor. \u0060name\u0060 is required; other fields pass through."
+      },
       "PromotionApplyCheckGeneratedAccessRequirementsItemConsumersItemProject": {
         "required": [
           "id",
@@ -18545,7 +19249,8 @@
           "config",
           "configHash",
           "tools",
-          "activeVersion"
+          "activeVersion",
+          "parentFolder"
         ],
         "type": "object",
         "properties": {
@@ -18593,6 +19298,9 @@
           },
           "activeVersion": {
             "$ref": "#/components/schemas/CreateAgent201ResponseActiveVersion"
+          },
+          "parentFolder": {
+            "$ref": "#/components/schemas/CreateAgent201ResponseParentFolder"
           }
         }
       },
@@ -18615,71 +19323,47 @@
           }
         }
       },
-      "GetAgent200Response": {
+      "UpdateAgentRequest": {
         "required": [
-          "id",
-          "name",
-          "projectId",
-          "project",
-          "availableInMCP",
-          "isArchived",
-          "versionId",
-          "activeVersionId",
-          "createdAt",
-          "updatedAt",
-          "config",
-          "configHash",
-          "tools",
-          "activeVersion"
+          "config"
         ],
         "type": "object",
         "properties": {
-          "id": {
-            "type": "string"
-          },
-          "name": {
-            "type": "string"
-          },
-          "projectId": {
-            "type": "string"
-          },
-          "project": {
-            "$ref": "#/components/schemas/GetAgent200ResponseProject"
-          },
-          "availableInMCP": {
-            "type": "boolean"
-          },
-          "isArchived": {
-            "type": "boolean"
-          },
-          "versionId": {
-            "type": "string",
-            "nullable": true
-          },
-          "activeVersionId": {
-            "type": "string",
-            "nullable": true
-          },
-          "createdAt": {
-            "type": "string"
-          },
-          "updatedAt": {
-            "type": "string"
-          },
           "config": {
-            "$ref": "#/components/schemas/GetAgent200ResponseConfig"
+            "$ref": "#/components/schemas/UpdateAgentRequestConfig"
+          },
+          "baseConfigHash": {
+            "type": "string",
+            "nullable": true
           },
           "configHash": {
             "type": "string",
             "nullable": true
           },
-          "tools": {
-            "$ref": "#/components/schemas/GetAgent200ResponseTools"
-          },
-          "activeVersion": {
-            "$ref": "#/components/schemas/GetAgent200ResponseActiveVersion"
-          }
-        }
+          "id": {},
+          "name": {},
+          "projectId": {},
+          "project": {},
+          "availableInMCP": {},
+          "isArchived": {},
+          "versionId": {},
+          "activeVersionId": {},
+          "createdAt": {},
+          "updatedAt": {},
+          "tools": {},
+          "activeVersion": {},
+          "parentFolder": {},
+          "parentFolderId": {},
+          "isRunnable": {},
+          "hasPublishHistory": {},
+          "hasVersionHistory": {},
+          "skills": {},
+          "skillHashes": {},
+          "outdatedSkillIds": {},
+          "skillVersions": {},
+          "adopted": {}
+        },
+        "additionalProperties": false
       },
       "DeleteAgent200Response": {
         "required": [
@@ -18721,6 +19405,83 @@
             "type": "string"
           }
         }
+      },
+      "ListAiPreferences200Response": {
+        "required": [
+          "data",
+          "nextCursor"
+        ],
+        "type": "object",
+        "properties": {
+          "data": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/ListAiPreferences200ResponseDataItem"
+            }
+          },
+          "nextCursor": {
+            "type": "string",
+            "nullable": true
+          }
+        }
+      },
+      "CreateAiPreferenceRequest": {
+        "required": [
+          "content",
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string",
+            "description": "One instruction, written as the user would say it. At most 2000 characters. A scope that already holds 50 preferences refuses a new one, so edit or delete one first."
+          },
+          "scope": {
+            "$ref": "#/components/schemas/CreateAiPreferenceRequestScope"
+          },
+          "projectId": {
+            "maxLength": 36,
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
+      },
+      "UpdateAiPreferenceRequest": {
+        "required": [
+          "content",
+          "scope"
+        ],
+        "type": "object",
+        "properties": {
+          "content": {
+            "maxLength": 2000,
+            "minLength": 1,
+            "type": "string",
+            "description": "One instruction, written as the user would say it. At most 2000 characters. A scope that already holds 50 preferences refuses a new one, so edit or delete one first."
+          },
+          "scope": {
+            "$ref": "#/components/schemas/UpdateAiPreferenceRequestScope"
+          },
+          "projectId": {
+            "maxLength": 36,
+            "type": "string",
+            "nullable": true
+          },
+          "userId": {
+            "type": "string",
+            "format": "uuid",
+            "nullable": true
+          }
+        },
+        "additionalProperties": false
       },
       "InstallPackageRequest": {
         "required": [
@@ -21667,11 +22428,46 @@
         },
         "additionalProperties": false
       },
+      "PromotePackage200Response": {
+        "required": [
+          "environmentId",
+          "counts",
+          "git"
+        ],
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "maxLength": 36,
+            "minLength": 1,
+            "type": "string"
+          },
+          "counts": {
+            "$ref": "#/components/schemas/PromotePackage200ResponseCounts"
+          },
+          "git": {
+            "$ref": "#/components/schemas/PromotePackage200ResponseGit"
+          },
+          "review": {
+            "$ref": "#/components/schemas/PromotePackage200ResponseReview"
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromotePackage200ResponseWarningsItem"
+            }
+          }
+        }
+      },
       "ApplyPackageRequest": {
         "type": "object",
         "properties": {
           "expectedSource": {
             "$ref": "#/components/schemas/ApplyPackageRequestExpectedSource"
+          },
+          "expectedPreviewRevision": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "The \u0060revision\u0060 of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status \u0060preview-changed\u0060 and changes nothing."
           }
         },
         "additionalProperties": false
@@ -21685,9 +22481,82 @@
           "expectedSource": {
             "$ref": "#/components/schemas/ContinueApplyPackageRequestExpectedSource"
           },
+          "expectedPreviewRevision": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "The \u0060revision\u0060 of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status \u0060preview-changed\u0060 and changes nothing."
+          },
           "confirmDestructiveChanges": {
             "type": "boolean",
-            "description": "Also applies destructive data table changes, which a \u0060destructive-change\u0060 conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a \u0060project-deletion\u0060 conflict reports, with everything in them. The confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result."
+            "description": "Also applies destructive data table changes, which a \u0060destructive-change\u0060 conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a \u0060project-deletion\u0060 conflict reports, with everything in them. Without \u0060expectedPreviewRevision\u0060, the confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result."
+          }
+        },
+        "additionalProperties": false
+      },
+      "GetInstanceApplyChanges200Response": {
+        "required": [
+          "commitSha",
+          "source",
+          "environment",
+          "resources",
+          "dependencies",
+          "check",
+          "revision"
+        ],
+        "type": "object",
+        "properties": {
+          "commitSha": {
+            "type": "string"
+          },
+          "source": {
+            "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseSource"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseEnvironment"
+          },
+          "resources": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromotionResourceGenerated"
+            }
+          },
+          "dependencies": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseDependenciesItem"
+            }
+          },
+          "check": {
+            "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseCheck"
+          },
+          "revision": {
+            "type": "string",
+            "description": "Send it as \u0060expectedPreviewRevision\u0060 to apply only when this instance still matches the preview."
+          }
+        }
+      },
+      "GetInstanceApplyChangeDetailsRequest": {
+        "required": [
+          "commitSha",
+          "keys"
+        ],
+        "type": "object",
+        "properties": {
+          "commitSha": {
+            "pattern": "^[0-9a-f]{40}([0-9a-f]{24})?$",
+            "type": "string",
+            "description": "The \u0060commitSha\u0060 of the preview. \u0060null\u0060 when the preview had none.",
+            "nullable": true
+          },
+          "keys": {
+            "maxItems": 50,
+            "minItems": 1,
+            "type": "array",
+            "items": {
+              "minLength": 1,
+              "type": "string"
+            },
+            "description": "The \u0060key\u0060 of each resource to read, from the preview."
           }
         },
         "additionalProperties": false
@@ -21696,8 +22565,10 @@
         "required": [
           "commitSha",
           "source",
+          "environment",
           "resources",
-          "dependencies"
+          "dependencies",
+          "revision"
         ],
         "type": "object",
         "properties": {
@@ -21707,6 +22578,9 @@
           },
           "source": {
             "$ref": "#/components/schemas/GetPromotionChanges200ResponseSource"
+          },
+          "environment": {
+            "$ref": "#/components/schemas/GetPromotionChanges200ResponseEnvironment"
           },
           "resources": {
             "type": "array",
@@ -21728,7 +22602,7 @@
           },
           "revision": {
             "type": "string",
-            "description": "Apply only. Send it as \u0060expectedPreviewRevision\u0060 to apply only when this instance still matches the preview."
+            "description": "A hash of what this preview shows. Send it as \u0060expectedPreviewRevision\u0060 with Promote or Apply to run only when the preview did not change."
           }
         }
       },
@@ -21783,9 +22657,49 @@
             "minLength": 1,
             "type": "string",
             "description": "Message for the promotion commit. If you omit it, the commit uses a generated message."
+          },
+          "expectedPreviewRevision": {
+            "pattern": "^[0-9a-f]{64}$",
+            "type": "string",
+            "description": "The \u0060revision\u0060 of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status \u0060preview-changed\u0060 and changes nothing."
           }
         },
         "additionalProperties": false
+      },
+      "PromoteProjectSelection200Response": {
+        "discriminator": {
+          "propertyName": "status",
+          "mapping": {
+            "promoted": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1Variant",
+            "preview-changed": "#/components/schemas/PromoteProjectSelection200ResponseOneOf2Variant"
+          }
+        },
+        "x-client-original-tagged-union": {
+          "oneOf": [
+            {
+              "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1"
+            },
+            {
+              "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf2"
+            }
+          ],
+          "discriminator": {
+            "propertyName": "status",
+            "mapping": {
+              "promoted": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1",
+              "preview-changed": "#/components/schemas/PromoteProjectSelection200ResponseOneOf2"
+            }
+          }
+        },
+        "type": "object",
+        "properties": {
+          "status": {
+            "type": "string"
+          }
+        },
+        "required": [
+          "status"
+        ]
       },
       "ApplyProjectSelectionRequest": {
         "type": "object",
@@ -21813,7 +22727,7 @@
           "expectedPreviewRevision": {
             "pattern": "^[0-9a-f]{64}$",
             "type": "string",
-            "description": "The \u0060revision\u0060 of the reviewed Apply preview. Apply builds the preview again and returns status \u0060preview-changed\u0060 without writing when it differs, for example after a local edit."
+            "description": "The \u0060revision\u0060 of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status \u0060preview-changed\u0060 and changes nothing."
           }
         },
         "additionalProperties": false
@@ -21847,11 +22761,11 @@
           "expectedPreviewRevision": {
             "pattern": "^[0-9a-f]{64}$",
             "type": "string",
-            "description": "The \u0060revision\u0060 of the reviewed Apply preview. Apply builds the preview again and returns status \u0060preview-changed\u0060 without writing when it differs, for example after a local edit."
+            "description": "The \u0060revision\u0060 of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status \u0060preview-changed\u0060 and changes nothing."
           },
           "confirmDestructiveChanges": {
             "type": "boolean",
-            "description": "Also applies destructive data table changes, which a \u0060destructive-change\u0060 conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a \u0060project-deletion\u0060 conflict reports, with everything in them. The confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result."
+            "description": "Also applies destructive data table changes, which a \u0060destructive-change\u0060 conflict reports: removed or retyped columns. The values in those columns are removed. Rows and other columns are kept. On a full apply, also deletes the team projects that a \u0060project-deletion\u0060 conflict reports, with everything in them. Without \u0060expectedPreviewRevision\u0060, the confirmation covers every such change and deletion when Continue runs, including those that are not in the reviewed result."
           }
         },
         "additionalProperties": false
@@ -23346,6 +24260,9 @@
           },
           "workflowReviewRequestId": {
             "type": "string"
+          },
+          "versionId": {
+            "type": "string"
           }
         }
       },
@@ -23504,6 +24421,9 @@
           },
           "workflowReviewRequestId": {
             "type": "string"
+          },
+          "versionId": {
+            "type": "string"
           }
         }
       },
@@ -23537,6 +24457,9 @@
             "$ref": "#/components/schemas/ActivateWorkflow409ResponseReason"
           },
           "workflowReviewRequestId": {
+            "type": "string"
+          },
+          "versionId": {
             "type": "string"
           }
         }
@@ -23616,6 +24539,42 @@
           "updatedAt": {
             "type": "string",
             "format": "date-time"
+          }
+        }
+      },
+      "RunWorkflowRequest": {
+        "required": [
+          "runData",
+          "destinationNode"
+        ],
+        "type": "object",
+        "properties": {
+          "runData": {
+            "$ref": "#/components/schemas/RunWorkflowRequestRunData"
+          },
+          "destinationNode": {
+            "$ref": "#/components/schemas/RunWorkflowRequestDestinationNode"
+          },
+          "dirtyNodeNames": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            },
+            "description": "Names of nodes that changed since the run data was made. n8n runs these nodes again and does not reuse their run data."
+          }
+        },
+        "additionalProperties": false
+      },
+      "RunWorkflow200Response": {
+        "required": [
+          "executionId"
+        ],
+        "type": "object",
+        "properties": {
+          "executionId": {
+            "type": "string",
+            "description": "ID of the new execution. Use \u0060GET /executions/{id}\u0060 to read its status.",
+            "example": "1001"
           }
         }
       },
@@ -23778,27 +24737,6 @@
       "ExportPackage200GzipResponseSchema": {
         "type": "string",
         "format": "binary"
-      },
-      "GetPromotionChangeDetails200Response": {
-        "required": [
-          "details",
-          "missingKeys"
-        ],
-        "type": "object",
-        "properties": {
-          "details": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/PromotionResourceDetailGenerated"
-            }
-          },
-          "missingKeys": {
-            "type": "array",
-            "items": {
-              "type": "string"
-            }
-          }
-        }
       },
       "PullSourceControl200ResponseSchema": {
         "type": "array",
@@ -25202,6 +26140,16 @@
         "description": "Parameter value. Usually a string; numbers, booleans and null are also accepted.",
         "example": "Bearer \u003Ctoken\u003E"
       },
+      "AgentPublicDtoGeneratedConfigProperty": {
+        "type": "object",
+        "nullable": true
+      },
+      "AgentPublicDtoGeneratedToolsProperty": {
+        "type": "object",
+        "additionalProperties": {
+          "$ref": "#/components/schemas/AgentPublicDtoGeneratedToolsAdditionalProperties"
+        }
+      },
       "WorkflowPublicDtoGeneratedConnectionsProperty": {
         "type": "object",
         "description": "Connections between nodes, keyed by source node name",
@@ -25377,6 +26325,14 @@
           "$ref": "#/components/schemas/PromotionCredentialExpressionValueGenerated"
         }
       },
+      "AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty": {
+        "type": "object",
+        "description": "Platform-specific integration settings."
+      },
+      "AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty": {
+        "type": "object",
+        "description": "Channel actions that need approval before they run."
+      },
       "WorkflowPublicDtoGeneratedActiveVersionNodesItemParametersProperty": {
         "type": "object"
       },
@@ -25498,6 +26454,37 @@
         },
         "nullable": true
       },
+      "CreateAgent201ResponseParentFolder": {
+        "required": [
+          "id",
+          "name",
+          "parentFolderId",
+          "createdAt",
+          "updatedAt"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "parentFolderId": {
+            "type": "string",
+            "nullable": true
+          },
+          "createdAt": {
+            "type": "string",
+            "format": "date-time"
+          },
+          "updatedAt": {
+            "type": "string",
+            "format": "date-time"
+          }
+        },
+        "nullable": true
+      },
       "ListAgents200ResponseDataItem": {
         "required": [
           "id",
@@ -25543,54 +26530,50 @@
           }
         }
       },
-      "GetAgent200ResponseProject": {
+      "UpdateAgentRequestConfig": {
+        "type": "object",
+        "nullable": true
+      },
+      "ListAiPreferences200ResponseDataItem": {
         "required": [
           "id",
-          "name",
-          "type"
+          "content",
+          "scope",
+          "userId",
+          "projectId",
+          "source",
+          "createdAt",
+          "updatedAt"
         ],
         "type": "object",
         "properties": {
           "id": {
             "type": "string"
           },
-          "name": {
+          "content": {
             "type": "string"
           },
-          "type": {
+          "scope": {
+            "$ref": "#/components/schemas/ListAiPreferences200ResponseDataItemScope"
+          },
+          "userId": {
+            "type": "string",
+            "nullable": true
+          },
+          "projectId": {
+            "type": "string",
+            "nullable": true
+          },
+          "source": {
+            "$ref": "#/components/schemas/ListAiPreferences200ResponseDataItemSource"
+          },
+          "createdAt": {
+            "type": "string"
+          },
+          "updatedAt": {
             "type": "string"
           }
-        },
-        "nullable": true
-      },
-      "GetAgent200ResponseConfig": {
-        "type": "object",
-        "nullable": true
-      },
-      "GetAgent200ResponseTools": {
-        "type": "object",
-        "additionalProperties": {
-          "$ref": "#/components/schemas/GetAgent200ResponseToolsAdditionalProperties"
         }
-      },
-      "GetAgent200ResponseActiveVersion": {
-        "required": [
-          "versionId",
-          "integrations"
-        ],
-        "type": "object",
-        "properties": {
-          "versionId": {
-            "type": "string"
-          },
-          "integrations": {
-            "type": "array",
-            "items": {
-              "$ref": "#/components/schemas/GetAgent200ResponseActiveVersionIntegrationsItem"
-            }
-          }
-        },
-        "nullable": true
       },
       "InstallPackage200ResponseInstalledNodesItem": {
         "type": "object",
@@ -27176,6 +28159,93 @@
           }
         }
       },
+      "PromotePackage200ResponseCounts": {
+        "required": [
+          "workflows",
+          "folders",
+          "credentials",
+          "dataTables",
+          "variables",
+          "tags"
+        ],
+        "type": "object",
+        "properties": {
+          "workflows": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "folders": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "credentials": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "dataTables": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "variables": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "tags": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "PromotePackage200ResponseGit": {
+        "required": [
+          "commitSha",
+          "branchName"
+        ],
+        "type": "object",
+        "properties": {
+          "commitSha": {
+            "type": "string"
+          },
+          "branchName": {
+            "type": "string"
+          }
+        }
+      },
+      "PromotePackage200ResponseReview": {
+        "required": [
+          "reviewId",
+          "number",
+          "webUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "reviewId": {
+            "maxLength": 36,
+            "minLength": 1,
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "webUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "PromotePackage200ResponseWarningsItem": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "linkUrl": {
+            "type": "string"
+          }
+        }
+      },
       "ApplyPackageRequestExpectedSource": {
         "required": [
           "environmentId",
@@ -27224,6 +28294,119 @@
         },
         "additionalProperties": false
       },
+      "GetInstanceApplyChanges200ResponseSource": {
+        "required": [
+          "environmentId",
+          "branchName"
+        ],
+        "type": "object",
+        "properties": {
+          "environmentId": {
+            "maxLength": 36,
+            "minLength": 1,
+            "type": "string"
+          },
+          "branchName": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInstanceApplyChanges200ResponseEnvironment": {
+        "required": [
+          "name",
+          "providerType"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "providerType": {
+            "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseEnvironmentProviderType"
+          },
+          "createBranchOnPromotion": {
+            "type": "boolean",
+            "description": "Promote only. When true, Promote pushes to a new branch created from \u0060source.branchName\u0060. When false, it pushes to \u0060source.branchName\u0060 directly."
+          }
+        }
+      },
+      "GetInstanceApplyChanges200ResponseDependenciesItem": {
+        "required": [
+          "workflowKey",
+          "resourceKey",
+          "included"
+        ],
+        "type": "object",
+        "properties": {
+          "workflowKey": {
+            "type": "string"
+          },
+          "resourceKey": {
+            "type": "string"
+          },
+          "included": {
+            "type": "boolean",
+            "description": "Whether selecting the workflow also sends the resource. \u0060false\u0060 for sub-workflows, which need their own selection."
+          }
+        }
+      },
+      "GetInstanceApplyChanges200ResponseCheck": {
+        "required": [
+          "missingProjects",
+          "missingBindings",
+          "accessRequirements",
+          "conflicts",
+          "warnings",
+          "movedWorkflows",
+          "movedFolders"
+        ],
+        "type": "object",
+        "properties": {
+          "missingProjects": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromotionApplyCheckGeneratedMissingProjectsItem"
+            },
+            "description": "Projects in the package that do not exist on this instance. The check keeps their metadata without checking project creation rules. The project creation API can reject invalid values."
+          },
+          "missingBindings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromotionApplyCheckGeneratedMissingBindingsItem"
+            }
+          },
+          "accessRequirements": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromotionApplyCheckGeneratedAccessRequirementsItem"
+            }
+          },
+          "conflicts": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromotionApplyCheckGeneratedConflictsItem"
+            }
+          },
+          "warnings": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/PromotionApplyCheckGeneratedWarningsItem"
+            }
+          },
+          "movedWorkflows": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseCheckMovedWorkflowsItem"
+            }
+          },
+          "movedFolders": {
+            "type": "array",
+            "items": {
+              "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseCheckMovedFoldersItem"
+            }
+          }
+        }
+      },
       "GetPromotionChanges200ResponseSource": {
         "required": [
           "environmentId",
@@ -27238,6 +28421,25 @@
           },
           "branchName": {
             "type": "string"
+          }
+        }
+      },
+      "GetPromotionChanges200ResponseEnvironment": {
+        "required": [
+          "name",
+          "providerType"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "providerType": {
+            "$ref": "#/components/schemas/GetPromotionChanges200ResponseEnvironmentProviderType"
+          },
+          "createBranchOnPromotion": {
+            "type": "boolean",
+            "description": "Promote only. When true, Promote pushes to a new branch created from \u0060source.branchName\u0060. When false, it pushes to \u0060source.branchName\u0060 directly."
           }
         }
       },
@@ -30569,6 +31771,28 @@
           }
         }
       },
+      "RunWorkflowRequestRunData": {
+        "type": "object",
+        "description": "Run data to reuse, keyed by node name. Use \u0060data.resultData.runData\u0060 from \u0060GET /executions/{id}?includeData=true\u0060. n8n reuses the output of these nodes and runs the other nodes up to the destination node. If the run data does not reach the destination node from a trigger, n8n runs the workflow from its trigger. If that trigger needs an external event to start, the API returns \u0060409\u0060."
+      },
+      "RunWorkflowRequestDestinationNode": {
+        "required": [
+          "nodeName",
+          "mode"
+        ],
+        "type": "object",
+        "properties": {
+          "nodeName": {
+            "type": "string",
+            "description": "Name of the node to run to."
+          },
+          "mode": {
+            "$ref": "#/components/schemas/RunWorkflowRequestDestinationNodeMode"
+          }
+        },
+        "additionalProperties": false,
+        "description": "The node where the run stops."
+      },
       "GetDeprecatedWorkflowVersion200ResponseNodesItem": {
         "type": "object",
         "properties": {
@@ -31689,6 +32913,93 @@
         },
         "additionalProperties": false
       },
+      "PromoteProjectSelection200ResponseOneOf1Counts": {
+        "required": [
+          "workflows",
+          "folders",
+          "credentials",
+          "dataTables",
+          "variables",
+          "tags"
+        ],
+        "type": "object",
+        "properties": {
+          "workflows": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "folders": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "credentials": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "dataTables": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "variables": {
+            "minimum": 0,
+            "type": "integer"
+          },
+          "tags": {
+            "minimum": 0,
+            "type": "integer"
+          }
+        }
+      },
+      "PromoteProjectSelection200ResponseOneOf1Git": {
+        "required": [
+          "commitSha",
+          "branchName"
+        ],
+        "type": "object",
+        "properties": {
+          "commitSha": {
+            "type": "string"
+          },
+          "branchName": {
+            "type": "string"
+          }
+        }
+      },
+      "PromoteProjectSelection200ResponseOneOf1Review": {
+        "required": [
+          "reviewId",
+          "number",
+          "webUrl"
+        ],
+        "type": "object",
+        "properties": {
+          "reviewId": {
+            "maxLength": 36,
+            "minLength": 1,
+            "type": "string"
+          },
+          "number": {
+            "type": "integer"
+          },
+          "webUrl": {
+            "type": "string"
+          }
+        }
+      },
+      "PromoteProjectSelection200ResponseOneOf1WarningsItem": {
+        "required": [
+          "message"
+        ],
+        "type": "object",
+        "properties": {
+          "message": {
+            "type": "string"
+          },
+          "linkUrl": {
+            "type": "string"
+          }
+        }
+      },
       "GetLogStreamingDestinations200ResponseDataItemOneOf1CircuitBreaker": {
         "type": "object",
         "properties": {
@@ -32061,45 +33372,6 @@
           },
           "approval": {
             "$ref": "#/components/schemas/CreateAgent201ResponseActiveVersionIntegrationsItemApproval"
-          }
-        },
-        "description": "A channel integration. \u0060type\u0060 picks the platform."
-      },
-      "GetAgent200ResponseToolsAdditionalProperties": {
-        "required": [
-          "code",
-          "descriptor"
-        ],
-        "type": "object",
-        "properties": {
-          "code": {
-            "type": "string"
-          },
-          "descriptor": {
-            "$ref": "#/components/schemas/GetAgent200ResponseToolsAdditionalPropertiesDescriptor"
-          }
-        },
-        "description": "A custom tool: the code it runs and its descriptor."
-      },
-      "GetAgent200ResponseActiveVersionIntegrationsItem": {
-        "required": [
-          "type",
-          "credentialId"
-        ],
-        "type": "object",
-        "properties": {
-          "type": {
-            "type": "string",
-            "description": "The integration type, for example \u0060slack\u0060 or \u0060webhook\u0060."
-          },
-          "credentialId": {
-            "type": "string"
-          },
-          "settings": {
-            "$ref": "#/components/schemas/GetAgent200ResponseActiveVersionIntegrationsItemSettings"
-          },
-          "approval": {
-            "$ref": "#/components/schemas/GetAgent200ResponseActiveVersionIntegrationsItemApproval"
           }
         },
         "description": "A channel integration. \u0060type\u0060 picks the platform."
@@ -32531,6 +33803,60 @@
           },
           "value": {
             "type": "string"
+          }
+        }
+      },
+      "GetInstanceApplyChanges200ResponseCheckMovedWorkflowsItem": {
+        "required": [
+          "id",
+          "name",
+          "project",
+          "projectExists",
+          "instanceProject"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseCheckMovedWorkflowsItemProject"
+          },
+          "projectExists": {
+            "type": "boolean"
+          },
+          "instanceProject": {
+            "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseCheckMovedWorkflowsItemInstanceProject"
+          }
+        }
+      },
+      "GetInstanceApplyChanges200ResponseCheckMovedFoldersItem": {
+        "required": [
+          "id",
+          "name",
+          "project",
+          "projectExists",
+          "instanceProject"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          },
+          "project": {
+            "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseCheckMovedFoldersItemProject"
+          },
+          "projectExists": {
+            "type": "boolean"
+          },
+          "instanceProject": {
+            "$ref": "#/components/schemas/GetInstanceApplyChanges200ResponseCheckMovedFoldersItemInstanceProject"
           }
         }
       },
@@ -35234,26 +36560,6 @@
         "type": "object",
         "description": "Channel actions that need approval before they run."
       },
-      "GetAgent200ResponseToolsAdditionalPropertiesDescriptor": {
-        "required": [
-          "name"
-        ],
-        "type": "object",
-        "properties": {
-          "name": {
-            "type": "string"
-          }
-        },
-        "description": "The tool descriptor. \u0060name\u0060 is required; other fields pass through."
-      },
-      "GetAgent200ResponseActiveVersionIntegrationsItemSettings": {
-        "type": "object",
-        "description": "Platform-specific integration settings."
-      },
-      "GetAgent200ResponseActiveVersionIntegrationsItemApproval": {
-        "type": "object",
-        "description": "Channel actions that need approval before they run."
-      },
       "GetDiscover200ResponseDataResourcesAdditionalProperties": {
         "required": [
           "operations",
@@ -35331,6 +36637,68 @@
         },
         "description": "Icon of the project, or null when the project has none",
         "nullable": true
+      },
+      "GetInstanceApplyChanges200ResponseCheckMovedWorkflowsItemProject": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInstanceApplyChanges200ResponseCheckMovedWorkflowsItemInstanceProject": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInstanceApplyChanges200ResponseCheckMovedFoldersItemProject": {
+        "required": [
+          "id",
+          "name"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
+      },
+      "GetInstanceApplyChanges200ResponseCheckMovedFoldersItemInstanceProject": {
+        "required": [
+          "id"
+        ],
+        "type": "object",
+        "properties": {
+          "id": {
+            "minLength": 1,
+            "type": "string"
+          },
+          "name": {
+            "type": "string"
+          }
+        }
       },
       "GetPromotionChanges200ResponseCheckMovedWorkflowsItemProject": {
         "required": [
@@ -36519,6 +37887,63 @@
           "value": {
             "type": "string"
           }
+        }
+      },
+      "AiPreferencePublicDtoGeneratedScope": {
+        "enum": [
+          "user",
+          "project",
+          "instance"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "AiPreferencePublicDtoGeneratedScope",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "instance",
+              "name": "Instance"
+            }
+          ]
+        }
+      },
+      "AiPreferencePublicDtoGeneratedSource": {
+        "enum": [
+          "ui",
+          "aia",
+          "mcp",
+          "api"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "AiPreferencePublicDtoGeneratedSource",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "ui",
+              "name": "Ui"
+            },
+            {
+              "value": "aia",
+              "name": "Aia"
+            },
+            {
+              "value": "mcp",
+              "name": "Mcp"
+            },
+            {
+              "value": "api",
+              "name": "Api"
+            }
+          ]
         }
       },
       "CredentialTypePolicyEffectivePublicDtoGeneratedDefaultAction": {
@@ -40347,6 +41772,48 @@
         ],
         "type": "number"
       },
+      "PromotionResourceDetailGeneratedOneOf2BeforeResourceType": {
+        "enum": [
+          "workflow",
+          "agent"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "PromotionResourceDetailGeneratedOneOf2BeforeResourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "workflow",
+              "name": "Workflow"
+            },
+            {
+              "value": "agent",
+              "name": "Agent"
+            }
+          ]
+        }
+      },
+      "PromotionResourceDetailGeneratedOneOf2AfterResourceType": {
+        "enum": [
+          "workflow",
+          "agent"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "PromotionResourceDetailGeneratedOneOf2AfterResourceType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "workflow",
+              "name": "Workflow"
+            },
+            {
+              "value": "agent",
+              "name": "Agent"
+            }
+          ]
+        }
+      },
       "StringValueType": {
         "enum": [
           "string"
@@ -40930,6 +42397,58 @@
             {
               "value": "http",
               "name": "Http"
+            }
+          ]
+        }
+      },
+      "CreateAiPreferenceRequestScope": {
+        "enum": [
+          "user",
+          "project",
+          "instance"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "CreateAiPreferenceRequestScope",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "instance",
+              "name": "Instance"
+            }
+          ]
+        }
+      },
+      "UpdateAiPreferenceRequestScope": {
+        "enum": [
+          "user",
+          "project",
+          "instance"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "UpdateAiPreferenceRequestScope",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "instance",
+              "name": "Instance"
             }
           ]
         }
@@ -42072,7 +43591,7 @@
           "overwrite"
         ],
         "type": "string",
-        "description": "What to do when a package folder already exists at the same position in the target project. Defaults to whatever \u0060projectConflictPolicy\u0060 is, so the intent is stated once; a workflow package defines no projects, so it defaults to \u0060merge\u0060 there. \u0060merge\u0060 reuses the existing folder and merges the package\u0027s children into it. \u0060fail\u0060 rejects the import. \u0060overwrite\u0060 reuses folders as \u0060merge\u0060 does and additionally removes workflows the package does not contain \u2014 at a project\u0027s root and in folders the package defines, leaving target-only folders and their contents alone. Folders it does not define are then removed too, but only once nothing is left inside them. Removals are listed under \u0060removedWorkflows\u0060 and \u0060removedFolders\u0060; see \u0060overwriteDeletionPolicy\u0060. A folder whose id sits under a different parent, or belongs to another project, always blocks the import. \u0060overwrite\u0060 is project-packages-only. When it removes a workflow, it needs the \u0060workflow:delete\u0060 scope. When it removes a folder, it needs \u0060folder:delete\u0060. It is rejected against a \u0060projectConflictPolicy\u0060 other than \u0060overwrite\u0060, and blocks up front if the caller cannot delete something it would remove. A project package needs the \u0060folder:create\u0060 scope only when the import creates a folder, and a folders-enabled license only when it creates, changes or removes a folder. A workflow package with folders always needs \u0060folder:create\u0060, \u0060folder:update\u0060 and that license.",
+        "description": "What to do when a package folder already exists at the same position in the target project. Defaults to whatever \u0060projectConflictPolicy\u0060 is, so the intent is stated once; a workflow package defines no projects, so it defaults to \u0060merge\u0060 there. \u0060merge\u0060 reuses the existing folder and merges the package\u0027s children into it. \u0060fail\u0060 rejects the import. \u0060overwrite\u0060 reuses folders as \u0060merge\u0060 does and additionally removes workflows the package does not contain \u2014 at a project\u0027s root and in folders the package defines, leaving target-only folders and their contents alone. Folders it does not define are then removed too, but only once nothing is left inside them. Removals are listed under \u0060removedWorkflows\u0060 and \u0060removedFolders\u0060; see \u0060overwriteDeletionPolicy\u0060. A folder whose id sits under a different parent, or belongs to another project, always blocks the import. \u0060overwrite\u0060 is project-packages-only. When it removes a workflow, it needs the \u0060workflow:delete\u0060 scope. When it removes a folder, it needs \u0060folder:delete\u0060. It is rejected against a \u0060projectConflictPolicy\u0060 other than \u0060overwrite\u0060, and blocks up front if the caller cannot delete something it would remove. The import needs the \u0060folder:create\u0060 scope only when it creates a folder, and a folders-enabled license only when it creates, changes or removes a folder.",
         "x-ms-enum": {
           "name": "ImportPackageFormDataRequestFolderConflictPolicy",
           "modelAsString": false,
@@ -42138,7 +43657,7 @@
           "do-nothing"
         ],
         "type": "string",
-        "description": "Controls what happens when a referenced data table has no match in the target project. \u0060create\u0060 (default) creates it from the package schema, keeping the source id, with no rows; requires the \u0060dataTable:create\u0060 scope. \u0060must-preexist\u0060 rejects the import. \u0060do-nothing\u0060 skips creation of missing tables. Under the \u0060keep-existing\u0060, \u0060fail\u0060, and \u0060overwrite-non-destructive\u0060 schema conflict policies, matched tables are still validated for schema compatibility and can still block the import. The import never imports table rows. Matched tables change only under \u0060dataTableSchemaConflictPolicy=overwrite\u0060 or \u0060overwrite-non-destructive\u0060, which keep their rows.",
+        "description": "Controls what happens when a referenced data table has no match in the target project. \u0060create\u0060 (default) creates it from the package schema, keeping the source id, with no rows. It requires the \u0060dataTable:create\u0060 scope only when it creates a table. A table that already exists needs no scope. \u0060must-preexist\u0060 rejects the import. \u0060do-nothing\u0060 skips creation of missing tables. Under the \u0060keep-existing\u0060, \u0060fail\u0060, and \u0060overwrite-non-destructive\u0060 schema conflict policies, matched tables are still validated for schema compatibility and can still block the import. The import never imports table rows. Matched tables change only under \u0060dataTableSchemaConflictPolicy=overwrite\u0060 or \u0060overwrite-non-destructive\u0060, which keep their rows.",
         "x-ms-enum": {
           "name": "ImportPackageFormDataRequestDataTableMissingMode",
           "modelAsString": false,
@@ -42844,7 +44363,8 @@
       "UpdateWorkflow409ResponseReason": {
         "enum": [
           "review_pending",
-          "changes_requested"
+          "changes_requested",
+          "review_required"
         ],
         "type": "string",
         "x-ms-enum": {
@@ -42858,6 +44378,10 @@
             {
               "value": "changes_requested",
               "name": "ChangesRequested"
+            },
+            {
+              "value": "review_required",
+              "name": "ReviewRequired"
             }
           ]
         }
@@ -42865,7 +44389,8 @@
       "PublishWorkflow409ResponseReason": {
         "enum": [
           "review_pending",
-          "changes_requested"
+          "changes_requested",
+          "review_required"
         ],
         "type": "string",
         "x-ms-enum": {
@@ -42879,6 +44404,10 @@
             {
               "value": "changes_requested",
               "name": "ChangesRequested"
+            },
+            {
+              "value": "review_required",
+              "name": "ReviewRequired"
             }
           ]
         }
@@ -42886,7 +44415,8 @@
       "ActivateWorkflow409ResponseReason": {
         "enum": [
           "review_pending",
-          "changes_requested"
+          "changes_requested",
+          "review_required"
         ],
         "type": "string",
         "x-ms-enum": {
@@ -42900,6 +44430,10 @@
             {
               "value": "changes_requested",
               "name": "ChangesRequested"
+            },
+            {
+              "value": "review_required",
+              "name": "ReviewRequired"
             }
           ]
         }
@@ -43004,6 +44538,22 @@
             {
               "value": "projects",
               "name": "Projects"
+            }
+          ]
+        }
+      },
+      "PromotedStatus": {
+        "enum": [
+          "promoted"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "PromotedStatus",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "promoted",
+              "name": "Promoted"
             }
           ]
         }
@@ -43495,6 +45045,63 @@
             {
               "value": "instance",
               "name": "Instance"
+            }
+          ]
+        }
+      },
+      "ListAiPreferences200ResponseDataItemScope": {
+        "enum": [
+          "user",
+          "project",
+          "instance"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "ListAiPreferences200ResponseDataItemScope",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "instance",
+              "name": "Instance"
+            }
+          ]
+        }
+      },
+      "ListAiPreferences200ResponseDataItemSource": {
+        "enum": [
+          "ui",
+          "aia",
+          "mcp",
+          "api"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "ListAiPreferences200ResponseDataItemSource",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "ui",
+              "name": "Ui"
+            },
+            {
+              "value": "aia",
+              "name": "Aia"
+            },
+            {
+              "value": "mcp",
+              "name": "Mcp"
+            },
+            {
+              "value": "api",
+              "name": "Api"
             }
           ]
         }
@@ -44349,6 +45956,48 @@
           1
         ],
         "type": "number"
+      },
+      "GetInstanceApplyChanges200ResponseEnvironmentProviderType": {
+        "enum": [
+          "git",
+          "gitlab"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetInstanceApplyChanges200ResponseEnvironmentProviderType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "git",
+              "name": "Git"
+            },
+            {
+              "value": "gitlab",
+              "name": "Gitlab"
+            }
+          ]
+        }
+      },
+      "GetPromotionChanges200ResponseEnvironmentProviderType": {
+        "enum": [
+          "git",
+          "gitlab"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "GetPromotionChanges200ResponseEnvironmentProviderType",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "git",
+              "name": "Git"
+            },
+            {
+              "value": "gitlab",
+              "name": "Gitlab"
+            }
+          ]
+        }
       },
       "ReviewOpenCode": {
         "enum": [
@@ -46090,6 +47739,28 @@
           ]
         }
       },
+      "RunWorkflowRequestDestinationNodeMode": {
+        "enum": [
+          "inclusive",
+          "exclusive"
+        ],
+        "type": "string",
+        "description": "\u0060inclusive\u0060 runs the destination node. \u0060exclusive\u0060 stops before the destination node.",
+        "x-ms-enum": {
+          "name": "RunWorkflowRequestDestinationNodeMode",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "inclusive",
+              "name": "Inclusive"
+            },
+            {
+              "value": "exclusive",
+              "name": "Exclusive"
+            }
+          ]
+        }
+      },
       "GenerateAudit200ResponseAnyOf1CredentialsRiskReportRisk": {
         "enum": [
           "credentials",
@@ -46745,6 +48416,7 @@
         "enum": [
           "review_pending",
           "changes_requested",
+          "review_required",
           "insufficient_api_key_scope",
           "insufficient_permissions"
         ],
@@ -46760,6 +48432,10 @@
             {
               "value": "changes_requested",
               "name": "ChangesRequested"
+            },
+            {
+              "value": "review_required",
+              "name": "ReviewRequired"
             },
             {
               "value": "insufficient_api_key_scope",
@@ -46797,6 +48473,7 @@
         "enum": [
           "review_pending",
           "changes_requested",
+          "review_required",
           "insufficient_api_key_scope",
           "insufficient_permissions"
         ],
@@ -46812,6 +48489,10 @@
             {
               "value": "changes_requested",
               "name": "ChangesRequested"
+            },
+            {
+              "value": "review_required",
+              "name": "ReviewRequired"
             },
             {
               "value": "insufficient_api_key_scope",
@@ -46849,6 +48530,7 @@
         "enum": [
           "review_pending",
           "changes_requested",
+          "review_required",
           "insufficient_api_key_scope",
           "insufficient_permissions"
         ],
@@ -46864,6 +48546,10 @@
             {
               "value": "changes_requested",
               "name": "ChangesRequested"
+            },
+            {
+              "value": "review_required",
+              "name": "ReviewRequired"
             },
             {
               "value": "insufficient_api_key_scope",
@@ -46901,6 +48587,7 @@
         "enum": [
           "review_pending",
           "changes_requested",
+          "review_required",
           "insufficient_api_key_scope",
           "insufficient_permissions"
         ],
@@ -46916,6 +48603,10 @@
             {
               "value": "changes_requested",
               "name": "ChangesRequested"
+            },
+            {
+              "value": "review_required",
+              "name": "ReviewRequired"
             },
             {
               "value": "insufficient_api_key_scope",
@@ -46953,6 +48644,7 @@
         "enum": [
           "review_pending",
           "changes_requested",
+          "review_required",
           "insufficient_api_key_scope",
           "insufficient_permissions"
         ],
@@ -46968,6 +48660,10 @@
             {
               "value": "changes_requested",
               "name": "ChangesRequested"
+            },
+            {
+              "value": "review_required",
+              "name": "ReviewRequired"
             },
             {
               "value": "insufficient_api_key_scope",
@@ -47517,6 +49213,32 @@
             {
               "value": "http",
               "name": "Http"
+            }
+          ]
+        }
+      },
+      "ListAiPreferencesScopeParameter": {
+        "enum": [
+          "user",
+          "project",
+          "instance"
+        ],
+        "type": "string",
+        "x-ms-enum": {
+          "name": "ListAiPreferencesScopeParameter",
+          "modelAsString": false,
+          "values": [
+            {
+              "value": "user",
+              "name": "User"
+            },
+            {
+              "value": "project",
+              "name": "Project"
+            },
+            {
+              "value": "instance",
+              "name": "Instance"
             }
           ]
         }
@@ -52697,6 +54419,71 @@
           }
         ]
       },
+      "PromoteProjectSelection200ResponseOneOf1Variant": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PromoteProjectSelection200Response"
+          },
+          {
+            "required": [
+              "environmentId",
+              "counts",
+              "git",
+              "status"
+            ],
+            "type": "object",
+            "properties": {
+              "environmentId": {
+                "maxLength": 36,
+                "minLength": 1,
+                "type": "string"
+              },
+              "counts": {
+                "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1Counts"
+              },
+              "git": {
+                "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1Git"
+              },
+              "review": {
+                "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1Review"
+              },
+              "warnings": {
+                "type": "array",
+                "items": {
+                  "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1WarningsItem"
+                }
+              },
+              "status": {
+                "$ref": "#/components/schemas/PromotedStatus"
+              }
+            }
+          }
+        ]
+      },
+      "PromoteProjectSelection200ResponseOneOf2Variant": {
+        "allOf": [
+          {
+            "$ref": "#/components/schemas/PromoteProjectSelection200Response"
+          },
+          {
+            "required": [
+              "status",
+              "environmentId"
+            ],
+            "type": "object",
+            "properties": {
+              "status": {
+                "$ref": "#/components/schemas/PreviewChangedStatus"
+              },
+              "environmentId": {
+                "maxLength": 36,
+                "minLength": 1,
+                "type": "string"
+              }
+            }
+          }
+        ]
+      },
       "PutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf1Variant": {
         "allOf": [
           {
@@ -54590,6 +56377,12 @@
       "name": "Agent",
       "description": "Operations about agents",
       "x-displayName": "Agents",
+      "x-parent": "BuildAndRun"
+    },
+    {
+      "name": "AiPreference",
+      "description": "Operations about AI preferences",
+      "x-displayName": "AI Preferences",
       "x-parent": "BuildAndRun"
     },
     {
@@ -57906,6 +59699,16 @@
         }
       }
     },
+    "AgentPublicDtoGeneratedConfig": {
+      "type": "object",
+      "nullable": true
+    },
+    "AgentPublicDtoGeneratedTools": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/components/schemas/AgentPublicDtoGeneratedToolsAdditionalProperties"
+      }
+    },
     "WorkflowPublicDtoGeneratedConnections": {
       "type": "object",
       "description": "Connections between nodes, keyed by source node name",
@@ -58080,6 +59883,14 @@
       "additionalProperties": {
         "$ref": "#/components/schemas/PromotionCredentialExpressionValueGenerated"
       }
+    },
+    "AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettings": {
+      "type": "object",
+      "description": "Platform-specific integration settings."
+    },
+    "AgentPublicDtoGeneratedActiveVersionIntegrationsItemApproval": {
+      "type": "object",
+      "description": "Channel actions that need approval before they run."
     },
     "WorkflowPublicDtoGeneratedActiveVersionNodesItemParameters": {
       "type": "object"
@@ -58748,6 +60559,57 @@
         }
       },
       "additionalProperties": false
+    },
+    "PromoteProjectSelection200ResponseOneOf1": {
+      "required": [
+        "environmentId",
+        "counts",
+        "git",
+        "status"
+      ],
+      "type": "object",
+      "properties": {
+        "environmentId": {
+          "maxLength": 36,
+          "minLength": 1,
+          "type": "string"
+        },
+        "counts": {
+          "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1Counts"
+        },
+        "git": {
+          "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1Git"
+        },
+        "review": {
+          "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1Review"
+        },
+        "warnings": {
+          "type": "array",
+          "items": {
+            "$ref": "#/components/schemas/PromoteProjectSelection200ResponseOneOf1WarningsItem"
+          }
+        },
+        "status": {
+          "$ref": "#/components/schemas/PromotedStatus"
+        }
+      }
+    },
+    "PromoteProjectSelection200ResponseOneOf2": {
+      "required": [
+        "status",
+        "environmentId"
+      ],
+      "type": "object",
+      "properties": {
+        "status": {
+          "$ref": "#/components/schemas/PreviewChangedStatus"
+        },
+        "environmentId": {
+          "maxLength": 36,
+          "minLength": 1,
+          "type": "string"
+        }
+      }
     },
     "PutCredentialTypeInstancePolicyRequestRulesItemSelectorOneOf1": {
       "required": [

@@ -27,7 +27,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("workflowIds") is { } nullNodeWorkflowIds && nullNodeWorkflowIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) WorkflowIds = null;
         }
 
-        /// <summary>The `revision` of the reviewed Apply preview. Apply builds the preview again and returns status `preview-changed` without writing when it differs, for example after a local edit.</summary>
+        /// <summary>The `revision` of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status `preview-changed` and changes nothing.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
         public string? ExpectedPreviewRevision { get => _explicitNullValueExpectedPreviewRevision; set { _explicitNullValueExpectedPreviewRevision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedPreviewRevision"); else _explicitNullProperties?.Remove("expectedPreviewRevision"); } }

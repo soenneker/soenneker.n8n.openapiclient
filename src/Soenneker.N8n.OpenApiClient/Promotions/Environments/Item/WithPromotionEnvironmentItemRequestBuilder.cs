@@ -5,6 +5,7 @@ using Microsoft.Kiota.Abstractions.Serialization;
 using Microsoft.Kiota.Abstractions;
 using Soenneker.N8n.OpenApiClient.Models;
 using Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Apply;
+using Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Changes;
 using Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Connect;
 using Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Disconnect;
 using Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.MissingProjects;
@@ -27,6 +28,11 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item
         public global::Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Apply.ApplyRequestBuilder Apply
         {
             get => new global::Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Apply.ApplyRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The changes property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Changes.ChangesRequestBuilder Changes
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Changes.ChangesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The connect property</summary>
         public global::Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Connect.ConnectRequestBuilder Connect

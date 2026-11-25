@@ -36,18 +36,18 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.Deta
         /// <summary>
         /// **Beta** — breaking changes may still occur without major version bump.Returns the content before and after the change for up to 50 resources of a change preview. Send the `commitSha` and the resource `key` values from the preview. The branch side is read at that commit. The instance side is read now, so a `revision` that differs from the preview means the resource changed after the preview. `missingKeys` lists requested resources that neither side holds anymore. Credential content holds expressions only. Variable values are left out, and `valueHidden` is true, unless the API key and the user have the variable:list scope. The key needs the same scope as the preview for that direction.Requires one of these API key scopes: `promotions:promote`, `promotions:apply`.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetails200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailsDtoGenerated"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.TooManyRequestsResponse">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetails200Response?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetailsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailsDtoGenerated?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetailsRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetails200Response> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetailsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailsDtoGenerated> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetailsRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -58,7 +58,7 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Projects.Item.Changes.Item.Deta
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetails200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.GetPromotionChangeDetails200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailsDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailsDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
         /// **Beta** — breaking changes may still occur without major version bump.Returns the content before and after the change for up to 50 resources of a change preview. Send the `commitSha` and the resource `key` values from the preview. The branch side is read at that commit. The instance side is read now, so a `revision` that differs from the preview means the resource changed after the preview. `missingKeys` lists requested resources that neither side holds anymore. Credential content holds expressions only. Variable values are left out, and `valueHidden` is true, unless the API key and the user have the variable:list scope. The key needs the same scope as the preview for that direction.Requires one of these API key scopes: `promotions:promote`, `promotions:apply`.

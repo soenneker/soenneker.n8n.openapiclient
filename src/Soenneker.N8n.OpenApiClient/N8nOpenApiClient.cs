@@ -7,6 +7,7 @@ using Microsoft.Kiota.Serialization.Json;
 using Microsoft.Kiota.Serialization.Multipart;
 using Microsoft.Kiota.Serialization.Text;
 using Soenneker.N8n.OpenApiClient.Agents;
+using Soenneker.N8n.OpenApiClient.AiPreferences;
 using Soenneker.N8n.OpenApiClient.Audit;
 using Soenneker.N8n.OpenApiClient.CommunityPackages;
 using Soenneker.N8n.OpenApiClient.CredentialTypePolicies;
@@ -43,6 +44,11 @@ namespace Soenneker.N8n.OpenApiClient
         public global::Soenneker.N8n.OpenApiClient.Agents.AgentsRequestBuilder Agents
         {
             get => new global::Soenneker.N8n.OpenApiClient.Agents.AgentsRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The aiPreferences property</summary>
+        public global::Soenneker.N8n.OpenApiClient.AiPreferences.AiPreferencesRequestBuilder AiPreferences
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.AiPreferences.AiPreferencesRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The audit property</summary>
         public global::Soenneker.N8n.OpenApiClient.Audit.AuditRequestBuilder Audit

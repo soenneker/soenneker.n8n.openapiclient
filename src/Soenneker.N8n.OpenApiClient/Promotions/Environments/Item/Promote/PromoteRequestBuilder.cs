@@ -34,20 +34,20 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Promote
         {
         }
         /// <summary>
-        /// **Beta** — breaking changes may still occur without major version bump.Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can&apos;t move it between projects. Requires a connected Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.Requires the `promotions:promote` API key scope.
+        /// **Beta** — breaking changes may still occur without major version bump.Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can&apos;t move it between projects. Requires a Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.Requires the `promotions:promote` API key scope.
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.PromotePackage200Response"/></returns>
         /// <param name="body">The request body</param>
         /// <param name="cancellationToken">Cancellation token to use when cancelling requests</param>
         /// <param name="requestConfiguration">Configuration for the request such as headers, query parameters, and middleware options.</param>
         /// <exception cref="global::Soenneker.N8n.OpenApiClient.Models.TooManyRequestsResponse">When receiving a 429 status code</exception>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.PromotePackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PromotePackage200Response?> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.PromotePackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>>? requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #nullable restore
 #else
-        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.PromotePackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
+        public async Task<global::Soenneker.N8n.OpenApiClient.Models.PromotePackage200Response> PostAsync(global::Soenneker.N8n.OpenApiClient.Models.PromotePackageRequest body, Action<RequestConfiguration<DefaultQueryParameters>> requestConfiguration = default, CancellationToken cancellationToken = default)
         {
 #endif
             if(ReferenceEquals(body, null)) throw new ArgumentNullException(nameof(body));
@@ -58,10 +58,10 @@ namespace Soenneker.N8n.OpenApiClient.Promotions.Environments.Item.Promote
                 { "4XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
                 { "5XX", global::Soenneker.OpenApi.Generated.OpenApiRawError.CreateFromDiscriminatorValue },
             };
-            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotePackageResultDtoGenerated.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
+            return await RequestAdapter.SendAsync<global::Soenneker.N8n.OpenApiClient.Models.PromotePackage200Response>(requestInfo, global::Soenneker.N8n.OpenApiClient.Models.PromotePackage200Response.CreateFromDiscriminatorValue, errorMapping, cancellationToken).ConfigureAwait(false);
         }
         /// <summary>
-        /// **Beta** — breaking changes may still occur without major version bump.Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can&apos;t move it between projects. Requires a connected Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.Requires the `promotions:promote` API key scope.
+        /// **Beta** — breaking changes may still occur without major version bump.Exports every team project, commits it, and pushes to the configured base branch or a new timestamped branch. The response reports the target branch in `git.branchName`. Personal projects are ignored. A workflow on the branch that moved to a personal project is refused with 400, because the destination would delete it. A workflow or folder on the branch that moved to another team project is refused with 400 while its old project still exists, because Apply can&apos;t move it between projects. Requires a Promote environment with instance scope. The API key also needs variable:list when the workflows reference variables. Another operation on the same environment returns 423.Requires the `promotions:promote` API key scope.
         /// </summary>
         /// <returns>A <see cref="RequestInformation"/></returns>
         /// <param name="body">The request body</param>

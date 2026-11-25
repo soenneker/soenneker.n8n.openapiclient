@@ -9,7 +9,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class GetAgent200Response : IAdditionalDataHolder, IParsable
+    public partial class AgentPublicDtoGenerated : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
         // Track explicitly assigned nulls separately from absent properties.
@@ -35,6 +35,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("isArchived") is { } nullNodeIsArchived && nullNodeIsArchived.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsArchived = null;
             if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
             else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("parentFolder") is null) { _explicitNullValueParentFolder = default!; _explicitNullProperties?.Remove("parentFolder"); }
+            else if (parseNode.GetChildNode("parentFolder") is { } nullNodeParentFolder && nullNodeParentFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ParentFolder = null;
             if (parseNode.GetChildNode("project") is null) { _explicitNullValueProject = default!; _explicitNullProperties?.Remove("project"); }
             else if (parseNode.GetChildNode("project") is { } nullNodeProject && nullNodeProject.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Project = null;
             if (parseNode.GetChildNode("projectId") is null) { _explicitNullValueProjectId = default!; _explicitNullProperties?.Remove("projectId"); }
@@ -50,12 +52,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The activeVersion property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion? ActiveVersion { get => _explicitNullValueActiveVersion; set { _explicitNullValueActiveVersion = value; AdditionalData?.Remove("activeVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activeVersion"); else _explicitNullProperties?.Remove("activeVersion"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion? _explicitNullValueActiveVersion = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion? ActiveVersion { get => _explicitNullValueActiveVersion; set { _explicitNullValueActiveVersion = value; AdditionalData?.Remove("activeVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activeVersion"); else _explicitNullProperties?.Remove("activeVersion"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion? _explicitNullValueActiveVersion = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion ActiveVersion { get => _explicitNullValueActiveVersion; set { _explicitNullValueActiveVersion = value; AdditionalData?.Remove("activeVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activeVersion"); else _explicitNullProperties?.Remove("activeVersion"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion _explicitNullValueActiveVersion = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion ActiveVersion { get => _explicitNullValueActiveVersion; set { _explicitNullValueActiveVersion = value; AdditionalData?.Remove("activeVersion"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("activeVersion"); else _explicitNullProperties?.Remove("activeVersion"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion _explicitNullValueActiveVersion = default!;
 #endif
         /// <summary>The activeVersionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -75,12 +77,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The config property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseConfig? Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; AdditionalData?.Remove("config"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseConfig? _explicitNullValueConfig = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedConfigProperty? Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; AdditionalData?.Remove("config"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedConfigProperty? _explicitNullValueConfig = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseConfig Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; AdditionalData?.Remove("config"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseConfig _explicitNullValueConfig = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedConfigProperty Config { get => _explicitNullValueConfig; set { _explicitNullValueConfig = value; AdditionalData?.Remove("config"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("config"); else _explicitNullProperties?.Remove("config"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedConfigProperty _explicitNullValueConfig = default!;
 #endif
         /// <summary>The configHash property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -125,15 +127,25 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
+        /// <summary>The parentFolder property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedParentFolder? ParentFolder { get => _explicitNullValueParentFolder; set { _explicitNullValueParentFolder = value; AdditionalData?.Remove("parentFolder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolder"); else _explicitNullProperties?.Remove("parentFolder"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedParentFolder? _explicitNullValueParentFolder = default!;
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedParentFolder ParentFolder { get => _explicitNullValueParentFolder; set { _explicitNullValueParentFolder = value; AdditionalData?.Remove("parentFolder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolder"); else _explicitNullProperties?.Remove("parentFolder"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedParentFolder _explicitNullValueParentFolder = default!;
+#endif
         /// <summary>The project property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseProject? Project { get => _explicitNullValueProject; set { _explicitNullValueProject = value; AdditionalData?.Remove("project"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("project"); else _explicitNullProperties?.Remove("project"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseProject? _explicitNullValueProject = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedProject? Project { get => _explicitNullValueProject; set { _explicitNullValueProject = value; AdditionalData?.Remove("project"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("project"); else _explicitNullProperties?.Remove("project"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedProject? _explicitNullValueProject = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseProject Project { get => _explicitNullValueProject; set { _explicitNullValueProject = value; AdditionalData?.Remove("project"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("project"); else _explicitNullProperties?.Remove("project"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseProject _explicitNullValueProject = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedProject Project { get => _explicitNullValueProject; set { _explicitNullValueProject = value; AdditionalData?.Remove("project"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("project"); else _explicitNullProperties?.Remove("project"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedProject _explicitNullValueProject = default!;
 #endif
         /// <summary>The projectId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -148,12 +160,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The tools property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseTools? Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; AdditionalData?.Remove("tools"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseTools? _explicitNullValueTools = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedToolsProperty? Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; AdditionalData?.Remove("tools"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedToolsProperty? _explicitNullValueTools = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseTools Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; AdditionalData?.Remove("tools"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseTools _explicitNullValueTools = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedToolsProperty Tools { get => _explicitNullValueTools; set { _explicitNullValueTools = value; AdditionalData?.Remove("tools"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("tools"); else _explicitNullProperties?.Remove("tools"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedToolsProperty _explicitNullValueTools = default!;
 #endif
         /// <summary>The updatedAt property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -176,21 +188,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         private string _explicitNullValueVersionId = default!;
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAgent200Response"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGenerated"/> and sets the default values.
         /// </summary>
-        public GetAgent200Response()
+        public AgentPublicDtoGenerated()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAgent200Response"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGenerated"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.GetAgent200Response CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGenerated CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetAgent200Response(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGenerated(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -198,20 +210,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(14)
+            return new Dictionary<string, Action<IParseNode>>(15)
             {
-                { "activeVersion", n => { ActiveVersion = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion>(global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion.CreateFromDiscriminatorValue); } },
+                { "activeVersion", n => { ActiveVersion = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion>(global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion.CreateFromDiscriminatorValue); } },
                 { "activeVersionId", n => { ActiveVersionId = n.GetStringValue(); } },
                 { "availableInMCP", n => { AvailableInMCP = n.GetBoolValue(); } },
-                { "config", n => { Config = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseConfig>(global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseConfig.CreateFromDiscriminatorValue); } },
+                { "config", n => { Config = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedConfigProperty>(global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedConfigProperty.CreateFromDiscriminatorValue); } },
                 { "configHash", n => { ConfigHash = n.GetStringValue(); } },
                 { "createdAt", n => { CreatedAt = n.GetStringValue(); } },
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isArchived", n => { IsArchived = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
-                { "project", n => { Project = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseProject>(global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseProject.CreateFromDiscriminatorValue); } },
+                { "parentFolder", n => { ParentFolder = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedParentFolder>(global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedParentFolder.CreateFromDiscriminatorValue); } },
+                { "project", n => { Project = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedProject>(global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedProject.CreateFromDiscriminatorValue); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
-                { "tools", n => { Tools = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseTools>(global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseTools.CreateFromDiscriminatorValue); } },
+                { "tools", n => { Tools = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedToolsProperty>(global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedToolsProperty.CreateFromDiscriminatorValue); } },
                 { "updatedAt", n => { UpdatedAt = n.GetStringValue(); } },
                 { "versionId", n => { VersionId = n.GetStringValue(); } },
             };
@@ -223,18 +236,19 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion>("activeVersion", ActiveVersion);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion>("activeVersion", ActiveVersion);
             writer.WriteStringValue("activeVersionId", ActiveVersionId);
             writer.WriteBoolValue("availableInMCP", AvailableInMCP);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseConfig>("config", Config);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedConfigProperty>("config", Config);
             writer.WriteStringValue("configHash", ConfigHash);
             writer.WriteStringValue("createdAt", CreatedAt);
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isArchived", IsArchived);
             writer.WriteStringValue("name", Name);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseProject>("project", Project);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedParentFolder>("parentFolder", ParentFolder);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedProject>("project", Project);
             writer.WriteStringValue("projectId", ProjectId);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseTools>("tools", Tools);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedToolsProperty>("tools", Tools);
             writer.WriteStringValue("updatedAt", UpdatedAt);
             writer.WriteStringValue("versionId", VersionId);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);

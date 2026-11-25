@@ -9,7 +9,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
 {
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
     #pragma warning disable CS1591
-    public partial class GetAgent200ResponseActiveVersion : IAdditionalDataHolder, IParsable
+    public partial class AgentPublicDtoGeneratedActiveVersion : IAdditionalDataHolder, IParsable
     #pragma warning restore CS1591
     , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
         // Track explicitly assigned nulls separately from absent properties.
@@ -28,12 +28,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>The integrations property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public List<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem>? Integrations { get => _explicitNullValueIntegrations; set { _explicitNullValueIntegrations = value; AdditionalData?.Remove("integrations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integrations"); else _explicitNullProperties?.Remove("integrations"); } }
-        private List<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem>? _explicitNullValueIntegrations = default!;
+        public List<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem>? Integrations { get => _explicitNullValueIntegrations; set { _explicitNullValueIntegrations = value; AdditionalData?.Remove("integrations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integrations"); else _explicitNullProperties?.Remove("integrations"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem>? _explicitNullValueIntegrations = default!;
 #nullable restore
 #else
-        public List<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem> Integrations { get => _explicitNullValueIntegrations; set { _explicitNullValueIntegrations = value; AdditionalData?.Remove("integrations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integrations"); else _explicitNullProperties?.Remove("integrations"); } }
-        private List<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem> _explicitNullValueIntegrations = default!;
+        public List<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem> Integrations { get => _explicitNullValueIntegrations; set { _explicitNullValueIntegrations = value; AdditionalData?.Remove("integrations"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("integrations"); else _explicitNullProperties?.Remove("integrations"); } }
+        private List<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem> _explicitNullValueIntegrations = default!;
 #endif
         /// <summary>The versionId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -46,23 +46,23 @@ namespace Soenneker.N8n.OpenApiClient.Models
         private string _explicitNullValueVersionId = default!;
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion"/> and sets the default values.
         /// </summary>
-        public GetAgent200ResponseActiveVersion()
+        public AgentPublicDtoGeneratedActiveVersion()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
             // Preserve a nullable root response.
             if (parseNode.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) return null!;
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersion(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersion(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -72,7 +72,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>
             {
-                { "integrations", n => { Integrations = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem>(global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
+                { "integrations", n => { Integrations = n.GetCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem>(global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem.CreateFromDiscriminatorValue)?.AsList(); } },
                 { "versionId", n => { VersionId = n.GetStringValue(); } },
             };
         }
@@ -83,7 +83,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem>("integrations", Integrations);
+            writer.WriteCollectionOfObjectValues<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem>("integrations", Integrations);
             writer.WriteStringValue("versionId", VersionId);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);

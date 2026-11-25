@@ -16,6 +16,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         #pragma warning disable CS1591
         ChangesRequested,
         #pragma warning restore CS1591
+        [EnumMember(Value = "review_required")]
+        #pragma warning disable CS1591
+        ReviewRequired,
+        #pragma warning restore CS1591
         [EnumMember(Value = "insufficient_api_key_scope")]
         #pragma warning disable CS1591
         InsufficientApiKeyScope,

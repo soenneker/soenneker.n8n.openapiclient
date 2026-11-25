@@ -35,6 +35,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("isArchived") is { } nullNodeIsArchived && nullNodeIsArchived.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) IsArchived = null;
             if (parseNode.GetChildNode("name") is null) { _explicitNullValueName = default!; _explicitNullProperties?.Remove("name"); }
             else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
+            if (parseNode.GetChildNode("parentFolder") is null) { _explicitNullValueParentFolder = default!; _explicitNullProperties?.Remove("parentFolder"); }
+            else if (parseNode.GetChildNode("parentFolder") is { } nullNodeParentFolder && nullNodeParentFolder.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ParentFolder = null;
             if (parseNode.GetChildNode("project") is null) { _explicitNullValueProject = default!; _explicitNullProperties?.Remove("project"); }
             else if (parseNode.GetChildNode("project") is { } nullNodeProject && nullNodeProject.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Project = null;
             if (parseNode.GetChildNode("projectId") is null) { _explicitNullValueProjectId = default!; _explicitNullProperties?.Remove("projectId"); }
@@ -125,6 +127,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string Name { get => _explicitNullValueName; set { _explicitNullValueName = value; AdditionalData?.Remove("name"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("name"); else _explicitNullProperties?.Remove("name"); } }
         private string _explicitNullValueName = default!;
 #endif
+        /// <summary>The parentFolder property</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseParentFolder? ParentFolder { get => _explicitNullValueParentFolder; set { _explicitNullValueParentFolder = value; AdditionalData?.Remove("parentFolder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolder"); else _explicitNullProperties?.Remove("parentFolder"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseParentFolder? _explicitNullValueParentFolder = default!;
+#nullable restore
+#else
+        public global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseParentFolder ParentFolder { get => _explicitNullValueParentFolder; set { _explicitNullValueParentFolder = value; AdditionalData?.Remove("parentFolder"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolder"); else _explicitNullProperties?.Remove("parentFolder"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseParentFolder _explicitNullValueParentFolder = default!;
+#endif
         /// <summary>The project property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
@@ -198,7 +210,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>(14)
+            return new Dictionary<string, Action<IParseNode>>(15)
             {
                 { "activeVersion", n => { ActiveVersion = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseActiveVersion>(global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseActiveVersion.CreateFromDiscriminatorValue); } },
                 { "activeVersionId", n => { ActiveVersionId = n.GetStringValue(); } },
@@ -209,6 +221,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "isArchived", n => { IsArchived = n.GetBoolValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
+                { "parentFolder", n => { ParentFolder = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseParentFolder>(global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseParentFolder.CreateFromDiscriminatorValue); } },
                 { "project", n => { Project = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseProject>(global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseProject.CreateFromDiscriminatorValue); } },
                 { "projectId", n => { ProjectId = n.GetStringValue(); } },
                 { "tools", n => { Tools = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseTools>(global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseTools.CreateFromDiscriminatorValue); } },
@@ -232,6 +245,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
             writer.WriteStringValue("id", Id);
             writer.WriteBoolValue("isArchived", IsArchived);
             writer.WriteStringValue("name", Name);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseParentFolder>("parentFolder", ParentFolder);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseProject>("project", Project);
             writer.WriteStringValue("projectId", ProjectId);
             writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.CreateAgent201ResponseTools>("tools", Tools);

@@ -11,6 +11,7 @@ using Soenneker.N8n.OpenApiClient.Workflows.Item.Dependencies;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.History;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Item;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Publish;
+using Soenneker.N8n.OpenApiClient.Workflows.Item.Run;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Tags;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.TestRuns;
 using Soenneker.N8n.OpenApiClient.Workflows.Item.Transfer;
@@ -61,6 +62,11 @@ namespace Soenneker.N8n.OpenApiClient.Workflows.Item
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Publish.PublishRequestBuilder Publish
         {
             get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Publish.PublishRequestBuilder(PathParameters, RequestAdapter);
+        }
+        /// <summary>The run property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Run.RunRequestBuilder Run
+        {
+            get => new global::Soenneker.N8n.OpenApiClient.Workflows.Item.Run.RunRequestBuilder(PathParameters, RequestAdapter);
         }
         /// <summary>The tags property</summary>
         public global::Soenneker.N8n.OpenApiClient.Workflows.Item.Tags.TagsRequestBuilder Tags

@@ -19,6 +19,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if (parseNode.GetChildNode("commitMessage") is null) { _explicitNullValueCommitMessage = default!; _explicitNullProperties?.Remove("commitMessage"); }
             else if (parseNode.GetChildNode("commitMessage") is { } nullNodeCommitMessage && nullNodeCommitMessage.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) CommitMessage = null;
+            if (parseNode.GetChildNode("expectedPreviewRevision") is null) { _explicitNullValueExpectedPreviewRevision = default!; _explicitNullProperties?.Remove("expectedPreviewRevision"); }
+            else if (parseNode.GetChildNode("expectedPreviewRevision") is { } nullNodeExpectedPreviewRevision && nullNodeExpectedPreviewRevision.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ExpectedPreviewRevision = null;
             if (parseNode.GetChildNode("folderIds") is null) { _explicitNullValueFolderIds = default!; _explicitNullProperties?.Remove("folderIds"); }
             else if (parseNode.GetChildNode("folderIds") is { } nullNodeFolderIds && nullNodeFolderIds.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) FolderIds = null;
             if (parseNode.GetChildNode("workflowIds") is null) { _explicitNullValueWorkflowIds = default!; _explicitNullProperties?.Remove("workflowIds"); }
@@ -34,6 +36,16 @@ namespace Soenneker.N8n.OpenApiClient.Models
 #else
         public string CommitMessage { get => _explicitNullValueCommitMessage; set { _explicitNullValueCommitMessage = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("commitMessage"); else _explicitNullProperties?.Remove("commitMessage"); } }
         private string _explicitNullValueCommitMessage = default!;
+#endif
+        /// <summary>The `revision` of the reviewed preview. The operation builds the preview again. When it differs, the operation returns status `preview-changed` and changes nothing.</summary>
+#if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
+#nullable enable
+        public string? ExpectedPreviewRevision { get => _explicitNullValueExpectedPreviewRevision; set { _explicitNullValueExpectedPreviewRevision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedPreviewRevision"); else _explicitNullProperties?.Remove("expectedPreviewRevision"); } }
+        private string? _explicitNullValueExpectedPreviewRevision = default!;
+#nullable restore
+#else
+        public string ExpectedPreviewRevision { get => _explicitNullValueExpectedPreviewRevision; set { _explicitNullValueExpectedPreviewRevision = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("expectedPreviewRevision"); else _explicitNullProperties?.Remove("expectedPreviewRevision"); } }
+        private string _explicitNullValueExpectedPreviewRevision = default!;
 #endif
         /// <summary>Folders of the project to promote. Promote writes a selected folder with its current name and place, even when it is empty.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,9 +83,10 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "commitMessage", n => { CommitMessage = n.GetStringValue(); } },
+                { "expectedPreviewRevision", n => { ExpectedPreviewRevision = n.GetStringValue(); } },
                 { "folderIds", n => { FolderIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
                 { "workflowIds", n => { WorkflowIds = n.GetCollectionOfPrimitiveValues<string>()?.AsList(); } },
             };
@@ -86,6 +99,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("commitMessage", CommitMessage);
+            writer.WriteStringValue("expectedPreviewRevision", ExpectedPreviewRevision);
             writer.WriteCollectionOfPrimitiveValues<string>("folderIds", FolderIds);
             writer.WriteCollectionOfPrimitiveValues<string>("workflowIds", WorkflowIds);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             

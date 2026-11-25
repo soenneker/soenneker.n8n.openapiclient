@@ -23,6 +23,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             else if (parseNode.GetChildNode("name") is { } nullNodeName && nullNodeName.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) Name = null;
             if (parseNode.GetChildNode("parentFolderId") is null) { _explicitNullValueParentFolderId = default!; _explicitNullProperties?.Remove("parentFolderId"); }
             else if (parseNode.GetChildNode("parentFolderId") is { } nullNodeParentFolderId && nullNodeParentFolderId.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ParentFolderId = null;
+            if (parseNode.GetChildNode("resourceType") is null) { _explicitNullValueResourceType = default!; _explicitNullProperties?.Remove("resourceType"); }
+            else if (parseNode.GetChildNode("resourceType") is { } nullNodeResourceType && nullNodeResourceType.GetObjectValue<global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode>(global::Microsoft.Kiota.Abstractions.Serialization.UntypedNode.CreateFromDiscriminatorValue) is null or global::Microsoft.Kiota.Abstractions.Serialization.UntypedNull) ResourceType = null;
         }
 
         /// <summary>The id property</summary>
@@ -55,6 +57,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public string ParentFolderId { get => _explicitNullValueParentFolderId; set { _explicitNullValueParentFolderId = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("parentFolderId"); else _explicitNullProperties?.Remove("parentFolderId"); } }
         private string _explicitNullValueParentFolderId = default!;
 #endif
+        /// <summary>The resourceType property</summary>
+        public global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailGeneratedOneOf2AfterResourceType? ResourceType { get => _explicitNullValueResourceType; set { _explicitNullValueResourceType = value; if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("resourceType"); else _explicitNullProperties?.Remove("resourceType"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailGeneratedOneOf2AfterResourceType? _explicitNullValueResourceType = default!;
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
@@ -73,11 +78,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <returns>A IDictionary&lt;string, Action&lt;IParseNode&gt;&gt;</returns>
         public virtual IDictionary<string, Action<IParseNode>> GetFieldDeserializers()
         {
-            return new Dictionary<string, Action<IParseNode>>
+            return new Dictionary<string, Action<IParseNode>>(4)
             {
                 { "id", n => { Id = n.GetStringValue(); } },
                 { "name", n => { Name = n.GetStringValue(); } },
                 { "parentFolderId", n => { ParentFolderId = n.GetStringValue(); } },
+                { "resourceType", n => { ResourceType = n.GetEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailGeneratedOneOf2AfterResourceType>(); } },
             };
         }
         /// <summary>
@@ -89,7 +95,8 @@ namespace Soenneker.N8n.OpenApiClient.Models
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
             writer.WriteStringValue("id", Id);
             writer.WriteStringValue("name", Name);
-            writer.WriteStringValue("parentFolderId", ParentFolderId);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
+            writer.WriteStringValue("parentFolderId", ParentFolderId);
+            writer.WriteEnumValue<global::Soenneker.N8n.OpenApiClient.Models.PromotionResourceDetailGeneratedOneOf2AfterResourceType>("resourceType", ResourceType);if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             
         }
     }

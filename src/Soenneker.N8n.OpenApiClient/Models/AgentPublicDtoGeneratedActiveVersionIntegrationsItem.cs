@@ -11,7 +11,7 @@ namespace Soenneker.N8n.OpenApiClient.Models
     /// A channel integration. `type` picks the platform.
     /// </summary>
     [global::System.CodeDom.Compiler.GeneratedCode("Kiota", "1.0.0")]
-    public partial class GetAgent200ResponseActiveVersionIntegrationsItem : IAdditionalDataHolder, IParsable
+    public partial class AgentPublicDtoGeneratedActiveVersionIntegrationsItem : IAdditionalDataHolder, IParsable
     , global::Soenneker.OpenApi.Generated.IOpenApiExplicitNulls {
         // Track explicitly assigned nulls separately from absent properties.
         private global::System.Collections.Generic.HashSet<string> _explicitNullProperties = null!;
@@ -33,12 +33,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Channel actions that need approval before they run.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval? Approval { get => _explicitNullValueApproval; set { _explicitNullValueApproval = value; AdditionalData?.Remove("approval"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("approval"); else _explicitNullProperties?.Remove("approval"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval? _explicitNullValueApproval = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty? Approval { get => _explicitNullValueApproval; set { _explicitNullValueApproval = value; AdditionalData?.Remove("approval"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("approval"); else _explicitNullProperties?.Remove("approval"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty? _explicitNullValueApproval = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval Approval { get => _explicitNullValueApproval; set { _explicitNullValueApproval = value; AdditionalData?.Remove("approval"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("approval"); else _explicitNullProperties?.Remove("approval"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval _explicitNullValueApproval = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty Approval { get => _explicitNullValueApproval; set { _explicitNullValueApproval = value; AdditionalData?.Remove("approval"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("approval"); else _explicitNullProperties?.Remove("approval"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty _explicitNullValueApproval = default!;
 #endif
         /// <summary>The credentialId property</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -53,12 +53,12 @@ namespace Soenneker.N8n.OpenApiClient.Models
         /// <summary>Platform-specific integration settings.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
 #nullable enable
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemSettings? Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; AdditionalData?.Remove("settings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemSettings? _explicitNullValueSettings = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty? Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; AdditionalData?.Remove("settings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty? _explicitNullValueSettings = default!;
 #nullable restore
 #else
-        public global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemSettings Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; AdditionalData?.Remove("settings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
-        private global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemSettings _explicitNullValueSettings = default!;
+        public global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty Settings { get => _explicitNullValueSettings; set { _explicitNullValueSettings = value; AdditionalData?.Remove("settings"); if (value is null) (_explicitNullProperties ??= new global::System.Collections.Generic.HashSet<string>()).Add("settings"); else _explicitNullProperties?.Remove("settings"); } }
+        private global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty _explicitNullValueSettings = default!;
 #endif
         /// <summary>The integration type, for example `slack` or `webhook`.</summary>
 #if NETSTANDARD2_1_OR_GREATER || NETCOREAPP3_1_OR_GREATER
@@ -71,21 +71,21 @@ namespace Soenneker.N8n.OpenApiClient.Models
         private string _explicitNullValueType = default!;
 #endif
         /// <summary>
-        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem"/> and sets the default values.
+        /// Instantiates a new <see cref="global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem"/> and sets the default values.
         /// </summary>
-        public GetAgent200ResponseActiveVersionIntegrationsItem()
+        public AgentPublicDtoGeneratedActiveVersionIntegrationsItem()
         {
             AdditionalData = new Dictionary<string, object>();
         }
         /// <summary>
         /// Creates a new instance of the appropriate class based on discriminator value
         /// </summary>
-        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem"/></returns>
+        /// <returns>A <see cref="global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem"/></returns>
         /// <param name="parseNode">The parse node to use to read the discriminator value and create the object</param>
-        public static global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem CreateFromDiscriminatorValue(IParseNode parseNode)
+        public static global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem CreateFromDiscriminatorValue(IParseNode parseNode)
         {
             if(ReferenceEquals(parseNode, null)) throw new ArgumentNullException(nameof(parseNode));
-            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItem(), parseNode);
+            return global::Soenneker.OpenApi.Generated.OpenApiNullTracking.Capture(new global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItem(), parseNode);
         }
         /// <summary>
         /// The deserialization information for the current model
@@ -95,9 +95,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         {
             return new Dictionary<string, Action<IParseNode>>(4)
             {
-                { "approval", n => { Approval = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval>(global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval.CreateFromDiscriminatorValue); } },
+                { "approval", n => { Approval = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty>(global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty.CreateFromDiscriminatorValue); } },
                 { "credentialId", n => { CredentialId = n.GetStringValue(); } },
-                { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemSettings>(global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemSettings.CreateFromDiscriminatorValue); } },
+                { "settings", n => { Settings = n.GetObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty>(global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty.CreateFromDiscriminatorValue); } },
                 { "type", n => { Type = n.GetStringValue(); } },
             };
         }
@@ -108,9 +108,9 @@ namespace Soenneker.N8n.OpenApiClient.Models
         public virtual void Serialize(ISerializationWriter writer)
         {
             if(ReferenceEquals(writer, null)) throw new ArgumentNullException(nameof(writer));
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemApproval>("approval", Approval);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemApprovalProperty>("approval", Approval);
             writer.WriteStringValue("credentialId", CredentialId);
-            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.GetAgent200ResponseActiveVersionIntegrationsItemSettings>("settings", Settings);
+            writer.WriteObjectValue<global::Soenneker.N8n.OpenApiClient.Models.AgentPublicDtoGeneratedActiveVersionIntegrationsItemSettingsProperty>("settings", Settings);
             writer.WriteStringValue("type", Type);
             if (_explicitNullProperties != null) foreach (string name in _explicitNullProperties) writer.WriteNullValue(name);
             writer.WriteAdditionalData(AdditionalData);
