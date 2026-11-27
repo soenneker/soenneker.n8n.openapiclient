@@ -10,7 +10,7 @@ info:
     name: Sustainable Use License
     url: https://github.com/n8n-io/n8n/blob/master/LICENSE.md
   version: 1.1.1
-  x-n8n-version: 2.50.1
+  x-n8n-version: 2.50.2
 externalDocs:
   description: n8n API documentation
   url: https://docs.n8n.io/api/
@@ -5079,7 +5079,7 @@ paths:
         - Evaluation
       summary: Retrieve test run cases
       description: |-
-        Retrieve the per-case results of an evaluation test run.
+        Retrieve the per-case results of an evaluation test run. Requires the `execution:read` project scope.
 
         Requires the `testRun:read` API key scope.
       x-required-scope: testRun:read

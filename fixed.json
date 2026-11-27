@@ -12,7 +12,7 @@
       "url": "https://github.com/n8n-io/n8n/blob/master/LICENSE.md"
     },
     "version": "1.1.1",
-    "x-n8n-version": "2.50.1"
+    "x-n8n-version": "2.50.2"
   },
   "servers": [
     {
@@ -3132,7 +3132,7 @@
           "Evaluation"
         ],
         "summary": "Retrieve test run cases",
-        "description": "Retrieve the per-case results of an evaluation test run.\n\nRequires the \u0060testRun:read\u0060 API key scope.",
+        "description": "Retrieve the per-case results of an evaluation test run. Requires the \u0060execution:read\u0060 project scope.\n\nRequires the \u0060testRun:read\u0060 API key scope.",
         "operationId": "GetTestCases",
         "parameters": [
           {
